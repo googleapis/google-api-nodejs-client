@@ -1436,13 +1436,1490 @@
                   ]
                 }
               }
+            },
+            "schemaRegistries": {
+              "methods": {
+                "create": {
+                  "description": "Create a schema registry instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries",
+                  "httpMethod": "POST",
+                  "id": "managedkafka.projects.locations.schemaRegistries.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent whose schema registry instance is to be created. Structured like: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schemaRegistries",
+                  "request": {
+                    "$ref": "CreateSchemaRegistryRequest"
+                  },
+                  "response": {
+                    "$ref": "SchemaRegistry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a schema registry instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}",
+                  "httpMethod": "DELETE",
+                  "id": "managedkafka.projects.locations.schemaRegistries.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the schema registry instance to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get the schema registry instance.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}",
+                  "httpMethod": "GET",
+                  "id": "managedkafka.projects.locations.schemaRegistries.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the schema registry instance to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "SchemaRegistry"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List schema registries.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries",
+                  "httpMethod": "GET",
+                  "id": "managedkafka.projects.locations.schemaRegistries.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent whose schema registry instances are to be listed. Structured like: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/schemaRegistries",
+                  "response": {
+                    "$ref": "ListSchemaRegistriesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "compatibility": {
+                  "methods": {
+                    "checkCompatibility": {
+                      "description": "Check compatibility of a schema with all versions or a specific version of a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/compatibility/{compatibilityId}",
+                      "httpMethod": "POST",
+                      "id": "managedkafka.projects.locations.schemaRegistries.compatibility.checkCompatibility",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource to check compatibility for. The format is either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/*/versions: Check compatibility with one or more versions of the specified subject. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check compatibility with a specific version of the subject.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/compatibility/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "CheckCompatibilityRequest"
+                      },
+                      "response": {
+                        "$ref": "CheckCompatibilityResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "config": {
+                  "methods": {
+                    "delete": {
+                      "description": "Delete schema config for a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/config/{configId}",
+                      "httpMethod": "DELETE",
+                      "id": "managedkafka.projects.locations.schemaRegistries.config.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of subject to delete the config for. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/config/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "SchemaConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get schema config at global level or for a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/config/{configId}",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.config.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "defaultToGlobal": {
+                          "description": "Optional. If true, the config will fall back to the config at the global level if no subject level config is found.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Required. The resource name to get the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Get config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Get config for a specific subject.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/config/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "SchemaConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Update config at global level or for a subject. Creates a SchemaSubject-level SchemaConfig if it does not exist.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/config/{configId}",
+                      "httpMethod": "PUT",
+                      "id": "managedkafka.projects.locations.schemaRegistries.config.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name to update the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Update config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Update config for a specific subject.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/config/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "UpdateSchemaConfigRequest"
+                      },
+                      "response": {
+                        "$ref": "SchemaConfig"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "contexts": {
+                  "methods": {
+                    "get": {
+                      "description": "Get the context.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.contexts.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the context to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Context"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List contexts for a schema registry.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.contexts.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent of the contexts. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/contexts",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "compatibility": {
+                      "methods": {
+                        "checkCompatibility": {
+                          "description": "Check compatibility of a schema with all versions or a specific version of a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/compatibility/{compatibilityId}",
+                          "httpMethod": "POST",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.compatibility.checkCompatibility",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the resource to check compatibility for. The format is either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/*/versions: Check compatibility with one or more versions of the specified subject. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/compatibility/subjects/{subject}/versions/{version}: Check compatibility with a specific version of the subject.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/compatibility/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "CheckCompatibilityRequest"
+                          },
+                          "response": {
+                            "$ref": "CheckCompatibilityResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "config": {
+                      "methods": {
+                        "delete": {
+                          "description": "Delete schema config for a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/config/{configId}",
+                          "httpMethod": "DELETE",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.config.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of subject to delete the config for. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/config/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "SchemaConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Get schema config at global level or for a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/config/{configId}",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.config.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "defaultToGlobal": {
+                              "description": "Optional. If true, the config will fall back to the config at the global level if no subject level config is found.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. The resource name to get the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Get config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Get config for a specific subject.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/config/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "SchemaConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "update": {
+                          "description": "Update config at global level or for a subject. Creates a SchemaSubject-level SchemaConfig if it does not exist.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/config/{configId}",
+                          "httpMethod": "PUT",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.config.update",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name to update the config for. It can be either of following: * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config: Update config at global level. * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/config/{subject}: Update config for a specific subject.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/config/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "UpdateSchemaConfigRequest"
+                          },
+                          "response": {
+                            "$ref": "SchemaConfig"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "mode": {
+                      "methods": {
+                        "delete": {
+                          "description": "Delete schema mode for a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/mode/{modeId}",
+                          "httpMethod": "DELETE",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.mode.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of subject to delete the mode for. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject} * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/mode/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "SchemaMode"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Get mode at global level or for a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/mode/{modeId}",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.mode.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the mode. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject}: mode for a schema registry, or * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}: mode for a specific subject in a specific context",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/mode/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "SchemaMode"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "update": {
+                          "description": "Update mode at global level or for a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/mode/{modeId}",
+                          "httpMethod": "PUT",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.mode.update",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the mode. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject}: mode for a schema registry, or * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}: mode for a specific subject in a specific context",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/mode/.*$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "request": {
+                            "$ref": "UpdateSchemaModeRequest"
+                          },
+                          "response": {
+                            "$ref": "SchemaMode"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "schemas": {
+                      "methods": {
+                        "get": {
+                          "description": "Get the schema for the given schema id.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/schemas/{schemasId}",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.schemas.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/schemas/.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "subject": {
+                              "description": "Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "Schema"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "getSchema": {
+                          "description": "Get the schema string for the given schema id. The response will be the schema string.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/schemas/{schemasId}/schema",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.schemas.getSchema",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/schemas/.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "subject": {
+                              "description": "Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/schema",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
+                      "resources": {
+                        "subjects": {
+                          "methods": {
+                            "list": {
+                              "description": "List subjects which reference a particular schema id. The response will be an array of subject names.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/schemas/{schemasId}/subjects",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.schemas.subjects.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "deleted": {
+                                  "description": "Optional. If true, the response will include soft-deleted subjects. The default is false.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "parent": {
+                                  "description": "Required. The schema resource whose associated subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/schemas/.*$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "subject": {
+                                  "description": "Optional. The subject to filter the subjects by.",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/subjects",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "types": {
+                          "methods": {
+                            "list": {
+                              "description": "List the supported schema types. The response will be an array of schema types.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/schemas/types",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.schemas.types.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The parent schema registry whose schema types are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/schemas/types",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "versions": {
+                          "methods": {
+                            "list": {
+                              "description": "List the schema versions for the given schema id. The response will be an array of subject-version pairs as: [{\"subject\":\"subject1\", \"version\":1}, {\"subject\":\"subject2\", \"version\":2}].",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/schemas/{schemasId}/versions",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.schemas.versions.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "deleted": {
+                                  "description": "Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "parent": {
+                                  "description": "Required. The schema whose schema versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/schemas/.*$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "subject": {
+                                  "description": "Optional. The subject to filter the subjects by.",
+                                  "location": "query",
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/versions",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "subjects": {
+                      "methods": {
+                        "delete": {
+                          "description": "Delete a subject. The response will be an array of versions of the deleted subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}",
+                          "httpMethod": "DELETE",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the subject to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "permanent": {
+                              "description": "Optional. If true, the subject and all associated metadata including the schema ID will be deleted permanently. Otherwise, only the subject is soft-deleted. The default is false. Soft-deleted subjects can still be searched in ListSubjects API call with deleted=true query parameter. A soft-delete of a subject must be performed before a hard-delete.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "List subjects in the schema registry. The response will be an array of subject names.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, the response will include soft-deleted subjects. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "parent": {
+                              "description": "Required. The parent schema registry/context whose subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "subjectPrefix": {
+                              "description": "Optional. The context to filter the subjects by, in the format of `:.{context}:`. If unset, all subjects in the registry are returned. Set to empty string or add as '?subjectPrefix=' at the end of this request to list subjects in the default context.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/subjects",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "lookupVersion": {
+                          "description": "Lookup a schema under the specified subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}",
+                          "httpMethod": "POST",
+                          "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.lookupVersion",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The subject to lookup the schema in. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}",
+                          "request": {
+                            "$ref": "LookupVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "SchemaVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
+                      "resources": {
+                        "versions": {
+                          "methods": {
+                            "create": {
+                              "description": "Register a new version under a given subject with the given schema.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions",
+                              "httpMethod": "POST",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.create",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The subject to create the version for. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/versions",
+                              "request": {
+                                "$ref": "CreateVersionRequest"
+                              },
+                              "response": {
+                                "$ref": "CreateVersionResponse"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "delete": {
+                              "description": "Delete a version of a subject. The response will be the deleted version id.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions/{versionsId}",
+                              "httpMethod": "DELETE",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.delete",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "name": {
+                                  "description": "Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                },
+                                "permanent": {
+                                  "description": "Optional. If true, both the version and the referenced schema ID will be permanently deleted. The default is false. If false, the version will be deleted but the schema ID will be retained. Soft-deleted versions can still be searched in ListVersions API call with deleted=true query parameter. A soft-delete of a version must be performed before a hard-delete.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "get": {
+                              "description": "Get a versioned schema (schema with subject/version) of a subject.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions/{versionsId}",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.get",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "deleted": {
+                                  "description": "Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "name": {
+                                  "description": "Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}",
+                              "response": {
+                                "$ref": "SchemaVersion"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "getSchema": {
+                              "description": "Get the schema string only for a version of a subject. The response will be the schema string.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions/{versionsId}/schema",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.getSchema",
+                              "parameterOrder": [
+                                "name"
+                              ],
+                              "parameters": {
+                                "deleted": {
+                                  "description": "Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "name": {
+                                  "description": "Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+name}/schema",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            },
+                            "list": {
+                              "description": "Get all versions of a subject. The response will be an array of versions of the subject.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "deleted": {
+                                  "description": "Optional. If true, the response will include soft-deleted versions of an active or soft-deleted subject. The default is false.",
+                                  "location": "query",
+                                  "type": "boolean"
+                                },
+                                "parent": {
+                                  "description": "Required. The subject whose versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/versions",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          },
+                          "resources": {
+                            "referencedby": {
+                              "methods": {
+                                "list": {
+                                  "description": "Get a list of IDs of schemas that reference the schema with the given subject and version.",
+                                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/contexts/{contextsId}/subjects/{subjectsId}/versions/{versionsId}/referencedby",
+                                  "httpMethod": "GET",
+                                  "id": "managedkafka.projects.locations.schemaRegistries.contexts.subjects.versions.referencedby.list",
+                                  "parameterOrder": [
+                                    "parent"
+                                  ],
+                                  "parameters": {
+                                    "parent": {
+                                      "description": "Required. The version to list referenced by. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                                      "location": "path",
+                                      "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/contexts/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                                      "required": true,
+                                      "type": "string"
+                                    }
+                                  },
+                                  "path": "v1/{+parent}/referencedby",
+                                  "response": {
+                                    "$ref": "HttpBody"
+                                  },
+                                  "scopes": [
+                                    "https://www.googleapis.com/auth/cloud-platform"
+                                  ]
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                },
+                "mode": {
+                  "methods": {
+                    "delete": {
+                      "description": "Delete schema mode for a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/mode/{modeId}",
+                      "httpMethod": "DELETE",
+                      "id": "managedkafka.projects.locations.schemaRegistries.mode.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of subject to delete the mode for. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject} * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/mode/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "SchemaMode"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Get mode at global level or for a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/mode/{modeId}",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.mode.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the mode. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject}: mode for a schema registry, or * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}: mode for a specific subject in a specific context",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/mode/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "SchemaMode"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "update": {
+                      "description": "Update mode at global level or for a subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/mode/{modeId}",
+                      "httpMethod": "PUT",
+                      "id": "managedkafka.projects.locations.schemaRegistries.mode.update",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the mode. The format is * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/mode/{subject}: mode for a schema registry, or * projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/mode/{subject}: mode for a specific subject in a specific context",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/mode/.*$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "UpdateSchemaModeRequest"
+                      },
+                      "response": {
+                        "$ref": "SchemaMode"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "schemas": {
+                  "methods": {
+                    "get": {
+                      "description": "Get the schema for the given schema id.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/schemas/{schemasId}",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.schemas.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/schemas/.*$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "subject": {
+                          "description": "Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Schema"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getSchema": {
+                      "description": "Get the schema string for the given schema id. The response will be the schema string.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/schemas/{schemasId}/schema",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.schemas.getSchema",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the schema to return. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/schemas/.*$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "subject": {
+                          "description": "Optional. Used to limit the search for the schema ID to a specific subject, otherwise the schema ID will be searched for in all subjects in the given specified context.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}/schema",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "subjects": {
+                      "methods": {
+                        "list": {
+                          "description": "List subjects which reference a particular schema id. The response will be an array of subject names.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/schemas/{schemasId}/subjects",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.schemas.subjects.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, the response will include soft-deleted subjects. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "parent": {
+                              "description": "Required. The schema resource whose associated subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/schemas/.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "subject": {
+                              "description": "Optional. The subject to filter the subjects by.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/subjects",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "types": {
+                      "methods": {
+                        "list": {
+                          "description": "List the supported schema types. The response will be an array of schema types.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/schemas/types",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.schemas.types.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The parent schema registry whose schema types are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/schemas/types",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "versions": {
+                      "methods": {
+                        "list": {
+                          "description": "List the schema versions for the given schema id. The response will be an array of subject-version pairs as: [{\"subject\":\"subject1\", \"version\":1}, {\"subject\":\"subject2\", \"version\":2}].",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/schemas/{schemasId}/versions",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.schemas.versions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, the response will include soft-deleted versions of the schema, even if the subject is soft-deleted. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "parent": {
+                              "description": "Required. The schema whose schema versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/schemas/ids/{schema}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/schemas/ids/{schema}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/schemas/.*$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "subject": {
+                              "description": "Optional. The subject to filter the subjects by.",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/versions",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    }
+                  }
+                },
+                "subjects": {
+                  "methods": {
+                    "delete": {
+                      "description": "Delete a subject. The response will be an array of versions of the deleted subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}",
+                      "httpMethod": "DELETE",
+                      "id": "managedkafka.projects.locations.schemaRegistries.subjects.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the subject to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "permanent": {
+                          "description": "Optional. If true, the subject and all associated metadata including the schema ID will be deleted permanently. Otherwise, only the subject is soft-deleted. The default is false. Soft-deleted subjects can still be searched in ListSubjects API call with deleted=true query parameter. A soft-delete of a subject must be performed before a hard-delete.",
+                          "location": "query",
+                          "type": "boolean"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List subjects in the schema registry. The response will be an array of subject names.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects",
+                      "httpMethod": "GET",
+                      "id": "managedkafka.projects.locations.schemaRegistries.subjects.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "deleted": {
+                          "description": "Optional. If true, the response will include soft-deleted subjects. The default is false.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "parent": {
+                          "description": "Required. The parent schema registry/context whose subjects are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "subjectPrefix": {
+                          "description": "Optional. The context to filter the subjects by, in the format of `:.{context}:`. If unset, all subjects in the registry are returned. Set to empty string or add as '?subjectPrefix=' at the end of this request to list subjects in the default context.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/subjects",
+                      "response": {
+                        "$ref": "HttpBody"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "lookupVersion": {
+                      "description": "Lookup a schema under the specified subject.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}",
+                      "httpMethod": "POST",
+                      "id": "managedkafka.projects.locations.schemaRegistries.subjects.lookupVersion",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The subject to lookup the schema in. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}",
+                      "request": {
+                        "$ref": "LookupVersionRequest"
+                      },
+                      "response": {
+                        "$ref": "SchemaVersion"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  },
+                  "resources": {
+                    "versions": {
+                      "methods": {
+                        "create": {
+                          "description": "Register a new version under a given subject with the given schema.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions",
+                          "httpMethod": "POST",
+                          "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The subject to create the version for. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/versions",
+                          "request": {
+                            "$ref": "CreateVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "CreateVersionResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Delete a version of a subject. The response will be the deleted version id.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions/{versionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the subject version to delete. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "permanent": {
+                              "description": "Optional. If true, both the version and the referenced schema ID will be permanently deleted. The default is false. If false, the version will be deleted but the schema ID will be retained. Soft-deleted versions can still be searched in ListVersions API call with deleted=true query parameter. A soft-delete of a version must be performed before a hard-delete.",
+                              "location": "query",
+                              "type": "boolean"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "get": {
+                          "description": "Get a versioned schema (schema with subject/version) of a subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions/{versionsId}",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}",
+                          "response": {
+                            "$ref": "SchemaVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "getSchema": {
+                          "description": "Get the schema string only for a version of a subject. The response will be the schema string.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions/{versionsId}/schema",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.getSchema",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, no matter if the subject/version is soft-deleted or not, it returns the version details. If false, it returns NOT_FOUND error if the subject/version is soft-deleted. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. The name of the subject to return versions. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}/schema",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "list": {
+                          "description": "Get all versions of a subject. The response will be an array of versions of the subject.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions",
+                          "httpMethod": "GET",
+                          "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "deleted": {
+                              "description": "Optional. If true, the response will include soft-deleted versions of an active or soft-deleted subject. The default is false.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "parent": {
+                              "description": "Required. The subject whose versions are to be listed. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+parent}/versions",
+                          "response": {
+                            "$ref": "HttpBody"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      },
+                      "resources": {
+                        "referencedby": {
+                          "methods": {
+                            "list": {
+                              "description": "Get a list of IDs of schemas that reference the schema with the given subject and version.",
+                              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/schemaRegistries/{schemaRegistriesId}/subjects/{subjectsId}/versions/{versionsId}/referencedby",
+                              "httpMethod": "GET",
+                              "id": "managedkafka.projects.locations.schemaRegistries.subjects.versions.referencedby.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "parent": {
+                                  "description": "Required. The version to list referenced by. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/subjects/{subject}/versions/{version}` or `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}/subjects/{subject}/versions/{version}`",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/schemaRegistries/[^/]+/subjects/[^/]+/versions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1/{+parent}/referencedby",
+                              "response": {
+                                "$ref": "HttpBody"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250623",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {
@@ -1557,6 +3034,73 @@
       },
       "type": "object"
     },
+    "CertificateAuthorityServiceConfig": {
+      "description": "A configuration for the Google Certificate Authority Service.",
+      "id": "CertificateAuthorityServiceConfig",
+      "properties": {
+        "caPool": {
+          "description": "Required. The name of the CA pool to pull CA certificates from. Structured like: projects/{project}/locations/{location}/caPools/{ca_pool}. The CA pool does not need to be in the same project or location as the Kafka cluster.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckCompatibilityRequest": {
+      "description": "Request for CheckCompatibility.",
+      "id": "CheckCompatibilityRequest",
+      "properties": {
+        "references": {
+          "description": "Optional. The schema references used by the schema.",
+          "items": {
+            "$ref": "SchemaReference"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "description": "Required. The schema payload",
+          "type": "string"
+        },
+        "schemaType": {
+          "description": "Optional. The schema type of the schema.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "AVRO",
+            "JSON",
+            "PROTOBUF"
+          ],
+          "enumDescriptions": [
+            "No schema type. The default will be AVRO.",
+            "Avro schema type.",
+            "JSON schema type.",
+            "Protobuf schema type."
+          ],
+          "type": "string"
+        },
+        "verbose": {
+          "description": "Optional. If true, the response will contain the compatibility check result with reasons for failed checks. The default is false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CheckCompatibilityResponse": {
+      "description": "Response for CheckCompatibility.",
+      "id": "CheckCompatibilityResponse",
+      "properties": {
+        "is_compatible": {
+          "description": "The compatibility check result. If true, the schema is compatible with the resource.",
+          "type": "boolean"
+        },
+        "messages": {
+          "description": "Failure reasons if verbose = true.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Cluster": {
       "description": "An Apache Kafka cluster deployed in a location.",
       "id": "Cluster",
@@ -1616,6 +3160,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "tlsConfig": {
+          "$ref": "TlsConfig",
+          "description": "Optional. TLS configuration for the Kafka cluster."
         },
         "updateTime": {
           "description": "Output only. The time when the cluster was last updated.",
@@ -1842,6 +3390,99 @@
       },
       "type": "object"
     },
+    "Context": {
+      "description": "Context represents an independent schema grouping in a schema registry instance.",
+      "id": "Context",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the context. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}/contexts/{context}` The context name {context} can contain the following: * Up to 255 characters. * Allowed characters: letters (uppercase or lowercase), numbers, and the following special characters: `.`, `-`, `_`, `+`, `%`, and `~`.",
+          "type": "string"
+        },
+        "subjects": {
+          "description": "Optional. The subjects of the context.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CreateSchemaRegistryRequest": {
+      "description": "Request to create a schema registry instance.",
+      "id": "CreateSchemaRegistryRequest",
+      "properties": {
+        "schemaRegistry": {
+          "$ref": "SchemaRegistry",
+          "description": "Required. The schema registry instance to create. The name field is ignored."
+        },
+        "schemaRegistryId": {
+          "description": "Required. The schema registry instance ID to use for this schema registry. The ID must contain only letters (a-z, A-Z), numbers (0-9), and underscores (-). The maximum length is 63 characters. The ID must not start with a number.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateVersionRequest": {
+      "description": "Request for CreateVersion.",
+      "id": "CreateVersionRequest",
+      "properties": {
+        "id": {
+          "description": "Optional. The schema ID of the schema. If not specified, the schema ID will be generated by the server. If the schema ID is specified, it must not be used by an existing schema that is different from the schema to be created.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "normalize": {
+          "description": "Optional. If true, the schema will be normalized before being stored. The default is false.",
+          "type": "boolean"
+        },
+        "references": {
+          "description": "Optional. The schema references used by the schema.",
+          "items": {
+            "$ref": "SchemaReference"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "description": "Required. The schema payload",
+          "type": "string"
+        },
+        "schemaType": {
+          "description": "Optional. The type of the schema. It is optional. If not specified, the schema type will be AVRO.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "AVRO",
+            "JSON",
+            "PROTOBUF"
+          ],
+          "enumDescriptions": [
+            "No schema type. The default will be AVRO.",
+            "Avro schema type.",
+            "JSON schema type.",
+            "Protobuf schema type."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Optional. The version to create. It is optional. If not specified, the version will be created with the max version ID of the subject increased by 1. If the version ID is specified, it will be used as the new version ID and must not be used by an existing version of the subject.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CreateVersionResponse": {
+      "description": "Response for CreateVersion.",
+      "id": "CreateVersionResponse",
+      "properties": {
+        "id": {
+          "description": "The unique identifier of the schema created.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
@@ -1859,6 +3500,33 @@
         "kmsKey": {
           "description": "Optional. Immutable. The Cloud KMS Key name to use for encryption. The key must be located in the same region as the cluster and cannot be changed. Structured like: projects/{project}/locations/{location}/keyRings/{key_ring}/cryptoKeys/{crypto_key}.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HttpBody": {
+      "description": "Message that represents an arbitrary HTTP body. It should only be used for payload formats that can't be represented as JSON, such as raw binary or an HTML page. This message can be used both in streaming and non-streaming API methods in the request as well as the response. It can be used as a top-level request field, which is convenient if one wants to extract parameters from either the URL or HTTP template into the request fields and also want access to the raw HTTP body. Example: message GetResourceRequest { // A unique request id. string request_id = 1; // The raw HTTP body is bound to this field. google.api.HttpBody http_body = 2; } service ResourceService { rpc GetResource(GetResourceRequest) returns (google.api.HttpBody); rpc UpdateResource(google.api.HttpBody) returns (google.protobuf.Empty); } Example with streaming methods: service CaldavService { rpc GetCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); rpc UpdateCalendar(stream google.api.HttpBody) returns (stream google.api.HttpBody); } Use of this type only changes how the request and response bodies are handled, all other features will continue to work unchanged.",
+      "id": "HttpBody",
+      "properties": {
+        "contentType": {
+          "description": "The HTTP Content-Type header value specifying the content type of the body.",
+          "type": "string"
+        },
+        "data": {
+          "description": "The HTTP request/response body as raw binary.",
+          "format": "byte",
+          "type": "string"
+        },
+        "extensions": {
+          "description": "Application specific response metadata. Must be set in the first response for streaming APIs.",
+          "items": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2003,6 +3671,20 @@
       },
       "type": "object"
     },
+    "ListSchemaRegistriesResponse": {
+      "description": "Request for ListSchemaRegistries.",
+      "id": "ListSchemaRegistriesResponse",
+      "properties": {
+        "schemaRegistries": {
+          "description": "The schema registry instances.",
+          "items": {
+            "$ref": "SchemaRegistry"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTopicsResponse": {
       "description": "Response for ListTopics.",
       "id": "ListTopicsResponse",
@@ -2050,6 +3732,48 @@
         },
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LookupVersionRequest": {
+      "description": "Request for LookupVersion.",
+      "id": "LookupVersionRequest",
+      "properties": {
+        "deleted": {
+          "description": "Optional. If true, soft-deleted versions will be included in lookup, no matter if the subject is active or soft-deleted. If false, soft-deleted versions will be excluded. The default is false.",
+          "type": "boolean"
+        },
+        "normalize": {
+          "description": "Optional. If true, the schema will be normalized before being looked up. The default is false.",
+          "type": "boolean"
+        },
+        "references": {
+          "description": "Optional. The schema references used by the schema.",
+          "items": {
+            "$ref": "SchemaReference"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "description": "Required. The schema payload",
+          "type": "string"
+        },
+        "schemaType": {
+          "description": "Optional. The schema type of the schema.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "AVRO",
+            "JSON",
+            "PROTOBUF"
+          ],
+          "enumDescriptions": [
+            "No schema type. The default will be AVRO.",
+            "Avro schema type.",
+            "JSON schema type.",
+            "Protobuf schema type."
+          ],
           "type": "string"
         }
       },
@@ -2217,6 +3941,187 @@
       "properties": {},
       "type": "object"
     },
+    "Schema": {
+      "description": "Schema for a Kafka message.",
+      "id": "Schema",
+      "properties": {
+        "references": {
+          "description": "Optional. The schema references used by the schema.",
+          "items": {
+            "$ref": "SchemaReference"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "description": "The schema payload.",
+          "type": "string"
+        },
+        "schemaType": {
+          "description": "Optional. The schema type of the schema.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "AVRO",
+            "JSON",
+            "PROTOBUF"
+          ],
+          "enumDescriptions": [
+            "No schema type. The default will be AVRO.",
+            "Avro schema type.",
+            "JSON schema type.",
+            "Protobuf schema type."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaConfig": {
+      "description": "SchemaConfig represents configuration for a schema registry or a specific subject.",
+      "id": "SchemaConfig",
+      "properties": {
+        "alias": {
+          "description": "Optional. The subject to which this subject is an alias of. Only applicable for subject config.",
+          "type": "string"
+        },
+        "compatibility": {
+          "description": "Required. The compatibility type of the schema. The default value is BACKWARD. If unset in a SchemaSubject-level SchemaConfig, defaults to the global value. If unset in a SchemaRegistry-level SchemaConfig, reverts to the default value.",
+          "enum": [
+            "NONE",
+            "BACKWARD",
+            "BACKWARD_TRANSITIVE",
+            "FORWARD",
+            "FORWARD_TRANSITIVE",
+            "FULL",
+            "FULL_TRANSITIVE"
+          ],
+          "enumDescriptions": [
+            "No compatibility check.",
+            "Backwards compatible with the most recent version.",
+            "Backwards compatible with all previous versions.",
+            "Forwards compatible with the most recent version.",
+            "Forwards compatible with all previous versions.",
+            "Backwards and forwards compatible with the most recent version.",
+            "Backwards and forwards compatible with all previous versions."
+          ],
+          "type": "string"
+        },
+        "normalize": {
+          "description": "Optional. If true, the schema will be normalized before being stored or looked up. The default is false. If unset in a SchemaSubject-level SchemaConfig, the global value will be used. If unset in a SchemaRegistry-level SchemaConfig, reverts to the default value.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaMode": {
+      "description": "SchemaMode represents the mode of a schema registry or a specific subject. Four modes are supported: * NONE: deprecated. This was the default mode for a subject, but now the default is unset (which means use the global schema registry setting) * READONLY: The schema registry is in read-only mode. * READWRITE: The schema registry is in read-write mode, which allows limited write operations on the schema. * IMPORT: The schema registry is in import mode, which allows more editing operations on the schema for data importing purposes.",
+      "id": "SchemaMode",
+      "properties": {
+        "mode": {
+          "description": "Required. The mode type of a schema registry (READWRITE by default) or of a subject (unset by default, which means use the global schema registry setting).",
+          "enum": [
+            "NONE",
+            "READONLY",
+            "READWRITE",
+            "IMPORT"
+          ],
+          "enumDescriptions": [
+            "The default / unset value. The subject mode is NONE/unset by default, which means use the global schema registry mode. This should not be used for setting the mode.",
+            "READONLY mode.",
+            "READWRITE mode.",
+            "IMPORT mode."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaReference": {
+      "description": "SchemaReference is a reference to a schema.",
+      "id": "SchemaReference",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the reference.",
+          "type": "string"
+        },
+        "subject": {
+          "description": "Required. The subject of the reference.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The version of the reference.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaRegistry": {
+      "description": "SchemaRegistry is a schema registry instance.",
+      "id": "SchemaRegistry",
+      "properties": {
+        "contexts": {
+          "description": "Output only. The contexts of the schema registry instance.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The name of the schema registry instance. Structured like: `projects/{project}/locations/{location}/schemaRegistries/{schema_registry}` The instance name {schema_registry} can contain the following: * Up to 255 characters. * Letters (uppercase or lowercase), numbers, and underscores.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SchemaVersion": {
+      "description": "Version of a schema.",
+      "id": "SchemaVersion",
+      "properties": {
+        "id": {
+          "description": "Required. The schema ID.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "references": {
+          "description": "Optional. The schema references used by the schema.",
+          "items": {
+            "$ref": "SchemaReference"
+          },
+          "type": "array"
+        },
+        "schema": {
+          "description": "Required. The schema payload.",
+          "type": "string"
+        },
+        "schemaType": {
+          "description": "Optional. The schema type of the schema.",
+          "enum": [
+            "SCHEMA_TYPE_UNSPECIFIED",
+            "AVRO",
+            "JSON",
+            "PROTOBUF"
+          ],
+          "enumDescriptions": [
+            "No schema type. The default will be AVRO.",
+            "Avro schema type.",
+            "JSON schema type.",
+            "Protobuf schema type."
+          ],
+          "type": "string"
+        },
+        "subject": {
+          "description": "Required. The subject of the version.",
+          "type": "string"
+        },
+        "version": {
+          "description": "Required. The version ID",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "Status": {
       "description": "The `Status` type defines a logical error model that is suitable for different programming environments, including REST APIs and RPC APIs. It is used by [gRPC](https://github.com/grpc). Each `Status` message contains three pieces of data: error code, error message, and error details. You can find out more about this error model and how to work with it in the [API Design Guide](https://cloud.google.com/apis/design/errors).",
       "id": "Status",
@@ -2273,6 +4178,21 @@
       },
       "type": "object"
     },
+    "TlsConfig": {
+      "description": "The TLS configuration for the Kafka cluster.",
+      "id": "TlsConfig",
+      "properties": {
+        "sslPrincipalMappingRules": {
+          "description": "Optional. A list of rules for mapping from SSL principal names to short names. These are applied in order by Kafka. Refer to the Apache Kafka documentation for `ssl.principal.mapping.rules` for the precise formatting details and syntax. Example: \"RULE:^CN=(.*?),OU=ServiceUsers.*$/$1@example.com/,DEFAULT\" This is a static Kafka broker configuration. Setting or modifying this field will trigger a rolling restart of the Kafka brokers to apply the change. An empty string means no rules are applied (Kafka default).",
+          "type": "string"
+        },
+        "trustConfig": {
+          "$ref": "TrustConfig",
+          "description": "Optional. The configuration of the broker truststore. If specified, clients can use mTLS for authentication."
+        }
+      },
+      "type": "object"
+    },
     "Topic": {
       "description": "A Kafka topic in a given cluster.",
       "id": "Topic",
@@ -2297,6 +4217,76 @@
           "description": "Required. Immutable. The number of replicas of each partition. A replication factor of 3 is recommended for high availability.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TrustConfig": {
+      "description": "Sources of CA certificates to install in the broker's truststore.",
+      "id": "TrustConfig",
+      "properties": {
+        "casConfigs": {
+          "description": "Optional. Configuration for the Google Certificate Authority Service. Maximum 10.",
+          "items": {
+            "$ref": "CertificateAuthorityServiceConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSchemaConfigRequest": {
+      "description": "Request for updating schema config. On a SchemaSubject-level SchemaConfig, an unset field will be removed from the SchemaConfig.",
+      "id": "UpdateSchemaConfigRequest",
+      "properties": {
+        "compatibility": {
+          "description": "Required. The compatibility type of the schemas. Cannot be unset for a SchemaRegistry-level SchemaConfig. If unset on a SchemaSubject-level SchemaConfig, removes the compatibility field for the SchemaConfig.",
+          "enum": [
+            "NONE",
+            "BACKWARD",
+            "BACKWARD_TRANSITIVE",
+            "FORWARD",
+            "FORWARD_TRANSITIVE",
+            "FULL",
+            "FULL_TRANSITIVE"
+          ],
+          "enumDescriptions": [
+            "No compatibility check.",
+            "Backwards compatible with the most recent version.",
+            "Backwards compatible with all previous versions.",
+            "Forwards compatible with the most recent version.",
+            "Forwards compatible with all previous versions.",
+            "Backwards and forwards compatible with the most recent version.",
+            "Backwards and forwards compatible with all previous versions."
+          ],
+          "type": "string"
+        },
+        "normalize": {
+          "description": "Optional. If true, the schema will be normalized before being stored or looked up. The default is false. Cannot be unset for a SchemaRegistry-level SchemaConfig. If unset on a SchemaSubject-level SchemaConfig, removes the normalize field for the SchemaConfig.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSchemaModeRequest": {
+      "description": "Request for updating schema registry or subject mode.",
+      "id": "UpdateSchemaModeRequest",
+      "properties": {
+        "mode": {
+          "description": "Required. The mode type.",
+          "enum": [
+            "NONE",
+            "READONLY",
+            "READWRITE",
+            "IMPORT"
+          ],
+          "enumDescriptions": [
+            "The default / unset value. The subject mode is NONE/unset by default, which means use the global schema registry mode. This should not be used for setting the mode.",
+            "READONLY mode.",
+            "READWRITE mode.",
+            "IMPORT mode."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
