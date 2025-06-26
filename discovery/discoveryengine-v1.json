@@ -196,7 +196,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                  "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfig$",
                   "required": true,
@@ -308,7 +308,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+                      "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/cmekConfigs/[^/]+$",
                       "required": true,
@@ -635,7 +635,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                          "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+$",
                           "required": true,
@@ -3127,7 +3127,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+                          "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+$",
                           "required": true,
@@ -4279,7 +4279,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                      "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+$",
                       "required": true,
@@ -7052,7 +7052,7 @@
       }
     }
   },
-  "revision": "20250509",
+  "revision": "20250619",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -8822,6 +8822,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesMetadata": {
+      "description": "Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failureCount": {
+          "description": "Count of user licenses that failed to be updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "Count of user licenses successfully updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest": {
       "description": "Request message for UserLicenseService.BatchUpdateUserLicenses method.",
       "id": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequest",
@@ -8829,10 +8856,6 @@
         "deleteUnassignedUserLicenses": {
           "description": "Optional. If true, if user licenses removed associated license config, the user license will be deleted. By default which is false, the user license will be updated to unassigned state.",
           "type": "boolean"
-        },
-        "gcsSource": {
-          "$ref": "GoogleCloudDiscoveryengineV1GcsSource",
-          "description": "Cloud Storage location for the input content."
         },
         "inlineSource": {
           "$ref": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesRequestInlineSource",
@@ -8852,6 +8875,27 @@
         },
         "userLicenses": {
           "description": "Required. A list of user licenses to update. Each user license must have a valid UserLicense.user_principal.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1UserLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesResponse": {
+      "description": "Response message for UserLicenseService.BatchUpdateUserLicenses method.",
+      "id": "GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "userLicenses": {
+          "description": "UserLicenses successfully updated.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1UserLicense"
           },
@@ -9187,6 +9231,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "annotationMetadata": {
+          "description": "Output only. The annotation metadata includes structured content in the current chunk.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1ChunkAnnotationMetadata"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "chunkMetadata": {
           "$ref": "GoogleCloudDiscoveryengineV1ChunkChunkMetadata",
           "description": "Output only. Metadata of the current chunk.",
@@ -9234,6 +9286,23 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ChunkAnnotationMetadata": {
+      "description": "The annotation metadata includes structured content in the current chunk.",
+      "id": "GoogleCloudDiscoveryengineV1ChunkAnnotationMetadata",
+      "properties": {
+        "imageId": {
+          "description": "Output only. Image id is provided if the structured content is based on an image.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "structuredContent": {
+          "$ref": "GoogleCloudDiscoveryengineV1ChunkStructuredContent",
+          "description": "Output only. The structured content information.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -9299,6 +9368,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1ChunkStructuredContent": {
+      "description": "The structured content information.",
+      "id": "GoogleCloudDiscoveryengineV1ChunkStructuredContent",
+      "properties": {
+        "content": {
+          "description": "Output only. The content of the structured content.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "structureType": {
+          "description": "Output only. The structure type of the structured content.",
+          "enum": [
+            "STRUCTURE_TYPE_UNSPECIFIED",
+            "SHAREHOLDER_STRUCTURE",
+            "SIGNATURE_STRUCTURE",
+            "CHECKBOX_STRUCTURE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Shareholder structure.",
+            "Signature structure.",
+            "Checkbox structure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1CloudSqlSource": {
       "description": "Cloud SQL source import data from.",
       "id": "GoogleCloudDiscoveryengineV1CloudSqlSource",
@@ -9354,7 +9452,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
           "type": "string"
         },
         "notebooklmState": {
@@ -9391,7 +9489,8 @@
             "DELETING",
             "DELETE_FAILED",
             "UNUSABLE",
-            "ACTIVE_ROTATING"
+            "ACTIVE_ROTATING",
+            "DELETED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -9401,7 +9500,8 @@
             "The CmekConfig is deleting.",
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
-            "The KMS key version is being rotated."
+            "The KMS key version is being rotated.",
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
           ],
           "readOnly": true,
           "type": "string"
@@ -10221,7 +10321,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
         "servingConfigDataStore": {
@@ -10302,7 +10402,7 @@
       "id": "GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore",
       "properties": {
         "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "description": "Optional. If set true, the DataStore will not be available for serving search requests.",
           "type": "boolean"
         }
       },
@@ -10745,6 +10845,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "structuredContentTypes": {
+          "description": "Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -10836,7 +10943,7 @@
           "type": "string"
         },
         "dataStoreIds": {
-          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
+          "description": "Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
           "items": {
             "type": "string"
           },
@@ -10850,8 +10957,25 @@
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
         },
+        "features": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "type": "object"
+        },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
+          "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -10871,7 +10995,7 @@
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "searchEngineConfig": {
@@ -11520,7 +11644,7 @@
           "enumDescriptions": [
             "Defaults to `INCREMENTAL`.",
             "Inserts new documents or updates existing documents.",
-            "Calculates diff and replaces the entire document dataset. Existing documents may be deleted if they are not present in the source location."
+            "Calculates diff and replaces the entire document dataset. Existing documents may be deleted if they are not present in the source location. When using this mode, there won't be any downtime on the dataset targeted. Any document that should remain unchanged or that should be updated will continue serving while the operation is running."
           ],
           "type": "string"
         },
@@ -12114,6 +12238,10 @@
       "description": "Principal identifier of a user or a group.",
       "id": "GoogleCloudDiscoveryengineV1Principal",
       "properties": {
+        "externalEntityId": {
+          "description": "For 3P application identities which are not present in the customer identity provider.",
+          "type": "string"
+        },
         "groupId": {
           "description": "Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider user account, group_id is the mapped group identifier configured during the workforcepool config.",
           "type": "string"
@@ -12458,7 +12586,8 @@
       "id": "GoogleCloudDiscoveryengineV1Query",
       "properties": {
         "queryId": {
-          "description": "Unique Id for the query.",
+          "description": "Output only. Unique Id for the query.",
+          "readOnly": true,
           "type": "string"
         },
         "text": {
@@ -14044,7 +14173,7 @@
       "id": "GoogleCloudDiscoveryengineV1SessionTurn",
       "properties": {
         "answer": {
-          "description": "The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.",
+          "description": "Optional. The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.",
           "type": "string"
         },
         "detailedAnswer": {
@@ -14054,7 +14183,14 @@
         },
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1Query",
-          "description": "The user query."
+          "description": "Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn"
+        },
+        "queryConfig": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Represents metadata related to the query config, for example LLM model and version used, model parameters (temperature, grounding parameters, etc.). The prefix \"google.\" is reserved for Google-developed functionality.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -14634,7 +14770,7 @@
           "type": "string"
         },
         "licenseAssignmentState": {
-          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
+          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
           "enum": [
             "LICENSE_ASSIGNMENT_STATE_UNSPECIFIED",
             "ASSIGNED",
@@ -14660,10 +14796,6 @@
           "description": "Output only. User update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        },
-        "user": {
-          "description": "Optional. The full resource name of the User, in the format of `projects/{project}/locations/{location}/userStores/{user_store}/users/{user_id}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.",
           "type": "string"
         },
         "userPrincipal": {
@@ -15572,7 +15704,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
           "type": "string"
         },
         "notebooklmState": {
@@ -15609,7 +15741,8 @@
             "DELETING",
             "DELETE_FAILED",
             "UNUSABLE",
-            "ACTIVE_ROTATING"
+            "ACTIVE_ROTATING",
+            "DELETED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -15619,7 +15752,8 @@
             "The CmekConfig is deleting.",
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
-            "The KMS key version is being rotated."
+            "The KMS key version is being rotated.",
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
           ],
           "readOnly": true,
           "type": "string"
@@ -15832,7 +15966,7 @@
           "type": "array"
         },
         "extractedRecordCount": {
-          "description": "The number of documents extracted from connector source, ready to be ingested to UCS.",
+          "description": "The number of documents extracted from connector source, ready to be ingested to VAIS.",
           "format": "int64",
           "type": "string"
         },
@@ -15844,6 +15978,11 @@
         "progress": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRunProgress",
           "description": "Metadata to generate the progress bar."
+        },
+        "scheduledRecordCount": {
+          "description": "The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.",
+          "format": "int64",
+          "type": "string"
         },
         "sourceApiRequestCount": {
           "description": "The number of requests sent to 3p API.",
@@ -16284,6 +16423,31 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaActionConfig",
           "description": "Optional. Action configurations to make the connector support actions."
         },
+        "actionState": {
+          "description": "Output only. State of the action connector. This reflects whether the action connector is initializing, active or has encountered errors.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "WARNING",
+            "INITIALIZATION_FAILED",
+            "UPDATING"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The connector is being set up.",
+            "The connector is successfully set up and awaiting next sync run.",
+            "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
+            "The connector is actively syncing records from the data source.",
+            "The connector has completed a sync run, but encountered non-fatal errors.",
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "alertPolicyConfigs": {
           "description": "Optional. The connector level alert config.",
           "items": {
@@ -16325,14 +16489,16 @@
               "DATA_INGESTION",
               "ACTIONS",
               "FEDERATED",
-              "EUA"
+              "EUA",
+              "FEDERATED_AND_EUA"
             ],
             "enumDescriptions": [
               "Connector mode unspecified.",
               "Connector utilized for data ingestion.",
               "Connector utilized for actions.",
               "Connector utilized for federated search.",
-              "Connector utilized for End User Authentication."
+              "Connector utilized for End User Authentication.",
+              "Hybrid connector utilized for federated search and End User Authentication."
             ],
             "type": "string"
           },
@@ -16420,12 +16586,12 @@
           "description": "The configuration for the identity data synchronization runs. This contains the refresh interval to sync the Access Control List information for the documents ingested by this connector."
         },
         "incrementalRefreshInterval": {
-          "description": "Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days.",
+          "description": "Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
           "format": "google-duration",
           "type": "string"
         },
         "incrementalSyncDisabled": {
-          "description": "Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled.",
+          "description": "Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.",
           "type": "boolean"
         },
         "kmsKeyName": {
@@ -16475,7 +16641,8 @@
             "FAILED",
             "RUNNING",
             "WARNING",
-            "INITIALIZATION_FAILED"
+            "INITIALIZATION_FAILED",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -16484,7 +16651,8 @@
             "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
-            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types)."
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
           ],
           "readOnly": true,
           "type": "string"
@@ -16494,7 +16662,7 @@
           "description": "Optional. The configuration for realtime sync."
         },
         "refreshInterval": {
-          "description": "Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days.",
+          "description": "Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.",
           "format": "google-duration",
           "type": "string"
         },
@@ -16507,7 +16675,8 @@
             "FAILED",
             "RUNNING",
             "WARNING",
-            "INITIALIZATION_FAILED"
+            "INITIALIZATION_FAILED",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -16516,7 +16685,8 @@
             "The connector is in error. The error details can be found in DataConnector.errors. If the error is unfixable, the DataConnector can be deleted by [CollectionService.DeleteCollection] API.",
             "The connector is actively syncing records from the data source.",
             "The connector has completed a sync run, but encountered non-fatal errors.",
-            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types)."
+            "Connector initialization failed. Potential causes include runtime errors or issues in the asynchronous pipeline, preventing the request from reaching downstream services (except for some connector types).",
+            "Connector is in the process of an update."
           ],
           "readOnly": true,
           "type": "string"
@@ -16736,7 +16906,7 @@
           "description": "Language info for DataStore."
         },
         "name": {
-          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
         "naturalLanguageQueryUnderstandingConfig": {
@@ -16821,7 +16991,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore",
       "properties": {
         "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "description": "Optional. If set true, the DataStore will not be available for serving search requests.",
           "type": "boolean"
         }
       },
@@ -17172,6 +17342,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "structuredContentTypes": {
+          "description": "Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -17242,7 +17419,7 @@
           "type": "string"
         },
         "dataStoreIds": {
-          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
+          "description": "Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
           "items": {
             "type": "string"
           },
@@ -17256,8 +17433,25 @@
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
         },
+        "features": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "type": "object"
+        },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
+          "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -17277,7 +17471,7 @@
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "recommendationMetadata": {
@@ -17494,6 +17688,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "lastTrainTime": {
+          "description": "Output only. The timestamp when the latest successful training finished. Only applicable on Media Recommendation engines.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "lastTuneTime": {
           "description": "Output only. The timestamp when the latest successful tune finished. Only applicable on Media Recommendation engines.",
           "format": "google-datetime",
@@ -17666,7 +17866,7 @@
       "properties": {
         "querySetSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec",
-          "description": "Required. The specification of the query set."
+          "description": "Optional. The specification of the query set."
         },
         "searchRequest": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequest",
@@ -17680,7 +17880,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec",
       "properties": {
         "sampleQuerySet": {
-          "description": "Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project}/locations/{location}/sampleQuerySets/{sampleQuerySet}`.",
+          "description": "Optional. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project}/locations/{location}/sampleQuerySets/{sampleQuerySet}`.",
           "type": "string"
         }
       },
@@ -18699,7 +18899,8 @@
       "id": "GoogleCloudDiscoveryengineV1alphaQuery",
       "properties": {
         "queryId": {
-          "description": "Unique Id for the query.",
+          "description": "Output only. Unique Id for the query.",
+          "readOnly": true,
           "type": "string"
         },
         "text": {
@@ -19139,7 +19340,7 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
@@ -19147,12 +19348,23 @@
           "enum": [
             "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
-            "CLEARBOX"
+            "CLEARBOX",
+            "RANK_BY_EMBEDDING",
+            "RANK_BY_FORMULA"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default option for unspecified/unknown values.",
-            "Bring your own embedding (BYOE), the default way to evaluate the ranking expression.",
-            "The expression is compiled into a Clearbox formula."
+            "Deprecated: Use `RANK_BY_EMBEDDING` instead. Ranking by custom embedding model, the default way to evaluate the ranking expression. Legacy enum option, `RANK_BY_EMBEDDING` should be used instead.",
+            "Deprecated: Use `RANK_BY_FORMULA` instead. Ranking by custom formula. Legacy enum option, `RANK_BY_FORMULA` should be used instead.",
+            "Ranking by custom embedding model, the default way to evaluate the ranking expression.",
+            "Ranking by custom formula."
           ],
           "type": "string"
         },
@@ -19205,6 +19417,10 @@
         "spellCorrectionSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec",
           "description": "The spell correction specification that specifies the mode under which spell correction takes effect."
+        },
+        "useLatestData": {
+          "description": "Uses the Engine, ServingConfig and Control freshly read from the database. Note: this skips config cache and introduces dependency on databases, which could significantly increase the API latency. It should only be used for testing, but not serving end users.",
+          "type": "boolean"
         },
         "userInfo": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaUserInfo",
@@ -19888,7 +20104,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaSessionTurn",
       "properties": {
         "answer": {
-          "description": "The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.",
+          "description": "Optional. The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.",
           "type": "string"
         },
         "detailedAnswer": {
@@ -19898,7 +20114,14 @@
         },
         "query": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaQuery",
-          "description": "The user query."
+          "description": "Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn"
+        },
+        "queryConfig": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Represents metadata related to the query config, for example LLM model and version used, model parameters (temperature, grounding parameters, etc.). The prefix \"google.\" is reserved for Google-developed functionality.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -20330,7 +20553,7 @@
           "type": "string"
         },
         "licenseAssignmentState": {
-          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
+          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
           "enum": [
             "LICENSE_ASSIGNMENT_STATE_UNSPECIFIED",
             "ASSIGNED",
@@ -20356,10 +20579,6 @@
           "description": "Output only. User update timestamp.",
           "format": "google-datetime",
           "readOnly": true,
-          "type": "string"
-        },
-        "user": {
-          "description": "Optional. The full resource name of the User, in the format of `projects/{project}/locations/{location}/userStores/{user_store}/users/{user_id}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.",
           "type": "string"
         },
         "userPrincipal": {
@@ -20464,6 +20683,54 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesMetadata": {
+      "description": "Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "failureCount": {
+          "description": "Count of user licenses that failed to be updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "successCount": {
+          "description": "Count of user licenses successfully updated.",
+          "format": "int64",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesResponse": {
+      "description": "Response message for UserLicenseService.BatchUpdateUserLicenses method.",
+      "id": "GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesResponse",
+      "properties": {
+        "errorSamples": {
+          "description": "A sample of errors encountered while processing the request.",
+          "items": {
+            "$ref": "GoogleRpcStatus"
+          },
+          "type": "array"
+        },
+        "userLicenses": {
+          "description": "UserLicenses successfully updated.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1betaUserLicense"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaCmekConfig": {
       "description": "Configurations used to enable CMEK data encryption with Cloud KMS keys.",
       "id": "GoogleCloudDiscoveryengineV1betaCmekConfig",
@@ -20488,7 +20755,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmekConfig}`.",
+          "description": "Required. The name of the CmekConfig of the form `projects/{project}/locations/{location}/cmekConfig` or `projects/{project}/locations/{location}/cmekConfigs/{cmek_config}`.",
           "type": "string"
         },
         "notebooklmState": {
@@ -20525,7 +20792,8 @@
             "DELETING",
             "DELETE_FAILED",
             "UNUSABLE",
-            "ACTIVE_ROTATING"
+            "ACTIVE_ROTATING",
+            "DELETED"
           ],
           "enumDescriptions": [
             "The CmekConfig state is unknown.",
@@ -20535,7 +20803,8 @@
             "The CmekConfig is deleting.",
             "The CmekConfig deletion process failed.",
             "The CmekConfig is not usable, most likely due to some internal issue.",
-            "The KMS key version is being rotated."
+            "The KMS key version is being rotated.",
+            "The KMS key is soft deleted. Some cleanup policy will eventually be applied."
           ],
           "readOnly": true,
           "type": "string"
@@ -21028,7 +21297,7 @@
           "description": "Language info for DataStore."
         },
         "name": {
-          "description": "Immutable. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "description": "Immutable. Identifier. The full resource name of the data store. Format: `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         },
         "naturalLanguageQueryUnderstandingConfig": {
@@ -21113,7 +21382,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore",
       "properties": {
         "disabledForServing": {
-          "description": "If set true, the DataStore will not be available for serving search requests.",
+          "description": "Optional. If set true, the DataStore will not be available for serving search requests.",
           "type": "boolean"
         }
       },
@@ -21377,6 +21646,13 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "structuredContentTypes": {
+          "description": "Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -21447,7 +21723,7 @@
           "type": "string"
         },
         "dataStoreIds": {
-          "description": "The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
+          "description": "Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.",
           "items": {
             "type": "string"
           },
@@ -21461,8 +21737,25 @@
           "description": "Required. The display name of the engine. Should be human readable. UTF-8 encoded string with limit of 1024 characters.",
           "type": "string"
         },
+        "features": {
+          "additionalProperties": {
+            "enum": [
+              "FEATURE_STATE_UNSPECIFIED",
+              "FEATURE_STATE_ON",
+              "FEATURE_STATE_OFF"
+            ],
+            "enumDescriptions": [
+              "The feature state is unspecified.",
+              "The feature is turned on to be accessible.",
+              "The feature is turned off to be inaccessible."
+            ],
+            "type": "string"
+          },
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "type": "object"
+        },
         "industryVertical": {
-          "description": "The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
+          "description": "Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.",
           "enum": [
             "INDUSTRY_VERTICAL_UNSPECIFIED",
             "GENERIC",
@@ -21482,7 +21775,7 @@
           "description": "Configurations for the Media Engine. Only applicable on the data stores with solution_type SOLUTION_TYPE_RECOMMENDATION and IndustryVertical.MEDIA vertical."
         },
         "name": {
-          "description": "Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
+          "description": "Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}` engine should be 1-63 characters, and valid characters are /a-z0-9*/. Otherwise, an INVALID_ARGUMENT error is returned.",
           "type": "string"
         },
         "searchEngineConfig": {
@@ -21777,7 +22070,7 @@
       "properties": {
         "querySetSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec",
-          "description": "Required. The specification of the query set."
+          "description": "Optional. The specification of the query set."
         },
         "searchRequest": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequest",
@@ -21791,7 +22084,7 @@
       "id": "GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec",
       "properties": {
         "sampleQuerySet": {
-          "description": "Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project}/locations/{location}/sampleQuerySets/{sampleQuerySet}`.",
+          "description": "Optional. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project}/locations/{location}/sampleQuerySets/{sampleQuerySet}`.",
           "type": "string"
         }
       },
@@ -22641,7 +22934,7 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double > 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result",
+          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
@@ -22649,12 +22942,23 @@
           "enum": [
             "RANKING_EXPRESSION_BACKEND_UNSPECIFIED",
             "BYOE",
-            "CLEARBOX"
+            "CLEARBOX",
+            "RANK_BY_EMBEDDING",
+            "RANK_BY_FORMULA"
+          ],
+          "enumDeprecated": [
+            false,
+            true,
+            true,
+            false,
+            false
           ],
           "enumDescriptions": [
             "Default option for unspecified/unknown values.",
-            "Bring your own embedding (BYOE), the default way to evaluate the ranking expression.",
-            "The expression is compiled into a Clearbox formula."
+            "Deprecated: Use `RANK_BY_EMBEDDING` instead. Ranking by custom embedding model, the default way to evaluate the ranking expression. Legacy enum option, `RANK_BY_EMBEDDING` should be used instead.",
+            "Deprecated: Use `RANK_BY_FORMULA` instead. Ranking by custom formula. Legacy enum option, `RANK_BY_FORMULA` should be used instead.",
+            "Ranking by custom embedding model, the default way to evaluate the ranking expression.",
+            "Ranking by custom formula."
           ],
           "type": "string"
         },
@@ -23657,6 +23961,62 @@
         },
         "userId": {
           "description": "Highly recommended for logged-in users. Unique identifier for logged-in user, such as a user name. Don't set for anonymous users. Always use a hashed value for this ID. Don't set the field to the same fixed ID for different users. This mixes the event history of those users together, which results in degraded model quality. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaUserLicense": {
+      "description": "User License information assigned by the admin.",
+      "id": "GoogleCloudDiscoveryengineV1betaUserLicense",
+      "properties": {
+        "createTime": {
+          "description": "Output only. User created timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastLoginTime": {
+          "description": "Output only. User last logged in time. If the user has not logged in yet, this field will be empty.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseAssignmentState": {
+          "description": "Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;",
+          "enum": [
+            "LICENSE_ASSIGNMENT_STATE_UNSPECIFIED",
+            "ASSIGNED",
+            "UNASSIGNED",
+            "NO_LICENSE",
+            "NO_LICENSE_ATTEMPTED_LOGIN"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "License assigned to the user.",
+            "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
+            "No license assigned to the user.",
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "licenseConfig": {
+          "description": "Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. User update timestamp.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userPrincipal": {
+          "description": "Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.",
+          "type": "string"
+        },
+        "userProfile": {
+          "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
           "type": "string"
         }
       },
