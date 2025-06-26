@@ -710,7 +710,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250615",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1045,7 +1045,10 @@
             "LOOKER_CORE_EMBED_ANNUAL",
             "LOOKER_CORE_NONPROD_STANDARD_ANNUAL",
             "LOOKER_CORE_NONPROD_ENTERPRISE_ANNUAL",
-            "LOOKER_CORE_NONPROD_EMBED_ANNUAL"
+            "LOOKER_CORE_NONPROD_EMBED_ANNUAL",
+            "LOOKER_CORE_TRIAL_STANDARD",
+            "LOOKER_CORE_TRIAL_ENTERPRISE",
+            "LOOKER_CORE_TRIAL_EMBED"
           ],
           "enumDescriptions": [
             "Platform edition is unspecified.",
@@ -1056,7 +1059,10 @@
             "Subscription Embed.",
             "Nonprod Subscription Standard.",
             "Nonprod Subscription Enterprise.",
-            "Nonprod Subscription Embed."
+            "Nonprod Subscription Embed.",
+            "Trial Standard.",
+            "Trial Enterprise.",
+            "Trial Embed."
           ],
           "type": "string"
         },
@@ -1505,8 +1511,15 @@
           "type": "string"
         },
         "localFqdn": {
-          "description": "Required. Fully qualified domain name that will be used in the private DNS record created for the service attachment.",
+          "description": "Optional. Fully qualified domain name that will be used in the private DNS record created for the service attachment.",
           "type": "string"
+        },
+        "localFqdns": {
+          "description": "Optional. List of fully qualified domain names that will be used in the private DNS record created for the service attachment.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "targetServiceAttachmentUri": {
           "description": "Required. URI of the service attachment to connect to. Format: projects/{project}/regions/{region}/serviceAttachments/{service_attachment}",
