@@ -401,7 +401,7 @@
                   "type": "string"
                 },
                 "requestId": {
-                  "description": "A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                  "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
                   "location": "query",
                   "type": "string"
                 }
@@ -593,7 +593,7 @@
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
                       "location": "query",
                       "type": "string"
                     }
@@ -721,6 +721,11 @@
                       "required": true,
                       "type": "string"
                     },
+                    "requestId": {
+                      "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "updateMask": {
                       "description": "The list of fields to update. Currently not used. The whole message is updated.",
                       "format": "google-fieldmask",
@@ -760,7 +765,7 @@
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                          "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
                           "location": "query",
                           "type": "string"
                         }
@@ -927,7 +932,7 @@
                               "type": "string"
                             },
                             "requestId": {
-                              "description": "A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
+                              "description": "Optional. A unique identifier for this request. Restricted to 36 ASCII characters. A random UUID is recommended. This request is idempotent only if a `request_id` is provided.",
                               "location": "query",
                               "type": "string"
                             }
@@ -1045,7 +1050,7 @@
       }
     }
   },
-  "revision": "20250319",
+  "revision": "20250620",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
