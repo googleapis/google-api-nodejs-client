@@ -319,6 +319,45 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "patch": {
+                  "description": "Update a BackupPlanAssociation",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlanAssociations/{backupPlanAssociationsId}",
+                  "httpMethod": "PATCH",
+                  "id": "backupdr.projects.locations.backupPlanAssociations.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. The resource name of BackupPlanAssociation in below format Format : projects/{project}/locations/{location}/backupPlanAssociations/{backupPlanAssociationId}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupPlanAssociations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update. Field mask is used to specify the fields to be overwritten in the BackupPlanAssociation resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the request will fail. Currently backup_plan_association.backup_plan is the only supported field.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "BackupPlanAssociation"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "triggerBackup": {
                   "description": "Triggers a new Backup.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlanAssociations/{backupPlanAssociationsId}:triggerBackup",
@@ -489,6 +528,112 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "patch": {
+                  "description": "Update a BackupPlan",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}",
+                  "httpMethod": "PATCH",
+                  "id": "backupdr.projects.locations.backupPlans.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. The list of fields to update. Field mask is used to specify the fields to be overwritten in the BackupPlan resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then the request will fail. Currently, these fields are supported in update: description, schedules, retention period, adding and removing Backup Rules.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "BackupPlan"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "revisions": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets details of a single BackupPlanRevision.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}/revisions/{revisionsId}",
+                      "httpMethod": "GET",
+                      "id": "backupdr.projects.locations.backupPlans.revisions.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the `BackupPlanRevision` to retrieve. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+/revisions/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "BackupPlanRevision"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists BackupPlanRevisions in a given project and location.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}/revisions",
+                      "httpMethod": "GET",
+                      "id": "backupdr.projects.locations.backupPlans.revisions.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. The maximum number of `BackupPlans` to return in a single response. If not specified, a default value will be chosen by the service. Note that the response may include a partial list and a caller should only rely on the response's next_page_token to determine if there are more instances left to be queried.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. The value of next_page_token received from a previous `ListBackupPlans` call. Provide this to retrieve the subsequent page in a multi-page list of results. When paginating, all other parameters provided to `ListBackupPlans` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The project and location for which to retrieve `BackupPlanRevisions` information. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}`. In Cloud BackupDR, locations map to GCP regions, for e.g. **us-central1**.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupPlans/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/revisions",
+                      "response": {
+                        "$ref": "ListBackupPlanRevisionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -750,6 +895,11 @@
                   "parameters": {
                     "force": {
                       "description": "Optional. If set to true, will not check plan duration against backup vault enforcement duration.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "forceUpdateAccessRestriction": {
+                      "description": "Optional. If set to true, we will force update access restriction even if some non compliant data sources are present. The default is 'false'.",
                       "location": "query",
                       "type": "boolean"
                     },
@@ -1751,7 +1901,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250611",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2155,6 +2305,11 @@
           "description": "Output only. The description of the Backup instance (2048 characters or less).",
           "readOnly": true,
           "type": "string"
+        },
+        "diskBackupProperties": {
+          "$ref": "DiskBackupProperties",
+          "description": "Output only. Disk specific backup properties.",
+          "readOnly": true
         },
         "enforcedRetentionEndTime": {
           "description": "Optional. The backup can not be deleted before this time.",
@@ -2627,6 +2782,16 @@
           "description": "Required. ",
           "type": "string"
         },
+        "revisionId": {
+          "description": "Output only. The user friendly revision ID of the `BackupPlanRevision`. Example: v0, v1, v2, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionName": {
+          "description": "Output only. The resource id of the `BackupPlanRevision`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`",
+          "readOnly": true,
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The `State` for the `BackupPlan`.",
           "enum": [
@@ -2648,6 +2813,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "supportedResourceTypes": {
+          "description": "Output only. All resource types to which backupPlan can be applied.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "updateTime": {
           "description": "Output only. When the `BackupPlan` was last updated.",
           "format": "google-datetime",
@@ -2663,6 +2836,16 @@
       "properties": {
         "backupPlan": {
           "description": "Required. Resource name of backup plan which needs to be applied on workload. Format: projects/{project}/locations/{location}/backupPlans/{backupPlanId}",
+          "type": "string"
+        },
+        "backupPlanRevisionId": {
+          "description": "Output only. The user friendly revision ID of the `BackupPlanRevision`. Example: v0, v1, v2, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "backupPlanRevisionName": {
+          "description": "Output only. The resource id of the `BackupPlanRevision`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision_id}`",
+          "readOnly": true,
           "type": "string"
         },
         "createTime": {
@@ -2682,7 +2865,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "Required. Immutable. Resource name of workload on which backupplan is applied",
+          "description": "Required. Immutable. Resource name of workload on which the backup plan is applied. The format can either be the resource name (e.g., \"projects/my-project/zones/us-central1-a/instances/my-instance\") or the full resource URI (e.g., \"https://www.googleapis.com/compute/v1/projects/my-project/zones/us-central1-a/instances/my-instance\").",
           "type": "string"
         },
         "resourceType": {
@@ -2727,12 +2910,58 @@
       },
       "type": "object"
     },
+    "BackupPlanRevision": {
+      "description": "`BackupPlanRevision` represents a snapshot of a `BackupPlan` at a point in time.",
+      "id": "BackupPlanRevision",
+      "properties": {
+        "backupPlanSnapshot": {
+          "$ref": "BackupPlan",
+          "description": "The Backup Plan being encompassed by this revision."
+        },
+        "createTime": {
+          "description": "Output only. The timestamp that the revision was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. Identifier. The resource name of the `BackupPlanRevision`. Format: `projects/{project}/locations/{location}/backupPlans/{backup_plan}/revisions/{revision}`",
+          "readOnly": true,
+          "type": "string"
+        },
+        "revisionId": {
+          "description": "Output only. The user friendly revision ID of the `BackupPlanRevision`. Example: v0, v1, v2, etc.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. Resource State",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CREATING",
+            "ACTIVE",
+            "DELETING",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "State not set.",
+            "The resource is being created.",
+            "The resource has been created and is fully usable.",
+            "The resource is being deleted.",
+            "The resource has been created but is not usable."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "BackupRule": {
       "description": "`BackupRule` binds the backup schedule to a retention policy.",
       "id": "BackupRule",
       "properties": {
         "backupRetentionDays": {
-          "description": "Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.",
+          "description": "Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.",
           "format": "int32",
           "type": "integer"
         },
@@ -2742,7 +2971,7 @@
         },
         "standardSchedule": {
           "$ref": "StandardSchedule",
-          "description": "Required. Defines a schedule that runs within the confines of a defined window of time."
+          "description": "Optional. Defines a schedule that runs within the confines of a defined window of time."
         }
       },
       "type": "object"
@@ -2835,14 +3064,16 @@
             "CREATING",
             "ACTIVE",
             "DELETING",
-            "ERROR"
+            "ERROR",
+            "UPDATING"
           ],
           "enumDescriptions": [
             "State not set.",
             "The backup vault is being created.",
             "The backup vault has been created and is fully usable.",
             "The backup vault is being deleted.",
-            "The backup vault is experiencing an issue and might be unusable."
+            "The backup vault is experiencing an issue and might be unusable.",
+            "The backup vault is being updated."
           ],
           "readOnly": true,
           "type": "string"
@@ -3229,6 +3460,11 @@
       "description": "Message describing a DataSource object. Datasource object used to represent Datasource details for both admin and basic view.",
       "id": "DataSource",
       "properties": {
+        "backupBlockedByVaultAccessRestriction": {
+          "description": "Output only. This field is set to true if the backup is blocked by vault access restriction.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "backupConfigInfo": {
           "$ref": "BackupConfigInfo",
           "description": "Output only. Details of how the resource is configured for backup.",
@@ -3363,6 +3599,10 @@
           "$ref": "ComputeInstanceDataSourceProperties",
           "description": "ComputeInstanceDataSourceProperties has a subset of Compute Instance properties that are useful at the Datasource level."
         },
+        "diskDatasourceProperties": {
+          "$ref": "DiskDataSourceProperties",
+          "description": "DiskDataSourceProperties has a subset of Disk properties that are useful at the Datasource level."
+        },
         "gcpResourcename": {
           "description": "Output only. Full resource pathname URL of the source Google Cloud resource.",
           "readOnly": true,
@@ -3374,6 +3614,226 @@
         },
         "type": {
           "description": "The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskBackupProperties": {
+      "description": "DiskBackupProperties represents the properties of a Disk backup.",
+      "id": "DiskBackupProperties",
+      "properties": {
+        "architecture": {
+          "description": "The architecture of the source disk. Valid values are ARM64 or X86_64.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X86_64",
+            "ARM64"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Disks with architecture X86_64",
+            "Disks with architecture ARM64"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "A description of the source disk.",
+          "type": "string"
+        },
+        "guestOsFeature": {
+          "description": "A list of guest OS features that are applicable to this backup.",
+          "items": {
+            "$ref": "GuestOsFeature"
+          },
+          "type": "array"
+        },
+        "licenses": {
+          "description": "A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "region": {
+          "description": "Region and zone are mutually exclusive fields. The URL of the region of the source disk.",
+          "type": "string"
+        },
+        "replicaZones": {
+          "description": "The URL of the Zones where the source disk should be replicated.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sizeGb": {
+          "description": "Size(in GB) of the source disk.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sourceDisk": {
+          "description": "The source disk used to create this backup.",
+          "type": "string"
+        },
+        "type": {
+          "description": "The URL of the type of the disk.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "The URL of the Zone where the source disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskDataSourceProperties": {
+      "description": "DiskDataSourceProperties represents the properties of a Disk resource that are stored in the DataSource. .",
+      "id": "DiskDataSourceProperties",
+      "properties": {
+        "description": {
+          "description": "The description of the disk.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the disk backed up by the datasource.",
+          "type": "string"
+        },
+        "sizeGb": {
+          "description": "The size of the disk in GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskRestoreProperties": {
+      "description": "DiskRestoreProperties represents the properties of a Disk restore.",
+      "id": "DiskRestoreProperties",
+      "properties": {
+        "accessMode": {
+          "description": "Optional. The access mode of the disk.",
+          "enum": [
+            "READ_WRITE_SINGLE",
+            "READ_WRITE_MANY",
+            "READ_ONLY_MANY"
+          ],
+          "enumDescriptions": [
+            "The default AccessMode, means the disk can be attached to single instance in RW mode.",
+            "The AccessMode means the disk can be attached to multiple instances in RW mode.",
+            "The AccessMode means the disk can be attached to multiple instances in RO mode."
+          ],
+          "type": "string"
+        },
+        "architecture": {
+          "description": "Optional. The architecture of the source disk. Valid values are ARM64 or X86_64.",
+          "enum": [
+            "ARCHITECTURE_UNSPECIFIED",
+            "X86_64",
+            "ARM64"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Disks with architecture X86_64",
+            "Disks with architecture ARM64"
+          ],
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. An optional description of this resource. Provide this property when you create the resource.",
+          "type": "string"
+        },
+        "diskEncryptionKey": {
+          "$ref": "CustomerEncryptionKey",
+          "description": "Optional. Encrypts the disk using a customer-supplied encryption key or a customer-managed encryption key."
+        },
+        "enableConfidentialCompute": {
+          "description": "Optional. Indicates whether this disk is using confidential compute mode. Encryption with a Cloud KMS key is required to enable this option.",
+          "type": "boolean"
+        },
+        "guestOsFeature": {
+          "description": "Optional. A list of features to enable in the guest operating system. This is applicable only for bootable images.",
+          "items": {
+            "$ref": "GuestOsFeature"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels to apply to this disk. These can be modified later using setLabels method. Label values can be empty.",
+          "type": "object"
+        },
+        "licenses": {
+          "description": "Optional. A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Required. Name of the disk..",
+          "type": "string"
+        },
+        "physicalBlockSizeBytes": {
+          "description": "Optional. Physical block size of the persistent disk, in bytes. If not present in a request, a default value is used. Currently, the supported size is 4096.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedIops": {
+          "description": "Optional. Indicates how many IOPS to provision for the disk. This sets the number of I/O operations per second that the disk can handle.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "description": "Optional. Indicates how much throughput to provision for the disk. This sets the number of throughput MB per second that the disk can handle.",
+          "format": "int64",
+          "type": "string"
+        },
+        "resourceManagerTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Resource manager tags to be bound to the disk.",
+          "type": "object"
+        },
+        "resourcePolicy": {
+          "description": "Optional. Resource policies applied to this disk.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sizeGb": {
+          "description": "Required. The size of the disk in GB.",
+          "format": "int64",
+          "type": "string"
+        },
+        "storagePool": {
+          "description": "Optional. The storage pool in which the new disk is created. You can provide this as a partial or full URL to the resource.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. URL of the disk type resource describing which disk type to use to create the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskTargetEnvironment": {
+      "description": "DiskTargetEnvironment represents the target environment for the disk.",
+      "id": "DiskTargetEnvironment",
+      "properties": {
+        "project": {
+          "description": "Required. Target project for the disk.",
+          "type": "string"
+        },
+        "zone": {
+          "description": "Required. Target zone for the disk.",
           "type": "string"
         }
       },
@@ -3542,6 +4002,14 @@
           "description": "Resource name of backup plan by which workload is protected at the time of the backup. Format: projects/{project}/locations/{location}/backupPlans/{backupPlanId}",
           "type": "string"
         },
+        "backupPlanRevisionId": {
+          "description": "The user friendly id of the backup plan revision which triggered this backup in case of scheduled backup or used for on demand backup.",
+          "type": "string"
+        },
+        "backupPlanRevisionName": {
+          "description": "Resource name of the backup plan revision which triggered this backup in case of scheduled backup or used for on demand backup. Format: projects/{project}/locations/{location}/backupPlans/{backupPlanId}/revisions/{revisionId}",
+          "type": "string"
+        },
         "backupPlanRuleId": {
           "description": "The rule id of the backup plan which triggered this backup in case of scheduled backup or used for",
           "type": "string"
@@ -3563,6 +4031,14 @@
         },
         "backupPlanDescription": {
           "description": "The description of the backup plan.",
+          "type": "string"
+        },
+        "backupPlanRevisionId": {
+          "description": "The user friendly id of the backup plan revision. E.g. v0, v1 etc.",
+          "type": "string"
+        },
+        "backupPlanRevisionName": {
+          "description": "The name of the backup plan revision.",
           "type": "string"
         },
         "backupPlanRules": {
@@ -3735,6 +4211,31 @@
         },
         "nextPageToken": {
           "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListBackupPlanRevisionsResponse": {
+      "description": "The response message for getting a list of `BackupPlanRevision`.",
+      "id": "ListBackupPlanRevisionsResponse",
+      "properties": {
+        "backupPlanRevisions": {
+          "description": "The list of `BackupPlanRevisions` in the project for the specified location. If the `{location}` value in the request is \"-\", the response contains a list of resources from all locations. In case any location is unreachable, the response will only return backup plans in reachable locations and the 'unreachable' field will be populated with a list of unreachable locations.",
+          "items": {
+            "$ref": "BackupPlanRevision"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token which may be sent as page_token in a subsequent `ListBackupPlanRevisions` call to retrieve the next page of results. If this field is omitted or empty, then there are no more results to return.",
           "type": "string"
         },
         "unreachable": {
@@ -4424,6 +4925,28 @@
       },
       "type": "object"
     },
+    "RegionDiskTargetEnvironment": {
+      "description": "RegionDiskTargetEnvironment represents the target environment for the disk.",
+      "id": "RegionDiskTargetEnvironment",
+      "properties": {
+        "project": {
+          "description": "Required. Target project for the disk.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Required. Target region for the disk.",
+          "type": "string"
+        },
+        "replicaZones": {
+          "description": "Required. Target URLs of the replica zones for the disk.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RemoveDataSourceRequest": {
       "description": "Message for deleting a DataSource.",
       "id": "RemoveDataSourceRequest",
@@ -4511,6 +5034,18 @@
         "computeInstanceTargetEnvironment": {
           "$ref": "ComputeInstanceTargetEnvironment",
           "description": "Compute Engine target environment to be used during restore."
+        },
+        "diskRestoreProperties": {
+          "$ref": "DiskRestoreProperties",
+          "description": "Disk properties to be overridden during restore."
+        },
+        "diskTargetEnvironment": {
+          "$ref": "DiskTargetEnvironment",
+          "description": "Disk target environment to be used during restore."
+        },
+        "regionDiskTargetEnvironment": {
+          "$ref": "RegionDiskTargetEnvironment",
+          "description": "Region disk target environment to be used during restore."
         },
         "requestId": {
           "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
