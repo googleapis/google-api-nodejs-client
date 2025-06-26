@@ -1622,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250417",
+  "revision": "20250612",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -2133,7 +2133,7 @@
           "enumDescriptions": [
             "The state of the cluster is unknown.",
             "The cluster is active and running.",
-            "The cluster is stopped. All instances in the cluster are stopped. Customers can start a stopped cluster at any point and all their instances will come back to life with same names and IP resources. In this state, customer pays for storage. Associated backups could also be present in a stopped cluster.",
+            "This is unused. Even when all instances in the cluster are stopped, the cluster remains in READY state.",
             "The cluster is empty and has no associated resources. All instances, associated storage and backups have been deleted.",
             "The cluster is being created.",
             "The cluster is being deleted.",
@@ -2324,7 +2324,7 @@
       "id": "ContinuousBackupInfo",
       "properties": {
         "earliestRestorableTime": {
-          "description": "Output only. The earliest restorable time that can be restored to. Output only field.",
+          "description": "Output only. The earliest restorable time that can be restored to. If continuous backups and recovery was recently enabled, the earliest restorable time is the creation time of the earliest eligible backup within this cluster's continuous backup recovery window. After a cluster has had continuous backups enabled for the duration of its recovery window, the earliest restorable time becomes \"now minus the recovery window\". For example, assuming a point in time recovery is attempted at 04/16/2025 3:23:00PM with a 14d recovery window, the earliest restorable time would be 04/02/2025 3:23:00PM. This field is only visible if the CLUSTER_VIEW_CONTINUOUS_BACKUP cluster view is provided.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -2341,7 +2341,7 @@
           "readOnly": true
         },
         "schedule": {
-          "description": "Output only. Days of the week on which a continuous backup is taken. Output only field. Ignored if passed into the request.",
+          "description": "Output only. Days of the week on which a continuous backup is taken.",
           "items": {
             "enum": [
               "DAY_OF_WEEK_UNSPECIFIED",
@@ -2945,6 +2945,10 @@
       "description": "Metadata related to instance-level network configuration.",
       "id": "InstanceNetworkConfig",
       "properties": {
+        "allocatedIpRangeOverride": {
+          "description": "Optional. Name of the allocated IP range for the private IP AlloyDB instance, for example: \"google-managed-services-default\". If set, the instance IPs will be created from this allocated range and will override the IP range used by the parent cluster. The range name must comply with [RFC 1035](http://datatracker.ietf.org/doc/html/rfc1035). Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?.",
+          "type": "string"
+        },
         "authorizedExternalNetworks": {
           "description": "Optional. A list of external network authorized to access this instance.",
           "items": {
@@ -2969,7 +2973,7 @@
       "type": "object"
     },
     "InstanceUpgradeDetails": {
-      "description": "Details regarding the upgrade of instaces associated with a cluster.",
+      "description": "Details regarding the upgrade of instances associated with a cluster.",
       "id": "InstanceUpgradeDetails",
       "properties": {
         "instanceType": {
@@ -4120,7 +4124,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform.",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 8",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
         "feedTimestamp": {
@@ -4196,6 +4200,10 @@
         },
         "externalUri": {
           "description": "The external-uri of the signal, using which more information about this signal can be obtained. In GCP, this will take user to SCC page to get more details about signals.",
+          "type": "string"
+        },
+        "location": {
+          "description": "This is used to identify the location of the resource. Example: \"us-central1\"",
           "type": "string"
         },
         "name": {
@@ -4380,7 +4388,7 @@
             false,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -4621,7 +4629,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. The type of resource this ID is identifying. Ex redis.googleapis.com/Instance, redis.googleapis.com/Cluster, alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, spanner.googleapis.com/Instance, spanner.googleapis.com/Database, firestore.googleapis.com/Database, sqladmin.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance REQUIRED Please refer go/condor-common-datamodel",
+          "description": "Required. The type of resource this ID is identifying. Ex go/keep-sorted start alloydb.googleapis.com/Cluster, alloydb.googleapis.com/Instance, bigtableadmin.googleapis.com/Cluster, bigtableadmin.googleapis.com/Instance compute.googleapis.com/Instance firestore.googleapis.com/Database, redis.googleapis.com/Instance, redis.googleapis.com/Cluster, oracledatabase.googleapis.com/CloudExadataInfrastructure oracledatabase.googleapis.com/CloudVmCluster oracledatabase.googleapis.com/AutonomousDatabase spanner.googleapis.com/Instance, spanner.googleapis.com/Database, sqladmin.googleapis.com/Instance, go/keep-sorted end REQUIRED Please refer go/condor-common-datamodel",
           "type": "string"
         },
         "uniqueId": {
@@ -4993,7 +5001,7 @@
             false,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -5430,6 +5438,7 @@
           "type": "string"
         },
         "timeBasedRetention": {
+          "deprecated": true,
           "format": "google-duration",
           "type": "string"
         },
@@ -5490,7 +5499,9 @@
             "ENGINE_MEMORYSTORE_FOR_REDIS_CLUSTER",
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
-            "ENGINE_FIRESTORE_WITH_DATASTORE_MODE"
+            "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_EXADATA_ORACLE",
+            "ENGINE_ADB_SERVERLESS_ORACLE"
           ],
           "enumDeprecated": [
             false,
@@ -5502,6 +5513,8 @@
             true,
             false,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -5526,7 +5539,9 @@
             "Memorystore with Redis cluster dialect.",
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
-            "Firestore with datastore mode."
+            "Firestore with datastore mode.",
+            "Oracle Exadata engine.",
+            "Oracle Autonomous DB Serverless engine."
           ],
           "type": "string"
         },
@@ -5545,6 +5560,7 @@
             "PRODUCT_TYPE_BIGTABLE",
             "PRODUCT_TYPE_FIRESTORE",
             "PRODUCT_TYPE_COMPUTE_ENGINE",
+            "PRODUCT_TYPE_ORACLE_ON_GCP",
             "PRODUCT_TYPE_OTHER"
           ],
           "enumDeprecated": [
@@ -5556,6 +5572,7 @@
             false,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -5575,6 +5592,7 @@
             "Bigtable product area in GCP",
             "Firestore product area in GCP.",
             "Compute Engine self managed databases",
+            "Oracle product area in GCP",
             "Other refers to rest of other product type. This is to be when product type is known, but it is not present in this enum."
           ],
           "type": "string"
