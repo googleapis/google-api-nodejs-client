@@ -303,7 +303,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "The resource name for the case.",
+              "description": "Identifier. The resource name for the case.",
               "location": "path",
               "pattern": "^[^/]+/[^/]+/cases/[^/]+$",
               "required": true,
@@ -483,7 +483,7 @@
     "media": {
       "methods": {
         "download": {
-          "description": "Download a file attached to a case. Note: HTTP requests must append \"?alt=media\" to the URL. EXAMPLES: cURL: ```shell name=\"projects/some-project/cases/43594844/attachments/0674M00000WijAnZAJ\" curl \\ --header \"Authorization: Bearer $(gcloud auth print-access-token)\" \\ \"https://cloudsupport.googleapis.com/v2/$name:download?alt=media\" ``` Python: ```python import googleapiclient.discovery api_version = \"v2\" supportApiService = googleapiclient.discovery.build( serviceName=\"cloudsupport\", version=api_version, discoveryServiceUrl=f\"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}\", ) request = supportApiService.media().download( name=\"projects/some-project/cases/43595344/attachments/0684M00000Pw6pHQAR\" ) request.uri = request.uri.split(\"?\")[0] + \"?alt=media\" print(request.execute()) ```",
+          "description": "Download a file attached to a case. When this endpoint is called, no \"response body\" will be returned. Instead, the attachment's blob will be returned. Note: HTTP requests must append \"?alt=media\" to the URL. EXAMPLES: cURL: ```shell name=\"projects/some-project/cases/43594844/attachments/0674M00000WijAnZAJ\" curl \\ --header \"Authorization: Bearer $(gcloud auth print-access-token)\" \\ \"https://cloudsupport.googleapis.com/v2/$name:download?alt=media\" ``` Python: ```python import googleapiclient.discovery api_version = \"v2\" supportApiService = googleapiclient.discovery.build( serviceName=\"cloudsupport\", version=api_version, discoveryServiceUrl=f\"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}\", ) request = supportApiService.media().download( name=\"projects/some-project/cases/43595344/attachments/0684M00000Pw6pHQAR\" ) request.uri = request.uri.split(\"?\")[0] + \"?alt=media\" print(request.execute()) ```",
           "flatPath": "v2/{v2Id}/{v2Id1}/cases/{casesId}/attachments/{attachmentsId}:download",
           "httpMethod": "GET",
           "id": "cloudsupport.media.download",
@@ -552,7 +552,7 @@
       }
     }
   },
-  "revision": "20241231",
+  "revision": "20250609",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
@@ -565,7 +565,7 @@
         },
         "email": {
           "deprecated": true,
-          "description": "The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use **username** field instead.",
+          "description": "The email address of the actor. If not provided, it is inferred from the credentials supplied during case creation. When a name is provided, an email must also be provided. If the user is a Google Support agent, this is obfuscated. This field is deprecated. Use `username` instead.",
           "type": "string"
         },
         "googleSupport": {
@@ -606,7 +606,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the attachment.",
+          "description": "Output only. Identifier. The resource name of the attachment.",
           "readOnly": true,
           "type": "string"
         },
@@ -688,7 +688,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The resource name for the case.",
+          "description": "Identifier. The resource name for the case.",
           "type": "string"
         },
         "priority": {
@@ -1344,47 +1344,6 @@
         },
         "nextPageToken": {
           "description": "A token to retrieve the next page of results. Set this in the `page_token` field of subsequent `cases.search` requests. If unspecified, there are no more results to retrieve.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "WorkflowOperationMetadata": {
-      "description": "Metadata about the operation. Used to lookup the current status.",
-      "id": "WorkflowOperationMetadata",
-      "properties": {
-        "namespace": {
-          "description": "The namespace that the job was scheduled in. Must be included in the workflow metadata so the workflow status can be retrieved.",
-          "type": "string"
-        },
-        "operationAction": {
-          "description": "The type of action the operation is classified as.",
-          "enum": [
-            "OPERATION_ACTION_UNSPECIFIED",
-            "CREATE_SUPPORT_ACCOUNT",
-            "UPDATE_SUPPORT_ACCOUNT",
-            "PURCHASE_SUPPORT_ACCOUNT"
-          ],
-          "enumDescriptions": [
-            "Operation action is not specified.",
-            "Operation pertains to the creation of a new support account.",
-            "Operation pertains to the updating of an existing support account.",
-            "Operation pertains to the purchasing of a support plan that may either create or update a support account."
-          ],
-          "type": "string"
-        },
-        "workflowOperationType": {
-          "description": "Which version of the workflow service this operation came from.",
-          "enum": [
-            "UNKNOWN_OPERATION_TYPE",
-            "WORKFLOWS_V1",
-            "WORKFLOWS_V2"
-          ],
-          "enumDescriptions": [
-            "Unknown version.",
-            "Version 1.",
-            "Version 2."
-          ],
           "type": "string"
         }
       },
