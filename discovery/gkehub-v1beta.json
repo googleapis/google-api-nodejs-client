@@ -2117,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250509",
+  "revision": "20250612",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3125,7 +3125,7 @@
           "type": "string"
         },
         "deploymentNamespace": {
-          "description": "Required. The namespace of the deployment resource to be overridden..",
+          "description": "Required. The namespace of the deployment resource to be overridden.",
           "type": "string"
         }
       },
@@ -6385,7 +6385,6 @@
             "NODEPOOL_WORKLOAD_IDENTITY_FEDERATION_REQUIRED",
             "CNI_INSTALLATION_FAILED",
             "CNI_POD_UNSCHEDULABLE",
-            "THC_POD_UNSCHEDULABLE",
             "CLUSTER_HAS_ZERO_NODES",
             "CANONICAL_SERVICE_ERROR",
             "UNSUPPORTED_MULTIPLE_CONTROL_PLANES",
@@ -6430,7 +6429,6 @@
             "Nodepool workload identity federation required error code",
             "CNI installation failed error code",
             "CNI pod unschedulable error code",
-            "THC pod unschedulable error code",
             "Cluster has zero node code",
             "Failure to reconcile CanonicalServices",
             "Multiple control planes unsupported error code",
