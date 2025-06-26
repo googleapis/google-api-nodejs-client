@@ -2270,7 +2270,7 @@
       }
     }
   },
-  "revision": "20250326",
+  "revision": "20250604",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2444,6 +2444,12 @@
           "description": "A description of the backup with 2048 characters or less. Requests with longer descriptions will be rejected.",
           "type": "string"
         },
+        "enforcedRetentionEndTime": {
+          "description": "Output only. The time until which the backup is not deletable.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2612,6 +2618,34 @@
       },
       "type": "object"
     },
+    "BackupRetentionPolicy": {
+      "description": "Retention policy for backups in the backup vault",
+      "id": "BackupRetentionPolicy",
+      "properties": {
+        "backupMinimumEnforcedRetentionDays": {
+          "description": "Required. Minimum retention duration in days for backups in the backup vault.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "dailyBackupImmutable": {
+          "description": "Optional. Indicates if the daily backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.",
+          "type": "boolean"
+        },
+        "manualBackupImmutable": {
+          "description": "Optional. Indicates if the manual backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.",
+          "type": "boolean"
+        },
+        "monthlyBackupImmutable": {
+          "description": "Optional. Indicates if the monthly backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.",
+          "type": "boolean"
+        },
+        "weeklyBackupImmutable": {
+          "description": "Optional. Indicates if the weekly backups are immutable. At least one of daily_backup_immutable, weekly_backup_immutable, monthly_backup_immutable and manual_backup_immutable must be true.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "BackupVault": {
       "description": "A NetApp BackupVault.",
       "id": "BackupVault",
@@ -2619,6 +2653,10 @@
         "backupRegion": {
           "description": "Optional. Region where the backups are stored. Format: `projects/{project_id}/locations/{location}`",
           "type": "string"
+        },
+        "backupRetentionPolicy": {
+          "$ref": "BackupRetentionPolicy",
+          "description": "Optional. Backup retention policy defining the retenton of backups."
         },
         "backupVaultType": {
           "description": "Optional. Type of backup vault to be created. Default is IN_REGION.",
@@ -2823,32 +2861,39 @@
       "id": "HybridPeeringDetails",
       "properties": {
         "command": {
-          "description": "Optional. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.",
+          "description": "Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.",
+          "readOnly": true,
           "type": "string"
         },
         "commandExpiryTime": {
-          "description": "Optional. Expiration time for the peering command to be executed on user's ONTAP.",
+          "description": "Output only. Expiration time for the peering command to be executed on user's ONTAP.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "passphrase": {
-          "description": "Optional. Temporary passphrase generated to accept cluster peering command.",
+          "description": "Output only. Temporary passphrase generated to accept cluster peering command.",
+          "readOnly": true,
           "type": "string"
         },
         "peerClusterName": {
-          "description": "Optional. Name of the user's local source cluster to be peered with the destination cluster.",
+          "description": "Output only. Name of the user's local source cluster to be peered with the destination cluster.",
+          "readOnly": true,
           "type": "string"
         },
         "peerSvmName": {
-          "description": "Optional. Name of the user's local source vserver svm to be peered with the destination vserver svm.",
+          "description": "Output only. Name of the user's local source vserver svm to be peered with the destination vserver svm.",
+          "readOnly": true,
           "type": "string"
         },
         "peerVolumeName": {
-          "description": "Optional. Name of the user's local source volume to be peered with the destination volume.",
+          "description": "Output only. Name of the user's local source volume to be peered with the destination volume.",
+          "readOnly": true,
           "type": "string"
         },
         "subnetIp": {
-          "description": "Optional. IP address of the subnet.",
+          "description": "Output only. IP address of the subnet.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -3303,6 +3348,11 @@
       "description": "Metadata for a given google.cloud.location.Location.",
       "id": "LocationMetadata",
       "properties": {
+        "hasVcp": {
+          "description": "Output only. Indicates if the location has VCP support.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "supportedFlexPerformance": {
           "description": "Output only. Supported flex performance in a location.",
           "items": {
@@ -3983,9 +4033,17 @@
           "readOnly": true,
           "type": "string"
         },
+        "customPerformanceEnabled": {
+          "description": "Optional. True if using Independent Scaling of capacity and performance (Hyperdisk) By default set to false",
+          "type": "boolean"
+        },
         "description": {
           "description": "Optional. Description of the storage pool",
           "type": "string"
+        },
+        "enableHotTierAutoResize": {
+          "description": "Optional. Flag indicating that the hot-tier threshold will be auto-increased by 10% of the hot-tier when it hits 100%. Default is true. The increment will kick in only if the new size after increment is still less than or equal to storage pool size.",
+          "type": "boolean"
         },
         "encryptionType": {
           "description": "Output only. Specifies the current pool encryption key source.",
@@ -4006,6 +4064,11 @@
           "deprecated": true,
           "description": "Deprecated. Used to allow SO pool to access AD or DNS server from other regions.",
           "type": "boolean"
+        },
+        "hotTierSizeGib": {
+          "description": "Optional. Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.",
+          "format": "int64",
+          "type": "string"
         },
         "kmsConfig": {
           "description": "Optional. Specifies the KMS config to be used for volume encryption.",
@@ -4096,6 +4159,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "totalIops": {
+          "description": "Optional. Custom Performance Total IOPS of the pool if not provided, it will be calculated based on the total_throughput_mibps",
+          "format": "int64",
+          "type": "string"
+        },
+        "totalThroughputMibps": {
+          "description": "Optional. Custom Performance Total Throughput of the pool (in MiBps)",
+          "format": "int64",
+          "type": "string"
+        },
         "volumeCapacityGib": {
           "description": "Output only. Allocated size of all volumes in GIB in the storage pool",
           "format": "int64",
@@ -4135,6 +4208,10 @@
           "description": "Optional. Time in days to mark the volume's data block as cold and make it eligible for tiering, can be range from 2-183. Default is 31.",
           "format": "int32",
           "type": "integer"
+        },
+        "hotTierBypassModeEnabled": {
+          "description": "Optional. Flag indicating that the hot tier bypass mode is enabled. Default is false. This is only applicable to Flex service level.",
+          "type": "boolean"
         },
         "tierAction": {
           "description": "Optional. Flag indicating if the volume has tiering policy enable/pause. Default is PAUSED.",
@@ -4187,7 +4264,7 @@
           "type": "string"
         },
         "transferBytes": {
-          "description": "Cumulative bytes trasferred so far for the replication relatinonship.",
+          "description": "Cumulative bytes transferred so far for the replication relationship.",
           "format": "int64",
           "type": "string"
         },
