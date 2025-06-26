@@ -2340,7 +2340,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250521",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2394,7 +2394,8 @@
           "type": "object"
         },
         "primaryInstanceSettings": {
-          "$ref": "PrimaryInstanceSettings"
+          "$ref": "PrimaryInstanceSettings",
+          "description": "Settings for the cluster's primary instance"
         },
         "vpcNetwork": {
           "description": "Required. The resource link for the VPC network in which cluster resources are created and from which they are accessible via Private IP. The network must belong to the same project as the cluster. It is specified in the form: \"projects/{project_number}/global/networks/{network_id}\". This is required to create a cluster.",
@@ -3212,6 +3213,26 @@
           "$ref": "DatabaseEngineInfo",
           "description": "Required. The destination engine details."
         },
+        "destinationProvider": {
+          "description": "Optional. The provider for the destination database.",
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Use this value for on-premise source database instances and ORACLE.",
+            "Cloud SQL is the source instance provider.",
+            "Amazon RDS is the source instance provider.",
+            "Amazon Aurora is the source instance provider.",
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "Optional. The display name for the workspace.",
           "type": "string"
@@ -3246,6 +3267,26 @@
         "source": {
           "$ref": "DatabaseEngineInfo",
           "description": "Required. The source engine details."
+        },
+        "sourceProvider": {
+          "description": "Optional. The provider for the source database.",
+          "enum": [
+            "DATABASE_PROVIDER_UNSPECIFIED",
+            "CLOUDSQL",
+            "RDS",
+            "AURORA",
+            "ALLOYDB",
+            "AZURE_DATABASE"
+          ],
+          "enumDescriptions": [
+            "Use this value for on-premise source database instances and ORACLE.",
+            "Cloud SQL is the source instance provider.",
+            "Amazon RDS is the source instance provider.",
+            "Amazon Aurora is the source instance provider.",
+            "AlloyDB for PostgreSQL is the source instance provider.",
+            "Microsoft Azure Database for MySQL/PostgreSQL."
+          ],
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. The timestamp when the workspace resource was last updated.",
@@ -4172,6 +4213,14 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Additional metadata that is returned by the backend for the operation.",
+          "readOnly": true,
+          "type": "object"
         },
         "requestedCancellation": {
           "description": "Output only. Identifies whether the user has requested cancellation of the operation. Operations that have successfully been cancelled have google.longrunning.Operation.error value with a google.rpc.Status.code of 1, corresponding to `Code.CANCELLED`.",
@@ -6569,6 +6618,13 @@
         "clientKey": {
           "description": "Input only. The unencrypted PKCS#1 or PKCS#8 PEM-encoded private key associated with the Client Certificate. If this field is used then the 'client_certificate' field is mandatory.",
           "type": "string"
+        },
+        "sslFlags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. SSL flags used for establishing SSL connection to the source database. Only source specific flags are supported. An object containing a list of \"key\": \"value\" pairs. Example: { \"server_certificate_hostname\": \"server.com\"}.",
+          "type": "object"
         },
         "type": {
           "description": "Optional. The ssl config type according to 'client_key', 'client_certificate' and 'ca_certificate'.",
