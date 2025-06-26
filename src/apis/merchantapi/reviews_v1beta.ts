@@ -411,7 +411,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     cons?: string[] | null;
     /**
-     * Required. The content of the review.
+     * Optional. The content of the review. If empty, the content might still get populated from pros and cons.
      */
     content?: string | null;
     /**
@@ -595,7 +595,7 @@ export namespace merchantapi_reviews_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -650,6 +650,50 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Deletes merchant review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.merchantReviews.delete({
+     *     // Required. The ID of the merchant review. Format: accounts/{account\}/merchantReviews/{merchantReview\}
+     *     name: 'accounts/my-account/merchantReviews/my-merchantReview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -741,6 +785,57 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Gets a merchant review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.merchantReviews.get({
+     *     // Required. The ID of the merchant review. Format: accounts/{account\}/merchantReviews/{merchantReview\}
+     *     name: 'accounts/my-account/merchantReviews/my-merchantReview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "merchantReviewId": "my_merchantReviewId",
+     *   //   "merchantReviewStatus": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -832,6 +927,72 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Inserts a review for your Merchant Center account. If the review already exists, then the review is replaced with the new instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.merchantReviews.insert({
+     *     // Required. The data source of the [merchantreview](https://support.google.com/merchants/answer/7045996?sjid=5253581244217581976-EU) Format: `accounts/{account\}/dataSources/{datasource\}`.
+     *     dataSource: 'placeholder-value',
+     *     // Required. The account where the merchant review will be inserted. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "customAttributes": [],
+     *       //   "dataSource": "my_dataSource",
+     *       //   "merchantReviewId": "my_merchantReviewId",
+     *       //   "merchantReviewStatus": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "merchantReviewId": "my_merchantReviewId",
+     *   //   "merchantReviewStatus": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -922,6 +1083,57 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Lists merchant reviews.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.merchantReviews.list({
+     *     // Optional. The maximum number of merchant reviews to return. The service can return fewer than this value. The maximum value is 1000; values above 1000 are coerced to 1000. If unspecified, the maximum number of reviews is returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListMerchantReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMerchantReviews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list merchant reviews for. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "merchantReviews": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1069,6 +1281,50 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Deletes a product review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productReviews.delete({
+     *     // Required. The ID of the Product review. Format: accounts/{account\}/productReviews/{productReview\}
+     *     name: 'accounts/my-account/productReviews/my-productReview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1160,6 +1416,57 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Gets a product review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productReviews.get({
+     *     // Required. The ID of the merchant review. Format: accounts/{account\}/productReviews/{productReview\}
+     *     name: 'accounts/my-account/productReviews/my-productReview',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "name": "my_name",
+     *   //   "productReviewId": "my_productReviewId",
+     *   //   "productReviewStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1251,6 +1558,72 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Inserts a product review.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productReviews.insert({
+     *     // Required. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     *     dataSource: 'placeholder-value',
+     *     // Required. The account where the product review will be inserted. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "customAttributes": [],
+     *       //   "dataSource": "my_dataSource",
+     *       //   "name": "my_name",
+     *       //   "productReviewId": "my_productReviewId",
+     *       //   "productReviewStatus": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "name": "my_name",
+     *   //   "productReviewId": "my_productReviewId",
+     *   //   "productReviewStatus": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1341,6 +1714,57 @@ export namespace merchantapi_reviews_v1beta {
 
     /**
      * Lists product reviews.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('reviews_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productReviews.list({
+     *     // Optional. The maximum number of products to return. The service may return fewer than this value.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListProductReviews` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProductReviews` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list product reviews for. Format: accounts/{account\}
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "productReviews": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

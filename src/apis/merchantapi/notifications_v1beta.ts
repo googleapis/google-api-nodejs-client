@@ -208,7 +208,7 @@ export namespace merchantapi_notifications_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -247,6 +247,68 @@ export namespace merchantapi_notifications_v1beta {
 
     /**
      * Creates a notification subscription for a business. For standalone or subaccounts accounts, the business can create a subscription for self. For MCAs, the business can create a subscription for all managed accounts or for a specific subaccount. We will allow the following types of notification subscriptions to exist together (per business as a subscriber per event type): 1. Subscription for all managed accounts + subscription for self. 2. Multiple "partial" subscriptions for managed accounts + subscription for self. we will not allow (per business as a subscriber per event type): 1. Multiple self subscriptions. 2. Multiple "all managed accounts" subscriptions. 3. "All managed accounts" subscription and partial subscriptions at the same time. 4. Multiple partial subscriptions for the same target account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('notifications_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.notificationsubscriptions.create({
+     *     // Required. The merchant account that owns the new notification subscription. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allManagedAccounts": false,
+     *       //   "callBackUri": "my_callBackUri",
+     *       //   "name": "my_name",
+     *       //   "registeredEvent": "my_registeredEvent",
+     *       //   "targetAccount": "my_targetAccount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allManagedAccounts": false,
+     *   //   "callBackUri": "my_callBackUri",
+     *   //   "name": "my_name",
+     *   //   "registeredEvent": "my_registeredEvent",
+     *   //   "targetAccount": "my_targetAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -343,6 +405,50 @@ export namespace merchantapi_notifications_v1beta {
 
     /**
      * Deletes a notification subscription for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('notifications_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.notificationsubscriptions.delete({
+     *     // Required. The name of the notification subscription to be deleted.
+     *     name: 'accounts/my-account/notificationsubscriptions/my-notificationsubscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -435,6 +541,56 @@ export namespace merchantapi_notifications_v1beta {
 
     /**
      * Gets notification subscriptions for an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('notifications_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.notificationsubscriptions.get({
+     *     // Required. The `name` of the notification subscription.
+     *     name: 'accounts/my-account/notificationsubscriptions/my-notificationsubscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allManagedAccounts": false,
+     *   //   "callBackUri": "my_callBackUri",
+     *   //   "name": "my_name",
+     *   //   "registeredEvent": "my_registeredEvent",
+     *   //   "targetAccount": "my_targetAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -528,6 +684,57 @@ export namespace merchantapi_notifications_v1beta {
 
     /**
      * Gets all the notification subscriptions for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('notifications_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.notificationsubscriptions.list({
+     *     // The maximum number of notification subscriptions to return in a page. The default value for `page_size` is 100. The maximum value is `200`. Values above `200` will be coerced to `200`.
+     *     pageSize: 'placeholder-value',
+     *     // Token (if provided) to retrieve the subsequent page. All other parameters must match the original call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The merchant account who owns the notification subscriptions. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notificationSubscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -629,6 +836,70 @@ export namespace merchantapi_notifications_v1beta {
 
     /**
      * Updates an existing notification subscription for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('notifications_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.notificationsubscriptions.patch({
+     *     // Output only. The `name` of the notification configuration. Generated by the Content API upon creation of a new `NotificationSubscription`. The `account` represents the merchant ID of the merchant that owns the configuration. Format: `accounts/{account\}/notificationsubscriptions/{notification_subscription\}`
+     *     name: 'accounts/my-account/notificationsubscriptions/my-notificationsubscription',
+     *     // List of fields being updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "allManagedAccounts": false,
+     *       //   "callBackUri": "my_callBackUri",
+     *       //   "name": "my_name",
+     *       //   "registeredEvent": "my_registeredEvent",
+     *       //   "targetAccount": "my_targetAccount"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allManagedAccounts": false,
+     *   //   "callBackUri": "my_callBackUri",
+     *   //   "name": "my_name",
+     *   //   "registeredEvent": "my_registeredEvent",
+     *   //   "targetAccount": "my_targetAccount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
