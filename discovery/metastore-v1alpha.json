@@ -1802,7 +1802,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250622",
   "rootUrl": "https://metastore.googleapis.com/",
   "schemas": {
     "AlterMetadataResourceLocationRequest": {
@@ -2465,6 +2465,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        },
         "uid": {
           "description": "Output only. The globally unique resource identifier of the metastore federation.",
           "readOnly": true,
@@ -2883,6 +2890,13 @@
           "type": "integer"
         }
       },
+      "type": "object"
+    },
+    "MessageSet": {
+      "deprecated": true,
+      "description": "This is proto2's version of MessageSet.DEPRECATED: DO NOT USE FOR NEW FIELDS.If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use Any instead.MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a \"bridge\" solution to migrate MessageSet-bearing messages from proto1 to proto2.This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.",
+      "id": "MessageSet",
+      "properties": {},
       "type": "object"
     },
     "MetadataExport": {
@@ -3693,6 +3707,13 @@
           "readOnly": true,
           "type": "string"
         },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\"",
+          "type": "object"
+        },
         "telemetryConfig": {
           "$ref": "TelemetryConfig",
           "description": "Optional. The configuration specifying telemetry settings for the Dataproc Metastore service. If unspecified defaults to JSON."
@@ -3778,6 +3799,35 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "StatusProto": {
+      "description": "Wire-format for a Status object",
+      "id": "StatusProto",
+      "properties": {
+        "canonicalCode": {
+          "description": "copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;",
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;",
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;",
+          "type": "string"
+        },
+        "messageSet": {
+          "$ref": "MessageSet",
+          "description": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
+        },
+        "space": {
+          "description": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs",
           "type": "string"
         }
       },
