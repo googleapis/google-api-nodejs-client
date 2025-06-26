@@ -181,6 +181,31 @@
               "resources": {
                 "sites": {
                   "methods": {
+                    "get": {
+                      "description": "Gets a Platform Child Site for a specified Platform Child Account and site.",
+                      "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/childAccounts/{childAccountsId}/sites/{sitesId}",
+                      "httpMethod": "GET",
+                      "id": "adsenseplatform.accounts.platforms.childAccounts.sites.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the platform child site to retrieve. Format: accounts/{account}/platforms/{platform}/childAccounts/{child_account}/sites/{platform_child_site}",
+                          "location": "path",
+                          "pattern": "^accounts/[^/]+/platforms/[^/]+/childAccounts/[^/]+/sites/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "PlatformChildSite"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/adsense"
+                      ]
+                    },
                     "list": {
                       "description": "Lists Platform Child Sites for a specified Platform Child Account.",
                       "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/childAccounts/{childAccountsId}/sites",
@@ -197,7 +222,7 @@
                           "type": "integer"
                         },
                         "pageToken": {
-                          "description": "Optional. A page token, received from a previous `ListPlatformChildren` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformChildren` must match the call that provided the page token.",
+                          "description": "Optional. A page token, received from a previous `ListPlatformChildSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPlatformChildSites` must match the call that provided the page token.",
                           "location": "query",
                           "type": "string"
                         },
@@ -258,6 +283,31 @@
             },
             "groups": {
               "methods": {
+                "get": {
+                  "description": "Gets a Platform Group for a specified Platform and group.",
+                  "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/groups/{groupsId}",
+                  "httpMethod": "GET",
+                  "id": "adsenseplatform.accounts.platforms.groups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the platform group to retrieve. Format: accounts/{account}/platforms/{platform}/groups/{group}",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/platforms/[^/]+/groups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "PlatformGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/adsense"
+                  ]
+                },
                 "list": {
                   "description": "Lists Platform Groups for a specified Platform.",
                   "flatPath": "v1alpha/accounts/{accountsId}/platforms/{platformsId}/groups",
@@ -639,7 +689,7 @@
       }
     }
   },
-  "revision": "20250123",
+  "revision": "20250623",
   "rootUrl": "https://adsenseplatform.googleapis.com/",
   "schemas": {
     "Account": {
