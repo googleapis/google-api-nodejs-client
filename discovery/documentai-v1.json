@@ -1048,7 +1048,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250616",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -3685,19 +3685,17 @@
           "description": "User defined name for the property.",
           "type": "string"
         },
-        "groundingConfig": {
-          "description": "Grounding config of the entity type.",
+        "method": {
+          "description": "Specifies how the entity's value is obtained.",
           "enum": [
-            "GROUNDING_CONFIG_UNSPECIFIED",
-            "STRICT",
-            "RELAXED",
-            "NO_GROUNDING"
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
           ],
           "enumDescriptions": [
-            "Unspecified grounding config. It defaults to `STRICT` grounding.",
-            "Strict grounding.",
-            "Relaxed grounding.",
-            "Allow no grounding."
+            "Unspecified method. It defaults to `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
           ],
           "type": "string"
         },
@@ -6229,7 +6227,7 @@
       "type": "object"
     },
     "GoogleTypePostalAddress": {
-      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
+      "description": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "GoogleTypePostalAddress",
       "properties": {
         "addressLines": {
