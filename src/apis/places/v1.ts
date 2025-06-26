@@ -1083,7 +1083,7 @@ export namespace places_v1 {
      */
     openNow?: boolean | null;
     /**
-     * The periods that this place is open during the week. The periods are in chronological order, starting with Sunday in the place-local timezone. An empty (but not absent) value indicates a place that is never open, e.g. because it is closed temporarily for renovations.
+     * NOTE: The ordering of the `periods` array is independent of the ordering of the `weekday_descriptions` array. Do not assume they will begin on the same day.
      */
     periods?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursPeriod[];
     /**
@@ -1095,7 +1095,7 @@ export namespace places_v1 {
      */
     specialDays?: Schema$GoogleMapsPlacesV1PlaceOpeningHoursSpecialDay[];
     /**
-     * Localized strings describing the opening hours of this place, one string for each day of the week. Will be empty if the hours are unknown or could not be converted to localized text. Example: "Sun: 18:00–06:00"
+     * Localized strings describing the opening hours of this place, one string for each day of the week. NOTE: The order of the days and the start of the week is determined by the locale (language and region). The ordering of the `periods` array is independent of the ordering of the `weekday_descriptions` array. Do not assume they will begin on the same day. Will be empty if the hours are unknown or could not be converted to localized text. Example: "Sun: 18:00–06:00"
      */
     weekdayDescriptions?: string[] | null;
   }
@@ -1652,7 +1652,7 @@ export namespace places_v1 {
     units?: string | null;
   }
   /**
-   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
+   * Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$GoogleTypePostalAddress {
     /**
@@ -1724,6 +1724,72 @@ export namespace places_v1 {
 
     /**
      * Returns predictions for the given input.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/places.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const places = google.places('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.places',
+     *       'https://www.googleapis.com/auth/maps-platform.places.autocomplete',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await places.places.autocomplete({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "includePureServiceAreaBusinesses": false,
+     *       //   "includeQueryPredictions": false,
+     *       //   "includedPrimaryTypes": [],
+     *       //   "includedRegionCodes": [],
+     *       //   "input": "my_input",
+     *       //   "inputOffset": 0,
+     *       //   "languageCode": "my_languageCode",
+     *       //   "locationBias": {},
+     *       //   "locationRestriction": {},
+     *       //   "origin": {},
+     *       //   "regionCode": "my_regionCode",
+     *       //   "sessionToken": "my_sessionToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "suggestions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1825,6 +1891,133 @@ export namespace places_v1 {
 
     /**
      * Get the details of a place based on its resource name, which is a string in the `places/{place_id\}` format.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/places.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const places = google.places('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.places',
+     *       'https://www.googleapis.com/auth/maps-platform.places.details',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await places.places.get({
+     *     // Optional. Place details will be displayed with the preferred language if available. Current list of supported languages: https://developers.google.com/maps/faq#languagesupport.
+     *     languageCode: 'placeholder-value',
+     *     // Required. The resource name of a place, in the `places/{place_id\}` format.
+     *     name: 'places/my-place',
+     *     // Optional. The Unicode country/region code (CLDR) of the location where the request is coming from. This parameter is used to display the place details, like region-specific place name, if available. The parameter can affect results based on applicable law. For more information, see https://www.unicode.org/cldr/charts/latest/supplemental/territory_language_information.html. Note that 3-digit region codes are not currently supported.
+     *     regionCode: 'placeholder-value',
+     *     // Optional. A string which identifies an Autocomplete session for billing purposes. Must be a URL and filename safe base64 string with at most 36 ASCII characters in length. Otherwise an INVALID_ARGUMENT error is returned. The session begins when the user starts typing a query, and concludes when they select a place and a call to Place Details or Address Validation is made. Each session can have multiple queries, followed by one Place Details or Address Validation request. The credentials used for each request within a session must belong to the same Google Cloud Console project. Once a session has concluded, the token is no longer valid; your app must generate a fresh token for each session. If the `session_token` parameter is omitted, or if you reuse a session token, the session is charged as if no session token was provided (each request is billed separately). We recommend the following guidelines: * Use session tokens for all Place Autocomplete calls. * Generate a fresh token for each session. Using a version 4 UUID is recommended. * Ensure that the credentials used for all Place Autocomplete, Place Details, and Address Validation requests within a session belong to the same Cloud Console project. * Be sure to pass a unique session token for each new session. Using the same token for more than one session will result in each request being billed individually.
+     *     sessionToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessibilityOptions": {},
+     *   //   "addressComponents": [],
+     *   //   "addressDescriptor": {},
+     *   //   "adrFormatAddress": "my_adrFormatAddress",
+     *   //   "allowsDogs": false,
+     *   //   "attributions": [],
+     *   //   "businessStatus": "my_businessStatus",
+     *   //   "containingPlaces": [],
+     *   //   "curbsidePickup": false,
+     *   //   "currentOpeningHours": {},
+     *   //   "currentSecondaryOpeningHours": [],
+     *   //   "delivery": false,
+     *   //   "dineIn": false,
+     *   //   "displayName": {},
+     *   //   "editorialSummary": {},
+     *   //   "evChargeAmenitySummary": {},
+     *   //   "evChargeOptions": {},
+     *   //   "formattedAddress": "my_formattedAddress",
+     *   //   "fuelOptions": {},
+     *   //   "generativeSummary": {},
+     *   //   "goodForChildren": false,
+     *   //   "goodForGroups": false,
+     *   //   "goodForWatchingSports": false,
+     *   //   "googleMapsLinks": {},
+     *   //   "googleMapsUri": "my_googleMapsUri",
+     *   //   "iconBackgroundColor": "my_iconBackgroundColor",
+     *   //   "iconMaskBaseUri": "my_iconMaskBaseUri",
+     *   //   "id": "my_id",
+     *   //   "internationalPhoneNumber": "my_internationalPhoneNumber",
+     *   //   "liveMusic": false,
+     *   //   "location": {},
+     *   //   "menuForChildren": false,
+     *   //   "name": "my_name",
+     *   //   "nationalPhoneNumber": "my_nationalPhoneNumber",
+     *   //   "neighborhoodSummary": {},
+     *   //   "outdoorSeating": false,
+     *   //   "parkingOptions": {},
+     *   //   "paymentOptions": {},
+     *   //   "photos": [],
+     *   //   "plusCode": {},
+     *   //   "postalAddress": {},
+     *   //   "priceLevel": "my_priceLevel",
+     *   //   "priceRange": {},
+     *   //   "primaryType": "my_primaryType",
+     *   //   "primaryTypeDisplayName": {},
+     *   //   "pureServiceAreaBusiness": false,
+     *   //   "rating": {},
+     *   //   "regularOpeningHours": {},
+     *   //   "regularSecondaryOpeningHours": [],
+     *   //   "reservable": false,
+     *   //   "restroom": false,
+     *   //   "reviewSummary": {},
+     *   //   "reviews": [],
+     *   //   "servesBeer": false,
+     *   //   "servesBreakfast": false,
+     *   //   "servesBrunch": false,
+     *   //   "servesCocktails": false,
+     *   //   "servesCoffee": false,
+     *   //   "servesDessert": false,
+     *   //   "servesDinner": false,
+     *   //   "servesLunch": false,
+     *   //   "servesVegetarianFood": false,
+     *   //   "servesWine": false,
+     *   //   "shortFormattedAddress": "my_shortFormattedAddress",
+     *   //   "subDestinations": [],
+     *   //   "takeout": false,
+     *   //   "timeZone": {},
+     *   //   "types": [],
+     *   //   "userRatingCount": 0,
+     *   //   "utcOffsetMinutes": 0,
+     *   //   "viewport": {},
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1914,6 +2107,71 @@ export namespace places_v1 {
 
     /**
      * Search for places near locations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/places.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const places = google.places('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.places',
+     *       'https://www.googleapis.com/auth/maps-platform.places.nearbysearch',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await places.places.searchNearby({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "excludedPrimaryTypes": [],
+     *       //   "excludedTypes": [],
+     *       //   "includedPrimaryTypes": [],
+     *       //   "includedTypes": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "locationRestriction": {},
+     *       //   "maxResultCount": 0,
+     *       //   "rankPreference": "my_rankPreference",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "routingParameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "places": [],
+     *   //   "routingSummaries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2015,6 +2273,82 @@ export namespace places_v1 {
 
     /**
      * Text query based place search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/places.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const places = google.places('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.places',
+     *       'https://www.googleapis.com/auth/maps-platform.places.textsearch',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await places.places.searchText({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "evOptions": {},
+     *       //   "includePureServiceAreaBusinesses": false,
+     *       //   "includedType": "my_includedType",
+     *       //   "languageCode": "my_languageCode",
+     *       //   "locationBias": {},
+     *       //   "locationRestriction": {},
+     *       //   "maxResultCount": 0,
+     *       //   "minRating": {},
+     *       //   "openNow": false,
+     *       //   "pageSize": 0,
+     *       //   "pageToken": "my_pageToken",
+     *       //   "priceLevels": [],
+     *       //   "rankPreference": "my_rankPreference",
+     *       //   "regionCode": "my_regionCode",
+     *       //   "routingParameters": {},
+     *       //   "searchAlongRouteParameters": {},
+     *       //   "strictTypeFiltering": false,
+     *       //   "textQuery": "my_textQuery"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contextualContents": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "places": [],
+     *   //   "routingSummaries": [],
+     *   //   "searchUri": "my_searchUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2163,6 +2497,63 @@ export namespace places_v1 {
 
     /**
      * Get a photo media with a photo reference string.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/places.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const places = google.places('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/maps-platform.places',
+     *       'https://www.googleapis.com/auth/maps-platform.places.getphotomedia',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await places.places.photos.getMedia({
+     *     // Optional. Specifies the maximum desired height, in pixels, of the image. If the image is smaller than the values specified, the original image will be returned. If the image is larger in either dimension, it will be scaled to match the smaller of the two dimensions, restricted to its original aspect ratio. Both the max_height_px and max_width_px properties accept an integer between 1 and 4800, inclusively. If the value is not within the allowed range, an INVALID_ARGUMENT error will be returned. At least one of max_height_px or max_width_px needs to be specified. If neither max_height_px nor max_width_px is specified, an INVALID_ARGUMENT error will be returned.
+     *     maxHeightPx: 'placeholder-value',
+     *     // Optional. Specifies the maximum desired width, in pixels, of the image. If the image is smaller than the values specified, the original image will be returned. If the image is larger in either dimension, it will be scaled to match the smaller of the two dimensions, restricted to its original aspect ratio. Both the max_height_px and max_width_px properties accept an integer between 1 and 4800, inclusively. If the value is not within the allowed range, an INVALID_ARGUMENT error will be returned. At least one of max_height_px or max_width_px needs to be specified. If neither max_height_px nor max_width_px is specified, an INVALID_ARGUMENT error will be returned.
+     *     maxWidthPx: 'placeholder-value',
+     *     // Required. The resource name of a photo media in the format: `places/{place_id\}/photos/{photo_reference\}/media`. The resource name of a photo as returned in a Place object's `photos.name` field comes with the format `places/{place_id\}/photos/{photo_reference\}`. You need to append `/media` at the end of the photo resource to get the photo media resource name.
+     *     name: 'places/my-place/photos/my-photo/media',
+     *     // Optional. If set, skip the default HTTP redirect behavior and render a text format (for example, in JSON format for HTTP use case) response. If not set, an HTTP redirect will be issued to redirect the call to the image media. This option is ignored for non-HTTP requests.
+     *     skipHttpRedirect: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "photoUri": "my_photoUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
