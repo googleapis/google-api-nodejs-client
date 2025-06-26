@@ -696,7 +696,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the GatewayRouteView resource. Formats: projects/{project_number}/locations/{location}/gateways/{gateway_name}/routeViews/{route_view_name}",
+                          "description": "Required. Name of the GatewayRouteView resource. Formats: projects/{project_number}/locations/{location}/gateways/{gateway}/routeViews/{route_view}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gateways/[^/]+/routeViews/[^/]+$",
                           "required": true,
@@ -732,7 +732,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Gateway to which a Route is associated. Formats: projects/{project_number}/locations/{location}/gateways/{gateway_name}",
+                          "description": "Required. The Gateway to which a Route is associated. Formats: projects/{project_number}/locations/{location}/gateways/{gateway}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gateways/[^/]+$",
                           "required": true,
@@ -1795,7 +1795,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}/routeViews/{route_view_name}",
+                          "description": "Required. Name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh}/routeViews/{route_view}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/meshes/[^/]+/routeViews/[^/]+$",
                           "required": true,
@@ -1831,7 +1831,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Mesh to which a Route is associated. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}",
+                          "description": "Required. The Mesh to which a Route is associated. Format: projects/{project_number}/locations/{location}/meshes/{mesh}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/meshes/[^/]+$",
                           "required": true,
@@ -2089,6 +2089,40 @@
                   "path": "v1beta1/{+parent}/serviceBindings",
                   "response": {
                     "$ref": "ListServiceBindingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceBinding.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/serviceBindings/{serviceBindingsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.serviceBindings.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the ServiceBinding resource. It matches pattern `projects/*/locations/*/serviceBindings/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceBinding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "ServiceBinding"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2879,7 +2913,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250611",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuthzExtension": {
@@ -3032,6 +3066,10 @@
         },
         "name": {
           "description": "Identifier. Name of the EndpointPolicy resource. It matches pattern `projects/{project}/locations/global/endpointPolicies/{endpoint_policy}`.",
+          "type": "string"
+        },
+        "securityPolicy": {
+          "description": "Optional. A URL referring to a SecurityPolicy resource. SecurityPolicy is used to enforce rate limiting policy on the inbound traffic at the identified backends. If this field is not set, rate limiting is disabled for this endpoint.",
           "type": "string"
         },
         "serverTlsPolicy": {
@@ -3338,7 +3376,7 @@
       "id": "GatewayRouteView",
       "properties": {
         "name": {
-          "description": "Output only. Identifier. Full path name of the GatewayRouteView resource. Format: projects/{project_number}/locations/{location}/gateways/{gateway_name}/routeViews/{route_view_name}",
+          "description": "Output only. Identifier. Full path name of the GatewayRouteView resource. Format: projects/{project_number}/locations/{location}/gateways/{gateway}/routeViews/{route_view}",
           "readOnly": true,
           "type": "string"
         },
@@ -4038,7 +4076,7 @@
       "type": "object"
     },
     "HttpRouteRequestMirrorPolicy": {
-      "description": "Specifies the policy on how requests are shadowed to a separate mirrored destination service. The proxy does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host/authority header is suffixed with -shadow.",
+      "description": "Specifies the policy on how requests are shadowed to a separate mirrored destination service. The proxy does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host/authority header is suffixed with -shadow. Mirroring is currently not supported for Cloud Run destinations.",
       "id": "HttpRouteRequestMirrorPolicy",
       "properties": {
         "destination": {
@@ -5018,7 +5056,7 @@
       "id": "MeshRouteView",
       "properties": {
         "name": {
-          "description": "Output only. Identifier. Full path name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}/routeViews/{route_view_name}",
+          "description": "Output only. Identifier. Full path name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh}/routeViews/{route_view}",
           "readOnly": true,
           "type": "string"
         },

@@ -969,7 +969,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the GatewayRouteView resource. Formats: projects/{project_number}/locations/{location}/gateways/{gateway_name}/routeViews/{route_view_name}",
+                          "description": "Required. Name of the GatewayRouteView resource. Formats: projects/{project_number}/locations/{location}/gateways/{gateway}/routeViews/{route_view}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gateways/[^/]+/routeViews/[^/]+$",
                           "required": true,
@@ -1005,7 +1005,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Gateway to which a Route is associated. Formats: projects/{project_number}/locations/{location}/gateways/{gateway_name}",
+                          "description": "Required. The Gateway to which a Route is associated. Formats: projects/{project_number}/locations/{location}/gateways/{gateway}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/gateways/[^/]+$",
                           "required": true,
@@ -1886,7 +1886,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}/routeViews/{route_view_name}",
+                          "description": "Required. Name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh}/routeViews/{route_view}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/meshes/[^/]+/routeViews/[^/]+$",
                           "required": true,
@@ -1922,7 +1922,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The Mesh to which a Route is associated. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}",
+                          "description": "Required. The Mesh to which a Route is associated. Format: projects/{project_number}/locations/{location}/meshes/{mesh}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/meshes/[^/]+$",
                           "required": true,
@@ -2180,6 +2180,40 @@
                   "path": "v1/{+parent}/serviceBindings",
                   "response": {
                     "$ref": "ListServiceBindingsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single ServiceBinding.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/serviceBindings/{serviceBindingsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkservices.projects.locations.serviceBindings.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Name of the ServiceBinding resource. It matches pattern `projects/*/locations/*/serviceBindings/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/serviceBindings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the ServiceBinding resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "ServiceBinding"
+                  },
+                  "response": {
+                    "$ref": "Operation"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2970,7 +3004,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250611",
   "rootUrl": "https://networkservices.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3533,7 +3567,7 @@
       "id": "GatewayRouteView",
       "properties": {
         "name": {
-          "description": "Output only. Identifier. Full path name of the GatewayRouteView resource. Format: projects/{project_number}/locations/{location}/gateways/{gateway_name}/routeViews/{route_view_name}",
+          "description": "Output only. Identifier. Full path name of the GatewayRouteView resource. Format: projects/{project_number}/locations/{location}/gateways/{gateway}/routeViews/{route_view}",
           "readOnly": true,
           "type": "string"
         },
@@ -4233,7 +4267,7 @@
       "type": "object"
     },
     "HttpRouteRequestMirrorPolicy": {
-      "description": "Specifies the policy on how requests are shadowed to a separate mirrored destination service. The proxy does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host/authority header is suffixed with -shadow.",
+      "description": "Specifies the policy on how requests are shadowed to a separate mirrored destination service. The proxy does not wait for responses from the shadow service. Prior to sending traffic to the shadow service, the host/authority header is suffixed with -shadow. Mirroring is currently not supported for Cloud Run destinations.",
       "id": "HttpRouteRequestMirrorPolicy",
       "properties": {
         "destination": {
@@ -5126,7 +5160,7 @@
       "id": "MeshRouteView",
       "properties": {
         "name": {
-          "description": "Output only. Identifier. Full path name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh_name}/routeViews/{route_view_name}",
+          "description": "Output only. Identifier. Full path name of the MeshRouteView resource. Format: projects/{project_number}/locations/{location}/meshes/{mesh}/routeViews/{route_view}",
           "readOnly": true,
           "type": "string"
         },
@@ -5341,6 +5375,10 @@
           "$ref": "ServiceLbPolicyFailoverConfig",
           "description": "Optional. Configuration related to health based failover."
         },
+        "isolationConfig": {
+          "$ref": "ServiceLbPolicyIsolationConfig",
+          "description": "Optional. Configuration to provide isolation support for the associated Backend Service."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -5398,6 +5436,39 @@
           "description": "Optional. The percentage threshold that a load balancer will begin to send traffic to failover backends. If the percentage of endpoints in a MIG/NEG is smaller than this value, traffic would be sent to failover backends if possible. This field should be set to a value between 1 and 99. The default value is 50 for Global external HTTP(S) load balancer (classic) and Proxyless service mesh, and 70 for others.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceLbPolicyIsolationConfig": {
+      "description": "Configuration to provide isolation support for the associated Backend Service.",
+      "id": "ServiceLbPolicyIsolationConfig",
+      "properties": {
+        "isolationGranularity": {
+          "description": "Optional. The isolation granularity of the load balancer.",
+          "enum": [
+            "ISOLATION_GRANULARITY_UNSPECIFIED",
+            "REGION"
+          ],
+          "enumDescriptions": [
+            "No isolation is configured for the backend service. Traffic can overflow based on the load balancing algorithm.",
+            "Traffic for this service will be isolated at the cloud region level."
+          ],
+          "type": "string"
+        },
+        "isolationMode": {
+          "description": "Optional. The isolation mode of the load balancer.",
+          "enum": [
+            "ISOLATION_MODE_UNSPECIFIED",
+            "NEAREST",
+            "STRICT"
+          ],
+          "enumDescriptions": [
+            "No isolation mode is configured for the backend service.",
+            "Traffic will be sent to the nearest region.",
+            "Traffic will fail if no serving backends are available in the same region as the load balancer."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
