@@ -437,21 +437,6 @@
       "version": "v1"
     },
     {
-      "description": "Accesses Analytics report data.",
-      "discoveryRestUrl": "https://analyticsreporting.googleapis.com/$discovery/rest?version=v4",
-      "documentationLink": "https://developers.google.com/analytics/devguides/reporting/core/v4/",
-      "icons": {
-        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
-        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
-      },
-      "id": "analyticsreporting:v4",
-      "kind": "discovery#directoryItem",
-      "name": "analyticsreporting",
-      "preferred": true,
-      "title": "Analytics Reporting API",
-      "version": "v4"
-    },
-    {
       "description": "Automates Android zero-touch enrollment for device resellers, customers, and EMMs.",
       "discoveryRestUrl": "https://androiddeviceprovisioning.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://developers.google.com/zero-touch/",
@@ -708,7 +693,7 @@
     {
       "description": "Places Aggregate API.",
       "discoveryRestUrl": "https://areainsights.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://g3doc.corp.google.com/geo/platform/area_insights/README.md?cl=head",
+      "documentationLink": "https://developers.google.com/maps/documentation/places-aggregate/overview",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -809,6 +794,21 @@
       "preferred": false,
       "title": "Authorized Buyers Marketplace API",
       "version": "v1alpha"
+    },
+    {
+      "description": "The Authorized Buyers Marketplace API lets buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
+      "discoveryRestUrl": "https://authorizedbuyersmarketplace.googleapis.com/$discovery/rest?version=v1beta",
+      "documentationLink": "https://developers.google.com/authorized-buyers/apis/marketplace/reference/rest/",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "authorizedbuyersmarketplace:v1beta",
+      "kind": "discovery#directoryItem",
+      "name": "authorizedbuyersmarketplace",
+      "preferred": false,
+      "title": "Authorized Buyers Marketplace API",
+      "version": "v1beta"
     },
     {
       "description": "The Authorized Buyers Marketplace API lets buyers programmatically discover inventory; propose, retrieve and negotiate deals with publishers.",
@@ -991,7 +991,7 @@
       "version": "v1"
     },
     {
-      "description": "A service to modify your BigQuery flat-rate reservations.",
+      "description": "A service to modify your BigQuery reservations.",
       "discoveryRestUrl": "https://bigqueryreservation.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/bigquery/",
       "icons": {
@@ -4268,7 +4268,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=accounts_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4283,7 +4283,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=conversions_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4298,7 +4298,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=datasources_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4313,7 +4313,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=inventories_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4328,7 +4328,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=issueresolution_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4343,7 +4343,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=lfp_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4358,7 +4358,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=notifications_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4373,7 +4373,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=ordertracking_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4388,7 +4388,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=products_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4403,7 +4403,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=promotions_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4418,7 +4418,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=quota_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4433,7 +4433,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=reports_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -4448,7 +4448,7 @@
     {
       "description": "Programmatically manage your Merchant Center Accounts.",
       "discoveryRestUrl": "https://merchantapi.googleapis.com/$discovery/rest?version=reviews_v1beta",
-      "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+      "documentationLink": "https://developers.google.com/merchant/api",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
@@ -5827,6 +5827,21 @@
       "version": "v1"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://saasservicemgmt.googleapis.com/$discovery/rest?version=v1beta1",
+      "documentationLink": "https://cloud.google.com/saas-runtime/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "saasservicemgmt:v1beta1",
+      "kind": "discovery#directoryItem",
+      "name": "saasservicemgmt",
+      "preferred": true,
+      "title": "SaaS Runtime API",
+      "version": "v1beta1"
+    },
+    {
       "description": "Enables client applications to check web resources (most commonly URLs) against Google-generated lists of unsafe web resources. The Safe Browsing APIs are for non-commercial use only. If you need to use APIs to detect malicious URLs for commercial purposes – meaning “for sale or revenue-generating purposes” – please refer to the Web Risk API.",
       "discoveryRestUrl": "https://safebrowsing.googleapis.com/$discovery/rest?version=v4",
       "documentationLink": "https://developers.google.com/safe-browsing/",
@@ -6744,7 +6759,7 @@
     {
       "description": "Version History API - Prod",
       "discoveryRestUrl": "https://versionhistory.googleapis.com/$discovery/rest?version=v1",
-      "documentationLink": "https://developers.chrome.com/versionhistory",
+      "documentationLink": "https://developer.chrome.com/docs/web-platform/versionhistory/guide",
       "icons": {
         "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
         "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
