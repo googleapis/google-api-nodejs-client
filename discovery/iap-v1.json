@@ -682,7 +682,7 @@
       }
     }
   },
-  "revision": "20250407",
+  "revision": "20250524",
   "rootUrl": "https://iap.googleapis.com/",
   "schemas": {
     "AccessDeniedPageSettings": {
@@ -877,11 +877,11 @@
       "type": "object"
     },
     "CorsSettings": {
-      "description": "Allows customers to configure HTTP request paths that'll allow HTTP OPTIONS call to bypass authentication and authorization.",
+      "description": "Allows customers to configure HTTP request paths that'll allow HTTP `OPTIONS` call to bypass authentication and authorization.",
       "id": "CorsSettings",
       "properties": {
         "allowHttpOptions": {
-          "description": "Configuration to allow HTTP OPTIONS calls to skip authorization. If undefined, IAP will not apply any special logic to OPTIONS requests.",
+          "description": "Configuration to allow HTTP `OPTIONS` calls to skip authentication and authorization. If undefined, IAP will not apply any special logic to `OPTIONS` requests.",
           "type": "boolean"
         }
       },
@@ -928,7 +928,7 @@
       "type": "object"
     },
     "GcipSettings": {
-      "description": "Allows customers to configure tenant_id for GCIP instance per-app.",
+      "description": "Allows customers to configure tenant IDs for a Cloud Identity Platform (GCIP) instance for each application.",
       "id": "GcipSettings",
       "properties": {
         "loginPageUri": {
@@ -936,7 +936,7 @@
           "type": "string"
         },
         "tenantIds": {
-          "description": "Optional. GCIP tenant ids that are linked to the IAP resource. tenant_ids could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of _ to indicate authenticating with GCIP agent flow. If agent flow is used, tenant_ids should only contain one single element, while for tenant flow, tenant_ids can contain multiple elements.",
+          "description": "Optional. GCIP tenant IDs that are linked to the IAP resource. `tenant_ids` could be a string beginning with a number character to indicate authenticating with GCIP tenant flow, or in the format of `_` to indicate authenticating with GCIP agent flow. If agent flow is used, `tenant_ids` should only contain one single element, while for tenant flow, `tenant_ids` can contain multiple elements.",
           "items": {
             "type": "string"
           },
@@ -1252,6 +1252,13 @@
           },
           "description": "The service defined labels of the resource on which the conditions will be evaluated. The semantics - including the key names - are vague to IAM. If the effective condition has a reference to a `resource.labels[foo]` construct, IAM consults with this map to retrieve the values associated with `foo` key for Conditions evaluation. If the provided key is not found in the labels map, the condition would evaluate to false. This field is in limited use. If your intended use case is not expected to express resource.labels attribute in IAM Conditions, leave this field empty. Before planning on using this attribute please: * Read go/iam-conditions-labels-comm and ensure your service can meet the data availability and management requirements. * Talk to iam-conditions-eng@ about your use case.",
           "type": "object"
+        },
+        "locations": {
+          "description": "The locations of the resource. This field is used to determine whether the request is compliant with Trust Boundaries. Usage: - If unset or empty, the location of authorization is used as the target location. - For global resources: use a single value of \"global\". - For regional/multi-regional resources: use name of the GCP region(s) where the resource exists (e.g., [\"us-east1\", \"us-west1\"]). For multi-regional resources specify the name of each GCP region in the resource's multi-region. NOTE: Only GCP cloud region names are supported - go/cloud-region-names. ",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "name": {
           "description": "The **relative** name of the resource, which is the URI path of the resource without the leading \"/\". See https://cloud.google.com/iam/docs/conditions-resource-attributes#resource-name for examples used by other GCP Services. This field is **required** for services integrated with resource-attribute-based IAM conditions and/or CustomOrgPolicy. This field requires special handling for parents-only permissions such as `create` and `list`. See the document linked below for further details. See go/iam-conditions-sig-g3#populate-resource-attributes for specific details on populating this field.",
