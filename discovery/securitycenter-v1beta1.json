@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250616",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1024,6 +1024,51 @@
         "count": {
           "description": "The count of resources affected by the finding.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AiModel": {
+      "description": "Contains information about the AI model associated with the finding.",
+      "id": "AiModel",
+      "properties": {
+        "deploymentPlatform": {
+          "description": "The platform on which the model is deployed.",
+          "enum": [
+            "DEPLOYMENT_PLATFORM_UNSPECIFIED",
+            "VERTEX_AI",
+            "GKE"
+          ],
+          "enumDescriptions": [
+            "Unspecified deployment platform.",
+            "Vertex AI.",
+            "Google Kubernetes Engine."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The user defined display name of model. Ex. baseline-classification-model",
+          "type": "string"
+        },
+        "domain": {
+          "description": "The domain of the model, for example, “image-classification”.",
+          "type": "string"
+        },
+        "library": {
+          "description": "The name of the model library, for example, “transformers”.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The region in which the model is used, for example, “us-central1”.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the AI model, for example, \"gemini:1.0.0\".",
+          "type": "string"
+        },
+        "publisher": {
+          "description": "The publisher of the model, for example, “google” or “nvidia”.",
           "type": "string"
         }
       },
@@ -1454,6 +1499,17 @@
         },
         "storagePool": {
           "description": "The name of the Backup and DR storage pool that the backup and recovery appliance is storing data in. The storage pool could be of type Cloud, Primary, Snapshot, or OnVault. See the [Backup and DR documentation on storage pools](https://cloud.google.com/backup-disaster-recovery/docs/concepts/storage-pools). For example, `DiskPoolOne`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BigQueryDestination": {
+      "description": "The destination big query dataset to export findings to.",
+      "id": "BigQueryDestination",
+      "properties": {
+        "dataset": {
+          "description": "Required. The relative resource name of the destination dataset, in the form projects/{projectId}/datasets/{datasetId}.",
           "type": "string"
         }
       },
@@ -2109,6 +2165,25 @@
       },
       "type": "object"
     },
+    "Dataset": {
+      "description": "Vertex AI dataset associated with the finding.",
+      "id": "Dataset",
+      "properties": {
+        "displayName": {
+          "description": "The user defined display name of dataset, e.g. plants-dataset",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the dataset, e.g. projects/{project}/locations/{location}/datasets/2094040236064505856",
+          "type": "string"
+        },
+        "source": {
+          "description": "Data source, such as BigQuery source URI, e.g. bq://scc-nexus-test.AIPPtest.gsod",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Denied": {
       "description": "Denied IP rule.",
       "id": "Denied",
@@ -2246,6 +2321,28 @@
       },
       "type": "object"
     },
+    "ExportFindingsMetadata": {
+      "description": "The LRO metadata for a ExportFindings request.",
+      "id": "ExportFindingsMetadata",
+      "properties": {
+        "bigQueryDestination": {
+          "$ref": "BigQueryDestination",
+          "description": "Required. The destination big query dataset to export findings to."
+        },
+        "exportStartTime": {
+          "description": "Optional. Timestamp at which export was started",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExportFindingsResponse": {
+      "description": "The response to a ExportFindings request. Contains the LRO information.",
+      "id": "ExportFindingsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -2286,6 +2383,13 @@
           "format": "int64",
           "type": "string"
         },
+        "operations": {
+          "description": "Operation(s) performed on a file.",
+          "items": {
+            "$ref": "FileOperation"
+          },
+          "type": "array"
+        },
         "partiallyHashed": {
           "description": "True when the hash covers only a prefix of the file.",
           "type": "boolean"
@@ -2306,6 +2410,33 @@
       },
       "type": "object"
     },
+    "FileOperation": {
+      "description": "Operation(s) performed on a file.",
+      "id": "FileOperation",
+      "properties": {
+        "type": {
+          "description": "The type of the operation",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPEN",
+            "READ",
+            "RENAME",
+            "WRITE",
+            "EXECUTE"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents an open operation.",
+            "Represents a read operation.",
+            "Represents a rename operation.",
+            "Represents a write operation.",
+            "Represents an execute operation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Finding": {
       "description": "Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.",
       "id": "Finding",
@@ -2317,6 +2448,10 @@
         "affectedResources": {
           "$ref": "AffectedResources",
           "description": "AffectedResources associated with the finding."
+        },
+        "aiModel": {
+          "$ref": "AiModel",
+          "description": "The AI model associated with the finding."
         },
         "application": {
           "$ref": "Application",
@@ -2661,6 +2796,10 @@
         "toxicCombination": {
           "$ref": "ToxicCombination",
           "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests."
+        },
+        "vertexAi": {
+          "$ref": "VertexAi",
+          "description": "VertexAi associated with the finding."
         },
         "vulnerability": {
           "$ref": "Vulnerability",
@@ -3846,6 +3985,51 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2AiModel": {
+      "description": "Contains information about the AI model associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2AiModel",
+      "properties": {
+        "deploymentPlatform": {
+          "description": "The platform on which the model is deployed.",
+          "enum": [
+            "DEPLOYMENT_PLATFORM_UNSPECIFIED",
+            "VERTEX_AI",
+            "GKE"
+          ],
+          "enumDescriptions": [
+            "Unspecified deployment platform.",
+            "Vertex AI.",
+            "Google Kubernetes Engine."
+          ],
+          "type": "string"
+        },
+        "displayName": {
+          "description": "The user defined display name of model. Ex. baseline-classification-model",
+          "type": "string"
+        },
+        "domain": {
+          "description": "The domain of the model, for example, “image-classification”.",
+          "type": "string"
+        },
+        "library": {
+          "description": "The name of the model library, for example, “transformers”.",
+          "type": "string"
+        },
+        "location": {
+          "description": "The region in which the model is used, for example, “us-central1”.",
+          "type": "string"
+        },
+        "name": {
+          "description": "The name of the AI model, for example, \"gemini:1.0.0\".",
+          "type": "string"
+        },
+        "publisher": {
+          "description": "The publisher of the model, for example, “google” or “nvidia”.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Allowed": {
       "description": "Allowed IP rule.",
       "id": "GoogleCloudSecuritycenterV2Allowed",
@@ -4864,6 +5048,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2Dataset": {
+      "description": "Vertex AI dataset associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Dataset",
+      "properties": {
+        "displayName": {
+          "description": "The user defined display name of dataset, e.g. plants-dataset",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the dataset, e.g. projects/{project}/locations/{location}/datasets/2094040236064505856",
+          "type": "string"
+        },
+        "source": {
+          "description": "Data source, such as a BigQuery source URI, e.g. bq://scc-nexus-test.AIPPtest.gsod",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Denied": {
       "description": "Denied IP rule.",
       "id": "GoogleCloudSecuritycenterV2Denied",
@@ -5070,6 +5273,13 @@
           "format": "int64",
           "type": "string"
         },
+        "operations": {
+          "description": "Operation(s) performed on a file.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2FileOperation"
+          },
+          "type": "array"
+        },
         "partiallyHashed": {
           "description": "True when the hash covers only a prefix of the file.",
           "type": "boolean"
@@ -5090,6 +5300,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2FileOperation": {
+      "description": "Operation(s) performed on a file.",
+      "id": "GoogleCloudSecuritycenterV2FileOperation",
+      "properties": {
+        "type": {
+          "description": "The type of the operation",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPEN",
+            "READ",
+            "RENAME",
+            "WRITE",
+            "EXECUTE"
+          ],
+          "enumDescriptions": [
+            "The operation is unspecified.",
+            "Represents an open operation.",
+            "Represents a read operation.",
+            "Represents a rename operation.",
+            "Represents a write operation.",
+            "Represents an execute operation."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2Finding": {
       "description": "Security Command Center finding. A finding is a record of assessment data like security, risk, health, or privacy, that is ingested into Security Command Center for presentation, notification, analysis, policy testing, and enforcement. For example, a cross-site scripting (XSS) vulnerability in an App Engine application is a finding.",
       "id": "GoogleCloudSecuritycenterV2Finding",
@@ -5101,6 +5338,10 @@
         "affectedResources": {
           "$ref": "GoogleCloudSecuritycenterV2AffectedResources",
           "description": "AffectedResources associated with the finding."
+        },
+        "aiModel": {
+          "$ref": "GoogleCloudSecuritycenterV2AiModel",
+          "description": "The AI model associated with the finding."
         },
         "application": {
           "$ref": "GoogleCloudSecuritycenterV2Application",
@@ -5351,7 +5592,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. The following list shows some examples: + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}` + `organizations/{organization_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`",
+          "description": "Identifier. The [relative resource name](https://cloud.google.com/apis/design/resource_names#relative_resource_name) of the finding. The following list shows some examples: + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}` + `organizations/{organization_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}`",
           "type": "string"
         },
         "networks": {
@@ -5448,6 +5689,10 @@
         "toxicCombination": {
           "$ref": "GoogleCloudSecuritycenterV2ToxicCombination",
           "description": "Contains details about a group of security issues that, when the issues occur together, represent a greater risk than when the issues occur independently. A group of such issues is referred to as a toxic combination. This field cannot be updated. Its value is ignored in all update requests."
+        },
+        "vertexAi": {
+          "$ref": "GoogleCloudSecuritycenterV2VertexAi",
+          "description": "VertexAi associated with the finding."
         },
         "vulnerability": {
           "$ref": "GoogleCloudSecuritycenterV2Vulnerability",
@@ -5785,7 +6030,8 @@
             "CONTAINER",
             "DATA",
             "IDENTITY_AND_ACCESS",
-            "VULNERABILITY"
+            "VULNERABILITY",
+            "THREAT"
           ],
           "enumDescriptions": [
             "Unspecified domain category.",
@@ -5794,7 +6040,8 @@
             "Issues in the container domain.",
             "Issues in the data domain.",
             "Issues in the identity and access domain.",
-            "Issues in the vulnerability domain."
+            "Issues in the vulnerability domain.",
+            "Issues in the threat domain."
           ],
           "type": "string"
         }
@@ -6281,18 +6528,28 @@
               "TECHNIQUE_UNSPECIFIED",
               "DATA_OBFUSCATION",
               "DATA_OBFUSCATION_STEGANOGRAPHY",
+              "OS_CREDENTIAL_DUMPING",
+              "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+              "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+              "DATA_FROM_LOCAL_SYSTEM",
               "AUTOMATED_EXFILTRATION",
               "OBFUSCATED_FILES_OR_INFO",
               "STEGANOGRAPHY",
               "COMPILE_AFTER_DELIVERY",
               "COMMAND_OBFUSCATION",
+              "SCHEDULED_TRANSFER",
+              "SYSTEM_OWNER_USER_DISCOVERY",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
               "STARTUP_ITEMS",
               "NETWORK_SERVICE_DISCOVERY",
               "SCHEDULED_TASK_JOB",
+              "SCHEDULED_TASK_JOB_CRON",
               "CONTAINER_ORCHESTRATION_JOB",
+              "PROCESS_INJECTION",
+              "INPUT_CAPTURE",
+              "INPUT_CAPTURE_KEYLOGGING",
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
@@ -6300,7 +6557,12 @@
               "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL",
+              "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+              "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
               "INDICATOR_REMOVAL_FILE_DELETION",
+              "INDICATOR_REMOVAL_TIMESTOMP",
+              "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -6308,6 +6570,8 @@
               "DEFAULT_ACCOUNTS",
               "LOCAL_ACCOUNTS",
               "CLOUD_ACCOUNTS",
+              "FILE_AND_DIRECTORY_DISCOVERY",
+              "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
               "PROXY",
               "EXTERNAL_PROXY",
               "MULTI_HOP_PROXY",
@@ -6320,6 +6584,7 @@
               "INGRESS_TOOL_TRANSFER",
               "NATIVE_API",
               "BRUTE_FORCE",
+              "AUTOMATED_COLLECTION",
               "SHARED_MODULES",
               "DATA_ENCODING",
               "STANDARD_ENCODING",
@@ -6327,10 +6592,16 @@
               "TOKEN_IMPERSONATION_OR_THEFT",
               "CREATE_ACCOUNT",
               "LOCAL_ACCOUNT",
+              "DEOBFUSCATE_DECODE_FILES_OR_INFO",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "SUPPLY_CHAIN_COMPROMISE",
+              "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+              "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
+              "DATA_ENCRYPTED_FOR_IMPACT",
               "SERVICE_STOP",
               "INHIBIT_SYSTEM_RECOVERY",
               "FIRMWARE_CORRUPTION",
@@ -6345,12 +6616,24 @@
               "EVENT_TRIGGERED_EXECUTION",
               "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
               "KERNEL_MODULES_AND_EXTENSIONS",
+              "SHORTCUT_MODIFICATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
               "UNSECURED_CREDENTIALS",
+              "CREDENTIALS_IN_FILES",
+              "BASH_HISTORY",
+              "PRIVATE_KEYS",
+              "SUBVERT_TRUST_CONTROL",
+              "INSTALL_ROOT_CERTIFICATE",
               "COMPROMISE_HOST_SOFTWARE_BINARY",
+              "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
+              "PLUGGABLE_AUTHENTICATION_MODULES",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
+              "INDICATOR_BLOCKING",
+              "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
               "HIDE_ARTIFACTS",
               "HIDDEN_FILES_AND_DIRECTORIES",
               "HIDDEN_USERS",
@@ -6358,35 +6641,54 @@
               "EXFILTRATION_TO_CLOUD_STORAGE",
               "DYNAMIC_RESOLUTION",
               "LATERAL_TOOL_TRANSFER",
+              "HIJACK_EXECUTION_FLOW",
+              "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
               "CREATE_SNAPSHOT",
               "CLOUD_INFRASTRUCTURE_DISCOVERY",
+              "DEVELOP_CAPABILITIES",
+              "DEVELOP_CAPABILITIES_MALWARE",
               "OBTAIN_CAPABILITIES",
+              "OBTAIN_CAPABILITIES_MALWARE",
+              "OBTAIN_CAPABILITIES_VULNERABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "STAGE_CAPABILITIES",
+              "UPLOAD_MALWARE",
               "CONTAINER_ADMINISTRATION_COMMAND",
               "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
-              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
+              "REFLECTIVE_CODE_LOADING",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+              "FINANCIAL_THEFT"
             ],
             "enumDescriptions": [
               "Unspecified value.",
               "T1001",
               "T1001.002",
+              "T1003",
+              "T1003.007",
+              "T1003.008",
+              "T1005",
               "T1020",
               "T1027",
               "T1027.003",
               "T1027.004",
               "T1027.010",
+              "T1029",
+              "T1033",
               "T1036",
               "T1036.005",
               "T1037",
               "T1037.005",
               "T1046",
               "T1053",
+              "T1053.003",
               "T1053.007",
+              "T1055",
+              "T1056",
+              "T1056.001",
               "T1057",
               "T1059",
               "T1059.004",
@@ -6394,7 +6696,12 @@
               "T1068",
               "T1069",
               "T1069.003",
+              "T1070",
+              "T1070.002",
+              "T1070.003",
               "T1070.004",
+              "T1070.006",
+              "T1070.008",
               "T1071",
               "T1071.004",
               "T1072",
@@ -6402,6 +6709,8 @@
               "T1078.001",
               "T1078.003",
               "T1078.004",
+              "T1083",
+              "T1087.001",
               "T1090",
               "T1090.002",
               "T1090.003",
@@ -6414,6 +6723,7 @@
               "T1105",
               "T1106",
               "T1110",
+              "T1119",
               "T1129",
               "T1132",
               "T1132.001",
@@ -6421,10 +6731,16 @@
               "T1134.001",
               "T1136",
               "T1136.001",
+              "T1140",
               "T1190",
+              "T1195",
+              "T1195.001",
+              "T1203",
               "T1204",
+              "T1222.002",
               "T1484",
               "T1485",
+              "T1486",
               "T1489",
               "T1490",
               "T1495",
@@ -6439,12 +6755,24 @@
               "T1546",
               "T1547",
               "T1547.006",
+              "T1547.009",
               "T1548",
+              "T1548.001",
+              "T1548.003",
               "T1552",
+              "T1552.001",
+              "T1552.003",
+              "T1552.004",
+              "T1553",
+              "T1553.004",
               "T1554",
+              "T1555",
               "T1556",
+              "T1556.003",
               "T1562",
               "T1562.001",
+              "T1562.006",
+              "T1562.012",
               "T1564",
               "T1564.001",
               "T1564.002",
@@ -6452,18 +6780,27 @@
               "T1567.002",
               "T1568",
               "T1570",
+              "T1574",
+              "T1574.006",
               "T1578",
               "T1578.001",
               "T1580",
+              "T1587",
+              "T1587.001",
               "T1588",
+              "T1588.001",
+              "T1588.006",
               "T1595",
               "T1595.001",
               "T1608",
+              "T1608.001",
               "T1609",
               "T1610",
               "T1611",
               "T1613",
-              "T1649"
+              "T1620",
+              "T1649",
+              "T1657"
             ],
             "type": "string"
           },
@@ -6514,18 +6851,28 @@
               "TECHNIQUE_UNSPECIFIED",
               "DATA_OBFUSCATION",
               "DATA_OBFUSCATION_STEGANOGRAPHY",
+              "OS_CREDENTIAL_DUMPING",
+              "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+              "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+              "DATA_FROM_LOCAL_SYSTEM",
               "AUTOMATED_EXFILTRATION",
               "OBFUSCATED_FILES_OR_INFO",
               "STEGANOGRAPHY",
               "COMPILE_AFTER_DELIVERY",
               "COMMAND_OBFUSCATION",
+              "SCHEDULED_TRANSFER",
+              "SYSTEM_OWNER_USER_DISCOVERY",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
               "STARTUP_ITEMS",
               "NETWORK_SERVICE_DISCOVERY",
               "SCHEDULED_TASK_JOB",
+              "SCHEDULED_TASK_JOB_CRON",
               "CONTAINER_ORCHESTRATION_JOB",
+              "PROCESS_INJECTION",
+              "INPUT_CAPTURE",
+              "INPUT_CAPTURE_KEYLOGGING",
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
@@ -6533,7 +6880,12 @@
               "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL",
+              "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+              "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
               "INDICATOR_REMOVAL_FILE_DELETION",
+              "INDICATOR_REMOVAL_TIMESTOMP",
+              "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -6541,6 +6893,8 @@
               "DEFAULT_ACCOUNTS",
               "LOCAL_ACCOUNTS",
               "CLOUD_ACCOUNTS",
+              "FILE_AND_DIRECTORY_DISCOVERY",
+              "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
               "PROXY",
               "EXTERNAL_PROXY",
               "MULTI_HOP_PROXY",
@@ -6553,6 +6907,7 @@
               "INGRESS_TOOL_TRANSFER",
               "NATIVE_API",
               "BRUTE_FORCE",
+              "AUTOMATED_COLLECTION",
               "SHARED_MODULES",
               "DATA_ENCODING",
               "STANDARD_ENCODING",
@@ -6560,10 +6915,16 @@
               "TOKEN_IMPERSONATION_OR_THEFT",
               "CREATE_ACCOUNT",
               "LOCAL_ACCOUNT",
+              "DEOBFUSCATE_DECODE_FILES_OR_INFO",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "SUPPLY_CHAIN_COMPROMISE",
+              "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+              "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
+              "DATA_ENCRYPTED_FOR_IMPACT",
               "SERVICE_STOP",
               "INHIBIT_SYSTEM_RECOVERY",
               "FIRMWARE_CORRUPTION",
@@ -6578,12 +6939,24 @@
               "EVENT_TRIGGERED_EXECUTION",
               "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
               "KERNEL_MODULES_AND_EXTENSIONS",
+              "SHORTCUT_MODIFICATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
               "UNSECURED_CREDENTIALS",
+              "CREDENTIALS_IN_FILES",
+              "BASH_HISTORY",
+              "PRIVATE_KEYS",
+              "SUBVERT_TRUST_CONTROL",
+              "INSTALL_ROOT_CERTIFICATE",
               "COMPROMISE_HOST_SOFTWARE_BINARY",
+              "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
+              "PLUGGABLE_AUTHENTICATION_MODULES",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
+              "INDICATOR_BLOCKING",
+              "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
               "HIDE_ARTIFACTS",
               "HIDDEN_FILES_AND_DIRECTORIES",
               "HIDDEN_USERS",
@@ -6591,35 +6964,54 @@
               "EXFILTRATION_TO_CLOUD_STORAGE",
               "DYNAMIC_RESOLUTION",
               "LATERAL_TOOL_TRANSFER",
+              "HIJACK_EXECUTION_FLOW",
+              "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
               "CREATE_SNAPSHOT",
               "CLOUD_INFRASTRUCTURE_DISCOVERY",
+              "DEVELOP_CAPABILITIES",
+              "DEVELOP_CAPABILITIES_MALWARE",
               "OBTAIN_CAPABILITIES",
+              "OBTAIN_CAPABILITIES_MALWARE",
+              "OBTAIN_CAPABILITIES_VULNERABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "STAGE_CAPABILITIES",
+              "UPLOAD_MALWARE",
               "CONTAINER_ADMINISTRATION_COMMAND",
               "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
-              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
+              "REFLECTIVE_CODE_LOADING",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+              "FINANCIAL_THEFT"
             ],
             "enumDescriptions": [
               "Unspecified value.",
               "T1001",
               "T1001.002",
+              "T1003",
+              "T1003.007",
+              "T1003.008",
+              "T1005",
               "T1020",
               "T1027",
               "T1027.003",
               "T1027.004",
               "T1027.010",
+              "T1029",
+              "T1033",
               "T1036",
               "T1036.005",
               "T1037",
               "T1037.005",
               "T1046",
               "T1053",
+              "T1053.003",
               "T1053.007",
+              "T1055",
+              "T1056",
+              "T1056.001",
               "T1057",
               "T1059",
               "T1059.004",
@@ -6627,7 +7019,12 @@
               "T1068",
               "T1069",
               "T1069.003",
+              "T1070",
+              "T1070.002",
+              "T1070.003",
               "T1070.004",
+              "T1070.006",
+              "T1070.008",
               "T1071",
               "T1071.004",
               "T1072",
@@ -6635,6 +7032,8 @@
               "T1078.001",
               "T1078.003",
               "T1078.004",
+              "T1083",
+              "T1087.001",
               "T1090",
               "T1090.002",
               "T1090.003",
@@ -6647,6 +7046,7 @@
               "T1105",
               "T1106",
               "T1110",
+              "T1119",
               "T1129",
               "T1132",
               "T1132.001",
@@ -6654,10 +7054,16 @@
               "T1134.001",
               "T1136",
               "T1136.001",
+              "T1140",
               "T1190",
+              "T1195",
+              "T1195.001",
+              "T1203",
               "T1204",
+              "T1222.002",
               "T1484",
               "T1485",
+              "T1486",
               "T1489",
               "T1490",
               "T1495",
@@ -6672,12 +7078,24 @@
               "T1546",
               "T1547",
               "T1547.006",
+              "T1547.009",
               "T1548",
+              "T1548.001",
+              "T1548.003",
               "T1552",
+              "T1552.001",
+              "T1552.003",
+              "T1552.004",
+              "T1553",
+              "T1553.004",
               "T1554",
+              "T1555",
               "T1556",
+              "T1556.003",
               "T1562",
               "T1562.001",
+              "T1562.006",
+              "T1562.012",
               "T1564",
               "T1564.001",
               "T1564.002",
@@ -6685,18 +7103,27 @@
               "T1567.002",
               "T1568",
               "T1570",
+              "T1574",
+              "T1574.006",
               "T1578",
               "T1578.001",
               "T1580",
+              "T1587",
+              "T1587.001",
               "T1588",
+              "T1588.001",
+              "T1588.006",
               "T1595",
               "T1595.001",
               "T1608",
+              "T1608.001",
               "T1609",
               "T1610",
               "T1611",
               "T1613",
-              "T1649"
+              "T1620",
+              "T1649",
+              "T1657"
             ],
             "type": "string"
           },
@@ -6924,6 +7351,21 @@
         },
         "packageVersion": {
           "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Pipeline": {
+      "description": "Vertex AI training pipeline associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Pipeline",
+      "properties": {
+        "displayName": {
+          "description": "The user-defined display name of pipeline, e.g. plants-classification",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the pipeline, e.g. projects/{project}/locations/{location}/trainingPipelines/5253428229225578496",
           "type": "string"
         }
       },
@@ -7624,6 +8066,27 @@
           "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2VertexAi": {
+      "description": "Vertex AI-related information associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2VertexAi",
+      "properties": {
+        "datasets": {
+          "description": "Datasets associated with the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Dataset"
+          },
+          "type": "array"
+        },
+        "pipelines": {
+          "description": "Pipelines associated with the finding.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Pipeline"
           },
           "type": "array"
         }
@@ -8331,18 +8794,28 @@
               "TECHNIQUE_UNSPECIFIED",
               "DATA_OBFUSCATION",
               "DATA_OBFUSCATION_STEGANOGRAPHY",
+              "OS_CREDENTIAL_DUMPING",
+              "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+              "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+              "DATA_FROM_LOCAL_SYSTEM",
               "AUTOMATED_EXFILTRATION",
               "OBFUSCATED_FILES_OR_INFO",
               "STEGANOGRAPHY",
               "COMPILE_AFTER_DELIVERY",
               "COMMAND_OBFUSCATION",
+              "SCHEDULED_TRANSFER",
+              "SYSTEM_OWNER_USER_DISCOVERY",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
               "STARTUP_ITEMS",
               "NETWORK_SERVICE_DISCOVERY",
               "SCHEDULED_TASK_JOB",
+              "SCHEDULED_TASK_JOB_CRON",
               "CONTAINER_ORCHESTRATION_JOB",
+              "PROCESS_INJECTION",
+              "INPUT_CAPTURE",
+              "INPUT_CAPTURE_KEYLOGGING",
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
@@ -8350,7 +8823,12 @@
               "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL",
+              "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+              "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
               "INDICATOR_REMOVAL_FILE_DELETION",
+              "INDICATOR_REMOVAL_TIMESTOMP",
+              "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -8358,6 +8836,8 @@
               "DEFAULT_ACCOUNTS",
               "LOCAL_ACCOUNTS",
               "CLOUD_ACCOUNTS",
+              "FILE_AND_DIRECTORY_DISCOVERY",
+              "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
               "PROXY",
               "EXTERNAL_PROXY",
               "MULTI_HOP_PROXY",
@@ -8370,6 +8850,7 @@
               "INGRESS_TOOL_TRANSFER",
               "NATIVE_API",
               "BRUTE_FORCE",
+              "AUTOMATED_COLLECTION",
               "SHARED_MODULES",
               "DATA_ENCODING",
               "STANDARD_ENCODING",
@@ -8377,10 +8858,16 @@
               "TOKEN_IMPERSONATION_OR_THEFT",
               "CREATE_ACCOUNT",
               "LOCAL_ACCOUNT",
+              "DEOBFUSCATE_DECODE_FILES_OR_INFO",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "SUPPLY_CHAIN_COMPROMISE",
+              "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+              "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
+              "DATA_ENCRYPTED_FOR_IMPACT",
               "SERVICE_STOP",
               "INHIBIT_SYSTEM_RECOVERY",
               "FIRMWARE_CORRUPTION",
@@ -8395,12 +8882,24 @@
               "EVENT_TRIGGERED_EXECUTION",
               "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
               "KERNEL_MODULES_AND_EXTENSIONS",
+              "SHORTCUT_MODIFICATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
               "UNSECURED_CREDENTIALS",
+              "CREDENTIALS_IN_FILES",
+              "BASH_HISTORY",
+              "PRIVATE_KEYS",
+              "SUBVERT_TRUST_CONTROL",
+              "INSTALL_ROOT_CERTIFICATE",
               "COMPROMISE_HOST_SOFTWARE_BINARY",
+              "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
+              "PLUGGABLE_AUTHENTICATION_MODULES",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
+              "INDICATOR_BLOCKING",
+              "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
               "HIDE_ARTIFACTS",
               "HIDDEN_FILES_AND_DIRECTORIES",
               "HIDDEN_USERS",
@@ -8408,35 +8907,54 @@
               "EXFILTRATION_TO_CLOUD_STORAGE",
               "DYNAMIC_RESOLUTION",
               "LATERAL_TOOL_TRANSFER",
+              "HIJACK_EXECUTION_FLOW",
+              "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
               "CREATE_SNAPSHOT",
               "CLOUD_INFRASTRUCTURE_DISCOVERY",
+              "DEVELOP_CAPABILITIES",
+              "DEVELOP_CAPABILITIES_MALWARE",
               "OBTAIN_CAPABILITIES",
+              "OBTAIN_CAPABILITIES_MALWARE",
+              "OBTAIN_CAPABILITIES_VULNERABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "STAGE_CAPABILITIES",
+              "UPLOAD_MALWARE",
               "CONTAINER_ADMINISTRATION_COMMAND",
               "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
-              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
+              "REFLECTIVE_CODE_LOADING",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+              "FINANCIAL_THEFT"
             ],
             "enumDescriptions": [
               "Unspecified value.",
               "T1001",
               "T1001.002",
+              "T1003",
+              "T1003.007",
+              "T1003.008",
+              "T1005",
               "T1020",
               "T1027",
               "T1027.003",
               "T1027.004",
               "T1027.010",
+              "T1029",
+              "T1033",
               "T1036",
               "T1036.005",
               "T1037",
               "T1037.005",
               "T1046",
               "T1053",
+              "T1053.003",
               "T1053.007",
+              "T1055",
+              "T1056",
+              "T1056.001",
               "T1057",
               "T1059",
               "T1059.004",
@@ -8444,7 +8962,12 @@
               "T1068",
               "T1069",
               "T1069.003",
+              "T1070",
+              "T1070.002",
+              "T1070.003",
               "T1070.004",
+              "T1070.006",
+              "T1070.008",
               "T1071",
               "T1071.004",
               "T1072",
@@ -8452,6 +8975,8 @@
               "T1078.001",
               "T1078.003",
               "T1078.004",
+              "T1083",
+              "T1087.001",
               "T1090",
               "T1090.002",
               "T1090.003",
@@ -8464,6 +8989,7 @@
               "T1105",
               "T1106",
               "T1110",
+              "T1119",
               "T1129",
               "T1132",
               "T1132.001",
@@ -8471,10 +8997,16 @@
               "T1134.001",
               "T1136",
               "T1136.001",
+              "T1140",
               "T1190",
+              "T1195",
+              "T1195.001",
+              "T1203",
               "T1204",
+              "T1222.002",
               "T1484",
               "T1485",
+              "T1486",
               "T1489",
               "T1490",
               "T1495",
@@ -8489,12 +9021,24 @@
               "T1546",
               "T1547",
               "T1547.006",
+              "T1547.009",
               "T1548",
+              "T1548.001",
+              "T1548.003",
               "T1552",
+              "T1552.001",
+              "T1552.003",
+              "T1552.004",
+              "T1553",
+              "T1553.004",
               "T1554",
+              "T1555",
               "T1556",
+              "T1556.003",
               "T1562",
               "T1562.001",
+              "T1562.006",
+              "T1562.012",
               "T1564",
               "T1564.001",
               "T1564.002",
@@ -8502,18 +9046,27 @@
               "T1567.002",
               "T1568",
               "T1570",
+              "T1574",
+              "T1574.006",
               "T1578",
               "T1578.001",
               "T1580",
+              "T1587",
+              "T1587.001",
               "T1588",
+              "T1588.001",
+              "T1588.006",
               "T1595",
               "T1595.001",
               "T1608",
+              "T1608.001",
               "T1609",
               "T1610",
               "T1611",
               "T1613",
-              "T1649"
+              "T1620",
+              "T1649",
+              "T1657"
             ],
             "type": "string"
           },
@@ -8564,18 +9117,28 @@
               "TECHNIQUE_UNSPECIFIED",
               "DATA_OBFUSCATION",
               "DATA_OBFUSCATION_STEGANOGRAPHY",
+              "OS_CREDENTIAL_DUMPING",
+              "OS_CREDENTIAL_DUMPING_PROC_FILESYSTEM",
+              "OS_CREDENTIAL_DUMPING_ETC_PASSWORD_AND_ETC_SHADOW",
+              "DATA_FROM_LOCAL_SYSTEM",
               "AUTOMATED_EXFILTRATION",
               "OBFUSCATED_FILES_OR_INFO",
               "STEGANOGRAPHY",
               "COMPILE_AFTER_DELIVERY",
               "COMMAND_OBFUSCATION",
+              "SCHEDULED_TRANSFER",
+              "SYSTEM_OWNER_USER_DISCOVERY",
               "MASQUERADING",
               "MATCH_LEGITIMATE_NAME_OR_LOCATION",
               "BOOT_OR_LOGON_INITIALIZATION_SCRIPTS",
               "STARTUP_ITEMS",
               "NETWORK_SERVICE_DISCOVERY",
               "SCHEDULED_TASK_JOB",
+              "SCHEDULED_TASK_JOB_CRON",
               "CONTAINER_ORCHESTRATION_JOB",
+              "PROCESS_INJECTION",
+              "INPUT_CAPTURE",
+              "INPUT_CAPTURE_KEYLOGGING",
               "PROCESS_DISCOVERY",
               "COMMAND_AND_SCRIPTING_INTERPRETER",
               "UNIX_SHELL",
@@ -8583,7 +9146,12 @@
               "EXPLOITATION_FOR_PRIVILEGE_ESCALATION",
               "PERMISSION_GROUPS_DISCOVERY",
               "CLOUD_GROUPS",
+              "INDICATOR_REMOVAL",
+              "INDICATOR_REMOVAL_CLEAR_LINUX_OR_MAC_SYSTEM_LOGS",
+              "INDICATOR_REMOVAL_CLEAR_COMMAND_HISTORY",
               "INDICATOR_REMOVAL_FILE_DELETION",
+              "INDICATOR_REMOVAL_TIMESTOMP",
+              "INDICATOR_REMOVAL_CLEAR_MAILBOX_DATA",
               "APPLICATION_LAYER_PROTOCOL",
               "DNS",
               "SOFTWARE_DEPLOYMENT_TOOLS",
@@ -8591,6 +9159,8 @@
               "DEFAULT_ACCOUNTS",
               "LOCAL_ACCOUNTS",
               "CLOUD_ACCOUNTS",
+              "FILE_AND_DIRECTORY_DISCOVERY",
+              "ACCOUNT_DISCOVERY_LOCAL_ACCOUNT",
               "PROXY",
               "EXTERNAL_PROXY",
               "MULTI_HOP_PROXY",
@@ -8603,6 +9173,7 @@
               "INGRESS_TOOL_TRANSFER",
               "NATIVE_API",
               "BRUTE_FORCE",
+              "AUTOMATED_COLLECTION",
               "SHARED_MODULES",
               "DATA_ENCODING",
               "STANDARD_ENCODING",
@@ -8610,10 +9181,16 @@
               "TOKEN_IMPERSONATION_OR_THEFT",
               "CREATE_ACCOUNT",
               "LOCAL_ACCOUNT",
+              "DEOBFUSCATE_DECODE_FILES_OR_INFO",
               "EXPLOIT_PUBLIC_FACING_APPLICATION",
+              "SUPPLY_CHAIN_COMPROMISE",
+              "COMPROMISE_SOFTWARE_DEPENDENCIES_AND_DEVELOPMENT_TOOLS",
+              "EXPLOITATION_FOR_CLIENT_EXECUTION",
               "USER_EXECUTION",
+              "LINUX_AND_MAC_FILE_AND_DIRECTORY_PERMISSIONS_MODIFICATION",
               "DOMAIN_POLICY_MODIFICATION",
               "DATA_DESTRUCTION",
+              "DATA_ENCRYPTED_FOR_IMPACT",
               "SERVICE_STOP",
               "INHIBIT_SYSTEM_RECOVERY",
               "FIRMWARE_CORRUPTION",
@@ -8628,12 +9205,24 @@
               "EVENT_TRIGGERED_EXECUTION",
               "BOOT_OR_LOGON_AUTOSTART_EXECUTION",
               "KERNEL_MODULES_AND_EXTENSIONS",
+              "SHORTCUT_MODIFICATION",
               "ABUSE_ELEVATION_CONTROL_MECHANISM",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SETUID_AND_SETGID",
+              "ABUSE_ELEVATION_CONTROL_MECHANISM_SUDO_AND_SUDO_CACHING",
               "UNSECURED_CREDENTIALS",
+              "CREDENTIALS_IN_FILES",
+              "BASH_HISTORY",
+              "PRIVATE_KEYS",
+              "SUBVERT_TRUST_CONTROL",
+              "INSTALL_ROOT_CERTIFICATE",
               "COMPROMISE_HOST_SOFTWARE_BINARY",
+              "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
+              "PLUGGABLE_AUTHENTICATION_MODULES",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
+              "INDICATOR_BLOCKING",
+              "DISABLE_OR_MODIFY_LINUX_AUDIT_SYSTEM",
               "HIDE_ARTIFACTS",
               "HIDDEN_FILES_AND_DIRECTORIES",
               "HIDDEN_USERS",
@@ -8641,35 +9230,54 @@
               "EXFILTRATION_TO_CLOUD_STORAGE",
               "DYNAMIC_RESOLUTION",
               "LATERAL_TOOL_TRANSFER",
+              "HIJACK_EXECUTION_FLOW",
+              "HIJACK_EXECUTION_FLOW_DYNAMIC_LINKER_HIJACKING",
               "MODIFY_CLOUD_COMPUTE_INFRASTRUCTURE",
               "CREATE_SNAPSHOT",
               "CLOUD_INFRASTRUCTURE_DISCOVERY",
+              "DEVELOP_CAPABILITIES",
+              "DEVELOP_CAPABILITIES_MALWARE",
               "OBTAIN_CAPABILITIES",
+              "OBTAIN_CAPABILITIES_MALWARE",
+              "OBTAIN_CAPABILITIES_VULNERABILITIES",
               "ACTIVE_SCANNING",
               "SCANNING_IP_BLOCKS",
               "STAGE_CAPABILITIES",
+              "UPLOAD_MALWARE",
               "CONTAINER_ADMINISTRATION_COMMAND",
               "DEPLOY_CONTAINER",
               "ESCAPE_TO_HOST",
               "CONTAINER_AND_RESOURCE_DISCOVERY",
-              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES"
+              "REFLECTIVE_CODE_LOADING",
+              "STEAL_OR_FORGE_AUTHENTICATION_CERTIFICATES",
+              "FINANCIAL_THEFT"
             ],
             "enumDescriptions": [
               "Unspecified value.",
               "T1001",
               "T1001.002",
+              "T1003",
+              "T1003.007",
+              "T1003.008",
+              "T1005",
               "T1020",
               "T1027",
               "T1027.003",
               "T1027.004",
               "T1027.010",
+              "T1029",
+              "T1033",
               "T1036",
               "T1036.005",
               "T1037",
               "T1037.005",
               "T1046",
               "T1053",
+              "T1053.003",
               "T1053.007",
+              "T1055",
+              "T1056",
+              "T1056.001",
               "T1057",
               "T1059",
               "T1059.004",
@@ -8677,7 +9285,12 @@
               "T1068",
               "T1069",
               "T1069.003",
+              "T1070",
+              "T1070.002",
+              "T1070.003",
               "T1070.004",
+              "T1070.006",
+              "T1070.008",
               "T1071",
               "T1071.004",
               "T1072",
@@ -8685,6 +9298,8 @@
               "T1078.001",
               "T1078.003",
               "T1078.004",
+              "T1083",
+              "T1087.001",
               "T1090",
               "T1090.002",
               "T1090.003",
@@ -8697,6 +9312,7 @@
               "T1105",
               "T1106",
               "T1110",
+              "T1119",
               "T1129",
               "T1132",
               "T1132.001",
@@ -8704,10 +9320,16 @@
               "T1134.001",
               "T1136",
               "T1136.001",
+              "T1140",
               "T1190",
+              "T1195",
+              "T1195.001",
+              "T1203",
               "T1204",
+              "T1222.002",
               "T1484",
               "T1485",
+              "T1486",
               "T1489",
               "T1490",
               "T1495",
@@ -8722,12 +9344,24 @@
               "T1546",
               "T1547",
               "T1547.006",
+              "T1547.009",
               "T1548",
+              "T1548.001",
+              "T1548.003",
               "T1552",
+              "T1552.001",
+              "T1552.003",
+              "T1552.004",
+              "T1553",
+              "T1553.004",
               "T1554",
+              "T1555",
               "T1556",
+              "T1556.003",
               "T1562",
               "T1562.001",
+              "T1562.006",
+              "T1562.012",
               "T1564",
               "T1564.001",
               "T1564.002",
@@ -8735,18 +9369,27 @@
               "T1567.002",
               "T1568",
               "T1570",
+              "T1574",
+              "T1574.006",
               "T1578",
               "T1578.001",
               "T1580",
+              "T1587",
+              "T1587.001",
               "T1588",
+              "T1588.001",
+              "T1588.006",
               "T1595",
               "T1595.001",
               "T1608",
+              "T1608.001",
               "T1609",
               "T1610",
               "T1611",
               "T1613",
-              "T1649"
+              "T1620",
+              "T1649",
+              "T1657"
             ],
             "type": "string"
           },
@@ -8954,6 +9597,21 @@
         },
         "packageVersion": {
           "description": "The version of the package.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Pipeline": {
+      "description": "Vertex AI training pipeline associated with the finding.",
+      "id": "Pipeline",
+      "properties": {
+        "displayName": {
+          "description": "The user defined display name of pipeline, e.g. plants-classification",
+          "type": "string"
+        },
+        "name": {
+          "description": "Resource name of the pipeline, e.g. projects/{project}/locations/{location}/trainingPipelines/5253428229225578496",
           "type": "string"
         }
       },
@@ -9644,6 +10302,27 @@
           "description": "List of resource names of findings associated with this toxic combination. For example, `organizations/123/sources/456/findings/789`.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "VertexAi": {
+      "description": "Vertex AI-related information associated with the finding.",
+      "id": "VertexAi",
+      "properties": {
+        "datasets": {
+          "description": "Datasets associated with the finding.",
+          "items": {
+            "$ref": "Dataset"
+          },
+          "type": "array"
+        },
+        "pipelines": {
+          "description": "Pipelines associated with the finding.",
+          "items": {
+            "$ref": "Pipeline"
           },
           "type": "array"
         }
