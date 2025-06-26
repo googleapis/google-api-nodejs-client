@@ -14,7 +14,7 @@
   "canonicalName": "Area Insights",
   "description": "Places Aggregate API.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://g3doc.corp.google.com/geo/platform/area_insights/README.md?cl=head",
+  "documentationLink": "https://developers.google.com/maps/documentation/places-aggregate/overview",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250325",
+  "revision": "20250622",
   "rootUrl": "https://areainsights.googleapis.com/",
   "schemas": {
     "Circle": {
@@ -353,7 +353,7 @@
       "id": "Region",
       "properties": {
         "place": {
-          "description": "The unique identifier of a specific geographic region.",
+          "description": "The [place ID](https://developers.google.com/maps/documentation/places/web-service/place-id) of the geographic region. Not all region types are supported; see documentation for details. **Format:** Must be in the format `places/PLACE_ID`, where `PLACE_ID` is the unique identifier of a place. For example: `places/ChIJPV4oX_65j4ARVW8IJ6IJUYs`.",
           "type": "string"
         }
       },
