@@ -99,7 +99,7 @@
     "flights": {
       "methods": {
         "computeFlightEmissions": {
-          "description": "Stateless method to retrieve emission estimates. Details on how emission estimates are computed: https://github.com/google/travel-impact-model The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.",
+          "description": "Stateless method to retrieve emission estimates. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model) The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.",
           "flatPath": "v1/flights:computeFlightEmissions",
           "httpMethod": "POST",
           "id": "travelimpactmodel.flights.computeFlightEmissions",
@@ -112,11 +112,26 @@
           "response": {
             "$ref": "ComputeFlightEmissionsResponse"
           }
+        },
+        "computeTypicalFlightEmissions": {
+          "description": "Retrieves typical flight emissions estimates between two airports, also known as a market. If there are no estimates available for a certain market, the response will return the market object with empty emission fields. The request will still be considered successful. Details on how the typical emissions estimates are computed are on [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md). The request can contain up to 1000 markets. If the request has more than 1000 markets, it will fail with an INVALID_ARGUMENT error.",
+          "flatPath": "v1/flights:computeTypicalFlightEmissions",
+          "httpMethod": "POST",
+          "id": "travelimpactmodel.flights.computeTypicalFlightEmissions",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "v1/flights:computeTypicalFlightEmissions",
+          "request": {
+            "$ref": "ComputeTypicalFlightEmissionsRequest"
+          },
+          "response": {
+            "$ref": "ComputeTypicalFlightEmissionsResponse"
+          }
         }
       }
     }
   },
-  "revision": "20250224",
+  "revision": "20250624",
   "rootUrl": "https://travelimpactmodel.googleapis.com/",
   "schemas": {
     "ComputeFlightEmissionsRequest": {
@@ -151,6 +166,38 @@
       },
       "type": "object"
     },
+    "ComputeTypicalFlightEmissionsRequest": {
+      "description": "A list of pair of airports (markets) to request the typical emissions for.",
+      "id": "ComputeTypicalFlightEmissionsRequest",
+      "properties": {
+        "markets": {
+          "description": "Required. Request the typical flight emissions estimates for this market pair. A maximum of 1000 markets can be requested.",
+          "items": {
+            "$ref": "Market"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeTypicalFlightEmissionsResponse": {
+      "description": "The response includes the emissions but also the model version.",
+      "id": "ComputeTypicalFlightEmissionsResponse",
+      "properties": {
+        "modelVersion": {
+          "$ref": "ModelVersion",
+          "description": "The model version under which typical flight emission estimates for all flights in this response were computed."
+        },
+        "typicalFlightEmissions": {
+          "description": "Market's Typical Flight Emissions requested.",
+          "items": {
+            "$ref": "TypicalFlightEmissions"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Date": {
       "description": "Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp",
       "id": "Date",
@@ -169,6 +216,30 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "EasaLabelMetadata": {
+      "description": "Metadata about the EASA Flight Emissions Label.",
+      "id": "EasaLabelMetadata",
+      "properties": {
+        "labelExpiryDate": {
+          "$ref": "Date",
+          "description": "The date when the label expires. The label can be displayed until the end of this date."
+        },
+        "labelIssueDate": {
+          "$ref": "Date",
+          "description": "The date when the label was issued."
+        },
+        "labelVersion": {
+          "description": "Version of the label.",
+          "type": "string"
+        },
+        "safDiscountPercentage": {
+          "description": "Sustainable Aviation Fuel (SAF) emissions discount percentage applied to the label. It is a percentage as a decimal. The values are in the interval [0,1]. For example, 0.0021 means 0.21%. This discount and reduction in emissions are reported by the EASA label but they are not included in the CO2e estimates distributed by this API.",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -232,19 +303,68 @@
       "description": "Direct flight with emission estimates.",
       "id": "FlightWithEmissions",
       "properties": {
+        "contrailsImpactBucket": {
+          "description": "Optional. The significance of contrails warming impact compared to the total CO2e emissions impact.",
+          "enum": [
+            "CONTRAILS_IMPACT_UNSPECIFIED",
+            "CONTRAILS_IMPACT_NEGLIGIBLE",
+            "CONTRAILS_IMPACT_MODERATE",
+            "CONTRAILS_IMPACT_SEVERE"
+          ],
+          "enumDescriptions": [
+            "The contrails impact is unspecified.",
+            "The contrails impact is negligible compared to the total CO2e emissions.",
+            "The contrails impact is comparable to the total CO2e emissions.",
+            "The contrails impact is higher than the total CO2e emissions impact."
+          ],
+          "type": "string"
+        },
+        "easaLabelMetadata": {
+          "$ref": "EasaLabelMetadata",
+          "description": "Optional. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA."
+        },
         "emissionsGramsPerPax": {
           "$ref": "EmissionsGramsPerPax",
-          "description": "Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions. This field uses wtw emissions aka ttw_emissions_grams_per_pax + wtt_emissions_grams_per_pax."
+          "description": "Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions."
         },
         "flight": {
           "$ref": "Flight",
           "description": "Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
+        },
+        "source": {
+          "description": "Optional. The source of the emissions data.",
+          "enum": [
+            "SOURCE_UNSPECIFIED",
+            "TIM",
+            "EASA"
+          ],
+          "enumDescriptions": [
+            "The source of the emissions data is unspecified.",
+            "The emissions data is from the Travel Impact Model.",
+            "The emissions data is from the EASA environmental labels."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Market": {
+      "description": "A pair of airports.",
+      "id": "Market",
+      "properties": {
+        "destination": {
+          "description": "Required. IATA airport code for flight destination, e.g. \"JFK\".",
+          "type": "string"
+        },
+        "origin": {
+          "description": "Required. IATA airport code for flight origin, e.g. \"LHR\".",
+          "type": "string"
         }
       },
       "type": "object"
     },
     "ModelVersion": {
-      "description": "Travel Impact Model version. For more information about the model versioning see https://github.com/google/travel-impact-model/#versioning.",
+      "description": "Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning).",
       "id": "ModelVersion",
       "properties": {
         "dated": {
@@ -252,7 +372,7 @@
           "type": "string"
         },
         "major": {
-          "description": "Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect guidelines in https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible",
+          "description": "Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect [Google Cloud API guidelines](https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible)",
           "format": "int32",
           "type": "integer"
         },
@@ -265,6 +385,21 @@
           "description": "Patch versions: Implementation changes meant to address bugs or inaccuracies in the model implementation.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "TypicalFlightEmissions": {
+      "description": "Typical flight emission estimates for a certain market",
+      "id": "TypicalFlightEmissions",
+      "properties": {
+        "emissionsGramsPerPax": {
+          "$ref": "EmissionsGramsPerPax",
+          "description": "Optional. Typical flight emissions per passenger for requested market. Will not be present if a typical emissions could not be computed. For the list of reasons why typical flight emissions could not be computed, see [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md#step-7-validate-dataset)."
+        },
+        "market": {
+          "$ref": "Market",
+          "description": "Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized."
         }
       },
       "type": "object"
