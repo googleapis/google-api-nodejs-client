@@ -4445,6 +4445,164 @@
                         "https://www.googleapis.com/auth/dialogflow"
                       ]
                     }
+                  },
+                  "resources": {
+                    "versions": {
+                      "methods": {
+                        "create": {
+                          "description": "Creates a version for the specified Tool.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.create",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "parent": {
+                              "description": "Required. The tool to create a version for. Format: `projects//locations//agents//tools/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/versions",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3ToolVersion"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3ToolVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "delete": {
+                          "description": "Deletes the specified version of the Tool.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}",
+                          "httpMethod": "DELETE",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.delete",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "force": {
+                              "description": "Optional. This field has no effect for Tools not being used. For Tools that are used: * If `force` is set to false, an error will be returned with message indicating the referenced resources. * If `force` is set to true, Dialogflow will remove the tool, as well as any references to the tool.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "name": {
+                              "description": "Required. The name of the tool version to delete. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleProtobufEmpty"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "get": {
+                          "description": "Retrieves the specified version of the Tool.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3ToolVersion"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "list": {
+                          "description": "List versions of the specified Tool.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions",
+                          "httpMethod": "GET",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.list",
+                          "parameterOrder": [
+                            "parent"
+                          ],
+                          "parameters": {
+                            "pageSize": {
+                              "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                              "format": "int32",
+                              "location": "query",
+                              "type": "integer"
+                            },
+                            "pageToken": {
+                              "description": "Optional. The next_page_token value returned from a previous list request.",
+                              "location": "query",
+                              "type": "string"
+                            },
+                            "parent": {
+                              "description": "Required. The parent of the tool versions. Format: `projects//locations//agents//tools/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+parent}/versions",
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3ListToolVersionsResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        },
+                        "restore": {
+                          "description": "Retrieves the specified version of the Tool and stores it as the current tool draft, returning the tool with resources updated.",
+                          "flatPath": "v3/projects/{projectsId}/locations/{locationsId}/agents/{agentsId}/tools/{toolsId}/versions/{versionsId}:restore",
+                          "httpMethod": "POST",
+                          "id": "dialogflow.projects.locations.agents.tools.versions.restore",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The name of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/agents/[^/]+/tools/[^/]+/versions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v3/{+name}:restore",
+                          "request": {
+                            "$ref": "GoogleCloudDialogflowCxV3RestoreToolVersionRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDialogflowCxV3RestoreToolVersionResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/dialogflow"
+                          ]
+                        }
+                      }
+                    }
                   }
                 },
                 "transitionRouteGroups": {
@@ -5151,7 +5309,7 @@
       }
     }
   },
-  "revision": "20250422",
+  "revision": "20250617",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -6627,7 +6785,7 @@
       "id": "GoogleCloudDialogflowCxV3EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -7610,6 +7768,13 @@
           "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
           "type": "boolean"
         },
+        "generators": {
+          "description": "A list of Generators to be called during this fulfillment.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
           "items": {
@@ -7682,6 +7847,28 @@
         "message": {
           "$ref": "GoogleCloudDialogflowCxV3ResponseMessage",
           "description": "Returned message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings": {
+      "description": "Generator settings used by the LLM to generate a text response.",
+      "id": "GoogleCloudDialogflowCxV3FulfillmentGeneratorSettings",
+      "properties": {
+        "generator": {
+          "description": "Required. The generator to call. Format: `projects//locations//agents//generators/`.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from placeholder parameter in the Generator to corresponding session parameters. By default, Dialogflow uses the session parameter with the same name to fill in the generator template. e.g. If there is a placeholder parameter `city` in the Generator, Dialogflow default to fill in the `$city` with `$session.params.city`. However, you may choose to fill `$city` with `$session.params.desination-city`. - Map key: parameter ID - Map value: session parameter name",
+          "type": "object"
+        },
+        "outputParameter": {
+          "description": "Required. Output parameter which should contain the generator response.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7882,6 +8069,59 @@
         },
         "name": {
           "description": "Custom placeholder value in the prompt text.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3Handler": {
+      "description": "Handler can be used to define custom logic to be executed based on the user-specified triggers.",
+      "id": "GoogleCloudDialogflowCxV3Handler",
+      "properties": {
+        "eventHandler": {
+          "$ref": "GoogleCloudDialogflowCxV3HandlerEventHandler",
+          "description": "A handler triggered by event."
+        },
+        "lifecycleHandler": {
+          "$ref": "GoogleCloudDialogflowCxV3HandlerLifecycleHandler",
+          "description": "A handler triggered during specific lifecycle of the playbook execution."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3HandlerEventHandler": {
+      "description": "A handler that is triggered by the specified event.",
+      "id": "GoogleCloudDialogflowCxV3HandlerEventHandler",
+      "properties": {
+        "condition": {
+          "description": "Optional. The condition that must be satisfied to trigger this handler.",
+          "type": "string"
+        },
+        "event": {
+          "description": "Required. The name of the event that triggers this handler.",
+          "type": "string"
+        },
+        "fulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3Fulfillment",
+          "description": "Required. The fulfillment to call when the event occurs."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3HandlerLifecycleHandler": {
+      "description": "A handler that is triggered on the specific lifecycle_stage of the playbook execution.",
+      "id": "GoogleCloudDialogflowCxV3HandlerLifecycleHandler",
+      "properties": {
+        "condition": {
+          "description": "Optional. The condition that must be satisfied to trigger this handler.",
+          "type": "string"
+        },
+        "fulfillment": {
+          "$ref": "GoogleCloudDialogflowCxV3Fulfillment",
+          "description": "Required. The fulfillment to call when this handler is triggered."
+        },
+        "lifecycleStage": {
+          "description": "Required. The name of the lifecycle stage that triggers this handler. Supported values: * `playbook-start` * `pre-action-selection` * `pre-action-execution`",
           "type": "string"
         }
       },
@@ -8807,6 +9047,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ListToolVersionsResponse": {
+      "description": "The response message for Tools.ListToolVersions.",
+      "id": "GoogleCloudDialogflowCxV3ListToolVersionsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "toolVersions": {
+          "description": "The list of tool versions. There will be a maximum number of items returned based on the page_size field in the request.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ToolVersion"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3ListToolsResponse": {
       "description": "The response message for Tools.ListTools.",
       "id": "GoogleCloudDialogflowCxV3ListToolsResponse",
@@ -9269,6 +9527,13 @@
           "description": "Required. High level description of the goal the playbook intend to accomplish. A goal should be concise since it's visible to other playbooks that may reference this playbook.",
           "type": "string"
         },
+        "handlers": {
+          "description": "Optional. A list of registered handlers to execuate based on the specified triggers.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3Handler"
+          },
+          "type": "array"
+        },
         "instruction": {
           "$ref": "GoogleCloudDialogflowCxV3PlaybookInstruction",
           "description": "Instruction to accomplish target goal."
@@ -9603,6 +9868,10 @@
         "llmModelSettings": {
           "$ref": "GoogleCloudDialogflowCxV3LlmModelSettings",
           "description": "Optional. Use the specified LLM model settings for processing the request."
+        },
+        "parameterScope": {
+          "description": "Scope for the parameters. If not specified, parameters will be treated as session parameters. Parameters with custom scope will not be put into session parameters. You can reference the parameters with custom scope in the agent with the following format: $parameter-scope.params.parameter-id.",
+          "type": "string"
         },
         "parameters": {
           "additionalProperties": {
@@ -10059,6 +10328,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3RestoreToolVersionRequest": {
+      "description": "The request message for Tools.RestoreToolVersion.",
+      "id": "GoogleCloudDialogflowCxV3RestoreToolVersionRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3RestoreToolVersionResponse": {
+      "description": "The response message for Tools.RestoreToolVersion.",
+      "id": "GoogleCloudDialogflowCxV3RestoreToolVersionResponse",
+      "properties": {
+        "tool": {
+          "$ref": "GoogleCloudDialogflowCxV3Tool",
+          "description": "The updated tool."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3RolloutConfig": {
       "description": "The configuration for auto rollout.",
       "id": "GoogleCloudDialogflowCxV3RolloutConfig",
@@ -10206,6 +10492,10 @@
             "Text that contains the tokenized words of the phrase will be matched, e.g. \"foo\" will match \"a foo bar\" and \"foo bar\", but not \"foobar\"."
           ],
           "type": "string"
+        },
+        "promptSecuritySettings": {
+          "$ref": "GoogleCloudDialogflowCxV3SafetySettingsPromptSecuritySettings",
+          "description": "Optional. Settings for prompt security checks."
         }
       },
       "type": "object"
@@ -10221,6 +10511,17 @@
         "text": {
           "description": "Required. Text input which can be used for prompt or banned phrases.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3SafetySettingsPromptSecuritySettings": {
+      "description": "Settings for prompt security checks.",
+      "id": "GoogleCloudDialogflowCxV3SafetySettingsPromptSecuritySettings",
+      "properties": {
+        "enablePromptSecurity": {
+          "description": "Optional. Enable prompt security checks.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -11110,6 +11411,37 @@
         },
         "tool": {
           "description": "Required. The tool that should be used. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3ToolVersion": {
+      "description": "Tool version is a snapshot of the tool at certain timestamp.",
+      "id": "GoogleCloudDialogflowCxV3ToolVersion",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the tool version.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique identifier of the tool version. Format: `projects//locations//agents//tools//versions/`.",
+          "type": "string"
+        },
+        "tool": {
+          "$ref": "GoogleCloudDialogflowCxV3Tool",
+          "description": "Required. Snapshot of the tool to be associated with this version."
+        },
+        "updateTime": {
+          "description": "Output only. Last time the tool version was created or modified.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -12479,7 +12811,7 @@
       "id": "GoogleCloudDialogflowCxV3beta1EnvironmentVersionConfig",
       "properties": {
         "version": {
-          "description": "Required. Both flow and playbook versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/.",
+          "description": "Required. Flow, playbook and tool versions are supported. Format for flow version: projects//locations//agents//flows//versions/. Format for playbook version: projects//locations//agents//playbooks//versions/. Format for tool version: projects//locations//agents//tools//versions/.",
           "type": "string"
         }
       },
@@ -12732,6 +13064,13 @@
           "description": "If the flag is true, the agent will utilize LLM to generate a text response. If LLM generation fails, the defined responses in the fulfillment will be respected. This flag is only useful for fulfillments associated with no-match event handlers.",
           "type": "boolean"
         },
+        "generators": {
+          "description": "A list of Generators to be called during this fulfillment.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings"
+          },
+          "type": "array"
+        },
         "messages": {
           "description": "The list of rich message responses to present to the user.",
           "items": {
@@ -12804,6 +13143,28 @@
         "message": {
           "$ref": "GoogleCloudDialogflowCxV3beta1ResponseMessage",
           "description": "Returned message."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings": {
+      "description": "Generator settings used by the LLM to generate a text response.",
+      "id": "GoogleCloudDialogflowCxV3beta1FulfillmentGeneratorSettings",
+      "properties": {
+        "generator": {
+          "description": "Required. The generator to call. Format: `projects//locations//agents//generators/`.",
+          "type": "string"
+        },
+        "inputParameters": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Map from placeholder parameter in the Generator to corresponding session parameters. By default, Dialogflow uses the session parameter with the same name to fill in the generator template. e.g. If there is a placeholder parameter `city` in the Generator, Dialogflow default to fill in the `$city` with `$session.params.city`. However, you may choose to fill `$city` with `$session.params.desination-city`. - Map key: parameter ID - Map value: session parameter name",
+          "type": "object"
+        },
+        "outputParameter": {
+          "description": "Required. Output parameter which should contain the generator response.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -14786,6 +15147,11 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "state": {
           "description": "State of CreateConversationModel operation.",
           "enum": [
@@ -14829,6 +15195,11 @@
           "description": "Timestamp when delete conversation model request was created. The time is measured on server side.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -14843,6 +15214,11 @@
         },
         "createTime": {
           "description": "Timestamp when request to deploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -16247,6 +16623,11 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2KnowledgeOperationMetadata",
       "properties": {
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "exportOperationMetadata": {
           "$ref": "GoogleCloudDialogflowV2ExportOperationMetadata",
           "description": "Metadata for the Export Data Operation such as the destination of export."
@@ -16856,7 +17237,7 @@
       "id": "GoogleCloudDialogflowV2ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -16874,7 +17255,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -16885,7 +17266,7 @@
       "id": "GoogleCloudDialogflowV2ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -16908,7 +17289,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -16935,6 +17316,11 @@
         },
         "createTime": {
           "description": "Timestamp when the request to undeploy conversation model was submitted. The time is measured on server side.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "doneTime": {
+          "description": "The time when the operation finished.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -18954,6 +19340,11 @@
       "description": "Metadata in google::longrunning::Operation for Knowledge operations.",
       "id": "GoogleCloudDialogflowV2beta1KnowledgeOperationMetadata",
       "properties": {
+        "doneTime": {
+          "description": "The time when the operation finished.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "exportOperationMetadata": {
           "$ref": "GoogleCloudDialogflowV2beta1ExportOperationMetadata",
           "description": "Metadata for the Export Data Operation such as the destination of export."
@@ -19769,7 +20160,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCall",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "createTime": {
@@ -19787,7 +20178,7 @@
           "type": "object"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
@@ -19798,7 +20189,7 @@
       "id": "GoogleCloudDialogflowV2beta1ToolCallResult",
       "properties": {
         "action": {
-          "description": "Required. The name of the tool's action associated with this call.",
+          "description": "Optional. The name of the tool's action associated with this call.",
           "type": "string"
         },
         "content": {
@@ -19821,7 +20212,7 @@
           "type": "string"
         },
         "tool": {
-          "description": "Required. The tool associated with this call. Format: `projects//locations//tools/`.",
+          "description": "Optional. The tool associated with this call. Format: `projects//locations//tools/`.",
           "type": "string"
         }
       },
