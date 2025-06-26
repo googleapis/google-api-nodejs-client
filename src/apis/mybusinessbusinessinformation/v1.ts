@@ -709,7 +709,7 @@ export namespace mybusinessbusinessinformation_v1 {
     placeInfos?: Schema$PlaceInfo[];
   }
   /**
-   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
+   * Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$PostalAddress {
     /**
@@ -823,7 +823,7 @@ export namespace mybusinessbusinessinformation_v1 {
    */
   export interface Schema$SearchGoogleLocationsRequest {
     /**
-     * Location to search for. If provided, will find locations which match the provided location details.
+     * Location to search for. If provided, will find locations which match the provided location details, which must include a value for the title.
      */
     location?: Schema$Location;
     /**
@@ -1007,6 +1007,103 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Creates a new Location that will be owned by the logged in user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.accounts.locations.create({
+     *     // Required. The name of the account in which to create this location.
+     *     parent: 'accounts/my-account',
+     *     // Optional. A unique request ID for the server to detect duplicated requests. We recommend using UUIDs. Max length is 50 characters.
+     *     requestId: 'placeholder-value',
+     *     // Optional. If true, the request is validated without actually creating the location.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsLocationExtensions": {},
+     *       //   "categories": {},
+     *       //   "labels": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "latlng": {},
+     *       //   "metadata": {},
+     *       //   "moreHours": [],
+     *       //   "name": "my_name",
+     *       //   "openInfo": {},
+     *       //   "phoneNumbers": {},
+     *       //   "profile": {},
+     *       //   "regularHours": {},
+     *       //   "relationshipData": {},
+     *       //   "serviceArea": {},
+     *       //   "serviceItems": [],
+     *       //   "specialHours": {},
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storefrontAddress": {},
+     *       //   "title": "my_title",
+     *       //   "websiteUri": "my_websiteUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsLocationExtensions": {},
+     *   //   "categories": {},
+     *   //   "labels": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "latlng": {},
+     *   //   "metadata": {},
+     *   //   "moreHours": [],
+     *   //   "name": "my_name",
+     *   //   "openInfo": {},
+     *   //   "phoneNumbers": {},
+     *   //   "profile": {},
+     *   //   "regularHours": {},
+     *   //   "relationshipData": {},
+     *   //   "serviceArea": {},
+     *   //   "serviceItems": [],
+     *   //   "specialHours": {},
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storefrontAddress": {},
+     *   //   "title": "my_title",
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1100,6 +1197,65 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Lists the locations for the specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.accounts.locations.list({
+     *     // Optional. A filter constraining the locations to return. The response includes only entries that match the filter. If `filter` is empty, then constraints are applied and all locations (paginated) are retrieved for the requested account. For more information about valid fields and example usage, see [Work with Location Data Guide](https://developers.google.com/my-business/content/location-data#filter_results_when_you_list_locations).
+     *     filter: 'placeholder-value',
+     *     // Optional. Sorting order for the request. Multiple fields should be comma-separated, following SQL syntax. The default sorting order is ascending. To specify descending order, a suffix " desc" should be added. Valid fields to order_by are title and store_code. For example: "title, store_code desc" or "title" or "store_code desc"
+     *     orderBy: 'placeholder-value',
+     *     // Optional. How many locations to fetch per page. Default value is 10 if not set. Minimum is 1, and maximum page size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, it fetches the next `page` of locations. The page token is returned by previous calls to `ListLocations` when there were more locations than could fit in the requested page size.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the account to fetch locations from. If the parent Account is of AccountType PERSONAL, only Locations that are directly owned by the Account are returned, otherwise it will return all accessible locations from the Account, either directly or indirectly.
+     *     parent: 'accounts/my-account',
+     *     // Required. Read mask to specify what fields will be returned in the response.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1250,6 +1406,66 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Returns the list of attributes that would be available for a location with the given primary category and country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.attributes.list({
+     *     // The primary category stable ID to find available attributes. Must be of the format categories/{category_id\}.
+     *     categoryName: 'placeholder-value',
+     *     // The BCP 47 code of language to get attribute display names in. If this language is not available, they will be provided in English.
+     *     languageCode: 'placeholder-value',
+     *     // How many attributes to include per page. Default is 200, minimum is 1.
+     *     pageSize: 'placeholder-value',
+     *     // If specified, the next page of attribute metadata is retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // Resource name of the location to look up available attributes. If this field is set, category_name, region_code, language_code and show_all are not required and must not be set.
+     *     parent: 'placeholder-value',
+     *     // The ISO 3166-1 alpha-2 country code to find available attributes.
+     *     regionCode: 'placeholder-value',
+     *     // Metadata for all available attributes are returned when this field is set to true, disregarding parent and category_name fields. language_code and region_code are required when show_all is set to true.
+     *     showAll: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeMetadata": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1383,6 +1599,59 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Returns a list of business categories for the provided language and GConcept ids.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.categories.batchGet({
+     *     // Required. The BCP 47 code of language that the category names should be returned in.
+     *     languageCode: 'placeholder-value',
+     *     // Required. At least one name must be set. The GConcept ids the localized category names should be returned for. To return details for more than one category, repeat this parameter in the request.
+     *     names: 'placeholder-value',
+     *     // Optional. The ISO 3166-1 alpha-2 country code used to infer non-standard language.
+     *     regionCode: 'placeholder-value',
+     *     // Required. Specifies which parts to the Category resource should be returned in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1480,6 +1749,64 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Returns a list of business categories. Search will match the category name but not the category ID. Search only matches the front of a category name (that is, 'food' may return 'Food Court' but not 'Fast Food Restaurant').
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.categories.list({
+     *     // Optional. Filter string from user. The only field that supported is `displayName`. Eg: `filter=displayName=foo`.
+     *     filter: 'placeholder-value',
+     *     // Required. The BCP 47 code of language.
+     *     languageCode: 'placeholder-value',
+     *     // Optional. How many categories to fetch per page. Default is 100, minimum is 1, and maximum page size is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. If specified, the next page of categories will be fetched.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The ISO 3166-1 alpha-2 country code.
+     *     regionCode: 'placeholder-value',
+     *     // Required. Specifies which parts to the Category resource should be returned in the response.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1624,6 +1951,56 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Gets the specified chain. Returns `NOT_FOUND` if the chain does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.chains.get({
+     *     // Required. The chain's resource name, in the format `chains/{chain_place_id\}`.
+     *     name: 'chains/my-chain',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chainNames": [],
+     *   //   "locationCount": 0,
+     *   //   "name": "my_name",
+     *   //   "websites": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1713,6 +2090,55 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Searches the chain based on chain name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.chains.search({
+     *     // Required. Search for a chain by its name. Exact/partial/fuzzy/related queries are supported. Examples: "walmart", "wal-mart", "walmmmart", "沃尔玛"
+     *     chainName: 'placeholder-value',
+     *     // The maximum number of matched chains to return from this query. The default is 10. The maximum possible value is 500.
+     *     pageSize: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chains": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1828,6 +2254,60 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Search all of the possible locations that are a match to the specified request.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.googleLocations.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "location": {},
+     *       //   "pageSize": 0,
+     *       //   "query": "my_query"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "googleLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1944,6 +2424,51 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Deletes a location. If this location cannot be deleted using the API and it is marked so in the `google.mybusiness.businessinformation.v1.LocationState`, use the [Google Business Profile](https://business.google.com/manage/) website.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.delete({
+     *     // Required. The name of the location to delete.
+     *     name: 'locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2033,6 +2558,74 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Returns the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.get({
+     *     // Required. The name of the location to fetch.
+     *     name: 'locations/my-location',
+     *     // Required. Read mask to specify what fields will be returned in the response.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsLocationExtensions": {},
+     *   //   "categories": {},
+     *   //   "labels": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "latlng": {},
+     *   //   "metadata": {},
+     *   //   "moreHours": [],
+     *   //   "name": "my_name",
+     *   //   "openInfo": {},
+     *   //   "phoneNumbers": {},
+     *   //   "profile": {},
+     *   //   "regularHours": {},
+     *   //   "relationshipData": {},
+     *   //   "serviceArea": {},
+     *   //   "serviceItems": [],
+     *   //   "specialHours": {},
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storefrontAddress": {},
+     *   //   "title": "my_title",
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2122,6 +2715,54 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Looks up all the attributes set for a given location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.getAttributes({
+     *     // Required. Google identifier for this location in the form of `locations/{location_id\}/attributes`.
+     *     name: 'locations/my-location/attributes',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2212,6 +2853,57 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Gets the Google-updated version of the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.getGoogleUpdated({
+     *     // Required. The name of the location to fetch.
+     *     name: 'locations/my-location',
+     *     // Required. Read mask to specify what fields will be returned in the response.
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "diffMask": "my_diffMask",
+     *   //   "location": {},
+     *   //   "pendingMask": "my_pendingMask"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2309,6 +3001,103 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Updates the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.patch({
+     *     // Google identifier for this location in the form: `locations/{location_id\}`.
+     *     name: 'locations/my-location',
+     *     // Required. The specific fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. If true, the request is validated without actually updating the location. When this field is set, we will only return validation errors if there were any. The response will be empty if no errors were found.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adWordsLocationExtensions": {},
+     *       //   "categories": {},
+     *       //   "labels": [],
+     *       //   "languageCode": "my_languageCode",
+     *       //   "latlng": {},
+     *       //   "metadata": {},
+     *       //   "moreHours": [],
+     *       //   "name": "my_name",
+     *       //   "openInfo": {},
+     *       //   "phoneNumbers": {},
+     *       //   "profile": {},
+     *       //   "regularHours": {},
+     *       //   "relationshipData": {},
+     *       //   "serviceArea": {},
+     *       //   "serviceItems": [],
+     *       //   "specialHours": {},
+     *       //   "storeCode": "my_storeCode",
+     *       //   "storefrontAddress": {},
+     *       //   "title": "my_title",
+     *       //   "websiteUri": "my_websiteUri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adWordsLocationExtensions": {},
+     *   //   "categories": {},
+     *   //   "labels": [],
+     *   //   "languageCode": "my_languageCode",
+     *   //   "latlng": {},
+     *   //   "metadata": {},
+     *   //   "moreHours": [],
+     *   //   "name": "my_name",
+     *   //   "openInfo": {},
+     *   //   "phoneNumbers": {},
+     *   //   "profile": {},
+     *   //   "regularHours": {},
+     *   //   "relationshipData": {},
+     *   //   "serviceArea": {},
+     *   //   "serviceItems": [],
+     *   //   "specialHours": {},
+     *   //   "storeCode": "my_storeCode",
+     *   //   "storefrontAddress": {},
+     *   //   "title": "my_title",
+     *   //   "websiteUri": "my_websiteUri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2398,6 +3187,65 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Update attributes for a given location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await mybusinessbusinessinformation.locations.updateAttributes({
+     *     // Required. Attribute name of attributes that you'd like to update. Represented by `attributes/{attribute\}`. Updates: All attributes provided in the attributes field that you would like to update must be set in the `attribute_mask`. Attributes set in the above list but not in the `attribute_mask` will be ignored. Deletes: If you'd like to delete certain attributes, they must be specified in the `attribute_mask` with no matching entry in the attributes list. If you'd like to delete all attributes set on a location, you should look up all the applicable attributes for the location and then add them to the `attribute_mask` with an empty attributes field.
+     *     attributeMask: 'placeholder-value',
+     *     // Required. Google identifier for this location in the form of `locations/{location_id\}/attributes`.
+     *     name: 'locations/my-location/attributes',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": [],
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2565,6 +3413,55 @@ export namespace mybusinessbusinessinformation_v1 {
 
     /**
      * Gets the Google-updated version of the specified location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/mybusinessbusinessinformation.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const mybusinessbusinessinformation =
+     *   google.mybusinessbusinessinformation('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await mybusinessbusinessinformation.locations.attributes.getGoogleUpdated({
+     *       // Required. Google identifier for this location in the form of `locations/{location_id\}/attributes`.
+     *       name: 'locations/my-location/attributes',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
