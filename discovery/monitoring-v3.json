@@ -2720,7 +2720,7 @@
       }
     }
   },
-  "revision": "20250323",
+  "revision": "20250515",
   "rootUrl": "https://monitoring.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -3415,7 +3415,7 @@
       "id": "Criteria",
       "properties": {
         "filter": {
-          "description": "Optional. The filter string to match on Alert fields when silencing the alerts. It follows the standard https://google.aip.dev/160 syntax. A filter string used to apply the snooze to specific incidents that have matching filter values. Filters can be defined for snoozes that apply to one alerting policy. Filters must be a string formatted as one or more resource labels with specific label values. If multiple resource labels are used, then they must be connected with an AND operator. For example, the following filter applies the snooze to incidents that have an instance ID of 1234567890 and a zone of us-central1-a: resource.labels.instance_id=\"1234567890\" AND resource.labels.zone=\"us-central1-a\" ",
+          "description": "Optional. When you define a snooze, you can also define a filter for that snooze. The filter is a string containing one or more key-value pairs. The string uses the standard https://google.aip.dev/160 filter syntax. If you define a filter for a snooze, then the snooze can only apply to one alert policy. When the snooze is active, incidents won't be created when the incident would have key-value pairs (labels) that match those specified by the filter in the snooze.Snooze filters support resource, metric, and metadata labels. If multiple labels are used, then they must be connected with an AND operator. For example, the following filter applies the snooze to incidents that have a resource label with an instance ID of 1234567890, a metric label with an instance name of test_group, a metadata user label with a key of foo and a value of bar, and a metadata system label with a key of region and a value of us-central1: \"filter\": \"resource.labels.instance_id=\\\"1234567890\\\" AND metric.labels.instance_name=\\\"test_group\\\" AND metadata.user_labels.foo=\\\"bar\\\" AND metadata.system_labels.region=\\\"us-central1\\\"\" ",
           "type": "string"
         },
         "policies": {
