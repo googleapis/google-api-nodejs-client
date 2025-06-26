@@ -309,6 +309,173 @@
                   }
                 }
               }
+            },
+            "vpcFlowLogsConfigs": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/vpcFlowLogsConfigs",
+                  "httpMethod": "POST",
+                  "id": "networkmanagement.organizations.locations.vpcFlowLogsConfigs.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id}/locations/global` `organizations/{organization_id}/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "vpcFlowLogsConfigId": {
+                      "description": "Required. ID of the `VpcFlowLogsConfig`.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/vpcFlowLogsConfigs",
+                  "request": {
+                    "$ref": "VpcFlowLogsConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a specific `VpcFlowLogsConfig`.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/vpcFlowLogsConfigs/{vpcFlowLogsConfigsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkmanagement.organizations.locations.vpcFlowLogsConfigs.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets the details of a specific `VpcFlowLogsConfig`.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/vpcFlowLogsConfigs/{vpcFlowLogsConfigsId}",
+                  "httpMethod": "GET",
+                  "id": "networkmanagement.organizations.locations.vpcFlowLogsConfigs.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "VpcFlowLogsConfig"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all `VpcFlowLogsConfigs` in a given organization.",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/vpcFlowLogsConfigs",
+                  "httpMethod": "GET",
+                  "id": "networkmanagement.organizations.locations.vpcFlowLogsConfigs.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Field to use to sort the list.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of `VpcFlowLogsConfigs` to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from an earlier query, as returned in `next_page_token`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id}/locations/global` `organizations/{organization_id}/locations/global`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/vpcFlowLogsConfigs",
+                  "response": {
+                    "$ref": "ListVpcFlowLogsConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description",
+                  "flatPath": "v1beta1/organizations/{organizationsId}/locations/{locationsId}/vpcFlowLogsConfigs/{vpcFlowLogsConfigsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkmanagement.organizations.locations.vpcFlowLogsConfigs.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. Unique name of the configuration using one of the forms: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
+                      "location": "path",
+                      "pattern": "^organizations/[^/]+/locations/[^/]+/vpcFlowLogsConfigs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. Mask of fields to update. At least one path must be supplied in this field.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "VpcFlowLogsConfig"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
@@ -965,6 +1132,47 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "queryOrgVpcFlowLogsConfigs": {
+                  "description": "QueryOrgVpcFlowLogsConfigs lists Organization resources for a given project.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs",
+                  "httpMethod": "GET",
+                  "id": "networkmanagement.projects.locations.vpcFlowLogsConfigs.queryOrgVpcFlowLogsConfigs",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Number of `VpcFlowLogsConfigs` to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. Page token from an earlier query, as returned in `next_page_token`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id}/locations/global`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs",
+                  "response": {
+                    "$ref": "QueryOrgVpcFlowLogsConfigsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               }
             }
@@ -973,7 +1181,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250611",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1271,6 +1479,11 @@
       "description": "Wrapper for Cloud Run revision attributes.",
       "id": "CloudRunRevisionEndpoint",
       "properties": {
+        "serviceUri": {
+          "description": "Output only. The URI of the Cloud Run service that the revision belongs to. The format is: projects/{project}/locations/{location}/services/{service}",
+          "readOnly": true,
+          "type": "string"
+        },
         "uri": {
           "description": "A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project}/locations/{location}/revisions/{revision}",
           "type": "string"
@@ -1417,6 +1630,26 @@
       "description": "Details of the final state \"deliver\" and associated resource.",
       "id": "DeliverInfo",
       "properties": {
+        "googleServiceType": {
+          "description": "Recognized type of a Google Service the packet is delivered to (if applicable).",
+          "enum": [
+            "GOOGLE_SERVICE_TYPE_UNSPECIFIED",
+            "IAP",
+            "GFE_PROXY_OR_HEALTH_CHECK_PROBER",
+            "CLOUD_DNS",
+            "PRIVATE_GOOGLE_ACCESS",
+            "SERVERLESS_VPC_ACCESS"
+          ],
+          "enumDescriptions": [
+            "Unspecified Google Service.",
+            "Identity aware proxy. https://cloud.google.com/iap/docs/using-tcp-forwarding",
+            "One of two services sharing IP ranges: * Load Balancer proxy * Centralized Health Check prober https://cloud.google.com/load-balancing/docs/firewall-rules",
+            "Connectivity from Cloud DNS to forwarding targets or alternate name servers that use private routing. https://cloud.google.com/dns/docs/zones/forwarding-zones#firewall-rules https://cloud.google.com/dns/docs/policies#firewall-rules",
+            "private.googleapis.com and restricted.googleapis.com",
+            "Google API via Serverless VPC Access. https://cloud.google.com/vpc/docs/serverless-vpc-access"
+          ],
+          "type": "string"
+        },
         "ipAddress": {
           "description": "IP address of the target (if applicable).",
           "type": "string"
@@ -1529,6 +1762,7 @@
             "ROUTE_NEXT_HOP_VPN_TUNNEL_NOT_ESTABLISHED",
             "ROUTE_NEXT_HOP_FORWARDING_RULE_TYPE_INVALID",
             "NO_ROUTE_FROM_INTERNET_TO_PRIVATE_IPV6_ADDRESS",
+            "NO_ROUTE_FROM_EXTERNAL_IPV6_SOURCE_TO_PRIVATE_IPV6_ADDRESS",
             "VPN_TUNNEL_LOCAL_SELECTOR_MISMATCH",
             "VPN_TUNNEL_REMOTE_SELECTOR_MISMATCH",
             "PRIVATE_TRAFFIC_TO_INTERNET",
@@ -1604,7 +1838,8 @@
             "UNSUPPORTED_ROUTE_MATCHED_FOR_NAT64_DESTINATION",
             "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
             "NO_MATCHING_NAT64_GATEWAY",
-            "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH"
+            "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
+            "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1621,7 +1856,8 @@
             "Route's next hop forwarding rule doesn't match next hop IP address.",
             "Route's next hop VPN tunnel is down (does not have valid IKE SAs).",
             "Route's next hop forwarding rule type is invalid (it's not a forwarding rule of the internal passthrough load balancer).",
-            "Packet is sent from the Internet to the private IPv6 address.",
+            "Packet is sent from the Internet or Google service to the private IPv6 address.",
+            "Packet is sent from the external IPv6 source address of an instance to the private IPv6 address of an instance.",
             "The packet does not match a policy-based VPN tunnel local selector.",
             "The packet does not match a policy-based VPN tunnel remote selector.",
             "Packet with internal destination address sent to the internet gateway.",
@@ -1697,7 +1933,8 @@
             "Packet with destination IP address within the reserved NAT64 range is dropped due to matching a route of an unsupported type.",
             "Packet could be dropped because hybrid endpoint like a VPN gateway or Interconnect is not allowed to send traffic to the Internet.",
             "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet.",
-            "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend."
+            "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend.",
+            "Packet from the unknown NCC network is dropped due to no known route from the source network to the destination IP address."
           ],
           "type": "string"
         },
@@ -1990,6 +2227,11 @@
           "description": "The name of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.",
           "type": "string"
         },
+        "policyPriority": {
+          "description": "The priority of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.",
+          "format": "int32",
+          "type": "integer"
+        },
         "policyUri": {
           "description": "The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.",
           "type": "string"
@@ -2044,7 +2286,8 @@
             "CLOUD_SQL_INSTANCE",
             "ANOTHER_PROJECT",
             "NCC_HUB",
-            "ROUTER_APPLIANCE"
+            "ROUTER_APPLIANCE",
+            "SECURE_WEB_PROXY_GATEWAY"
           ],
           "enumDeprecated": [
             false,
@@ -2054,6 +2297,7 @@
             true,
             false,
             true,
+            false,
             false,
             false,
             false
@@ -2068,7 +2312,8 @@
             "Forwarded to a Cloud SQL instance.",
             "Forwarded to a VPC network in another project.",
             "Forwarded to an NCC Hub.",
-            "Forwarded to a router appliance."
+            "Forwarded to a router appliance.",
+            "Forwarded to a Secure Web Proxy Gateway."
           ],
           "type": "string"
         }
@@ -2224,12 +2469,27 @@
           "type": "string"
         },
         "running": {
-          "description": "Indicates whether the Compute Engine instance is running.",
+          "deprecated": true,
+          "description": "Indicates whether the Compute Engine instance is running. Deprecated: use the `status` field instead.",
           "type": "boolean"
         },
         "serviceAccount": {
           "deprecated": true,
           "description": "Service account authorized for the instance.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the instance.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "RUNNING",
+            "NOT_RUNNING"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "The instance is running.",
+            "The instance has any status other than \"RUNNING\"."
+          ],
           "type": "string"
         },
         "uri": {
@@ -2632,7 +2892,7 @@
       "type": "object"
     },
     "NetworkInfo": {
-      "description": "For display only. Metadata associated with a Compute Engine network. Next ID: 7",
+      "description": "For display only. Metadata associated with a Compute Engine network.",
       "id": "NetworkInfo",
       "properties": {
         "displayName": {
@@ -2897,6 +3157,31 @@
       },
       "type": "object"
     },
+    "QueryOrgVpcFlowLogsConfigsResponse": {
+      "description": "Response for the `QueryVpcFlowLogsConfigs` method.",
+      "id": "QueryOrgVpcFlowLogsConfigsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Page token to fetch the next set of configurations.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Locations that could not be reached (when querying all locations with `-`).",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "vpcFlowLogsConfigs": {
+          "description": "List of VPC Flow Log configurations.",
+          "items": {
+            "$ref": "VpcFlowLogsConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReachabilityDetails": {
       "description": "Results of the configuration analysis from the last run of the test.",
       "id": "ReachabilityDetails",
@@ -3081,7 +3366,8 @@
             "NEXT_HOP_BLACKHOLE",
             "NEXT_HOP_ILB",
             "NEXT_HOP_ROUTER_APPLIANCE",
-            "NEXT_HOP_NCC_HUB"
+            "NEXT_HOP_NCC_HUB",
+            "SECURE_WEB_PROXY_GATEWAY"
           ],
           "enumDescriptions": [
             "Unspecified type. Default value.",
@@ -3096,7 +3382,8 @@
             "Next hop is blackhole; that is, the next hop either does not exist or is unusable.",
             "Next hop is the forwarding rule of an Internal Load Balancer.",
             "Next hop is a [router appliance instance](https://cloud.google.com/network-connectivity/docs/network-connectivity-center/concepts/ra-overview).",
-            "Next hop is an NCC hub. This scenario only happens when the user doesn't have permissions to the project where the next hop resource is located."
+            "Next hop is an NCC hub. This scenario only happens when the user doesn't have permissions to the project where the next hop resource is located.",
+            "Next hop is Secure Web Proxy Gateway."
           ],
           "type": "string"
         },
@@ -3666,6 +3953,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "crossProjectMetadata": {
+          "description": "Optional. Determines whether to include cross project annotations in the logs. This field is available only for organization configurations. If not specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.",
+          "enum": [
+            "CROSS_PROJECT_METADATA_UNSPECIFIED",
+            "CROSS_PROJECT_METADATA_ENABLED",
+            "CROSS_PROJECT_METADATA_DISABLED"
+          ],
+          "enumDescriptions": [
+            "If not specified, the default is CROSS_PROJECT_METADATA_ENABLED.",
+            "When CROSS_PROJECT_METADATA_ENABLED, metadata from other projects will be included in the logs.",
+            "When CROSS_PROJECT_METADATA_DISABLED, metadata from other projects will not be included in the logs."
+          ],
+          "type": "string"
+        },
         "description": {
           "description": "Optional. The user-supplied description of the VPC Flow Logs configuration. Maximum of 512 characters.",
           "type": "string"
@@ -3717,6 +4018,10 @@
           "description": "Identifier. Unique name of the configuration using one of the forms: `projects/{project_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}` `organizations/{organization_id}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id}`",
           "type": "string"
         },
+        "network": {
+          "description": "Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments within the network. Format: projects/{project_id}/global/networks/{name}",
+          "type": "string"
+        },
         "state": {
           "description": "Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled. Setting state=DISABLED will pause the log generation for this config.",
           "enum": [
@@ -3729,6 +4034,10 @@
             "When ENABLED, this configuration will generate logs.",
             "When DISABLED, this configuration will not generate logs."
           ],
+          "type": "string"
+        },
+        "subnet": {
+          "description": "Traffic will be logged from VMs within the subnetwork. Format: projects/{project_id}/regions/{region}/subnetworks/{name}",
           "type": "string"
         },
         "targetResourceState": {
