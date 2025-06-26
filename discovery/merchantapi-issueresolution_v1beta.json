@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -105,6 +105,55 @@
   },
   "protocol": "rest",
   "resources": {
+    "accounts": {
+      "resources": {
+        "aggregateProductStatuses": {
+          "methods": {
+            "list": {
+              "description": "Lists the `AggregateProductStatuses` resources for your merchant account. The response might contain fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be used to obtain additional results.",
+              "flatPath": "issueresolution/v1beta/accounts/{accountsId}/aggregateProductStatuses",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.aggregateProductStatuses.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "filter": {
+                  "description": "Optional. A filter expression that filters the aggregate product statuses. Filtering is only supported by the `reporting_context` and `country` field. For example: `reporting_context = \"SHOPPING_ADS\" AND country = \"US\"`.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of aggregate product statuses to return. The service may return fewer than this value. If unspecified, at most 25 aggregate product statuses are returned. The maximum value is 250; values above 250 are coerced to 250.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListAggregateProductStatuses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAggregateProductStatuses` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The account to list aggregate product statuses for. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "issueresolution/v1beta/{+parent}/aggregateProductStatuses",
+              "response": {
+                "$ref": "ListAggregateProductStatusesResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        }
+      }
+    },
     "issueresolution": {
       "methods": {
         "renderaccountissues": {
@@ -219,7 +268,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Action": {
@@ -326,6 +375,99 @@
         "title": {
           "description": "Title of the additional content;",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AggregateProductStatus": {
+      "description": "Aggregate product statuses for a given reporting context and country.",
+      "id": "AggregateProductStatus",
+      "properties": {
+        "country": {
+          "description": "The country of the aggregate product statuses. Represented as a [CLDR territory code](https://github.com/unicode-org/cldr/blob/latest/common/main/en.xml).",
+          "type": "string"
+        },
+        "itemLevelIssues": {
+          "description": "The product issues that affect the given reporting context and country.",
+          "items": {
+            "$ref": "ItemLevelIssue"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The name of the `AggregateProductStatuses` resource. Format: `accounts/{account}/aggregateProductStatuses/{aggregateProductStatuses}`",
+          "type": "string"
+        },
+        "reportingContext": {
+          "description": "The reporting context of the aggregate product statuses.",
+          "enum": [
+            "REPORTING_CONTEXT_ENUM_UNSPECIFIED",
+            "SHOPPING_ADS",
+            "DISCOVERY_ADS",
+            "DEMAND_GEN_ADS",
+            "DEMAND_GEN_ADS_DISCOVER_SURFACE",
+            "VIDEO_ADS",
+            "DISPLAY_ADS",
+            "LOCAL_INVENTORY_ADS",
+            "VEHICLE_INVENTORY_ADS",
+            "FREE_LISTINGS",
+            "FREE_LOCAL_LISTINGS",
+            "FREE_LOCAL_VEHICLE_LISTINGS",
+            "YOUTUBE_AFFILIATE",
+            "YOUTUBE_SHOPPING",
+            "CLOUD_RETAIL",
+            "LOCAL_CLOUD_RETAIL",
+            "PRODUCT_REVIEWS",
+            "MERCHANT_REVIEWS",
+            "YOUTUBE_CHECKOUT"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false,
+            false
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "[Shopping ads](https://support.google.com/merchants/answer/6149970).",
+            "Deprecated: Use `DEMAND_GEN_ADS` instead. [Discovery and Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads](https://support.google.com/merchants/answer/13389785).",
+            "[Demand Gen ads on Discover surface](https://support.google.com/merchants/answer/13389785).",
+            "[Video ads](https://support.google.com/google-ads/answer/6340491).",
+            "[Display ads](https://support.google.com/merchants/answer/6069387).",
+            "[Local inventory ads](https://support.google.com/merchants/answer/3271956).",
+            "[Vehicle inventory ads](https://support.google.com/merchants/answer/11544533).",
+            "[Free product listings](https://support.google.com/merchants/answer/9199328).",
+            "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
+            "[Free local vehicle listings](https://support.google.com/merchants/answer/11544533).",
+            "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+            "[YouTube Shopping](https://support.google.com/merchants/answer/13478370).",
+            "[Cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Local cloud retail](https://cloud.google.com/solutions/retail).",
+            "[Product Reviews](https://support.google.com/merchants/answer/14620732).",
+            "[Merchant Reviews](https://developers.google.com/merchant-review-feeds).",
+            "YouTube Checkout ."
+          ],
+          "type": "string"
+        },
+        "stats": {
+          "$ref": "Stats",
+          "description": "Products statistics for the given reporting context and country."
         }
       },
       "type": "object"
@@ -617,6 +759,86 @@
       },
       "type": "object"
     },
+    "ItemLevelIssue": {
+      "description": "The ItemLevelIssue of the product status.",
+      "id": "ItemLevelIssue",
+      "properties": {
+        "attribute": {
+          "description": "The attribute's name, if the issue is caused by a single attribute.",
+          "type": "string"
+        },
+        "code": {
+          "description": "The error code of the issue.",
+          "type": "string"
+        },
+        "description": {
+          "description": "A short issue description in English.",
+          "type": "string"
+        },
+        "detail": {
+          "description": "A detailed issue description in English.",
+          "type": "string"
+        },
+        "documentationUri": {
+          "description": "The URL of a web page to help with resolving this issue.",
+          "type": "string"
+        },
+        "productCount": {
+          "description": "The number of products affected by this issue.",
+          "format": "int64",
+          "type": "string"
+        },
+        "resolution": {
+          "description": "Whether the issue can be resolved by the merchant.",
+          "enum": [
+            "RESOLUTION_UNSPECIFIED",
+            "MERCHANT_ACTION",
+            "PENDING_PROCESSING"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "The issue can be resolved by the merchant.",
+            "The issue will be resolved auomatically."
+          ],
+          "type": "string"
+        },
+        "severity": {
+          "description": "How this issue affects serving of the offer.",
+          "enum": [
+            "SEVERITY_UNSPECIFIED",
+            "NOT_IMPACTED",
+            "DEMOTED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "This issue represents a warning and does not have a direct affect on the product.",
+            "The product is demoted and most likely have limited performance in search results",
+            "Issue disapproves the product."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListAggregateProductStatusesResponse": {
+      "description": "Response message for the `ListAggregateProductStatuses` method.",
+      "id": "ListAggregateProductStatusesResponse",
+      "properties": {
+        "aggregateProductStatuses": {
+          "description": "The `AggregateProductStatuses` resources for the given account.",
+          "items": {
+            "$ref": "AggregateProductStatus"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `pageToken` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ProductChange": {
       "description": "The change that happened to the product including old value, new value, country code as the region code and reporting context.",
       "id": "ProductChange",
@@ -736,7 +958,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -887,6 +1109,33 @@
         },
         "title": {
           "description": "Title of the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Stats": {
+      "description": "Products statistics.",
+      "id": "Stats",
+      "properties": {
+        "activeCount": {
+          "description": "The number of products that are active.",
+          "format": "int64",
+          "type": "string"
+        },
+        "disapprovedCount": {
+          "description": "The number of products that are disapproved.",
+          "format": "int64",
+          "type": "string"
+        },
+        "expiringCount": {
+          "description": "The number of products that are expiring.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pendingCount": {
+          "description": "The number of products that are pending.",
+          "format": "int64",
           "type": "string"
         }
       },

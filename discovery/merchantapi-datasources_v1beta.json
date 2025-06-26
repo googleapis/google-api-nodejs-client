@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -268,7 +268,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The list of data source fields to be updated. Fields specified in the update mask without a value specified in the body will be deleted from the data source. Providing special \"*\" value for full data source replacement is not supported.",
+                  "description": "Required. The list of data source fields to be updated. Fields specified in the update mask without a value specified in the body will be deleted from the data source. Providing special \"*\" value for full data source replacement is not supported. For example, If you insert `updateMask=displayName` in the request, it will only update the `displayName` leaving all other fields untouched.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250507",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -356,7 +356,7 @@
             "Represents data sources for which the data is primarily provided through the API.",
             "Represents data sources for which the data is primarily provided through file input. Data can still be provided through the API.",
             "The data source for products added directly in Merchant Center. This type of data source can not be created or updated through this API, only by Merchant Center UI. This type of data source is read only.",
-            "This is also known as [Automated feeds](https://support.google.com/merchants/answer/12158480) used to automatically build your product data. This type of data source can be enabled or disabled through the Accounts bundle."
+            "This is also known as [Automated feeds](https://support.google.com/merchants/answer/12158480) used to automatically build your product data. This type of data source can be enabled or disabled through the Accounts sub-API."
           ],
           "readOnly": true,
           "type": "string"
@@ -931,7 +931,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },

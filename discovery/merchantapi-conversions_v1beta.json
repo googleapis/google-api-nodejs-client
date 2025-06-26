@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -295,7 +295,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "AttributionSettings": {
@@ -605,7 +605,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },

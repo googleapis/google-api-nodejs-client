@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -126,7 +126,7 @@
           ]
         },
         "delete": {
-          "description": "Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.",
+          "description": "Deletes the specified account regardless of its type: standalone, advanced account or sub-account. Deleting an advanced account leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.",
           "flatPath": "accounts/v1beta/accounts/{accountsId}",
           "httpMethod": "DELETE",
           "id": "merchantapi.accounts.delete",
@@ -181,7 +181,7 @@
           ]
         },
         "list": {
-          "description": "Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.",
+          "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1beta/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
@@ -199,7 +199,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.",
+              "description": "Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.",
               "location": "query",
               "type": "string"
             }
@@ -213,7 +213,7 @@
           ]
         },
         "listSubaccounts": {
-          "description": "List all sub-accounts for a given multi client account. This is a convenience wrapper for the more powerful `ListAccounts` method. This method will produce the same results as calling `ListsAccounts` with the following filter: `relationship(providerId={parent} AND service(type=\"ACCOUNT_AGGREGATION\"))`",
+          "description": "List all sub-accounts for a given advanced account. This is a convenience wrapper for the more powerful `accounts.list` method. This method will produce the same results as calling `ListsAccounts` with the following filter: `relationship(providerId={parent} AND service(type=\"ACCOUNT_AGGREGATION\"))`",
           "flatPath": "accounts/v1beta/accounts/{accountsId}:listSubaccounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.listSubaccounts",
@@ -228,7 +228,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.",
+              "description": "Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.",
               "location": "query",
               "type": "string"
             },
@@ -249,7 +249,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an account regardless of its type: standalone, MCA or sub-account. Executing this method requires admin access.",
+          "description": "Updates an account regardless of its type: standalone, advanced account or sub-account. Executing this method requires admin access.",
           "flatPath": "accounts/v1beta/accounts/{accountsId}",
           "httpMethod": "PATCH",
           "id": "merchantapi.accounts.patch",
@@ -422,7 +422,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
+                  "description": "Required. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`. For example, `accounts/123456/businessIdentity`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/businessIdentity$",
                   "required": true,
@@ -485,7 +485,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the business info. Format: `accounts/{account}/businessInfo`",
+                  "description": "Required. The resource name of the business info. Format: `accounts/{account}/businessInfo`. For example, `accounts/123456/businessInfo`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/businessInfo$",
                   "required": true,
@@ -564,7 +564,7 @@
               ]
             },
             "updateEmailPreferences": {
-              "description": "Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
+              "description": "Updates the email preferences for a Merchant Center account user. Advanced account users should specify the advanced account rather than a sub-account of the advanced account. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.emailPreferences.updateEmailPreferences",
@@ -599,10 +599,78 @@
             }
           }
         },
+        "gbpAccounts": {
+          "methods": {
+            "linkGbpAccount": {
+              "description": "Link the specified merchant to a GBP account for all countries. To run this method, you must have admin access to the Merchant Center account. If you don't have admin access, the request fails with the error message `User is not an administrator of account {ACCOUNT_ID}`.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/gbpAccounts:linkGbpAccount",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.gbpAccounts.linkGbpAccount",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The name of the parent resource to which the GBP account is linked. Format: `accounts/{account}`.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/gbpAccounts:linkGbpAccount",
+              "request": {
+                "$ref": "LinkGbpAccountRequest"
+              },
+              "response": {
+                "$ref": "LinkGbpAccountResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "list": {
+              "description": "List the GBP accounts for a given merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/gbpAccounts",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.gbpAccounts.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of `GbpAccount` resources to return. The service returns fewer than this value if the number of gbp accounts is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListGbpAccounts` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListGbpAccounts` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The name of the parent resource under which the GBP accounts are listed. Format: `accounts/{account}`.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/gbpAccounts",
+              "response": {
+                "$ref": "ListGbpAccountsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
         "homepage": {
           "methods": {
             "claim": {
-              "description": "Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).",
+              "description": "Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the business is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage:claim",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.homepage.claim",
@@ -768,10 +836,288 @@
             }
           }
         },
+        "omnichannelSettings": {
+          "methods": {
+            "create": {
+              "description": "Create the omnichannel settings for a given merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.omnichannelSettings.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The parent resource where this omnichannel setting will be created. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/omnichannelSettings",
+              "request": {
+                "$ref": "OmnichannelSetting"
+              },
+              "response": {
+                "$ref": "OmnichannelSetting"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "get": {
+              "description": "Get the omnichannel settings for a given merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.omnichannelSettings.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the omnichannel setting to retrieve. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/omnichannelSettings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "OmnichannelSetting"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "list": {
+              "description": "List all the omnichannel settings for a given merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.omnichannelSettings.list",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "pageSize": {
+                  "description": "Optional. The maximum number of omnichannel settings to return. The service may return fewer than this value. If unspecified, at most 50 omnichannel settings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListOmnichannelSettings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOmnichannelSettings` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "parent": {
+                  "description": "Required. The parent, which owns this collection of omnichannel settings. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/omnichannelSettings",
+              "response": {
+                "$ref": "ListOmnichannelSettingsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "patch": {
+              "description": "Update the omnichannel setting for a given merchant in a given country.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.omnichannelSettings.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The resource name of the omnichannel setting. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/omnichannelSettings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated. The following fields are supported in snake_case only: - `lsf_type` - `in_stock` - `pickup` - `odo` - `about` - `inventory_verification` Full replacement with wildcard `*`is supported, while empty/implied update mask is not.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "OmnichannelSetting"
+              },
+              "response": {
+                "$ref": "OmnichannelSetting"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "requestInventoryVerification": {
+              "description": "Requests inventory verification for a given merchant in a given country.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}:requestInventoryVerification",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.omnichannelSettings.requestInventoryVerification",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the omnichannel setting to request inventory verification. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/omnichannelSettings/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}:requestInventoryVerification",
+              "request": {
+                "$ref": "RequestInventoryVerificationRequest"
+              },
+              "response": {
+                "$ref": "RequestInventoryVerificationResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          },
+          "resources": {
+            "lfpProviders": {
+              "methods": {
+                "find": {
+                  "description": "Find the LFP provider candidates in a given country.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders:find",
+                  "httpMethod": "GET",
+                  "id": "merchantapi.accounts.omnichannelSettings.lfpProviders.find",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of `LfpProvider` resources to return. The service returns fewer than this value if the number of lfp providers is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `FindLfpProviders` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `FindLfpProviders` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The name of the parent resource under which the LFP providers are found. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}`.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/omnichannelSettings/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+parent}/lfpProviders:find",
+                  "response": {
+                    "$ref": "FindLfpProvidersResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                },
+                "linkLfpProvider": {
+                  "description": "Link the specified merchant to a LFP provider for the specified country.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders/{lfpProvidersId}:linkLfpProvider",
+                  "httpMethod": "POST",
+                  "id": "merchantapi.accounts.omnichannelSettings.lfpProviders.linkLfpProvider",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the LFP provider resource to link. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}/lfpProviders/{lfp_provider}`. The `lfp_provider` is the LFP provider ID.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/omnichannelSettings/[^/]+/lfpProviders/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+name}:linkLfpProvider",
+                  "request": {
+                    "$ref": "LinkLfpProviderRequest"
+                  },
+                  "response": {
+                    "$ref": "LinkLfpProviderResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                }
+              }
+            }
+          }
+        },
         "onlineReturnPolicies": {
           "methods": {
+            "create": {
+              "description": "Creates a new return policy for a given business.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.onlineReturnPolicies.create",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The Merchant Center account for which the return policy will be created. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+parent}/onlineReturnPolicies",
+              "request": {
+                "$ref": "OnlineReturnPolicy"
+              },
+              "response": {
+                "$ref": "OnlineReturnPolicy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "delete": {
+              "description": "Deletes an existing return policy.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
+              "httpMethod": "DELETE",
+              "id": "merchantapi.accounts.onlineReturnPolicies.delete",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the return policy to delete. Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/onlineReturnPolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "get": {
-              "description": "Gets an existing return policy for a given merchant.",
+              "description": "Gets an existing return policy for a given business.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.get",
@@ -796,7 +1142,7 @@
               ]
             },
             "list": {
-              "description": "Lists all existing return policies for a given merchant.",
+              "description": "Lists all existing return policies for a given business.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.list",
@@ -805,7 +1151,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given merchant is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum",
+                  "description": "Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given business is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -816,7 +1162,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The merchant account for which to list return policies. Format: `accounts/{account}`",
+                  "description": "Required. The Merchant Center account for which to list return policies. Format: `accounts/{account}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+$",
                   "required": true,
@@ -830,13 +1176,47 @@
               "scopes": [
                 "https://www.googleapis.com/auth/content"
               ]
+            },
+            "patch": {
+              "description": "Updates an existing return policy for a given business.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
+              "httpMethod": "PATCH",
+              "id": "merchantapi.accounts.onlineReturnPolicies.patch",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/onlineReturnPolicies/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `accept_defective_only` - `accept_exchange` - `item_conditions` - `policy` - `process_refund_days` - `restocking_fee` - `return_methods` - `return_policy_uri` - `return_shipping_fee`",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "request": {
+                "$ref": "OnlineReturnPolicy"
+              },
+              "response": {
+                "$ref": "OnlineReturnPolicy"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
             }
           }
         },
         "programs": {
           "methods": {
             "disable": {
-              "description": "Disable participation in the specified program for the account. Executing this method requires admin access.",
+              "description": "Disable participation in the specified program for the account.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}:disable",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.programs.disable",
@@ -845,7 +1225,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account}/programs/{program}`",
+                  "description": "Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account}/programs/{program}`. For example, `accounts/123456/programs/free-listings`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/programs/[^/]+$",
                   "required": true,
@@ -864,7 +1244,7 @@
               ]
             },
             "enable": {
-              "description": "Enable participation in the specified program for the account. Executing this method requires admin access.",
+              "description": "Enable participation in the specified program for the account.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}:enable",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.programs.enable",
@@ -873,7 +1253,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account}/programs/{program}`",
+                  "description": "Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account}/programs/{program}`. For example, `accounts/123456/programs/free-listings`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/programs/[^/]+$",
                   "required": true,
@@ -901,7 +1281,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the program to retrieve. Format: `accounts/{account}/programs/{program}`",
+                  "description": "Required. The name of the program to retrieve. Format: `accounts/{account}/programs/{program}`. For example, `accounts/123456/programs/free-listings`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/programs/[^/]+$",
                   "required": true,
@@ -1123,7 +1503,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The resource name of the account relationship to get. Format: `accounts/{account}/relationships/{relationship}`",
+                  "description": "Required. The resource name of the account relationship to get. Format: `accounts/{account}/relationships/{relationship}`. For example, `accounts/123456/relationships/567890`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/relationships/[^/]+$",
                   "required": true,
@@ -1184,7 +1564,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`",
+                  "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`. For example, `accounts/123456/relationships/567890`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/relationships/[^/]+$",
                   "required": true,
@@ -1387,7 +1767,7 @@
               ]
             },
             "insert": {
-              "description": "Replace the shipping setting of a merchant with the request shipping setting. Executing this method requires admin access.",
+              "description": "Replace the shipping setting of a business with the request shipping setting. Executing this method requires admin access.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.shippingSettings.insert",
@@ -1444,7 +1824,7 @@
               ]
             },
             "retrieveForApplication": {
-              "description": "Retrieves the state of the agreement for the application terms of service.",
+              "description": "Retrieves the state of the agreement for the application terms of service. Application terms of service covers permissions related to the usage of data provided through Merchant Center, CSS Center, Manufacturer Center, and more.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/termsOfServiceAgreementStates:retrieveForApplication",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.termsOfServiceAgreementStates.retrieveForApplication",
@@ -1728,9 +2108,39 @@
       }
     }
   },
-  "revision": "20250507",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
+    "About": {
+      "description": "Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).",
+      "id": "About",
+      "properties": {
+        "state": {
+          "description": "Output only. The state of the URI.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The about page URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AcceptTermsOfServiceResponse": {
       "description": "Response message for the `AcceptTermsOfService` method.",
       "id": "AcceptTermsOfServiceResponse",
@@ -1743,26 +2153,26 @@
       "type": "object"
     },
     "Accepted": {
-      "description": "Describes the accepted terms of service.",
+      "description": "Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).",
       "id": "Accepted",
       "properties": {
         "acceptedBy": {
-          "description": "The account where the acceptance was recorded. This can be the account itself or, in the case of subaccounts, the MCA account.",
+          "description": "Required. The account where the acceptance was recorded. This can be the account itself or, in the case of subaccounts, the advanced account.",
           "type": "string"
         },
         "termsOfService": {
-          "description": "The accepted termsOfService.",
+          "description": "Required. The accepted termsOfService.",
           "type": "string"
         },
         "validUntil": {
           "$ref": "Date",
-          "description": "When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message."
+          "description": "Optional. When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message."
         }
       },
       "type": "object"
     },
     "Account": {
-      "description": "The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.",
+      "description": "The `Account` message represents a business's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a advanced account structure. In an advanced account setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.",
       "id": "Account",
       "properties": {
         "accountId": {
@@ -1806,7 +2216,7 @@
       "type": "object"
     },
     "AccountIssue": {
-      "description": "An [`AccountIssue`](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).",
+      "description": "Issues with your Merchant Center account that can impact all your products. For more information, see [Account-level issues in Merchant Center](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).",
       "id": "AccountIssue",
       "properties": {
         "detail": {
@@ -1825,7 +2235,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Identifier. The resource name of the account issue. Format: `accounts/{account}/issues/{id}`",
+          "description": "Identifier. The resource name of the account issue. Format: `accounts/{account}/issues/{id}`. For example, `accounts/123456/issues/misrepresentation-of-self-or-products-unacceptable-business-practice-policy`.",
           "type": "string"
         },
         "severity": {
@@ -1858,7 +2268,7 @@
       "type": "object"
     },
     "AccountRelationship": {
-      "description": "The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the merchant, such as product management or campaign management. It specifies the access rights and permissions to the merchant's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).",
+      "description": "The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the business, such as product management or campaign management. It specifies the access rights and permissions to the business's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).",
       "id": "AccountRelationship",
       "properties": {
         "accountIdAlias": {
@@ -1866,7 +2276,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`",
+          "description": "Identifier. The resource name of the account relationship. Format: `accounts/{account}/relationships/{relationship}`. For example, `accounts/123456/relationships/567890`.",
           "type": "string"
         },
         "provider": {
@@ -1882,20 +2292,20 @@
       "type": "object"
     },
     "AccountService": {
-      "description": "The `AccountService` message represents a specific service that a provider account offers to a merchant account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the merchant and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.",
+      "description": "The `AccountService` message represents a specific service that a provider account offers to a Merchant Center account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the business and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.",
       "id": "AccountService",
       "properties": {
         "accountAggregation": {
           "$ref": "AccountAggregation",
-          "description": "Service type for account aggregation. This enables the provider, which is a Multi-Client Account (MCA), to manage multiple sub-accounts (client accounts). Through this service, the MCA provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many merchant accounts."
+          "description": "Service type for account aggregation. This enables the provider, which is an advanced account, to manage multiple sub-accounts (client accounts). Through this service, the advanced account provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many Merchant Center accounts."
         },
         "accountManagement": {
           "$ref": "AccountManagement",
-          "description": "Service type for account management. Enables the provider to perform administrative actions on the merchant's account, such as configuring account settings, managing users, or updating business information."
+          "description": "Service type for account management. Enables the provider to perform administrative actions on the business's account, such as configuring account settings, managing users, or updating business information."
         },
         "campaignsManagement": {
           "$ref": "CampaignsManagement",
-          "description": "Service type for managing advertising campaigns. Grants the provider access to create and manage the merchant's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance."
+          "description": "Service type for managing advertising campaigns. Grants the provider access to create and manage the business's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance."
         },
         "externalAccountId": {
           "description": "Immutable. An optional, immutable identifier that Google uses to refer to this account when communicating with the provider. This should be the unique account ID within the provider's system (for example, your shop ID in Shopify). If you have multiple accounts with the same provider - for instance, different accounts for various regions — the `external_account_id` differentiates between them, ensuring accurate linking and integration between Google and the provider.",
@@ -1905,6 +2315,10 @@
           "$ref": "Handshake",
           "description": "Output only. Information about the state of the service in terms of establishing it (e.g. is it pending approval or approved).",
           "readOnly": true
+        },
+        "localListingManagement": {
+          "$ref": "LocalListingManagement",
+          "description": "Service type for local listings management. The business group associated with the external account id will be used to provide local inventory to this Merchant Center account."
         },
         "mutability": {
           "description": "Output only. Whether the service is mutable (e.g. through Approve / Reject RPCs). A service that was created through another system or API might be immutable.",
@@ -1927,7 +2341,7 @@
         },
         "productsManagement": {
           "$ref": "ProductsManagement",
-          "description": "Service type for managing products. This allows the provider to handle product data on behalf of the merchant, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the merchant's product information up-to-date across platforms."
+          "description": "Service type for managing products. This allows the provider to handle product data on behalf of the business, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the business's product information up-to-date across platforms."
         },
         "provider": {
           "description": "Output only. The provider of the service. Either the reference to an account such as `providers/123` or a well-known service provider (one of `providers/GOOGLE_ADS` or `providers/GOOGLE_BUSINESS_PROFILE`).",
@@ -2010,7 +2424,7 @@
       "id": "AutofeedSettings",
       "properties": {
         "eligible": {
-          "description": "Output only. Determines whether merchant is eligible for being enrolled into an autofeed.",
+          "description": "Output only. Determines whether the business is eligible for being enrolled into an autofeed.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -2059,7 +2473,7 @@
         },
         "shippingImprovements": {
           "$ref": "AutomaticShippingImprovements",
-          "description": "Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask."
+          "description": "Not available for [advanced accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask."
         }
       },
       "type": "object"
@@ -2096,7 +2510,7 @@
       "type": "object"
     },
     "AutomaticShippingImprovements": {
-      "description": "Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data",
+      "description": "Not available for [advanced accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data",
       "id": "AutomaticShippingImprovements",
       "properties": {
         "allowShippingImprovements": {
@@ -2146,11 +2560,11 @@
       "properties": {
         "blackOwned": {
           "$ref": "IdentityAttribute",
-          "description": "Optional. Specifies whether the business identifies itself as being black-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
+          "description": "Optional. Specifies whether the business identifies itself as being black-owned. This optional field will only be available for businesses with the business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
         },
         "latinoOwned": {
           "$ref": "IdentityAttribute",
-          "description": "Optional. Specifies whether the business identifies itself as being latino-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
+          "description": "Optional. Specifies whether the business identifies itself as being latino-owned. This optional field will only be available for businesses with the business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
         },
         "name": {
           "description": "Identifier. The resource name of the business identity. Format: `accounts/{account}/businessIdentity`",
@@ -2172,21 +2586,21 @@
         },
         "smallBusiness": {
           "$ref": "IdentityAttribute",
-          "description": "Optional. Specifies whether the business identifies itself as a small business. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces."
+          "description": "Optional. Specifies whether the business identifies itself as a small business. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces."
         },
         "veteranOwned": {
           "$ref": "IdentityAttribute",
-          "description": "Optional. Specifies whether the business identifies itself as being veteran-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
+          "description": "Optional. Specifies whether the business identifies itself as being veteran-owned. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
         },
         "womenOwned": {
           "$ref": "IdentityAttribute",
-          "description": "Optional. Specifies whether the business identifies itself as being women-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
+          "description": "Optional. Specifies whether the business identifies itself as being women-owned. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers."
         }
       },
       "type": "object"
     },
     "BusinessInfo": {
-      "description": "The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.",
+      "description": "The `BusinessInfo` message contains essential information about a business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.",
       "id": "BusinessInfo",
       "properties": {
         "address": {
@@ -2220,7 +2634,7 @@
           "enumDescriptions": [
             "Default value. This value is unused.",
             "The phone is verified.",
-            "The phone is unverified"
+            "The phone is unverified."
           ],
           "readOnly": true,
           "type": "string"
@@ -2285,7 +2699,7 @@
           "description": "Required. The account to be created."
         },
         "service": {
-          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation`, which means you can only create sub accounts, not standalone account through this method. Additional `account_management` or `product_management` services may be provided.",
+          "description": "Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.",
           "items": {
             "$ref": "AddAccountService"
           },
@@ -2356,7 +2770,7 @@
           "description": "Time that local delivery ends for the day."
         },
         "noDeliveryPostCutoff": {
-          "description": "Merchants can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.",
+          "description": "Businesses can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.",
           "type": "boolean"
         },
         "storeCloseOffsetHours": {
@@ -2531,6 +2945,62 @@
       "properties": {},
       "type": "object"
     },
+    "FindLfpProvidersResponse": {
+      "description": "Response message for the FindLfpProviders method.",
+      "id": "FindLfpProvidersResponse",
+      "properties": {
+        "lfpProviders": {
+          "description": "The LFP providers from the specified merchant in the specified country.",
+          "items": {
+            "$ref": "LfpProvider"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GbpAccount": {
+      "description": "Collection of information related to a Google Business Profile (GBP) account.",
+      "id": "GbpAccount",
+      "properties": {
+        "gbpAccountId": {
+          "description": "The id of the GBP account.",
+          "type": "string"
+        },
+        "gbpAccountName": {
+          "description": "The name of the Business Profile. For personal accounts: Email id of the owner. For Business accounts: Name of the Business Account.",
+          "type": "string"
+        },
+        "listingCount": {
+          "description": "Number of listings under this account.",
+          "format": "int64",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the GBP account. Format: `accounts/{account}/gbpAccount/{gbp_account}`",
+          "type": "string"
+        },
+        "type": {
+          "description": "The type of the Business Profile.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "USER",
+            "BUSINESS_ACCOUNT"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The GBP account is a user account.",
+            "The GBP account is a business account."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GeoTargetArea": {
       "description": "A list of geotargets that defines the region area.",
       "id": "GeoTargetArea",
@@ -2628,7 +3098,7 @@
       "type": "object"
     },
     "Homepage": {
-      "description": "The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).",
+      "description": "The `Homepage` message represents a business's store homepage within the system. A business's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the business to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).",
       "id": "Homepage",
       "properties": {
         "claimed": {
@@ -2787,6 +3257,91 @@
       },
       "type": "object"
     },
+    "InStock": {
+      "description": "Collection of information related to InStock.",
+      "id": "InStock",
+      "properties": {
+        "state": {
+          "description": "Output only. The state of the in-stock serving.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Optional. Product landing page URI. It is only used for the review of MHLSF in-stock serving. This URI domain should match with the business's homepage. Required to be empty if the lsf_type is GHLSF, and required when the lsf_type is MHLSF_FULL or MHLSF_BASIC.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InventoryVerification": {
+      "description": "Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).",
+      "id": "InventoryVerification",
+      "properties": {
+        "contact": {
+          "description": "Required. The name of the contact for the inventory verification process.",
+          "type": "string"
+        },
+        "contactEmail": {
+          "description": "Required. The email address of the contact for the inventory verification process.",
+          "type": "string"
+        },
+        "contactState": {
+          "description": "Output only. The state of the contact verification.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the inventory verification process.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTION_REQUIRED",
+            "INACTIVE",
+            "RUNNING",
+            "SUCCEEDED",
+            "SUSPENDED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "When the merchant needs to initiate the inventory verification process. The next state is INACTIVE.",
+            "When the merchant is ready to request inventory verification.",
+            "The inventory verification process is running. If the merchant is rejected, the next state is INACTIVE.",
+            "The inventory verification process succeeded.",
+            "When merchant fails the inventory verification process and all attempts are exhausted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ItemUpdatesAccountLevelSettings": {
       "description": "Settings for the Automatic Item Updates.",
       "id": "ItemUpdatesAccountLevelSettings",
@@ -2806,6 +3361,104 @@
         "allowStrictAvailabilityUpdates": {
           "description": "If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "LfpLink": {
+      "description": "Collection of information related to the LFP link.",
+      "id": "LfpLink",
+      "properties": {
+        "externalAccountId": {
+          "description": "Required. The account ID by which this merchant is known to the LFP provider.",
+          "type": "string"
+        },
+        "lfpProvider": {
+          "description": "Required. The resource name of the LFP provider. Format: `lfpProviders/{lfp_provider}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the LFP link.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LfpProvider": {
+      "description": "Collection of information related to a Local Feed Partnership (LFP) provider.",
+      "id": "LfpProvider",
+      "properties": {
+        "displayName": {
+          "description": "The display name of the LFP provider.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the LFP provider. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}/lfpProviders/{lfp_provider}`",
+          "type": "string"
+        },
+        "regionCode": {
+          "description": "Output only. Region code defined by [CLDR](https://cldr.unicode.org/).",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkGbpAccountRequest": {
+      "description": "Request message for the LinkGbpAccount method.",
+      "id": "LinkGbpAccountRequest",
+      "properties": {
+        "gbpEmail": {
+          "description": "Required. The email address of the Business Profile account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkGbpAccountResponse": {
+      "description": "Response message for the LinkGbpAccount method.",
+      "id": "LinkGbpAccountResponse",
+      "properties": {
+        "response": {
+          "$ref": "Empty",
+          "description": "Empty response."
+        }
+      },
+      "type": "object"
+    },
+    "LinkLfpProviderRequest": {
+      "description": "Request message for the LinkLfpProvider method.",
+      "id": "LinkLfpProviderRequest",
+      "properties": {
+        "externalAccountId": {
+          "description": "Required. The external account ID by which this merchant is known to the LFP provider.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LinkLfpProviderResponse": {
+      "description": "Response message for the LinkLfpProvider method.",
+      "id": "LinkLfpProviderResponse",
+      "properties": {
+        "response": {
+          "$ref": "Empty",
+          "description": "Empty response."
         }
       },
       "type": "object"
@@ -2865,7 +3518,7 @@
       "type": "object"
     },
     "ListAccountsResponse": {
-      "description": "Response message for the `ListAccounts` method.",
+      "description": "Response message for the `accounts.list` method.",
       "id": "ListAccountsResponse",
       "properties": {
         "accounts": {
@@ -2878,6 +3531,42 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListGbpAccountsResponse": {
+      "description": "Response message for the ListGbpAccounts method.",
+      "id": "ListGbpAccountsResponse",
+      "properties": {
+        "gbpAccounts": {
+          "description": "The GBP accounts from the specified merchant in the specified country.",
+          "items": {
+            "$ref": "GbpAccount"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListOmnichannelSettingsResponse": {
+      "description": "Response message for the ListOmnichannelSettings method.",
+      "id": "ListOmnichannelSettingsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "omnichannelSettings": {
+          "description": "The omnichannel settings from the specified merchant.",
+          "items": {
+            "$ref": "OmnichannelSetting"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2927,7 +3616,7 @@
           "type": "string"
         },
         "regions": {
-          "description": "The regions from the specified merchant.",
+          "description": "The regions from the specified business.",
           "items": {
             "$ref": "Region"
           },
@@ -2989,6 +3678,12 @@
       },
       "type": "object"
     },
+    "LocalListingManagement": {
+      "description": "`LocalListingManagement` payload.",
+      "id": "LocalListingManagement",
+      "properties": {},
+      "type": "object"
+    },
     "LocationIdSet": {
       "description": "A list of location ID sets. Must be non-empty. Can only be set if all other fields are not set.",
       "id": "LocationIdSet",
@@ -3004,7 +3699,7 @@
       "type": "object"
     },
     "LoyaltyProgram": {
-      "description": "[Loyalty program](https://support.google.com/merchants/answer/12922446) provided by a merchant.",
+      "description": "[Loyalty program](https://support.google.com/merchants/answer/12922446) provided by a business.",
       "id": "LoyaltyProgram",
       "properties": {
         "loyaltyProgramTiers": {
@@ -3022,7 +3717,7 @@
       "type": "object"
     },
     "LoyaltyProgramTiers": {
-      "description": "Subset of a merchants loyalty program.",
+      "description": "Subset of a business's loyalty program.",
       "id": "LoyaltyProgramTiers",
       "properties": {
         "tierLabel": {
@@ -3046,16 +3741,102 @@
       },
       "type": "object"
     },
+    "OmnichannelSetting": {
+      "description": "Collection of information related to the omnichannel settings of a merchant.",
+      "id": "OmnichannelSetting",
+      "properties": {
+        "about": {
+          "$ref": "About",
+          "description": "Optional. The about page URI and state for this country."
+        },
+        "inStock": {
+          "$ref": "InStock",
+          "description": "Optional. The InStock URI and state for this country."
+        },
+        "inventoryVerification": {
+          "$ref": "InventoryVerification",
+          "description": "Optional. The inventory verification contact and state for this country."
+        },
+        "lfpLink": {
+          "$ref": "LfpLink",
+          "description": "Output only. The established link to a LFP provider.",
+          "readOnly": true
+        },
+        "lsfType": {
+          "description": "Required. The Local Store Front type for this country.",
+          "enum": [
+            "LSF_TYPE_UNSPECIFIED",
+            "GHLSF",
+            "MHLSF_BASIC",
+            "MHLSF_FULL"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Google-Hosted Local Store Front. Check the [HC article](https://support.google.com/merchants/answer/14869424) for more details.",
+            "Merchant-Hosted Local Store Front Basic. Check the [HC article](https://support.google.com/merchants/answer/14615867) for more details.",
+            "Merchant-Hosted Local Store Front Full. Check the [HC article](https://support.google.com/merchants/answer/14617076) for more details."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the omnichannel setting. Format: `accounts/{account}/omnichannelSettings/{omnichannel_setting}`",
+          "type": "string"
+        },
+        "odo": {
+          "$ref": "OnDisplayToOrder",
+          "description": "Optional. The On Display to Order (ODO) policy URI and state for this country."
+        },
+        "pickup": {
+          "$ref": "Pickup",
+          "description": "Optional. The Pickup URI and state for this country."
+        },
+        "regionCode": {
+          "description": "Required. Immutable. Region code defined by [CLDR](https://cldr.unicode.org/). Must be provided in the Create method, and is immutable.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OnDisplayToOrder": {
+      "description": "Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).",
+      "id": "OnDisplayToOrder",
+      "properties": {
+        "state": {
+          "description": "Output only. The state of the URI.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. The on display to order (ODO) policy URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "OnlineReturnPolicy": {
       "description": "[Online return policy](https://support.google.com/merchants/answer/10220642) object. This is currently used to represent return policies for ads and free listings programs.",
       "id": "OnlineReturnPolicy",
       "properties": {
         "acceptDefectiveOnly": {
-          "description": "Optional. This field specifies if merchant only accepts defective products for returns.",
+          "description": "Optional. This field specifies if business only accepts defective products for returns.",
           "type": "boolean"
         },
         "acceptExchange": {
-          "description": "Optional. This field specifies if merchant allows customers to exchange products.",
+          "description": "Optional. This field specifies if business allows customers to exchange products.",
           "type": "boolean"
         },
         "countries": {
@@ -3095,7 +3876,7 @@
           "description": "Optional. The return policy."
         },
         "processRefundDays": {
-          "description": "Optional. The field specifies the number of days it takes for merchants to process refunds.",
+          "description": "Optional. The field specifies the number of days it takes for business to process refunds.",
           "format": "int32",
           "type": "integer"
         },
@@ -3166,7 +3947,7 @@
       "id": "PhoneNumber",
       "properties": {
         "e164Number": {
-          "description": "The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: \"+15552220123\" - incorrect: \"+1 (555) 222-01234 x123\". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes",
+          "description": "The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: \"+15552220123\" - incorrect: \"+1 (555) 222-01234 x123\" The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes",
           "type": "string"
         },
         "extension": {
@@ -3175,7 +3956,37 @@
         },
         "shortCode": {
           "$ref": "ShortCode",
-          "description": "A short code. Reference(s): - https://en.wikipedia.org/wiki/Short_code"
+          "description": "A short code. Reference(s): - https://wikipedia.org/wiki/Short_code"
+        }
+      },
+      "type": "object"
+    },
+    "Pickup": {
+      "description": "Collection of information related to Pickup.",
+      "id": "Pickup",
+      "properties": {
+        "state": {
+          "description": "Output only. The state of the pickup serving.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "ACTIVE",
+            "FAILED",
+            "RUNNING",
+            "ACTION_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The review process has concluded successfully. The reviewed item is active.",
+            "The review process failed.",
+            "The review process is running.",
+            "The review process is waiting for the merchant to take action."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Required. Pickup product page URI. It is only used for the review of pickup serving. This URI domain should match with the business's homepage.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3209,7 +4020,7 @@
       "type": "object"
     },
     "PostalAddress": {
-      "description": "Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
+      "description": "Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.",
       "id": "PostalAddress",
       "properties": {
         "addressLines": {
@@ -3434,7 +4245,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -3472,7 +4283,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -3614,16 +4425,33 @@
       "properties": {},
       "type": "object"
     },
+    "RequestInventoryVerificationRequest": {
+      "description": "Request message for the RequestInventoryVerification method.",
+      "id": "RequestInventoryVerificationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RequestInventoryVerificationResponse": {
+      "description": "Response message for the RequestInventoryVerification method.",
+      "id": "RequestInventoryVerificationResponse",
+      "properties": {
+        "omnichannelSetting": {
+          "$ref": "OmnichannelSetting",
+          "description": "The omnichannel setting that was updated."
+        }
+      },
+      "type": "object"
+    },
     "Required": {
       "description": "Describes the terms of service which are required to be accepted.",
       "id": "Required",
       "properties": {
         "termsOfService": {
-          "description": "The `TermsOfService` that need to be accepted.",
+          "description": "Required. The `TermsOfService` that need to be accepted.",
           "type": "string"
         },
         "tosFileUri": {
-          "description": "Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.",
+          "description": "Required. Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.",
           "type": "string"
         }
       },
@@ -3768,11 +4596,11 @@
         },
         "minimumOrderValue": {
           "$ref": "Price",
-          "description": "Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency. Cannot be set together with minimum_order_value_table."
+          "description": "Optional. Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency. Cannot be set together with `minimum_order_value_table`."
         },
         "minimumOrderValueTable": {
           "$ref": "MinimumOrderValueTable",
-          "description": "Table of per store minimum order values for the pickup fulfillment type. Cannot be set together with minimum_order_value."
+          "description": "Optional. Table of per store minimum order values for the pickup fulfillment type. Cannot be set together with `minimum_order_value`."
         },
         "rateGroups": {
           "description": "Optional. Shipping rate group definitions. Only the last one is allowed to have an empty `applicable_shipping_labels`, which means \"everything else\". The other `applicable_shipping_labels` must not overlap.",
@@ -3786,7 +4614,7 @@
           "type": "string"
         },
         "shipmentType": {
-          "description": "Type of locations this service ships orders to.",
+          "description": "Optional. Type of locations this service ships orders to.",
           "enum": [
             "SHIPMENT_TYPE_UNSPECIFIED",
             "DELIVERY",
@@ -3809,15 +4637,15 @@
       "type": "object"
     },
     "ShippingSettings": {
-      "description": "The merchant account's [shipping settings](https://support.google.com/merchants/answer/6069284).",
+      "description": "The Merchant Center account's [shipping settings](https://support.google.com/merchants/answer/6069284). The `ShippingSettings` resource lets you retrieve and update the shipping settings of your advanced account and all its associated sub-accounts.",
       "id": "ShippingSettings",
       "properties": {
         "etag": {
-          "description": "Required. This field is used for avoid async issue. Make sure shipping setting data didn't change between get call and insert call. The user should do following steps： 1. Set etag field as empty string for initial shipping setting creation. 2. After initial creation, call get method to obtain an etag and current shipping setting data before call insert. 3. Modify to wanted shipping setting information. 4. Call insert method with the wanted shipping setting information with the etag obtained from step 2. 5. If shipping setting data changed between step 2 and step 4. Insert request will fail because the etag changes every time the shipping setting data changes. User should repeate step 2-4 with the new etag.",
+          "description": "Required. This field helps avoid async issues. It ensures that the shipping setting data doesn't change between the `get` call and the `insert` call. The user should follow these steps: 1. Set the etag field as an empty string for the initial shipping setting creation. 2. After the initial creation, call the `get` method to obtain an etag and the current shipping setting data before calling `insert`. 3. Modify the shipping setting information. 4. Call the `insert` method with the shipping setting information and the etag obtained in step 2. 5. If the shipping setting data changes between step 2 and step 4, the insert request will fail because the etag changes every time the shipping setting data changes. In this case, the user should repeat steps 2-4 with the new etag.",
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The resource name of the shipping settings. Format: `accounts/{account}/shippingSettings`",
+          "description": "Identifier. The resource name of the shipping settings. Format: `accounts/{account}/shippingSettings`. For example, `accounts/123456/shippingSettings`.",
           "type": "string"
         },
         "services": {
@@ -3890,7 +4718,7 @@
           "type": "array"
         },
         "storeServiceType": {
-          "description": "Indicates whether all stores, or selected stores, listed by this merchant provide local delivery.",
+          "description": "Indicates whether all stores, or selected stores, listed by this business provide local delivery.",
           "enum": [
             "STORE_SERVICE_TYPE_UNSPECIFIED",
             "ALL_STORES",
@@ -3898,7 +4726,7 @@
           ],
           "enumDescriptions": [
             "Did not specify store service type.",
-            "Indicates whether all stores, current and future, listed by this merchant provide local delivery.",
+            "Indicates whether all stores, current and future, listed by this business provide local delivery.",
             "Indicates that only the stores listed in `store_codes` are eligible for local delivery."
           ],
           "type": "string"
@@ -3968,27 +4796,27 @@
       "type": "object"
     },
     "TermsOfServiceAgreementState": {
-      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the merchant must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.",
+      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services, we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`. The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.",
       "id": "TermsOfServiceAgreementState",
       "properties": {
         "accepted": {
           "$ref": "Accepted",
-          "description": "The accepted terms of service of this kind and for the associated region_code"
+          "description": "Optional. The accepted terms of service of this kind and for the associated region_code"
         },
         "name": {
-          "description": "Identifier. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}` For example, an identifier could be: `MERCHANT_CENTER-US`",
+          "description": "Identifier. The resource name of the terms of service version. Format: `accounts/{account}/termsOfServiceAgreementState/{identifier}` The identifier format is: `{TermsOfServiceKind}-{country}` For example, an identifier could be: `MERCHANT_CENTER-EU` or `MERCHANT_CENTER-US`.",
           "type": "string"
         },
         "regionCode": {
-          "description": "Region code as defined by https://cldr.unicode.org/. This is the country the current state applies to.",
+          "description": "Required. Region code as defined by https://cldr.unicode.org/. This is the country the current state applies to.",
           "type": "string"
         },
         "required": {
           "$ref": "Required",
-          "description": "The required terms of service"
+          "description": "Optional. The required terms of service"
         },
         "termsOfServiceKind": {
-          "description": "Terms of Service kind associated with the particular version.",
+          "description": "Required. Terms of Service kind associated with the particular version.",
           "enum": [
             "TERMS_OF_SERVICE_KIND_UNSPECIFIED",
             "MERCHANT_CENTER"
@@ -4092,12 +4920,14 @@
             "enum": [
               "ACCESS_RIGHT_UNSPECIFIED",
               "STANDARD",
+              "READ_ONLY",
               "ADMIN",
               "PERFORMANCE_REPORTING"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Standard access rights.",
+              "Has access to the same read-only methods as STANDARD, but no access to any mutating methods.",
               "Admin access rights.",
               "Users with this right have access to performance and insights."
             ],

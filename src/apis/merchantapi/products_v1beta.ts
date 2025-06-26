@@ -133,7 +133,7 @@ export namespace merchantapi_products_v1beta {
      */
     additionalImageLinks?: string[] | null;
     /**
-     * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
      */
     adsGrouping?: string | null;
     /**
@@ -153,11 +153,11 @@ export namespace merchantapi_products_v1beta {
      */
     ageGroup?: string | null;
     /**
-     * A safeguard in the "Automated Discounts" (https://support.google.com/merchants/answer/10295759) and "Dynamic Promotions" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability.
+     * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and "Dynamic Promotions" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
      */
     autoPricingMinPrice?: Schema$Price;
     /**
-     * Availability status of the item.
+     * [Availability](https://support.google.com/merchants/answer/6324448) status of the item. For example, "in_stock" or "out_of_stock".
      */
     availability?: string | null;
     /**
@@ -165,7 +165,7 @@ export namespace merchantapi_products_v1beta {
      */
     availabilityDate?: string | null;
     /**
-     * Brand of the item.
+     * [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, "Google".
      */
     brand?: string | null;
     /**
@@ -181,11 +181,11 @@ export namespace merchantapi_products_v1beta {
      */
     cloudExportAdditionalProperties?: Schema$CloudExportAdditionalProperties[];
     /**
-     * Color of the item.
+     * [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, "red".
      */
     color?: string | null;
     /**
-     * Condition or state of the item.
+     * [Condition](https://support.google.com/merchants/answer/6324469) or state of the item. For example, "new" or "used".
      */
     condition?: string | null;
     /**
@@ -193,23 +193,23 @@ export namespace merchantapi_products_v1beta {
      */
     costOfGoodsSold?: Schema$Price;
     /**
-     * Custom label 0 for custom grouping of items in a Shopping campaign.
+     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
      */
     customLabel0?: string | null;
     /**
-     * Custom label 1 for custom grouping of items in a Shopping campaign.
+     * [Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
      */
     customLabel1?: string | null;
     /**
-     * Custom label 2 for custom grouping of items in a Shopping campaign.
+     * [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
      */
     customLabel2?: string | null;
     /**
-     * Custom label 3 for custom grouping of items in a Shopping campaign.
+     * [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
      */
     customLabel3?: string | null;
     /**
-     * Custom label 4 for custom grouping of items in a Shopping campaign.
+     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
      */
     customLabel4?: string | null;
     /**
@@ -217,7 +217,7 @@ export namespace merchantapi_products_v1beta {
      */
     description?: string | null;
     /**
-     * The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date]( https://support.google.com/merchants/answer/13034208) for more information.
+     * The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
      */
     disclosureDate?: string | null;
     /**
@@ -229,7 +229,7 @@ export namespace merchantapi_products_v1beta {
      */
     displayAdsLink?: string | null;
     /**
-     * Advertiser-specified recommendations.
+     * Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
      */
     displayAdsSimilarIds?: string[] | null;
     /**
@@ -237,7 +237,7 @@ export namespace merchantapi_products_v1beta {
      */
     displayAdsTitle?: string | null;
     /**
-     * Offer margin for dynamic remarketing campaigns.
+     * Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
      */
     displayAdsValue?: number | null;
     /**
@@ -245,7 +245,7 @@ export namespace merchantapi_products_v1beta {
      */
     energyEfficiencyClass?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).
+     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
      */
     excludedDestinations?: string[] | null;
     /**
@@ -261,7 +261,7 @@ export namespace merchantapi_products_v1beta {
      */
     freeShippingThreshold?: Schema$FreeShippingThreshold[];
     /**
-     * Target gender of the item.
+     * Target [gender](https://support.google.com/merchants/answer/6324479) of the item. For example, "male" or "female".
      */
     gender?: string | null;
     /**
@@ -281,7 +281,7 @@ export namespace merchantapi_products_v1beta {
      */
     imageLink?: string | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
      */
     includedDestinations?: string[] | null;
     /**
@@ -289,7 +289,7 @@ export namespace merchantapi_products_v1beta {
      */
     installment?: Schema$Installment;
     /**
-     * Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.
+     * Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
      */
     isBundle?: boolean | null;
     /**
@@ -305,7 +305,7 @@ export namespace merchantapi_products_v1beta {
      */
     link?: string | null;
     /**
-     * Link template for merchant hosted local storefront.
+     * [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
      */
     linkTemplate?: string | null;
     /**
@@ -317,7 +317,7 @@ export namespace merchantapi_products_v1beta {
      */
     loyaltyPrograms?: Schema$LoyaltyProgram[];
     /**
-     * The material of which the item is made.
+     * The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, "Leather" or "Cotton".
      */
     material?: string | null;
     /**
@@ -328,6 +328,10 @@ export namespace merchantapi_products_v1beta {
      * Maximal product handling time (in business days).
      */
     maxHandlingTime?: string | null;
+    /**
+     * Maximum retail price (MRP) of the item. Applicable to India only.
+     */
+    maximumRetailPrice?: Schema$Price;
     /**
      * The energy efficiency class as defined in EU directive 2010/30/EU.
      */
@@ -341,7 +345,7 @@ export namespace merchantapi_products_v1beta {
      */
     mobileLink?: string | null;
     /**
-     * Link template for merchant hosted local storefront optimized for mobile devices.
+     * [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
      */
     mobileLinkTemplate?: string | null;
     /**
@@ -349,11 +353,11 @@ export namespace merchantapi_products_v1beta {
      */
     mpn?: string | null;
     /**
-     * The number of identical products in a merchant-defined multipack.
+     * The number of identical products in a business-defined multipack.
      */
     multipack?: string | null;
     /**
-     * The item's pattern (for example, polka dots).
+     * The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
      */
     pattern?: string | null;
     /**
@@ -361,11 +365,11 @@ export namespace merchantapi_products_v1beta {
      */
     pause?: string | null;
     /**
-     * The pick up option for the item.
+     * The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
      */
     pickupMethod?: string | null;
     /**
-     * Item store pickup timeline.
+     * Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
      */
     pickupSla?: string | null;
     /**
@@ -381,7 +385,7 @@ export namespace merchantapi_products_v1beta {
      */
     productHeight?: Schema$ProductDimension;
     /**
-     * Bullet points describing the most relevant highlights of a product.
+     * Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100).
      */
     productHighlights?: string[] | null;
     /**
@@ -389,7 +393,7 @@ export namespace merchantapi_products_v1beta {
      */
     productLength?: Schema$ProductDimension;
     /**
-     * Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/188494#product_type)).
+     * Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category)).
      */
     productTypes?: string[] | null;
     /**
@@ -409,7 +413,7 @@ export namespace merchantapi_products_v1beta {
      */
     salePrice?: Schema$Price;
     /**
-     * Date range during which the item is on sale (see [product data specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date)).
+     * Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
      */
     salePriceEffectiveDate?: Schema$Interval;
     /**
@@ -441,19 +445,19 @@ export namespace merchantapi_products_v1beta {
      */
     shippingWidth?: Schema$ShippingDimension;
     /**
-     * List of country codes (ISO 3166-1 alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
+     * List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
      */
     shoppingAdsExcludedCountries?: string[] | null;
     /**
-     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value (see [https://support.google.com/merchants/answer/6324492](size definition)).
+     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
      */
     size?: string | null;
     /**
-     * System in which the size is specified. Recommended for apparel items.
+     * System in which the size is specified. Recommended for apparel items. For example, "US", "UK", "DE". For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
      */
     sizeSystem?: string | null;
     /**
-     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided (see [https://support.google.com/merchants/answer/6324497](size type)).
+     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497). For example, "petite", "plus size".
      */
     sizeTypes?: string[] | null;
     /**
@@ -473,7 +477,7 @@ export namespace merchantapi_products_v1beta {
      */
     sustainabilityIncentives?: Schema$ProductSustainabilityIncentive[];
     /**
-     * The tax category of the product.
+     * The [tax category](https://support.google.com/merchants/answer/7569847) of the product.
      */
     taxCategory?: string | null;
     /**
@@ -698,7 +702,7 @@ export namespace merchantapi_products_v1beta {
      */
     reportingContext?: string | null;
     /**
-     * Whether the issue can be resolved by the merchant.
+     * Whether the issue can be resolved by the business.
      */
     resolution?: string | null;
     /**
@@ -757,7 +761,7 @@ export namespace merchantapi_products_v1beta {
      */
     price?: Schema$Price;
     /**
-     * The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.
+     * The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a business entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a business. The corresponding program must be linked to the Merchant Center account.
      */
     programLabel?: string | null;
     /**
@@ -811,7 +815,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string | null;
     /**
-     * Output only. The feed label for the product.
+     * Output only. The feed label lets you categorize and identify your products. The maximum allowed characters is 20 and the supported characters are`A-Z`, `0-9`, hyphen and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)
      */
     feedLabel?: string | null;
     /**
@@ -883,7 +887,7 @@ export namespace merchantapi_products_v1beta {
     value?: number | null;
   }
   /**
-   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
+   * This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.
    */
   export interface Schema$ProductInput {
     /**
@@ -903,7 +907,7 @@ export namespace merchantapi_products_v1beta {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * Required. Immutable. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product.
+     * Required. Immutable. The label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087).
      */
     feedLabel?: string | null;
     /**
@@ -969,7 +973,7 @@ export namespace merchantapi_products_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -1212,6 +1216,52 @@ export namespace merchantapi_products_v1beta {
 
     /**
      * Deletes a product input from your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('products_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productInputs.delete({
+     *     // Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     *     dataSource: 'placeholder-value',
+     *     // Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/online~en~US~sku123`.
+     *     name: 'accounts/my-account/productInputs/my-productInput',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1302,7 +1352,79 @@ export namespace merchantapi_products_v1beta {
     }
 
     /**
-     * Uploads a product input to your Merchant Center account. If an input with the same contentLanguage, offerId, and dataSource already exists, this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/overview#upload-product-input). You must have a products data source to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If an input with the same contentLanguage, offerId, and dataSource already exists, this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('products_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productInputs.insert({
+     *     // Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Overview of Data sources sub-API](/merchant/api/guides/data-sources/overview). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     *     dataSource: 'placeholder-value',
+     *     // Required. The account where this product will be inserted. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "channel": "my_channel",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "customAttributes": [],
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "name": "my_name",
+     *       //   "offerId": "my_offerId",
+     *       //   "product": "my_product",
+     *       //   "versionNumber": "my_versionNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "channel": "my_channel",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "customAttributes": [],
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "name": "my_name",
+     *   //   "offerId": "my_offerId",
+     *   //   "product": "my_product",
+     *   //   "versionNumber": "my_versionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1393,6 +1515,80 @@ export namespace merchantapi_products_v1beta {
 
     /**
      * Updates the existing product input in your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('products_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.productInputs.patch({
+     *     // Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     *     dataSource: 'placeholder-value',
+     *     // Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
+     *     name: 'accounts/my-account/productInputs/my-productInput',
+     *     // Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "channel": "my_channel",
+     *       //   "contentLanguage": "my_contentLanguage",
+     *       //   "customAttributes": [],
+     *       //   "feedLabel": "my_feedLabel",
+     *       //   "name": "my_name",
+     *       //   "offerId": "my_offerId",
+     *       //   "product": "my_product",
+     *       //   "versionNumber": "my_versionNumber"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "channel": "my_channel",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "customAttributes": [],
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "name": "my_name",
+     *   //   "offerId": "my_offerId",
+     *   //   "product": "my_product",
+     *   //   "versionNumber": "my_versionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1486,7 +1682,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Productinputs$Delete
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     * Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
@@ -1497,7 +1693,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Productinputs$Insert
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Overview of Data sources sub-API](/merchant/api/guides/data-sources/overview). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
@@ -1513,7 +1709,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Productinputs$Patch
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`.
+     * Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
@@ -1539,6 +1735,62 @@ export namespace merchantapi_products_v1beta {
 
     /**
      * Retrieves the processed product from your Merchant Center account. After inserting, updating, or deleting a product input, it may take several minutes before the updated final product can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('products_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.get({
+     *     // Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
+     *     name: 'accounts/my-account/products/my-product',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "automatedDiscounts": {},
+     *   //   "channel": "my_channel",
+     *   //   "contentLanguage": "my_contentLanguage",
+     *   //   "customAttributes": [],
+     *   //   "dataSource": "my_dataSource",
+     *   //   "feedLabel": "my_feedLabel",
+     *   //   "name": "my_name",
+     *   //   "offerId": "my_offerId",
+     *   //   "productStatus": {},
+     *   //   "versionNumber": "my_versionNumber"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1630,6 +1882,57 @@ export namespace merchantapi_products_v1beta {
 
     /**
      * Lists the processed products in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting, updating, or deleting a product input, it may take several minutes before the updated processed product can be retrieved.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('products_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.list({
+     *     // The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list processed products for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "products": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1732,7 +2035,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
     /**
-     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of products will be returned.
+     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.
      */
     pageSize?: number;
     /**

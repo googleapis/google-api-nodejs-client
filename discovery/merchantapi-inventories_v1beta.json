@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -300,7 +300,7 @@
       }
     }
   },
-  "revision": "20250412",
+  "revision": "20250623",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -581,7 +581,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -623,7 +623,7 @@
           "type": "string"
         },
         "availability": {
-          "description": "Availability of the product in this region. For accepted attribute values, see the [regional product inventory data specification](https://support.google.com/merchants/answer/6324448).",
+          "description": "Availability of the product in this region. For accepted attribute values, see the [regional product inventory data specification](https://support.google.com/merchants/answer/14644124).",
           "type": "string"
         },
         "customAttributes": {
