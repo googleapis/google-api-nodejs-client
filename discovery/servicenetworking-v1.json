@@ -276,7 +276,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
+              "description": "Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -305,7 +305,7 @@
           ],
           "parameters": {
             "parent": {
-              "description": "The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
+              "description": "Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
               "location": "path",
               "pattern": "^services/[^/]+$",
               "required": true,
@@ -396,7 +396,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
+                  "description": "Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`.",
                   "location": "path",
                   "pattern": "^services/[^/]+$",
                   "required": true,
@@ -454,12 +454,12 @@
               ],
               "parameters": {
                 "network": {
-                  "description": "The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project}/global/networks/{network}`. {project} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network} is the name of the service consumer's VPC network.",
+                  "description": "Required. The name of service consumer's VPC network that's connected with service producer network through a private connection. The network name must be in the following format: `projects/{project}/global/networks/{network}`. {project} is a project number, such as in `12345` that includes the VPC service consumer's VPC network. {network} is the name of the service consumer's VPC network.",
                   "location": "query",
                   "type": "string"
                 },
                 "parent": {
-                  "description": "The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`. If you specify `services/-` as the parameter value, all configured peering services are listed.",
+                  "description": "Required. The service that is managing peering connectivity for a service producer's organization. For Google services that support this functionality, this value is `services/servicenetworking.googleapis.com`. If you specify `services/-` as the parameter value, all configured peering services are listed.",
                   "location": "path",
                   "pattern": "^services/[^/]+$",
                   "required": true,
@@ -490,7 +490,7 @@
                   "type": "boolean"
                 },
                 "name": {
-                  "description": "The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name}/connections/{vpc_peering_name}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.",
+                  "description": "Required. The private service connection that connects to a service producer organization. The name includes both the private service name and the VPC network peering name in the format of `services/{peering_service_name}/connections/{vpc_peering_name}`. For Google services that support this functionality, this is `services/servicenetworking.googleapis.com/connections/servicenetworking-googleapis-com`.",
                   "location": "path",
                   "pattern": "^services/[^/]+/connections/[^/]+$",
                   "required": true,
@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250618",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1186,7 +1186,7 @@
           "type": "string"
         },
         "region": {
-          "description": "Required. The name of a [region](/compute/docs/regions-zones) for the subnet, such `europe-west1`.",
+          "description": "Required. The name of a [region](https://cloud.google.com/compute/docs/regions-zones) for the subnet, such `europe-west1`.",
           "type": "string"
         },
         "requestedAddress": {
@@ -1216,7 +1216,7 @@
           "type": "boolean"
         },
         "subnetwork": {
-          "description": "Required. A name for the new subnet. For information about the naming requirements, see [subnetwork](/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
+          "description": "Required. A name for the new subnet. For information about the naming requirements, see [subnetwork](https://cloud.google.com/compute/docs/reference/rest/v1/subnetworks) in the Compute API documentation.",
           "type": "string"
         },
         "subnetworkUsers": {
@@ -1483,6 +1483,101 @@
       },
       "type": "object"
     },
+    "BatchingConfigProto": {
+      "description": "`BatchingConfigProto` defines the batching configuration for an API method.",
+      "id": "BatchingConfigProto",
+      "properties": {
+        "batchDescriptor": {
+          "$ref": "BatchingDescriptorProto",
+          "description": "The request and response fields used in batching."
+        },
+        "thresholds": {
+          "$ref": "BatchingSettingsProto",
+          "description": "The thresholds which trigger a batched request to be sent."
+        }
+      },
+      "type": "object"
+    },
+    "BatchingDescriptorProto": {
+      "description": "`BatchingDescriptorProto` specifies the fields of the request message to be used for batching, and, optionally, the fields of the response message to be used for demultiplexing.",
+      "id": "BatchingDescriptorProto",
+      "properties": {
+        "batchedField": {
+          "description": "The repeated field in the request message to be aggregated by batching.",
+          "type": "string"
+        },
+        "discriminatorFields": {
+          "description": "A list of the fields in the request message. Two requests will be batched together only if the values of every field specified in `request_discriminator_fields` is equal between the two requests.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "subresponseField": {
+          "description": "Optional. When present, indicates the field in the response message to be used to demultiplex the response into multiple response messages, in correspondence with the multiple request messages originally batched together.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchingSettingsProto": {
+      "description": "`BatchingSettingsProto` specifies a set of batching thresholds, each of which acts as a trigger to send a batch of messages as a request. At least one threshold must be positive nonzero.",
+      "id": "BatchingSettingsProto",
+      "properties": {
+        "delayThreshold": {
+          "description": "The duration after which a batch should be sent, starting from the addition of the first message to that batch.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "elementCountLimit": {
+          "description": "The maximum number of elements collected in a batch that could be accepted by server.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "elementCountThreshold": {
+          "description": "The number of elements of a field collected into a batch which, if exceeded, causes the batch to be sent.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlByteLimit": {
+          "description": "The maximum size of data allowed by flow control.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlElementLimit": {
+          "description": "The maximum number of elements allowed by flow control.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "flowControlLimitExceededBehavior": {
+          "description": "The behavior to take when the flow control limit is exceeded.",
+          "enum": [
+            "UNSET_BEHAVIOR",
+            "THROW_EXCEPTION",
+            "BLOCK",
+            "IGNORE"
+          ],
+          "enumDescriptions": [
+            "Default behavior, system-defined.",
+            "Stop operation, raise error.",
+            "Pause operation until limit clears.",
+            "Continue operation, disregard limit."
+          ],
+          "type": "string"
+        },
+        "requestByteLimit": {
+          "description": "The maximum size of the request that could be accepted by server.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestByteThreshold": {
+          "description": "The aggregated size of the batched field which, if exceeded, causes the batch to be sent. This size is computed by aggregating the sizes of the request field to be batched, not of the entire request message.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Billing": {
       "description": "Billing related configuration of the service. The following example shows how to configure monitored resources and metrics for billing, `consumer_destinations` is the only supported destination and the monitored resources need at least one label key `cloud.googleapis.com/location` to indicate the location of the billing usage, using different monitored resources between monitoring and billing is recommended so they can be evolved independently: monitored_resources: - type: library.googleapis.com/billing_branch labels: - key: cloud.googleapis.com/location description: | Predefined label to support billing location restriction. - key: city description: | Custom label to define the city where the library branch is located in. - key: name description: Custom label to define the name of the library branch. metrics: - name: library.googleapis.com/book/borrowed_count metric_kind: DELTA value_type: INT64 unit: \"1\" billing: consumer_destinations: - monitored_resource: library.googleapis.com/billing_branch metrics: - library.googleapis.com/book/borrowed_count",
       "id": "Billing",
@@ -1518,6 +1613,12 @@
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "CleanupConnectionMetadata": {
+      "description": "Metadata provided through GetOperation request for the LRO generated by Cleanup Connection API",
+      "id": "CleanupConnectionMetadata",
       "properties": {},
       "type": "object"
     },
@@ -1597,15 +1698,15 @@
       "id": "CloudSQLConfig",
       "properties": {
         "service": {
-          "description": "Peering service used for peering with the Cloud SQL project.",
+          "description": "Required. Peering service used for peering with the Cloud SQL project.",
           "type": "string"
         },
         "umbrellaNetwork": {
-          "description": "The name of the umbrella network in the Cloud SQL umbrella project.",
+          "description": "Required. The name of the umbrella network in the Cloud SQL umbrella project.",
           "type": "string"
         },
         "umbrellaProject": {
-          "description": "The project number of the Cloud SQL umbrella project.",
+          "description": "Required. The project number of the Cloud SQL umbrella project.",
           "format": "int64",
           "type": "string"
         }
@@ -1650,7 +1751,7 @@
       "id": "Connection",
       "properties": {
         "network": {
-          "description": "The name of service consumer's VPC network that's connected with service producer network, in the following format: `projects/{project}/global/networks/{network}`. `{project}` is a project number, such as in `12345` that includes the VPC service consumer's VPC network. `{network}` is the name of the service consumer's VPC network.",
+          "description": "Required. The name of service consumer's VPC network that's connected with service producer network, in the following format: `projects/{project}/global/networks/{network}`. `{project}` is a project number, such as in `12345` that includes the VPC service consumer's VPC network. `{network}` is the name of the service consumer's VPC network.",
           "type": "string"
         },
         "peering": {
@@ -2848,6 +2949,10 @@
           },
           "type": "array"
         },
+        "batching": {
+          "$ref": "BatchingConfigProto",
+          "description": "Batching configuration for an API method in client libraries. Example of a YAML configuration: publishing: method_settings: - selector: google.example.v1.ExampleService.BatchCreateExample batching: element_count_threshold: 1000 request_byte_threshold: 100000000 delay_threshold_millis: 10"
+        },
         "longRunning": {
           "$ref": "LongRunning",
           "description": "Describes settings to use for long-running operations when generating API methods for RPCs. Complements RPCs that use the annotations in google/longrunning/operations.proto. Example of a YAML configuration:: publishing: method_settings: - selector: google.cloud.speech.v2.Speech.BatchRecognize long_running: initial_poll_delay: 60s # 1 minute poll_delay_multiplier: 1.5 max_poll_delay: 360s # 6 minutes total_poll_timeout: 54000s # 90 minutes"
@@ -3267,7 +3372,7 @@
           "type": "string"
         },
         "name": {
-          "description": "User assigned name for this resource. Must be unique within the consumer network. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.",
+          "description": "Required. User assigned name for this resource. Must be unique within the consumer network. The name must be 1-63 characters long, must begin with a letter, end with a letter or digit, and only contain lowercase letters, digits or dashes.",
           "type": "string"
         }
       },
@@ -3286,6 +3391,10 @@
         "common": {
           "$ref": "CommonLanguageSettings",
           "description": "Some settings."
+        },
+        "libraryPackage": {
+          "description": "The package name to use in Php. Clobbers the php_namespace option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.php.package_name\" field in gapic.yaml. API teams should use the protobuf php_namespace option where possible. Example of a YAML configuration:: publishing: library_settings: php_settings: library_package: Google\\Cloud\\PubSub\\V1",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3626,7 +3735,7 @@
           "type": "integer"
         },
         "network": {
-          "description": "Network name in the consumer project. This network must have been already peered with a shared VPC network using CreateConnection method. Must be in a form 'projects/{project}/global/networks/{network}'. {project} is a project number, as in '12345' {network} is network name.",
+          "description": "Required. Network name in the consumer project. This network must have been already peered with a shared VPC network using CreateConnection method. Must be in a form 'projects/{project}/global/networks/{network}'. {project} is a project number, as in '12345' {network} is network name.",
           "type": "string"
         }
       },
