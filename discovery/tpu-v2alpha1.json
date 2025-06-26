@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250616",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2233,6 +2233,10 @@
             "Spot provisioning with no guaranteed runtime.",
             "Reservation provisioning with runtime bound to the lifetime of the consumed reservation."
           ],
+          "type": "string"
+        },
+        "reservationName": {
+          "description": "Optional. Name of the reservation in which the node should be provisioned.",
           "type": "string"
         },
         "reserved": {
