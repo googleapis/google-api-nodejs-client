@@ -1529,6 +1529,34 @@
             },
             "workloadIdentityPools": {
               "methods": {
+                "addAttestationRule": {
+                  "description": "Add an AttestationRule on a WorkloadIdentityPoolManagedIdentity. The total attestation rules after addition must not exceed 50.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:addAttestationRule",
+                  "httpMethod": "POST",
+                  "id": "iam.projects.locations.workloadIdentityPools.addAttestationRule",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "Required. The resource name of the managed identity or namespace resource to add an attestation rule to.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:addAttestationRule",
+                  "request": {
+                    "$ref": "AddAttestationRuleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "create": {
                   "description": "Creates a new WorkloadIdentityPool. You cannot reuse the name of a deleted pool until 30 days after deletion.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools",
@@ -1681,6 +1709,47 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "listAttestationRules": {
+                  "description": "List all AttestationRule on a WorkloadIdentityPoolManagedIdentity.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:listAttestationRules",
+                  "httpMethod": "GET",
+                  "id": "iam.projects.locations.workloadIdentityPools.listAttestationRules",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A query filter. Supports the following function: * `container_ids()`: Returns only the AttestationRules under the specific container ids. The function expects a comma-delimited list with only project numbers and must use the format `projects/`. For example: `container_ids(projects/, projects/,...)`.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of AttestationRules to return. If unspecified, at most 50 AttestationRules are returned. The maximum value is 100; values above 100 are truncated to 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "resource": {
+                      "description": "Required. The resource name of the managed identity or namespace resource to list attestation rules of.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:listAttestationRules",
+                  "response": {
+                    "$ref": "ListAttestationRulesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "patch": {
                   "description": "Updates an existing WorkloadIdentityPool.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}",
@@ -1707,6 +1776,62 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "WorkloadIdentityPool"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "removeAttestationRule": {
+                  "description": "Remove an AttestationRule on a WorkloadIdentityPoolManagedIdentity.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:removeAttestationRule",
+                  "httpMethod": "POST",
+                  "id": "iam.projects.locations.workloadIdentityPools.removeAttestationRule",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "Required. The resource name of the managed identity or namespace resource to remove an attestation rule from.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:removeAttestationRule",
+                  "request": {
+                    "$ref": "RemoveAttestationRuleRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "setAttestationRules": {
+                  "description": "Set all AttestationRule on a WorkloadIdentityPoolManagedIdentity. A maximum of 50 AttestationRules can be set.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:setAttestationRules",
+                  "httpMethod": "POST",
+                  "id": "iam.projects.locations.workloadIdentityPools.setAttestationRules",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "Required. The resource name of the managed identity or namespace resource to add an attestation rule to.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:setAttestationRules",
+                  "request": {
+                    "$ref": "SetAttestationRulesRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -3773,7 +3898,7 @@
       }
     }
   },
-  "revision": "20250509",
+  "revision": "20250619",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -4299,7 +4424,7 @@
       "id": "GoogleIamAdminV1WorkforcePoolProviderSaml",
       "properties": {
         "idpMetadataXml": {
-          "description": "Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 20 years in the future. 4) Up to 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.",
+          "description": "Required. SAML Identity provider configuration metadata xml doc. The xml document should comply with [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The max size of the acceptable xml document will be bounded to 128k characters. The metadata xml document should satisfy the following constraints: 1) Must contain an Identity Provider Entity ID. 2) Must contain at least one non-expired signing key certificate. 3) For each signing key: a) Valid from should be no more than 7 days from now. b) Valid to should be no more than 25 years in the future. 4) Up to 3 IdP signing keys are allowed in the metadata xml. When updating the provider's metadata xml, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.",
           "type": "string"
         }
       },
@@ -4337,12 +4462,12 @@
           "type": "string"
         },
         "lifetime": {
-          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 10 hours and 30 days. If not specified, this will be defaulted to 24 hours.",
+          "description": "Optional. Lifetime of the workload certificates issued by the CA pool. Must be between 24 hours and 30 days. If not specified, this will be defaulted to 24 hours.",
           "format": "google-duration",
           "type": "string"
         },
         "rotationWindowPercentage": {
-          "description": "Optional. Rotation window percentage indicating when certificate rotation should be initiated based on remaining lifetime. Must be between 10 and 80. If not specified, this will be defaulted to 50.",
+          "description": "Optional. Rotation window percentage, the percentage of remaining lifetime after which certificate rotation is initiated. Must be between 50 and 80. If no value is specified, rotation window percentage is defaulted to 50.",
           "format": "int32",
           "type": "integer"
         }
@@ -5341,7 +5466,7 @@
       "id": "Saml",
       "properties": {
         "idpMetadataXml": {
-          "description": "Required. SAML identity provider (IdP) configuration metadata XML doc. The XML document must comply with the [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The maximum size of an acceptable XML document is 128K characters. The SAML metadata XML document must satisfy the following constraints: * Must contain an IdP Entity ID. * Must contain at least one non-expired signing certificate. * For each signing certificate, the expiration must be: * From no more than 7 days in the future. * To no more than 20 years in the future. * Up to three IdP signing keys are allowed. When updating the provider's metadata XML, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.",
+          "description": "Required. SAML identity provider (IdP) configuration metadata XML doc. The XML document must comply with the [SAML 2.0 specification](https://docs.oasis-open.org/security/saml/v2.0/saml-metadata-2.0-os.pdf). The maximum size of an acceptable XML document is 128K characters. The SAML metadata XML document must satisfy the following constraints: * Must contain an IdP Entity ID. * Must contain at least one non-expired signing certificate. * For each signing certificate, the expiration must be: * From no more than 7 days in the future. * To no more than 25 years in the future. * Up to three IdP signing keys are allowed. When updating the provider's metadata XML, at least one non-expired signing key must overlap with the existing metadata. This requirement is skipped if there are no non-expired signing keys present in the existing metadata.",
           "type": "string"
         }
       },
@@ -5681,7 +5806,7 @@
       "type": "object"
     },
     "TrustStore": {
-      "description": "Trust store that contains trust anchors and optional intermediate CAs used in PKI to build trust chain and verify a client's identity.",
+      "description": "Trust store that contains trust anchors and optional intermediate CAs used in PKI to build a trust chain(trust hierarchy) and verify a client's identity.",
       "id": "TrustStore",
       "properties": {
         "intermediateCas": {
@@ -6015,9 +6140,9 @@
             "TRUST_DOMAIN"
           ],
           "enumDescriptions": [
-            "State unspecified. New pools should not use this mode. Pools with an unspecified mode will operate as if they are in FEDERATION_ONLY mode.",
-            "FEDERATION_ONLY mode pools can only be used for federating external workload identities into Google Cloud. Unless otherwise noted, no structure or format constraints are applied to workload identities in a FEDERATION_ONLY mode pool, and you may not create any resources within the pool besides providers.",
-            "TRUST_DOMAIN mode pools can be used to assign identities to either external workloads or those hosted on Google Cloud. All identities within a TRUST_DOMAIN mode pool must consist of a single namespace and individual workload identifier. The subject identifier for all identities must conform to the following format: `ns//sa/` WorkloadIdentityPoolProviders cannot be created within TRUST_DOMAIN mode pools."
+            "State unspecified. New pools should not use this mode. Pools with an unspecified mode will operate as if they are in federation-only mode.",
+            "Federation-only mode. Federation-only pools can only be used for federating external workload identities into Google Cloud. Unless otherwise noted, no structure or format constraints are applied to workload identities in a federation-only pool, and you cannot create any resources within the pool besides providers.",
+            "Trust-domain mode. Trust-domain pools can be used to assign identities to Google Cloud workloads. All identities within a trust-domain pool must consist of a single namespace and individual workload identifier. The subject identifier for all identities must conform to the following format: `ns//sa/` WorkloadIdentityPoolProviders cannot be created within trust-domain pools."
           ],
           "type": "string"
         },
