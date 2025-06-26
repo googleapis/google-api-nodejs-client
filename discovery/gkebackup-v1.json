@@ -2227,7 +2227,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250528",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2405,6 +2405,11 @@
           "description": "Output only. If set, the list of ProtectedApplications whose resources were included in the Backup.",
           "readOnly": true
         },
+        "selectedNamespaceLabels": {
+          "$ref": "ResourceLabels",
+          "description": "Output only. If set, the list of labels whose constituent namespaces were included in the Backup.",
+          "readOnly": true
+        },
         "selectedNamespaces": {
           "$ref": "Namespaces",
           "description": "Output only. If set, the list of namespaces that were included in the Backup.",
@@ -2477,7 +2482,7 @@
           "type": "string"
         },
         "destinationProject": {
-          "description": "Required. Immutable. The project where Backups are allowed to be stored. The format is `projects/{project}`. Currently, {project} can only be the project number. Support for project IDs will be added in the future.",
+          "description": "Required. Immutable. The project where Backups are allowed to be stored. The format is `projects/{projectId}` or `projects/{projectNumber}`.",
           "type": "string"
         },
         "destinationProjectId": {
@@ -2543,9 +2548,50 @@
           "$ref": "NamespacedNames",
           "description": "If set, include just the resources referenced by the listed ProtectedApplications."
         },
+        "selectedNamespaceLabels": {
+          "$ref": "ResourceLabels",
+          "description": "If set, the list of labels whose constituent namespaces were included in the Backup."
+        },
         "selectedNamespaces": {
           "$ref": "Namespaces",
           "description": "If set, include just the resources in the listed namespaces."
+        }
+      },
+      "type": "object"
+    },
+    "BackupConfigDetails": {
+      "description": "BackupConfigDetails defines the configuration of Backups created via this BackupPlan.",
+      "id": "BackupConfigDetails",
+      "properties": {
+        "allNamespaces": {
+          "description": "Output only. If True, include all namespaced resources",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "encryptionKey": {
+          "$ref": "EncryptionKey",
+          "description": "Output only. This defines a customer managed encryption key that will be used to encrypt the \"config\" portion (the Kubernetes resources) of Backups created via this plan. Default (empty): Config backup artifacts will not be encrypted.",
+          "readOnly": true
+        },
+        "includeSecrets": {
+          "description": "Output only. This flag specifies whether Kubernetes Secret resources should be included when they fall into the scope of Backups. Default: False",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "includeVolumeData": {
+          "description": "Output only. This flag specifies whether volume data should be backed up when PVCs are included in the scope of a Backup. Default: False",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "selectedApplications": {
+          "$ref": "NamespacedNames",
+          "description": "Output only. If set, include just the resources referenced by the listed ProtectedApplications.",
+          "readOnly": true
+        },
+        "selectedNamespaces": {
+          "$ref": "Namespaces",
+          "description": "Output only. If set, include just the resources in the listed namespaces.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2554,6 +2600,11 @@
       "description": "Defines the configuration and scheduling for a \"line\" of Backups.",
       "id": "BackupPlan",
       "properties": {
+        "backupChannel": {
+          "description": "Output only. The fully qualified name of the BackupChannel to be used to create a backup. This field is set only if the cluster being backed up is in a different project. `projects/*/locations/*/backupChannels/*`",
+          "readOnly": true,
+          "type": "string"
+        },
         "backupConfig": {
           "$ref": "BackupConfig",
           "description": "Optional. Defines the configuration of Backups created via this BackupPlan."
@@ -2718,6 +2769,11 @@
       "description": "Contains metadata about the backup plan/backup.",
       "id": "BackupPlanDetails",
       "properties": {
+        "backupConfigDetails": {
+          "$ref": "BackupConfigDetails",
+          "description": "Output only. Contains details about the BackupConfig of Backups created via this BackupPlan.",
+          "readOnly": true
+        },
         "lastSuccessfulBackup": {
           "description": "Output only. The fully qualified name of the last successful Backup created under this BackupPlan. `projects/*/locations/*/backupPlans/*/backups/*`",
           "readOnly": true,
@@ -2740,6 +2796,11 @@
           "format": "int32",
           "readOnly": true,
           "type": "integer"
+        },
+        "retentionPolicyDetails": {
+          "$ref": "RetentionPolicyDetails",
+          "description": "Output only. Contains details about the RetentionPolicy of Backups created via this BackupPlan.",
+          "readOnly": true
         },
         "rpoRiskLevel": {
           "description": "Output only. A number that represents the current risk level of this BackupPlan from RPO perspective with 1 being no risk and 5 being highest risk.",
@@ -3127,6 +3188,21 @@
         "satisfying": {
           "$ref": "GroupKind",
           "description": "Required. The satisfying group kind must be restored first in order to satisfy the dependency."
+        }
+      },
+      "type": "object"
+    },
+    "Label": {
+      "description": "A single Kubernetes label-value pair.",
+      "id": "Label",
+      "properties": {
+        "key": {
+          "description": "Optional. The key/name of the label.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. The value of the label.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3562,6 +3638,20 @@
       },
       "type": "object"
     },
+    "ResourceLabels": {
+      "description": "A list of Kubernetes labels.",
+      "id": "ResourceLabels",
+      "properties": {
+        "resourceLabels": {
+          "description": "Optional. A list of Kubernetes label-value pairs.",
+          "items": {
+            "$ref": "Label"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ResourceSelector": {
       "description": "Defines a selector to identify a single or a group of resources. Conditions in the selector are optional, but at least one field should be set to a non-empty value. If a condition is not specified, no restrictions will be applied on that dimension. If more than one condition is specified, a resource will be selected if and only if all conditions are met.",
       "id": "ResourceSelector",
@@ -3731,7 +3821,7 @@
           "type": "string"
         },
         "destinationProject": {
-          "description": "Required. Immutable. The project into which the backups will be restored. The format is `projects/{project}`. Currently, {project} can only be the project number. Support for project IDs will be added in the future.",
+          "description": "Required. Immutable. The project into which the backups will be restored. The format is `projects/{projectId}` or `projects/{projectNumber}`.",
           "type": "string"
         },
         "destinationProjectId": {
@@ -3928,6 +4018,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "restoreChannel": {
+          "description": "Output only. The fully qualified name of the RestoreChannel to be used to create a RestorePlan. This field is set only if the `backup_plan` is in a different project than the RestorePlan. Format: `projects/*/locations/*/restoreChannels/*`",
+          "readOnly": true,
+          "type": "string"
+        },
         "restoreConfig": {
           "$ref": "RestoreConfig",
           "description": "Required. Configuration of Restores created via this RestorePlan."
@@ -4030,6 +4125,23 @@
         "locked": {
           "description": "Optional. This flag denotes whether the retention policy of this BackupPlan is locked. If set to True, no further update is allowed on this policy, including the `locked` field itself. Default: False",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "RetentionPolicyDetails": {
+      "description": "RetentionPolicyDetails defines a Backup retention policy for a BackupPlan.",
+      "id": "RetentionPolicyDetails",
+      "properties": {
+        "backupDeleteLockDays": {
+          "description": "Optional. Minimum age for Backups created via this BackupPlan (in days). This field MUST be an integer value between 0-90 (inclusive). A Backup created under this BackupPlan will NOT be deletable until it reaches Backup's (create_time + backup_delete_lock_days). Updating this field of a BackupPlan does NOT affect existing Backups under it. Backups created AFTER a successful update will inherit the new value. Default: 0 (no delete blocking)",
+          "format": "int32",
+          "type": "integer"
+        },
+        "backupRetainDays": {
+          "description": "Optional. The default maximum age of a Backup created via this BackupPlan. This field MUST be an integer value >= 0 and <= 365. If specified, a Backup created under this BackupPlan will be automatically deleted after its age reaches (create_time + backup_retain_days). If not specified, Backups created under this BackupPlan will NOT be subject to automatic deletion. Default: 0 (no automatic deletion)",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
