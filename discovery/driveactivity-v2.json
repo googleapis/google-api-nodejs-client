@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20250329",
+  "revision": "20250517",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -1141,7 +1141,7 @@
             "The feature which changed restriction settings was not available.",
             "When restricted, this prevents items from being shared outside the domain.",
             "When restricted, this prevents direct sharing of individual items.",
-            "When restricted, this prevents actions like copy, download, and print that might result in uncontrolled duplicates of items.",
+            "When restricted, this prevents actions like copy, download, and print that might result in uncontrolled duplicates of items. Now deprecated in favor of READERS_CAN_DOWNLOAD.",
             "When restricted, this prevents use of Drive File Stream.",
             "When restricted, this limits sharing of folders to managers only."
           ],
