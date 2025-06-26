@@ -166,14 +166,43 @@
           "scopes": [
             "https://www.googleapis.com/auth/playintegrity"
           ]
+        },
+        "decodePcIntegrityToken": {
+          "description": "Decodes the PC integrity token and returns the PC token payload.",
+          "flatPath": "v1/{v1Id}:decodePcIntegrityToken",
+          "httpMethod": "POST",
+          "id": "playintegrity.decodePcIntegrityToken",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "packageName": {
+              "description": "Package name of the app the attached integrity token belongs to.",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/{+packageName}:decodePcIntegrityToken",
+          "request": {
+            "$ref": "DecodePcIntegrityTokenRequest"
+          },
+          "response": {
+            "$ref": "DecodePcIntegrityTokenResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/playintegrity"
+          ]
         }
       }
     }
   },
-  "revision": "20250223",
+  "revision": "20250602",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
+      "deprecated": true,
       "description": "(Restricted Access) Contains a signal helping apps differentiating between likely genuine and likely non-genuine user traffic.",
       "id": "AccountActivity",
       "properties": {
@@ -206,6 +235,7 @@
       "properties": {
         "accountActivity": {
           "$ref": "AccountActivity",
+          "deprecated": true,
           "description": "(Restricted Access) Details about the account activity for the user in the scope."
         },
         "appLicensingVerdict": {
@@ -319,6 +349,28 @@
       "properties": {
         "tokenPayloadExternal": {
           "$ref": "TokenPayloadExternal",
+          "description": "Plain token payload generated from the decoded integrity token."
+        }
+      },
+      "type": "object"
+    },
+    "DecodePcIntegrityTokenRequest": {
+      "description": "Request to decode the PC integrity token.",
+      "id": "DecodePcIntegrityTokenRequest",
+      "properties": {
+        "integrityToken": {
+          "description": "Encoded integrity token.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DecodePcIntegrityTokenResponse": {
+      "description": "Response containing the decoded PC integrity payload.",
+      "id": "DecodePcIntegrityTokenResponse",
+      "properties": {
+        "tokenPayloadExternal": {
+          "$ref": "PcTokenPayloadExternal",
           "description": "Plain token payload generated from the decoded integrity token."
         }
       },
@@ -441,6 +493,63 @@
             "Play Protect is turned off. Turn on Play Protect."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PcDeviceIntegrity": {
+      "description": "Contains the device attestation information.",
+      "id": "PcDeviceIntegrity",
+      "properties": {
+        "deviceRecognitionVerdict": {
+          "description": "Details about the integrity of the device the app is running on.",
+          "items": {
+            "enum": [
+              "DEVICE_RECOGNITION_VERDICT_UNSPECIFIED",
+              "MEETS_PC_INTEGRITY"
+            ],
+            "enumDescriptions": [
+              "Unspecified device integrity.",
+              "App is running on Windows Device with Google Desktop Services."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "PcRequestDetails": {
+      "description": "Contains the integrity request information.",
+      "id": "PcRequestDetails",
+      "properties": {
+        "requestHash": {
+          "description": "Request hash that was provided in the request.",
+          "type": "string"
+        },
+        "requestPackageName": {
+          "description": "Required. Application package name this attestation was requested for. Note: This field makes no guarantees or promises on the caller integrity.",
+          "type": "string"
+        },
+        "requestTime": {
+          "description": "Required. Timestamp, of the integrity application request.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PcTokenPayloadExternal": {
+      "description": "Contains PC device attestation details.",
+      "id": "PcTokenPayloadExternal",
+      "properties": {
+        "deviceIntegrity": {
+          "$ref": "PcDeviceIntegrity",
+          "description": "Required. Details about the device integrity."
+        },
+        "requestDetails": {
+          "$ref": "PcRequestDetails",
+          "description": "Required. Details about the integrity request."
         }
       },
       "type": "object"
