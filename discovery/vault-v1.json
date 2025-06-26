@@ -1203,7 +1203,7 @@
       }
     }
   },
-  "revision": "20250331",
+  "revision": "20250616",
   "rootUrl": "https://vault.googleapis.com/",
   "schemas": {
     "AccountCount": {
@@ -1634,6 +1634,7 @@
           "type": "string"
         },
         "includeSharedDrives": {
+          "deprecated": true,
           "description": "Set to **true** to include shared drives.",
           "type": "boolean"
         },
@@ -1641,6 +1642,22 @@
           "deprecated": true,
           "description": "Set to true to include Team Drive.",
           "type": "boolean"
+        },
+        "sharedDrivesOption": {
+          "description": "Optional. Options to include or exclude documents in shared drives. We recommend using this field over include_shared_drives. This field overrides include_shared_drives and include_team_drives when set.",
+          "enum": [
+            "SHARED_DRIVES_OPTION_UNSPECIFIED",
+            "NOT_INCLUDED",
+            "INCLUDED_IF_ACCOUNT_IS_NOT_A_MEMBER",
+            "INCLUDED"
+          ],
+          "enumDescriptions": [
+            "No shared drive option specified.",
+            "If a resource is in a shared drive, it isn't included in the search.",
+            "Shared drive resources are only included in instances where the account is a collaborator on a resource but they are not a member of the shared drive. This maps to the *\"Included only if documents shared directly (not due to shared drive membership)\"* option in the Vault UI. (Previously \"include_shared_drives\" off)",
+            "Resources in shared drives are included in the search. (Previously \"include_shared_drives\" on)"
+          ],
+          "type": "string"
         },
         "versionDate": {
           "description": "Search the current version of the Drive file, but export the contents of the last version saved before 12:00 AM UTC on the specified date. Enter the date in UTC.",
