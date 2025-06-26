@@ -1197,12 +1197,12 @@
                     "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
                     "Ads shown. Different ad formats will display varying numbers of ads. For example, a vertical banner may consist of 2 or more ads. Also, the number of ads in an ad unit may vary depending on whether the ad unit is displaying standard text ads, expanded text ads or image ads.",
                     "Number of times a user clicked on a standard content ad.",
-                    "Fraction of page views considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad requests considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad requests that returned ads considered to be spam. Only available to premium accounts.",
-                    "Fraction of impressions considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad impressions considered to be spam. Only available to premium accounts.",
-                    "Fraction of clicks considered to be spam. Only available to premium accounts.",
+                    "Fraction of page views considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad requests considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad requests that returned ads considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of impressions considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad impressions considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of clicks considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
                     "Ratio of requested ad units or queries to the number returned to the site.",
                     "Ratio of individual page views that resulted in a click.",
                     "Ratio of ad requests that resulted in a click.",
@@ -1570,12 +1570,12 @@
                     "Impressions. An impression is counted for each ad request where at least one ad has been downloaded to the user's device and has begun to load. It is the number of ad units (for content ads) or search queries (for search ads) that showed ads.",
                     "Ads shown. Different ad formats will display varying numbers of ads. For example, a vertical banner may consist of 2 or more ads. Also, the number of ads in an ad unit may vary depending on whether the ad unit is displaying standard text ads, expanded text ads or image ads.",
                     "Number of times a user clicked on a standard content ad.",
-                    "Fraction of page views considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad requests considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad requests that returned ads considered to be spam. Only available to premium accounts.",
-                    "Fraction of impressions considered to be spam. Only available to premium accounts.",
-                    "Fraction of ad impressions considered to be spam. Only available to premium accounts.",
-                    "Fraction of clicks considered to be spam. Only available to premium accounts.",
+                    "Fraction of page views considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad requests considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad requests that returned ads considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of impressions considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of ad impressions considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
+                    "Fraction of clicks considered to be spam. Only available to [premium accounts](https://developers.google.com/adsense/management/reference/rest/v2/accounts#Account.FIELDS.premium).",
                     "Ratio of requested ad units or queries to the number returned to the site.",
                     "Ratio of individual page views that resulted in a click.",
                     "Ratio of ad requests that resulted in a click.",
@@ -2018,7 +2018,7 @@
       }
     }
   },
-  "revision": "20250506",
+  "revision": "20250624",
   "rootUrl": "https://adsense.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2050,7 +2050,7 @@
           "type": "array"
         },
         "premium": {
-          "description": "Output only. Whether this account is premium.",
+          "description": "Output only. Whether this account is premium. Premium accounts have access to additional spam-related metrics.",
           "readOnly": true,
           "type": "boolean"
         },
