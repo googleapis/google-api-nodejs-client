@@ -637,6 +637,98 @@
         }
       }
     },
+    "locations": {
+      "resources": {
+        "effectiveTagBindingCollections": {
+          "methods": {
+            "get": {
+              "description": "Returns effective tag bindings on a GCP resource.",
+              "flatPath": "v3/locations/{locationsId}/effectiveTagBindingCollections/{effectiveTagBindingCollectionsId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.locations.effectiveTagBindingCollections.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The full name of the EffectiveTagBindingCollection in format: `locations/{location}/effectiveTagBindingCollections/{encoded-full-resource-name}` where the encoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. \"locations/global/effectiveTagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123\"",
+                  "location": "path",
+                  "pattern": "^locations/[^/]+/effectiveTagBindingCollections/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "EffectiveTagBindingCollection"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            }
+          }
+        },
+        "tagBindingCollections": {
+          "methods": {
+            "get": {
+              "description": "Returns tag bindings directly attached to a GCP resource.",
+              "flatPath": "v3/locations/{locationsId}/tagBindingCollections/{tagBindingCollectionsId}",
+              "httpMethod": "GET",
+              "id": "cloudresourcemanager.locations.tagBindingCollections.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The full name of the TagBindingCollection in format: `locations/{location}/tagBindingCollections/{encoded-full-resource-name}` where the enoded-full-resource-name is the UTF-8 encoded name of the resource the TagBindings are bound to. E.g. \"locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123\"",
+                  "location": "path",
+                  "pattern": "^locations/[^/]+/tagBindingCollections/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "response": {
+                "$ref": "TagBindingCollection"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/cloud-platform.read-only"
+              ]
+            },
+            "update": {
+              "description": "Updates tag bindings directly attached to a GCP resource.",
+              "flatPath": "v3/locations/{locationsId}/tagBindingCollections/{tagBindingCollectionsId}",
+              "httpMethod": "PUT",
+              "id": "cloudresourcemanager.locations.tagBindingCollections.update",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Identifier. The name of the TagBindingCollection, following the convention: `locations/{location}/tagBindingCollections/{encoded-full-resource-name}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. \"locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123\"",
+                  "location": "path",
+                  "pattern": "^locations/[^/]+/tagBindingCollections/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v3/{+name}",
+              "request": {
+                "$ref": "TagBindingCollection"
+              },
+              "response": {
+                "$ref": "Operation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            }
+          }
+        }
+      }
+    },
     "operations": {
       "methods": {
         "get": {
@@ -1870,7 +1962,7 @@
       }
     }
   },
-  "revision": "20250508",
+  "revision": "20250606",
   "rootUrl": "https://cloudresourcemanager.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2139,6 +2231,28 @@
         },
         "tagValue": {
           "description": "Resource name for TagValue in the format `tagValues/456`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EffectiveTagBindingCollection": {
+      "description": "Represents a collection of effective tag bindings for a GCP resource.",
+      "id": "EffectiveTagBindingCollection",
+      "properties": {
+        "effectiveTags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values effectively bound to this resource, specified in namespaced format. For example: \"123/environment\": \"production\"",
+          "type": "object"
+        },
+        "fullResourceName": {
+          "description": "The full resource name of the resource the TagBindings are bound to. E.g. `//cloudresourcemanager.googleapis.com/projects/123`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the EffectiveTagBindingCollection, following the convention: `locations/{location}/effectiveTagBindingCollections/{encoded-full-resource-name}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. E.g. \"locations/global/effectiveTagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123\"",
           "type": "string"
         }
       },
@@ -2696,6 +2810,14 @@
       "description": "A project is a high-level Google Cloud entity. It is a container for ACLs, APIs, App Engine Apps, VMs, and other Google Cloud Platform resources.",
       "id": "Project",
       "properties": {
+        "configuredCapabilities": {
+          "description": "Output only. If this project is a Management Project, list of capabilities configured on the parent folder. Note, presence of any capability implies that this is a Management Project. Example: `folders/123/capabilities/app-management`. OUTPUT ONLY.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "createTime": {
           "description": "Output only. Creation time.",
           "format": "google-datetime",
@@ -2909,6 +3031,32 @@
       },
       "type": "object"
     },
+    "TagBindingCollection": {
+      "description": "Represents a collection of tags directly bound to a GCP resource.",
+      "id": "TagBindingCollection",
+      "properties": {
+        "etag": {
+          "description": "Optional. A checksum based on the current bindings which can be passed to prevent race conditions. This field is always set in server responses.",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "The full resource name of the resource the TagBindings are bound to. E.g. `//cloudresourcemanager.googleapis.com/projects/123`",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the TagBindingCollection, following the convention: `locations/{location}/tagBindingCollections/{encoded-full-resource-name}` where the encoded-full-resource-name is the UTF-8 encoded name of the GCP resource the TagBindings are bound to. \"locations/global/tagBindingCollections/%2f%2fcloudresourcemanager.googleapis.com%2fprojects%2f123\"",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Tag keys/values directly bound to this resource, specified in namespaced format. For example: \"123/environment\": \"production\"",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "TagHold": {
       "description": "A TagHold represents the use of a TagValue that is not captured by TagBindings. If a TagValue has any TagHolds, deletion will be blocked. This resource is intended to be created in the same cloud location as the `holder`.",
       "id": "TagHold",
@@ -2992,7 +3140,7 @@
           "type": "object"
         },
         "shortName": {
-          "description": "Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-63 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
+          "description": "Required. Immutable. The user friendly name for a TagKey. The short name should be unique for TagKeys within the same tag namespace. The short name must be 1-256 characters, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
           "type": "string"
         },
         "updateTime": {
@@ -3036,7 +3184,7 @@
           "type": "string"
         },
         "shortName": {
-          "description": "Required. Immutable. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 63 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
+          "description": "Required. Immutable. User-assigned short name for TagValue. The short name should be unique for TagValues within the same parent TagKey. The short name must be 256 characters or less, beginning and ending with an alphanumeric character ([a-z0-9A-Z]) with dashes (-), underscores (_), dots (.), and alphanumerics between.",
           "type": "string"
         },
         "updateTime": {
