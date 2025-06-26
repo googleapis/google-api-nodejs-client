@@ -133,7 +133,7 @@ export namespace container_v1 {
      */
     acceleratorCount?: string | null;
     /**
-     * The accelerator type resource name. List of supported accelerators [here](https://cloud.google.com/compute/docs/gpus)
+     * The accelerator type resource name. List of supported accelerators [here](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/gpus)
      */
     acceleratorType?: string | null;
     /**
@@ -148,6 +148,19 @@ export namespace container_v1 {
      * The configuration for GPU sharing options.
      */
     gpuSharingConfig?: Schema$GPUSharingConfig;
+  }
+  /**
+   * AdditionalIPRangesConfig is the configuration for individual additional subnetwork attached to the cluster
+   */
+  export interface Schema$AdditionalIPRangesConfig {
+    /**
+     * List of secondary ranges names within this subnetwork that can be used for pod IPs. Example1: gke-pod-range1 Example2: gke-pod-range1,gke-pod-range2
+     */
+    podIpv4RangeNames?: string[] | null;
+    /**
+     * Name of the subnetwork. This can be the full path of the subnetwork or just the name. Example1: my-subnet Example2: projects/gke-project/regions/us-central1/subnetworks/my-subnet
+     */
+    subnetwork?: string | null;
   }
   /**
    * AdditionalNodeNetworkConfig is the configuration for additional node networks within the NodeNetworkConfig message
@@ -229,6 +242,10 @@ export namespace container_v1 {
      */
     gkeBackupAgentConfig?: Schema$GkeBackupAgentConfig;
     /**
+     * Configuration for the High Scale Checkpointing add-on.
+     */
+    highScaleCheckpointingConfig?: Schema$HighScaleCheckpointingConfig;
+    /**
      * Configuration for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
      */
     horizontalPodAutoscaling?: Schema$HorizontalPodAutoscaling;
@@ -237,7 +254,7 @@ export namespace container_v1 {
      */
     httpLoadBalancing?: Schema$HttpLoadBalancing;
     /**
-     * Configuration for the Kubernetes Dashboard. This addon is deprecated, and will be disabled in 1.15. It is recommended to use the Cloud Console to manage and monitor your Kubernetes clusters, workloads and applications. For more information, see: https://cloud.google.com/kubernetes-engine/docs/concepts/dashboards
+     * Configuration for the Kubernetes Dashboard. This addon is deprecated, and will be disabled in 1.15. It is recommended to use the Cloud Console to manage and monitor your Kubernetes clusters, workloads and applications. For more information, see: https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/concepts/dashboards
      */
     kubernetesDashboard?: Schema$KubernetesDashboard;
     /**
@@ -283,9 +300,22 @@ export namespace container_v1 {
      */
     enableNestedVirtualization?: boolean | null;
     /**
+     * Type of Performance Monitoring Unit (PMU) requested on node pool instances. If unset, PMU will not be available to the node.
+     */
+    performanceMonitoringUnit?: string | null;
+    /**
      * The number of threads per physical core. To disable simultaneous multithreading (SMT) set this to 1. If unset, the maximum number of threads supported per core by the underlying processor is assumed.
      */
     threadsPerCore?: string | null;
+  }
+  /**
+   * AnonymousAuthenticationConfig defines the settings needed to limit endpoints that allow anonymous authentication.
+   */
+  export interface Schema$AnonymousAuthenticationConfig {
+    /**
+     * Defines the mode of limiting anonymous access in the cluster.
+     */
+    mode?: string | null;
   }
   /**
    * Configuration for returning group information from authenticators.
@@ -300,6 +330,10 @@ export namespace container_v1 {
      */
     securityGroup?: string | null;
   }
+  /**
+   * AutoIpamConfig contains all information related to Auto IPAM
+   */
+  export interface Schema$AutoIpamConfig {}
   /**
    * AutoMonitoringConfig defines the configuration for GKE Workload Auto-Monitoring.
    */
@@ -365,7 +399,7 @@ export namespace container_v1 {
    */
   export interface Schema$AutoprovisioningNodePoolDefaults {
     /**
-     * The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     * The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
     /**
@@ -377,7 +411,7 @@ export namespace container_v1 {
      */
     diskType?: string | null;
     /**
-     * The image type to use for NAP created node. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
+     * The image type to use for NAP created node. Please see https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -389,7 +423,7 @@ export namespace container_v1 {
      */
     management?: Schema$NodeManagement;
     /**
-     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using `cloud.google.com/requested-min-cpu-platform` label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
+     * Deprecated. Minimum CPU platform to be used for NAP created node pools. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as minCpuPlatform: Intel Haswell or minCpuPlatform: Intel Sandy Bridge. For more information, read [how to specify min CPU platform](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instances/specify-min-cpu-platform). This field is deprecated, min_cpu_platform should be specified using `cloud.google.com/requested-min-cpu-platform` label selector on the pod. To unset the min cpu platform field pass "automatic" as field value.
      */
     minCpuPlatform?: string | null;
     /**
@@ -508,11 +542,11 @@ export namespace container_v1 {
      */
     operationId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -586,6 +620,14 @@ export namespace container_v1 {
      */
     addonsConfig?: Schema$AddonsConfig;
     /**
+     * The list of user specified Kubernetes feature gates. Each string represents the activation status of a feature gate (e.g. "featureX=true" or "featureX=false")
+     */
+    alphaClusterFeatureGates?: string[] | null;
+    /**
+     * Configuration for limiting anonymous access to all endpoints except the health checks.
+     */
+    anonymousAuthenticationConfig?: Schema$AnonymousAuthenticationConfig;
+    /**
      * Configuration controlling RBAC group membership information.
      */
     authenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
@@ -638,7 +680,7 @@ export namespace container_v1 {
      */
     currentNodeCount?: number | null;
     /**
-     * Output only. Deprecated, use [NodePools.version](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they're in the process of being upgraded, this reflects the minimum version of all nodes.
+     * Output only. Deprecated, use [NodePools.version](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools) instead. The current version of the node software components. If they are currently at multiple versions because they're in the process of being upgraded, this reflects the minimum version of all nodes.
      */
     currentNodeVersion?: string | null;
     /**
@@ -686,6 +728,10 @@ export namespace container_v1 {
      */
     fleet?: Schema$Fleet;
     /**
+     * Configuration for GKE auto upgrades.
+     */
+    gkeAutoUpgradeConfig?: Schema$GkeAutoUpgradeConfig;
+    /**
      * Output only. Unique id for the cluster.
      */
     id?: string | null;
@@ -698,7 +744,7 @@ export namespace container_v1 {
      */
     initialClusterVersion?: string | null;
     /**
-     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a "node_pool" object, since this configuration (along with the "node_config") will be used to create a "NodePool" object with an auto-generated name. Do not use this and a node_pool at the same time. This field is deprecated, use node_pool.initial_node_count instead.
+     * The number of nodes to create in this cluster. You must ensure that your Compute Engine [resource quota](https://{$universe.dns_names.final_documentation_domain\}/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota. For requests, this field should only be used in lieu of a "node_pool" object, since this configuration (along with the "node_config") will be used to create a "NodePool" object with an auto-generated name. Do not use this and a node_pool at the same time. This field is deprecated, use node_pool.initial_node_count instead.
      */
     initialNodeCount?: number | null;
     /**
@@ -718,11 +764,11 @@ export namespace container_v1 {
      */
     legacyAbac?: Schema$LegacyAbac;
     /**
-     * Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
+     * Output only. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/regions-zones/regions-zones#available) or [region](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
      */
     location?: string | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This field provides a default value if [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
+     * The list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster's nodes should be located. This field provides a default value if [NodePool.Locations](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) are not specified during node pool creation. Warning: changing cluster locations will update the [NodePool.Locations](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters.nodePools#NodePool.FIELDS.locations) of all node pools and will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
@@ -762,7 +808,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * The name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. If left unspecified, the `default` network will be used.
+     * The name of the Google Compute Engine [network](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. If left unspecified, the `default` network will be used.
      */
     network?: string | null;
     /**
@@ -862,7 +908,7 @@ export namespace container_v1 {
      */
     statusMessage?: string | null;
     /**
-     * The name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/subnetworks) to which the cluster is connected.
+     * The name of the Google Compute Engine [subnetwork](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/subnetworks) to which the cluster is connected.
      */
     subnetwork?: string | null;
     /**
@@ -882,7 +928,7 @@ export namespace container_v1 {
      */
     workloadIdentityConfig?: Schema$WorkloadIdentityConfig;
     /**
-     * Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
+     * Output only. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field is deprecated, use location instead.
      */
     zone?: string | null;
   }
@@ -891,7 +937,7 @@ export namespace container_v1 {
    */
   export interface Schema$ClusterAutoscaling {
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.
+     * The list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the NodePool's nodes can be created by NAP.
      */
     autoprovisioningLocations?: string[] | null;
     /**
@@ -929,13 +975,25 @@ export namespace container_v1 {
      */
     additionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
     /**
+     * The desired config for additional subnetworks attached to the cluster.
+     */
+    desiredAdditionalIpRangesConfig?: Schema$DesiredAdditionalIPRangesConfig;
+    /**
      * Configurations for the various addons available to run in the cluster.
      */
     desiredAddonsConfig?: Schema$AddonsConfig;
     /**
+     * Configuration for limiting anonymous access to all endpoints except the health checks.
+     */
+    desiredAnonymousAuthenticationConfig?: Schema$AnonymousAuthenticationConfig;
+    /**
      * The desired authenticator groups config for the cluster.
      */
     desiredAuthenticatorGroupsConfig?: Schema$AuthenticatorGroupsConfig;
+    /**
+     * AutoIpamConfig contains all information related to Auto IPAM
+     */
+    desiredAutoIpamConfig?: Schema$AutoIpamConfig;
     /**
      * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
@@ -1045,7 +1103,7 @@ export namespace container_v1 {
      */
     desiredL4ilbSubsettingConfig?: Schema$ILBSubsettingConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
+     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster's nodes should be located. This list must always include the cluster's primary zone. Warning: changing cluster locations will update the locations of all node pools and will result in nodes being added and/or removed.
      */
     desiredLocations?: string[] | null;
     /**
@@ -1169,6 +1227,10 @@ export namespace container_v1 {
      */
     desiredStackType?: string | null;
     /**
+     * The desired user managed keys config for the cluster.
+     */
+    desiredUserManagedKeysConfig?: Schema$UserManagedKeysConfig;
+    /**
      * Cluster-level Vertical Pod Autoscaling configuration.
      */
     desiredVerticalPodAutoscaling?: Schema$VerticalPodAutoscaling;
@@ -1185,11 +1247,15 @@ export namespace container_v1 {
      */
     etag?: string | null;
     /**
+     * Configuration for GKE auto upgrade.
+     */
+    gkeAutoUpgradeConfig?: Schema$GkeAutoUpgradeConfig;
+    /**
      * The additional pod ranges that are to be removed from the cluster. The pod ranges specified here must have been specified earlier in the 'additional_pod_ranges_config' argument.
      */
     removedAdditionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
     /**
-     * The Custom keys configuration for the cluster.
+     * The Custom keys configuration for the cluster. This field is deprecated. Use ClusterUpdate.desired_user_managed_keys_config instead.
      */
     userManagedKeysConfig?: Schema$UserManagedKeysConfig;
   }
@@ -1239,11 +1305,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -1340,7 +1406,7 @@ export namespace container_v1 {
    */
   export interface Schema$CreateClusterRequest {
     /**
-     * Required. A [cluster resource](https://cloud.google.com/container-engine/reference/rest/v1/projects.locations.clusters)
+     * Required. A [cluster resource](https://{$universe.dns_names.final_documentation_domain\}/container-engine/reference/rest/v1/projects.locations.clusters)
      */
     cluster?: Schema$Cluster;
     /**
@@ -1348,11 +1414,11 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string | null;
   }
@@ -1373,11 +1439,11 @@ export namespace container_v1 {
      */
     parent?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string | null;
   }
@@ -1427,6 +1493,15 @@ export namespace container_v1 {
      * Disables cluster default sNAT rules.
      */
     disabled?: boolean | null;
+  }
+  /**
+   * DesiredAdditionalIPRangesConfig is a wrapper used for cluster update operation and contains multiple AdditionalIPRangesConfigs.
+   */
+  export interface Schema$DesiredAdditionalIPRangesConfig {
+    /**
+     * List of additional IP ranges configs where each AdditionalIPRangesConfig corresponds to one subnetwork's IP ranges
+     */
+    additionalIpRangesConfigs?: Schema$AdditionalIPRangesConfig[];
   }
   /**
    * DesiredEnterpriseConfig is a wrapper used for updating enterprise_config.
@@ -1506,7 +1581,7 @@ export namespace container_v1 {
      */
     dataCacheCount?: number | null;
     /**
-     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
+     * Number of local SSDs to use to back ephemeral storage. Uses NVMe interfaces. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/local-ssd for more information. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
     localSsdCount?: number | null;
   }
@@ -1582,7 +1657,7 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
-   * GCPSecretManagerCertificateConfig configures a secret from [Google Secret Manager](https://cloud.google.com/secret-manager).
+   * GCPSecretManagerCertificateConfig configures a secret from [Google Secret Manager](https://{$universe.dns_names.final_documentation_domain\}/secret-manager).
    */
   export interface Schema$GCPSecretManagerCertificateConfig {
     /**
@@ -1650,6 +1725,15 @@ export namespace container_v1 {
     subject_types_supported?: string[] | null;
   }
   /**
+   * GkeAutoUpgradeConfig is the configuration for GKE auto upgrades.
+   */
+  export interface Schema$GkeAutoUpgradeConfig {
+    /**
+     * PatchMode specifies how auto upgrade patch builds should be selected.
+     */
+    patchMode?: string | null;
+  }
+  /**
    * Configuration for the Backup for GKE Agent.
    */
   export interface Schema$GkeBackupAgentConfig {
@@ -1679,6 +1763,15 @@ export namespace container_v1 {
      * The max number of containers that can share a physical GPU.
      */
     maxSharedClientsPerGpu?: string | null;
+  }
+  /**
+   * Configuration for the High Scale Checkpointing.
+   */
+  export interface Schema$HighScaleCheckpointingConfig {
+    /**
+     * Whether the High Scale Checkpointing is enabled for this cluster.
+     */
+    enabled?: boolean | null;
   }
   /**
    * Configuration options for the horizontal pod autoscaling feature, which increases or decreases the number of replica pods a replication controller has based on the resource usage of the existing pods.
@@ -1760,9 +1853,17 @@ export namespace container_v1 {
    */
   export interface Schema$IPAllocationPolicy {
     /**
+     * Output only. The additional IP ranges that are added to the cluster. These IP ranges can be used by new node pools to allocate node and pod IPs automatically. Each AdditionalIPRangesConfig corresponds to a single subnetwork. Once a range is removed it will not show up in IPAllocationPolicy.
+     */
+    additionalIpRangesConfigs?: Schema$AdditionalIPRangesConfig[];
+    /**
      * Output only. The additional pod ranges that are added to the cluster. These pod ranges can be used by new node pools to allocate pod IPs automatically. Once the range is removed it will not show up in IPAllocationPolicy.
      */
     additionalPodRangesConfig?: Schema$AdditionalPodRangesConfig;
+    /**
+     * Optional. AutoIpamConfig contains all information related to Auto IPAM
+     */
+    autoIpamConfig?: Schema$AutoIpamConfig;
     /**
      * This field is deprecated, use cluster_ipv4_cidr_block.
      */
@@ -2011,7 +2112,7 @@ export namespace container_v1 {
    */
   export interface Schema$LocalNvmeSsdBlockConfig {
     /**
-     * Number of local NVMe SSDs to use. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://cloud.google.com/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
+     * Number of local NVMe SSDs to use. The limit for this value is dependent upon the maximum number of disk available on a machine per zone. See: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/local-ssd for more information. A zero (or unset) value has different meanings depending on machine type being used: 1. For pre-Gen3 machines, which support flexible numbers of local ssds, zero (or unset) means to disable using local SSDs as ephemeral storage. 2. For Gen3 machines which dictate a specific number of local ssds, zero (or unset) means to use the default number of local ssds that goes with that machine type. For example, for a c3-standard-8-lssd machine, 2 local ssds would be provisioned. For c3-standard-8 (which doesn't support local ssds), 0 will be provisioned. See https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/local-ssd#choose_number_local_ssds for more info.
      */
     localSsdCount?: number | null;
   }
@@ -2115,11 +2216,11 @@ export namespace container_v1 {
      */
     clusterCaCertificate?: string | null;
     /**
-     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty. Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
+     * The password to use for HTTP basic authentication to the master endpoint. Because the master endpoint is open to the Internet, you should create a strong password. If a password is provided for cluster creation, username must be non-empty. Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/how-to/api-server-authentication
      */
     password?: string | null;
     /**
-     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string). Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://cloud.google.com/kubernetes-engine/docs/how-to/api-server-authentication
+     * The username to use for HTTP basic authentication to the master endpoint. For clusters v1.6.0 and later, basic authentication can be disabled by leaving username unspecified (or setting it to the empty string). Warning: basic authentication is deprecated, and will be removed in GKE control plane versions 1.19 and newer. For a list of recommended authentication methods, see: https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/how-to/api-server-authentication
      */
     username?: string | null;
   }
@@ -2271,7 +2372,7 @@ export namespace container_v1 {
      */
     inTransitEncryptionConfig?: string | null;
     /**
-     * Output only. The relative name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
+     * Output only. The relative name of the Google Compute Engine [network](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/networks-and-firewalls#networks) to which the cluster is connected. Example: projects/my-project/global/networks/my-network
      */
     network?: string | null;
     /**
@@ -2287,7 +2388,7 @@ export namespace container_v1 {
      */
     serviceExternalIpsConfig?: Schema$ServiceExternalIPsConfig;
     /**
-     * Output only. The relative name of the Google Compute Engine [subnetwork](https://cloud.google.com/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
+     * Output only. The relative name of the Google Compute Engine [subnetwork](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/vpc) to which the cluster is connected. Example: projects/my-project/regions/us-central1/subnetworks/my-subnet
      */
     subnetwork?: string | null;
   }
@@ -2332,7 +2433,7 @@ export namespace container_v1 {
     tags?: string[] | null;
   }
   /**
-   * Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).
+   * Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).
    */
   export interface Schema$NodeAffinity {
     /**
@@ -2353,7 +2454,7 @@ export namespace container_v1 {
    */
   export interface Schema$NodeConfig {
     /**
-     * A list of hardware accelerators to be attached to each node. See https://cloud.google.com/compute/docs/gpus for more information about support for GPUs.
+     * A list of hardware accelerators to be attached to each node. See https://{$universe.dns_names.final_documentation_domain\}/compute/docs/gpus for more information about support for GPUs.
      */
     accelerators?: Schema$AcceleratorConfig[];
     /**
@@ -2361,7 +2462,7 @@ export namespace container_v1 {
      */
     advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**
-     *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://cloud.google.com/compute/docs/disks/customer-managed-encryption
+     *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
     /**
@@ -2409,7 +2510,7 @@ export namespace container_v1 {
      */
     gvnic?: Schema$VirtualNIC;
     /**
-     * The image type to use for this node. Note that for a given image type, the latest version of it will be used. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
+     * The image type to use for this node. Note that for a given image type, the latest version of it will be used. Please see https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -2429,7 +2530,7 @@ export namespace container_v1 {
      */
     localNvmeSsdBlockConfig?: Schema$LocalNvmeSsdBlockConfig;
     /**
-     * The number of local SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://cloud.google.com/compute/docs/disks/local-ssd for more information.
+     * The number of local SSD disks to be attached to the node. The limit for this value is dependent upon the maximum number of disks available on a machine per zone. See: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/local-ssd for more information.
      */
     localSsdCount?: number | null;
     /**
@@ -2441,7 +2542,7 @@ export namespace container_v1 {
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
     /**
-     * The name of a Google Compute Engine [machine type](https://cloud.google.com/compute/docs/machine-types) If unspecified, the default machine type is `e2-medium`.
+     * The name of a Google Compute Engine [machine type](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/machine-types) If unspecified, the default machine type is `e2-medium`.
      */
     machineType?: string | null;
     /**
@@ -2453,23 +2554,23 @@ export namespace container_v1 {
      */
     metadata?: {[key: string]: string} | null;
     /**
-     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://cloud.google.com/compute/docs/instances/specify-min-cpu-platform)
+     * Minimum CPU platform to be used by this instance. The instance may be scheduled on the specified or newer CPU platform. Applicable values are the friendly names of CPU platforms, such as `minCpuPlatform: "Intel Haswell"` or `minCpuPlatform: "Intel Sandy Bridge"`. For more information, read [how to specify min CPU platform](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instances/specify-min-cpu-platform)
      */
     minCpuPlatform?: string | null;
     /**
-     * Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://cloud.google.com/compute/docs/nodes/sole-tenant-nodes).
+     * Setting this field will assign instances of this pool to run on the specified node group. This is useful for running workloads on [sole tenant nodes](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/nodes/sole-tenant-nodes).
      */
     nodeGroup?: string | null;
     /**
-     * The set of Google API scopes to be made available on all of the node VMs under the "default" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://cloud.google.com/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
+     * The set of Google API scopes to be made available on all of the node VMs under the "default" service account. The following scopes are recommended, but not required, and by default are not included: * `https://www.googleapis.com/auth/compute` is required for mounting persistent storage on your nodes. * `https://www.googleapis.com/auth/devstorage.read_only` is required for communicating with **gcr.io** (the [Google Container Registry](https://{$universe.dns_names.final_documentation_domain\}/container-registry/)). If unspecified, no scopes are added, unless Cloud Logging or Cloud Monitoring are enabled, in which case their required scopes will be added.
      */
     oauthScopes?: string[] | null;
     /**
-     * Whether the nodes are created as preemptible VM instances. See: https://cloud.google.com/compute/docs/instances/preemptible for more information about preemptible VM instances.
+     * Whether the nodes are created as preemptible VM instances. See: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instances/preemptible for more information about preemptible VM instances.
      */
     preemptible?: boolean | null;
     /**
-     * The optional reservation affinity. Setting this field will apply the specified [Zonal Compute Reservation](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) to this node pool.
+     * The optional reservation affinity. Setting this field will apply the specified [Zonal Compute Reservation](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instances/reserving-zonal-resources) to this node pool.
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
@@ -2707,15 +2808,15 @@ export namespace container_v1 {
      */
     etag?: string | null;
     /**
-     * The initial node count for the pool. You must ensure that your Compute Engine [resource quota](https://cloud.google.com/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota.
+     * The initial node count for the pool. You must ensure that your Compute Engine [resource quota](https://{$universe.dns_names.final_documentation_domain\}/compute/quotas) is sufficient for this number of instances. You must also have available firewall and routes quota.
      */
     initialNodeCount?: number | null;
     /**
-     * Output only. The resource URLs of the [managed instance groups](https://cloud.google.com/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool. During the node pool blue-green upgrade operation, the URLs contain both blue and green resources.
+     * Output only. The resource URLs of the [managed instance groups](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instance-groups/creating-groups-of-managed-instances) associated with this node pool. During the node pool blue-green upgrade operation, the URLs contain both blue and green resources.
      */
     instanceGroupUrls?: string[] | null;
     /**
-     * The list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the NodePool's nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
+     * The list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the NodePool's nodes should be located. If this value is unspecified during node pool creation, the [Cluster.Locations](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters#Cluster.FIELDS.locations) value will be used, instead. Warning: changing node pool locations will result in nodes being added and/or removed.
      */
     locations?: string[] | null;
     /**
@@ -2767,7 +2868,7 @@ export namespace container_v1 {
      */
     upgradeSettings?: Schema$UpgradeSettings;
     /**
-     * The version of Kubernetes running on this NodePool's nodes. If unspecified, it defaults as described [here](https://cloud.google.com/kubernetes-engine/versioning#specifying_node_version).
+     * The version of Kubernetes running on this NodePool's nodes. If unspecified, it defaults as described [here](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/versioning#specifying_node_version).
      */
     version?: string | null;
   }
@@ -2932,7 +3033,7 @@ export namespace container_v1 {
      */
     error?: Schema$Status;
     /**
-     * Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) or [region](https://cloud.google.com/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
+     * Output only. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/regions-zones/regions-zones#available) or [region](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/regions-zones/regions-zones#available) in which the cluster resides.
      */
     location?: string | null;
     /**
@@ -2972,7 +3073,7 @@ export namespace container_v1 {
      */
     targetLink?: string | null;
     /**
-     * Output only. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation is taking place. This field is deprecated, use location instead.
+     * Output only. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the operation is taking place. This field is deprecated, use location instead.
      */
     zone?: string | null;
   }
@@ -3045,7 +3146,7 @@ export namespace container_v1 {
      */
     policyName?: string | null;
     /**
-     * Optional. TPU placement topology for pod slice node pool. https://cloud.google.com/tpu/docs/types-topologies#tpu_topologies
+     * Optional. TPU placement topology for pod slice node pool. https://{$universe.dns_names.final_documentation_domain\}/tpu/docs/types-topologies#tpu_topologies
      */
     tpuTopology?: string | null;
     /**
@@ -3261,7 +3362,7 @@ export namespace container_v1 {
     validVersions?: string[] | null;
   }
   /**
-   * [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) is the configuration of desired reservation which instances could take capacity from.
+   * [ReservationAffinity](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/instances/reserving-zonal-resources) is the configuration of desired reservation which instances could take capacity from.
    */
   export interface Schema$ReservationAffinity {
     /**
@@ -3278,7 +3379,7 @@ export namespace container_v1 {
     values?: string[] | null;
   }
   /**
-   * Collection of [GCP labels](https://cloud.google.com/resource-manager/docs/creating-managing-labels).
+   * Collection of [GCP labels](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-labels).
    */
   export interface Schema$ResourceLabels {
     /**
@@ -3304,7 +3405,7 @@ export namespace container_v1 {
     resourceType?: string | null;
   }
   /**
-   * A map of resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Tags must be according to specifications in https://cloud.google.com/vpc/docs/tags-firewalls-overview#specifications. A maximum of 5 tag key-value pairs can be specified. Existing tags will be replaced with new values.
+   * A map of resource manager tag keys and values to be attached to the nodes for managing Compute Engine firewalls using Network Firewall Policies. Tags must be according to specifications in https://{$universe.dns_names.final_documentation_domain\}/vpc/docs/tags-firewalls-overview#specifications. A maximum of 5 tag key-value pairs can be specified. Existing tags will be replaced with new values.
    */
   export interface Schema$ResourceManagerTags {
     /**
@@ -3346,7 +3447,7 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -3354,7 +3455,7 @@ export namespace container_v1 {
      */
     respectPdb?: boolean | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3510,11 +3611,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3535,7 +3636,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -3543,7 +3644,7 @@ export namespace container_v1 {
      */
     resourceLabels?: {[key: string]: string} | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3564,11 +3665,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3581,7 +3682,7 @@ export namespace container_v1 {
      */
     clusterId?: string | null;
     /**
-     * Required. The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the cluster's nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed. This list must always include the cluster's primary zone.
+     * Required. The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster's nodes should be located. Changing the locations a cluster is in will result in nodes being either created or removed from the cluster, depending on whether locations are being added or removed. This list must always include the cluster's primary zone.
      */
     locations?: string[] | null;
     /**
@@ -3589,11 +3690,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3614,11 +3715,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3639,11 +3740,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Required. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     * Required. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects).
      */
     projectId?: string | null;
     /**
-     * Required. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides.
+     * Required. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides.
      */
     zone?: string | null;
   }
@@ -3664,7 +3765,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -3672,7 +3773,7 @@ export namespace container_v1 {
      */
     update?: Schema$MasterAuth;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3693,11 +3794,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3718,11 +3819,11 @@ export namespace container_v1 {
      */
     networkPolicy?: Schema$NetworkPolicy;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3747,11 +3848,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3776,11 +3877,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3805,11 +3906,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3874,7 +3975,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -3882,7 +3983,7 @@ export namespace container_v1 {
      */
     rotateCredentials?: boolean | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -3972,7 +4073,7 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -3980,7 +4081,7 @@ export namespace container_v1 {
      */
     update?: Schema$ClusterUpdate;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -4010,11 +4111,11 @@ export namespace container_v1 {
      */
     name?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -4023,7 +4124,7 @@ export namespace container_v1 {
    */
   export interface Schema$UpdateNodePoolRequest {
     /**
-     * A list of hardware accelerators to be attached to each node. See https://cloud.google.com/compute/docs/gpus for more information about support for GPUs.
+     * A list of hardware accelerators to be attached to each node. See https://{$universe.dns_names.final_documentation_domain\}/compute/docs/gpus for more information about support for GPUs.
      */
     accelerators?: Schema$AcceleratorConfig[];
     /**
@@ -4067,7 +4168,7 @@ export namespace container_v1 {
      */
     gvnic?: Schema$VirtualNIC;
     /**
-     * Required. The desired image type for the node pool. Please see https://cloud.google.com/kubernetes-engine/docs/concepts/node-images for available image types.
+     * Required. The desired image type for the node pool. Please see https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/concepts/node-images for available image types.
      */
     imageType?: string | null;
     /**
@@ -4083,7 +4184,7 @@ export namespace container_v1 {
      */
     linuxNodeConfig?: Schema$LinuxNodeConfig;
     /**
-     * The desired list of Google Compute Engine [zones](https://cloud.google.com/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
+     * The desired list of Google Compute Engine [zones](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the node pool's nodes should be located. Changing the locations for a node pool will result in nodes being either created or removed from the node pool, depending on whether locations are being added or removed.
      */
     locations?: string[] | null;
     /**
@@ -4091,7 +4192,7 @@ export namespace container_v1 {
      */
     loggingConfig?: Schema$NodePoolLoggingConfig;
     /**
-     * Optional. The desired [Google Compute Engine machine type](https://cloud.google.com/compute/docs/machine-types) for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
+     * Optional. The desired [Google Compute Engine machine type](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/machine-types) for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified machine type.
      */
     machineType?: string | null;
     /**
@@ -4115,7 +4216,7 @@ export namespace container_v1 {
      */
     nodeVersion?: string | null;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string | null;
     /**
@@ -4155,7 +4256,7 @@ export namespace container_v1 {
      */
     workloadMetadataConfig?: Schema$WorkloadMetadataConfig;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string | null;
   }
@@ -4481,6 +4582,59 @@ export namespace container_v1 {
 
     /**
      * Lists subnetworks that are usable for creating clusters in a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.aggregated.usableSubnetworks.list({
+     *     // Filtering currently only supports equality on the networkProjectId and must be in the form: "networkProjectId=[PROJECTID]", where `networkProjectId` is the project which owns the listed subnetworks. This defaults to the parent project ID.
+     *     filter: 'placeholder-value',
+     *     // The max number of results per page that should be returned. If the number of available results is larger than `page_size`, a `next_page_token` is returned which can be used to get the next page of results in subsequent requests. Acceptable values are 0 to 500, inclusive. (Default: 500)
+     *     pageSize: 'placeholder-value',
+     *     // Specifies a page token to use. Set this to the nextPageToken returned by previous list requests to get the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // The parent project where subnetworks are usable. Specified in the format `projects/x`.
+     *     parent: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subnetworks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4611,6 +4765,61 @@ export namespace container_v1 {
 
     /**
      * Returns configuration info about the Google Kubernetes Engine service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.getServerConfig({
+     *     // The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "defaultClusterVersion": "my_defaultClusterVersion",
+     *   //   "defaultImageType": "my_defaultImageType",
+     *   //   "validImageTypes": [],
+     *   //   "validMasterVersions": [],
+     *   //   "validNodeVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4708,11 +4917,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -4733,6 +4942,54 @@ export namespace container_v1 {
 
     /**
      * Checks the cluster compatibility with Autopilot mode, and returns a list of compatibility issues.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.checkAutopilotCompatibility({
+     *       // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "issues": [],
+     *   //   "summary": "my_summary"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4835,6 +5092,77 @@ export namespace container_v1 {
 
     /**
      * Completes master IP rotation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.completeIpRotation({
+     *     // The name (project, location, cluster name) of the cluster to complete IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4926,7 +5254,78 @@ export namespace container_v1 {
     }
 
     /**
-     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.create({
+     *     // The parent (project and location) where the cluster will be created. Specified in the format `projects/x/locations/x`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cluster": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5018,6 +5417,72 @@ export namespace container_v1 {
 
     /**
      * Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.delete({
+     *     // Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5106,6 +5571,61 @@ export namespace container_v1 {
 
     /**
      * Fetch upgrade information of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.fetchClusterUpgradeInfo({
+     *       // Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *       // API request version that initiates this operation.
+     *       version: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoUpgradeStatus": [],
+     *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
+     *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
+     *   //   "minorTargetVersion": "my_minorTargetVersion",
+     *   //   "patchTargetVersion": "my_patchTargetVersion",
+     *   //   "pausedReason": [],
+     *   //   "upgradeDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5200,6 +5720,136 @@ export namespace container_v1 {
 
     /**
      * Gets the details of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.get({
+     *     // Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addonsConfig": {},
+     *   //   "alphaClusterFeatureGates": [],
+     *   //   "anonymousAuthenticationConfig": {},
+     *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
+     *   //   "autoscaling": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
+     *   //   "compliancePostureConfig": {},
+     *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
+     *   //   "controlPlaneEndpointsConfig": {},
+     *   //   "costManagementConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "currentMasterVersion": "my_currentMasterVersion",
+     *   //   "currentNodeCount": 0,
+     *   //   "currentNodeVersion": "my_currentNodeVersion",
+     *   //   "databaseEncryption": {},
+     *   //   "defaultMaxPodsConstraint": {},
+     *   //   "description": "my_description",
+     *   //   "enableK8sBetaApis": {},
+     *   //   "enableKubernetesAlpha": false,
+     *   //   "enableTpu": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "enterpriseConfig": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fleet": {},
+     *   //   "gkeAutoUpgradeConfig": {},
+     *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
+     *   //   "initialClusterVersion": "my_initialClusterVersion",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "ipAllocationPolicy": {},
+     *   //   "labelFingerprint": "my_labelFingerprint",
+     *   //   "legacyAbac": {},
+     *   //   "location": "my_location",
+     *   //   "locations": [],
+     *   //   "loggingConfig": {},
+     *   //   "loggingService": "my_loggingService",
+     *   //   "maintenancePolicy": {},
+     *   //   "masterAuth": {},
+     *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "meshCertificates": {},
+     *   //   "monitoringConfig": {},
+     *   //   "monitoringService": "my_monitoringService",
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "networkConfig": {},
+     *   //   "networkPolicy": {},
+     *   //   "nodeConfig": {},
+     *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
+     *   //   "nodePoolDefaults": {},
+     *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
+     *   //   "parentProductConfig": {},
+     *   //   "podAutoscaling": {},
+     *   //   "privateClusterConfig": {},
+     *   //   "rbacBindingConfig": {},
+     *   //   "releaseChannel": {},
+     *   //   "resourceLabels": {},
+     *   //   "resourceUsageExportConfig": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "secretManagerConfig": {},
+     *   //   "securityPostureConfig": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
+     *   //   "shieldedNodes": {},
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "subnetwork": "my_subnetwork",
+     *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
+     *   //   "userManagedKeysConfig": {},
+     *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadIdentityConfig": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5288,6 +5938,53 @@ export namespace container_v1 {
 
     /**
      * Gets the public component of the cluster signing keys in JSON Web Key format.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.getJwks({
+     *     // The cluster (project, location, cluster name) to get keys for. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHeader": {},
+     *   //   "keys": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5380,6 +6077,57 @@ export namespace container_v1 {
 
     /**
      * Lists all clusters owned by a project in either the specified zone or all zones.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.list({
+     *     // The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "missingZones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5473,6 +6221,78 @@ export namespace container_v1 {
 
     /**
      * Sets the addons for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setAddons({
+     *     // The name (project, location, cluster) of the cluster to set addons. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonsConfig": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5564,6 +6384,78 @@ export namespace container_v1 {
 
     /**
      * Enables or disables the ABAC authorization mechanism on a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLegacyAbac({
+     *     // The name (project, location, cluster name) of the cluster to set legacy abac. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "enabled": false,
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5655,7 +6547,79 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
+     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLocations({
+     *     // The name (project, location, cluster) of the cluster to set locations. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5747,6 +6711,78 @@ export namespace container_v1 {
 
     /**
      * Sets the logging service for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setLogging({
+     *     // The name (project, location, cluster) of the cluster to set logging. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "loggingService": "my_loggingService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5838,6 +6874,78 @@ export namespace container_v1 {
 
     /**
      * Sets the maintenance policy for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMaintenancePolicy({
+     *     // The name (project, location, cluster name) of the cluster to set maintenance policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "maintenancePolicy": {},
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5932,6 +7040,79 @@ export namespace container_v1 {
 
     /**
      * Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMasterAuth({
+     *     // The name (project, location, cluster) of the cluster to set auth. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6024,6 +7205,78 @@ export namespace container_v1 {
 
     /**
      * Sets the monitoring service for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setMonitoring({
+     *     // The name (project, location, cluster) of the cluster to set monitoring. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "monitoringService": "my_monitoringService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6116,6 +7369,78 @@ export namespace container_v1 {
 
     /**
      * Enables or disables Network Policy for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setNetworkPolicy({
+     *     // The name (project, location, cluster name) of the cluster to set networking policy. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "networkPolicy": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6208,6 +7533,79 @@ export namespace container_v1 {
 
     /**
      * Sets labels on a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.setResourceLabels({
+     *     // The name (project, location, cluster name) of the cluster to set labels. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "labelFingerprint": "my_labelFingerprint",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6300,6 +7698,78 @@ export namespace container_v1 {
 
     /**
      * Starts master IP rotation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.startIpRotation({
+     *     // The name (project, location, cluster name) of the cluster to start IP rotation. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "rotateCredentials": false,
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6392,6 +7862,78 @@ export namespace container_v1 {
 
     /**
      * Updates the settings of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.update({
+     *     // The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6480,6 +8022,78 @@ export namespace container_v1 {
 
     /**
      * Updates the master for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.updateMaster({
+     *     // The name (project, location, cluster) of the cluster to update. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "masterVersion": "my_masterVersion",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6612,11 +8226,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -6642,11 +8256,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -6664,11 +8278,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -6825,6 +8439,57 @@ export namespace container_v1 {
 
     /**
      * CompleteNodePoolUpgrade will signal an on-going node pool upgrade to complete.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.completeUpgrade({
+     *       // The name (project, location, cluster, node pool id) of the node pool to complete upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6917,6 +8582,78 @@ export namespace container_v1 {
 
     /**
      * Creates a node pool for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.create({
+     *     // The parent (project, location, cluster name) where the node pool will be created. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "nodePool": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7009,6 +8746,74 @@ export namespace container_v1 {
 
     /**
      * Deletes a node pool from a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.delete({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     // Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7098,6 +8903,63 @@ export namespace container_v1 {
 
     /**
      * Fetch upgrade information of a specific nodepool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.fetchNodePoolUpgradeInfo(
+     *       {
+     *         // Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
+     *         name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *         // API request version that initiates this operation.
+     *         version: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoUpgradeStatus": [],
+     *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
+     *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
+     *   //   "minorTargetVersion": "my_minorTargetVersion",
+     *   //   "patchTargetVersion": "my_patchTargetVersion",
+     *   //   "pausedReason": [],
+     *   //   "upgradeDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7192,6 +9054,81 @@ export namespace container_v1 {
 
     /**
      * Retrieves the requested node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.get({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *     // Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autopilotConfig": {},
+     *   //   "autoscaling": {},
+     *   //   "bestEffortProvisioning": {},
+     *   //   "conditions": [],
+     *   //   "config": {},
+     *   //   "etag": "my_etag",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "locations": [],
+     *   //   "management": {},
+     *   //   "maxPodsConstraint": {},
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
+     *   //   "podIpv4CidrSize": 0,
+     *   //   "queuedProvisioning": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "updateInfo": {},
+     *   //   "upgradeSettings": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7281,6 +9218,58 @@ export namespace container_v1 {
 
     /**
      * Lists the node pools for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.list({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
+     *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nodePools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7375,6 +9364,79 @@ export namespace container_v1 {
 
     /**
      * Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.rollback({
+     *     // The name (project, location, cluster, node pool id) of the node poll to rollback upgrade. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "respectPdb": false,
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7467,6 +9529,80 @@ export namespace container_v1 {
 
     /**
      * Sets the autoscaling settings for the specified node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.setAutoscaling({
+     *       // The name (project, location, cluster, node pool) of the node pool to set autoscaler settings. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "autoscaling": {},
+     *         //   "clusterId": "my_clusterId",
+     *         //   "name": "my_name",
+     *         //   "nodePoolId": "my_nodePoolId",
+     *         //   "projectId": "my_projectId",
+     *         //   "zone": "my_zone"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7559,6 +9695,80 @@ export namespace container_v1 {
 
     /**
      * Sets the NodeManagement options for a node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.locations.clusters.nodePools.setManagement({
+     *       // The name (project, location, cluster, node pool id) of the node pool to set management properties. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *       name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "clusterId": "my_clusterId",
+     *         //   "management": {},
+     *         //   "name": "my_name",
+     *         //   "nodePoolId": "my_nodePoolId",
+     *         //   "projectId": "my_projectId",
+     *         //   "zone": "my_zone"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7651,6 +9861,79 @@ export namespace container_v1 {
 
     /**
      * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.setSize({
+     *     // The name (project, location, cluster, node pool id) of the node pool to set size. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7743,6 +10026,107 @@ export namespace container_v1 {
 
     /**
      * Updates the version and/or image type for the specified node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.clusters.nodePools.update({
+     *     // The name (project, location, cluster, node pool) of the node pool to update. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'projects/my-project/locations/my-location/clusters/my-cluster/nodePools/my-nodePool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accelerators": [],
+     *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
+     *       //   "containerdConfig": {},
+     *       //   "diskSizeGb": "my_diskSizeGb",
+     *       //   "diskType": "my_diskType",
+     *       //   "etag": "my_etag",
+     *       //   "fastSocket": {},
+     *       //   "flexStart": false,
+     *       //   "gcfsConfig": {},
+     *       //   "gvnic": {},
+     *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "labels": {},
+     *       //   "linuxNodeConfig": {},
+     *       //   "locations": [],
+     *       //   "loggingConfig": {},
+     *       //   "machineType": "my_machineType",
+     *       //   "maxRunDuration": "my_maxRunDuration",
+     *       //   "name": "my_name",
+     *       //   "nodeNetworkConfig": {},
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "nodeVersion": "my_nodeVersion",
+     *       //   "projectId": "my_projectId",
+     *       //   "queuedProvisioning": {},
+     *       //   "resourceLabels": {},
+     *       //   "resourceManagerTags": {},
+     *       //   "storagePools": [],
+     *       //   "tags": {},
+     *       //   "taints": {},
+     *       //   "upgradeSettings": {},
+     *       //   "windowsNodeConfig": {},
+     *       //   "workloadMetadataConfig": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7870,11 +10254,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -7904,11 +10288,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -7923,11 +10307,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -8000,6 +10384,62 @@ export namespace container_v1 {
 
     /**
      * Gets the OIDC discovery document for the cluster. See the [OpenID Connect Discovery 1.0 specification](https://openid.net/specs/openid-connect-discovery-1_0.html) for details.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     (await container.projects.locations.clusters.well) -
+     *     known.getOpenid -
+     *     configuration({
+     *       // The cluster (project, location, cluster name) to get the discovery document for. Specified in the format `projects/x/locations/x/clusters/x`.
+     *       parent: 'projects/my-project/locations/my-location/clusters/my-cluster',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cacheHeader": {},
+     *   //   "claims_supported": [],
+     *   //   "grant_types": [],
+     *   //   "id_token_signing_alg_values_supported": [],
+     *   //   "issuer": "my_issuer",
+     *   //   "jwks_uri": "my_jwks_uri",
+     *   //   "response_types_supported": [],
+     *   //   "subject_types_supported": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8110,6 +10550,61 @@ export namespace container_v1 {
 
     /**
      * Cancels the specified operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.cancel({
+     *     // The name (project, location, operation id) of the operation to cancel. Specified in the format `projects/x/locations/x/operations/x`.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "operationId": "my_operationId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8198,6 +10693,72 @@ export namespace container_v1 {
 
     /**
      * Gets the specified operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.get({
+     *     // The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8286,6 +10847,57 @@ export namespace container_v1 {
 
     /**
      * Lists all operations in a project in a specific zone or all zones.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.locations.operations.list({
+     *     // The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "missingZones": [],
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8401,11 +11013,11 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -8416,11 +11028,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -8437,6 +11049,61 @@ export namespace container_v1 {
 
     /**
      * Returns configuration info about the Google Kubernetes Engine service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.getServerconfig({
+     *     // The name (project and location) of the server config to get, specified in the format `projects/x/locations/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "channels": [],
+     *   //   "defaultClusterVersion": "my_defaultClusterVersion",
+     *   //   "defaultImageType": "my_defaultImageType",
+     *   //   "validImageTypes": [],
+     *   //   "validMasterVersions": [],
+     *   //   "validNodeVersions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8533,11 +11200,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -8554,6 +11221,82 @@ export namespace container_v1 {
 
     /**
      * Sets the addons for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.addons({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "addonsConfig": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8645,6 +11388,81 @@ export namespace container_v1 {
 
     /**
      * Completes master IP rotation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.completeIpRotation({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8736,7 +11554,80 @@ export namespace container_v1 {
     }
 
     /**
-     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * Creates a cluster, consisting of the specified number and type of Google Compute Engine instances. By default, the cluster is created in the project's [default network](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/networks-and-firewalls#networks). One firewall is added for the cluster. After cluster creation, the Kubelet creates routes for each node to allow the containers on that node to communicate with all other instances in the cluster. Finally, an entry is added to the project's global metadata indicating which CIDR range the cluster is using.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.create({
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cluster": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8827,6 +11718,72 @@ export namespace container_v1 {
 
     /**
      * Deletes the cluster, including the Kubernetes endpoint and all worker nodes. Firewalls and routes that were configured during cluster creation are also deleted. Other Google Compute Engine resources that might be in use by the cluster, such as load balancer resources, are not deleted if they weren't present when the cluster was initially created.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.delete({
+     *     // Deprecated. The name of the cluster to delete. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to delete. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8918,6 +11875,60 @@ export namespace container_v1 {
 
     /**
      * Fetch upgrade information of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.fetchClusterUpgradeInfo({
+     *     // Required. The name (project, location, cluster) of the cluster to get. Specified in the format `projects/x/locations/x/clusters/x` or `projects/x/zones/x/clusters/x`.
+     *     name: 'projects/my-project/zones/my-zone/clusters/my-cluster',
+     *     // API request version that initiates this operation.
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoUpgradeStatus": [],
+     *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
+     *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
+     *   //   "minorTargetVersion": "my_minorTargetVersion",
+     *   //   "patchTargetVersion": "my_patchTargetVersion",
+     *   //   "pausedReason": [],
+     *   //   "upgradeDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9012,6 +12023,136 @@ export namespace container_v1 {
 
     /**
      * Gets the details of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.get({
+     *     // Deprecated. The name of the cluster to retrieve. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster) of the cluster to retrieve. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "addonsConfig": {},
+     *   //   "alphaClusterFeatureGates": [],
+     *   //   "anonymousAuthenticationConfig": {},
+     *   //   "authenticatorGroupsConfig": {},
+     *   //   "autopilot": {},
+     *   //   "autoscaling": {},
+     *   //   "binaryAuthorization": {},
+     *   //   "clusterIpv4Cidr": "my_clusterIpv4Cidr",
+     *   //   "compliancePostureConfig": {},
+     *   //   "conditions": [],
+     *   //   "confidentialNodes": {},
+     *   //   "controlPlaneEndpointsConfig": {},
+     *   //   "costManagementConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "currentMasterVersion": "my_currentMasterVersion",
+     *   //   "currentNodeCount": 0,
+     *   //   "currentNodeVersion": "my_currentNodeVersion",
+     *   //   "databaseEncryption": {},
+     *   //   "defaultMaxPodsConstraint": {},
+     *   //   "description": "my_description",
+     *   //   "enableK8sBetaApis": {},
+     *   //   "enableKubernetesAlpha": false,
+     *   //   "enableTpu": false,
+     *   //   "endpoint": "my_endpoint",
+     *   //   "enterpriseConfig": {},
+     *   //   "etag": "my_etag",
+     *   //   "expireTime": "my_expireTime",
+     *   //   "fleet": {},
+     *   //   "gkeAutoUpgradeConfig": {},
+     *   //   "id": "my_id",
+     *   //   "identityServiceConfig": {},
+     *   //   "initialClusterVersion": "my_initialClusterVersion",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "ipAllocationPolicy": {},
+     *   //   "labelFingerprint": "my_labelFingerprint",
+     *   //   "legacyAbac": {},
+     *   //   "location": "my_location",
+     *   //   "locations": [],
+     *   //   "loggingConfig": {},
+     *   //   "loggingService": "my_loggingService",
+     *   //   "maintenancePolicy": {},
+     *   //   "masterAuth": {},
+     *   //   "masterAuthorizedNetworksConfig": {},
+     *   //   "meshCertificates": {},
+     *   //   "monitoringConfig": {},
+     *   //   "monitoringService": "my_monitoringService",
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "networkConfig": {},
+     *   //   "networkPolicy": {},
+     *   //   "nodeConfig": {},
+     *   //   "nodeIpv4CidrSize": 0,
+     *   //   "nodePoolAutoConfig": {},
+     *   //   "nodePoolDefaults": {},
+     *   //   "nodePools": [],
+     *   //   "notificationConfig": {},
+     *   //   "parentProductConfig": {},
+     *   //   "podAutoscaling": {},
+     *   //   "privateClusterConfig": {},
+     *   //   "rbacBindingConfig": {},
+     *   //   "releaseChannel": {},
+     *   //   "resourceLabels": {},
+     *   //   "resourceUsageExportConfig": {},
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "secretManagerConfig": {},
+     *   //   "securityPostureConfig": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "servicesIpv4Cidr": "my_servicesIpv4Cidr",
+     *   //   "shieldedNodes": {},
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "subnetwork": "my_subnetwork",
+     *   //   "tpuIpv4CidrBlock": "my_tpuIpv4CidrBlock",
+     *   //   "userManagedKeysConfig": {},
+     *   //   "verticalPodAutoscaling": {},
+     *   //   "workloadIdentityConfig": {},
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9103,6 +12244,82 @@ export namespace container_v1 {
 
     /**
      * Enables or disables the ABAC authorization mechanism on a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.legacyAbac({
+     *     // Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "enabled": false,
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9194,6 +12411,57 @@ export namespace container_v1 {
 
     /**
      * Lists all clusters owned by a project in either the specified zone or all zones.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.list({
+     *     // The parent (project and location) where the clusters will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
+     *     parent: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusters": [],
+     *   //   "missingZones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9285,7 +12553,83 @@ export namespace container_v1 {
     }
 
     /**
-     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://cloud.google.com/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
+     * Sets the locations for a specific cluster. Deprecated. Use [projects.locations.clusters.update](https://{$universe.dns_names.final_documentation_domain\}/kubernetes-engine/docs/reference/rest/v1/projects.locations.clusters/update) instead.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.locations({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "locations": [],
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9377,6 +12721,82 @@ export namespace container_v1 {
 
     /**
      * Sets the logging service for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.logging({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "loggingService": "my_loggingService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9468,6 +12888,82 @@ export namespace container_v1 {
 
     /**
      * Updates the master for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.master({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "masterVersion": "my_masterVersion",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9559,6 +13055,82 @@ export namespace container_v1 {
 
     /**
      * Sets the monitoring service for a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.monitoring({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "monitoringService": "my_monitoringService",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9650,6 +13222,83 @@ export namespace container_v1 {
 
     /**
      * Sets labels on a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.resourceLabels({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "labelFingerprint": "my_labelFingerprint",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "resourceLabels": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9741,6 +13390,82 @@ export namespace container_v1 {
 
     /**
      * Sets the maintenance policy for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setMaintenancePolicy({
+     *     // Required. The name of the cluster to update.
+     *     clusterId: 'placeholder-value',
+     *     // Required. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects).
+     *     projectId: 'placeholder-value',
+     *     // Required. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "maintenancePolicy": {},
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9835,6 +13560,83 @@ export namespace container_v1 {
 
     /**
      * Sets master auth materials. Currently supports changing the admin password or a specific cluster, either via password generation or explicitly setting the password.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setMasterAuth({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "action": "my_action",
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9926,6 +13728,82 @@ export namespace container_v1 {
 
     /**
      * Enables or disables Network Policy for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.setNetworkPolicy({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "networkPolicy": {},
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10017,6 +13895,82 @@ export namespace container_v1 {
 
     /**
      * Starts master IP rotation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.startIpRotation({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "rotateCredentials": false,
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10108,6 +14062,82 @@ export namespace container_v1 {
 
     /**
      * Updates the settings of a specific cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.update({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "projectId": "my_projectId",
+     *       //   "update": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10205,11 +14235,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10225,11 +14255,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10241,11 +14271,11 @@ export namespace container_v1 {
   export interface Params$Resource$Projects$Zones$Clusters$Create
     extends StandardParameters {
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
 
@@ -10265,11 +14295,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -10295,11 +14325,11 @@ export namespace container_v1 {
      */
     name?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -10310,11 +14340,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10330,11 +14360,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides, or "-" for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -10345,11 +14375,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10365,11 +14395,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10385,11 +14415,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10405,11 +14435,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10425,11 +14455,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10445,11 +14475,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Required. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects).
+     * Required. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects).
      */
     projectId?: string;
     /**
-     * Required. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides.
+     * Required. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides.
      */
     zone?: string;
 
@@ -10465,11 +14495,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10485,11 +14515,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10505,11 +14535,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10525,11 +14555,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -10547,6 +14577,85 @@ export namespace container_v1 {
 
     /**
      * Sets the autoscaling settings for the specified node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.autoscaling({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoscaling": {},
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10639,6 +14748,82 @@ export namespace container_v1 {
 
     /**
      * Creates a node pool for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.create({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "nodePool": {},
+     *       //   "parent": "my_parent",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10730,6 +14915,74 @@ export namespace container_v1 {
 
     /**
      * Deletes a node pool from a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.delete({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to delete. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to delete. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10821,6 +15074,61 @@ export namespace container_v1 {
 
     /**
      * Fetch upgrade information of a specific nodepool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await container.projects.zones.clusters.nodePools.fetchNodePoolUpgradeInfo({
+     *       // Required. The name (project, location, cluster, nodepool) of the nodepool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x` or `projects/x/zones/x/clusters/x/nodePools/x`.
+     *       name: 'projects/my-project/zones/my-zone/clusters/my-cluster/nodePools/my-nodePool',
+     *       // API request version that initiates this operation.
+     *       version: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autoUpgradeStatus": [],
+     *   //   "endOfExtendedSupportTimestamp": "my_endOfExtendedSupportTimestamp",
+     *   //   "endOfStandardSupportTimestamp": "my_endOfStandardSupportTimestamp",
+     *   //   "minorTargetVersion": "my_minorTargetVersion",
+     *   //   "patchTargetVersion": "my_patchTargetVersion",
+     *   //   "pausedReason": [],
+     *   //   "upgradeDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10915,6 +15223,81 @@ export namespace container_v1 {
 
     /**
      * Retrieves the requested node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.get({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // The name (project, location, cluster, node pool id) of the node pool to get. Specified in the format `projects/x/locations/x/clusters/x/nodePools/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The name of the node pool. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "autopilotConfig": {},
+     *   //   "autoscaling": {},
+     *   //   "bestEffortProvisioning": {},
+     *   //   "conditions": [],
+     *   //   "config": {},
+     *   //   "etag": "my_etag",
+     *   //   "initialNodeCount": 0,
+     *   //   "instanceGroupUrls": [],
+     *   //   "locations": [],
+     *   //   "management": {},
+     *   //   "maxPodsConstraint": {},
+     *   //   "name": "my_name",
+     *   //   "networkConfig": {},
+     *   //   "placementPolicy": {},
+     *   //   "podIpv4CidrSize": 0,
+     *   //   "queuedProvisioning": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "updateInfo": {},
+     *   //   "upgradeSettings": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11006,6 +15389,58 @@ export namespace container_v1 {
 
     /**
      * Lists the node pools for a cluster.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.list({
+     *     // Deprecated. The name of the cluster. This field has been deprecated and replaced by the parent field.
+     *     clusterId: 'placeholder-value',
+     *     // The parent (project, location, cluster name) where the node pools will be listed. Specified in the format `projects/x/locations/x/clusters/x`.
+     *     parent: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nodePools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11099,6 +15534,85 @@ export namespace container_v1 {
 
     /**
      * Rolls back a previously Aborted or Failed NodePool upgrade. This makes no changes if the last upgrade successfully completed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.rollback({
+     *     // Deprecated. The name of the cluster to rollback. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to rollback. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "respectPdb": false,
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11191,6 +15705,85 @@ export namespace container_v1 {
 
     /**
      * Sets the NodeManagement options for a node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.setManagement({
+     *     // Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "management": {},
+     *       //   "name": "my_name",
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11283,6 +15876,85 @@ export namespace container_v1 {
 
     /**
      * Sets the size for a specific node pool. The new size will be used for all replicas, including future replicas created by modifying NodePool.locations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.setSize({
+     *     // Deprecated. The name of the cluster to update. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to update. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "clusterId": "my_clusterId",
+     *       //   "name": "my_name",
+     *       //   "nodeCount": 0,
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11375,6 +16047,113 @@ export namespace container_v1 {
 
     /**
      * Updates the version and/or image type for the specified node pool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.clusters.nodePools.update({
+     *     // Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
+     *     clusterId: 'placeholder-value',
+     *     // Deprecated. The name of the node pool to upgrade. This field has been deprecated and replaced by the name field.
+     *     nodePoolId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accelerators": [],
+     *       //   "clusterId": "my_clusterId",
+     *       //   "confidentialNodes": {},
+     *       //   "containerdConfig": {},
+     *       //   "diskSizeGb": "my_diskSizeGb",
+     *       //   "diskType": "my_diskType",
+     *       //   "etag": "my_etag",
+     *       //   "fastSocket": {},
+     *       //   "flexStart": false,
+     *       //   "gcfsConfig": {},
+     *       //   "gvnic": {},
+     *       //   "imageType": "my_imageType",
+     *       //   "kubeletConfig": {},
+     *       //   "labels": {},
+     *       //   "linuxNodeConfig": {},
+     *       //   "locations": [],
+     *       //   "loggingConfig": {},
+     *       //   "machineType": "my_machineType",
+     *       //   "maxRunDuration": "my_maxRunDuration",
+     *       //   "name": "my_name",
+     *       //   "nodeNetworkConfig": {},
+     *       //   "nodePoolId": "my_nodePoolId",
+     *       //   "nodeVersion": "my_nodeVersion",
+     *       //   "projectId": "my_projectId",
+     *       //   "queuedProvisioning": {},
+     *       //   "resourceLabels": {},
+     *       //   "resourceManagerTags": {},
+     *       //   "storagePools": [],
+     *       //   "tags": {},
+     *       //   "taints": {},
+     *       //   "upgradeSettings": {},
+     *       //   "windowsNodeConfig": {},
+     *       //   "workloadMetadataConfig": {},
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11476,11 +16255,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11496,11 +16275,11 @@ export namespace container_v1 {
      */
     clusterId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
 
@@ -11524,11 +16303,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -11558,11 +16337,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -11577,11 +16356,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
@@ -11596,11 +16375,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11620,11 +16399,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11644,11 +16423,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11668,11 +16447,11 @@ export namespace container_v1 {
      */
     nodePoolId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11690,6 +16469,65 @@ export namespace container_v1 {
 
     /**
      * Cancels the specified operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.cancel({
+     *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "name": "my_name",
+     *       //   "operationId": "my_operationId",
+     *       //   "projectId": "my_projectId",
+     *       //   "zone": "my_zone"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11781,6 +16619,72 @@ export namespace container_v1 {
 
     /**
      * Gets the specified operation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.get({
+     *     // The name (project, location, operation id) of the operation to get. Specified in the format `projects/x/locations/x/operations/x`.
+     *     name: 'placeholder-value',
+     *     // Deprecated. The server-assigned `name` of the operation. This field has been deprecated and replaced by the name field.
+     *     operationId: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "clusterConditions": [],
+     *   //   "detail": "my_detail",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "nodepoolConditions": [],
+     *   //   "operationType": "my_operationType",
+     *   //   "progress": {},
+     *   //   "selfLink": "my_selfLink",
+     *   //   "startTime": "my_startTime",
+     *   //   "status": "my_status",
+     *   //   "statusMessage": "my_statusMessage",
+     *   //   "targetLink": "my_targetLink",
+     *   //   "zone": "my_zone"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11872,6 +16776,57 @@ export namespace container_v1 {
 
     /**
      * Lists all operations in a project in a specific zone or all zones.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/container.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const container = google.container('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await container.projects.zones.operations.list({
+     *     // The parent (project and location) where the operations will be listed. Specified in the format `projects/x/locations/x`. Location "-" matches all zones and all regions.
+     *     parent: 'placeholder-value',
+     *     // Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     *     projectId: 'placeholder-value',
+     *     // Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     *     zone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "missingZones": [],
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11970,11 +16925,11 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the operation resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
 
@@ -11994,11 +16949,11 @@ export namespace container_v1 {
      */
     operationId?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the name field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) in which the cluster resides. This field has been deprecated and replaced by the name field.
      */
     zone?: string;
   }
@@ -12009,11 +16964,11 @@ export namespace container_v1 {
      */
     parent?: string;
     /**
-     * Deprecated. The Google Developers Console [project ID or project number](https://cloud.google.com/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
+     * Deprecated. The Google Developers Console [project ID or project number](https://{$universe.dns_names.final_documentation_domain\}/resource-manager/docs/creating-managing-projects). This field has been deprecated and replaced by the parent field.
      */
     projectId?: string;
     /**
-     * Deprecated. The name of the Google Compute Engine [zone](https://cloud.google.com/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
+     * Deprecated. The name of the Google Compute Engine [zone](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/zones#available) to return operations for, or `-` for all zones. This field has been deprecated and replaced by the parent field.
      */
     zone?: string;
   }
