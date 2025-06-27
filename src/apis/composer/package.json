@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/composer",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "description": "composer",
   "main": "build/index.js",
   "types": "build/index.d.ts",
