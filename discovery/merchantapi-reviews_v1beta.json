@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -356,7 +356,7 @@
       }
     }
   },
-  "revision": "20250311",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -942,7 +942,7 @@
           "type": "array"
         },
         "content": {
-          "description": "Required. The content of the review.",
+          "description": "Optional. The content of the review. If empty, the content might still get populated from pros and cons.",
           "type": "string"
         },
         "gtins": {
@@ -1328,7 +1328,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },

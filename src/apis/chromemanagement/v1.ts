@@ -1893,6 +1893,10 @@ export namespace chromemanagement_v1 {
      */
     networkStateChangeEvent?: Schema$GoogleChromeManagementV1TelemetryNetworkConnectionStateChangeEvent;
     /**
+     * Output only. Payload for OS crash event. Present only when `event_type` is `OS_CRASH`.
+     */
+    osCrashEvent?: Schema$GoogleChromeManagementV1TelemetryOsCrashEvent;
+    /**
      * Timestamp that represents when the event was reported.
      */
     reportTime?: string | null;
@@ -2006,6 +2010,23 @@ export namespace chromemanagement_v1 {
      * If set, only sends notifications for telemetry data coming from devices owned by users in this org unit.
      */
     userOrgUnitId?: string | null;
+  }
+  /**
+   * OS crash data.
+   */
+  export interface Schema$GoogleChromeManagementV1TelemetryOsCrashEvent {
+    /**
+     * Crash id.
+     */
+    crashId?: string | null;
+    /**
+     * Crash type.
+     */
+    crashType?: string | null;
+    /**
+     * Session type.
+     */
+    sessionType?: string | null;
   }
   /**
    * `TelemetryUsbPeripheralsEvent` is triggered USB devices are either added or removed. * Granular permission needed: TELEMETRY_API_PERIPHERALS_REPORT
@@ -2710,6 +2731,64 @@ export namespace chromemanagement_v1 {
 
     /**
      * Generate summary of app installation requests.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.countChromeAppRequests({
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Field used to order results. Supported fields: * request_count * latest_request_time
+     *     orderBy: 'placeholder-value',
+     *     // The ID of the organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 50, anything above will be coerced to 50.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the request to be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "requestedApps": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2811,6 +2890,65 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a list of devices that have requested to install an extension.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.apps.fetchDevicesRequestingExtension({
+     *       // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *       customer: 'customers/my-customer',
+     *       // Required. The extension for which we want to find requesting devices.
+     *       extensionId: 'placeholder-value',
+     *       // The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Token to specify the page of the request to be returned. Token expires after 1 day.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceDetails": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2913,6 +3051,65 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a list of users that have requested to install an extension.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.apps.fetchUsersRequestingExtension({
+     *       // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *       customer: 'customers/my-customer',
+     *       // Required. The extension for which we want to find the requesting users.
+     *       extensionId: 'placeholder-value',
+     *       // The ID of the organizational unit. Only consider devices that directly belong to this org unit, i.e. sub-orgunits are not counted. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. Maximum and default are 50. Any page size larger than 50 will be coerced to 50.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Token to specify the page of the request to be returned. Token expires after 1 day.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0,
+     *   //   "userDetails": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3092,6 +3289,72 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.android.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/android/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3206,6 +3469,72 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.chrome.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/chrome/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3320,6 +3649,72 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a specific app for a customer by its resource name.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.appdetails.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.apps.web.get({
+     *     // Required. The app for which details are being queried. Examples: "customers/my_customer/apps/chrome/gmbmikajjgmnabiglmofipeabaddhgne@2.1.2" for the Save to Google Drive Chrome extension version 2.1.2, "customers/my_customer/apps/android/com.google.android.apps.docs" for the Google Drive Android app's latest version.
+     *     name: 'customers/my-customer/apps/web/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "androidAppInfo": {},
+     *   //   "appId": "my_appId",
+     *   //   "chromeAppInfo": {},
+     *   //   "description": "my_description",
+     *   //   "detailUri": "my_detailUri",
+     *   //   "displayName": "my_displayName",
+     *   //   "firstPublishTime": "my_firstPublishTime",
+     *   //   "homepageUri": "my_homepageUri",
+     *   //   "iconUri": "my_iconUri",
+     *   //   "isPaidApp": false,
+     *   //   "latestPublishTime": "my_latestPublishTime",
+     *   //   "name": "my_name",
+     *   //   "privacyPolicyUri": "my_privacyPolicyUri",
+     *   //   "publisher": "my_publisher",
+     *   //   "reviewNumber": "my_reviewNumber",
+     *   //   "reviewRating": {},
+     *   //   "revisionId": "my_revisionId",
+     *   //   "serviceError": {},
+     *   //   "type": "my_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3434,6 +3829,50 @@ export namespace chromemanagement_v1 {
 
     /**
      * Deletes the data collected from a Chrome browser profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.profiles'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.delete({
+     *     // Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     *     name: 'customers/my-customer/profiles/my-profile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3523,6 +3962,80 @@ export namespace chromemanagement_v1 {
 
     /**
      * Gets a Chrome browser profile with customer ID and profile permanent ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.profiles',
+     *       'https://www.googleapis.com/auth/chrome.management.profiles.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.get({
+     *     // Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     *     name: 'customers/my-customer/profiles/my-profile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "affiliationState": "my_affiliationState",
+     *   //   "annotatedLocation": "my_annotatedLocation",
+     *   //   "annotatedUser": "my_annotatedUser",
+     *   //   "attestationCredential": {},
+     *   //   "browserChannel": "my_browserChannel",
+     *   //   "browserVersion": "my_browserVersion",
+     *   //   "deviceInfo": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "extensionCount": "my_extensionCount",
+     *   //   "firstEnrollmentTime": "my_firstEnrollmentTime",
+     *   //   "identityProvider": "my_identityProvider",
+     *   //   "lastActivityTime": "my_lastActivityTime",
+     *   //   "lastPolicyFetchTime": "my_lastPolicyFetchTime",
+     *   //   "lastPolicySyncTime": "my_lastPolicySyncTime",
+     *   //   "lastStatusReportTime": "my_lastStatusReportTime",
+     *   //   "name": "my_name",
+     *   //   "osPlatformType": "my_osPlatformType",
+     *   //   "osPlatformVersion": "my_osPlatformVersion",
+     *   //   "osVersion": "my_osVersion",
+     *   //   "policyCount": "my_policyCount",
+     *   //   "profileId": "my_profileId",
+     *   //   "profilePermanentId": "my_profilePermanentId",
+     *   //   "reportingData": {},
+     *   //   "userEmail": "my_userEmail",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3622,6 +4135,65 @@ export namespace chromemanagement_v1 {
 
     /**
      * Lists Chrome browser profiles of a customer based on the given search and sorting criteria.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.profiles',
+     *       'https://www.googleapis.com/auth/chrome.management.profiles.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.list({
+     *     // Optional. The filter used to filter profiles. The following fields can be used in the filter: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version - ouId Any of the above fields can be used to specify a filter, and filtering by multiple fields is supported with AND operator. String type fields and enum type fields support '=' and '!=' operators. The integer type and the timestamp type fields support '=', '!=', '<', '\>', '<=' and '\>=' operators. Timestamps expect an RFC-3339 formatted string (e.g. 2012-04-21T11:30:00-04:00). Wildcard '*' can be used with a string type field filter. In addition, string literal filtering is also supported, for example, 'ABC' as a filter maps to a filter that checks if any of the filterable string type fields contains 'ABC'. Organization unit number can be used as a filtering criteria here by specifying 'ouId = ${your_org_unit_id\}', please note that only single OU ID matching is supported.
+     *     filter: 'placeholder-value',
+     *     // Optional. The fields used to specify the ordering of the results. The supported fields are: - profile_id - display_name - user_email - last_activity_time - last_policy_sync_time - last_status_report_time - first_enrollment_time - os_platform_type - os_version - browser_version - browser_channel - policy_count - extension_count - identity_provider - affiliation_state - os_platform_version By default, sorting is in ascending order, to specify descending order for a field, a suffix " desc" should be added to the field name. The default ordering is the descending order of last_status_report_time.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of profiles to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 200.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token used to retrieve a specific page of the listing request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: customers/{customer_id\}
+     *     parent: 'customers/my-customer',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeBrowserProfiles": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3769,6 +4341,61 @@ export namespace chromemanagement_v1 {
 
     /**
      * Count of Chrome Browsers that have been recently enrolled, have new policy to be synced, or have no recent activity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeBrowsersNeedingAttention(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *         orgUnitId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "noRecentActivityCount": "my_noRecentActivityCount",
+     *   //   "pendingBrowserUpdateCount": "my_pendingBrowserUpdateCount",
+     *   //   "recentlyEnrolledCount": "my_recentlyEnrolledCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3872,6 +4499,60 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a count of Chrome crash events.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countChromeCrashEvents({
+     *     // Customer ID.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Supported filter fields: * major_browser_version * minor_browser_version * browser_channel * device_platform * past_number_days Example: `major_browser_version = 'M115' AND past_number_days = '28'`.
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. Supported order by fields: * browser_version * count * date
+     *     orderBy: 'placeholder-value',
+     *     // If specified, only count the number of crash events of the devices in this organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "crashEventCounts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3973,6 +4654,63 @@ export namespace chromemanagement_v1 {
 
     /**
      * Generate report of the number of devices expiring in each month of the selected time frame. Devices are grouped by auto update expiration date and model. Further information can be found [here](https://support.google.com/chrome/a/answer/10564947).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeDevicesReachingAutoExpirationDate(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or earlier than the maximum date.
+     *         maxAueDate: 'placeholder-value',
+     *         // Optional. Maximum expiration date in format yyyy-mm-dd in UTC timezone. If included returns all devices that have already expired and devices with auto expiration date equal to or later than the minimum date.
+     *         minAueDate: 'placeholder-value',
+     *         // Optional. The organizational unit ID, if omitted, will return data for all organizational units.
+     *         orgUnitId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deviceAueCountReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4076,6 +4814,65 @@ export namespace chromemanagement_v1 {
 
     /**
      * Counts of ChromeOS devices that have not synced policies or have lacked user activity in the past 28 days, are out of date, or are not complaint. Further information can be found here https://support.google.com/chrome/a/answer/10564947
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeDevicesThatNeedAttention(
+     *       {
+     *         // Required. The customer ID or "my_customer" prefixed with "customers/".
+     *         customer: 'customers/my-customer',
+     *         // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *         orgUnitId: 'placeholder-value',
+     *         // Required. Mask of the fields that should be populated in the returned report.
+     *         readMask: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "noRecentPolicySyncCount": "my_noRecentPolicySyncCount",
+     *   //   "noRecentUserActivityCount": "my_noRecentUserActivityCount",
+     *   //   "osVersionNotCompliantCount": "my_osVersionNotCompliantCount",
+     *   //   "pendingUpdate": "my_pendingUpdate",
+     *   //   "unsupportedPolicyCount": "my_unsupportedPolicyCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4179,6 +4976,62 @@ export namespace chromemanagement_v1 {
 
     /**
      * Counts of devices with a specific hardware specification from the requested hardware type (for example model name, processor type). Further information can be found here https://support.google.com/chrome/a/answer/10564947
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.reports.countChromeHardwareFleetDevices({
+     *       // Required. The customer ID or "my_customer".
+     *       customer: 'customers/my-customer',
+     *       // Optional. The ID of the organizational unit. If omitted, all data will be returned.
+     *       orgUnitId: 'placeholder-value',
+     *       // Required. Mask of the fields that should be populated in the returned report.
+     *       readMask: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cpuReports": [],
+     *   //   "memoryReports": [],
+     *   //   "modelReports": [],
+     *   //   "storageReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4282,6 +5135,64 @@ export namespace chromemanagement_v1 {
 
     /**
      * Generate report of installed Chrome versions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countChromeVersions({
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     *     filter: 'placeholder-value',
+     *     // The ID of the organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the request to be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "browserVersions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4383,6 +5294,66 @@ export namespace chromemanagement_v1 {
 
     /**
      * Generate report of app installations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countInstalledApps({
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * latest_profile_active_date * permission_name * app_id * manifest_versions * risk_score
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. Supported order by fields: * app_name * app_type * install_type * number_of_permissions * total_install_count * app_id * manifest_versions * risk_score
+     *     orderBy: 'placeholder-value',
+     *     // The ID of the organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the request to be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "installedApps": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4484,6 +5455,66 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a summary of printing done by each printer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countPrintJobsByPrinter({
+     *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'printer' field. Supported order_by fields: * printer * job_count * device_count * user_count
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the response to be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the organizational unit for printers. If specified, only data for printers from the specified organizational unit will be returned. If omitted, data for printers from all organizational units will be returned.
+     *     printerOrgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "printerReports": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4586,6 +5617,66 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a summary of printing done by each user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.countPrintJobsByUser({
+     *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported in this filter. Supported filter fields: * complete_time
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. If omitted, results will be ordered in ascending order of the 'user_email' field. Supported order_by fields: * user_email * job_count * printer_count * device_count
+     *     orderBy: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the response to be returned.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the organizational unit for printers. If specified, only print jobs initiated with printers from the specified organizational unit will be counted. If omitted, all print jobs will be counted.
+     *     printerOrgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize",
+     *   //   "userPrintReports": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4687,6 +5778,66 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get a list of print jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.enumeratePrintJobs({
+     *     // Required. Customer ID prefixed with "customers/" or "customers/my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Note: Only \>= and <= comparators are supported for `complete_time`. Note: Only = comparator supported for `user_id` and `printer_id`. Supported filter fields: * complete_time * printer_id * user_id
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. If not specified, results will be ordered in descending order of the `complete_time` field. Supported order by fields: * title * state * create_time * complete_time * document_page_count * color_mode * duplex_mode * printer * user_email
+     *     orderBy: 'placeholder-value',
+     *     // The number of print jobs in the page from 0 to 100 inclusive, if page_size is not specified or zero, the size will be 50.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from a previous `EnumeratePrintJobs` call. Provide this to retrieve the subsequent page. If omitted, the first page of results will be returned. When paginating, all other parameters provided to `EnumeratePrintJobs` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // The ID of the organizational unit for printers. If specified, only print jobs submitted to printers from the specified organizational unit will be returned.
+     *     printerOrgUnitId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "printJobs": [],
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4788,6 +5939,70 @@ export namespace chromemanagement_v1 {
 
     /**
      * Generate report of managed Chrome browser devices that have a specified app installed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.reports.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.reports.findInstalledAppDevices({
+     *     // Unique identifier of the app. For Chrome apps and extensions, the 32-character id (e.g. ehoadneljpdggcbbknedodolkkjodefl). For Android apps, the package name (e.g. com.evernote).
+     *     appId: 'placeholder-value',
+     *     // Type of the app. Optional. If not provided, an app type will be inferred from the format of the app ID.
+     *     appType: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     customer: 'customers/my-customer',
+     *     // Query string to filter results, AND-separated fields in EBNF syntax. Note: OR operations are not supported in this filter. Supported filter fields: * last_active_date
+     *     filter: 'placeholder-value',
+     *     // Field used to order results. Supported order by fields: * machine * device_id
+     *     orderBy: 'placeholder-value',
+     *     // The ID of the organizational unit.
+     *     orgUnitId: 'placeholder-value',
+     *     // Maximum number of results to return. Maximum and default are 100.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify the page of the request to be returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5159,6 +6374,83 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get telemetry device.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.devices.get({
+     *     // Required. Name of the `TelemetryDevice` to return.
+     *     name: 'customers/my-customer/telemetry/devices/my-device',
+     *     // Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appReport": [],
+     *   //   "audioStatusReport": [],
+     *   //   "batteryInfo": [],
+     *   //   "batteryStatusReport": [],
+     *   //   "bootPerformanceReport": [],
+     *   //   "cpuInfo": [],
+     *   //   "cpuStatusReport": [],
+     *   //   "customer": "my_customer",
+     *   //   "deviceId": "my_deviceId",
+     *   //   "graphicsInfo": {},
+     *   //   "graphicsStatusReport": [],
+     *   //   "heartbeatStatusReport": [],
+     *   //   "kioskAppStatusReport": [],
+     *   //   "memoryInfo": {},
+     *   //   "memoryStatusReport": [],
+     *   //   "name": "my_name",
+     *   //   "networkBandwidthReport": [],
+     *   //   "networkDiagnosticsReport": [],
+     *   //   "networkInfo": {},
+     *   //   "networkStatusReport": [],
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "osUpdateStatus": [],
+     *   //   "peripheralsReport": [],
+     *   //   "runtimeCountersReport": [],
+     *   //   "serialNumber": "my_serialNumber",
+     *   //   "storageInfo": {},
+     *   //   "storageStatusReport": [],
+     *   //   "thunderboltInfo": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5258,6 +6550,63 @@ export namespace chromemanagement_v1 {
 
     /**
      * List all telemetry devices.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.devices.list({
+     *     // Optional. Only include resources that match the filter. Requests that don't specify a "reports_timestamp" value will default to returning only recent reports. Specify "reports_timestamp\>=0" to get all report data. Supported filter fields: - org_unit_id - serial_number - device_id - reports_timestamp The "reports_timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
+     *     filter: 'placeholder-value',
+     *     // Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Required. Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - device_id - serial_number - cpu_info - cpu_status_report - memory_info - memory_status_report - network_info - network_diagnostics_report - network_status_report - os_update_status - graphics_info - graphics_status_report - battery_info - battery_status_report - storage_info - storage_status_report - thunderbolt_info - audio_status_report - boot_performance_report - heartbeat_status_report - network_bandwidth_report - peripherals_report - kiosk_app_status_report - app_report - runtime_counters_report
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "devices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5402,6 +6751,63 @@ export namespace chromemanagement_v1 {
 
     /**
      * List telemetry events.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.events.list({
+     *     // Optional. Only include resources that match the filter. Although this parameter is currently optional, this parameter will be required- please specify at least 1 event type. Supported filter fields: - device_id - user_id - device_org_unit_id - user_org_unit_id - timestamp - event_type The "timestamp" filter accepts either the Unix Epoch milliseconds format or the RFC3339 UTC "Zulu" format with nanosecond resolution and up to nine fractional digits. Both formats should be surrounded by simple double quotes. Examples: "2014-10-02T15:01:23Z", "2014-10-02T15:01:23.045123456Z", "1679283943823".
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event - os_crash_event
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryEvents": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5535,6 +6941,69 @@ export namespace chromemanagement_v1 {
 
     /**
      * Create a telemetry notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.telemetry.notificationConfigs.create({
+     *       // Required. The parent resource where this notification config will be created. Format: `customers/{customer\}`
+     *       parent: 'customers/my-customer',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "customer": "my_customer",
+     *         //   "filter": {},
+     *         //   "googleCloudPubsubTopic": "my_googleCloudPubsubTopic",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customer": "my_customer",
+     *   //   "filter": {},
+     *   //   "googleCloudPubsubTopic": "my_googleCloudPubsubTopic",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5637,6 +7106,53 @@ export namespace chromemanagement_v1 {
 
     /**
      * Delete a telemetry notification config.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.telemetry.notificationConfigs.delete({
+     *       // Required. The name of the notification config to delete. Format: `customers/{customer\}/telemetry/notificationConfigs/{notification_config\}`
+     *       name: 'customers/my-customer/telemetry/notificationConfigs/my-notificationConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5727,6 +7243,60 @@ export namespace chromemanagement_v1 {
 
     /**
      * List all telemetry notification configs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await chromemanagement.customers.telemetry.notificationConfigs.list({
+     *       // The maximum number of notification configs to return. The service may return fewer than this value. If unspecified, at most 100 notification configs will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListTelemetryNotificationConfigs` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTelemetryNotificationConfigs` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent which owns the notification configs.
+     *       parent: 'customers/my-customer',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryNotificationConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5871,6 +7441,61 @@ export namespace chromemanagement_v1 {
 
     /**
      * Get telemetry user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.users.get({
+     *     // Required. Name of the `TelemetryUser` to return.
+     *     name: 'customers/my-customer/telemetry/users/my-user',
+     *     // Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report - user_device.app_report
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customer": "my_customer",
+     *   //   "name": "my_name",
+     *   //   "orgUnitId": "my_orgUnitId",
+     *   //   "userDevice": [],
+     *   //   "userEmail": "my_userEmail",
+     *   //   "userId": "my_userId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5970,6 +7595,63 @@ export namespace chromemanagement_v1 {
 
     /**
      * List all telemetry users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.telemetry.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.telemetry.users.list({
+     *     // Only include resources that match the filter. Supported filter fields: - user_id - user_org_unit_id
+     *     filter: 'placeholder-value',
+     *     // Maximum number of results to return. Default value is 100. Maximum value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Token to specify next page in the list.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Customer id or "my_customer" to use the customer associated to the account making the request.
+     *     parent: 'customers/my-customer',
+     *     // Read mask to specify which fields to return. Supported read_mask paths are: - name - org_unit_id - user_id - user_email - user_device.device_id - user_device.audio_status_report - user_device.device_activity_report - user_device.network_bandwidth_report - user_device.peripherals_report - user_device.app_report
+     *     readMask: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "telemetryUsers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

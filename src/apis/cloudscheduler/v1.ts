@@ -246,6 +246,10 @@ export namespace cloudscheduler_v1 {
      */
     retryConfig?: Schema$RetryConfig;
     /**
+     * Output only. Whether or not this Job satisfies the requirements of physical zone separation
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Required, except when used with UpdateJob. Describes the schedule on which the job will be executed. The schedule can be either of the following types: * [Crontab](https://en.wikipedia.org/wiki/Cron#Overview) * English-like [schedule](https://cloud.google.com/scheduler/docs/configuring/cron-job-schedules) As a general rule, execution `n + 1` of a job will not begin until execution `n` has finished. Cloud Scheduler will never allow two simultaneously outstanding executions. For example, this implies that if the `n+1`th execution is scheduled to run at 16:00 but the `n`th execution takes until 16:15, the `n+1`th execution will not start until `16:15`. A scheduled start time will be delayed if the previous execution has not ended when its scheduled time occurs. If retry_count \> 0 and a job attempt fails, the job will be tried a total of retry_count times, with exponential backoff, until the next scheduled start time. If retry_count is 0, a job attempt will not be retried if it fails. Instead the Cloud Scheduler system will wait for the next scheduled execution time. Setting retry_count to 0 does not prevent failed jobs from running according to schedule after the failure.
      */
     schedule?: string | null;
@@ -469,7 +473,7 @@ export namespace cloudscheduler_v1 {
    */
   export interface Schema$ResumeJobRequest {}
   /**
-   * Settings that determine the retry behavior. By default, if a job does not complete successfully (meaning that an acknowledgement is not received from the handler, then it will be retried with exponential backoff according to the settings in RetryConfig.
+   * Settings that determine the retry behavior. For more information, see [Retry jobs](https://cloud.google.com/scheduler/docs/configuring/retry-jobs). By default, if a job does not complete successfully (meaning that an acknowledgement is not received from the handler, then it will be retried with exponential backoff according to the settings in RetryConfig.
    */
   export interface Schema$RetryConfig {
     /**
@@ -477,11 +481,11 @@ export namespace cloudscheduler_v1 {
      */
     maxBackoffDuration?: string | null;
     /**
-     * The time between retries will double `max_doublings` times. A job's retry interval starts at min_backoff_duration, then doubles `max_doublings` times, then increases linearly, and finally retries at intervals of max_backoff_duration up to retry_count times. For example, if min_backoff_duration is 10s, max_backoff_duration is 300s, and `max_doublings` is 3, then the job will first be retried in 10s. The retry interval will double three times, and then increase linearly by 2^3 * 10s. Finally, the job will retry at intervals of max_backoff_duration until the job has been attempted retry_count times. Thus, the requests will retry at 10s, 20s, 40s, 80s, 160s, 240s, 300s, 300s, .... The default value of this field is 5.
+     * The time between retries will double `max_doublings` times. A job's retry interval starts at min_backoff_duration, then doubles `max_doublings` times, then increases linearly, and finally retries at intervals of max_backoff_duration up to retry_count times. For examples, see [Retry jobs](https://cloud.google.com/scheduler/docs/configuring/retry-jobs#max-doublings). The default value of this field is 5.
      */
     maxDoublings?: number | null;
     /**
-     * The time limit for retrying a failed job, measured from time when an execution was first attempted. If specified with retry_count, the job will be retried until both limits are reached. The default value for max_retry_duration is zero, which means retry duration is unlimited.
+     * The time limit for retrying a failed job, measured from the time when an execution was first attempted. If specified with retry_count, the job will be retried until both limits are reached. The default value for max_retry_duration is zero, which means retry duration is unlimited. However, if retry_count is also 0, a job attempt won't be retried if it fails.
      */
     maxRetryDuration?: string | null;
     /**
@@ -489,7 +493,7 @@ export namespace cloudscheduler_v1 {
      */
     minBackoffDuration?: string | null;
     /**
-     * The number of attempts that the system will make to run a job using the exponential backoff procedure described by max_doublings. The default value of retry_count is zero. If retry_count is 0, a job attempt will not be retried if it fails. Instead the Cloud Scheduler system will wait for the next scheduled execution time. Setting retry_count to 0 does not prevent failed jobs from running according to schedule after the failure. If retry_count is set to a non-zero number then Cloud Scheduler will retry failed attempts, using exponential backoff, retry_count times, or until the next scheduled execution time, whichever comes first. Values greater than 5 and negative values are not allowed.
+     * The number of attempts that the system will make to run a job using the exponential backoff procedure described by max_doublings. The default value of retry_count is zero. If retry_count is 0 (and if max_retry_duration is also 0), a job attempt won't be retried if it fails. Instead, Cloud Scheduler system will wait for the next scheduled execution time. Setting retry_count to 0 doesn't prevent failed jobs from running according to schedule after the failure. If retry_count is set to a non-zero number, Cloud Scheduler will retry the failed job, using exponential backoff, for retry_count times until the job succeeds or the number of retries is exhausted. Note that the next scheduled execution time might be skipped if the retries continue through that time. Values greater than 5 and negative values are not allowed.
      */
     retryCount?: number | null;
   }
@@ -523,6 +527,56 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'operations/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -612,6 +666,50 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -701,6 +799,56 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -789,6 +937,59 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -941,6 +1142,56 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1030,6 +1281,61 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1162,6 +1468,88 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Creates a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.create({
+     *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appEngineHttpTarget": {},
+     *       //   "attemptDeadline": "my_attemptDeadline",
+     *       //   "description": "my_description",
+     *       //   "httpTarget": {},
+     *       //   "lastAttemptTime": "my_lastAttemptTime",
+     *       //   "name": "my_name",
+     *       //   "pubsubTarget": {},
+     *       //   "retryConfig": {},
+     *       //   "satisfiesPzs": false,
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleTime": "my_scheduleTime",
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "timeZone": "my_timeZone",
+     *       //   "userUpdateTime": "my_userUpdateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1251,6 +1639,50 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Deletes a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.delete({
+     *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1340,6 +1772,66 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Gets a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.get({
+     *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1429,6 +1921,57 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Lists jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.list({
+     *     // Requested page size. The maximum page size is 500. If unspecified, the page size will be the maximum. Fewer jobs than requested might be returned, even if more jobs exist; use next_page_token to determine if more jobs exist.
+     *     pageSize: 'placeholder-value',
+     *     // A token identifying a page of results the server will return. To request the first page results, page_token must be empty. To request the next page of results, page_token must be the value of next_page_token returned from the previous call to ListJobs.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The location name. For example: `projects/PROJECT_ID/locations/LOCATION_ID`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1518,6 +2061,90 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Updates a job. If successful, the updated Job is returned. If the job does not exist, `NOT_FOUND` is returned. If UpdateJob does not successfully return, it is possible for the job to be in an Job.State.UPDATE_FAILED state. A job in this state may not be executed. If this happens, retry the UpdateJob request until a successful response is received.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.patch({
+     *     // Optionally caller-specified in CreateJob, after which it becomes output only. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`. * `PROJECT_ID` can contain letters ([A-Za-z]), numbers ([0-9]), hyphens (-), colons (:), or periods (.). For more information, see [Identifying projects](https://cloud.google.com/resource-manager/docs/creating-managing-projects#identifying_projects) * `LOCATION_ID` is the canonical ID for the job's location. The list of available locations can be obtained by calling ListLocations. For more information, see https://cloud.google.com/about/locations/. * `JOB_ID` can contain only letters ([A-Za-z]), numbers ([0-9]), hyphens (-), or underscores (_). The maximum length is 500 characters.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *     // A mask used to specify which fields of the job are being updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appEngineHttpTarget": {},
+     *       //   "attemptDeadline": "my_attemptDeadline",
+     *       //   "description": "my_description",
+     *       //   "httpTarget": {},
+     *       //   "lastAttemptTime": "my_lastAttemptTime",
+     *       //   "name": "my_name",
+     *       //   "pubsubTarget": {},
+     *       //   "retryConfig": {},
+     *       //   "satisfiesPzs": false,
+     *       //   "schedule": "my_schedule",
+     *       //   "scheduleTime": "my_scheduleTime",
+     *       //   "state": "my_state",
+     *       //   "status": {},
+     *       //   "timeZone": "my_timeZone",
+     *       //   "userUpdateTime": "my_userUpdateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1607,6 +2234,72 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Pauses a job. If a job is paused then the system will stop executing the job until it is re-enabled via ResumeJob. The state of the job is stored in state; if paused it will be set to Job.State.PAUSED. A job must be in Job.State.ENABLED to be paused.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.pause({
+     *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1696,6 +2389,72 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Resume a job. This method reenables a job after it has been Job.State.PAUSED. The state of a job is stored in Job.state; after calling this method it will be set to Job.State.ENABLED. A job must be in Job.State.PAUSED to be resumed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.resume({
+     *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1785,6 +2544,72 @@ export namespace cloudscheduler_v1 {
 
     /**
      * Forces a job to run now. When this method is called, Cloud Scheduler will dispatch the job, even if the job is already running.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudscheduler.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudscheduler = google.cloudscheduler('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudscheduler.projects.locations.jobs.run({
+     *     // Required. The job name. For example: `projects/PROJECT_ID/locations/LOCATION_ID/jobs/JOB_ID`.
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appEngineHttpTarget": {},
+     *   //   "attemptDeadline": "my_attemptDeadline",
+     *   //   "description": "my_description",
+     *   //   "httpTarget": {},
+     *   //   "lastAttemptTime": "my_lastAttemptTime",
+     *   //   "name": "my_name",
+     *   //   "pubsubTarget": {},
+     *   //   "retryConfig": {},
+     *   //   "satisfiesPzs": false,
+     *   //   "schedule": "my_schedule",
+     *   //   "scheduleTime": "my_scheduleTime",
+     *   //   "state": "my_state",
+     *   //   "status": {},
+     *   //   "timeZone": "my_timeZone",
+     *   //   "userUpdateTime": "my_userUpdateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

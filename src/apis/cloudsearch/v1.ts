@@ -3788,6 +3788,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Checks whether an item is accessible by specified principal. Principal must be a user; groups and domain values aren't supported. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.checkAccess({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Item name, format: datasources/{source_id\}/items/{item_id\}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "groupResourceName": "my_groupResourceName",
+     *       //   "gsuitePrincipal": {},
+     *       //   "userResourceName": "my_userResourceName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "hasAccess": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3881,6 +3942,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Fetches the item whose viewUrl exactly matches that of the URL provided in the request. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.searchByViewUrl({
+     *     // Source name, format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "pageToken": "my_pageToken",
+     *       //   "viewUrl": "my_viewUrl"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4014,6 +4135,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * List all unmapped identities for a specific item. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.datasources.items.unmappedids.list({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of items to fetch in a request. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the item, in the following format: datasources/{source_id\}/items/{ID\}
+     *     parent: 'datasources/my-datasource/items/my-item',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unmappedIdentities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4151,6 +4328,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists names of items associated with an unmapped identity. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudsearch.debug.identitysources.items.listForunmappedidentity({
+     *       // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *       'debugOptions.enableDebugging': 'placeholder-value',
+     *
+     *       groupResourceName: 'placeholder-value',
+     *       // Maximum number of items to fetch in a request. Defaults to 100.
+     *       pageSize: 'placeholder-value',
+     *       // The next_page_token value returned from a previous List request, if any.
+     *       pageToken: 'placeholder-value',
+     *       // The name of the identity source, in the following format: identitysources/{source_id\}\}
+     *       parent: 'identitysources/my-identitysource',
+     *
+     *       userResourceName: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "itemNames": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4287,6 +4525,64 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists unmapped user identities for an identity source. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.debug.identitysources.unmappedids.list({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of items to fetch in a request. Defaults to 100.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // The name of the identity source, in the following format: identitysources/{source_id\}
+     *     parent: 'identitysources/my-identitysource',
+     *     // Limit users selection to this status.
+     *     resolutionStatusCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unmappedIdentities": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4426,6 +4722,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * Deletes the schema of a data source. **Note:** This API requires an admin or service account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.deleteSchema({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the data source to delete Schema. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4517,6 +4869,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets the schema of a data source. **Note:** This API requires an admin or service account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.getSchema({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the data source to get Schema. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "objectDefinitions": [],
+     *   //   "operationIds": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4608,6 +5013,70 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates the schema of a data source. This method does not perform incremental updates to the schema. Instead, this method updates the schema by overwriting the entire schema. **Note:** This API requires an admin or service account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.updateSchema({
+     *     // The name of the data source to update Schema. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "schema": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4741,6 +5210,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Deletes Item resource for the specified resource name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.delete({
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Required. The RequestMode for this request.
+     *     mode: 'placeholder-value',
+     *     // Required. The name of the item to delete. Format: datasources/{source_id\}/items/{item_id\}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *     // Required. The incremented version of the item to delete from the index. The indexing system stores the version from the datasource as a byte string and compares the Item version in the index to the version of the queued Item using lexical ordering. Cloud Search Indexing won't delete any queued item with a version value that is less than or equal to the version of the currently indexed item. The maximum length for this field is 1024 bytes. For information on how item version affects the deletion process, refer to [Handle revisions after manual deletes](https://developers.google.com/cloud-search/docs/guides/operations).
+     *     version: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4832,6 +5362,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * Deletes all items in a queue. This method is useful for deleting stale items. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.deleteQueueItems({
+     *     // The name of the Data Source to delete items in a queue. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "queue": "my_queue"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4923,6 +5516,68 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets Item resource by item name. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.get({
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the item to get info. Format: datasources/{source_id\}/items/{item_id\}
+     *     name: 'datasources/my-datasource/items/my-item',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": {},
+     *   //   "content": {},
+     *   //   "itemType": "my_itemType",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "payload": "my_payload",
+     *   //   "queue": "my_queue",
+     *   //   "status": {},
+     *   //   "structuredData": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5014,6 +5669,71 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates Item ACL, metadata, and content. It will insert the Item if it does not exist. This method does not support partial updates. Fields with no provided values are cleared out in the Cloud Search index. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.index({
+     *     // The name of the Item. Format: datasources/{source_id\}/items/{item_id\} This is a required field. The maximum length is 1536 characters.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "indexItemOptions": {},
+     *       //   "item": {},
+     *       //   "mode": "my_mode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5105,6 +5825,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists all or a subset of Item resources. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.list({
+     *     // When set to true, the indexing system only populates the following fields: name, version, queue. metadata.hash, metadata.title, metadata.sourceRepositoryURL, metadata.objectType, metadata.createTime, metadata.updateTime, metadata.contentLanguage, metadata.mimeType, structured_data.hash, content.hash, itemType, itemStatus.code, itemStatus.processingError.code, itemStatus.repositoryError.type, If this value is false, then all the fields are populated in Item.
+     *     brief: 'placeholder-value',
+     *     // The name of connector making this call. Format: datasources/{source_id\}/connectors/{ID\}
+     *     connectorName: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the Data Source to list Items. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *     // Maximum number of items to fetch in a request. The max value is 1000 when brief is true. The max value is 10 if brief is false. The default value is 10
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5196,6 +5976,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Polls for unreserved items from the indexing queue and marks a set as reserved, starting with items that have the oldest timestamp from the highest priority ItemStatus. The priority order is as follows: ERROR MODIFIED NEW_ITEM ACCEPTED Reserving items ensures that polling from other threads cannot create overlapping sets. After handling the reserved items, the client should put items back into the unreserved state, either by calling index, or by calling push with the type REQUEUE. Items automatically become available (unreserved) after 4 hours even if no update or push method is called. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.poll({
+     *     // The name of the Data Source to poll items. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "limit": 0,
+     *       //   "queue": "my_queue",
+     *       //   "statusCodes": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "items": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5287,6 +6128,74 @@ export namespace cloudsearch_v1 {
 
     /**
      * Pushes an item onto a queue for later polling and updating. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.push({
+     *     // The name of the item to push into the indexing queue. Format: datasources/{source_id\}/items/{ID\} This is a required field. The maximum length is 1536 characters.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "item": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acl": {},
+     *   //   "content": {},
+     *   //   "itemType": "my_itemType",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "payload": "my_payload",
+     *   //   "queue": "my_queue",
+     *   //   "status": {},
+     *   //   "structuredData": {},
+     *   //   "version": "my_version"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5378,6 +6287,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * Unreserves all items from a queue, making them all eligible to be polled. This method is useful for resetting the indexing queue after a connector has been restarted. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.unreserve({
+     *     // The name of the Data Source to unreserve all items. Format: datasources/{source_id\}
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {},
+     *       //   "queue": "my_queue"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5469,6 +6441,64 @@ export namespace cloudsearch_v1 {
 
     /**
      * Creates an upload session for uploading item content. For items smaller than 100 KB, it's easier to embed the content inline within an index request. This API requires an admin or service account to execute. The service account used is the one whitelisted in the corresponding data source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.indexing.datasources.items.upload({
+     *     // The name of the Item to start a resumable upload. Format: datasources/{source_id\}/items/{item_id\}. The maximum length is 1536 bytes.
+     *     name: 'datasources/my-datasource/items/my-item',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "connectorName": "my_connectorName",
+     *       //   "debugOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5705,6 +6735,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Uploads media for indexing. The upload endpoint supports direct and resumable upload protocols and is intended for large items that can not be [inlined during index requests](https://developers.google.com/cloud-search/docs/reference/rest/v1/indexing.datasources.items#itemcontent). To index large content: 1. Call indexing.datasources.items.upload with the item name to begin an upload session and retrieve the UploadItemRef. 1. Call media.upload to upload the content, as a streaming request, using the same resource name from the UploadItemRef from step 1. 1. Call indexing.datasources.items.index to index the item. Populate the [ItemContent](/cloud-search/docs/reference/rest/v1/indexing.datasources.items#ItemContent) with the UploadItemRef from step 1. For additional information, see [Create a content connector using the REST API](https://developers.google.com/cloud-search/docs/guides/content-connector#rest). **Note:** This API requires a service account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.media.upload({
+     *     // Name of the media that is being downloaded. See ReadRequest.resource_name.
+     *     resourceName: '.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "resourceName": "my_resourceName"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "resourceName": "my_resourceName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5835,6 +6926,63 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5936,6 +7084,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.debug',
+     *       'https://www.googleapis.com/auth/cloud_search.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.operations.lro.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'operations/.*',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6055,6 +7263,70 @@ export namespace cloudsearch_v1 {
 
     /**
      * Returns Debug information for Cloud Search Query API provides the search method. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.debugSearch({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextAttributes": [],
+     *       //   "dataSourceRestrictions": [],
+     *       //   "facetOptions": [],
+     *       //   "pageSize": 0,
+     *       //   "query": "my_query",
+     *       //   "queryInterpretationOptions": {},
+     *       //   "requestOptions": {},
+     *       //   "sortOptions": {},
+     *       //   "start": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gsrRequest": "my_gsrRequest",
+     *   //   "gsrResponse": "my_gsrResponse",
+     *   //   "searchResponse": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6146,6 +7418,59 @@ export namespace cloudsearch_v1 {
 
     /**
      * Provides functionality to remove logged activity for a user. Currently to be used only for Chat 1p clients **Note:** This API requires a standard end user account to execute. A service account can't perform Remove Activity requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.removeActivity({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requestOptions": {},
+     *       //   "userActivity": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6241,6 +7566,78 @@ export namespace cloudsearch_v1 {
 
     /**
      * The Cloud Search Query API provides the search method, which returns the most relevant results from a user query. The results can come from Google Workspace apps, such as Gmail or Google Drive, or they can come from data that you have indexed from a third party. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.search({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "contextAttributes": [],
+     *       //   "dataSourceRestrictions": [],
+     *       //   "facetOptions": [],
+     *       //   "pageSize": 0,
+     *       //   "query": "my_query",
+     *       //   "queryInterpretationOptions": {},
+     *       //   "requestOptions": {},
+     *       //   "sortOptions": {},
+     *       //   "start": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "debugInfo": {},
+     *   //   "errorInfo": {},
+     *   //   "facetResults": [],
+     *   //   "hasMoreResults": false,
+     *   //   "queryInterpretation": {},
+     *   //   "resultCountEstimate": "my_resultCountEstimate",
+     *   //   "resultCountExact": "my_resultCountExact",
+     *   //   "resultCounts": {},
+     *   //   "results": [],
+     *   //   "spellResults": [],
+     *   //   "structuredResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6328,6 +7725,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * Provides suggestions for autocompleting the query. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.suggest({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "query": "my_query",
+     *       //   "requestOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "suggestResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6449,6 +7902,64 @@ export namespace cloudsearch_v1 {
 
     /**
      * Returns list of sources that user can use for Search and Suggest APIs. **Note:** This API requires a standard end user account to execute. A service account can't perform Query API requests directly; to use a service account to perform queries, set up [Google Workspace domain-wide delegation of authority](https://developers.google.com/cloud-search/docs/guides/delegation/).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.query.sources.list({
+     *     // Number of sources to return in the response.
+     *     pageToken: 'placeholder-value',
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'requestOptions.debugOptions.enableDebugging': 'placeholder-value',
+     *     // The BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier. For translations. Set this field using the language set in browser or for the page. In the event that the user's language preference is known, set this field to the known user language. When specified, the documents in search results are biased towards the specified language. The Suggest API uses this field as a hint to make better third-party autocomplete predictions.
+     *     'requestOptions.languageCode': 'placeholder-value',
+     *     // The ID generated when you create a search application using the [admin console](https://support.google.com/a/answer/9043922).
+     *     'requestOptions.searchApplicationId': 'placeholder-value',
+     *     // Current user's time zone id, such as "America/Los_Angeles" or "Australia/Sydney". These IDs are defined by [Unicode Common Locale Data Repository (CLDR)](http://cldr.unicode.org/) project, and currently available in the file [timezone.xml](http://unicode.org/repos/cldr/trunk/common/bcp47/timezone.xml). This field is used to correctly interpret date and time queries. If this field is not specified, the default time zone (UTC) is used.
+     *     'requestOptions.timeZone': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6576,6 +8087,54 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get customer settings. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.getCustomer({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditLoggingSettings": {},
+     *   //   "vpcSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6667,6 +8226,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * Update customer settings. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.updateCustomer({
+     *     // Update mask to control which fields get updated. If you specify a field in the update_mask but don't specify its value here, that field will be cleared. If the mask is not present or empty, all fields will be updated. Currently supported field paths: vpc_settings and audit_logging_settings
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "auditLoggingSettings": {},
+     *       //   "vpcSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6780,6 +8402,73 @@ export namespace cloudsearch_v1 {
 
     /**
      * Creates a datasource. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableModifications": false,
+     *       //   "disableServing": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "indexingServiceAccounts": [],
+     *       //   "itemsVisibility": [],
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "returnThumbnailUrls": false,
+     *       //   "shortName": "my_shortName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6871,6 +8560,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * Deletes a datasource. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.delete({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the datasource. Format: datasources/{source_id\}.
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6962,6 +8707,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets a datasource. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.get({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the datasource resource. Format: datasources/{source_id\}.
+     *     name: 'datasources/my-datasource',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "disableModifications": false,
+     *   //   "disableServing": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "indexingServiceAccounts": [],
+     *   //   "itemsVisibility": [],
+     *   //   "name": "my_name",
+     *   //   "operationIds": [],
+     *   //   "returnThumbnailUrls": false,
+     *   //   "shortName": "my_shortName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7053,6 +8858,61 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists datasources. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.list({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // Maximum number of datasources to fetch in a request. The max value is 1000. The default value is 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Starting index of the results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7146,6 +9006,80 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates a datasource. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.patch({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
+     *     name: 'datasources/my-datasource',
+     *     // Only applies to [`settings.datasources.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.datasources/patch). Update mask to control which fields to update. Example field paths: `name`, `displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the source, that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "disableModifications": false,
+     *       //   "disableServing": false,
+     *       //   "displayName": "my_displayName",
+     *       //   "indexingServiceAccounts": [],
+     *       //   "itemsVisibility": [],
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "returnThumbnailUrls": false,
+     *       //   "shortName": "my_shortName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7237,6 +9171,70 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates a datasource. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.datasources.update({
+     *     // The name of the datasource resource. Format: datasources/{source_id\}. The name is ignored when creating a datasource.
+     *     name: 'datasources/my-datasource',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {},
+     *       //   "source": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7412,6 +9410,75 @@ export namespace cloudsearch_v1 {
 
     /**
      * Creates a search application. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "defaultFacetOptions": [],
+     *       //   "defaultSortOptions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAuditLog": false,
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "queryInterpretationConfig": {},
+     *       //   "returnResultThumbnailUrls": false,
+     *       //   "scoringConfig": {},
+     *       //   "sourceConfig": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7503,6 +9570,62 @@ export namespace cloudsearch_v1 {
 
     /**
      * Deletes a search application. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.delete({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the search application to be deleted. Format: applications/{application_id\}.
+     *     name: 'searchapplications/my-searchapplication',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7594,6 +9717,68 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets the specified search application. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.get({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The name of the search application. Format: searchapplications/{application_id\}.
+     *     name: 'searchapplications/my-searchapplication',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceRestrictions": [],
+     *   //   "defaultFacetOptions": [],
+     *   //   "defaultSortOptions": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAuditLog": false,
+     *   //   "name": "my_name",
+     *   //   "operationIds": [],
+     *   //   "queryInterpretationConfig": {},
+     *   //   "returnResultThumbnailUrls": false,
+     *   //   "scoringConfig": {},
+     *   //   "sourceConfig": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7685,6 +9870,61 @@ export namespace cloudsearch_v1 {
 
     /**
      * Lists all search applications. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.list({
+     *     // If you are asked by Google to help with debugging, set this field. Otherwise, ignore this field.
+     *     'debugOptions.enableDebugging': 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The next_page_token value returned from a previous List request, if any. The default value is 10
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "searchApplications": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7782,6 +10022,80 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates a search application. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.patch({
+     *     // The name of the Search Application. Format: searchapplications/{application_id\}.
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "defaultFacetOptions": [],
+     *       //   "defaultSortOptions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAuditLog": false,
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "queryInterpretationConfig": {},
+     *       //   "returnResultThumbnailUrls": false,
+     *       //   "scoringConfig": {},
+     *       //   "sourceConfig": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7873,6 +10187,68 @@ export namespace cloudsearch_v1 {
 
     /**
      * Resets a search application to default settings. This will return an empty response. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.reset({
+     *     // The name of the search application to be reset. Format: applications/{application_id\}.
+     *     name: 'searchapplications/my-searchapplication',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "debugOptions": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7964,6 +10340,80 @@ export namespace cloudsearch_v1 {
 
     /**
      * Updates a search application. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.settings.searchapplications.update({
+     *     // The name of the Search Application. Format: searchapplications/{application_id\}.
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Only applies to [`settings.searchapplications.patch`](https://developers.google.com/cloud-search/docs/reference/rest/v1/settings.searchapplications/patch). Update mask to control which fields to update. Example field paths: `search_application.name`, `search_application.displayName`. * If `update_mask` is non-empty, then only the fields specified in the `update_mask` are updated. * If you specify a field in the `update_mask`, but don't specify its value in the `search_application`, then that field is cleared. * If the `update_mask` is not present or empty or has the value `*`, then all fields are updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dataSourceRestrictions": [],
+     *       //   "defaultFacetOptions": [],
+     *       //   "defaultSortOptions": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "enableAuditLog": false,
+     *       //   "name": "my_name",
+     *       //   "operationIds": [],
+     *       //   "queryInterpretationConfig": {},
+     *       //   "returnResultThumbnailUrls": false,
+     *       //   "scoringConfig": {},
+     *       //   "sourceConfig": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8159,6 +10609,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets indexed item statistics aggreggated across all data sources. This API only returns statistics for previous dates; it doesn't return statistics for the current day. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getIndex({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averageIndexedItemCount": "my_averageIndexedItemCount",
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8252,6 +10763,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the query statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getQuery({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": [],
+     *   //   "totalQueryCount": "my_totalQueryCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8345,6 +10917,67 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get search application stats for customer. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getSearchapplication({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'endDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'endDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'endDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'startDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'startDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'startDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averageSearchApplicationCount": "my_averageSearchApplicationCount",
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8446,6 +11079,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the # of search sessions, % of successful sessions with a click query statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getSession({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8539,6 +11232,66 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the users statistics for customer. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.getUser({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8780,6 +11533,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * Gets indexed item statistics for a single data source. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.index.datasources.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the data source to retrieve statistics for, in the following format: "datasources/{source_id\}"
+     *     name: 'datasources/my-datasource',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "averageIndexedItemCount": "my_averageIndexedItemCount",
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8927,6 +11743,69 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the query statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.query.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application query stats, in the following format: searchapplications/{application_id\}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": [],
+     *   //   "totalQueryCount": "my_totalQueryCount"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9078,6 +11957,68 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the # of search sessions, % of successful sessions with a click query statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.session.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9229,6 +12170,68 @@ export namespace cloudsearch_v1 {
 
     /**
      * Get the users statistics for search application. **Note:** This API requires a standard end user account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.stats',
+     *       'https://www.googleapis.com/auth/cloud_search.stats.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.stats.user.searchapplications.get({
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'fromDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'fromDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'fromDate.year': 'placeholder-value',
+     *     // The resource id of the search application session stats, in the following format: searchapplications/{application_id\}
+     *     name: 'searchapplications/my-searchapplication',
+     *     // Day of month. Must be from 1 to 31 and valid for the year and month.
+     *     'toDate.day': 'placeholder-value',
+     *     // Month of date. Must be from 1 to 12.
+     *     'toDate.month': 'placeholder-value',
+     *     // Year of date. Must be from 1 to 9999.
+     *     'toDate.year': 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "stats": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9369,6 +12372,63 @@ export namespace cloudsearch_v1 {
 
     /**
      * Enables `third party` support in Google Cloud Search. **Note:** This API requires an admin account to execute.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudsearch.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudsearch = google.cloudsearch('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud_search',
+     *       'https://www.googleapis.com/auth/cloud_search.settings',
+     *       'https://www.googleapis.com/auth/cloud_search.settings.indexing',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudsearch.initializeCustomer({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

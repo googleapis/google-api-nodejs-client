@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -151,7 +151,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the state to retrieve. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+                  "description": "Required. The name of the state to retrieve. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`. For example, `accounts/123456/lfpMerchantStates/567890`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/lfpMerchantStates/[^/]+$",
                   "required": true,
@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -538,7 +538,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`",
+          "description": "Identifier. The name of the `LfpMerchantState` resource. Format: `accounts/{account}/lfpMerchantStates/{target_merchant}`. For example, `accounts/123456/lfpMerchantStates/567890`.",
           "type": "string"
         },
         "storeStates": {
@@ -863,7 +863,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },

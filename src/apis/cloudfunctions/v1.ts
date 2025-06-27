@@ -739,6 +739,56 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -827,6 +877,59 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'placeholder-value',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -960,6 +1063,61 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1085,6 +1243,62 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Synchronously invokes a deployed Cloud Function. To be used for testing purposes as very limited traffic is allowed. For more information on the actual limits, refer to [Rate Limits](https://cloud.google.com/functions/quotas#rate_limits).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.call({
+     *     // Required. The name of the function to be called.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "data": "my_data"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "error": "my_error",
+     *   //   "executionId": "my_executionId",
+     *   //   "result": "my_result"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1176,6 +1390,101 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Creates a new function. If a function with the given name already exists in the specified project, the long running operation will return `ALREADY_EXISTS` error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.create({
+     *     // Required. The project and location in which the function should be created, specified in the format `projects/x/locations/x`
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automaticUpdatePolicy": {},
+     *       //   "availableMemoryMb": 0,
+     *       //   "buildEnvironmentVariables": {},
+     *       //   "buildId": "my_buildId",
+     *       //   "buildName": "my_buildName",
+     *       //   "buildServiceAccount": "my_buildServiceAccount",
+     *       //   "buildWorkerPool": "my_buildWorkerPool",
+     *       //   "description": "my_description",
+     *       //   "dockerRegistry": "my_dockerRegistry",
+     *       //   "dockerRepository": "my_dockerRepository",
+     *       //   "entryPoint": "my_entryPoint",
+     *       //   "environmentVariables": {},
+     *       //   "eventTrigger": {},
+     *       //   "httpsTrigger": {},
+     *       //   "ingressSettings": "my_ingressSettings",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "labels": {},
+     *       //   "maxInstances": 0,
+     *       //   "minInstances": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "onDeployUpdatePolicy": {},
+     *       //   "runtime": "my_runtime",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "secretEnvironmentVariables": [],
+     *       //   "secretVolumes": [],
+     *       //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *       //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *       //   "sourceRepository": {},
+     *       //   "sourceToken": "my_sourceToken",
+     *       //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *       //   "status": "my_status",
+     *       //   "timeout": "my_timeout",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionId": "my_versionId",
+     *       //   "vpcConnector": "my_vpcConnector",
+     *       //   "vpcConnectorEgressSettings": "my_vpcConnectorEgressSettings"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1268,6 +1577,56 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Deletes a function with the given name from the specified project. If the given function is used by some trigger, the trigger will be updated to remove this function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.delete({
+     *     // Required. The name of the function which should be deleted.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1357,6 +1716,61 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Returns a signed URL for downloading deployed function source code. The URL is only valid for a limited period and should be used within minutes after generation. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateDownloadUrl({
+     *       // The name of function for which source code Google Cloud Storage signed URL should be generated.
+     *       name: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "versionId": "my_versionId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "downloadUrl": "my_downloadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1454,6 +1868,61 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Returns a signed URL for uploading a function source code. For more information about the signed URL usage see: https://cloud.google.com/storage/docs/access-control/signed-urls. Once the function source code upload is complete, the used signed URL should be provided in CreateFunction or UpdateFunction request as a reference to the function source code. When uploading source code to the generated signed URL, please follow these restrictions: * Source file type should be a zip file. * Source file size should not exceed 100MB limit. * No credentials should be attached - the signed URLs provide access to the target bucket using internal service identity; if credentials were attached, the identity from the credentials would be used, but that identity does not have permissions to upload files to the URL. When making a HTTP PUT request, these two headers need to be specified: * `content-type: application/zip` * `x-goog-content-length-range: 0,104857600` And this header SHOULD NOT be specified: * `Authorization: Bearer YOUR_TOKEN`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.generateUploadUrl({
+     *       // The project and location in which the Google Cloud Storage signed URL should be generated, specified in the format `projects/x/locations/x`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "kmsKeyName": "my_kmsKeyName"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "uploadUrl": "my_uploadUrl"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1550,6 +2019,91 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Returns a function with the given name from the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.get({
+     *     // Required. The name of the function which details should be obtained.
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *     // Optional. The optional version of the function whose details should be obtained. The version of a 1st Gen function is an integer that starts from 1 and gets incremented on redeployments. Each deployment creates a config version of the underlying function. GCF may keep historical configs for old versions. This field can be specified to fetch the historical configs. Leave it blank or set to 0 to get the latest version of the function.
+     *     versionId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "automaticUpdatePolicy": {},
+     *   //   "availableMemoryMb": 0,
+     *   //   "buildEnvironmentVariables": {},
+     *   //   "buildId": "my_buildId",
+     *   //   "buildName": "my_buildName",
+     *   //   "buildServiceAccount": "my_buildServiceAccount",
+     *   //   "buildWorkerPool": "my_buildWorkerPool",
+     *   //   "description": "my_description",
+     *   //   "dockerRegistry": "my_dockerRegistry",
+     *   //   "dockerRepository": "my_dockerRepository",
+     *   //   "entryPoint": "my_entryPoint",
+     *   //   "environmentVariables": {},
+     *   //   "eventTrigger": {},
+     *   //   "httpsTrigger": {},
+     *   //   "ingressSettings": "my_ingressSettings",
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "labels": {},
+     *   //   "maxInstances": 0,
+     *   //   "minInstances": 0,
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "onDeployUpdatePolicy": {},
+     *   //   "runtime": "my_runtime",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
+     *   //   "secretEnvironmentVariables": [],
+     *   //   "secretVolumes": [],
+     *   //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *   //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *   //   "sourceRepository": {},
+     *   //   "sourceToken": "my_sourceToken",
+     *   //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *   //   "status": "my_status",
+     *   //   "timeout": "my_timeout",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "versionId": "my_versionId",
+     *   //   "vpcConnector": "my_vpcConnector",
+     *   //   "vpcConnectorEgressSettings": "my_vpcConnectorEgressSettings"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1639,6 +2193,57 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Gets the IAM access control policy for a function. Returns an empty policy if the function exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/functions/my-function',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1732,6 +2337,58 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Returns a list of functions that belong to the requested project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.list({
+     *     // Maximum number of functions to return per call.
+     *     pageSize: 'placeholder-value',
+     *     // The value returned by the last `ListFunctionsResponse`; indicates that this is a continuation of a prior `ListFunctions` call, and that the system should return the next page of data.
+     *     pageToken: 'placeholder-value',
+     *     // The project and location from which the function should be listed, specified in the format `projects/x/locations/x` If you want to list functions in all locations, use "-" in place of a location. When listing functions in all locations, if one or more location(s) are unreachable, the response will contain functions from all reachable locations along with the names of any unreachable locations.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "functions": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1826,6 +2483,103 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Updates existing function.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.patch({
+     *     // A user-defined name of the function. Function names must be unique globally and match pattern `projects/x/locations/x/functions/x`
+     *     name: 'projects/my-project/locations/my-location/functions/my-function',
+     *     // Required. The list of fields in `CloudFunction` that have to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "automaticUpdatePolicy": {},
+     *       //   "availableMemoryMb": 0,
+     *       //   "buildEnvironmentVariables": {},
+     *       //   "buildId": "my_buildId",
+     *       //   "buildName": "my_buildName",
+     *       //   "buildServiceAccount": "my_buildServiceAccount",
+     *       //   "buildWorkerPool": "my_buildWorkerPool",
+     *       //   "description": "my_description",
+     *       //   "dockerRegistry": "my_dockerRegistry",
+     *       //   "dockerRepository": "my_dockerRepository",
+     *       //   "entryPoint": "my_entryPoint",
+     *       //   "environmentVariables": {},
+     *       //   "eventTrigger": {},
+     *       //   "httpsTrigger": {},
+     *       //   "ingressSettings": "my_ingressSettings",
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "labels": {},
+     *       //   "maxInstances": 0,
+     *       //   "minInstances": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "onDeployUpdatePolicy": {},
+     *       //   "runtime": "my_runtime",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
+     *       //   "secretEnvironmentVariables": [],
+     *       //   "secretVolumes": [],
+     *       //   "serviceAccountEmail": "my_serviceAccountEmail",
+     *       //   "sourceArchiveUrl": "my_sourceArchiveUrl",
+     *       //   "sourceRepository": {},
+     *       //   "sourceToken": "my_sourceToken",
+     *       //   "sourceUploadUrl": "my_sourceUploadUrl",
+     *       //   "status": "my_status",
+     *       //   "timeout": "my_timeout",
+     *       //   "updateTime": "my_updateTime",
+     *       //   "versionId": "my_versionId",
+     *       //   "vpcConnector": "my_vpcConnector",
+     *       //   "vpcConnectorEgressSettings": "my_vpcConnectorEgressSettings"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1915,6 +2669,64 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Sets the IAM access control policy on the specified function. Replaces any existing policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudfunctions.projects.locations.functions.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2008,6 +2820,62 @@ export namespace cloudfunctions_v1 {
 
     /**
      * Tests the specified permissions against the IAM access control policy for a function. If the function does not exist, this will return an empty set of permissions, not a NOT_FOUND error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudfunctions.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudfunctions = google.cloudfunctions('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await cloudfunctions.projects.locations.functions.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/functions/my-function',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

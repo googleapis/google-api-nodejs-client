@@ -147,6 +147,28 @@ export namespace travelimpactmodel_v1 {
     modelVersion?: Schema$ModelVersion;
   }
   /**
+   * A list of pair of airports (markets) to request the typical emissions for.
+   */
+  export interface Schema$ComputeTypicalFlightEmissionsRequest {
+    /**
+     * Required. Request the typical flight emissions estimates for this market pair. A maximum of 1000 markets can be requested.
+     */
+    markets?: Schema$Market[];
+  }
+  /**
+   * The response includes the emissions but also the model version.
+   */
+  export interface Schema$ComputeTypicalFlightEmissionsResponse {
+    /**
+     * The model version under which typical flight emission estimates for all flights in this response were computed.
+     */
+    modelVersion?: Schema$ModelVersion;
+    /**
+     * Market's Typical Flight Emissions requested.
+     */
+    typicalFlightEmissions?: Schema$TypicalFlightEmissions[];
+  }
+  /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: * A full date, with non-zero year, month, and day values. * A month and day, with a zero year (for example, an anniversary). * A year on its own, with a zero month and a zero day. * A year and month, with a zero day (for example, a credit card expiration date). Related types: * google.type.TimeOfDay * google.type.DateTime * google.protobuf.Timestamp
    */
   export interface Schema$Date {
@@ -162,6 +184,27 @@ export namespace travelimpactmodel_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Metadata about the EASA Flight Emissions Label.
+   */
+  export interface Schema$EasaLabelMetadata {
+    /**
+     * The date when the label expires. The label can be displayed until the end of this date.
+     */
+    labelExpiryDate?: Schema$Date;
+    /**
+     * The date when the label was issued.
+     */
+    labelIssueDate?: Schema$Date;
+    /**
+     * Version of the label.
+     */
+    labelVersion?: string | null;
+    /**
+     * Sustainable Aviation Fuel (SAF) emissions discount percentage applied to the label. It is a percentage as a decimal. The values are in the interval [0,1]. For example, 0.0021 means 0.21%. This discount and reduction in emissions are reported by the EASA label but they are not included in the CO2e estimates distributed by this API.
+     */
+    safDiscountPercentage?: number | null;
   }
   /**
    * Grouped emissions per seating class results.
@@ -214,16 +257,41 @@ export namespace travelimpactmodel_v1 {
    */
   export interface Schema$FlightWithEmissions {
     /**
-     * Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions. This field uses wtw emissions aka ttw_emissions_grams_per_pax + wtt_emissions_grams_per_pax.
+     * Optional. The significance of contrails warming impact compared to the total CO2e emissions impact.
+     */
+    contrailsImpactBucket?: string | null;
+    /**
+     * Optional. Metadata about the EASA Flight Emissions Label. Only set when the emissions data source is EASA.
+     */
+    easaLabelMetadata?: Schema$EasaLabelMetadata;
+    /**
+     * Optional. Per-passenger emission estimate numbers. Will not be present if emissions could not be computed. For the list of reasons why emissions could not be computed, see ComputeFlightEmissions.
      */
     emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
     /**
      * Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
      */
     flight?: Schema$Flight;
+    /**
+     * Optional. The source of the emissions data.
+     */
+    source?: string | null;
   }
   /**
-   * Travel Impact Model version. For more information about the model versioning see https://github.com/google/travel-impact-model/#versioning.
+   * A pair of airports.
+   */
+  export interface Schema$Market {
+    /**
+     * Required. IATA airport code for flight destination, e.g. "JFK".
+     */
+    destination?: string | null;
+    /**
+     * Required. IATA airport code for flight origin, e.g. "LHR".
+     */
+    origin?: string | null;
+  }
+  /**
+   * Travel Impact Model version. For more information about the model versioning see [GitHub](https://github.com/google/travel-impact-model/#versioning).
    */
   export interface Schema$ModelVersion {
     /**
@@ -231,7 +299,7 @@ export namespace travelimpactmodel_v1 {
      */
     dated?: string | null;
     /**
-     * Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect guidelines in https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible
+     * Major versions: Major changes to methodology (e.g. adding new data sources to the model that lead to major output changes). Such changes will be infrequent and announced well in advance. Might involve API version changes, which will respect [Google Cloud API guidelines](https://cloud.google.com/endpoints/docs/openapi/versioning-an-api#backwards-incompatible)
      */
     major?: number | null;
     /**
@@ -243,6 +311,19 @@ export namespace travelimpactmodel_v1 {
      */
     patch?: number | null;
   }
+  /**
+   * Typical flight emission estimates for a certain market
+   */
+  export interface Schema$TypicalFlightEmissions {
+    /**
+     * Optional. Typical flight emissions per passenger for requested market. Will not be present if a typical emissions could not be computed. For the list of reasons why typical flight emissions could not be computed, see [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md#step-7-validate-dataset).
+     */
+    emissionsGramsPerPax?: Schema$EmissionsGramsPerPax;
+    /**
+     * Required. Matches the flight identifiers in the request. Note: all IATA codes are capitalized.
+     */
+    market?: Schema$Market;
+  }
 
   export class Resource$Flights {
     context: APIRequestContext;
@@ -251,7 +332,59 @@ export namespace travelimpactmodel_v1 {
     }
 
     /**
-     * Stateless method to retrieve emission estimates. Details on how emission estimates are computed: https://github.com/google/travel-impact-model The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.
+     * Stateless method to retrieve emission estimates. Details on how emission estimates are computed are in [GitHub](https://github.com/google/travel-impact-model) The response will contain all entries that match the input flight legs, in the same order. If there are no estimates available for a certain flight leg, the response will return the flight leg object with empty emission fields. The request will still be considered successful. Reasons for missing emission estimates include: * The flight is unknown to the server. * The input flight leg is missing one or more identifiers. * The flight date is in the past. * The aircraft type is not supported by the model. * Missing seat configuration. The request can contain up to 1000 flight legs. If the request has more than 1000 direct flights, if will fail with an INVALID_ARGUMENT error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/travelimpactmodel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const travelimpactmodel = google.travelimpactmodel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await travelimpactmodel.flights.computeFlightEmissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "flights": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "flightEmissions": [],
+     *   //   "modelVersion": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -347,6 +480,159 @@ export namespace travelimpactmodel_v1 {
         );
       }
     }
+
+    /**
+     * Retrieves typical flight emissions estimates between two airports, also known as a market. If there are no estimates available for a certain market, the response will return the market object with empty emission fields. The request will still be considered successful. Details on how the typical emissions estimates are computed are on [GitHub](https://github.com/google/travel-impact-model/blob/main/projects/typical_flight_emissions.md). The request can contain up to 1000 markets. If the request has more than 1000 markets, it will fail with an INVALID_ARGUMENT error.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/travelimpactmodel.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const travelimpactmodel = google.travelimpactmodel('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await travelimpactmodel.flights.computeTypicalFlightEmissions({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "markets": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "modelVersion": {},
+     *   //   "typicalFlightEmissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    computeTypicalFlightEmissions(
+      params: Params$Resource$Flights$Computetypicalflightemissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    computeTypicalFlightEmissions(
+      params?: Params$Resource$Flights$Computetypicalflightemissions,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ComputeTypicalFlightEmissionsResponse>
+    >;
+    computeTypicalFlightEmissions(
+      params: Params$Resource$Flights$Computetypicalflightemissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    computeTypicalFlightEmissions(
+      params: Params$Resource$Flights$Computetypicalflightemissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>,
+      callback: BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+    ): void;
+    computeTypicalFlightEmissions(
+      params: Params$Resource$Flights$Computetypicalflightemissions,
+      callback: BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+    ): void;
+    computeTypicalFlightEmissions(
+      callback: BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+    ): void;
+    computeTypicalFlightEmissions(
+      paramsOrCallback?:
+        | Params$Resource$Flights$Computetypicalflightemissions
+        | BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ComputeTypicalFlightEmissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ComputeTypicalFlightEmissionsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Flights$Computetypicalflightemissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Flights$Computetypicalflightemissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://travelimpactmodel.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1/flights:computeTypicalFlightEmissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ComputeTypicalFlightEmissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ComputeTypicalFlightEmissionsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Flights$Computeflightemissions
@@ -355,5 +641,12 @@ export namespace travelimpactmodel_v1 {
      * Request body metadata
      */
     requestBody?: Schema$ComputeFlightEmissionsRequest;
+  }
+  export interface Params$Resource$Flights$Computetypicalflightemissions
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ComputeTypicalFlightEmissionsRequest;
   }
 }

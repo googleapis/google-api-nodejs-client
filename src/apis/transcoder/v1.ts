@@ -1342,6 +1342,88 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job in the specified region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobs.create({
+     *     // Required. The parent location to create and process this job. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "batchModePriority": 0,
+     *       //   "config": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "endTime": "my_endTime",
+     *       //   "error": {},
+     *       //   "inputUri": "my_inputUri",
+     *       //   "labels": {},
+     *       //   "mode": "my_mode",
+     *       //   "name": "my_name",
+     *       //   "optimization": "my_optimization",
+     *       //   "outputUri": "my_outputUri",
+     *       //   "startTime": "my_startTime",
+     *       //   "state": "my_state",
+     *       //   "templateId": "my_templateId",
+     *       //   "ttlAfterCompletionDays": 0
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batchModePriority": 0,
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
+     *   //   "mode": "my_mode",
+     *   //   "name": "my_name",
+     *   //   "optimization": "my_optimization",
+     *   //   "outputUri": "my_outputUri",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "templateId": "my_templateId",
+     *   //   "ttlAfterCompletionDays": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1430,6 +1512,52 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobs.delete({
+     *     // If set to true, and the job is not found, the request will succeed but no action will be taken on the server.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. The name of the job to delete. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1518,6 +1646,66 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobs.get({
+     *     // Required. The name of the job to retrieve. Format: `projects/{project\}/locations/{location\}/jobs/{job\}`
+     *     name: 'projects/my-project/locations/my-location/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "batchModePriority": 0,
+     *   //   "config": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "inputUri": "my_inputUri",
+     *   //   "labels": {},
+     *   //   "mode": "my_mode",
+     *   //   "name": "my_name",
+     *   //   "optimization": "my_optimization",
+     *   //   "outputUri": "my_outputUri",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "templateId": "my_templateId",
+     *   //   "ttlAfterCompletionDays": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1606,6 +1794,62 @@ export namespace transcoder_v1 {
 
     /**
      * Lists jobs in the specified region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobs.list({
+     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1755,6 +1999,66 @@ export namespace transcoder_v1 {
 
     /**
      * Creates a job template in the specified region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobTemplates.create({
+     *     // Required. The ID to use for the job template, which will become the final component of the job template's resource name. This value should be 4-63 characters, and valid characters must match the regular expression `a-zA-Z*`.
+     *     jobTemplateId: 'placeholder-value',
+     *     // Required. The parent location to create this job template. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "config": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1846,6 +2150,52 @@ export namespace transcoder_v1 {
 
     /**
      * Deletes a job template.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobTemplates.delete({
+     *     // If set to true, and the job template is not found, the request will succeed but no action will be taken on the server.
+     *     allowMissing: 'placeholder-value',
+     *     // Required. The name of the job template to delete. `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
+     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1934,6 +2284,54 @@ export namespace transcoder_v1 {
 
     /**
      * Returns the job template data.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobTemplates.get({
+     *     // Required. The name of the job template to retrieve. Format: `projects/{project\}/locations/{location\}/jobTemplates/{job_template\}`
+     *     name: 'projects/my-project/locations/my-location/jobTemplates/my-jobTemplate',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "config": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2022,6 +2420,62 @@ export namespace transcoder_v1 {
 
     /**
      * Lists job templates in the specified region.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/transcoder.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const transcoder = google.transcoder('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await transcoder.projects.locations.jobTemplates.list({
+     *     // The filter expression, following the syntax outlined in https://google.aip.dev/160.
+     *     filter: 'placeholder-value',
+     *     // One or more fields to compare and use to sort the output. See https://google.aip.dev/132#ordering.
+     *     orderBy: 'placeholder-value',
+     *     // The maximum number of items to return.
+     *     pageSize: 'placeholder-value',
+     *     // The `next_page_token` value returned from a previous List request, if any.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent location from which to retrieve the collection of job templates. Format: `projects/{project\}/locations/{location\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobTemplates": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

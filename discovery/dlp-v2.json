@@ -188,6 +188,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://dlp.us-central2.rep.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://dlp.us-east1.rep.googleapis.com/",
       "location": "us-east1"
     },
@@ -5113,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20250615",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -6745,6 +6750,10 @@
           "$ref": "GooglePrivacyDlpV2PublishToChronicle",
           "description": "Publishes generated data profiles to Google Security Operations. For more information, see [Use Sensitive Data Protection data in context-aware analytics](https://cloud.google.com/chronicle/docs/detection/usecase-dlp-high-risk-user-download)."
         },
+        "publishToDataplexCatalog": {
+          "$ref": "GooglePrivacyDlpV2PublishToDataplexCatalog",
+          "description": "Publishes a portion of each profile to Dataplex Catalog with the aspect type Sensitive Data Protection Profile."
+        },
         "publishToScc": {
           "$ref": "GooglePrivacyDlpV2PublishToSecurityCommandCenter",
           "description": "Publishes findings to Security Command Center for each data profile."
@@ -6812,8 +6821,16 @@
           "description": "Resource name of the data profile associated with the finding.",
           "type": "string"
         },
+        "dataSourceType": {
+          "$ref": "GooglePrivacyDlpV2DataSourceType",
+          "description": "The type of the resource that was profiled."
+        },
         "findingId": {
           "description": "A unique identifier for the finding.",
+          "type": "string"
+        },
+        "fullResourceName": {
+          "description": "The [full resource name](https://cloud.google.com/apis/design/resource_names#full_resource_name) of the resource profiled for this finding.",
           "type": "string"
         },
         "infotype": {
@@ -8568,7 +8585,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2FileStoreCollection": {
-      "description": "Match file stores (e.g. buckets) using regex filters.",
+      "description": "Match file stores (e.g. buckets) using filters.",
       "id": "GooglePrivacyDlpV2FileStoreCollection",
       "properties": {
         "includeRegexes": {
@@ -8621,7 +8638,7 @@
           "type": "array"
         },
         "fileStoreIsEmpty": {
-          "description": "The file store does not have any files. If the profiling failed, this will be false.",
+          "description": "The file store does not have any files. If the profiling operation failed, this is false.",
           "type": "boolean"
         },
         "fileStoreLocation": {
@@ -11020,6 +11037,17 @@
       "properties": {},
       "type": "object"
     },
+    "GooglePrivacyDlpV2PublishToDataplexCatalog": {
+      "description": "Create Dataplex Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.",
+      "id": "GooglePrivacyDlpV2PublishToDataplexCatalog",
+      "properties": {
+        "lowerDataRiskToLow": {
+          "description": "Whether creating a Dataplex Catalog aspect for a profiled resource should lower the risk of the profile for that resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2PublishToPubSub": {
       "description": "Publish a message into a given Pub/Sub topic when DlpJob has completed. The message contains a single field, `DlpJobName`, which is equal to the finished job's [`DlpJob.name`](https://cloud.google.com/sensitive-data-protection/docs/reference/rest/v2/projects.dlpJobs#DlpJob). Compatible with: Inspect, Risk",
       "id": "GooglePrivacyDlpV2PublishToPubSub",
@@ -11509,6 +11537,20 @@
         "outputConfig": {
           "$ref": "GooglePrivacyDlpV2OutputStorageConfig",
           "description": "Location to store findings outside of DLP."
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2SaveToGcsFindingsOutput": {
+      "description": "Collection of findings saved to a Cloud Storage bucket. This is used as the proto schema for textproto files created when specifying a cloud storage path to save Inspect findings.",
+      "id": "GooglePrivacyDlpV2SaveToGcsFindingsOutput",
+      "properties": {
+        "findings": {
+          "description": "List of findings.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Finding"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -12091,6 +12133,10 @@
       "properties": {
         "datasetId": {
           "description": "Dataset ID of the table.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "The Google Cloud project ID of the project containing the table. If omitted, the project ID is inferred from the parent project. This field is required if the parent resource is an organization.",
           "type": "string"
         },
         "tableId": {

@@ -608,6 +608,12 @@
                               "location": "query",
                               "repeated": true,
                               "type": "string"
+                            },
+                            "sortOrder": {
+                              "description": "List of 'sort_order' columns to use when returning the results.",
+                              "location": "query",
+                              "repeated": true,
+                              "type": "string"
                             }
                           },
                           "path": "v2/{+parent}/entities",
@@ -690,7 +696,7 @@
       }
     }
   },
-  "revision": "20250507",
+  "revision": "20250521",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {

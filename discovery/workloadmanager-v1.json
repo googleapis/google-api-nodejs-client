@@ -928,7 +928,7 @@
       }
     }
   },
-  "revision": "20250416",
+  "revision": "20250609",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -945,6 +945,267 @@
           },
           "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStatus": {
+      "description": "The schema of agent status data.",
+      "id": "AgentStatus",
+      "properties": {
+        "agentName": {
+          "description": "Output only. The name of the agent.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "availableVersion": {
+          "description": "Output only. The available version of the agent in artifact registry.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cloudApiAccessFullScopesGranted": {
+          "description": "Output only. Whether the agent has full access to Cloud APIs.",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "configurationErrorMessage": {
+          "description": "Output only. The error message for the agent configuration if invalid.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "configurationFilePath": {
+          "description": "Output only. The path to the agent configuration file.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "configurationValid": {
+          "description": "Output only. Whether the agent configuration is valid.",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "installedVersion": {
+          "description": "Output only. The installed version of the agent on the host.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kernelVersion": {
+          "$ref": "SapDiscoveryResourceInstancePropertiesKernelVersion",
+          "description": "Output only. The kernel version of the system.",
+          "readOnly": true
+        },
+        "references": {
+          "description": "Output only. Optional references to public documentation.",
+          "items": {
+            "$ref": "AgentStatusReference"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "services": {
+          "description": "Output only. The services (process metrics, host metrics, etc.).",
+          "items": {
+            "$ref": "AgentStatusServiceStatus"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "systemdServiceEnabled": {
+          "description": "Output only. Whether the agent service is enabled in systemd.",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "systemdServiceRunning": {
+          "description": "Output only. Whether the agent service is running in systemd.",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStatusConfigValue": {
+      "description": "The configuration value.",
+      "id": "AgentStatusConfigValue",
+      "properties": {
+        "isDefault": {
+          "description": "Output only. Whether the configuration value is the default value or overridden.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. The name of the configuration value.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The value of the configuration value.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStatusIAMPermission": {
+      "description": "The IAM permission status.",
+      "id": "AgentStatusIAMPermission",
+      "properties": {
+        "granted": {
+          "description": "Output only. Whether the permission is granted.",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The name of the permission.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStatusReference": {
+      "description": "The reference to public documentation.",
+      "id": "AgentStatusReference",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the reference.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "url": {
+          "description": "Output only. The URL of the reference.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStatusServiceStatus": {
+      "description": "The status of a service (process metrics, host metrics, etc.).",
+      "id": "AgentStatusServiceStatus",
+      "properties": {
+        "configValues": {
+          "description": "Output only. The configuration values for the service.",
+          "items": {
+            "$ref": "AgentStatusConfigValue"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "errorMessage": {
+          "description": "Output only. The error message for the service if it is not fully functional.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fullyFunctional": {
+          "description": "Output only. Whether the service is fully functional (all checks passed).",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "iamPermissions": {
+          "description": "Output only. The permissions required for the service.",
+          "items": {
+            "$ref": "AgentStatusIAMPermission"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the service.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the service (enabled or disabled in the configuration).",
+          "enum": [
+            "UNSPECIFIED_STATE",
+            "SUCCESS_STATE",
+            "FAILURE_STATE",
+            "ERROR_STATE"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified and has not been checked yet.",
+            "The state is successful (enabled, granted, fully functional).",
+            "The state is failed (disabled, denied, not fully functional).",
+            "There was an internal error while checking the state, state is unknown."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "unspecifiedStateMessage": {
+          "description": "Output only. The message to display when the service state is unspecified.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -1119,6 +1380,13 @@
           "type": "string"
         },
         "subComponentHealthes": {
+          "deprecated": true,
+          "items": {
+            "$ref": "ComponentHealth"
+          },
+          "type": "array"
+        },
+        "subComponentsHealth": {
           "description": "Sub component health.",
           "items": {
             "$ref": "ComponentHealth"
@@ -1506,6 +1774,10 @@
       "description": "A presentation of host resource usage where the workload runs.",
       "id": "Insight",
       "properties": {
+        "agentStatus": {
+          "$ref": "AgentStatus",
+          "description": "The insights data for the agent status."
+        },
         "instanceId": {
           "description": "Required. The instance id where the insight is generated from",
           "type": "string"
@@ -1535,54 +1807,6 @@
       },
       "type": "object"
     },
-    "Instance": {
-      "description": "a vm instance",
-      "id": "Instance",
-      "properties": {
-        "name": {
-          "description": "Output only. name of the VM",
-          "readOnly": true,
-          "type": "string"
-        },
-        "region": {
-          "description": "Output only. The location of the VM",
-          "readOnly": true,
-          "type": "string"
-        },
-        "status": {
-          "description": "Output only. The state of the VM",
-          "enum": [
-            "INSTANCESTATE_UNSPECIFIED",
-            "PROVISIONING",
-            "STAGING",
-            "RUNNING",
-            "STOPPING",
-            "STOPPED",
-            "TERMINATED",
-            "SUSPENDING",
-            "SUSPENDED",
-            "REPAIRING",
-            "DEPROVISIONING"
-          ],
-          "enumDescriptions": [
-            "The Status of the VM is unspecified",
-            "Resources are being allocated for the instance.",
-            "All required resources have been allocated and the instance is being started.",
-            "The instance is running.",
-            "The instance is currently stopping (either being deleted or killed).",
-            "The instance has stopped due to various reasons (user request, VM preemption, project freezing, etc.).",
-            "The instance has failed in some way.",
-            "The instance is suspending.",
-            "The instance is suspended.",
-            "The instance is in repair.",
-            "The instance is in de-provisioning state."
-          ],
-          "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "InstanceProperties": {
       "description": "Instance Properties.",
       "id": "InstanceProperties",
@@ -1593,27 +1817,6 @@
         },
         "machineType": {
           "description": "Optional. Instance machine type.",
-          "type": "string"
-        },
-        "role": {
-          "deprecated": true,
-          "description": "Optional. Instance role.",
-          "enum": [
-            "INSTANCE_ROLE_UNSPECIFIED",
-            "INSTANCE_ROLE_ASCS",
-            "INSTANCE_ROLE_ERS",
-            "INSTANCE_ROLE_APP_SERVER",
-            "INSTANCE_ROLE_HANA_PRIMARY",
-            "INSTANCE_ROLE_HANA_SECONDARY"
-          ],
-          "enumDescriptions": [
-            "Unspecified role.",
-            "ASCS role.",
-            "ERS role.",
-            "APP server.",
-            "HANA primary role.",
-            "HANA secondary role."
-          ],
           "type": "string"
         },
         "roles": {
@@ -1650,33 +1853,6 @@
         "upcomingMaintenanceEvent": {
           "$ref": "UpcomingMaintenanceEvent",
           "description": "Optional. the next maintenance event on VM"
-        }
-      },
-      "type": "object"
-    },
-    "Layer": {
-      "description": "The database layer",
-      "id": "Layer",
-      "properties": {
-        "applicationType": {
-          "description": "the application layer",
-          "type": "string"
-        },
-        "databaseType": {
-          "description": "Optional. the database layer",
-          "type": "string"
-        },
-        "instances": {
-          "description": "Optional. instances in a layer",
-          "items": {
-            "$ref": "Instance"
-          },
-          "type": "array"
-        },
-        "sid": {
-          "description": "Output only. system identification of a layer",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -2628,6 +2804,10 @@
           "description": "Optional. Instance is part of a DR site.",
           "type": "boolean"
         },
+        "osKernelVersion": {
+          "$ref": "SapDiscoveryResourceInstancePropertiesKernelVersion",
+          "description": "Optional. The kernel version of the instance."
+        },
         "virtualHostname": {
           "description": "Optional. A virtual hostname of the instance if it has one.",
           "type": "string"
@@ -2667,6 +2847,56 @@
         },
         "name": {
           "description": "Optional. Name of the disk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryResourceInstancePropertiesKernelVersion": {
+      "description": "KernelVersion encapsulates the kernel version data for the system.",
+      "id": "SapDiscoveryResourceInstancePropertiesKernelVersion",
+      "properties": {
+        "distroKernel": {
+          "$ref": "SapDiscoveryResourceInstancePropertiesKernelVersionVersion",
+          "description": "Optional. Captures the distro-specific kernel version, the portion of the string following the first dash."
+        },
+        "osKernel": {
+          "$ref": "SapDiscoveryResourceInstancePropertiesKernelVersionVersion",
+          "description": "Optional. Captures the OS-specific kernel version, the portion of the string up to the first dash."
+        },
+        "rawString": {
+          "description": "Optional. Raw string of the kernel version.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SapDiscoveryResourceInstancePropertiesKernelVersionVersion": {
+      "description": "Version is reported as Major.Minor.Build.Patch.",
+      "id": "SapDiscoveryResourceInstancePropertiesKernelVersionVersion",
+      "properties": {
+        "build": {
+          "description": "Optional. The build version number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "major": {
+          "description": "Optional. The major version number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minor": {
+          "description": "Optional. The minor version number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "patch": {
+          "description": "Optional. The patch version number.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "remainder": {
+          "description": "Optional. A catch-all for any unparsed version components. This is in case the number of points in the version string exceeds the expected count of 4.",
           "type": "string"
         }
       },
@@ -3137,21 +3367,6 @@
       "description": "workload resource",
       "id": "WorkloadProfile",
       "properties": {
-        "application": {
-          "$ref": "Layer",
-          "deprecated": true,
-          "description": "Optional. The application layer"
-        },
-        "ascs": {
-          "$ref": "Layer",
-          "deprecated": true,
-          "description": "Optional. The ascs layer"
-        },
-        "database": {
-          "$ref": "Layer",
-          "deprecated": true,
-          "description": "Optional. The database layer"
-        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -3160,7 +3375,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. name of resource names have the form 'projects/{project_id}/workloads/{workload_id}'",
+          "description": "Identifier. name of resource names have the form 'projects/{project_id}/locations/{location}/workloadProfiles/{workload_id}'",
           "type": "string"
         },
         "refreshedTime": {
@@ -3172,39 +3387,15 @@
           "$ref": "SapWorkload",
           "description": "The sap workload content"
         },
-        "state": {
-          "deprecated": true,
-          "description": "Output only. [output only] the current state if a a workload",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "ACTIVE",
-            "DEPLOYING",
-            "DESTROYING",
-            "MAINTENANCE"
-          ],
-          "enumDescriptions": [
-            "unspecified",
-            "ACTIVE state",
-            "workload is in Deploying state",
-            "The workload is in Destroying state",
-            "The Workload is undermaintance"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
         "workloadType": {
           "description": "Required. The type of the workload",
           "enum": [
             "WORKLOAD_TYPE_UNSPECIFIED",
-            "S4_HANA",
-            "SQL_SERVER",
-            "THREE_TIER_WEB_APP"
+            "S4_HANA"
           ],
           "enumDescriptions": [
             "unspecified workload type",
-            "running sap workload s4/hana",
-            "running sqlserver workload",
-            "running 3 tier web app workload"
+            "running sap workload s4/hana"
           ],
           "type": "string"
         }
@@ -3221,6 +3412,13 @@
           "type": "string"
         },
         "componentHealthes": {
+          "deprecated": true,
+          "items": {
+            "$ref": "ComponentHealth"
+          },
+          "type": "array"
+        },
+        "componentsHealth": {
           "description": "The detailed condition reports of each component.",
           "items": {
             "$ref": "ComponentHealth"

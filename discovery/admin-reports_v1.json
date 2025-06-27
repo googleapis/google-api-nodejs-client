@@ -150,7 +150,8 @@
                 "chrome",
                 "data_studio",
                 "keep",
-                "vault"
+                "vault",
+                "gemini_in_workspace_apps"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -174,10 +175,11 @@
                 "The Chrome activity reports return information about Chrome browser and Chrome OS events.",
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
                 "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers.",
-                "The Vault activity reports return information about various types of Vault activity events."
+                "The Vault activity reports return information about various types of Vault activity events.",
+                "The Gemini for Workspace activity reports return information about various types of Gemini activity events performed by users within a Workspace application."
               ],
               "location": "path",
-              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)",
               "required": true,
               "type": "string"
             },
@@ -626,7 +628,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250623",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -1219,7 +1221,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](/admin-sdk/reports/v1/reference/usage-ref-appendix-a/entities).",
+          "description": "Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](https://developers.google.com/workspace/admin/reports/v1/reference/usage-ref-appendix-a/entities).",
           "items": {
             "properties": {
               "boolValue": {

@@ -416,7 +416,7 @@ export namespace dataplex_v1 {
      */
     recordFields?: Schema$GoogleCloudDataplexV1AspectTypeMetadataTemplate[];
     /**
-     * Required. The datatype of this field. The following values are supported:Primitive types: string integer boolean double datetime. Must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").Complex types: enum array map record
+     * Required. The datatype of this field. The following values are supported:Primitive types: string int bool double datetime. Must be of the format RFC3339 UTC "Zulu" (Examples: "2014-10-02T15:01:23Z" and "2014-10-02T15:01:23.045123456Z").Complex types: enum array map record
      */
     type?: string | null;
     /**
@@ -1030,6 +1030,10 @@ export namespace dataplex_v1 {
      */
     location?: string | null;
     /**
+     * Optional. The project of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. If not specified, the project of the Cloud Storage bucket will be used. The format is "projects/{project_id_or_number\}".
+     */
+    project?: string | null;
+    /**
      * Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.
      */
     tableType?: string | null;
@@ -1340,6 +1344,14 @@ export namespace dataplex_v1 {
      */
     column?: string | null;
     /**
+     * Output only. The dimension-level results for this column.
+     */
+    dimensions?: Schema$GoogleCloudDataplexV1DataQualityDimensionResult[];
+    /**
+     * Output only. Whether the column passed or failed.
+     */
+    passed?: boolean | null;
+    /**
      * Output only. The column-level data quality score for this data scan job if and only if the 'column' field is set.The score ranges between between 0, 100 (up to two decimal points).
      */
     score?: number | null;
@@ -1374,6 +1386,10 @@ export namespace dataplex_v1 {
    * The output of a DataQualityScan.
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
+    /**
+     * Output only. The status of publishing the data scan to Catalog.
+     */
+    catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
      * Output only. A list of results at the column level.A column will have a corresponding DataQualityColumnResult if and only if there is at least one rule with the 'column' field set to it.
      */
@@ -1442,7 +1458,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are "COMPLETENESS", "ACCURACY", "CONSISTENCY", "VALIDITY", "UNIQUENESS", "FRESHNESS", "VOLUME"
+     * Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     dimension?: string | null;
     /**
@@ -1696,6 +1712,10 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpec {
     /**
+     * Optional. If set, the latest DataScan job result will be published to Dataplex Catalog.
+     */
+    catalogPublishingEnabled?: boolean | null;
+    /**
      * Optional. Actions to take upon job completion.
      */
     postScanActions?: Schema$GoogleCloudDataplexV1DataQualitySpecPostScanActions;
@@ -1782,7 +1802,7 @@ export namespace dataplex_v1 {
     scoreThreshold?: number | null;
   }
   /**
-   * Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).
+   * Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery). LINT.IfChange
    */
   export interface Schema$GoogleCloudDataplexV1DataScan {
     /**
@@ -1859,9 +1879,22 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
+   * The status of publishing the data scan result to Catalog.
+   */
+  export interface Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus {
+    /**
+     * Output only. Execution state for catalog publishing.
+     */
+    state?: string | null;
+  }
+  /**
    * These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEvent {
+    /**
+     * The status of publishing the data scan to Catalog.
+     */
+    catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
      * The time when the data scan job was created.
      */
@@ -2117,7 +2150,7 @@ export namespace dataplex_v1 {
      */
     entity?: string | null;
     /**
-     * Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could be: BigQuery table of type "TABLE" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could eitherbe: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type "TABLE" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resource?: string | null;
   }
@@ -2516,7 +2549,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * EntryLink represents a link between two entries.
+   * EntryLink represents a link between two Entries.
    */
   export interface Schema$GoogleCloudDataplexV1EntryLink {
     /**
@@ -2524,15 +2557,15 @@ export namespace dataplex_v1 {
      */
     createTime?: string | null;
     /**
-     * Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: projects/{project\}/locations/{location\}/entryLinkTypes/{entry_link_type\}.
+     * Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: `projects/{project_id_or_number\}/locations/{location_id\}/entryLinkTypes/{entry_link_type_id\}.
      */
     entryLinkType?: string | null;
     /**
-     * Required. Specifies the entries referenced in the entry link. There should be exactly two entry references.
+     * Required. Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.
      */
     entryReferences?: Schema$GoogleCloudDataplexV1EntryLinkEntryReference[];
     /**
-     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}
      */
     name?: string | null;
     /**
@@ -2541,19 +2574,19 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * Reference to the Entry that is linked through the entry link.
+   * Reference to the Entry that is linked through the Entry Link.
    */
   export interface Schema$GoogleCloudDataplexV1EntryLinkEntryReference {
     /**
-     * Required. Immutable. The relative resource name of the referenced entry, of the form: projects/{project\}/locations/{location\}/entryGroups/{entryGroup\}/entries/{entry\}.
+     * Required. Immutable. The relative resource name of the referenced Entry, of the form: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}
      */
     name?: string | null;
     /**
-     * Immutable. The path in the entry that is referenced in the entry link. Empty path denotes that the entry itself is referenced in the entry link.
+     * Immutable. The path in the Entry that is referenced in the Entry Link. Empty path denotes that the Entry itself is referenced in the Entry Link.
      */
     path?: string | null;
     /**
-     * Required. Immutable. The reference type of the entry.
+     * Required. Immutable. The reference type of the Entry.
      */
     type?: string | null;
   }
@@ -2857,23 +2890,23 @@ export namespace dataplex_v1 {
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
   /**
-   * A Glossary represents a collection of categories and terms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the categories and terms within it.
+   * A Glossary represents a collection of GlossaryCategories and GlossaryTerms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the GlossaryCategories and GlossaryTerms within it.
    */
   export interface Schema$GoogleCloudDataplexV1Glossary {
     /**
-     * Output only. The number of categories in the glossary.
+     * Output only. The number of GlossaryCategories in the Glossary.
      */
     categoryCount?: number | null;
     /**
-     * Output only. The time at which the glossary was created.
+     * Output only. The time at which the Glossary was created.
      */
     createTime?: string | null;
     /**
-     * Optional. The user-mutable description of the glossary.
+     * Optional. The user-mutable description of the Glossary.
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the glossary. This is user-mutable. This will be same as the glossaryId, if not specified.
+     * Optional. User friendly display name of the Glossary. This is user-mutable. This will be same as the GlossaryId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2885,11 +2918,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string | null;
     /**
-     * Output only. The number of terms in the glossary.
+     * Output only. The number of GlossaryTerms in the Glossary.
      */
     termCount?: number | null;
     /**
@@ -2897,12 +2930,12 @@ export namespace dataplex_v1 {
      */
     uid?: string | null;
     /**
-     * Output only. The time at which the glossary was last updated.
+     * Output only. The time at which the Glossary was last updated.
      */
     updateTime?: string | null;
   }
   /**
-   * A GlossaryCategory represents a collection of categories and terms within a Glossary that are related to each other.
+   * A GlossaryCategory represents a collection of GlossaryCategories and GlossaryTerms within a Glossary that are related to each other.
    */
   export interface Schema$GoogleCloudDataplexV1GlossaryCategory {
     /**
@@ -2914,7 +2947,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the categoryId, if not specified.
+     * Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the GlossaryCategoryId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2922,11 +2955,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string | null;
     /**
-     * Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} OR projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     parent?: string | null;
     /**
@@ -2939,7 +2972,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * GlossaryTerms are the core of glossary. A GlossaryTerm holds a rich text description that can be attached to entries or specific columns to enrich them.
+   * GlossaryTerms are the core of Glossary. A GlossaryTerm holds a rich text description that can be attached to Entries or specific columns to enrich them.
    */
   export interface Schema$GoogleCloudDataplexV1GlossaryTerm {
     /**
@@ -2951,7 +2984,7 @@ export namespace dataplex_v1 {
      */
     description?: string | null;
     /**
-     * Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the termId, if not specified.
+     * Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the GlossaryTermId, if not specified.
      */
     displayName?: string | null;
     /**
@@ -2959,11 +2992,11 @@ export namespace dataplex_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string | null;
     /**
-     * Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} OR projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} OR projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     parent?: string | null;
     /**
@@ -3017,6 +3050,10 @@ export namespace dataplex_v1 {
      * Information about an entry and its attached aspects.
      */
     entry?: Schema$GoogleCloudDataplexV1Entry;
+    /**
+     * Information about the entry link. User should provide either one of the entry or entry_link. While providing entry_link, user should not provide update_mask and aspect_keys.
+     */
+    entryLink?: Schema$GoogleCloudDataplexV1EntryLink;
     /**
      * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      */
@@ -3435,7 +3472,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ListGlossariesResponse {
     /**
-     * Lists the glossaries in the specified parent.
+     * Lists the Glossaries in the specified parent.
      */
     glossaries?: Schema$GoogleCloudDataplexV1Glossary[];
     /**
@@ -3452,7 +3489,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ListGlossaryCategoriesResponse {
     /**
-     * Lists the glossaryCategories in the specified parent.
+     * Lists the GlossaryCategories in the specified parent.
      */
     categories?: Schema$GoogleCloudDataplexV1GlossaryCategory[];
     /**
@@ -3473,7 +3510,7 @@ export namespace dataplex_v1 {
      */
     nextPageToken?: string | null;
     /**
-     * Lists the terms in the specified parent.
+     * Lists the GlossaryTerms in the specified parent.
      */
     terms?: Schema$GoogleCloudDataplexV1GlossaryTerm[];
     /**
@@ -3693,9 +3730,17 @@ export namespace dataplex_v1 {
      */
     createdEntries?: string | null;
     /**
+     * Output only. The total number of entry links that were successfully created.
+     */
+    createdEntryLinks?: string | null;
+    /**
      * Output only. The total number of entries that were deleted.
      */
     deletedEntries?: string | null;
+    /**
+     * Output only. The total number of entry links that were successfully deleted.
+     */
+    deletedEntryLinks?: string | null;
     /**
      * Output only. The total number of entries that were recreated.
      */
@@ -3704,6 +3749,10 @@ export namespace dataplex_v1 {
      * Output only. The total number of entries that were unchanged.
      */
     unchangedEntries?: string | null;
+    /**
+     * Output only. The total number of entry links that were left unchanged.
+     */
+    unchangedEntryLinks?: string | null;
     /**
      * Output only. The total number of entries that were updated.
      */
@@ -3755,9 +3804,21 @@ export namespace dataplex_v1 {
      */
     entryGroups?: string[] | null;
     /**
+     * Optional. The entry link types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryLinkTypes/{entry_link_type_id\}. The job modifies only the entryLinks that belong to these entry link types.If the metadata import file attempts to create or delete an entry link whose entry link type isn't included in this list, the import job will skip those entry links.
+     */
+    entryLinkTypes?: string[] | null;
+    /**
      * Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/entryTypes/{entry_type_id\}. The job modifies only the entries and aspects that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.
      */
     entryTypes?: string[] | null;
+    /**
+     * Optional. The glossaries that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id\}/locations/{location_id\}/glossaries/{glossary_id\}.While importing Business Glossary entries, the user must provide glossaries. While importing entries, the user does not have to provide glossaries. If the metadata import file attempts to modify Business Glossary entries whose glossary isn't included in this list, the import job will skip those entries.The location of a glossary must either match the location of the job, or the glossary must be global.
+     */
+    glossaries?: string[] | null;
+    /**
+     * Optional. Defines the scope of entries that can be referenced in the entry links.Currently, projects are supported as valid scopes. Format: projects/{project_number_or_id\}If the metadata import file attempts to create an entry link which references an entry that is not in the scope, the import job will skip that entry link.
+     */
+    referencedEntryScopes?: string[] | null;
   }
   /**
    * Metadata job status.
@@ -4812,6 +4873,72 @@ export namespace dataplex_v1 {
 
     /**
      * Create an EncryptionConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.encryptionConfigs.create({
+     *     // Required. The ID of the EncryptionConfig to create. Currently, only a value of "default" is supported.
+     *     encryptionConfigId: 'placeholder-value',
+     *     // Required. The location at which the EncryptionConfig is to be created.
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "encryptionState": "my_encryptionState",
+     *       //   "etag": "my_etag",
+     *       //   "failureDetails": {},
+     *       //   "key": "my_key",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4908,6 +5035,58 @@ export namespace dataplex_v1 {
 
     /**
      * Delete an EncryptionConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.encryptionConfigs.delete({
+     *     // Optional. Etag of the EncryptionConfig. This is a strong etag.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the EncryptionConfig to delete.
+     *     name: 'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5001,6 +5180,58 @@ export namespace dataplex_v1 {
 
     /**
      * Get an EncryptionConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.encryptionConfigs.get({
+     *     // Required. The name of the EncryptionConfig to fetch.
+     *     name: 'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "encryptionState": "my_encryptionState",
+     *   //   "etag": "my_etag",
+     *   //   "failureDetails": {},
+     *   //   "key": "my_key",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5100,6 +5331,59 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.organizations.locations.encryptionConfigs.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5194,6 +5478,62 @@ export namespace dataplex_v1 {
 
     /**
      * List EncryptionConfigs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.encryptionConfigs.list({
+     *     // Optional. Filter the EncryptionConfigs to be returned. Using bare literals: (These values will be matched anywhere it may appear in the object's field values) * filter=some_value Using fields: (These values will be matched only in the specified field) * filter=some_field=some_value Supported fields: * name, key, create_time, update_time, encryption_state Example: * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config conjunctions: (AND, OR, NOT) * filter=name=organizations/123/locations/us-central1/encryptionConfigs/test-config AND mode=CMEK logical operators: (\>, <, \>=, <=, !=, =, :), * filter=create_time\>2024-05-01T00:00:00.000Z
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of EncryptionConfigs to return. The service may return fewer than this value. If unspecified, at most 10 EncryptionConfigs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEncryptionConfigs call. Provide this to retrieve the subsequent page. When paginating, the parameters - filter and order_by provided to ListEncryptionConfigs must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The location for which the EncryptionConfig is to be listed.
+     *     parent: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "encryptionConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5296,6 +5636,72 @@ export namespace dataplex_v1 {
 
     /**
      * Update an EncryptionConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.encryptionConfigs.patch({
+     *     // Identifier. The resource name of the EncryptionConfig. Format: organizations/{organization\}/locations/{location\}/encryptionConfigs/{encryption_config\} Global location is not supported.
+     *     name: 'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *     // Optional. Mask of fields to update. The service treats an omitted field mask as an implied field mask equivalent to all fields that are populated (have a non-empty value).
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "encryptionState": "my_encryptionState",
+     *       //   "etag": "my_etag",
+     *       //   "failureDetails": {},
+     *       //   "key": "my_key",
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5389,6 +5795,66 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.organizations.locations.encryptionConfigs.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5483,6 +5949,64 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.organizations.locations.encryptionConfigs.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'organizations/my-organization/locations/my-location/encryptionConfigs/my-encryptionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5701,6 +6225,56 @@ export namespace dataplex_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5790,6 +6364,50 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5879,6 +6497,56 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5971,6 +6639,59 @@ export namespace dataplex_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.organizations.locations.operations.listOperations({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6175,6 +6896,56 @@ export namespace dataplex_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6267,6 +7038,61 @@ export namespace dataplex_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the next_page_token field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6368,6 +7194,67 @@ export namespace dataplex_v1 {
 
     /**
      * Looks up an entry by name using the permission on the source system.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lookupEntry({
+     *     // Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
+     *     aspectTypes: 'placeholder-value',
+     *     // Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     *     entry: 'placeholder-value',
+     *     // Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
+     *     paths: 'placeholder-value',
+     *     // Optional. View to control which parts of an entry the service should return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entrySource": {},
+     *   //   "entryType": "my_entryType",
+     *   //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *   //   "name": "my_name",
+     *   //   "parentEntry": "my_parentEntry",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6463,6 +7350,67 @@ export namespace dataplex_v1 {
 
     /**
      * Searches for Entries matching the given query and scope.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.searchEntries({
+     *     // Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Number of results in the search page. If <=0, then defaults to 10. Max limit for page_size is 1000. Throws an invalid argument for page_size \> 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous SearchEntries call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
+     *     query: 'placeholder-value',
+     *     // Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.
+     *     scope: 'placeholder-value',
+     *     // Optional. Specifies whether the search should understand the meaning and intent behind the query, rather than just matching keywords.
+     *     semanticSearch: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "results": [],
+     *   //   "totalSize": 0,
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6619,7 +7567,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Searchentries
     extends StandardParameters {
     /**
-     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/{location\}.
+     * Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      */
     name?: string;
     /**
@@ -6643,7 +7591,7 @@ export namespace dataplex_v1 {
      */
     scope?: string;
     /**
-     * Optional. Internal only.
+     * Optional. Specifies whether the search should understand the meaning and intent behind the query, rather than just matching keywords.
      */
     semanticSearch?: boolean;
   }
@@ -6656,6 +7604,78 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an AspectType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.create({
+     *     // Required. AspectType identifier.
+     *     aspectTypeId: 'placeholder-value',
+     *     // Required. The resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The service validates the request without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorization": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "metadataTemplate": {},
+     *       //   "name": "my_name",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6751,6 +7771,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an AspectType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.delete({
+     *     // Optional. If the client provided etag value does not match the current etag value, the DeleteAspectTypeRequest method returns an ABORTED error response.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the AspectType: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6843,6 +7915,62 @@ export namespace dataplex_v1 {
 
     /**
      * Gets an AspectType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.get({
+     *     // Required. The resource name of the AspectType: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorization": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "metadataTemplate": {},
+     *   //   "name": "my_name",
+     *   //   "transferStatus": "my_transferStatus",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6937,6 +8065,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7031,6 +8211,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists AspectType resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.list({
+     *     // Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
+     *     filter: 'placeholder-value',
+     *     // Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of AspectTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 AspectTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListAspectTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListAspectTypes must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the AspectType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspectTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7132,6 +8368,78 @@ export namespace dataplex_v1 {
 
     /**
      * Updates an AspectType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.patch({
+     *     // Output only. The relative resource name of the AspectType, of the form: projects/{project_number\}/locations/{location_id\}/aspectTypes/{aspect_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorization": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "metadataTemplate": {},
+     *       //   "name": "my_name",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7224,6 +8532,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7318,6 +8685,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.aspectTypes.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/aspectTypes/my-aspectType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7544,6 +8966,78 @@ export namespace dataplex_v1 {
 
     /**
      * Create a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.create({
+     *     // Required. DataAttributeBinding identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Location.
+     *     dataAttributeBindingId: 'placeholder-value',
+     *     // Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "paths": [],
+     *       //   "resource": "my_resource",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7640,6 +9134,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a DataAttributeBinding resource. All attributes within the DataAttributeBinding must be deleted before the DataAttributeBinding can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.delete({
+     *     // Required. If the client provided etag value does not match the current etag value, the DeleteDataAttributeBindingRequest method returns an ABORTED error response. Etags must be used when calling the DeleteDataAttributeBinding.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7733,6 +9279,62 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.get({
+     *     // Required. The resource name of the DataAttributeBinding: projects/{project_number\}/locations/{location_id\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "paths": [],
+     *   //   "resource": "my_resource",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7832,6 +9434,59 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataAttributeBindings.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7926,6 +9581,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists DataAttributeBinding resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.list({
+     *     // Optional. Filter request. Filter using resource: filter=resource:"resource-name" Filter using attribute: filter=attributes:"attribute-name" Filter using attribute in paths list: filter=paths.attributes:"attribute-name"
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataAttributeBindings to return. The service may return fewer than this value. If unspecified, at most 10 DataAttributeBindings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataAttributeBindings call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributeBindings must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the Location: projects/{project_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataAttributeBindings": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8028,6 +9739,78 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a DataAttributeBinding resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataAttributeBindings.patch({
+     *     // Output only. The relative resource name of the Data Attribute Binding, of the form: projects/{project_number\}/locations/{location\}/dataAttributeBindings/{data_attribute_binding_id\}
+     *     name: 'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": [],
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "paths": [],
+     *       //   "resource": "my_resource",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8121,6 +9904,66 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataAttributeBindings.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8215,6 +10058,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataAttributeBindings.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataAttributeBindings/my-dataAttributeBinding',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8443,6 +10342,85 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a DataScan resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.create({
+     *     // Required. DataScan identifier. Must contain only lowercase letters, numbers and hyphens. Must start with a letter. Must end with a number or a letter. Must be between 1-63 characters. Must be unique within the customer project / location.
+     *     dataScanId: 'placeholder-value',
+     *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "data": {},
+     *       //   "dataDiscoveryResult": {},
+     *       //   "dataDiscoverySpec": {},
+     *       //   "dataProfileResult": {},
+     *       //   "dataProfileSpec": {},
+     *       //   "dataQualityResult": {},
+     *       //   "dataQualitySpec": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "executionSpec": {},
+     *       //   "executionStatus": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8538,6 +10516,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a DataScan resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.delete({
+     *     // Optional. If set to true, any child resources of this data scan will also be deleted. (Otherwise, the request will only work if the data scan has no child resources.)
+     *     force: 'placeholder-value',
+     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8630,6 +10660,59 @@ export namespace dataplex_v1 {
 
     /**
      * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataScans.generateDataQualityRules({
+     *       // Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
+     *       name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rule": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8732,6 +10815,71 @@ export namespace dataplex_v1 {
 
     /**
      * Gets a DataScan resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.get({
+     *     // Required. The resource name of the dataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *     // Optional. Select the DataScan view to return. Defaults to BASIC.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "data": {},
+     *   //   "dataDiscoveryResult": {},
+     *   //   "dataDiscoverySpec": {},
+     *   //   "dataProfileResult": {},
+     *   //   "dataProfileSpec": {},
+     *   //   "dataQualityResult": {},
+     *   //   "dataQualitySpec": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "executionSpec": {},
+     *   //   "executionStatus": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8826,6 +10974,57 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -8920,6 +11119,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists DataScans.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields (name or create_time) for the result. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of dataScans to return. The service may return fewer than this value. If unspecified, at most 500 scans will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataScans call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScans must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent location: projects/{project\}/locations/{location_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataScans": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9021,6 +11276,85 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a DataScan resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.patch({
+     *     // Output only. Identifier. The relative resource name of the scan, of the form: projects/{project\}/locations/{location_id\}/dataScans/{datascan_id\}, where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *     // Optional. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "data": {},
+     *       //   "dataDiscoveryResult": {},
+     *       //   "dataDiscoverySpec": {},
+     *       //   "dataProfileResult": {},
+     *       //   "dataProfileSpec": {},
+     *       //   "dataQualityResult": {},
+     *       //   "dataQualitySpec": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "executionSpec": {},
+     *       //   "executionStatus": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "state": "my_state",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9113,6 +11447,58 @@ export namespace dataplex_v1 {
 
     /**
      * Runs an on-demand execution of a DataScan
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.run({
+     *     // Required. The resource name of the DataScan: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}. where project refers to a project_id or project_number and location_id refers to a GCP region.Only OnDemand data scans are allowed.
+     *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9211,6 +11597,64 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9305,6 +11749,60 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9559,6 +12057,59 @@ export namespace dataplex_v1 {
 
     /**
      * Generates recommended data quality rules based on the results of a data profiling scan.Use the recommendations to build rules for a data quality scan.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataScans.jobs.generateDataQualityRules({
+     *       // Required. The name must be one of the following: The name of a data scan with at least one successful, completed data profiling job The name of a successful, completed data profiling job (a data scan job where the job type is data profiling)
+     *       name: 'projects/my-project/locations/my-location/dataScans/my-dataScan/jobs/my-job',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "rule": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9661,6 +12212,67 @@ export namespace dataplex_v1 {
 
     /**
      * Gets a DataScanJob resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.jobs.get({
+     *     // Required. The resource name of the DataScanJob: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\}/jobs/{data_scan_job_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     name: 'projects/my-project/locations/my-location/dataScans/my-dataScan/jobs/my-job',
+     *     // Optional. Select the DataScanJob view to return. Defaults to BASIC.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataDiscoveryResult": {},
+     *   //   "dataDiscoverySpec": {},
+     *   //   "dataProfileResult": {},
+     *   //   "dataProfileSpec": {},
+     *   //   "dataQualityResult": {},
+     *   //   "dataQualitySpec": {},
+     *   //   "endTime": "my_endTime",
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9759,6 +12371,59 @@ export namespace dataplex_v1 {
 
     /**
      * Lists DataScanJobs under the given DataScan.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataScans.jobs.list({
+     *     // Optional. An expression for filtering the results of the ListDataScanJobs request.If unspecified, all datascan jobs will be returned. Multiple filters can be applied (with AND, OR logical operators). Filters are case-sensitive.Allowed fields are: start_time end_timestart_time and end_time expect RFC-3339 formatted strings (e.g. 2018-10-08T18:30:00-07:00).For instance, 'start_time \> 2018-10-08T00:00:00.123456789Z AND end_time < 2018-10-09T00:00:00.123456789Z' limits results to DataScanJobs between specified start and end times.
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of DataScanJobs to return. The service may return fewer than this value. If unspecified, at most 10 DataScanJobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataScanJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataScanJobs must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent environment: projects/{project\}/locations/{location_id\}/dataScans/{data_scan_id\} where project refers to a project_id or project_number and location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location/dataScans/my-dataScan',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataScanJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -9910,6 +12575,77 @@ export namespace dataplex_v1 {
 
     /**
      * Create a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.create({
+     *     // Required. DataTaxonomy identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the Project.
+     *     dataTaxonomyId: 'placeholder-value',
+     *
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeCount": 0,
+     *       //   "classCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10005,6 +12741,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a DataTaxonomy resource. All attributes within the DataTaxonomy must be deleted before the DataTaxonomy can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.delete({
+     *     // Optional. If the client provided etag value does not match the current etag value,the DeleteDataTaxonomy method returns an ABORTED error.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10097,6 +12885,60 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.get({
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeCount": 0,
+     *   //   "classCount": 0,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10195,6 +13037,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10289,6 +13183,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists DataTaxonomy resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataTaxonomies to return. The service may return fewer than this value. If unspecified, at most 10 DataTaxonomies will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataTaxonomies call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataTaxonomies must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataTaxonomies": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10390,6 +13340,77 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a DataTaxonomy resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.patch({
+     *     // Output only. The relative resource name of the DataTaxonomy, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}.
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributeCount": 0,
+     *       //   "classCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10482,6 +13503,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10576,6 +13656,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10802,6 +13938,81 @@ export namespace dataplex_v1 {
 
     /**
      * Create a DataAttribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.create({
+     *       // Required. DataAttribute identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the DataTaxonomy.
+     *       dataAttributeId: 'placeholder-value',
+     *       // Required. The resource name of the parent data taxonomy projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *       // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributeCount": 0,
+     *         //   "createTime": "my_createTime",
+     *         //   "dataAccessSpec": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parentId": "my_parentId",
+     *         //   "resourceAccessSpec": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10898,6 +14109,59 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a Data Attribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.delete({
+     *       // Optional. If the client provided etag value does not match the current etag value, the DeleteDataAttribute method returns an ABORTED error response.
+     *       etag: 'placeholder-value',
+     *       // Required. The resource name of the DataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     *       name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -10991,6 +14255,63 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves a Data Attribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.get({
+     *     // Required. The resource name of the dataAttribute: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}
+     *     name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributeCount": 0,
+     *   //   "createTime": "my_createTime",
+     *   //   "dataAccessSpec": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parentId": "my_parentId",
+     *   //   "resourceAccessSpec": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11090,6 +14411,59 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11184,6 +14558,63 @@ export namespace dataplex_v1 {
 
     /**
      * Lists Data Attribute resources in a DataTaxonomy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of DataAttributes to return. The service may return fewer than this value. If unspecified, at most 10 dataAttributes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListDataAttributes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListDataAttributes must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the DataTaxonomy: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{data_taxonomy_id\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataAttributes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11286,6 +14717,81 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a DataAttribute resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.dataTaxonomies.attributes.patch(
+     *     {
+     *       // Output only. The relative resource name of the dataAttribute, of the form: projects/{project_number\}/locations/{location_id\}/dataTaxonomies/{dataTaxonomy\}/attributes/{data_attribute_id\}.
+     *       name: 'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *       // Required. Mask of fields to update.
+     *       updateMask: 'placeholder-value',
+     *       // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributeCount": 0,
+     *         //   "createTime": "my_createTime",
+     *         //   "dataAccessSpec": {},
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "etag": "my_etag",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "parentId": "my_parentId",
+     *         //   "resourceAccessSpec": {},
+     *         //   "uid": "my_uid",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11379,6 +14885,66 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11473,6 +15039,64 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.dataTaxonomies.attributes.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/dataTaxonomies/my-dataTaxonomie/attributes/my-attribute',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11707,6 +15331,76 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.create({
+     *     // Required. EntryGroup identifier.
+     *     entryGroupId: 'placeholder-value',
+     *     // Required. The resource name of the entryGroup, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The service validates the request without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11802,6 +15496,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.delete({
+     *     // Optional. If the client provided etag value does not match the current etag value, the DeleteEntryGroupRequest method returns an ABORTED error response.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the EntryGroup: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11894,6 +15640,60 @@ export namespace dataplex_v1 {
 
     /**
      * Gets an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.get({
+     *     // Required. The resource name of the EntryGroup: projects/{project_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "transferStatus": "my_transferStatus",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -11988,6 +15788,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12082,6 +15934,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists EntryGroup resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of EntryGroups to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryGroups. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEntryGroups call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provide to ListEntryGroups must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the entryGroup location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entryGroups": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12183,6 +16091,76 @@ export namespace dataplex_v1 {
 
     /**
      * Updates an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.patch({
+     *     // Output only. The relative resource name of the EntryGroup, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. The service validates the request, without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "transferStatus": "my_transferStatus",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12275,6 +16253,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12369,6 +16406,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12595,6 +16687,77 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an Entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entries.create({
+     *     // Required. Entry identifier. It has to be unique within an Entry Group.Entries corresponding to Google Cloud resources use an Entry ID format based on full resource names (https://cloud.google.com/apis/design/resource_names#full_resource_name). The format is a full resource name of the resource without the prefix double slashes in the API service name part of the full resource name. This allows retrieval of entries using their associated resource name.For example, if the full resource name of a resource is //library.googleapis.com/shelves/shelf1/books/book2, then the suggested entry_id is library.googleapis.com/shelves/shelf1/books/book2.It is also suggested to follow the same convention for entries corresponding to resources from providers or systems other than Google Cloud.The maximum size of the field is 4000 characters.
+     *     entryId: 'placeholder-value',
+     *     // Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aspects": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "entrySource": {},
+     *       //   "entryType": "my_entryType",
+     *       //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *       //   "name": "my_name",
+     *       //   "parentEntry": "my_parentEntry",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entrySource": {},
+     *   //   "entryType": "my_entryType",
+     *   //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *   //   "name": "my_name",
+     *   //   "parentEntry": "my_parentEntry",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12691,6 +16854,59 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an Entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entries.delete({
+     *     // Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entrySource": {},
+     *   //   "entryType": "my_entryType",
+     *   //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *   //   "name": "my_name",
+     *   //   "parentEntry": "my_parentEntry",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12784,6 +17000,65 @@ export namespace dataplex_v1 {
 
     /**
      * Gets an Entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entries.get({
+     *     // Optional. Limits the aspects returned to the provided aspect types. It only works for CUSTOM view.
+     *     aspectTypes: 'placeholder-value',
+     *     // Required. The resource name of the Entry: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entries/{entry\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/.*',
+     *     // Optional. Limits the aspects returned to those associated with the provided paths within the Entry. It only works for CUSTOM view.
+     *     paths: 'placeholder-value',
+     *     // Optional. View to control which parts of an entry the service should return.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entrySource": {},
+     *   //   "entryType": "my_entryType",
+     *   //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *   //   "name": "my_name",
+     *   //   "parentEntry": "my_parentEntry",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12877,6 +17152,60 @@ export namespace dataplex_v1 {
 
     /**
      * Lists Entries within an EntryGroup.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entries.list({
+     *     // Optional. A filter on the entries to return. Filters are case-sensitive. You can filter the request by the following fields: entry_type entry_source.display_nameThe comparison operators are =, !=, <, \>, <=, \>=. The service compares strings according to lexical order.You can use the logical operators AND, OR, NOT in the filter.You can use Wildcard "*", but for entry_type you need to provide the full project id or number.Example filter expressions: "entry_source.display_name=AnExampleDisplayName" "entry_type=projects/example-project/locations/global/entryTypes/example-entry_type" "entry_type=projects/example-project/locations/us/entryTypes/a* OR entry_type=projects/another-project/locations/x" "NOT entry_source.display_name=AnotherExampleDisplayName"
+     *     filter: 'placeholder-value',
+     *     // Optional. Number of items to return per page. If there are remaining results, the service returns a next_page_token. If unspecified, the service returns at most 10 Entries. The maximum value is 100; values above 100 will be coerced to 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEntries call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -12979,6 +17308,82 @@ export namespace dataplex_v1 {
 
     /**
      * Updates an Entry.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entries.patch({
+     *     // Optional. If set to true and the entry doesn't exist, the service will create it.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. The map keys of the Aspects which the service should modify. It supports the following syntaxes: - matches an aspect of the given type and empty path. @path - matches an aspect of the given type and specified path. For example, to attach an aspect to a field that is specified by the schema aspect, the path should have the format Schema.. @* - matches aspects of the given type for all paths. *@path - matches aspects of all types on the given path.The service will not remove existing aspects matching the syntax unless delete_missing_aspects is set to true.If this field is left empty, the service treats it as specifying exactly those Aspects present in the request.
+     *     aspectKeys: 'placeholder-value',
+     *     // Optional. If set to true and the aspect_keys specify aspect ranges, the service deletes any existing aspects from that range that weren't provided in the request.
+     *     deleteMissingAspects: 'placeholder-value',
+     *     // Identifier. The relative resource name of the entry, in the format projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entries/{entry_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entries/.*',
+     *     // Optional. Mask of fields to update. To update Aspects, the update_mask must contain the value "aspects".If the update_mask is empty, the service will update all modifiable fields present in the request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aspects": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "entrySource": {},
+     *       //   "entryType": "my_entryType",
+     *       //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *       //   "name": "my_name",
+     *       //   "parentEntry": "my_parentEntry",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aspects": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "entrySource": {},
+     *   //   "entryType": "my_entryType",
+     *   //   "fullyQualifiedName": "my_fullyQualifiedName",
+     *   //   "name": "my_name",
+     *   //   "parentEntry": "my_parentEntry",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13169,6 +17574,71 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an Entry Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entryLinks.create({
+     *     // Required. Entry Link identifier * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the EntryGroup.
+     *     entryLinkId: 'placeholder-value',
+     *     // Required. The resource name of the parent Entry Group: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/entryGroups/my-entryGroup',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "entryLinkType": "my_entryLinkType",
+     *       //   "entryReferences": [],
+     *       //   "name": "my_name",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "entryLinkType": "my_entryLinkType",
+     *   //   "entryReferences": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13267,6 +17737,56 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an Entry Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entryLinks.delete({
+     *     // Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entryLinks/my-entryLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "entryLinkType": "my_entryLinkType",
+     *   //   "entryReferences": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13361,7 +17881,57 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Gets an entry link.
+     * Gets an Entry Link.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryGroups.entryLinks.get({
+     *     // Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryGroups/my-entryGroup/entryLinks/my-entryLink',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "entryLinkType": "my_entryLinkType",
+     *   //   "entryReferences": [],
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13463,7 +18033,7 @@ export namespace dataplex_v1 {
      */
     entryLinkId?: string;
     /**
-     * Required. The resource name of the parent Entry Group: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}.
+     * Required. The resource name of the parent Entry Group: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}.
      */
     parent?: string;
 
@@ -13475,14 +18045,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Entrygroups$Entrylinks$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the Entry Link: projects/{project\}/locations/{location\}/entryGroups/{entry_group\}/entryLinks/{entry_link\}.
+     * Required. The resource name of the Entry Link: projects/{project_id_or_number\}/locations/{location_id\}/entryGroups/{entry_group_id\}/entryLinks/{entry_link_id\}.
      */
     name?: string;
   }
@@ -13495,6 +18065,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryLinkTypes.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryLinkTypes/my-entryLinkType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13589,6 +18211,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryLinkTypes.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryLinkTypes/my-entryLinkType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13683,6 +18364,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.entryLinkTypes.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/entryLinkTypes/my-entryLinkType',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13828,6 +18565,80 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an EntryType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.create({
+     *     // Required. EntryType identifier.
+     *     entryTypeId: 'placeholder-value',
+     *     // Required. The resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The service validates the request without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorization": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "platform": "my_platform",
+     *       //   "requiredAspects": [],
+     *       //   "system": "my_system",
+     *       //   "typeAliases": [],
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13923,6 +18734,58 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an EntryType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.delete({
+     *     // Optional. If the client provided etag value does not match the current etag value, the DeleteEntryTypeRequest method returns an ABORTED error response.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the EntryType: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14015,6 +18878,64 @@ export namespace dataplex_v1 {
 
     /**
      * Gets an EntryType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.get({
+     *     // Required. The resource name of the EntryType: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "authorization": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "platform": "my_platform",
+     *   //   "requiredAspects": [],
+     *   //   "system": "my_system",
+     *   //   "typeAliases": [],
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14109,6 +19030,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14203,6 +19176,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists EntryType resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.list({
+     *     // Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"These restrictions can be conjoined with AND, OR, and NOT conjunctions.
+     *     filter: 'placeholder-value',
+     *     // Optional. Orders the result by name or create_time fields. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of EntryTypes to return. The service may return fewer than this value. If unspecified, the service returns at most 10 EntryTypes. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEntryTypes call. Provide this to retrieve the subsequent page. When paginating, all other parameters you provided to ListEntryTypes must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the EntryType location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a Google Cloud region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entryTypes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14304,6 +19333,80 @@ export namespace dataplex_v1 {
 
     /**
      * Updates an EntryType.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.patch({
+     *     // Output only. The relative resource name of the EntryType, of the form: projects/{project_number\}/locations/{location_id\}/entryTypes/{entry_type_id\}.
+     *     name: 'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. The service validates the request without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorization": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "platform": "my_platform",
+     *       //   "requiredAspects": [],
+     *       //   "system": "my_system",
+     *       //   "typeAliases": [],
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14396,6 +19499,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14490,6 +19652,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.entryTypes.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/entryTypes/my-entryType',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14724,6 +19941,77 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a new Glossary resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.create({
+     *     // Required. Glossary ID: Glossary identifier.
+     *     glossaryId: 'placeholder-value',
+     *     // Required. The parent resource where this Glossary will be created. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Validates the request without actually creating the Glossary. Default: false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "categoryCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "termCount": 0,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14818,7 +20106,59 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a Glossary resource. All the categories and terms within the glossary must be deleted before a glossary can be deleted.
+     * Deletes a Glossary resource. All the categories and terms within the Glossary must be deleted before the Glossary can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.delete({
+     *     // Optional. The etag of the Glossary. If this is provided, it must match the server's etag. If the etag is provided and does not match the server-computed etag, the request must fail with a ABORTED error code.
+     *     etag: 'placeholder-value',
+     *     // Required. The name of the Glossary to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14910,7 +20250,62 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified Glossary resource.
+     * Gets a Glossary resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.get({
+     *     // Required. The name of the Glossary to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categoryCount": 0,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "termCount": 0,
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15005,6 +20400,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15099,6 +20546,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists Glossary resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.list({
+     *     // Optional. Filter expression that filters Glossaries listed in the response. Filters on proto fields of Glossary are supported. Examples of using a filter are: - display_name="my-glossary" - categoryCount=1 - termCount=0
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by expression that orders Glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of Glossaries to return. The service may return fewer than this value. If unspecified, at most 50 Glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous ListGlossaries call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaries must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which has this collection of Glossaries. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "glossaries": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15200,6 +20703,77 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a Glossary resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.patch({
+     *     // Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *     // Required. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Validates the request without actually updating the Glossary. Default: false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "categoryCount": 0,
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "termCount": 0,
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15292,6 +20866,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15386,6 +21019,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15494,11 +21182,11 @@ export namespace dataplex_v1 {
      */
     glossaryId?: string;
     /**
-     * Required. The parent resource where this Glossary will be created. Format: projects/{projectId\}/locations/{locationId\} where locationId refers to a GCP region.
+     * Required. The parent resource where this Glossary will be created. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Optional. Validates the request without actually creating the glossary. Default: false.
+     * Optional. Validates the request without actually creating the Glossary. Default: false.
      */
     validateOnly?: boolean;
 
@@ -15514,14 +21202,14 @@ export namespace dataplex_v1 {
      */
     etag?: string;
     /**
-     * Required. The name of the Glossary to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}
+     * Required. The name of the Glossary to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Get
     extends StandardParameters {
     /**
-     * Required. The name of the Glossary to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}
+     * Required. The name of the Glossary to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
   }
@@ -15539,15 +21227,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters glossaries listed in the response. Initially, no filter is supported.
+     * Optional. Filter expression that filters Glossaries listed in the response. Filters on proto fields of Glossary are supported. Examples of using a filter are: - display_name="my-glossary" - categoryCount=1 - termCount=0
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders Glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of glossaries to return. The service may return fewer than this value. If unspecified, at most 50 glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of Glossaries to return. The service may return fewer than this value. If unspecified, at most 50 Glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -15555,14 +21243,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of glossaries. Format: projects/{project\}/locations/{location\} Location is the GCP region.
+     * Required. The parent, which has this collection of Glossaries. Format: projects/{project_id_or_number\}/locations/{location_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}
+     * Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}
      */
     name?: string;
     /**
@@ -15570,7 +21258,7 @@ export namespace dataplex_v1 {
      */
     updateMask?: string;
     /**
-     * Optional. Validates the request without actually updating the glossary. Default: false.
+     * Optional. Validates the request without actually updating the Glossary. Default: false.
      */
     validateOnly?: boolean;
 
@@ -15611,7 +21299,77 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * GlossaryCategory APIs are CCFE passthrough APIs. Creates a new GlossaryCategory resource.
+     * Creates a new GlossaryCategory resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.categories.create({
+     *     // Required. GlossaryCategory identifier.
+     *     categoryId: 'placeholder-value',
+     *     // Required. The parent resource where this GlossaryCategory will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where locationId refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15713,7 +21471,51 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Deletes a GlossaryCategory resource. All the categories and terms nested directly under the category will be moved one level up to the parent in the hierarchy.
+     * Deletes a GlossaryCategory resource. All the GlossaryCategories and GlossaryTerms nested directly under the specified GlossaryCategory will be moved one level up to the parent in the hierarchy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.categories.delete({
+     *     // Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15802,7 +21604,60 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified GlossaryCategory resource.
+     * Gets a GlossaryCategory resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.categories.get({
+     *     // Required. The name of the GlossaryCategory to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15902,6 +21757,59 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.glossaries.categories.getIamPolicy({
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15995,7 +21903,63 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists GlossaryCategory resources in a glossary.
+     * Lists GlossaryCategory resources in a Glossary.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.categories.list({
+     *     // Optional. Filter expression that filters GlossaryCategories listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryCategories that are directly nested under the specified parent.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by expression that orders GlossaryCategories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of GlossaryCategories to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryCategories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous ListGlossaryCategories call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryCategories must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which has this collection of GlossaryCategories. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} Location is the GCP region.
+     *     parent: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "categories": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16098,6 +22062,76 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a GlossaryCategory resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.categories.patch({
+     *     // Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *     // Required. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16197,6 +22231,66 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.glossaries.categories.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16291,6 +22385,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.glossaries.categories.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/glossaries/my-glossarie/categories/my-categorie',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16395,11 +22545,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Create
     extends StandardParameters {
     /**
-     * Required. Category ID: GlossaryCategory identifier.
+     * Required. GlossaryCategory identifier.
      */
     categoryId?: string;
     /**
-     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     * Required. The parent resource where this GlossaryCategory will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where locationId refers to a GCP region.
      */
     parent?: string;
 
@@ -16411,14 +22561,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryCategory to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/categories/{glossary_category\}
+     * Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Get
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/categories/{glossary_category\}
+     * Required. The name of the GlossaryCategory to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
   }
@@ -16436,15 +22586,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters categories listed in the response. Filters supported: List GlossaryCategories based on immediate parent in the resource hierarchy. This will only return the GlossaryCategories nested directly under the parent and no other subsequent nested categories will be returned.
+     * Optional. Filter expression that filters GlossaryCategories listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryCategories that are directly nested under the specified parent.
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders categories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders GlossaryCategories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of categories to return. The service may return fewer than this value. If unspecified, at most 50 categories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of GlossaryCategories to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryCategories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -16452,14 +22602,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of categories. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     * Required. The parent, which has this collection of GlossaryCategories. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} Location is the GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Categories$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/categories/{categoryId\}
+     * Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}
      */
     name?: string;
     /**
@@ -16504,7 +22654,77 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * GlossaryTerm APIs are CCFE passthrough APIs. Creates a new GlossaryTerm resource.
+     * Creates a new GlossaryTerm resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.create({
+     *     // Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *     // Required. GlossaryTerm identifier.
+     *     termId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16607,6 +22827,50 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a GlossaryTerm resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.delete({
+     *     // Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16695,7 +22959,60 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Retrieves a specified GlossaryTerm resource.
+     * Gets a GlossaryTerm resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.get({
+     *     // Required. The name of the GlossaryTerm to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16794,6 +23111,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16887,7 +23256,63 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Lists GlossaryTerm resources in a glossary.
+     * Lists GlossaryTerm resources in a Glossary.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.list({
+     *     // Optional. Filter expression that filters GlossaryTerms listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryTerms that are directly nested under the specified parent.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by expression that orders GlossaryTerms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of GlossaryTerms to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryTerms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous ListGlossaryTerms call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListGlossaryTerms must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which has this collection of GlossaryTerms. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location/glossaries/my-glossarie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "terms": [],
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16989,6 +23414,76 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a GlossaryTerm resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.patch({
+     *     // Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
+     *     name: 'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *     // Required. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "parent": "my_parent",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "parent": "my_parent",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17088,6 +23583,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.glossaries.terms.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17182,6 +23736,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.glossaries.terms.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/glossaries/my-glossarie/terms/my-term',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17286,11 +23896,11 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource where this GlossaryTerm will be created. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\} where locationId refers to a GCP region.
+     * Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
      */
     parent?: string;
     /**
-     * Required. Term ID: GlossaryTerm identifier.
+     * Required. GlossaryTerm identifier.
      */
     termId?: string;
 
@@ -17302,14 +23912,14 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Delete
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryTerm to delete. Format: projects/{project\}/locations/{location\}/glossary/{glossary\}/terms/{glossary_term\}
+     * Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Get
     extends StandardParameters {
     /**
-     * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\}/terms/{glossary_term\}
+     * Required. The name of the GlossaryTerm to retrieve. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
   }
@@ -17327,15 +23937,15 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$List
     extends StandardParameters {
     /**
-     * Optional. Filter expression that filters terms listed in the response. Filters supported: List GlossaryTerms based on immediate parent in the resource hierarchy. This will only return the terms nested directly under the parent and no other subsequent nested terms will be returned.
+     * Optional. Filter expression that filters GlossaryTerms listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}" - immediate_parent="projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/categories/{category_id\}"This will only return the GlossaryTerms that are directly nested under the specified parent.
      */
     filter?: string;
     /**
-     * Optional. Order by expression that orders terms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
+     * Optional. Order by expression that orders GlossaryTerms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of terms to return. The service may return fewer than this value. If unspecified, at most 50 terms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     * Optional. The maximum number of GlossaryTerms to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryTerms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      */
     pageSize?: number;
     /**
@@ -17343,14 +23953,14 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent, which has this collection of terms. Format: projects/{project\}/locations/{location\}/glossaries/{glossary\} Location is the GCP region.
+     * Required. The parent, which has this collection of GlossaryTerms. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\} where location_id refers to a GCP region.
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Glossaries$Terms$Patch
     extends StandardParameters {
     /**
-     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId\}/locations/{locationId\}/glossaries/{glossaryId\}/terms/{termId\}
+     * Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number\}/locations/{location_id\}/glossaries/{glossary_id\}/terms/{term_id\}
      */
     name?: string;
     /**
@@ -17396,6 +24006,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.governanceRules.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/governanceRules/my-governanceRule',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17490,6 +24152,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.governanceRules.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/governanceRules/my-governanceRule',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17584,6 +24305,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.governanceRules.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/governanceRules/my-governanceRule',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17749,6 +24526,79 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a lake resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.create({
+     *     // Required. Lake identifier. This ID will be used to generate names such as database and dataset names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the customer project / location.
+     *     lakeId: 'placeholder-value',
+     *     // Required. The resource name of the lake location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetStatus": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "metastore": {},
+     *       //   "metastoreStatus": {},
+     *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17844,6 +24694,56 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a lake resource. All zones within the lake must be deleted before the lake can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.delete({
+     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17936,6 +24836,63 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves a lake resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.get({
+     *     // Required. The resource name of the lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetStatus": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "metastore": {},
+     *   //   "metastoreStatus": {},
+     *   //   "name": "my_name",
+     *   //   "serviceAccount": "my_serviceAccount",
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18026,6 +24983,57 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18119,6 +25127,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists lake resources in a project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of Lakes to return. The service may return fewer than this value. If unspecified, at most 10 lakes will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListLakes call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListLakes must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the lake location, of the form: projects/{project_number\}/locations/{location_id\} where location_id refers to a GCP region.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lakes": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18220,6 +25284,79 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a lake resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.patch({
+     *     // Output only. The relative resource name of the lake, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetStatus": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "metastore": {},
+     *       //   "metastoreStatus": {},
+     *       //   "name": "my_name",
+     *       //   "serviceAccount": "my_serviceAccount",
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18312,6 +25449,64 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18405,6 +25600,60 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18627,6 +25876,57 @@ export namespace dataplex_v1 {
 
     /**
      * Lists action resources in a lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.actions.list({
+     *     // Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListLakeActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListLakeActions must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18751,6 +26051,80 @@ export namespace dataplex_v1 {
 
     /**
      * Create a content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.create({
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataText": "my_dataText",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "path": "my_path",
+     *       //   "sqlScript": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18848,6 +26222,50 @@ export namespace dataplex_v1 {
 
     /**
      * Delete a content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.delete({
+     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18936,6 +26354,63 @@ export namespace dataplex_v1 {
 
     /**
      * Get a content resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.get({
+     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *     // Optional. Specify content view to make a partial request.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19030,6 +26505,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a contentitem resource. A NOT_FOUND error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.Caller must have Google IAM dataplex.content.getIamPolicy permission on the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19124,6 +26651,59 @@ export namespace dataplex_v1 {
 
     /**
      * List content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.list({
+     *     // Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "content": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19225,6 +26805,82 @@ export namespace dataplex_v1 {
 
     /**
      * Update a content. Only supports full resource update.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.patch({
+     *     // Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataText": "my_dataText",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "path": "my_path",
+     *       //   "sqlScript": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19319,6 +26975,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified contentitem resource. Replaces any existing policy.Caller must have Google IAM dataplex.content.setIamPolicy permission on the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.content.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19413,6 +27128,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (a NOT_FOUND error is not returned).A caller is not required to have Google IAM permission to make this request.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.content.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/content/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19631,6 +27402,80 @@ export namespace dataplex_v1 {
 
     /**
      * Create a content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.create({
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataText": "my_dataText",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "path": "my_path",
+     *       //   "sqlScript": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19729,6 +27574,50 @@ export namespace dataplex_v1 {
 
     /**
      * Delete a content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.delete({
+     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19818,6 +27707,63 @@ export namespace dataplex_v1 {
 
     /**
      * Get a content resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.get({
+     *     // Required. The resource name of the content: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *     // Optional. Specify content view to make a partial request.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19913,6 +27859,60 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a contentitem resource. A NOT_FOUND error is returned if the resource does not exist. An empty policy is returned if the resource exists but does not have a policy set on it.Caller must have Google IAM dataplex.content.getIamPolicy permission on the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.getIamPolicy(
+     *     {
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20007,6 +28007,59 @@ export namespace dataplex_v1 {
 
     /**
      * List content.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.list({
+     *     // Optional. Filter request. Filters are case-sensitive. The following formats are supported:labels.key1 = "value1" labels:key1 type = "NOTEBOOK" type = "SQL_SCRIPT"These restrictions can be coinjoined with AND, OR and NOT conjunctions.
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of content to return. The service may return fewer than this value. If unspecified, at most 10 content will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListContent call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListContent must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "content": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20109,6 +28162,82 @@ export namespace dataplex_v1 {
 
     /**
      * Update a content. Only supports full resource update.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.patch({
+     *     // Output only. The relative resource name of the content, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/content/{content_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataText": "my_dataText",
+     *       //   "description": "my_description",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "path": "my_path",
+     *       //   "sqlScript": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataText": "my_dataText",
+     *   //   "description": "my_description",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "path": "my_path",
+     *   //   "sqlScript": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20204,6 +28333,67 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified contentitem resource. Replaces any existing policy.Caller must have Google IAM dataplex.content.setIamPolicy permission on the resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.contentitems.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20298,6 +28488,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns the caller's permissions on a resource. If the resource does not exist, an empty set of permissions is returned (a NOT_FOUND error is not returned).A caller is not required to have Google IAM permission to make this request.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.contentitems.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/contentitems/.*',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20521,6 +28767,79 @@ export namespace dataplex_v1 {
 
     /**
      * Create an environment resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.create({
+     *     // Required. Environment identifier. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must be between 1-63 characters. * Must end with a number or a letter. * Must be unique within the lake.
+     *     environmentId: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "endpoints": {},
+     *       //   "infrastructureSpec": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "sessionSpec": {},
+     *       //   "sessionStatus": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20617,6 +28936,56 @@ export namespace dataplex_v1 {
 
     /**
      * Delete the environment resource. All the child resources must have been deleted before environment deletion can be initiated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.delete({
+     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20710,6 +29079,63 @@ export namespace dataplex_v1 {
 
     /**
      * Get environment resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.get({
+     *     // Required. The resource name of the environment: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environments/{environment_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "endpoints": {},
+     *   //   "infrastructureSpec": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "sessionSpec": {},
+     *   //   "sessionStatus": {},
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20809,6 +29235,60 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.getIamPolicy(
+     *     {
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20903,6 +29383,61 @@ export namespace dataplex_v1 {
 
     /**
      * Lists environments under the given lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of environments to return. The service may return fewer than this value. If unspecified, at most 10 environments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEnvironments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEnvironments must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "environments": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21005,6 +29540,79 @@ export namespace dataplex_v1 {
 
     /**
      * Update the environment resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.patch({
+     *     // Output only. The relative resource name of the environment, of the form: projects/{project_id\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "endpoints": {},
+     *       //   "infrastructureSpec": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "sessionSpec": {},
+     *       //   "sessionStatus": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21098,6 +29706,67 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.environments.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21192,6 +29861,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.environments.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21414,6 +30139,61 @@ export namespace dataplex_v1 {
 
     /**
      * Lists session resources in an environment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.environments.sessions.list({
+     *       // Optional. Filter request. The following mode filter is supported to return only the sessions belonging to the requester when the mode is USER and return sessions of all the users when the mode is ADMIN. When no filter is sent default to USER mode. NOTE: When the mode is ADMIN, the requester should have dataplex.environments.listAllSessions permission to list all sessions, in absence of the permission, the request fails.mode = ADMIN | USER
+     *       filter: 'placeholder-value',
+     *       // Optional. Maximum number of sessions to return. The service may return fewer than this value. If unspecified, at most 10 sessions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous ListSessions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListSessions must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/environment/{environment_id\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/environments/my-environment',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21547,6 +30327,80 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a task resource within a lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.create({
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Required. Task identifier.
+     *     taskId: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "executionSpec": {},
+     *       //   "executionStatus": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "spark": {},
+     *       //   "state": "my_state",
+     *       //   "triggerSpec": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21642,6 +30496,56 @@ export namespace dataplex_v1 {
 
     /**
      * Delete the task resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.delete({
+     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21734,6 +30638,64 @@ export namespace dataplex_v1 {
 
     /**
      * Get task resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.get({
+     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{tasks_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "executionSpec": {},
+     *   //   "executionStatus": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "notebook": {},
+     *   //   "spark": {},
+     *   //   "state": "my_state",
+     *   //   "triggerSpec": {},
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21824,6 +30786,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21918,6 +30932,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists tasks under the given lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of tasks to return. The service may return fewer than this value. If unspecified, at most 10 tasks will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListZones call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZones must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tasks": [],
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22019,6 +31089,80 @@ export namespace dataplex_v1 {
 
     /**
      * Update the task resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.patch({
+     *     // Output only. The relative resource name of the task, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/ tasks/{task_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "executionSpec": {},
+     *       //   "executionStatus": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "notebook": {},
+     *       //   "spark": {},
+     *       //   "state": "my_state",
+     *       //   "triggerSpec": {},
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22111,6 +31255,61 @@ export namespace dataplex_v1 {
 
     /**
      * Run an on demand execution of a Task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.run({
+     *     // Required. The resource name of the task: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "args": {},
+     *       //   "labels": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "job": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22209,6 +31408,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22303,6 +31561,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22537,6 +31850,56 @@ export namespace dataplex_v1 {
 
     /**
      * Cancel jobs running for the task resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.jobs.cancel({
+     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/task/{task_id\}/job/{job_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task/jobs/my-job',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22626,6 +31989,63 @@ export namespace dataplex_v1 {
 
     /**
      * Get job resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.jobs.get({
+     *     // Required. The resource name of the job: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}/jobs/{job_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task/jobs/my-job',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "executionSpec": {},
+     *   //   "labels": {},
+     *   //   "message": "my_message",
+     *   //   "name": "my_name",
+     *   //   "retryCount": 0,
+     *   //   "service": "my_service",
+     *   //   "serviceJob": "my_serviceJob",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "trigger": "my_trigger",
+     *   //   "uid": "my_uid"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22716,6 +32136,58 @@ export namespace dataplex_v1 {
 
     /**
      * Lists Jobs under the given task.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.tasks.jobs.list({
+     *     // Optional. Maximum number of jobs to return. The service may return fewer than this value. If unspecified, at most 10 jobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListJobs call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListJobs must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent environment: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/tasks/{task_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/tasks/my-task',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "jobs": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22868,6 +32340,79 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a zone resource within a lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.create({
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *     // Required. Zone identifier. This ID will be used to generate names such as database and dataset names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique across all lakes from all locations in a project. * Must not be one of the reserved IDs (i.e. "default", "global-temp")
+     *     zoneId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetStatus": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "discoverySpec": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceSpec": {},
+     *       //   "state": "my_state",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22963,6 +32508,56 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a zone resource. All assets within a zone must be deleted before the zone can be deleted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.delete({
+     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23055,6 +32650,63 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves a zone resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.get({
+     *     // Required. The resource name of the zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assetStatus": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "discoverySpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "resourceSpec": {},
+     *   //   "state": "my_state",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23145,6 +32797,58 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.getIamPolicy({
+     *     // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *     'options.requestedPolicyVersion': 'placeholder-value',
+     *     // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23239,6 +32943,61 @@ export namespace dataplex_v1 {
 
     /**
      * Lists zone resources in a lake.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of zones to return. The service may return fewer than this value. If unspecified, at most 10 zones will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListZones call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZones must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent lake: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}.
+     *     parent: 'projects/my-project/locations/my-location/lakes/my-lake',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "zones": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23340,6 +33099,79 @@ export namespace dataplex_v1 {
 
     /**
      * Updates a zone resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.patch({
+     *     // Output only. The relative resource name of the zone, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "assetStatus": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "discoverySpec": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceSpec": {},
+     *       //   "state": "my_state",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23432,6 +33264,65 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23526,6 +33417,61 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23748,6 +33694,58 @@ export namespace dataplex_v1 {
 
     /**
      * Lists action resources in a zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.actions.list({
+     *     // Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListZoneActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListZoneActions must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23877,6 +33875,81 @@ export namespace dataplex_v1 {
 
     /**
      * Creates an asset resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.create({
+     *     // Required. Asset identifier. This ID will be used to generate names such as table names when publishing metadata to Hive Metastore and BigQuery. * Must contain only lowercase letters, numbers and hyphens. * Must start with a letter. * Must end with a number or a letter. * Must be between 1-63 characters. * Must be unique within the zone.
+     *     assetId: 'placeholder-value',
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "discoverySpec": {},
+     *       //   "discoveryStatus": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceSpec": {},
+     *       //   "resourceStatus": {},
+     *       //   "securityStatus": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23973,6 +34046,56 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes an asset resource. The referenced storage resource is detached (default) or deleted based on the associated Lifecycle policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.delete({
+     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24066,6 +34189,64 @@ export namespace dataplex_v1 {
 
     /**
      * Retrieves an asset resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.get({
+     *     // Required. The resource name of the asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "discoverySpec": {},
+     *   //   "discoveryStatus": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "resourceSpec": {},
+     *   //   "resourceStatus": {},
+     *   //   "securityStatus": {},
+     *   //   "state": "my_state",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24159,6 +34340,60 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.getIamPolicy(
+     *     {
+     *       // Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).
+     *       'options.requestedPolicyVersion': 'placeholder-value',
+     *       // REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24253,6 +34488,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists asset resources in a zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.list({
+     *     // Optional. Filter request.
+     *     filter: 'placeholder-value',
+     *     // Optional. Order by fields for the result.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Maximum number of asset to return. The service may return fewer than this value. If unspecified, at most 10 assets will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListAssets call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssets must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "assets": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24355,6 +34646,80 @@ export namespace dataplex_v1 {
 
     /**
      * Updates an asset resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.patch({
+     *     // Output only. The relative resource name of the asset, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *     // Required. Mask of fields to update.
+     *     updateMask: 'placeholder-value',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "discoverySpec": {},
+     *       //   "discoveryStatus": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "resourceSpec": {},
+     *       //   "resourceStatus": {},
+     *       //   "securityStatus": {},
+     *       //   "state": "my_state",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24448,6 +34813,67 @@ export namespace dataplex_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.setIamPolicy(
+     *     {
+     *       // REQUIRED: The resource for which the policy is being specified. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24542,6 +34968,62 @@ export namespace dataplex_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a NOT_FOUND error.Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.zones.assets.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24764,6 +35246,60 @@ export namespace dataplex_v1 {
 
     /**
      * Lists action resources in an asset.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.assets.actions.list(
+     *     {
+     *       // Optional. Maximum number of actions to return. The service may return fewer than this value. If unspecified, at most 10 actions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous ListAssetActions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListAssetActions must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the parent asset: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/assets/{asset_id\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/assets/my-asset',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24894,6 +35430,97 @@ export namespace dataplex_v1 {
 
     /**
      * Create a metadata entity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.entities.create({
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": {},
+     *       //   "asset": "my_asset",
+     *       //   "catalogEntry": "my_catalogEntry",
+     *       //   "compatibility": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "dataPath": "my_dataPath",
+     *       //   "dataPathPattern": "my_dataPathPattern",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "schema": {},
+     *       //   "system": "my_system",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": {},
+     *   //   "asset": "my_asset",
+     *   //   "catalogEntry": "my_catalogEntry",
+     *   //   "compatibility": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataPath": "my_dataPath",
+     *   //   "dataPathPattern": "my_dataPathPattern",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "schema": {},
+     *   //   "system": "my_system",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24990,6 +35617,52 @@ export namespace dataplex_v1 {
 
     /**
      * Delete a metadata entity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.entities.delete({
+     *     // Required. The etag associated with the entity, which can be retrieved with a GetEntity request.
+     *     etag: 'placeholder-value',
+     *     // Required. The resource name of the entity: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25079,6 +35752,71 @@ export namespace dataplex_v1 {
 
     /**
      * Get a metadata entity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.entities.get({
+     *     // Required. The resource name of the entity: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie',
+     *     // Optional. Used to select the subset of entity information to return. Defaults to BASIC.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": {},
+     *   //   "asset": "my_asset",
+     *   //   "catalogEntry": "my_catalogEntry",
+     *   //   "compatibility": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataPath": "my_dataPath",
+     *   //   "dataPathPattern": "my_dataPathPattern",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "schema": {},
+     *   //   "system": "my_system",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25172,6 +35910,62 @@ export namespace dataplex_v1 {
 
     /**
      * List metadata entities in a zone.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.entities.list({
+     *     // Optional. The following filter parameters can be added to the URL to limit the entities returned by the API: Entity ID: ?filter="id=entityID" Asset ID: ?filter="asset=assetID" Data path ?filter="data_path=gs://my-bucket" Is HIVE compatible: ?filter="hive_compatible=true" Is BigQuery compatible: ?filter="bigquery_compatible=true"
+     *     filter: 'placeholder-value',
+     *     // Optional. Maximum number of entities to return. The service may return fewer than this value. If unspecified, 100 entities will be returned by default. The maximum value is 500; larger values will will be truncated to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. Page token received from a previous ListEntities call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListEntities must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}.
+     *     parent:
+     *       'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone',
+     *     // Required. Specify the entity view to make a partial list request.
+     *     view: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "entities": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25274,6 +36068,96 @@ export namespace dataplex_v1 {
 
     /**
      * Update a metadata entity. Only supports full resource update.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.lakes.zones.entities.update({
+     *     // Output only. The resource name of the entity, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{id\}.
+     *     name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie',
+     *     // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "access": {},
+     *       //   "asset": "my_asset",
+     *       //   "catalogEntry": "my_catalogEntry",
+     *       //   "compatibility": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "dataPath": "my_dataPath",
+     *       //   "dataPathPattern": "my_dataPathPattern",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "etag": "my_etag",
+     *       //   "format": {},
+     *       //   "id": "my_id",
+     *       //   "name": "my_name",
+     *       //   "schema": {},
+     *       //   "system": "my_system",
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access": {},
+     *   //   "asset": "my_asset",
+     *   //   "catalogEntry": "my_catalogEntry",
+     *   //   "compatibility": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataPath": "my_dataPath",
+     *   //   "dataPathPattern": "my_dataPathPattern",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "etag": "my_etag",
+     *   //   "format": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "schema": {},
+     *   //   "system": "my_system",
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25452,6 +36336,70 @@ export namespace dataplex_v1 {
 
     /**
      * Create a metadata partition.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.zones.entities.partitions.create({
+     *       // Required. The resource name of the parent zone: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie',
+     *       // Optional. Only validate the request, but do not perform mutations. The default is false.
+     *       validateOnly: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "etag": "my_etag",
+     *         //   "location": "my_location",
+     *         //   "name": "my_name",
+     *         //   "values": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "values": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25550,6 +36498,53 @@ export namespace dataplex_v1 {
 
     /**
      * Delete a metadata partition.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.zones.entities.partitions.delete({
+     *       // Optional. The etag associated with the partition.
+     *       etag: 'placeholder-value',
+     *       // Required. The resource name of the partition. format: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}/partitions/{partition_value_path\}. The {partition_value_path\} segment consists of an ordered sequence of partition values separated by "/". All values must be provided.
+     *       name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie/partitions/.*',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25639,6 +36634,56 @@ export namespace dataplex_v1 {
 
     /**
      * Get a metadata partition of an entity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.zones.entities.partitions.get({
+     *       // Required. The resource name of the partition: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}/partitions/{partition_value_path\}. The {partition_value_path\} segment consists of an ordered sequence of partition values separated by "/". All values must be provided.
+     *       name: 'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie/partitions/.*',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "location": "my_location",
+     *   //   "name": "my_name",
+     *   //   "values": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25734,6 +36779,61 @@ export namespace dataplex_v1 {
 
     /**
      * List metadata partitions of an entity.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await dataplex.projects.locations.lakes.zones.entities.partitions.list({
+     *       // Optional. Filter the partitions returned to the caller using a key value pair expression. Supported operators and syntax: logic operators: AND, OR comparison operators: <, \>, \>=, <= ,=, != LIKE operators: The right hand of a LIKE operator supports "." and "*" for wildcard searches, for example "value1 LIKE ".*oo.*" parenthetical grouping: ( )Sample filter expression: `?filter="key1 < value1 OR key2 \> value2"Notes: Keys to the left of operators are case insensitive. Partition results are sorted first by creation time, then by lexicographic order. Up to 20 key value filter pairs are allowed, but due to performance considerations, only the first 10 will be used as a filter.
+     *       filter: 'placeholder-value',
+     *       // Optional. Maximum number of partitions to return. The service may return fewer than this value. If unspecified, 100 partitions will be returned by default. The maximum page size is 500; larger values will will be truncated to 500.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token received from a previous ListPartitions call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ListPartitions must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The resource name of the parent entity: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     *       parent:
+     *         'projects/my-project/locations/my-location/lakes/my-lake/zones/my-zone/entities/my-entitie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "partitions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25897,6 +36997,56 @@ export namespace dataplex_v1 {
 
     /**
      * Cancels a metadata job.If you cancel a metadata import job that is in progress, the changes in the job might be partially applied. We recommend that you reset the state of the entry groups in your project by running another metadata job that reverts the changes from the canceled job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.metadataJobs.cancel({
+     *     // Required. The resource name of the job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}
+     *     name: 'projects/my-project/locations/my-location/metadataJobs/my-metadataJob',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25985,6 +37135,78 @@ export namespace dataplex_v1 {
 
     /**
      * Creates a metadata job. For example, use a metadata job to import Dataplex Catalog entries and aspects from a third-party system into Dataplex.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.metadataJobs.create({
+     *     // Optional. The metadata job ID. If not provided, a unique ID is generated with the prefix metadata-job-.
+     *     metadataJobId: 'placeholder-value',
+     *     // Required. The resource name of the parent location, in the format projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The service validates the request without performing any mutations. The default is false.
+     *     validateOnly: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "exportResult": {},
+     *       //   "exportSpec": {},
+     *       //   "importResult": {},
+     *       //   "importSpec": {},
+     *       //   "labels": {},
+     *       //   "name": "my_name",
+     *       //   "status": {},
+     *       //   "type": "my_type",
+     *       //   "uid": "my_uid",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26080,6 +37302,62 @@ export namespace dataplex_v1 {
 
     /**
      * Gets a metadata job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.metadataJobs.get({
+     *     // Required. The resource name of the metadata job, in the format projects/{project_id_or_number\}/locations/{location_id\}/metadataJobs/{metadata_job_id\}.
+     *     name: 'projects/my-project/locations/my-location/metadataJobs/my-metadataJob',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "exportResult": {},
+     *   //   "exportSpec": {},
+     *   //   "importResult": {},
+     *   //   "importSpec": {},
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "status": {},
+     *   //   "type": "my_type",
+     *   //   "uid": "my_uid",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26178,6 +37456,62 @@ export namespace dataplex_v1 {
 
     /**
      * Lists metadata jobs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.metadataJobs.list({
+     *     // Optional. Filter request. Filters are case-sensitive. The service supports the following formats: labels.key1 = "value1" labels:key1 name = "value"You can combine filters with AND, OR, and NOT operators.
+     *     filter: 'placeholder-value',
+     *     // Optional. The field to sort the results by, either name or create_time. If not specified, the ordering is undefined.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. The maximum number of metadata jobs to return. The service might return fewer jobs than this value. If unspecified, at most 10 jobs are returned. The maximum value is 1,000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token received from a previous ListMetadataJobs call. Provide this token to retrieve the subsequent page of results. When paginating, all other parameters that are provided to the ListMetadataJobs request must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The resource name of the parent location, in the format projects/{project_id_or_number\}/locations/{location_id\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadataJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachableLocations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26349,6 +37683,56 @@ export namespace dataplex_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of 1, corresponding to Code.CANCELLED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.operations.cancel({
+     *     // The name of the operation resource to be cancelled.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26437,6 +37821,50 @@ export namespace dataplex_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns google.rpc.Code.UNIMPLEMENTED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.operations.delete({
+     *     // The name of the operation resource to be deleted.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26525,6 +37953,56 @@ export namespace dataplex_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26617,6 +38095,59 @@ export namespace dataplex_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns UNIMPLEMENTED.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataplex.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataplex = google.dataplex('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataplex.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

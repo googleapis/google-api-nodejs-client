@@ -1922,7 +1922,7 @@
       }
     }
   },
-  "revision": "20250504",
+  "revision": "20250620",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3191,6 +3191,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudRunV2MultiRegionSettings": {
+      "description": "Settings for multi-region deployment.",
+      "id": "GoogleCloudRunV2MultiRegionSettings",
+      "properties": {
+        "multiRegionId": {
+          "description": "Optional. System-generated unique id for the multi-region Service.",
+          "type": "string"
+        },
+        "regions": {
+          "description": "Required. List of regions to deploy to, including primary region.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudRunV2NFSVolumeSource": {
       "description": "Represents an NFS mount.",
       "id": "GoogleCloudRunV2NFSVolumeSource",
@@ -3914,6 +3932,10 @@
           ],
           "type": "string"
         },
+        "multiRegionSettings": {
+          "$ref": "GoogleCloudRunV2MultiRegionSettings",
+          "description": "Optional. Settings for multi-region deployment."
+        },
         "name": {
           "description": "The fully qualified name of this Service. In CreateServiceRequest, this field is ignored, and instead composed from CreateServiceRequest.parent and CreateServiceRequest.service_id. Format: projects/{project}/locations/{location}/services/{service_id}",
           "type": "string"
@@ -4339,7 +4361,7 @@
       "id": "GoogleCloudRunV2TaskAttemptResult",
       "properties": {
         "exitCode": {
-          "description": "Output only. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details.",
+          "description": "Output only. The exit code of this attempt. This may be unset if the container was unable to exit cleanly with a code due to some other failure. See status field for possible failure details. At most one of exit_code or term_signal will be set.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -4348,6 +4370,12 @@
           "$ref": "GoogleRpcStatus",
           "description": "Output only. The status of this attempt. If the status code is OK, then the attempt succeeded.",
           "readOnly": true
+        },
+        "termSignal": {
+          "description": "Output only. Termination signal of the container. This is set to non-zero if the container is terminated by the system. At most one of exit_code or term_signal will be set.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -4831,10 +4859,6 @@
           "$ref": "GoogleCloudRunV2ServiceMesh",
           "description": "Optional. Enables service mesh connectivity."
         },
-        "sessionAffinity": {
-          "description": "Optional. Enable session affinity.",
-          "type": "boolean"
-        },
         "volumes": {
           "description": "Optional. A list of Volumes to make available to containers.",
           "items": {
@@ -4857,30 +4881,6 @@
           "description": "Optional. The total number of instances in manual scaling mode.",
           "format": "int32",
           "type": "integer"
-        },
-        "maxInstanceCount": {
-          "description": "Optional. The maximum count of instances distributed among revisions based on the specified instance split percentages.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "minInstanceCount": {
-          "description": "Optional. The minimum count of instances distributed among revisions based on the specified instance split percentages.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "scalingMode": {
-          "description": "Optional. The scaling mode for the worker pool.",
-          "enum": [
-            "SCALING_MODE_UNSPECIFIED",
-            "AUTOMATIC",
-            "MANUAL"
-          ],
-          "enumDescriptions": [
-            "Unspecified.",
-            "Automatically scale between min and max instances.",
-            "Scale to exactly min instances and ignore the max instances."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
@@ -5750,7 +5750,7 @@
       "id": "GoogleDevtoolsCloudbuildV1GitSourceRepository",
       "properties": {
         "developerConnect": {
-          "description": "The Developer Connect Git repository link or the url that matches a repository link in the current project, formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
+          "description": "The Developer Connect Git repository link formatted as `projects/*/locations/*/connections/*/gitRepositoryLink/*`",
           "type": "string"
         },
         "url": {

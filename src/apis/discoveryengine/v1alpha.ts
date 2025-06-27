@@ -2194,10 +2194,6 @@ export namespace discoveryengine_v1alpha {
      */
     deleteUnassignedUserLicenses?: boolean | null;
     /**
-     * Cloud Storage location for the input content.
-     */
-    gcsSource?: Schema$GoogleCloudDiscoveryengineV1alphaGcsSource;
-    /**
      * The inline source for the input content for document embeddings.
      */
     inlineSource?: Schema$GoogleCloudDiscoveryengineV1alphaBatchUpdateUserLicensesRequestInlineSource;
@@ -2506,6 +2502,10 @@ export namespace discoveryengine_v1alpha {
      */
     annotationContents?: string[] | null;
     /**
+     * Output only. The annotation metadata includes structured content in the current chunk.
+     */
+    annotationMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaChunkAnnotationMetadata[];
+    /**
      * Output only. Metadata of the current chunk.
      */
     chunkMetadata?: Schema$GoogleCloudDiscoveryengineV1alphaChunkChunkMetadata;
@@ -2541,6 +2541,19 @@ export namespace discoveryengine_v1alpha {
      * Output only. Represents the relevance score based on similarity. Higher score indicates higher chunk relevance. The score is in range [-1.0, 1.0]. Only populated on SearchResponse.
      */
     relevanceScore?: number | null;
+  }
+  /**
+   * The annotation metadata includes structured content in the current chunk.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkAnnotationMetadata {
+    /**
+     * Output only. Image id is provided if the structured content is based on an image.
+     */
+    imageId?: string | null;
+    /**
+     * Output only. The structured content information.
+     */
+    structuredContent?: Schema$GoogleCloudDiscoveryengineV1alphaChunkStructuredContent;
   }
   /**
    * Metadata of the current chunk. This field is only populated on SearchService.Search API.
@@ -2584,6 +2597,19 @@ export namespace discoveryengine_v1alpha {
      * The start page of the chunk.
      */
     pageStart?: number | null;
+  }
+  /**
+   * The structured content information.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkStructuredContent {
+    /**
+     * Output only. The content of the structured content.
+     */
+    content?: string | null;
+    /**
+     * Output only. The structure type of the structured content.
+     */
+    structureType?: string | null;
   }
   /**
    * Cloud SQL source import data from.
@@ -2635,7 +2661,7 @@ export namespace discoveryengine_v1alpha {
      */
     lastRotationTimestampMicros?: string | null;
     /**
-     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string | null;
     /**
@@ -2849,7 +2875,7 @@ export namespace discoveryengine_v1alpha {
      */
     errors?: Schema$GoogleRpcStatus[];
     /**
-     * The number of documents extracted from connector source, ready to be ingested to UCS.
+     * The number of documents extracted from connector source, ready to be ingested to VAIS.
      */
     extractedRecordCount?: string | null;
     /**
@@ -2860,6 +2886,10 @@ export namespace discoveryengine_v1alpha {
      * Metadata to generate the progress bar.
      */
     progress?: Schema$GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRunProgress;
+    /**
+     * The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.
+     */
+    scheduledRecordCount?: string | null;
     /**
      * The number of requests sent to 3p API.
      */
@@ -3330,6 +3360,10 @@ export namespace discoveryengine_v1alpha {
      */
     actionConfig?: Schema$GoogleCloudDiscoveryengineV1alphaActionConfig;
     /**
+     * Output only. State of the action connector. This reflects whether the action connector is initializing, active or has encountered errors.
+     */
+    actionState?: string | null;
+    /**
      * Optional. The connector level alert config.
      */
     alertPolicyConfigs?: Schema$GoogleCloudDiscoveryengineV1alphaAlertPolicyConfig[];
@@ -3390,11 +3424,11 @@ export namespace discoveryengine_v1alpha {
      */
     identityScheduleConfig?: Schema$GoogleCloudDiscoveryengineV1alphaIdentityScheduleConfig;
     /**
-     * Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days.
+     * Optional. The refresh interval specifically for incremental data syncs. If unset, incremental syncs will use the default from env, set to 3hrs. The minimum is 30 minutes and maximum is 7 days. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.
      */
     incrementalRefreshInterval?: string | null;
     /**
-     * Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled.
+     * Optional. Indicates whether incremental syncs are paused for this connector. This is independent of auto_run_disabled. Applicable to only 3P connectors. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled, i.e. set to true.
      */
     incrementalSyncDisabled?: boolean | null;
     /**
@@ -3434,7 +3468,7 @@ export namespace discoveryengine_v1alpha {
      */
     realtimeSyncConfig?: Schema$GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfig;
     /**
-     * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days.
+     * Required. The refresh interval for data sync. If duration is set to 0, the data will be synced in real time. The streaming feature is not supported yet. The minimum is 30 minutes and maximum is 7 days. When the refresh interval is set to the same value as the incremental refresh interval, incremental sync will be disabled.
      */
     refreshInterval?: string | null;
     /**
@@ -3582,7 +3616,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageInfo?: Schema$GoogleCloudDiscoveryengineV1alphaLanguageInfo;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -3640,7 +3674,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -4059,6 +4093,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. List of HTML ids to exclude from the parsed content.
      */
     excludeHtmlIds?: string[] | null;
+    /**
+     * Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`
+     */
+    structuredContentTypes?: string[] | null;
   }
   /**
    * The OCR parsing configurations for documents.
@@ -4133,7 +4171,7 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -4145,7 +4183,11 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     */
+    features?: {[key: string]: string} | null;
+    /**
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -4153,7 +4195,7 @@ export namespace discoveryengine_v1alpha {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1alphaEngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -4311,6 +4353,10 @@ export namespace discoveryengine_v1alpha {
      */
     dataState?: string | null;
     /**
+     * Output only. The timestamp when the latest successful training finished. Only applicable on Media Recommendation engines.
+     */
+    lastTrainTime?: string | null;
+    /**
      * Output only. The timestamp when the latest successful tune finished. Only applicable on Media Recommendation engines.
      */
     lastTuneTime?: string | null;
@@ -4456,7 +4502,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpec {
     /**
-     * Required. The specification of the query set.
+     * Optional. The specification of the query set.
      */
     querySetSpec?: Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec;
     /**
@@ -4469,7 +4515,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEvaluationEvaluationSpecQuerySetSpec {
     /**
-     * Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
+     * Optional. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
      */
     sampleQuerySet?: string | null;
   }
@@ -5706,6 +5752,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaPrincipal {
     /**
+     * For 3P application identities which are not present in the customer identity provider.
+     */
+    externalEntityId?: string | null;
+    /**
      * Group identifier. For Google Workspace user account, group_id should be the google workspace group email. For non-google identity provider user account, group_id is the mapped group identifier configured during the workforcepool config.
      */
     groupId?: string | null;
@@ -6055,7 +6105,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaQuery {
     /**
-     * Unique Id for the query.
+     * Output only. Unique Id for the query.
      */
     queryId?: string | null;
     /**
@@ -6783,7 +6833,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -6826,6 +6876,10 @@ export namespace discoveryengine_v1alpha {
      * The spell correction specification that specifies the mode under which spell correction takes effect.
      */
     spellCorrectionSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestSpellCorrectionSpec;
+    /**
+     * Uses the Engine, ServingConfig and Control freshly read from the database. Note: this skips config cache and introduces dependency on databases, which could significantly increase the API latency. It should only be used for testing, but not serving end users.
+     */
+    useLatestData?: boolean | null;
     /**
      * Information about the end user. Highly recommended for analytics and personalization. UserInfo.user_agent is used to deduce `device_type` for analytics.
      */
@@ -7917,7 +7971,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSessionTurn {
     /**
-     * The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.
+     * Optional. The resource name of the answer to the user query. Only set if the answer generation (/answer API call) happened in this turn.
      */
     answer?: string | null;
     /**
@@ -7925,9 +7979,13 @@ export namespace discoveryengine_v1alpha {
      */
     detailedAnswer?: Schema$GoogleCloudDiscoveryengineV1alphaAnswer;
     /**
-     * The user query.
+     * Optional. The user query. May not be set if this turn is merely regenerating an answer to a different turn
      */
     query?: Schema$GoogleCloudDiscoveryengineV1alphaQuery;
+    /**
+     * Optional. Represents metadata related to the query config, for example LLM model and version used, model parameters (temperature, grounding parameters, etc.). The prefix "google." is reserved for Google-developed functionality.
+     */
+    queryConfig?: {[key: string]: string} | null;
   }
   /**
    * Metadata related to the progress of the CrawlRateManagementService.SetDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -8534,7 +8592,7 @@ export namespace discoveryengine_v1alpha {
      */
     lastLoginTime?: string | null;
     /**
-     * Output only. License assignment state of the user. If the user is assigned with a license config, the user loggin will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
+     * Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
      */
     licenseAssignmentState?: string | null;
     /**
@@ -8545,10 +8603,6 @@ export namespace discoveryengine_v1alpha {
      * Output only. User update timestamp.
      */
     updateTime?: string | null;
-    /**
-     * Optional. The full resource name of the User, in the format of `projects/{project\}/locations/{location\}/userStores/{user_store\}/users/{user_id\}`. This field must be a UTF-8 encoded string with a length limit of 2048 characters. If the user field is empty, it's indicating the user has not logged in yet and no User entity is created.
-     */
-    user?: string | null;
     /**
      * Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.
      */
@@ -8956,6 +9010,10 @@ export namespace discoveryengine_v1alpha {
      */
     enableVisualContentSummary?: boolean | null;
     /**
+     * Output only. Feature config for the engine to opt in or opt out of features. Supported keys: * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     */
+    features?: {[key: string]: string} | null;
+    /**
      * Describes generative answer configuration.
      */
     generativeAnswerConfig?: Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigUiSettingsGenerativeAnswerConfig;
@@ -9103,6 +9161,40 @@ export namespace discoveryengine_v1alpha {
     targetSites?: Schema$GoogleCloudDiscoveryengineV1TargetSite[];
   }
   /**
+   * Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of user licenses that failed to be updated.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of user licenses successfully updated.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.BatchUpdateUserLicenses method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1BatchUpdateUserLicensesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * UserLicenses successfully updated.
+     */
+    userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig {
@@ -9138,6 +9230,40 @@ export namespace discoveryengine_v1alpha {
     targetSites?: Schema$GoogleCloudDiscoveryengineV1betaTargetSite[];
   }
   /**
+   * Metadata related to the progress of the UserLicenseService.BatchUpdateUserLicenses operation. This will be returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Count of user licenses that failed to be updated.
+     */
+    failureCount?: string | null;
+    /**
+     * Count of user licenses successfully updated.
+     */
+    successCount?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response message for UserLicenseService.BatchUpdateUserLicenses method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaBatchUpdateUserLicensesResponse {
+    /**
+     * A sample of errors encountered while processing the request.
+     */
+    errorSamples?: Schema$GoogleRpcStatus[];
+    /**
+     * UserLicenses successfully updated.
+     */
+    userLicenses?: Schema$GoogleCloudDiscoveryengineV1betaUserLicense[];
+  }
+  /**
    * Configurations used to enable CMEK data encryption with Cloud KMS keys.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaCmekConfig {
@@ -9158,7 +9284,7 @@ export namespace discoveryengine_v1alpha {
      */
     lastRotationTimestampMicros?: string | null;
     /**
-     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string | null;
     /**
@@ -9512,7 +9638,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageInfo?: Schema$GoogleCloudDiscoveryengineV1betaLanguageInfo;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -9570,7 +9696,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -9782,6 +9908,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. List of HTML ids to exclude from the parsed content.
      */
     excludeHtmlIds?: string[] | null;
+    /**
+     * Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`
+     */
+    structuredContentTypes?: string[] | null;
   }
   /**
    * The OCR parsing configurations for documents.
@@ -9834,7 +9964,7 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -9846,7 +9976,11 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     */
+    features?: {[key: string]: string} | null;
+    /**
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -9854,7 +9988,7 @@ export namespace discoveryengine_v1alpha {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -10050,7 +10184,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpec {
     /**
-     * Required. The specification of the query set.
+     * Optional. The specification of the query set.
      */
     querySetSpec?: Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec;
     /**
@@ -10063,7 +10197,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEvaluationEvaluationSpecQuerySetSpec {
     /**
-     * Required. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
+     * Optional. The full resource name of the SampleQuerySet used for the evaluation, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
      */
     sampleQuerySet?: string | null;
   }
@@ -10705,7 +10839,7 @@ export namespace discoveryengine_v1alpha {
      */
     queryExpansionSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestQueryExpansionSpec;
     /**
-     * The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the ranking_expression_backend value. If ranking_expression_backend is not provided, it defaults to BYOE. === BYOE === If ranking_expression_backend is not provided or set to `BYOE`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between embedding_field_path and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. === CLEARBOX === If ranking_expression_backend is set to `CLEARBOX`, the following expression types (and combinations of those chained using + or * operators) are supported: * double * signal * log(signal) * exp(signal) * rr(signal, double \> 0) -- reciprocal rank transformation with second argument being a denominator constant. * is_nan(signal) -- returns 0 if signal is NaN, 1 otherwise. * fill_nan(signal1, signal2 | double) -- if signal1 is NaN, returns signal2 | double, else returns signal1. Examples: * 0.2 * gecko_score + 0.8 * log(bm25_score) * 0.2 * exp(fill_nan(gecko_score, 0)) + 0.3 * is_nan(bm25_score) * 0.2 * rr(gecko_score, 16) + 0.8 * rr(bm25_score, 32) The following signals are supported: * gecko_score -- semantic similarity adjustment * bm25_score -- keyword match adjustment * jetstream_score -- semantic relevance adjustment * pctr_rank -- predicted conversion rate adjustment as a rank * freshness_rank -- freshness adjustment as a rank * base_rank -- the default rank of the result
+     * Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by "+". * ranking_expression = function, { " + ", function \}; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double \> 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result
      */
     rankingExpression?: string | null;
     /**
@@ -11390,6 +11524,39 @@ export namespace discoveryengine_v1alpha {
     userId?: string | null;
   }
   /**
+   * User License information assigned by the admin.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaUserLicense {
+    /**
+     * Output only. User created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. User last logged in time. If the user has not logged in yet, this field will be empty.
+     */
+    lastLoginTime?: string | null;
+    /**
+     * Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
+     */
+    licenseAssignmentState?: string | null;
+    /**
+     * Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Output only. User update timestamp.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.
+     */
+    userPrincipal?: string | null;
+    /**
+     * Optional. The user profile. We user user full name(First name + Last name) as user profile.
+     */
+    userProfile?: string | null;
+  }
+  /**
    * Config to store data store type configuration for workspace data
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaWorkspaceConfig {
@@ -11431,7 +11598,7 @@ export namespace discoveryengine_v1alpha {
      */
     lastRotationTimestampMicros?: string | null;
     /**
-     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string | null;
     /**
@@ -11768,7 +11935,7 @@ export namespace discoveryengine_v1alpha {
      */
     kmsKeyName?: string | null;
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
     /**
@@ -11822,7 +11989,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DataStoreServingConfigDataStore {
     /**
-     * If set true, the DataStore will not be available for serving search requests.
+     * Optional. If set true, the DataStore will not be available for serving search requests.
      */
     disabledForServing?: boolean | null;
   }
@@ -12026,6 +12193,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. List of HTML ids to exclude from the parsed content.
      */
     excludeHtmlIds?: string[] | null;
+    /**
+     * Optional. Contains the required structure types to extract from the document. Supported values: * `shareholder-structure`
+     */
+    structuredContentTypes?: string[] | null;
   }
   /**
    * The OCR parsing configurations for documents.
@@ -12078,7 +12249,7 @@ export namespace discoveryengine_v1alpha {
      */
     createTime?: string | null;
     /**
-     * The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
+     * Optional. The data stores associated with this engine. For SOLUTION_TYPE_SEARCH and SOLUTION_TYPE_RECOMMENDATION type of engines, they can only associate with at most one data store. If solution_type is SOLUTION_TYPE_CHAT, multiple DataStores in the same Collection can be associated here. Note that when used in CreateEngineRequest, one DataStore id must be provided as the system will use it for necessary initializations.
      */
     dataStoreIds?: string[] | null;
     /**
@@ -12090,7 +12261,11 @@ export namespace discoveryengine_v1alpha {
      */
     displayName?: string | null;
     /**
-     * The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     */
+    features?: {[key: string]: string} | null;
+    /**
+     * Optional. The industry vertical that the engine registers. The restriction of the Engine industry vertical is based on DataStore: Vertical on Engine has to match vertical of the DataStore linked to the engine.
      */
     industryVertical?: string | null;
     /**
@@ -12098,7 +12273,7 @@ export namespace discoveryengine_v1alpha {
      */
     mediaRecommendationEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineMediaRecommendationEngineConfig;
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string | null;
     /**
@@ -13074,6 +13249,39 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * User License information assigned by the admin.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1UserLicense {
+    /**
+     * Output only. User created timestamp.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. User last logged in time. If the user has not logged in yet, this field will be empty.
+     */
+    lastLoginTime?: string | null;
+    /**
+     * Output only. License assignment state of the user. If the user is assigned with a license config, the user login will be assigned with the license; If the user's license assignment state is unassigned or unspecified, no license config will be associated to the user;
+     */
+    licenseAssignmentState?: string | null;
+    /**
+     * Optional. The full resource name of the Subscription(LicenseConfig) assigned to the user.
+     */
+    licenseConfig?: string | null;
+    /**
+     * Output only. User update timestamp.
+     */
+    updateTime?: string | null;
+    /**
+     * Required. Immutable. The user principal of the User, could be email address or other prinical identifier. This field is immutable. Admin assign licenses based on the user principal.
+     */
+    userPrincipal?: string | null;
+    /**
+     * Optional. The user profile. We user user full name(First name + Last name) as user profile.
+     */
+    userProfile?: string | null;
+  }
+  /**
    * Config to store data store type configuration for workspace data
    */
   export interface Schema$GoogleCloudDiscoveryengineV1WorkspaceConfig {
@@ -13115,10 +13323,6 @@ export namespace discoveryengine_v1alpha {
      * Media upload request metadata.
      */
     mediaRequestInfo?: Schema$ApiservingMediaRequestInfo;
-    /**
-     * The project (notebook) id of the uploaded source. Prefer to use the parent field instead.
-     */
-    projectId?: string | null;
     /**
      * The source id of the associated file. If not set, a source id will be generated and a new tentative source will be created.
      */
@@ -13389,6 +13593,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Uploads a file for Notebook LM to use. Creates a Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.media.upload({
+     *     // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *     parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "blob": {},
+     *       //   "mediaRequestInfo": {},
+     *       //   "sourceId": "my_sourceId"
+     *       // }
+     *     },
+     *     media: {
+     *       mimeType: 'placeholder-value',
+     *       body: 'placeholder-value',
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mediaResponseInfo": {},
+     *   //   "sourceId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13531,6 +13796,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Project. Returns NOT_FOUND when the project is not yet created.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.get({
+     *     // Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
+     *     name: 'projects/my-project',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "provisionCompletionTime": "my_provisionCompletionTime",
+     *   //   "serviceTermsMap": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13629,6 +13943,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Provisions the project resource. During the process, related systems will get prepared and initialized. Caller must read the [Terms for data use](https://cloud.google.com/retail/data-use-terms), and optionally specify in request to provide consent to that service terms.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.provision({
+     *     // Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
+     *     name: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acceptDataUseTerms": false,
+     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13725,6 +14098,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates service terms for this project. This method can be used to retroactively accept the latest terms. Terms available for update: * [Terms for data use](https://cloud.google.com/retail/data-use-terms)
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.reportConsentChange({
+     *     // Required. Full resource name of a Project, such as `projects/{project_id_or_number\}`.
+     *     project: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "consentChangeAction": "my_consentChangeAction",
+     *       //   "serviceTermId": "my_serviceTermId",
+     *       //   "serviceTermVersion": "my_serviceTermVersion"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "provisionCompletionTime": "my_provisionCompletionTime",
+     *   //   "serviceTermsMap": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -13865,6 +14297,7 @@ export namespace discoveryengine_v1alpha {
     evaluations: Resource$Projects$Locations$Evaluations;
     groundingConfigs: Resource$Projects$Locations$Groundingconfigs;
     identityMappingStores: Resource$Projects$Locations$Identitymappingstores;
+    notebooks: Resource$Projects$Locations$Notebooks;
     operations: Resource$Projects$Locations$Operations;
     podcasts: Resource$Projects$Locations$Podcasts;
     rankingConfigs: Resource$Projects$Locations$Rankingconfigs;
@@ -13891,6 +14324,7 @@ export namespace discoveryengine_v1alpha {
       );
       this.identityMappingStores =
         new Resource$Projects$Locations$Identitymappingstores(this.context);
+      this.notebooks = new Resource$Projects$Locations$Notebooks(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
         this.context
       );
@@ -13914,6 +14348,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Estimates the data size to be used by a customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.estimateDataSize({
+     *     // Required. Full resource name of the location, such as `projects/{project\}/locations/{location\}`.
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "fileDataSource": {},
+     *       //   "websiteDataSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14010,6 +14503,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the AclConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.getAclConfig({
+     *     // Required. Resource name of AclConfig, such as `projects/x/locations/x/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *     name: 'projects/my-project/locations/my-location/aclConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "idpConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14109,6 +14649,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the CmekConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.getCmekConfig({
+     *     // Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *     name: 'projects/my-project/locations/my-location/cmekConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isDefault": false,
+     *   //   "kmsKey": "my_kmsKey",
+     *   //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *   //   "lastRotationTimestampMicros": "my_lastRotationTimestampMicros",
+     *   //   "name": "my_name",
+     *   //   "notebooklmState": "my_notebooklmState",
+     *   //   "singleRegionKeys": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14208,6 +14801,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Obtains the time series data of organic or dedicated crawl rate for monitoring. When dedicated crawl rate is not set, it will return vertex AI's organic crawl rate time series. Organic crawl means Google automatically crawl the internet at its own convenience. When dedicated crawl rate is set, it will return vertex AI's dedicated crawl rate time series.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.obtainCrawlRate({
+     *     // Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "crawlRateScope": "my_crawlRateScope"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dedicatedCrawlRateTimeSeries": {},
+     *   //   "error": {},
+     *   //   "organicCrawlRateTimeSeries": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14310,6 +14960,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Removes the dedicated crawl rate for a craw_rate_scope. If the dedicated crawl rate was set, this will disable vertex AI's crawl bot from using the dedicated crawl rate for crawling. If the dedicated crawl rate was not set, this is a no-op.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.removeDedicatedCrawlRate(
+     *     {
+     *       // Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
+     *       location: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "crawlRateScope": "my_crawlRateScope"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14406,6 +15116,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Sets the dedicated crawl rate for a crawl_rate_scope. If the dedicated crawl rate was not set, this will enable vertex AI's crawl bot to use the new dedicated crawl rate for crawling. If the dedicated crawl rate was set, vertex AI's crawl bot will try to update the rate to the new value. If the new value is too high, the crawl bot may crawl at a lower rate to avoid overloading the user's website.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.setDedicatedCrawlRate({
+     *     // Required. The location resource where crawl rate management will be performed. Format: `projects/{project\}/locations/{location\}`
+     *     location: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "crawlRate": 0,
+     *       //   "crawlRateScope": "my_crawlRateScope",
+     *       //   "crawlType": "my_crawlType",
+     *       //   "mode": "my_mode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14501,6 +15272,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Collection and sets up the DataConnector for it. To stop a DataConnector after setup, use the CollectionService.DeleteCollection method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.setUpDataConnector({
+     *     // Required. The parent of Collection, in the format of `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "collectionDisplayName": "my_collectionDisplayName",
+     *       //   "collectionId": "my_collectionId",
+     *       //   "dataConnector": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14597,6 +15428,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.updateAclConfig({
+     *     // Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     name: 'projects/my-project/locations/my-location/aclConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "idpConfig": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "idpConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14696,6 +15583,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.updateCmekConfig({
+     *     // Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
+     *     name: 'projects/my-project/locations/my-location/cmekConfig',
+     *     // Set the following CmekConfig as the default to be used for child resources if one is not specified.
+     *     setDefault: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "isDefault": false,
+     *       //   "kmsKey": "my_kmsKey",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *       //   "lastRotationTimestampMicros": "my_lastRotationTimestampMicros",
+     *       //   "name": "my_name",
+     *       //   "notebooklmState": "my_notebooklmState",
+     *       //   "singleRegionKeys": [],
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14877,7 +15831,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Updatecmekconfig
     extends StandardParameters {
     /**
-     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string;
     /**
@@ -14899,6 +15853,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * De-provisions a CmekConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.cmekConfigs.delete({
+     *     // Required. The resource name of the CmekConfig to delete, such as `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
+     *     name: 'projects/my-project/locations/my-location/cmekConfigs/my-cmekConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -14992,6 +15996,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the CmekConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.cmekConfigs.get({
+     *     // Required. Resource name of CmekConfig, such as `projects/x/locations/x/cmekConfig` or `projects/x/locations/x/cmekConfigs/x`. If the caller does not have permission to access the CmekConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *     name: 'projects/my-project/locations/my-location/cmekConfigs/my-cmekConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isDefault": false,
+     *   //   "kmsKey": "my_kmsKey",
+     *   //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *   //   "lastRotationTimestampMicros": "my_lastRotationTimestampMicros",
+     *   //   "name": "my_name",
+     *   //   "notebooklmState": "my_notebooklmState",
+     *   //   "singleRegionKeys": [],
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15091,6 +16148,52 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all the CmekConfigs with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.cmekConfigs.list({
+     *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list CmekConfigs under this location, regardless of whether or not a CmekConfig exists, a PERMISSION_DENIED error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15193,6 +16296,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.cmekConfigs.patch({
+     *     // Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
+     *     name: 'projects/my-project/locations/my-location/cmekConfigs/my-cmekConfig',
+     *     // Set the following CmekConfig as the default to be used for child resources if one is not specified.
+     *     setDefault: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "isDefault": false,
+     *       //   "kmsKey": "my_kmsKey",
+     *       //   "kmsKeyVersion": "my_kmsKeyVersion",
+     *       //   "lastRotationTimestampMicros": "my_lastRotationTimestampMicros",
+     *       //   "name": "my_name",
+     *       //   "notebooklmState": "my_notebooklmState",
+     *       //   "singleRegionKeys": [],
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15309,7 +16479,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Cmekconfigs$Patch
     extends StandardParameters {
     /**
-     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmekConfig\}`.
+     * Required. The name of the CmekConfig of the form `projects/{project\}/locations/{location\}/cmekConfig` or `projects/{project\}/locations/{location\}/cmekConfigs/{cmek_config\}`.
      */
     name?: string;
     /**
@@ -15346,6 +16516,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.delete({
+     *     // Required. The full resource name of the Collection, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}`.
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15439,6 +16659,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.get({
+     *     // Required. The full resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}`.
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataConnector": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15538,6 +16807,87 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the DataConnector. DataConnector is a singleton resource for each Collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.getDataConnector({
+     *       // Required. Full resource name of DataConnector, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataConnector`. If the caller does not have permission to access the DataConnector, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataConnector does not exist, a NOT_FOUND error is returned.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "actionConfig": {},
+     *   //   "actionState": "my_actionState",
+     *   //   "alertPolicyConfigs": [],
+     *   //   "autoRunDisabled": false,
+     *   //   "bapConfig": {},
+     *   //   "blockingReasons": [],
+     *   //   "connectorModes": [],
+     *   //   "connectorType": "my_connectorType",
+     *   //   "createEuaSaas": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": "my_dataSource",
+     *   //   "destinationConfigs": [],
+     *   //   "endUserConfig": {},
+     *   //   "entities": [],
+     *   //   "errors": [],
+     *   //   "identityRefreshInterval": "my_identityRefreshInterval",
+     *   //   "identityScheduleConfig": {},
+     *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
+     *   //   "incrementalSyncDisabled": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "lastSyncTime": "my_lastSyncTime",
+     *   //   "latestPauseTime": "my_latestPauseTime",
+     *   //   "name": "my_name",
+     *   //   "nextSyncTime": {},
+     *   //   "params": {},
+     *   //   "privateConnectivityProjectId": "my_privateConnectivityProjectId",
+     *   //   "realtimeState": "my_realtimeState",
+     *   //   "realtimeSyncConfig": {},
+     *   //   "refreshInterval": "my_refreshInterval",
+     *   //   "state": "my_state",
+     *   //   "staticIpAddresses": [],
+     *   //   "staticIpEnabled": false,
+     *   //   "syncMode": "my_syncMode",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15638,6 +16988,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Collections.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.list({
+     *     // Filter returned collections by associated data connector data sources. For example: `filter = 'data_source:jira confluence'`. If the filter is empty, we return all collections under a project and location.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of Collections to return. The service may return fewer than this value. If unspecified, at most 100 Collections will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous CollectionService.ListCollections call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to CollectionService.ListCollections must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "collections": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15740,6 +17143,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Collection.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.patch({
+     *     // Immutable. The full resource name of the Collection. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection',
+     *     // Optional. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "dataConnector": {},
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15833,6 +17299,131 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a DataConnector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.updateDataConnector({
+     *       // Output only. The full resource name of the Data Connector. Format: `projects/x/locations/x/collections/x/dataConnector`.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *       // Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode - incremental_sync_disabled - incremental_refresh_interval Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aclEnabled": false,
+     *         //   "actionConfig": {},
+     *         //   "actionState": "my_actionState",
+     *         //   "alertPolicyConfigs": [],
+     *         //   "autoRunDisabled": false,
+     *         //   "bapConfig": {},
+     *         //   "blockingReasons": [],
+     *         //   "connectorModes": [],
+     *         //   "connectorType": "my_connectorType",
+     *         //   "createEuaSaas": false,
+     *         //   "createTime": "my_createTime",
+     *         //   "dataSource": "my_dataSource",
+     *         //   "destinationConfigs": [],
+     *         //   "endUserConfig": {},
+     *         //   "entities": [],
+     *         //   "errors": [],
+     *         //   "identityRefreshInterval": "my_identityRefreshInterval",
+     *         //   "identityScheduleConfig": {},
+     *         //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
+     *         //   "incrementalSyncDisabled": false,
+     *         //   "kmsKeyName": "my_kmsKeyName",
+     *         //   "lastSyncTime": "my_lastSyncTime",
+     *         //   "latestPauseTime": "my_latestPauseTime",
+     *         //   "name": "my_name",
+     *         //   "nextSyncTime": {},
+     *         //   "params": {},
+     *         //   "privateConnectivityProjectId": "my_privateConnectivityProjectId",
+     *         //   "realtimeState": "my_realtimeState",
+     *         //   "realtimeSyncConfig": {},
+     *         //   "refreshInterval": "my_refreshInterval",
+     *         //   "state": "my_state",
+     *         //   "staticIpAddresses": [],
+     *         //   "staticIpEnabled": false,
+     *         //   "syncMode": "my_syncMode",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "actionConfig": {},
+     *   //   "actionState": "my_actionState",
+     *   //   "alertPolicyConfigs": [],
+     *   //   "autoRunDisabled": false,
+     *   //   "bapConfig": {},
+     *   //   "blockingReasons": [],
+     *   //   "connectorModes": [],
+     *   //   "connectorType": "my_connectorType",
+     *   //   "createEuaSaas": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": "my_dataSource",
+     *   //   "destinationConfigs": [],
+     *   //   "endUserConfig": {},
+     *   //   "entities": [],
+     *   //   "errors": [],
+     *   //   "identityRefreshInterval": "my_identityRefreshInterval",
+     *   //   "identityScheduleConfig": {},
+     *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
+     *   //   "incrementalSyncDisabled": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "lastSyncTime": "my_lastSyncTime",
+     *   //   "latestPauseTime": "my_latestPauseTime",
+     *   //   "name": "my_name",
+     *   //   "nextSyncTime": {},
+     *   //   "params": {},
+     *   //   "privateConnectivityProjectId": "my_privateConnectivityProjectId",
+     *   //   "realtimeState": "my_realtimeState",
+     *   //   "realtimeSyncConfig": {},
+     *   //   "refreshInterval": "my_refreshInterval",
+     *   //   "state": "my_state",
+     *   //   "staticIpAddresses": [],
+     *   //   "staticIpEnabled": false,
+     *   //   "syncMode": "my_syncMode",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -15995,7 +17586,7 @@ export namespace discoveryengine_v1alpha {
      */
     name?: string;
     /**
-     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
+     * Indicates which fields in the provided DataConnector to update. Supported field paths include: - refresh_interval - params - auto_run_disabled - action_config - action_config.action_params - action_config.service_name - destination_configs - blocking_reasons - sync_mode - incremental_sync_disabled - incremental_refresh_interval Note: Support for these fields may vary depending on the connector type. For example, not all connectors support `destination_configs`. If an unsupported or unknown field path is provided, the request will return an INVALID_ARGUMENT error.
      */
     updateMask?: string;
 
@@ -16023,6 +17614,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Get the secret for the associated connector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.getConnectorSecret(
+     *       {
+     *         // Required. The full resource name of the associated data connector.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "app": "my_app",
+     *   //   "authorizationUri": "my_authorizationUri",
+     *   //   "clientId": "my_clientId",
+     *   //   "instance": "my_instance",
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "tenantId": "my_tenantId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16126,6 +17771,76 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Starts an immediate synchronization process for a DataConnector. Third Party Connector Users must specify which entities should be synced. FHIR Connectors must provide a timestamp to indicate the point in time from which data should be synced.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.startConnectorRun(
+     *       {
+     *         // Required. Connector name of the form projects/{project\}/locations/{location\}/collections/ {collection_id\}/dataConnector
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "entities": [],
+     *           //   "forceRefreshContent": false,
+     *           //   "healthcareFhirResourceTypes": [],
+     *           //   "syncIdentity": false,
+     *           //   "syncSinceTimestamp": "my_syncSinceTimestamp"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "entityRuns": [],
+     *   //   "errors": [],
+     *   //   "latestPauseTime": "my_latestPauseTime",
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "stateUpdateTime": "my_stateUpdateTime",
+     *   //   "trigger": "my_trigger"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16256,6 +17971,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists the ConnectorRuns of a DataConnector.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.connectorRuns.list(
+     *       {
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListConnectorRuns` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListConnectorRuns` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent DataConnector resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataConnector`. If the caller does not have permission to list ConnectorRuns under this DataConnector, regardless of whether or not this DataConnector exists, a PERMISSION_DENIED error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "connectorRuns": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16382,6 +18152,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16476,6 +18299,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataConnector.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataConnector',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16688,6 +18567,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Completes the specified user input with keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.completeQuery(
+     *       {
+     *         // Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.
+     *         includeTailSuggestions: 'placeholder-value',
+     *         // Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.
+     *         query: 'placeholder-value',
+     *         // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     *         queryModel: 'placeholder-value',
+     *         // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         userPseudoId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "querySuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16791,6 +18729,97 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a DataStore. DataStore is for storing Documents. To serve these documents for Search, or Recommendation use case, an Engine needs to be created separately.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.create({
+     *       // Resource name of the CmekConfig to use for protecting this DataStore.
+     *       cmekConfigName: 'placeholder-value',
+     *       // A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.
+     *       createAdvancedSiteSearch: 'placeholder-value',
+     *       // Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *       dataStoreId: 'placeholder-value',
+     *       // DataStore without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.
+     *       disableCmek: 'placeholder-value',
+     *       // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection',
+     *       // A boolean flag indicating whether to skip the default schema creation for the data store. Only enable this flag if you are certain that the default schema is incompatible with your use case. If set to true, you must manually create a schema for the data store before any documents can be ingested. This flag cannot be specified if `data_store.starting_schema` is specified.
+     *       skipDefaultSchemaCreation: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aclEnabled": false,
+     *         //   "advancedSiteSearchConfig": {},
+     *         //   "billingEstimation": {},
+     *         //   "cmekConfig": {},
+     *         //   "contentConfig": "my_contentConfig",
+     *         //   "createTime": "my_createTime",
+     *         //   "defaultSchemaId": "my_defaultSchemaId",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentProcessingConfig": {},
+     *         //   "healthcareFhirConfig": {},
+     *         //   "identityMappingStore": "my_identityMappingStore",
+     *         //   "idpConfig": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "isInfobotFaqDataStore": false,
+     *         //   "kmsKeyName": "my_kmsKeyName",
+     *         //   "languageInfo": {},
+     *         //   "name": "my_name",
+     *         //   "naturalLanguageQueryUnderstandingConfig": {},
+     *         //   "servingConfigDataStore": {},
+     *         //   "solutionTypes": [],
+     *         //   "startingSchema": {},
+     *         //   "workspaceConfig": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16888,6 +18917,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.delete({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -16982,6 +19062,74 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.get({
+     *       // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "advancedSiteSearchConfig": {},
+     *   //   "billingEstimation": {},
+     *   //   "cmekConfig": {},
+     *   //   "contentConfig": "my_contentConfig",
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultSchemaId": "my_defaultSchemaId",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentProcessingConfig": {},
+     *   //   "healthcareFhirConfig": {},
+     *   //   "identityMappingStore": "my_identityMappingStore",
+     *   //   "idpConfig": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "isInfobotFaqDataStore": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "languageInfo": {},
+     *   //   "name": "my_name",
+     *   //   "naturalLanguageQueryUnderstandingConfig": {},
+     *   //   "servingConfigDataStore": {},
+     *   //   "solutionTypes": [],
+     *   //   "startingSchema": {},
+     *   //   "workspaceConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17082,6 +19230,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a DocumentProcessingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.getDocumentProcessingConfig(
+     *       {
+     *         // Required. Full DocumentProcessingConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/documentProcessingConfig`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/documentProcessingConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunkingConfig": {},
+     *   //   "defaultParsingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "parsingConfigOverrides": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17182,6 +19382,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the SiteSearchEngine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.getSiteSearchEngine(
+     *       {
+     *         // Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17282,6 +19531,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all the DataStores associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.list({
+     *       // Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
+     *       filter: 'placeholder-value',
+     *       // Maximum number of DataStores to return. If unspecified, defaults to 10. The maximum allowed value is 50. Values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT is returned.
+     *       pageSize: 'placeholder-value',
+     *       // A page token ListDataStoresResponse.next_page_token, received from a previous DataStoreService.ListDataStores call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DataStoreService.ListDataStores must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17385,6 +19689,105 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a DataStore
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.patch({
+     *       // Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       // Indicates which fields in the provided DataStore to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aclEnabled": false,
+     *         //   "advancedSiteSearchConfig": {},
+     *         //   "billingEstimation": {},
+     *         //   "cmekConfig": {},
+     *         //   "contentConfig": "my_contentConfig",
+     *         //   "createTime": "my_createTime",
+     *         //   "defaultSchemaId": "my_defaultSchemaId",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentProcessingConfig": {},
+     *         //   "healthcareFhirConfig": {},
+     *         //   "identityMappingStore": "my_identityMappingStore",
+     *         //   "idpConfig": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "isInfobotFaqDataStore": false,
+     *         //   "kmsKeyName": "my_kmsKeyName",
+     *         //   "languageInfo": {},
+     *         //   "name": "my_name",
+     *         //   "naturalLanguageQueryUnderstandingConfig": {},
+     *         //   "servingConfigDataStore": {},
+     *         //   "solutionTypes": [],
+     *         //   "startingSchema": {},
+     *         //   "workspaceConfig": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "advancedSiteSearchConfig": {},
+     *   //   "billingEstimation": {},
+     *   //   "cmekConfig": {},
+     *   //   "contentConfig": "my_contentConfig",
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultSchemaId": "my_defaultSchemaId",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentProcessingConfig": {},
+     *   //   "healthcareFhirConfig": {},
+     *   //   "identityMappingStore": "my_identityMappingStore",
+     *   //   "idpConfig": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "isInfobotFaqDataStore": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "languageInfo": {},
+     *   //   "name": "my_name",
+     *   //   "naturalLanguageQueryUnderstandingConfig": {},
+     *   //   "servingConfigDataStore": {},
+     *   //   "solutionTypes": [],
+     *   //   "startingSchema": {},
+     *   //   "workspaceConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17485,6 +19888,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Trains a custom model.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.trainCustomModel(
+     *       {
+     *         // Required. The resource name of the Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to train the models.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "errorConfig": {},
+     *           //   "gcsTrainingInput": {},
+     *           //   "modelId": "my_modelId",
+     *           //   "modelType": "my_modelType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17582,6 +20050,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.updateDocumentProcessingConfig(
+     *       {
+     *         // The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/documentProcessingConfig',
+     *         // Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "chunkingConfig": {},
+     *           //   "defaultParsingConfig": {},
+     *           //   "name": "my_name",
+     *           //   "parsingConfigOverrides": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunkingConfig": {},
+     *   //   "defaultParsingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "parsingConfigOverrides": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17786,7 +20319,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Patch
     extends StandardParameters {
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
     /**
@@ -17846,6 +20379,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets index freshness metadata for Documents. Supported for website search only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.batchGetDocumentsMetadata(
+     *       {
+     *         // Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
+     *         'matcher.fhirMatcher.fhirResources': 'placeholder-value',
+     *         // The exact URIs to match by.
+     *         'matcher.urisMatcher.uris': 'placeholder-value',
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentsMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -17976,6 +20563,86 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.create(
+     *       {
+     *         // Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         documentId: 'placeholder-value',
+     *         // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "aclInfo": {},
+     *           //   "content": {},
+     *           //   "derivedStructData": {},
+     *           //   "id": "my_id",
+     *           //   "indexStatus": {},
+     *           //   "indexTime": "my_indexTime",
+     *           //   "jsonData": "my_jsonData",
+     *           //   "name": "my_name",
+     *           //   "parentDocumentId": "my_parentDocumentId",
+     *           //   "schemaId": "my_schemaId",
+     *           //   "structData": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18079,6 +20746,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.delete(
+     *       {
+     *         // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the Document to delete does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18169,6 +20883,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.get(
+     *       {
+     *         // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18269,6 +21042,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the parsed layout information for a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.getProcessedDocument(
+     *       {
+     *         // Optional. Specifies config for IMAGE_BYTES.
+     *         imageId: 'placeholder-value',
+     *         // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *         // What format output should be. If unspecified, defaults to JSON.
+     *         processedDocumentFormat: 'placeholder-value',
+     *         // Required. What type of processing to return.
+     *         processedDocumentType: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "document": "my_document",
+     *   //   "jsonData": "my_jsonData"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18372,6 +21201,82 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items are created. Note: It is possible for a subset of the Documents to be successfully updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.import(
+     *       {
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Requires create/update permission.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "alloyDbSource": {},
+     *           //   "autoGenerateIds": false,
+     *           //   "bigquerySource": {},
+     *           //   "bigtableSource": {},
+     *           //   "cloudSqlSource": {},
+     *           //   "errorConfig": {},
+     *           //   "fhirStoreSource": {},
+     *           //   "firestoreSource": {},
+     *           //   "forceRefreshContent": false,
+     *           //   "gcsSource": {},
+     *           //   "idField": "my_idField",
+     *           //   "inlineSource": {},
+     *           //   "reconciliationMode": "my_reconciliationMode",
+     *           //   "spannerSource": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18469,6 +21374,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Documents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.list(
+     *       {
+     *         // Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListDocumentsResponse.next_page_token, received from a previous DocumentService.ListDocuments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DocumentService.ListDocuments must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18572,6 +21532,87 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.patch(
+     *       {
+     *         // If set to `true` and the Document is not found, a new Document is be created.
+     *         allowMissing: 'placeholder-value',
+     *         // Immutable. The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *         // Indicates which fields in the provided imported 'document' to update. If not set, by default updates all fields.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "aclInfo": {},
+     *           //   "content": {},
+     *           //   "derivedStructData": {},
+     *           //   "id": "my_id",
+     *           //   "indexStatus": {},
+     *           //   "indexTime": "my_indexTime",
+     *           //   "jsonData": "my_jsonData",
+     *           //   "name": "my_name",
+     *           //   "parentDocumentId": "my_parentDocumentId",
+     *           //   "schemaId": "my_schemaId",
+     *           //   "structData": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18672,6 +21713,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all selected Documents in a branch. This process is asynchronous. Depending on the number of Documents to be deleted, this operation can take hours to complete. Before the delete operation completes, some Documents might still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a list of the Documents to be deleted, set PurgeDocumentsRequest.force to false.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.purge(
+     *       {
+     *         // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "errorConfig": {},
+     *           //   "filter": "my_filter",
+     *           //   "force": false,
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18885,6 +21992,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.chunks.get(
+     *       {
+     *         // Required. Full resource name of Chunk, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}/chunks/{chunk\}`. If the caller does not have permission to access the Chunk, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Chunk does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document/chunks/my-chunk',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationContents": [],
+     *   //   "annotationMetadata": [],
+     *   //   "chunkMetadata": {},
+     *   //   "content": "my_content",
+     *   //   "dataUrls": [],
+     *   //   "derivedStructData": {},
+     *   //   "documentMetadata": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "pageSpan": {},
+     *   //   "relevanceScore": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -18985,6 +22151,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Chunks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.documents.chunks.list(
+     *       {
+     *         // Maximum number of Chunks to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListChunksResponse.next_page_token, received from a previous ChunkService.ListChunks call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ChunkService.ListChunks must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent document resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to list Chunks under this document, regardless of whether or not this document exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19118,6 +22339,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.operations.cancel(
+     *       {
+     *         // The name of the operation resource to be cancelled.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/operations/my-operation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19211,6 +22485,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19305,6 +22632,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.branches.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/branches/my-branche',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19454,6 +22837,79 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19576,6 +23032,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Imports CompletionSuggestions for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.completionSuggestions.import(
+     *       {
+     *         // Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "bigquerySource": {},
+     *           //   "errorConfig": {},
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19672,6 +23193,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all CompletionSuggestions for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.completionSuggestions.purge(
+     *       {
+     *         // Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19800,6 +23381,86 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.controls.create(
+     *       {
+     *         // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
+     *         controlId: 'placeholder-value',
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "associatedServingConfigIds": [],
+     *           //   "boostAction": {},
+     *           //   "conditions": [],
+     *           //   "displayName": "my_displayName",
+     *           //   "filterAction": {},
+     *           //   "name": "my_name",
+     *           //   "promoteAction": {},
+     *           //   "redirectAction": {},
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsAction": {},
+     *           //   "useCases": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19903,6 +23564,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.controls.delete(
+     *       {
+     *         // Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/controls/my-control',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -19993,6 +23701,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.controls.get(
+     *       {
+     *         // Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/controls/my-control',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20093,6 +23860,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Controls by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.controls.list(
+     *       {
+     *         // Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
+     *         filter: 'placeholder-value',
+     *         // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controls": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20196,6 +24020,85 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.controls.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/controls/my-control',
+     *         // Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "associatedServingConfigIds": [],
+     *           //   "boostAction": {},
+     *           //   "conditions": [],
+     *           //   "displayName": "my_displayName",
+     *           //   "filterAction": {},
+     *           //   "name": "my_name",
+     *           //   "promoteAction": {},
+     *           //   "redirectAction": {},
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsAction": {},
+     *           //   "useCases": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20369,6 +24272,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Converses a conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.converse(
+     *       {
+     *         // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/conversations/my-conversation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "conversation": {},
+     *           //   "filter": "my_filter",
+     *           //   "query": {},
+     *           //   "safeSearch": false,
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "summarySpec": {},
+     *           //   "userLabels": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversation": {},
+     *   //   "relatedQuestions": [],
+     *   //   "reply": {},
+     *   //   "searchResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20472,6 +24442,74 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.create(
+     *       {
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "endTime": "my_endTime",
+     *           //   "messages": [],
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20575,6 +24613,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.delete(
+     *       {
+     *         // Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20665,6 +24750,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.get(
+     *       {
+     *         // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20765,6 +24904,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Conversations by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.list(
+     *       {
+     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *         filter: 'placeholder-value',
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: "update_time desc" "create_time"
+     *         orderBy: 'placeholder-value',
+     *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -20868,6 +25066,75 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.conversations.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/conversations/my-conversation',
+     *         // Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "endTime": "my_endTime",
+     *           //   "messages": [],
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21053,6 +25320,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of all the custom models.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.customModels.list(
+     *       {
+     *         // Required. The resource name of the parent Data Store, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`. This field is used to identify the data store where to fetch the models from.
+     *         dataStore:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "models": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21183,6 +25500,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.models.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/models/my-model/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21277,6 +25647,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.models.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/models/my-model',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21414,6 +25840,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21508,6 +25987,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21650,6 +26185,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.create(
+     *       {
+     *         // Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // Required. The ID to use for the Schema, which becomes the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.
+     *         schemaId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fieldConfigs": [],
+     *           //   "jsonSchema": "my_jsonSchema",
+     *           //   "name": "my_name",
+     *           //   "structSchema": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21747,6 +26349,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.delete(
+     *       {
+     *         // Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21841,6 +26496,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.get(
+     *       {
+     *         // Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fieldConfigs": [],
+     *   //   "jsonSchema": "my_jsonSchema",
+     *   //   "name": "my_name",
+     *   //   "structSchema": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -21941,6 +26648,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Schemas.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.list(
+     *       {
+     *         // The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous SchemaService.ListSchemas call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SchemaService.ListSchemas must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22044,6 +26806,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.patch(
+     *       {
+     *         // If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.
+     *         allowMissing: 'placeholder-value',
+     *         // Immutable. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "fieldConfigs": [],
+     *           //   "jsonSchema": "my_jsonSchema",
+     *           //   "name": "my_name",
+     *           //   "structSchema": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22207,6 +27035,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22301,6 +27182,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.schemas.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/schemas/my-schema',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22438,6 +27375,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.answer(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "asynchronousMode": false,
+     *           //   "endUserSpec": {},
+     *           //   "groundingSpec": {},
+     *           //   "query": {},
+     *           //   "queryUnderstandingSpec": {},
+     *           //   "relatedQuestionsSpec": {},
+     *           //   "safetySpec": {},
+     *           //   "searchSpec": {},
+     *           //   "session": "my_session",
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22541,6 +27549,78 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.get(
+     *       {
+     *         // Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22641,6 +27721,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all ServingConfigs linked to this dataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.list(
+     *       {
+     *         // Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Full resource name of the parent resource. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22744,6 +27879,111 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *         // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "boostControlIds": [],
+     *           //   "createTime": "my_createTime",
+     *           //   "customFineTuningSpec": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "dissociateControlIds": [],
+     *           //   "diversityLevel": "my_diversityLevel",
+     *           //   "embeddingConfig": {},
+     *           //   "filterControlIds": [],
+     *           //   "genericConfig": {},
+     *           //   "guidedSearchSpec": {},
+     *           //   "ignoreControlIds": [],
+     *           //   "mediaConfig": {},
+     *           //   "modelId": "my_modelId",
+     *           //   "name": "my_name",
+     *           //   "onewaySynonymsControlIds": [],
+     *           //   "personalizationSpec": {},
+     *           //   "promoteControlIds": [],
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "redirectControlIds": [],
+     *           //   "replacementControlIds": [],
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsControlIds": [],
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22844,6 +28084,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Makes a recommendation, which requires a contextual user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.recommend(
+     *       {
+     *         // Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "pageSize": 0,
+     *           //   "params": {},
+     *           //   "userEvent": {},
+     *           //   "userLabels": {},
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -22947,6 +28253,116 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.search(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "branch": "my_branch",
+     *           //   "canonicalFilter": "my_canonicalFilter",
+     *           //   "contentSearchSpec": {},
+     *           //   "customFineTuningSpec": {},
+     *           //   "dataStoreSpecs": [],
+     *           //   "displaySpec": {},
+     *           //   "embeddingSpec": {},
+     *           //   "facetSpecs": [],
+     *           //   "filter": "my_filter",
+     *           //   "imageQuery": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "offset": 0,
+     *           //   "oneBoxPageSize": 0,
+     *           //   "orderBy": "my_orderBy",
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "personalizationSpec": {},
+     *           //   "query": "my_query",
+     *           //   "queryExpansionSpec": {},
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceScoreSpec": {},
+     *           //   "relevanceThreshold": "my_relevanceThreshold",
+     *           //   "safeSearch": false,
+     *           //   "searchAsYouTypeSpec": {},
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "session": "my_session",
+     *           //   "sessionSpec": {},
+     *           //   "spellCorrectionSpec": {},
+     *           //   "useLatestData": false,
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23050,6 +28466,116 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.searchLite(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "branch": "my_branch",
+     *           //   "canonicalFilter": "my_canonicalFilter",
+     *           //   "contentSearchSpec": {},
+     *           //   "customFineTuningSpec": {},
+     *           //   "dataStoreSpecs": [],
+     *           //   "displaySpec": {},
+     *           //   "embeddingSpec": {},
+     *           //   "facetSpecs": [],
+     *           //   "filter": "my_filter",
+     *           //   "imageQuery": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "offset": 0,
+     *           //   "oneBoxPageSize": 0,
+     *           //   "orderBy": "my_orderBy",
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "personalizationSpec": {},
+     *           //   "query": "my_query",
+     *           //   "queryExpansionSpec": {},
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceScoreSpec": {},
+     *           //   "relevanceThreshold": "my_relevanceThreshold",
+     *           //   "safeSearch": false,
+     *           //   "searchAsYouTypeSpec": {},
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "session": "my_session",
+     *           //   "sessionSpec": {},
+     *           //   "spellCorrectionSpec": {},
+     *           //   "useLatestData": false,
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23153,6 +28679,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method (streaming). It takes one AnswerQueryRequest and returns multiple AnswerQueryResponse messages in a stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.servingConfigs.streamAnswer(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "asynchronousMode": false,
+     *           //   "endUserSpec": {},
+     *           //   "groundingSpec": {},
+     *           //   "query": {},
+     *           //   "queryUnderstandingSpec": {},
+     *           //   "relatedQuestionsSpec": {},
+     *           //   "safetySpec": {},
+     *           //   "searchSpec": {},
+     *           //   "session": "my_session",
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23367,6 +28964,78 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Session. If the Session to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.create(
+     *       {
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "endTime": "my_endTime",
+     *           //   "isPinned": false,
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "turns": [],
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23470,6 +29139,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Session. If the Session to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.delete(
+     *       {
+     *         // Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/sessions/my-session',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23560,6 +29276,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.get(
+     *       {
+     *         // Optional. If set to true, the full session including all answer details will be returned.
+     *         includeAnswerDetails: 'placeholder-value',
+     *         // Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/sessions/my-session',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23660,6 +29434,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Sessions by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
+     *       {
+     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *         filter: 'placeholder-value',
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *         orderBy: 'placeholder-value',
+     *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListSessions` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23763,6 +29596,79 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Session. Session action type cannot be changed. If the Session to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/sessions/my-session',
+     *         // Indicates which fields in the provided Session to update. The following are NOT supported: * Session.name If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "endTime": "my_endTime",
+     *           //   "isPinned": false,
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "turns": [],
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -23940,6 +29846,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Answer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.sessions.answers.get(
+     *       {
+     *         // Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/sessions/my-session/answers/my-answer',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerSkippedReasons": [],
+     *   //   "answerText": "my_answerText",
+     *   //   "blobAttachments": [],
+     *   //   "citations": [],
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "groundingScore": {},
+     *   //   "groundingSupports": [],
+     *   //   "name": "my_name",
+     *   //   "queryUnderstandingInfo": {},
+     *   //   "references": [],
+     *   //   "relatedQuestions": [],
+     *   //   "safetyRatings": [],
+     *   //   "state": "my_state",
+     *   //   "steps": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24070,6 +30039,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Verify target sites' ownership and validity. This API sends all the target sites under site search engine for verification.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.batchVerifyTargetSites(
+     *       {
+     *         // Required. The parent resource shared by all TargetSites being verified. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24166,6 +30195,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Downgrade from advanced site search to basic site search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.disableAdvancedSiteSearch(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24262,6 +30351,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Upgrade from basic site search to advanced site search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.enableAdvancedSiteSearch(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24358,6 +30507,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Returns list of target sites with its domain verification status. This method can only be called under data store with BASIC_SITE_SEARCH state at the moment.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.fetchDomainVerificationStatus(
+     *       {
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `FetchDomainVerificationStatus` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchDomainVerificationStatus` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The site search engine resource under which we fetch all the domain verification status. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetSites": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24461,6 +30666,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the URI Pattern to Document data mapping for an Advanced Site Search DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.getUriPatternDocumentData(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentDataMap": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24563,6 +30818,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Request on-demand recrawl for a list of URIs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.recrawlUris(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "siteCredential": "my_siteCredential",
+     *           //   "uris": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24660,6 +30978,70 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Sets the URI Pattern to Document data mapping for an Advanced Site Search DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.setUriPatternDocumentData(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "documentDataMap": {},
+     *           //   "emptyDocumentDataMap": false,
+     *           //   "schema": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24846,6 +31228,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -24940,6 +31375,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25077,6 +31568,70 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Sitemap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.create(
+     *       {
+     *         // Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "name": "my_name",
+     *           //   "uri": "my_uri"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25174,6 +31729,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Sitemap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.delete(
+     *       {
+     *         // Required. Full resource name of Sitemap, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/sitemaps/{sitemap\}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/sitemaps/my-sitemap',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25268,6 +31876,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Fetch Sitemaps in a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.sitemaps.fetch(
+     *       {
+     *         // The Sitemap uris.
+     *         'matcher.urisMatcher.uris': 'placeholder-value',
+     *         // Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sitemapsMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25414,6 +32074,68 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates TargetSite in a batch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.batchCreate(
+     *       {
+     *         // Required. The parent resource shared by all TargetSites being created. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25510,6 +32232,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.create(
+     *       {
+     *         // Required. Parent resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "exactMatch": false,
+     *           //   "failureReason": {},
+     *           //   "generatedUriPattern": "my_generatedUriPattern",
+     *           //   "indexingStatus": "my_indexingStatus",
+     *           //   "name": "my_name",
+     *           //   "providedUriPattern": "my_providedUriPattern",
+     *           //   "rootDomainUri": "my_rootDomainUri",
+     *           //   "siteVerificationInfo": {},
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25607,6 +32400,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.delete(
+     *       {
+     *         // Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25701,6 +32547,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.get(
+     *       {
+     *         // Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exactMatch": false,
+     *   //   "failureReason": {},
+     *   //   "generatedUriPattern": "my_generatedUriPattern",
+     *   //   "indexingStatus": "my_indexingStatus",
+     *   //   "name": "my_name",
+     *   //   "providedUriPattern": "my_providedUriPattern",
+     *   //   "rootDomainUri": "my_rootDomainUri",
+     *   //   "siteVerificationInfo": {},
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25801,6 +32705,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of TargetSites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.list(
+     *       {
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent site search engine resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetSites": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -25904,6 +32864,76 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.patch(
+     *       {
+     *         // Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "exactMatch": false,
+     *           //   "failureReason": {},
+     *           //   "generatedUriPattern": "my_generatedUriPattern",
+     *           //   "indexingStatus": "my_indexingStatus",
+     *           //   "name": "my_name",
+     *           //   "providedUriPattern": "my_providedUriPattern",
+     *           //   "rootDomainUri": "my_rootDomainUri",
+     *           //   "siteVerificationInfo": {},
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26071,6 +33101,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/targetSites/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26165,6 +33248,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.siteSearchEngine.targetSites.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/siteSearchEngine/targetSites',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26302,6 +33441,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Imports all SuggestionDenyListEntry for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.suggestionDenyListEntries.import(
+     *       {
+     *         // Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26398,6 +33600,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all SuggestionDenyListEntry for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.suggestionDenyListEntries.purge(
+     *       {
+     *         // Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26526,6 +33788,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.userEvents.collect(
+     *       {
+     *         // The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     *         ets: 'placeholder-value',
+     *         // Required. The parent resource name. If the collect user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the collect user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     *         uri: 'placeholder-value',
+     *         // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     *         userEvent: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26619,6 +33939,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of user events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.userEvents.import(
+     *       {
+     *         // Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "bigquerySource": {},
+     *           //   "errorConfig": {},
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26716,6 +34101,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.userEvents.purge(
+     *       {
+     *         // Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "force": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26813,6 +34261,108 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.userEvents.write(
+     *       {
+     *         // Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore',
+     *         // If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.
+     *         writeAsync: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "attributes": {},
+     *           //   "attributionToken": "my_attributionToken",
+     *           //   "completionInfo": {},
+     *           //   "conversionType": "my_conversionType",
+     *           //   "dataStore": "my_dataStore",
+     *           //   "directUserRequest": false,
+     *           //   "documents": [],
+     *           //   "engine": "my_engine",
+     *           //   "eventTime": "my_eventTime",
+     *           //   "eventType": "my_eventType",
+     *           //   "filter": "my_filter",
+     *           //   "mediaInfo": {},
+     *           //   "pageInfo": {},
+     *           //   "panel": {},
+     *           //   "panels": [],
+     *           //   "promotionIds": [],
+     *           //   "searchInfo": {},
+     *           //   "sessionId": "my_sessionId",
+     *           //   "tagIds": [],
+     *           //   "transactionInfo": {},
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "completionInfo": {},
+     *   //   "conversionType": "my_conversionType",
+     *   //   "dataStore": "my_dataStore",
+     *   //   "directUserRequest": false,
+     *   //   "documents": [],
+     *   //   "engine": "my_engine",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "eventType": "my_eventType",
+     *   //   "filter": "my_filter",
+     *   //   "mediaInfo": {},
+     *   //   "pageInfo": {},
+     *   //   "panel": {},
+     *   //   "panels": [],
+     *   //   "promotionIds": [],
+     *   //   "searchInfo": {},
+     *   //   "sessionId": "my_sessionId",
+     *   //   "tagIds": [],
+     *   //   "transactionInfo": {},
+     *   //   "userInfo": {},
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -26983,6 +34533,92 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.widgetConfigs.get(
+     *       {
+     *         // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *         acceptCache: 'placeholder-value',
+     *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "experimentalFeatures": {},
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27137,6 +34773,83 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.create({
+     *       // Required. The ID to use for the Engine, which will become the final component of the Engine's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *       engineId: 'placeholder-value',
+     *       // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "chatEngineConfig": {},
+     *         //   "chatEngineMetadata": {},
+     *         //   "commonConfig": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "dataStoreIds": [],
+     *         //   "disableAnalytics": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "features": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "name": "my_name",
+     *         //   "recommendationMetadata": {},
+     *         //   "searchEngineConfig": {},
+     *         //   "similarDocumentsConfig": {},
+     *         //   "solutionType": "my_solutionType",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27234,6 +34947,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.delete({
+     *       // Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`. If the caller does not have permission to delete the Engine, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the Engine to delete does not exist, a NOT_FOUND error is returned.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27328,6 +35092,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Engine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.engines.get({
+     *     // Required. Full resource name of Engine, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chatEngineConfig": {},
+     *   //   "chatEngineMetadata": {},
+     *   //   "commonConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataStoreIds": [],
+     *   //   "disableAnalytics": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "features": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recommendationMetadata": {},
+     *   //   "searchEngineConfig": {},
+     *   //   "similarDocumentsConfig": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27428,6 +35253,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all the Engines associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.engines.list(
+     *     {
+     *       // Optional. Filter by solution type. For example: solution_type=SOLUTION_TYPE_SEARCH
+     *       filter: 'placeholder-value',
+     *       // Optional. Not supported.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Not supported.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "engines": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27531,6 +35412,93 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates an Engine
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.patch({
+     *       // Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *       // Indicates which fields in the provided Engine to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "chatEngineConfig": {},
+     *         //   "chatEngineMetadata": {},
+     *         //   "commonConfig": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "dataStoreIds": [],
+     *         //   "disableAnalytics": false,
+     *         //   "displayName": "my_displayName",
+     *         //   "features": {},
+     *         //   "industryVertical": "my_industryVertical",
+     *         //   "mediaRecommendationEngineConfig": {},
+     *         //   "name": "my_name",
+     *         //   "recommendationMetadata": {},
+     *         //   "searchEngineConfig": {},
+     *         //   "similarDocumentsConfig": {},
+     *         //   "solutionType": "my_solutionType",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chatEngineConfig": {},
+     *   //   "chatEngineMetadata": {},
+     *   //   "commonConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataStoreIds": [],
+     *   //   "disableAnalytics": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "features": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recommendationMetadata": {},
+     *   //   "searchEngineConfig": {},
+     *   //   "similarDocumentsConfig": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27631,6 +35599,74 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Pauses the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.pause({
+     *       // Required. The name of the engine to pause. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chatEngineConfig": {},
+     *   //   "chatEngineMetadata": {},
+     *   //   "commonConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataStoreIds": [],
+     *   //   "disableAnalytics": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "features": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recommendationMetadata": {},
+     *   //   "searchEngineConfig": {},
+     *   //   "similarDocumentsConfig": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27734,6 +35770,74 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Resumes the training of an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.resume({
+     *       // Required. The name of the engine to resume. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chatEngineConfig": {},
+     *   //   "chatEngineMetadata": {},
+     *   //   "commonConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "dataStoreIds": [],
+     *   //   "disableAnalytics": false,
+     *   //   "displayName": "my_displayName",
+     *   //   "features": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "mediaRecommendationEngineConfig": {},
+     *   //   "name": "my_name",
+     *   //   "recommendationMetadata": {},
+     *   //   "searchEngineConfig": {},
+     *   //   "similarDocumentsConfig": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27837,6 +35941,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Tunes an existing engine. Only applicable if SolutionType is SOLUTION_TYPE_RECOMMENDATION.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.collections.engines.tune(
+     *     {
+     *       // Required. The resource name of the engine to tune. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -27985,7 +36147,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Patch
     extends StandardParameters {
     /**
-     * Immutable. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
+     * Immutable. Identifier. The fully qualified resource name of the engine. This field must be a UTF-8 encoded string with a length limit of 1024 characters. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}` engine should be 1-63 characters, and valid characters are /a-z0-9x/. Otherwise, an INVALID_ARGUMENT error is returned.
      */
     name?: string;
     /**
@@ -28043,6 +36205,79 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28145,6 +36380,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Removes the search history suggestion in an engine for a user. This will remove the suggestion from being returned in the AdvancedCompleteQueryResponse.recent_search_suggestions for this user. If the user searches the same suggestion again, the new history will override and suggest this suggestion again.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.completionConfig.removeSuggestion(
+     *       {
+     *         // Required. The completion_config of the parent engine resource name for which the search history suggestion is to be removed, such as `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "removeAllSearchHistorySuggestions": false,
+     *           //   "removeTime": "my_removeTime",
+     *           //   "searchHistorySuggestion": "my_searchHistorySuggestion",
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28279,6 +36574,86 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.controls.create(
+     *       {
+     *         // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
+     *         controlId: 'placeholder-value',
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "associatedServingConfigIds": [],
+     *           //   "boostAction": {},
+     *           //   "conditions": [],
+     *           //   "displayName": "my_displayName",
+     *           //   "filterAction": {},
+     *           //   "name": "my_name",
+     *           //   "promoteAction": {},
+     *           //   "redirectAction": {},
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsAction": {},
+     *           //   "useCases": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28382,6 +36757,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.controls.delete(
+     *       {
+     *         // Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/controls/my-control',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28472,6 +36894,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.controls.get({
+     *       // Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/controls/my-control',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28572,6 +37051,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Controls by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.controls.list({
+     *       // Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
+     *       filter: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controls": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28675,6 +37209,85 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.controls.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/controls/my-control',
+     *         // Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "associatedServingConfigIds": [],
+     *           //   "boostAction": {},
+     *           //   "conditions": [],
+     *           //   "displayName": "my_displayName",
+     *           //   "filterAction": {},
+     *           //   "name": "my_name",
+     *           //   "promoteAction": {},
+     *           //   "redirectAction": {},
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsAction": {},
+     *           //   "useCases": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28848,6 +37461,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Converses a conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.converse(
+     *       {
+     *         // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/conversations/my-conversation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "conversation": {},
+     *           //   "filter": "my_filter",
+     *           //   "query": {},
+     *           //   "safeSearch": false,
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "summarySpec": {},
+     *           //   "userLabels": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversation": {},
+     *   //   "relatedQuestions": [],
+     *   //   "reply": {},
+     *   //   "searchResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -28951,6 +37631,74 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.create(
+     *       {
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "endTime": "my_endTime",
+     *           //   "messages": [],
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29054,6 +37802,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.delete(
+     *       {
+     *         // Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29144,6 +37939,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.get(
+     *       {
+     *         // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/conversations/my-conversation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29244,6 +38093,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Conversations by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.list(
+     *       {
+     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *         filter: 'placeholder-value',
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: "update_time desc" "create_time"
+     *         orderBy: 'placeholder-value',
+     *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29347,6 +38255,75 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.conversations.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/conversations/my-conversation',
+     *         // Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "endTime": "my_endTime",
+     *           //   "messages": [],
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29532,6 +38509,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29626,6 +38656,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29763,6 +38849,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.answer(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "asynchronousMode": false,
+     *           //   "endUserSpec": {},
+     *           //   "groundingSpec": {},
+     *           //   "query": {},
+     *           //   "queryUnderstandingSpec": {},
+     *           //   "relatedQuestionsSpec": {},
+     *           //   "safetySpec": {},
+     *           //   "searchSpec": {},
+     *           //   "session": "my_session",
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29866,6 +39023,78 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.get(
+     *       {
+     *         // Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -29966,6 +39195,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all ServingConfigs linked to this dataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.list(
+     *       {
+     *         // Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Full resource name of the parent resource. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30069,6 +39353,111 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *         // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "boostControlIds": [],
+     *           //   "createTime": "my_createTime",
+     *           //   "customFineTuningSpec": {},
+     *           //   "displayName": "my_displayName",
+     *           //   "dissociateControlIds": [],
+     *           //   "diversityLevel": "my_diversityLevel",
+     *           //   "embeddingConfig": {},
+     *           //   "filterControlIds": [],
+     *           //   "genericConfig": {},
+     *           //   "guidedSearchSpec": {},
+     *           //   "ignoreControlIds": [],
+     *           //   "mediaConfig": {},
+     *           //   "modelId": "my_modelId",
+     *           //   "name": "my_name",
+     *           //   "onewaySynonymsControlIds": [],
+     *           //   "personalizationSpec": {},
+     *           //   "promoteControlIds": [],
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "redirectControlIds": [],
+     *           //   "replacementControlIds": [],
+     *           //   "solutionType": "my_solutionType",
+     *           //   "synonymsControlIds": [],
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30169,6 +39558,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Makes a recommendation, which requires a contextual user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.recommend(
+     *       {
+     *         // Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "pageSize": 0,
+     *           //   "params": {},
+     *           //   "userEvent": {},
+     *           //   "userLabels": {},
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30272,6 +39727,116 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.search(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "branch": "my_branch",
+     *           //   "canonicalFilter": "my_canonicalFilter",
+     *           //   "contentSearchSpec": {},
+     *           //   "customFineTuningSpec": {},
+     *           //   "dataStoreSpecs": [],
+     *           //   "displaySpec": {},
+     *           //   "embeddingSpec": {},
+     *           //   "facetSpecs": [],
+     *           //   "filter": "my_filter",
+     *           //   "imageQuery": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "offset": 0,
+     *           //   "oneBoxPageSize": 0,
+     *           //   "orderBy": "my_orderBy",
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "personalizationSpec": {},
+     *           //   "query": "my_query",
+     *           //   "queryExpansionSpec": {},
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceScoreSpec": {},
+     *           //   "relevanceThreshold": "my_relevanceThreshold",
+     *           //   "safeSearch": false,
+     *           //   "searchAsYouTypeSpec": {},
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "session": "my_session",
+     *           //   "sessionSpec": {},
+     *           //   "spellCorrectionSpec": {},
+     *           //   "useLatestData": false,
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30375,6 +39940,116 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.searchLite(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "branch": "my_branch",
+     *           //   "canonicalFilter": "my_canonicalFilter",
+     *           //   "contentSearchSpec": {},
+     *           //   "customFineTuningSpec": {},
+     *           //   "dataStoreSpecs": [],
+     *           //   "displaySpec": {},
+     *           //   "embeddingSpec": {},
+     *           //   "facetSpecs": [],
+     *           //   "filter": "my_filter",
+     *           //   "imageQuery": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "offset": 0,
+     *           //   "oneBoxPageSize": 0,
+     *           //   "orderBy": "my_orderBy",
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "personalizationSpec": {},
+     *           //   "query": "my_query",
+     *           //   "queryExpansionSpec": {},
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceScoreSpec": {},
+     *           //   "relevanceThreshold": "my_relevanceThreshold",
+     *           //   "safeSearch": false,
+     *           //   "searchAsYouTypeSpec": {},
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "session": "my_session",
+     *           //   "sessionSpec": {},
+     *           //   "spellCorrectionSpec": {},
+     *           //   "useLatestData": false,
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30478,6 +40153,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method (streaming). It takes one AnswerQueryRequest and returns multiple AnswerQueryResponse messages in a stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.servingConfigs.streamAnswer(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "asynchronousMode": false,
+     *           //   "endUserSpec": {},
+     *           //   "groundingSpec": {},
+     *           //   "query": {},
+     *           //   "queryUnderstandingSpec": {},
+     *           //   "relatedQuestionsSpec": {},
+     *           //   "safetySpec": {},
+     *           //   "searchSpec": {},
+     *           //   "session": "my_session",
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30692,6 +40438,78 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Session. If the Session to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.create(
+     *       {
+     *         // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "endTime": "my_endTime",
+     *           //   "isPinned": false,
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "turns": [],
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30795,6 +40613,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Session. If the Session to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.delete(
+     *       {
+     *         // Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30885,6 +40750,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.get({
+     *       // Optional. If set to true, the full session including all answer details will be returned.
+     *       includeAnswerDetails: 'placeholder-value',
+     *       // Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -30985,6 +40906,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Sessions by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.list({
+     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       orderBy: 'placeholder-value',
+     *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListSessions` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31088,6 +41066,79 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Session. Session action type cannot be changed. If the Session to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.patch(
+     *       {
+     *         // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *         // Indicates which fields in the provided Session to update. The following are NOT supported: * Session.name If not set or empty, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "displayName": "my_displayName",
+     *           //   "endTime": "my_endTime",
+     *           //   "isPinned": false,
+     *           //   "name": "my_name",
+     *           //   "startTime": "my_startTime",
+     *           //   "state": "my_state",
+     *           //   "turns": [],
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31265,6 +41316,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Answer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.answers.get(
+     *       {
+     *         // Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session/answers/my-answer',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerSkippedReasons": [],
+     *   //   "answerText": "my_answerText",
+     *   //   "blobAttachments": [],
+     *   //   "citations": [],
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "groundingScore": {},
+     *   //   "groundingSupports": [],
+     *   //   "name": "my_name",
+     *   //   "queryUnderstandingInfo": {},
+     *   //   "references": [],
+     *   //   "relatedQuestions": [],
+     *   //   "safetyRatings": [],
+     *   //   "state": "my_state",
+     *   //   "steps": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31380,6 +41494,92 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.widgetConfigs.get(
+     *       {
+     *         // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *         acceptCache: 'placeholder-value',
+     *         // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/widgetConfigs/my-widgetConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "experimentalFeatures": {},
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31499,6 +41699,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31593,6 +41844,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/collections/my-collection',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31787,6 +42092,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Completes the specified user input with keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.completeQuery(
+     *     {
+     *       // Required. The parent data store resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/default_data_store`.
+     *       dataStore:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.
+     *       includeTailSuggestions: 'placeholder-value',
+     *       // Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters.
+     *       query: 'placeholder-value',
+     *       // Specifies the autocomplete data model. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     *       queryModel: 'placeholder-value',
+     *       // A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *       userPseudoId: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "querySuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31890,6 +42253,95 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a DataStore. DataStore is for storing Documents. To serve these documents for Search, or Recommendation use case, an Engine needs to be created separately.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.create({
+     *     // Resource name of the CmekConfig to use for protecting this DataStore.
+     *     cmekConfigName: 'placeholder-value',
+     *     // A boolean flag indicating whether user want to directly create an advanced data store for site search. If the data store is not configured as site search (GENERIC vertical and PUBLIC_WEBSITE content_config), this flag will be ignored.
+     *     createAdvancedSiteSearch: 'placeholder-value',
+     *     // Required. The ID to use for the DataStore, which will become the final component of the DataStore's resource name. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     dataStoreId: 'placeholder-value',
+     *     // DataStore without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.
+     *     disableCmek: 'placeholder-value',
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // A boolean flag indicating whether to skip the default schema creation for the data store. Only enable this flag if you are certain that the default schema is incompatible with your use case. If set to true, you must manually create a schema for the data store before any documents can be ingested. This flag cannot be specified if `data_store.starting_schema` is specified.
+     *     skipDefaultSchemaCreation: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aclEnabled": false,
+     *       //   "advancedSiteSearchConfig": {},
+     *       //   "billingEstimation": {},
+     *       //   "cmekConfig": {},
+     *       //   "contentConfig": "my_contentConfig",
+     *       //   "createTime": "my_createTime",
+     *       //   "defaultSchemaId": "my_defaultSchemaId",
+     *       //   "displayName": "my_displayName",
+     *       //   "documentProcessingConfig": {},
+     *       //   "healthcareFhirConfig": {},
+     *       //   "identityMappingStore": "my_identityMappingStore",
+     *       //   "idpConfig": {},
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "isInfobotFaqDataStore": false,
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "languageInfo": {},
+     *       //   "name": "my_name",
+     *       //   "naturalLanguageQueryUnderstandingConfig": {},
+     *       //   "servingConfigDataStore": {},
+     *       //   "solutionTypes": [],
+     *       //   "startingSchema": {},
+     *       //   "workspaceConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -31986,6 +42438,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.delete({
+     *     // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to delete the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the DataStore to delete does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32079,6 +42581,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.get({
+     *     // Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. If the caller does not have permission to access the DataStore, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested DataStore does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "advancedSiteSearchConfig": {},
+     *   //   "billingEstimation": {},
+     *   //   "cmekConfig": {},
+     *   //   "contentConfig": "my_contentConfig",
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultSchemaId": "my_defaultSchemaId",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentProcessingConfig": {},
+     *   //   "healthcareFhirConfig": {},
+     *   //   "identityMappingStore": "my_identityMappingStore",
+     *   //   "idpConfig": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "isInfobotFaqDataStore": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "languageInfo": {},
+     *   //   "name": "my_name",
+     *   //   "naturalLanguageQueryUnderstandingConfig": {},
+     *   //   "servingConfigDataStore": {},
+     *   //   "solutionTypes": [],
+     *   //   "startingSchema": {},
+     *   //   "workspaceConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32178,6 +42747,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a DocumentProcessingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.getDocumentProcessingConfig(
+     *       {
+     *         // Required. Full DocumentProcessingConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/documentProcessingConfig`
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/documentProcessingConfig',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunkingConfig": {},
+     *   //   "defaultParsingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "parsingConfigOverrides": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32278,6 +42899,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the SiteSearchEngine.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.getSiteSearchEngine({
+     *       // Required. Resource name of SiteSearchEngine, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to access the [SiteSearchEngine], regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32378,6 +43046,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all the DataStores associated with the project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.list({
+     *     // Filter by solution type . For example: `filter = 'solution_type:SOLUTION_TYPE_SEARCH'`
+     *     filter: 'placeholder-value',
+     *     // Maximum number of DataStores to return. If unspecified, defaults to 10. The maximum allowed value is 50. Values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListDataStoresResponse.next_page_token, received from a previous DataStoreService.ListDataStores call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DataStoreService.ListDataStores must match the call that provided the page token. Otherwise, an INVALID_ARGUMENT error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}`. If the caller does not have permission to list DataStores under this location, regardless of whether or not this data store exists, a PERMISSION_DENIED error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32480,6 +43201,104 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a DataStore
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.patch({
+     *     // Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *     // Indicates which fields in the provided DataStore to update. If an unsupported or unknown field is provided, an INVALID_ARGUMENT error is returned.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "aclEnabled": false,
+     *       //   "advancedSiteSearchConfig": {},
+     *       //   "billingEstimation": {},
+     *       //   "cmekConfig": {},
+     *       //   "contentConfig": "my_contentConfig",
+     *       //   "createTime": "my_createTime",
+     *       //   "defaultSchemaId": "my_defaultSchemaId",
+     *       //   "displayName": "my_displayName",
+     *       //   "documentProcessingConfig": {},
+     *       //   "healthcareFhirConfig": {},
+     *       //   "identityMappingStore": "my_identityMappingStore",
+     *       //   "idpConfig": {},
+     *       //   "industryVertical": "my_industryVertical",
+     *       //   "isInfobotFaqDataStore": false,
+     *       //   "kmsKeyName": "my_kmsKeyName",
+     *       //   "languageInfo": {},
+     *       //   "name": "my_name",
+     *       //   "naturalLanguageQueryUnderstandingConfig": {},
+     *       //   "servingConfigDataStore": {},
+     *       //   "solutionTypes": [],
+     *       //   "startingSchema": {},
+     *       //   "workspaceConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclEnabled": false,
+     *   //   "advancedSiteSearchConfig": {},
+     *   //   "billingEstimation": {},
+     *   //   "cmekConfig": {},
+     *   //   "contentConfig": "my_contentConfig",
+     *   //   "createTime": "my_createTime",
+     *   //   "defaultSchemaId": "my_defaultSchemaId",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentProcessingConfig": {},
+     *   //   "healthcareFhirConfig": {},
+     *   //   "identityMappingStore": "my_identityMappingStore",
+     *   //   "idpConfig": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "isInfobotFaqDataStore": false,
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "languageInfo": {},
+     *   //   "name": "my_name",
+     *   //   "naturalLanguageQueryUnderstandingConfig": {},
+     *   //   "servingConfigDataStore": {},
+     *   //   "solutionTypes": [],
+     *   //   "startingSchema": {},
+     *   //   "workspaceConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32579,6 +43398,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates the DocumentProcessingConfig. DocumentProcessingConfig is a singleon resource of DataStore. It's empty when DataStore is created. The first call to this method will set up DocumentProcessingConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.updateDocumentProcessingConfig(
+     *       {
+     *         // The full resource name of the Document Processing Config. Format: `projects/x/locations/x/collections/x/dataStores/x/documentProcessingConfig`.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/documentProcessingConfig',
+     *         // Indicates which fields in the provided DocumentProcessingConfig to update. The following are the only supported fields: * DocumentProcessingConfig.ocr_config If not set, all supported fields are updated.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "chunkingConfig": {},
+     *           //   "defaultParsingConfig": {},
+     *           //   "name": "my_name",
+     *           //   "parsingConfigOverrides": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunkingConfig": {},
+     *   //   "defaultParsingConfig": {},
+     *   //   "name": "my_name",
+     *   //   "parsingConfigOverrides": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32783,7 +43667,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Datastores$Patch
     extends StandardParameters {
     /**
-     * Immutable. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     * Immutable. Identifier. The full resource name of the data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string;
     /**
@@ -32831,6 +43715,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets index freshness metadata for Documents. Supported for website search only.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.batchGetDocumentsMetadata(
+     *       {
+     *         // Required. The FHIR resources to match by. Format: projects/{project\}/locations/{location\}/datasets/{dataset\}/fhirStores/{fhir_store\}/fhir/{resource_type\}/{fhir_resource_id\}
+     *         'matcher.fhirMatcher.fhirResources': 'placeholder-value',
+     *         // The exact URIs to match by.
+     *         'matcher.urisMatcher.uris': 'placeholder-value',
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documentsMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -32961,6 +43899,86 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.create(
+     *       {
+     *         // Required. The ID to use for the Document, which becomes the final component of the Document.name. If the caller does not have permission to create the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all Documents with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 128 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         documentId: 'placeholder-value',
+     *         // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "aclInfo": {},
+     *           //   "content": {},
+     *           //   "derivedStructData": {},
+     *           //   "id": "my_id",
+     *           //   "indexStatus": {},
+     *           //   "indexTime": "my_indexTime",
+     *           //   "jsonData": "my_jsonData",
+     *           //   "name": "my_name",
+     *           //   "parentDocumentId": "my_parentDocumentId",
+     *           //   "schemaId": "my_schemaId",
+     *           //   "structData": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33064,6 +44082,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.delete(
+     *       {
+     *         // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to delete the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the Document to delete does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33154,6 +44219,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.get({
+     *       // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33254,6 +44376,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the parsed layout information for a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.getProcessedDocument(
+     *       {
+     *         // Optional. Specifies config for IMAGE_BYTES.
+     *         imageId: 'placeholder-value',
+     *         // Required. Full resource name of Document, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to access the Document, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Document does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *         // What format output should be. If unspecified, defaults to JSON.
+     *         processedDocumentFormat: 'placeholder-value',
+     *         // Required. What type of processing to return.
+     *         processedDocumentType: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "document": "my_document",
+     *   //   "jsonData": "my_jsonData"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33357,6 +44535,82 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of multiple Documents. Request processing may be synchronous. Non-existing items are created. Note: It is possible for a subset of the Documents to be successfully updated.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.import(
+     *       {
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Requires create/update permission.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "alloyDbSource": {},
+     *           //   "autoGenerateIds": false,
+     *           //   "bigquerySource": {},
+     *           //   "bigtableSource": {},
+     *           //   "cloudSqlSource": {},
+     *           //   "errorConfig": {},
+     *           //   "fhirStoreSource": {},
+     *           //   "firestoreSource": {},
+     *           //   "forceRefreshContent": false,
+     *           //   "gcsSource": {},
+     *           //   "idField": "my_idField",
+     *           //   "inlineSource": {},
+     *           //   "reconciliationMode": "my_reconciliationMode",
+     *           //   "spannerSource": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33454,6 +44708,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Documents.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.list(
+     *       {
+     *         // Maximum number of Documents to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 are set to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListDocumentsResponse.next_page_token, received from a previous DocumentService.ListDocuments call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to DocumentService.ListDocuments must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`. Use `default_branch` as the branch ID, to list documents under the default branch. If the caller does not have permission to list Documents under this branch, regardless of whether or not this branch exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "documents": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33557,6 +44866,87 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.patch(
+     *       {
+     *         // If set to `true` and the Document is not found, a new Document is be created.
+     *         allowMissing: 'placeholder-value',
+     *         // Immutable. The full resource name of the document. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *         // Indicates which fields in the provided imported 'document' to update. If not set, by default updates all fields.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "aclInfo": {},
+     *           //   "content": {},
+     *           //   "derivedStructData": {},
+     *           //   "id": "my_id",
+     *           //   "indexStatus": {},
+     *           //   "indexTime": "my_indexTime",
+     *           //   "jsonData": "my_jsonData",
+     *           //   "name": "my_name",
+     *           //   "parentDocumentId": "my_parentDocumentId",
+     *           //   "schemaId": "my_schemaId",
+     *           //   "structData": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aclInfo": {},
+     *   //   "content": {},
+     *   //   "derivedStructData": {},
+     *   //   "id": "my_id",
+     *   //   "indexStatus": {},
+     *   //   "indexTime": "my_indexTime",
+     *   //   "jsonData": "my_jsonData",
+     *   //   "name": "my_name",
+     *   //   "parentDocumentId": "my_parentDocumentId",
+     *   //   "schemaId": "my_schemaId",
+     *   //   "structData": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33657,6 +45047,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all selected Documents in a branch. This process is asynchronous. Depending on the number of Documents to be deleted, this operation can take hours to complete. Before the delete operation completes, some Documents might still be returned by DocumentService.GetDocument or DocumentService.ListDocuments. To get a list of the Documents to be deleted, set PurgeDocumentsRequest.force to false.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.purge(
+     *       {
+     *         // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "errorConfig": {},
+     *           //   "filter": "my_filter",
+     *           //   "force": false,
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33870,6 +45326,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Document.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.chunks.get(
+     *       {
+     *         // Required. Full resource name of Chunk, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}/chunks/{chunk\}`. If the caller does not have permission to access the Chunk, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the requested Chunk does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document/chunks/my-chunk',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "annotationContents": [],
+     *   //   "annotationMetadata": [],
+     *   //   "chunkMetadata": {},
+     *   //   "content": "my_content",
+     *   //   "dataUrls": [],
+     *   //   "derivedStructData": {},
+     *   //   "documentMetadata": {},
+     *   //   "id": "my_id",
+     *   //   "name": "my_name",
+     *   //   "pageSpan": {},
+     *   //   "relevanceScore": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -33970,6 +45485,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Chunks.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.documents.chunks.list(
+     *       {
+     *         // Maximum number of Chunks to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListChunksResponse.next_page_token, received from a previous ChunkService.ListChunks call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to ChunkService.ListChunks must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent document resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/branches/{branch\}/documents/{document\}`. If the caller does not have permission to list Chunks under this document, regardless of whether or not this document exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/documents/my-document',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chunks": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34103,6 +45673,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.operations.cancel(
+     *       {
+     *         // The name of the operation resource to be cancelled.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/operations/my-operation',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34196,6 +45819,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34290,6 +45966,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.branches.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/branches/my-branche',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34439,6 +46171,79 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34561,6 +46366,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Imports CompletionSuggestions for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.completionSuggestions.import(
+     *       {
+     *         // Required. The parent data store resource name for which to import customer autocomplete suggestions. Follows pattern `projects/x/locations/x/collections/x/dataStores/x`
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "bigquerySource": {},
+     *           //   "errorConfig": {},
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34657,6 +46527,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all CompletionSuggestions for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.completionSuggestions.purge(
+     *       {
+     *         // Required. The parent data store resource name for which to purge completion suggestions. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34785,6 +46715,84 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Control. By default 1000 controls are allowed for a data store. A request can be submitted to adjust this limit. If the Control to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.controls.create({
+     *       // Required. The ID to use for the Control, which will become the final component of the Control's resource name. This value must be within 1-63 characters. Valid characters are /a-z-_/.
+     *       controlId: 'placeholder-value',
+     *       // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "associatedServingConfigIds": [],
+     *         //   "boostAction": {},
+     *         //   "conditions": [],
+     *         //   "displayName": "my_displayName",
+     *         //   "filterAction": {},
+     *         //   "name": "my_name",
+     *         //   "promoteAction": {},
+     *         //   "redirectAction": {},
+     *         //   "solutionType": "my_solutionType",
+     *         //   "synonymsAction": {},
+     *         //   "useCases": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34888,6 +46896,51 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Control. If the Control to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.controls.delete({
+     *       // Required. The resource name of the Control to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/controls/my-control',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -34978,6 +47031,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Control.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.controls.get({
+     *     // Required. The resource name of the Control to get. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/controls/{control_id\}`
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/controls/my-control',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35078,6 +47187,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Controls by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.controls.list(
+     *     {
+     *       // Optional. A filter to apply on the list results. Supported features: * List all the products under the parent branch if filter is unset. Currently this field is unsupported.
+     *       filter: 'placeholder-value',
+     *       // Optional. Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListControls` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}` or `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "controls": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35181,6 +47346,83 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Control. Control action type cannot be changed. If the Control to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.controls.patch({
+     *       // Immutable. Fully qualified name `projects/x/locations/global/dataStore/x/controls/x`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/controls/my-control',
+     *       // Optional. Indicates which fields in the provided Control to update. The following are NOT supported: * Control.name * Control.solution_type If not set or empty, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "associatedServingConfigIds": [],
+     *         //   "boostAction": {},
+     *         //   "conditions": [],
+     *         //   "displayName": "my_displayName",
+     *         //   "filterAction": {},
+     *         //   "name": "my_name",
+     *         //   "promoteAction": {},
+     *         //   "redirectAction": {},
+     *         //   "solutionType": "my_solutionType",
+     *         //   "synonymsAction": {},
+     *         //   "useCases": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "associatedServingConfigIds": [],
+     *   //   "boostAction": {},
+     *   //   "conditions": [],
+     *   //   "displayName": "my_displayName",
+     *   //   "filterAction": {},
+     *   //   "name": "my_name",
+     *   //   "promoteAction": {},
+     *   //   "redirectAction": {},
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsAction": {},
+     *   //   "useCases": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35354,6 +47596,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Converses a conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.converse({
+     *       // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`. Use `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/-` to activate auto session mode, which automatically creates a new conversation inside a ConverseConversation session.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/conversations/my-conversation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "boostSpec": {},
+     *         //   "conversation": {},
+     *         //   "filter": "my_filter",
+     *         //   "query": {},
+     *         //   "safeSearch": false,
+     *         //   "servingConfig": "my_servingConfig",
+     *         //   "summarySpec": {},
+     *         //   "userLabels": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversation": {},
+     *   //   "relatedQuestions": [],
+     *   //   "reply": {},
+     *   //   "searchResults": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35457,6 +47764,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Conversation. If the Conversation to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.create({
+     *       // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endTime": "my_endTime",
+     *         //   "messages": [],
+     *         //   "name": "my_name",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state",
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35560,6 +47933,51 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Conversation. If the Conversation to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.delete({
+     *       // Required. The resource name of the Conversation to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/conversations/my-conversation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35650,6 +48068,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Conversation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.get({
+     *       // Required. The resource name of the Conversation to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/conversations/{conversation_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/conversations/my-conversation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35750,6 +48220,63 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Conversations by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.list({
+     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `conversation_name` Example: "update_time desc" "create_time"
+     *       orderBy: 'placeholder-value',
+     *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListConversations` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -35853,6 +48380,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Conversation. Conversation action type cannot be changed. If the Conversation to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.conversations.patch({
+     *       // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/dataStore/x/conversations/x` or `projects/{project\}/locations/global/collections/{collection\}/engines/x/conversations/x`.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/conversations/my-conversation',
+     *       // Indicates which fields in the provided Conversation to update. The following are NOT supported: * Conversation.name If not set or empty, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "endTime": "my_endTime",
+     *         //   "messages": [],
+     *         //   "name": "my_name",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state",
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "endTime": "my_endTime",
+     *   //   "messages": [],
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36050,6 +48644,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.models.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/models/my-model/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36144,6 +48789,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.models.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/models/my-model',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36281,6 +48980,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36375,6 +49125,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36512,6 +49316,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.schemas.create({
+     *       // Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // Required. The ID to use for the Schema, which becomes the final component of the Schema.name. This field should conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters.
+     *       schemaId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "fieldConfigs": [],
+     *         //   "jsonSchema": "my_jsonSchema",
+     *         //   "name": "my_name",
+     *         //   "structSchema": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36609,6 +49478,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.schemas.delete({
+     *       // Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/schemas/my-schema',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36703,6 +49623,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.schemas.get({
+     *     // Required. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`.
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/schemas/my-schema',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "fieldConfigs": [],
+     *   //   "jsonSchema": "my_jsonSchema",
+     *   //   "name": "my_name",
+     *   //   "structSchema": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36803,6 +49772,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Schemas.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.schemas.list({
+     *     // The maximum number of Schemas to return. The service may return fewer than this value. If unspecified, at most 100 Schemas are returned. The maximum value is 1000; values above 1000 are set to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous SchemaService.ListSchemas call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SchemaService.ListSchemas must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent data store resource name, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`.
+     *     parent: 'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "schemas": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -36906,6 +49926,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Schema.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.schemas.patch(
+     *     {
+     *       // If set to true, and the Schema is not found, a new Schema is created. In this situation, `update_mask` is ignored.
+     *       allowMissing: 'placeholder-value',
+     *       // Immutable. The full resource name of the schema, in the format of `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/schemas/{schema\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/schemas/my-schema',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "fieldConfigs": [],
+     *         //   "jsonSchema": "my_jsonSchema",
+     *         //   "name": "my_name",
+     *         //   "structSchema": {}
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37069,6 +50154,75 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.answer({
+     *       // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "answerGenerationSpec": {},
+     *         //   "asynchronousMode": false,
+     *         //   "endUserSpec": {},
+     *         //   "groundingSpec": {},
+     *         //   "query": {},
+     *         //   "queryUnderstandingSpec": {},
+     *         //   "relatedQuestionsSpec": {},
+     *         //   "safetySpec": {},
+     *         //   "searchSpec": {},
+     *         //   "session": "my_session",
+     *         //   "userLabels": {},
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37172,6 +50326,76 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a ServingConfig. Returns a NotFound error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.get({
+     *       // Required. The resource name of the ServingConfig to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/servingConfigs/{serving_config_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37272,6 +50496,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all ServingConfigs linked to this dataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.list({
+     *       // Optional. Maximum number of results to return. If unspecified, defaults to 100. If a value greater than 100 is provided, at most 100 results are returned.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListServingConfigs` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Full resource name of the parent resource. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "servingConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37375,6 +50652,109 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a ServingConfig. Returns a NOT_FOUND error if the ServingConfig does not exist.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.patch({
+     *       // Immutable. Fully qualified name `projects/{project\}/locations/{location\}/collections/{collection_id\}/engines/{engine_id\}/servingConfigs/{serving_config_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *       // Indicates which fields in the provided ServingConfig to update. The following are NOT supported: * ServingConfig.name If not set, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "answerGenerationSpec": {},
+     *         //   "boostControlIds": [],
+     *         //   "createTime": "my_createTime",
+     *         //   "customFineTuningSpec": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "dissociateControlIds": [],
+     *         //   "diversityLevel": "my_diversityLevel",
+     *         //   "embeddingConfig": {},
+     *         //   "filterControlIds": [],
+     *         //   "genericConfig": {},
+     *         //   "guidedSearchSpec": {},
+     *         //   "ignoreControlIds": [],
+     *         //   "mediaConfig": {},
+     *         //   "modelId": "my_modelId",
+     *         //   "name": "my_name",
+     *         //   "onewaySynonymsControlIds": [],
+     *         //   "personalizationSpec": {},
+     *         //   "promoteControlIds": [],
+     *         //   "rankingExpression": "my_rankingExpression",
+     *         //   "redirectControlIds": [],
+     *         //   "replacementControlIds": [],
+     *         //   "solutionType": "my_solutionType",
+     *         //   "synonymsControlIds": [],
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerGenerationSpec": {},
+     *   //   "boostControlIds": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "customFineTuningSpec": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "dissociateControlIds": [],
+     *   //   "diversityLevel": "my_diversityLevel",
+     *   //   "embeddingConfig": {},
+     *   //   "filterControlIds": [],
+     *   //   "genericConfig": {},
+     *   //   "guidedSearchSpec": {},
+     *   //   "ignoreControlIds": [],
+     *   //   "mediaConfig": {},
+     *   //   "modelId": "my_modelId",
+     *   //   "name": "my_name",
+     *   //   "onewaySynonymsControlIds": [],
+     *   //   "personalizationSpec": {},
+     *   //   "promoteControlIds": [],
+     *   //   "rankingExpression": "my_rankingExpression",
+     *   //   "redirectControlIds": [],
+     *   //   "replacementControlIds": [],
+     *   //   "solutionType": "my_solutionType",
+     *   //   "synonymsControlIds": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37475,6 +50855,72 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Makes a recommendation, which requires a contextual user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.recommend(
+     *       {
+     *         // Required. Full resource name of a ServingConfig: `projects/x/locations/global/collections/x/engines/x/servingConfigs/x`, or `projects/x/locations/global/collections/x/dataStores/x/servingConfigs/x` One default serving config is created along with your recommendation engine creation. The engine ID is used as the ID of the default serving config. For example, for Engine `projects/x/locations/global/collections/x/engines/my-engine`, you can use `projects/x/locations/global/collections/x/engines/my-engine/servingConfigs/my-engine` for your RecommendationService.Recommend requests.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "pageSize": 0,
+     *           //   "params": {},
+     *           //   "userEvent": {},
+     *           //   "userLabels": {},
+     *           //   "validateOnly": false
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "missingIds": [],
+     *   //   "results": [],
+     *   //   "validateOnly": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37578,6 +51024,114 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.search({
+     *       // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *       servingConfig:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "boostSpec": {},
+     *         //   "branch": "my_branch",
+     *         //   "canonicalFilter": "my_canonicalFilter",
+     *         //   "contentSearchSpec": {},
+     *         //   "customFineTuningSpec": {},
+     *         //   "dataStoreSpecs": [],
+     *         //   "displaySpec": {},
+     *         //   "embeddingSpec": {},
+     *         //   "facetSpecs": [],
+     *         //   "filter": "my_filter",
+     *         //   "imageQuery": {},
+     *         //   "languageCode": "my_languageCode",
+     *         //   "naturalLanguageQueryUnderstandingSpec": {},
+     *         //   "offset": 0,
+     *         //   "oneBoxPageSize": 0,
+     *         //   "orderBy": "my_orderBy",
+     *         //   "pageSize": 0,
+     *         //   "pageToken": "my_pageToken",
+     *         //   "params": {},
+     *         //   "personalizationSpec": {},
+     *         //   "query": "my_query",
+     *         //   "queryExpansionSpec": {},
+     *         //   "rankingExpression": "my_rankingExpression",
+     *         //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *         //   "regionCode": "my_regionCode",
+     *         //   "relevanceScoreSpec": {},
+     *         //   "relevanceThreshold": "my_relevanceThreshold",
+     *         //   "safeSearch": false,
+     *         //   "searchAsYouTypeSpec": {},
+     *         //   "servingConfig": "my_servingConfig",
+     *         //   "session": "my_session",
+     *         //   "sessionSpec": {},
+     *         //   "spellCorrectionSpec": {},
+     *         //   "useLatestData": false,
+     *         //   "userInfo": {},
+     *         //   "userLabels": {},
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37681,6 +51235,116 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a search. Similar to the SearchService.Search method, but a lite version that allows API key for authentication, where OAuth and IAM checks are not required. Only public website search is supported by this method. If data stores and engines not associated with public website search are specified, a `FAILED_PRECONDITION` error is returned. This method can be used for easy onboarding without having to implement an authentication backend. However, it is strongly recommended to use SearchService.Search instead with required OAuth and IAM checks to provide better data security.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.searchLite(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/default_data_store/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "branch": "my_branch",
+     *           //   "canonicalFilter": "my_canonicalFilter",
+     *           //   "contentSearchSpec": {},
+     *           //   "customFineTuningSpec": {},
+     *           //   "dataStoreSpecs": [],
+     *           //   "displaySpec": {},
+     *           //   "embeddingSpec": {},
+     *           //   "facetSpecs": [],
+     *           //   "filter": "my_filter",
+     *           //   "imageQuery": {},
+     *           //   "languageCode": "my_languageCode",
+     *           //   "naturalLanguageQueryUnderstandingSpec": {},
+     *           //   "offset": 0,
+     *           //   "oneBoxPageSize": 0,
+     *           //   "orderBy": "my_orderBy",
+     *           //   "pageSize": 0,
+     *           //   "pageToken": "my_pageToken",
+     *           //   "params": {},
+     *           //   "personalizationSpec": {},
+     *           //   "query": "my_query",
+     *           //   "queryExpansionSpec": {},
+     *           //   "rankingExpression": "my_rankingExpression",
+     *           //   "rankingExpressionBackend": "my_rankingExpressionBackend",
+     *           //   "regionCode": "my_regionCode",
+     *           //   "relevanceScoreSpec": {},
+     *           //   "relevanceThreshold": "my_relevanceThreshold",
+     *           //   "safeSearch": false,
+     *           //   "searchAsYouTypeSpec": {},
+     *           //   "servingConfig": "my_servingConfig",
+     *           //   "session": "my_session",
+     *           //   "sessionSpec": {},
+     *           //   "spellCorrectionSpec": {},
+     *           //   "useLatestData": false,
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "appliedControls": [],
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "correctedQuery": "my_correctedQuery",
+     *   //   "facets": [],
+     *   //   "geoSearchDebugInfo": [],
+     *   //   "guidedSearchResult": {},
+     *   //   "naturalLanguageQueryUnderstandingInfo": {},
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneBoxResults": [],
+     *   //   "queryExpansionInfo": {},
+     *   //   "redirectUri": "my_redirectUri",
+     *   //   "results": [],
+     *   //   "searchLinkPromotions": [],
+     *   //   "sessionInfo": {},
+     *   //   "suggestedQuery": "my_suggestedQuery",
+     *   //   "summary": {},
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37784,6 +51448,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Answer query method (streaming). It takes one AnswerQueryRequest and returns multiple AnswerQueryResponse messages in a stream.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.servingConfigs.streamAnswer(
+     *       {
+     *         // Required. The resource name of the Search serving config, such as `projects/x/locations/global/collections/default_collection/engines/x/servingConfigs/default_serving_config`, or `projects/x/locations/global/collections/default_collection/dataStores/x/servingConfigs/default_serving_config`. This field is used to identify the serving configuration name, set of models used to make the search.
+     *         servingConfig:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "answerGenerationSpec": {},
+     *           //   "asynchronousMode": false,
+     *           //   "endUserSpec": {},
+     *           //   "groundingSpec": {},
+     *           //   "query": {},
+     *           //   "queryUnderstandingSpec": {},
+     *           //   "relatedQuestionsSpec": {},
+     *           //   "safetySpec": {},
+     *           //   "searchSpec": {},
+     *           //   "session": "my_session",
+     *           //   "userLabels": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "answerQueryToken": "my_answerQueryToken",
+     *   //   "session": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -37998,6 +51733,76 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Session. If the Session to create already exists, an ALREADY_EXISTS error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.sessions.create({
+     *       // Required. Full resource name of parent data store. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "displayName": "my_displayName",
+     *         //   "endTime": "my_endTime",
+     *         //   "isPinned": false,
+     *         //   "name": "my_name",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state",
+     *         //   "turns": [],
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38101,6 +51906,51 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Session. If the Session to delete does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.sessions.delete({
+     *       // Required. The resource name of the Session to delete. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/sessions/my-session',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38191,6 +52041,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.sessions.get({
+     *     // Optional. If set to true, the full session including all answer details will be returned.
+     *     includeAnswerDetails: 'placeholder-value',
+     *     // Required. The resource name of the Session to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}/sessions/{session_id\}`
+     *     name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/sessions/my-session',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38291,6 +52196,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Sessions by their parent DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
+     *     {
+     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: "user_pseudo_id = some_id"
+     *       filter: 'placeholder-value',
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       orderBy: 'placeholder-value',
+     *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListSessions` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The data store resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store_id\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sessions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38394,6 +52357,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a Session. Session action type cannot be changed. If the Session to update does not exist, a NOT_FOUND error is returned.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.sessions.patch({
+     *       // Immutable. Fully qualified name `projects/{project\}/locations/global/collections/{collection\}/engines/{engine\}/sessions/x`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/sessions/my-session',
+     *       // Indicates which fields in the provided Session to update. The following are NOT supported: * Session.name If not set or empty, all supported fields are updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "displayName": "my_displayName",
+     *         //   "endTime": "my_endTime",
+     *         //   "isPinned": false,
+     *         //   "name": "my_name",
+     *         //   "startTime": "my_startTime",
+     *         //   "state": "my_state",
+     *         //   "turns": [],
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "endTime": "my_endTime",
+     *   //   "isPinned": false,
+     *   //   "name": "my_name",
+     *   //   "startTime": "my_startTime",
+     *   //   "state": "my_state",
+     *   //   "turns": [],
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38571,6 +52605,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Answer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.sessions.answers.get({
+     *       // Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/sessions/my-session/answers/my-answer',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answerSkippedReasons": [],
+     *   //   "answerText": "my_answerText",
+     *   //   "blobAttachments": [],
+     *   //   "citations": [],
+     *   //   "completeTime": "my_completeTime",
+     *   //   "createTime": "my_createTime",
+     *   //   "groundingScore": {},
+     *   //   "groundingSupports": [],
+     *   //   "name": "my_name",
+     *   //   "queryUnderstandingInfo": {},
+     *   //   "references": [],
+     *   //   "relatedQuestions": [],
+     *   //   "safetyRatings": [],
+     *   //   "state": "my_state",
+     *   //   "steps": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38696,6 +52791,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Downgrade from advanced site search to basic site search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.disableAdvancedSiteSearch(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38792,6 +52947,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Upgrade from basic site search to advanced site search.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.enableAdvancedSiteSearch(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/{project\}/locations/{location\}/dataStores/{data_store_id\}/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -38888,6 +53103,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Request on-demand recrawl for a list of URIs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.recrawlUris(
+     *       {
+     *         // Required. Full resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         siteSearchEngine:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "siteCredential": "my_siteCredential",
+     *           //   "uris": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39029,6 +53307,70 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Sitemap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.create(
+     *       {
+     *         // Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "name": "my_name",
+     *           //   "uri": "my_uri"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39126,6 +53468,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a Sitemap.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.delete(
+     *       {
+     *         // Required. Full resource name of Sitemap, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/sitemaps/{sitemap\}`. If the caller does not have permission to access the Sitemap, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Sitemap does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine/sitemaps/my-sitemap',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39220,6 +53615,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Fetch Sitemaps in a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.sitemaps.fetch(
+     *       {
+     *         // The Sitemap uris.
+     *         'matcher.urisMatcher.uris': 'placeholder-value',
+     *         // Required. Parent resource name of the SiteSearchEngine, such as `projects/x/locations/x/collections/x/dataStores/x/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sitemapsMetadata": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39361,6 +53808,68 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates TargetSite in a batch.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.batchCreate(
+     *       {
+     *         // Required. The parent resource shared by all TargetSites being created. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. The parent field in the CreateBookRequest messages must either be empty or match this field.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39457,6 +53966,77 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.create(
+     *       {
+     *         // Required. Parent resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "exactMatch": false,
+     *           //   "failureReason": {},
+     *           //   "generatedUriPattern": "my_generatedUriPattern",
+     *           //   "indexingStatus": "my_indexingStatus",
+     *           //   "name": "my_name",
+     *           //   "providedUriPattern": "my_providedUriPattern",
+     *           //   "rootDomainUri": "my_rootDomainUri",
+     *           //   "siteVerificationInfo": {},
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39554,6 +54134,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.delete(
+     *       {
+     *         // Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39648,6 +54281,64 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.get(
+     *       {
+     *         // Required. Full resource name of TargetSite, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}`. If the caller does not have permission to access the TargetSite, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested TargetSite does not exist, a NOT_FOUND error is returned.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "exactMatch": false,
+     *   //   "failureReason": {},
+     *   //   "generatedUriPattern": "my_generatedUriPattern",
+     *   //   "indexingStatus": "my_indexingStatus",
+     *   //   "name": "my_name",
+     *   //   "providedUriPattern": "my_providedUriPattern",
+     *   //   "rootDomainUri": "my_rootDomainUri",
+     *   //   "siteVerificationInfo": {},
+     *   //   "type": "my_type",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39748,6 +54439,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of TargetSites.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.list(
+     *       {
+     *         // Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default. The maximum value is 1000; values above 1000 will be coerced to 1000. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListTargetSites` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListTargetSites` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent site search engine resource name, such as `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine`. If the caller does not have permission to list TargetSites under this site search engine, regardless of whether or not this branch exists, a PERMISSION_DENIED error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "targetSites": [],
+     *   //   "totalSize": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -39851,6 +54598,76 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a TargetSite.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.siteSearchEngine.targetSites.patch(
+     *       {
+     *         // Output only. The fully qualified resource name of the target site. `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}/siteSearchEngine/targetSites/{target_site\}` The `target_site_id` is system-generated.
+     *         name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/siteSearchEngine/targetSites/my-targetSite',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "exactMatch": false,
+     *           //   "failureReason": {},
+     *           //   "generatedUriPattern": "my_generatedUriPattern",
+     *           //   "indexingStatus": "my_indexingStatus",
+     *           //   "name": "my_name",
+     *           //   "providedUriPattern": "my_providedUriPattern",
+     *           //   "rootDomainUri": "my_rootDomainUri",
+     *           //   "siteVerificationInfo": {},
+     *           //   "type": "my_type",
+     *           //   "updateTime": "my_updateTime"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40018,6 +54835,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Imports all SuggestionDenyListEntry for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.suggestionDenyListEntries.import(
+     *       {
+     *         // Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40114,6 +54994,65 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Permanently deletes all SuggestionDenyListEntry for a DataStore.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.suggestionDenyListEntries.purge(
+     *       {
+     *         // Required. The parent data store resource name for which to import denylist entries. Follows pattern projects/x/locations/x/collections/x/dataStores/x.
+     *         parent: 'projects/my-project/locations/my-location/dataStores/.*',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40242,6 +55181,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.userEvents.collect({
+     *       // The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     *       ets: 'placeholder-value',
+     *       // Required. The parent resource name. If the collect user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the collect user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     *       uri: 'placeholder-value',
+     *       // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     *       userEvent: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40335,6 +55330,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of user events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.userEvents.import({
+     *       // Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bigquerySource": {},
+     *         //   "errorConfig": {},
+     *         //   "gcsSource": {},
+     *         //   "inlineSource": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40432,6 +55490,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes permanently all user events specified by the filter provided. Depending on the number of events specified by the filter, this operation could take hours or days to complete. To test a filter, use the list command first.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.userEvents.purge({
+     *       // Required. The resource name of the catalog under which the events are created. The format is `projects/{project\}/locations/global/collections/{collection\}/dataStores/{dataStore\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "filter": "my_filter",
+     *         //   "force": false
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40529,6 +55648,106 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.userEvents.write({
+     *       // Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataStores/my-dataStore',
+     *       // If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.
+     *       writeAsync: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "attributes": {},
+     *         //   "attributionToken": "my_attributionToken",
+     *         //   "completionInfo": {},
+     *         //   "conversionType": "my_conversionType",
+     *         //   "dataStore": "my_dataStore",
+     *         //   "directUserRequest": false,
+     *         //   "documents": [],
+     *         //   "engine": "my_engine",
+     *         //   "eventTime": "my_eventTime",
+     *         //   "eventType": "my_eventType",
+     *         //   "filter": "my_filter",
+     *         //   "mediaInfo": {},
+     *         //   "pageInfo": {},
+     *         //   "panel": {},
+     *         //   "panels": [],
+     *         //   "promotionIds": [],
+     *         //   "searchInfo": {},
+     *         //   "sessionId": "my_sessionId",
+     *         //   "tagIds": [],
+     *         //   "transactionInfo": {},
+     *         //   "userInfo": {},
+     *         //   "userPseudoId": "my_userPseudoId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "completionInfo": {},
+     *   //   "conversionType": "my_conversionType",
+     *   //   "dataStore": "my_dataStore",
+     *   //   "directUserRequest": false,
+     *   //   "documents": [],
+     *   //   "engine": "my_engine",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "eventType": "my_eventType",
+     *   //   "filter": "my_filter",
+     *   //   "mediaInfo": {},
+     *   //   "pageInfo": {},
+     *   //   "panel": {},
+     *   //   "panels": [],
+     *   //   "promotionIds": [],
+     *   //   "searchInfo": {},
+     *   //   "sessionId": "my_sessionId",
+     *   //   "tagIds": [],
+     *   //   "transactionInfo": {},
+     *   //   "userInfo": {},
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40699,6 +55918,90 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a WidgetConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.widgetConfigs.get({
+     *       // Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.
+     *       acceptCache: 'placeholder-value',
+     *       // Required. Full WidgetConfig resource name. Format: `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}/widgetConfigs/{widget_config_id\}`
+     *       name: 'projects/my-project/locations/my-location/dataStores/my-dataStore/widgetConfigs/my-widgetConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessSettings": {},
+     *   //   "allowPublicAccess": false,
+     *   //   "allowlistedDomains": [],
+     *   //   "assistantSettings": {},
+     *   //   "collectionComponents": [],
+     *   //   "configId": "my_configId",
+     *   //   "contentSearchSpec": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "customerProvidedConfig": {},
+     *   //   "dataStoreType": "my_dataStoreType",
+     *   //   "dataStoreUiConfigs": [],
+     *   //   "defaultSearchRequestOrderBy": "my_defaultSearchRequestOrderBy",
+     *   //   "displayName": "my_displayName",
+     *   //   "enableAutocomplete": false,
+     *   //   "enableConversationalSearch": false,
+     *   //   "enablePrivateKnowledgeGraph": false,
+     *   //   "enableQualityFeedback": false,
+     *   //   "enableResultScore": false,
+     *   //   "enableSafeSearch": false,
+     *   //   "enableSearchAsYouType": false,
+     *   //   "enableSnippetResultSummary": false,
+     *   //   "enableSummarization": false,
+     *   //   "enableWebApp": false,
+     *   //   "experimentalFeatures": {},
+     *   //   "facetField": [],
+     *   //   "fieldsUiComponentsMap": {},
+     *   //   "homepageSetting": {},
+     *   //   "industryVertical": "my_industryVertical",
+     *   //   "llmEnabled": false,
+     *   //   "minimumDataTermAccepted": false,
+     *   //   "name": "my_name",
+     *   //   "resultDisplayType": "my_resultDisplayType",
+     *   //   "solutionType": "my_solutionType",
+     *   //   "uiBranding": {},
+     *   //   "uiSettings": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40822,6 +56125,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a Evaluation. Upon creation, the evaluation will be automatically triggered and begin execution.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.evaluations.create({
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "endTime": "my_endTime",
+     *       //   "error": {},
+     *       //   "errorSamples": [],
+     *       //   "evaluationSpec": {},
+     *       //   "name": "my_name",
+     *       //   "qualityMetrics": {},
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -40918,6 +56286,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.evaluations.get({
+     *     // Required. Full resource name of Evaluation, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to access the Evaluation, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested Evaluation does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "endTime": "my_endTime",
+     *   //   "error": {},
+     *   //   "errorSamples": [],
+     *   //   "evaluationSpec": {},
+     *   //   "name": "my_name",
+     *   //   "qualityMetrics": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41017,6 +56438,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of Evaluations.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.evaluations.list({
+     *     // Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list Evaluations under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "evaluations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41119,6 +56591,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of results for a given a Evaluation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.evaluations.listResults({
+     *     // Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
+     *     evaluation:
+     *       'projects/my-project/locations/my-location/evaluations/my-evaluation',
+     *     // Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "evaluationResults": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41279,6 +56803,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.evaluations.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/evaluations/my-evaluation/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41388,6 +56963,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Performs a grounding check.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.groundingConfigs.check({
+     *     // Required. The resource name of the grounding config, such as `projects/x/locations/global/groundingConfigs/default_grounding_config`.
+     *     groundingConfig:
+     *       'projects/my-project/locations/my-location/groundingConfigs/my-groundingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "answerCandidate": "my_answerCandidate",
+     *       //   "facts": [],
+     *       //   "groundingSpec": {},
+     *       //   "userLabels": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "citedChunks": [],
+     *   //   "citedFacts": [],
+     *   //   "claims": [],
+     *   //   "supportScore": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41516,6 +57152,73 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a new Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.create({
+     *       // Resource name of the CmekConfig to use for protecting this Identity Mapping Store.
+     *       cmekConfigName: 'placeholder-value',
+     *       // Identity Mapping Store without CMEK protections. If a default CmekConfig is set for the project, setting this field will override the default CmekConfig as well.
+     *       disableCmek: 'placeholder-value',
+     *       // Required. The ID of the Identity Mapping Store to create. The ID must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 63 characters.
+     *       identityMappingStoreId: 'placeholder-value',
+     *       // Required. The parent collection resource name, such as `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cmekConfig": {},
+     *         //   "idpConfig": {},
+     *         //   "kmsKeyName": "my_kmsKeyName",
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "idpConfig": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41619,6 +57322,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes the Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.delete({
+     *       // Required. The name of the Identity Mapping Store to delete. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
+     *       name: 'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41713,6 +57467,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.get({
+     *       // Required. The name of the Identity Mapping Store to get. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
+     *       name: 'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "idpConfig": {},
+     *   //   "kmsKeyName": "my_kmsKeyName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41813,6 +57617,68 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Imports a list of Identity Mapping Entries to an Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.importIdentityMappings(
+     *       {
+     *         // Required. The name of the Identity Mapping Store to import Identity Mapping Entries to. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
+     *         identityMappingStore:
+     *           'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -41910,6 +57776,58 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists all Identity Mapping Stores.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.list({
+     *       // Maximum number of IdentityMappingStores to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // A page token, received from a previous `ListIdentityMappingStores` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappingStores` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent of the Identity Mapping Stores to list. Format: `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "identityMappingStores": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42013,6 +57931,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists Identity Mappings in an Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.listIdentityMappings(
+     *       {
+     *         // Required. The name of the Identity Mapping Store to list Identity Mapping Entries in. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
+     *         identityMappingStore:
+     *           'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *         // Maximum number of IdentityMappings to return. If unspecified, defaults to 2000. The maximum allowed value is 10000. Values above 10000 will be coerced to 10000.
+     *         pageSize: 'placeholder-value',
+     *         // A page token, received from a previous `ListIdentityMappings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListIdentityMappings` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "identityMappingEntries": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42115,6 +58088,70 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Purges specified or all Identity Mapping Entries from an Identity Mapping Store.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.purgeIdentityMappings(
+     *       {
+     *         // Required. The name of the Identity Mapping Store to purge Identity Mapping Entries from. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identityMappingStore\}`
+     *         identityMappingStore:
+     *           'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "filter": "my_filter",
+     *           //   "force": false,
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42311,6 +58348,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.operations.get(
+     *       {
+     *         // The name of the operation resource.
+     *         name: 'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore/operations/my-operation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42405,6 +58495,62 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.identityMappingStores.operations.list(
+     *       {
+     *         // The standard list filter.
+     *         filter: 'placeholder-value',
+     *         // The name of the operation's parent resource.
+     *         name: 'projects/my-project/locations/my-location/identityMappingStores/my-identityMappingStore',
+     *         // The standard list page size.
+     *         pageSize: 'placeholder-value',
+     *         // The standard list page token.
+     *         pageToken: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42534,6 +58680,203 @@ export namespace discoveryengine_v1alpha {
     pageToken?: string;
   }
 
+  export class Resource$Projects$Locations$Notebooks {
+    context: APIRequestContext;
+    sources: Resource$Projects$Locations$Notebooks$Sources;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.sources = new Resource$Projects$Locations$Notebooks$Sources(
+        this.context
+      );
+    }
+  }
+
+  export class Resource$Projects$Locations$Notebooks$Sources {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Uploads a file for Notebook LM to use. Creates a Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.sources.uploadFile({
+     *       // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *       // The source id of the associated file. If not set, a source id will be generated and a new tentative source will be created.
+     *       sourceId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "blob": {},
+     *         //   "mediaRequestInfo": {},
+     *         //   "sourceId": "my_sourceId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "mediaResponseInfo": {},
+     *   //   "sourceId": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    uploadFile(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    uploadFile(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    >;
+    uploadFile(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    uploadFile(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    ): void;
+    uploadFile(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    ): void;
+    uploadFile(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    ): void;
+    uploadFile(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/sources/{sourceId}:uploadFile'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent', 'sourceId'],
+        pathParams: ['parent', 'sourceId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+    /**
+     * The source id of the associated file. If not set, a source id will be generated and a new tentative source will be created.
+     */
+    sourceId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileRequest;
+  }
+
   export class Resource$Projects$Locations$Operations {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -42542,6 +58885,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42635,6 +59028,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42782,6 +59228,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.podcasts.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/my-location/podcasts/my-podcast/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -42891,6 +59387,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Ranks a list of text records based on the given input query.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.rankingConfigs.rank({
+     *     // Required. The resource name of the rank service config, such as `projects/{project_num\}/locations/{location\}/rankingConfigs/default_ranking_config`.
+     *     rankingConfig:
+     *       'projects/my-project/locations/my-location/rankingConfigs/my-rankingConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "ignoreRecordDetailsInResponse": false,
+     *       //   "model": "my_model",
+     *       //   "query": "my_query",
+     *       //   "records": [],
+     *       //   "topN": 0,
+     *       //   "userLabels": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "records": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43013,6 +59569,66 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Check a particular requirement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.requirements.checkRequirement({
+     *       // Required. Full resource name of the location. Format `projects/{project_number_or_id\}/locations/{location\}`
+     *       location: 'projects/my-project/locations/my-location',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "requirementType": "my_requirementType",
+     *         //   "resources": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metricResults": [],
+     *   //   "oldestMetricTimestamp": "my_oldestMetricTimestamp",
+     *   //   "requirement": {},
+     *   //   "requirementCondition": {},
+     *   //   "result": "my_result"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43145,6 +59761,68 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a SampleQuerySet
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.sampleQuerySets.create({
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Required. The ID to use for the SampleQuerySet, which will become the final component of the SampleQuerySet.name. If the caller does not have permission to create the SampleQuerySet, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all SampleQuerySets with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     sampleQuerySetId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43248,6 +59926,50 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a SampleQuerySet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.sampleQuerySets.delete({
+     *     // Required. Full resource name of SampleQuerySet, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. If the caller does not have permission to delete the SampleQuerySet, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the SampleQuerySet to delete does not exist, a `NOT_FOUND` error is returned.
+     *     name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43338,6 +60060,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a SampleQuerySet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.sampleQuerySets.get({
+     *     // Required. Full resource name of SampleQuerySet, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. If the caller does not have permission to access the SampleQuerySet, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested SampleQuerySet does not exist, a NOT_FOUND error is returned.
+     *     name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43437,6 +60208,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of SampleQuerySets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.sampleQuerySets.list({
+     *     // Maximum number of SampleQuerySets to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     pageSize: 'placeholder-value',
+     *     // A page token ListSampleQuerySetsResponse.next_page_token, received from a previous SampleQuerySetService.ListSampleQuerySets call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SampleQuerySetService.ListSampleQuerySets must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list SampleQuerySets under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sampleQuerySets": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43539,6 +60361,68 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a SampleQuerySet.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.sampleQuerySets.patch({
+     *     // Identifier. The full resource name of the SampleQuerySet, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *     // Indicates which fields in the provided imported 'sample query set' to update. If not set, will by default update all fields.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43707,6 +60591,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43816,6 +60751,70 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Creates a SampleQuery
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.create(
+     *       {
+     *         // Required. The parent resource name, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *         // Required. The ID to use for the SampleQuery, which will become the final component of the SampleQuery.name. If the caller does not have permission to create the SampleQuery, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. This field must be unique among all SampleQuerys with the same parent. Otherwise, an `ALREADY_EXISTS` error is returned. This field must conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) standard with a length limit of 63 characters. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         sampleQueryId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "name": "my_name",
+     *           //   "queryEntry": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "queryEntry": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -43919,6 +60918,53 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Deletes a SampleQuery.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.delete(
+     *       {
+     *         // Required. Full resource name of SampleQuery, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. If the caller does not have permission to delete the SampleQuery, regardless of whether or not it exists, a `PERMISSION_DENIED` error is returned. If the SampleQuery to delete does not exist, a `NOT_FOUND` error is returned.
+     *         name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet/sampleQueries/my-sampleQuerie',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44009,6 +61055,55 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a SampleQuery.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.get({
+     *       // Required. Full resource name of SampleQuery, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. If the caller does not have permission to access the SampleQuery, regardless of whether or not it exists, a PERMISSION_DENIED error is returned. If the requested SampleQuery does not exist, a NOT_FOUND error is returned.
+     *       name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet/sampleQueries/my-sampleQuerie',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "queryEntry": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44109,6 +61204,71 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of multiple SampleQuerys. Sample queries that already exist may be deleted. Note: It is possible for a subset of the SampleQuerys to be successfully imported.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.import(
+     *       {
+     *         // Required. The parent sample query set resource name, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`. If the caller does not have permission to list SampleQuerys under this sample query set, regardless of whether or not this sample query set exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "bigquerySource": {},
+     *           //   "errorConfig": {},
+     *           //   "gcsSource": {},
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44206,6 +61366,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets a list of SampleQuerys.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.list(
+     *       {
+     *         // Maximum number of SampleQuerys to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *         pageSize: 'placeholder-value',
+     *         // A page token ListSampleQueriesResponse.next_page_token, received from a previous SampleQueryService.ListSampleQueries call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to SampleQueryService.ListSampleQueries must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent sample query set resource name, such as `projects/{project\}/locations/{location\}/sampleQuerySets/{sampleQuerySet\}`. If the caller does not have permission to list SampleQuerys under this sample query set, regardless of whether or not this sample query set exists, a `PERMISSION_DENIED` error is returned.
+     *         parent:
+     *           'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sampleQueries": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44309,6 +61524,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates a SampleQuery.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.sampleQuerySets.sampleQueries.patch(
+     *       {
+     *         // Identifier. The full resource name of the sample query, in the format of `projects/{project\}/locations/{location\}/sampleQuerySets/{sample_query_set\}/sampleQueries/{sample_query\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/sampleQuerySets/my-sampleQuerySet/sampleQueries/my-sampleQuerie',
+     *         // Indicates which fields in the provided imported 'simple query' to update. If not set, will by default update all fields.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "createTime": "my_createTime",
+     *           //   "name": "my_name",
+     *           //   "queryEntry": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "queryEntry": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44490,6 +61768,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event from the browser. This uses a GET request to due to browser restriction of POST-ing to a third-party domain. This method is used only by the Discovery Engine API JavaScript pixel and Google Tag Manager. Users should not call this method directly.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.userEvents.collect({
+     *     // The event timestamp in milliseconds. This prevents browser caching of otherwise identical get requests. The name is abbreviated to reduce the payload bytes.
+     *     ets: 'placeholder-value',
+     *     // Required. The parent resource name. If the collect user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the collect user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // The URL including cgi-parameters but excluding the hash fragment with a length limit of 5,000 characters. This is often more useful than the referer URL, because many browsers only send the domain for third-party requests.
+     *     uri: 'placeholder-value',
+     *     // Required. URL encoded UserEvent proto with a length limit of 2,000,000 characters.
+     *     userEvent: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentType": "my_contentType",
+     *   //   "data": "my_data",
+     *   //   "extensions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44582,6 +61914,67 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Bulk import of user events. Request processing might be synchronous. Events that already exist are skipped. Use this method for backfilling historical user events. Operation.response is of type ImportResponse. Note that it is possible for a subset of the items to be successfully inserted. Operation.metadata is of type ImportMetadata.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.userEvents.import({
+     *     // Required. Parent DataStore resource name, of the form `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "bigquerySource": {},
+     *       //   "errorConfig": {},
+     *       //   "gcsSource": {},
+     *       //   "inlineSource": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44678,6 +62071,104 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Writes a single user event.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.userEvents.write({
+     *     // Required. The parent resource name. If the write user event action is applied in DataStore level, the format is: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{data_store\}`. If the write user event action is applied in Location level, for example, the event with Document across multiple DataStore, the format is: `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // If set to true, the user event is written asynchronously after validation, and the API responds without waiting for the write.
+     *     writeAsync: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "attributes": {},
+     *       //   "attributionToken": "my_attributionToken",
+     *       //   "completionInfo": {},
+     *       //   "conversionType": "my_conversionType",
+     *       //   "dataStore": "my_dataStore",
+     *       //   "directUserRequest": false,
+     *       //   "documents": [],
+     *       //   "engine": "my_engine",
+     *       //   "eventTime": "my_eventTime",
+     *       //   "eventType": "my_eventType",
+     *       //   "filter": "my_filter",
+     *       //   "mediaInfo": {},
+     *       //   "pageInfo": {},
+     *       //   "panel": {},
+     *       //   "panels": [],
+     *       //   "promotionIds": [],
+     *       //   "searchInfo": {},
+     *       //   "sessionId": "my_sessionId",
+     *       //   "tagIds": [],
+     *       //   "transactionInfo": {},
+     *       //   "userInfo": {},
+     *       //   "userPseudoId": "my_userPseudoId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "attributes": {},
+     *   //   "attributionToken": "my_attributionToken",
+     *   //   "completionInfo": {},
+     *   //   "conversionType": "my_conversionType",
+     *   //   "dataStore": "my_dataStore",
+     *   //   "directUserRequest": false,
+     *   //   "documents": [],
+     *   //   "engine": "my_engine",
+     *   //   "eventTime": "my_eventTime",
+     *   //   "eventType": "my_eventType",
+     *   //   "filter": "my_filter",
+     *   //   "mediaInfo": {},
+     *   //   "pageInfo": {},
+     *   //   "panel": {},
+     *   //   "panels": [],
+     *   //   "promotionIds": [],
+     *   //   "searchInfo": {},
+     *   //   "sessionId": "my_sessionId",
+     *   //   "tagIds": [],
+     *   //   "transactionInfo": {},
+     *   //   "userInfo": {},
+     *   //   "userPseudoId": "my_userPseudoId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44842,6 +62333,69 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Updates the User License. This method is used for batch assign/unassign licenses to users.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.batchUpdateUserLicenses(
+     *       {
+     *         // Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *         parent:
+     *           'projects/my-project/locations/my-location/userStores/my-userStore',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "deleteUnassignedUserLicenses": false,
+     *           //   "inlineSource": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -44958,6 +62512,57 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.operations.get({
+     *       // The name of the operation resource.
+     *       name: 'projects/my-project/locations/my-location/userStores/my-userStore/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45052,6 +62657,60 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.operations.list({
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/my-location/userStores/my-userStore',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45189,6 +62848,61 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists the User Licenses.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.userStores.userLicenses.list({
+     *       // Optional. Filter for the list request. Supported fields: * `license_assignment_state` Examples: * `license_assignment_state = ASSIGNED` to list assigned user licenses. * `license_assignment_state = NO_LICENSE` to list not licensed users. * `license_assignment_state = NO_LICENSE_ATTEMPTED_LOGIN` to list users who attempted login but no license assigned. * `license_assignment_state != NO_LICENSE_ATTEMPTED_LOGIN` to filter out users who attempted login but no license assigned.
+     *       filter: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, defaults to 10. The maximum value is 50; values above 50 will be coerced to 50. If this field is negative, an INVALID_ARGUMENT error is returned.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListUserLicenses` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUserLicenses` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent UserStore resource name, format: `projects/{project\}/locations/{location\}/userStores/{user_store_id\}`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/userStores/my-userStore',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "userLicenses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45319,6 +63033,56 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -45412,6 +63176,59 @@ export namespace discoveryengine_v1alpha {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'projects/my-project',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

@@ -2261,7 +2261,7 @@
       }
     }
   },
-  "revision": "20250423",
+  "revision": "20250612",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -3393,7 +3393,7 @@
           "type": "string"
         },
         "deploymentNamespace": {
-          "description": "Required. The namespace of the deployment resource to be overridden..",
+          "description": "Required. The namespace of the deployment resource to be overridden.",
           "type": "string"
         }
       },
@@ -7517,7 +7517,7 @@
             ],
             "type": "string"
           },
-          "description": "Deprecated, will erase after code is changed to use the new field.",
+          "description": "Deprecated, this field will be erased after code is changed to use the new field.",
           "type": "object"
         },
         "scopeTenancyWorkloadIdentityPool": {
@@ -7543,7 +7543,7 @@
       "id": "WorkloadIdentityMembershipState",
       "properties": {
         "description": {
-          "description": "Deprecated, will erase after code is changed to use the new field.",
+          "description": "Deprecated, this field will be erased after code is changed to use the new field.",
           "type": "string"
         }
       },

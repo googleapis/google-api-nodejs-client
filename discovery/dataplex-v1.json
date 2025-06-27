@@ -879,7 +879,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The project to which the request should be attributed in the following form: projects/{project}/locations/{location}.",
+                  "description": "Required. The project to which the request should be attributed in the following form: projects/{project}/locations/global.",
                   "location": "path",
                   "pattern": "^projects/[^/]+/locations/[^/]+$",
                   "required": true,
@@ -912,7 +912,7 @@
                   "type": "string"
                 },
                 "semanticSearch": {
-                  "description": "Optional. Internal only.",
+                  "description": "Optional. Specifies whether the search should understand the meaning and intent behind the query, rather than just matching keywords.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -2968,7 +2968,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The resource name of the parent Entry Group: projects/{project}/locations/{location}/entryGroups/{entry_group}.",
+                          "description": "Required. The resource name of the parent Entry Group: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+$",
                           "required": true,
@@ -2996,7 +2996,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Entry Link: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+                          "description": "Required. The resource name of the Entry Link: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entryLinks/{entry_link_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entryLinks/[^/]+$",
                           "required": true,
@@ -3012,7 +3012,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets an entry link.",
+                      "description": "Gets an Entry Link.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entryLinks/{entryLinksId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entryLinks.get",
@@ -3021,7 +3021,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the Entry Link: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+                          "description": "Required. The resource name of the Entry Link: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entryLinks/{entry_link_id}.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/entryGroups/[^/]+/entryLinks/[^/]+$",
                           "required": true,
@@ -3417,14 +3417,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource where this Glossary will be created. Format: projects/{projectId}/locations/{locationId} where locationId refers to a GCP region.",
+                      "description": "Required. The parent resource where this Glossary will be created. Format: projects/{project_id_or_number}/locations/{location_id} where location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Validates the request without actually creating the glossary. Default: false.",
+                      "description": "Optional. Validates the request without actually creating the Glossary. Default: false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -3441,7 +3441,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a Glossary resource. All the categories and terms within the glossary must be deleted before a glossary can be deleted.",
+                  "description": "Deletes a Glossary resource. All the categories and terms within the Glossary must be deleted before the Glossary can be deleted.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}",
                   "httpMethod": "DELETE",
                   "id": "dataplex.projects.locations.glossaries.delete",
@@ -3455,7 +3455,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the Glossary to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}",
+                      "description": "Required. The name of the Glossary to delete. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                       "required": true,
@@ -3471,7 +3471,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Retrieves a specified Glossary resource.",
+                  "description": "Gets a Glossary resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}",
                   "httpMethod": "GET",
                   "id": "dataplex.projects.locations.glossaries.get",
@@ -3480,7 +3480,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The name of the Glossary to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}",
+                      "description": "Required. The name of the Glossary to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                       "required": true,
@@ -3536,17 +3536,17 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. Filter expression that filters glossaries listed in the response. Initially, no filter is supported.",
+                      "description": "Optional. Filter expression that filters Glossaries listed in the response. Filters on proto fields of Glossary are supported. Examples of using a filter are: - display_name=\"my-glossary\" - categoryCount=1 - termCount=0",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Order by expression that orders glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                      "description": "Optional. Order by expression that orders Glossaries listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of glossaries to return. The service may return fewer than this value. If unspecified, at most 50 glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "description": "Optional. The maximum number of Glossaries to return. The service may return fewer than this value. If unspecified, at most 50 Glossaries will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -3557,7 +3557,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent, which has this collection of glossaries. Format: projects/{project}/locations/{location} Location is the GCP region.",
+                      "description": "Required. The parent, which has this collection of Glossaries. Format: projects/{project_id_or_number}/locations/{location_id} where location_id refers to a GCP region.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -3582,7 +3582,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}",
+                      "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                       "required": true,
@@ -3595,7 +3595,7 @@
                       "type": "string"
                     },
                     "validateOnly": {
-                      "description": "Optional. Validates the request without actually updating the glossary. Default: false.",
+                      "description": "Optional. Validates the request without actually updating the Glossary. Default: false.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -3672,7 +3672,7 @@
                 "categories": {
                   "methods": {
                     "create": {
-                      "description": "GlossaryCategory APIs are CCFE passthrough APIs. Creates a new GlossaryCategory resource.",
+                      "description": "Creates a new GlossaryCategory resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories",
                       "httpMethod": "POST",
                       "id": "dataplex.projects.locations.glossaries.categories.create",
@@ -3681,12 +3681,12 @@
                       ],
                       "parameters": {
                         "categoryId": {
-                          "description": "Required. Category ID: GlossaryCategory identifier.",
+                          "description": "Required. GlossaryCategory identifier.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource where this GlossaryCategory will be created. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} where locationId refers to a GCP region.",
+                          "description": "Required. The parent resource where this GlossaryCategory will be created. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} where locationId refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                           "required": true,
@@ -3705,7 +3705,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a GlossaryCategory resource. All the categories and terms nested directly under the category will be moved one level up to the parent in the hierarchy.",
+                      "description": "Deletes a GlossaryCategory resource. All the GlossaryCategories and GlossaryTerms nested directly under the specified GlossaryCategory will be moved one level up to the parent in the hierarchy.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}",
                       "httpMethod": "DELETE",
                       "id": "dataplex.projects.locations.glossaries.categories.delete",
@@ -3714,7 +3714,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the GlossaryCategory to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}/categories/{glossary_category}",
+                          "description": "Required. The name of the GlossaryCategory to delete. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
                           "required": true,
@@ -3730,7 +3730,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Retrieves a specified GlossaryCategory resource.",
+                      "description": "Gets a GlossaryCategory resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories/{categoriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.glossaries.categories.get",
@@ -3739,7 +3739,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the GlossaryCategory to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}/categories/{glossary_category}",
+                          "description": "Required. The name of the GlossaryCategory to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
                           "required": true,
@@ -3786,7 +3786,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists GlossaryCategory resources in a glossary.",
+                      "description": "Lists GlossaryCategory resources in a Glossary.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/categories",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.glossaries.categories.list",
@@ -3795,17 +3795,17 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression that filters categories listed in the response. Filters supported: List GlossaryCategories based on immediate parent in the resource hierarchy. This will only return the GlossaryCategories nested directly under the parent and no other subsequent nested categories will be returned.",
+                          "description": "Optional. Filter expression that filters GlossaryCategories listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent=\"projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}\" - immediate_parent=\"projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}\"This will only return the GlossaryCategories that are directly nested under the specified parent.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Order by expression that orders categories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                          "description": "Optional. Order by expression that orders GlossaryCategories listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of categories to return. The service may return fewer than this value. If unspecified, at most 50 categories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "Optional. The maximum number of GlossaryCategories to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryCategories will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -3816,7 +3816,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent, which has this collection of categories. Format: projects/{project}/locations/{location}/glossaries/{glossary} Location is the GCP region.",
+                          "description": "Required. The parent, which has this collection of GlossaryCategories. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} Location is the GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                           "required": true,
@@ -3841,7 +3841,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+                          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/categories/[^/]+$",
                           "required": true,
@@ -3926,7 +3926,7 @@
                 "terms": {
                   "methods": {
                     "create": {
-                      "description": "GlossaryTerm APIs are CCFE passthrough APIs. Creates a new GlossaryTerm resource.",
+                      "description": "Creates a new GlossaryTerm resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms",
                       "httpMethod": "POST",
                       "id": "dataplex.projects.locations.glossaries.terms.create",
@@ -3935,14 +3935,14 @@
                       ],
                       "parameters": {
                         "parent": {
-                          "description": "Required. The parent resource where this GlossaryTerm will be created. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} where locationId refers to a GCP region.",
+                          "description": "Required. The parent resource where the GlossaryTerm will be created. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} where location_id refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "termId": {
-                          "description": "Required. Term ID: GlossaryTerm identifier.",
+                          "description": "Required. GlossaryTerm identifier.",
                           "location": "query",
                           "type": "string"
                         }
@@ -3968,7 +3968,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the GlossaryTerm to delete. Format: projects/{project}/locations/{location}/glossary/{glossary}/terms/{glossary_term}",
+                          "description": "Required. The name of the GlossaryTerm to delete. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/terms/{term_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
                           "required": true,
@@ -3984,7 +3984,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Retrieves a specified GlossaryTerm resource.",
+                      "description": "Gets a GlossaryTerm resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms/{termsId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.glossaries.terms.get",
@@ -3993,7 +3993,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The name of the GlossaryTerm to retrieve. Format: projects/{project}/locations/{location}/glossaries/{glossary}/terms/{glossary_term}",
+                          "description": "Required. The name of the GlossaryTerm to retrieve. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/terms/{term_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
                           "required": true,
@@ -4040,7 +4040,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists GlossaryTerm resources in a glossary.",
+                      "description": "Lists GlossaryTerm resources in a Glossary.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/glossaries/{glossariesId}/terms",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.glossaries.terms.list",
@@ -4049,17 +4049,17 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. Filter expression that filters terms listed in the response. Filters supported: List GlossaryTerms based on immediate parent in the resource hierarchy. This will only return the terms nested directly under the parent and no other subsequent nested terms will be returned.",
+                          "description": "Optional. Filter expression that filters GlossaryTerms listed in the response. Filters are supported on the following fields: - immediate_parentExamples of using a filter are: - immediate_parent=\"projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}\" - immediate_parent=\"projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}\"This will only return the GlossaryTerms that are directly nested under the specified parent.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Order by expression that orders terms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
+                          "description": "Optional. Order by expression that orders GlossaryTerms listed in the response. Order by fields are: name or create_time for the result. If not specified, the ordering is undefined.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of terms to return. The service may return fewer than this value. If unspecified, at most 50 terms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "description": "Optional. The maximum number of GlossaryTerms to return. The service may return fewer than this value. If unspecified, at most 50 GlossaryTerms will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -4070,7 +4070,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent, which has this collection of terms. Format: projects/{project}/locations/{location}/glossaries/{glossary} Location is the GCP region.",
+                          "description": "Required. The parent, which has this collection of GlossaryTerms. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} where location_id refers to a GCP region.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+$",
                           "required": true,
@@ -4095,7 +4095,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/terms/{termId}",
+                          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/terms/{term_id}",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/glossaries/[^/]+/terms/[^/]+$",
                           "required": true,
@@ -7027,7 +7027,7 @@
       }
     }
   },
-  "revision": "20250429",
+  "revision": "20250618",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -7433,7 +7433,7 @@
           "type": "array"
         },
         "type": {
-          "description": "Required. The datatype of this field. The following values are supported:Primitive types: string integer boolean double datetime. Must be of the format RFC3339 UTC \"Zulu\" (Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\").Complex types: enum array map record",
+          "description": "Required. The datatype of this field. The following values are supported:Primitive types: string int bool double datetime. Must be of the format RFC3339 UTC \"Zulu\" (Examples: \"2014-10-02T15:01:23Z\" and \"2014-10-02T15:01:23.045123456Z\").Complex types: enum array map record",
           "type": "string"
         },
         "typeId": {
@@ -8306,6 +8306,10 @@
           "description": "Optional. The location of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. 1. If the Cloud Storage bucket is located in a multi-region bucket, then BigQuery dataset can be in the same multi-region bucket or any single region that is included in the same multi-region bucket. The datascan can be created in any single region that is included in the same multi-region bucket 2. If the Cloud Storage bucket is located in a dual-region bucket, then BigQuery dataset can be located in regions that are included in the dual-region bucket, or in a multi-region that includes the dual-region. The datascan can be created in any single region that is included in the same dual-region bucket. 3. If the Cloud Storage bucket is located in a single region, then BigQuery dataset can be in the same single region or any multi-region bucket that includes the same single region. The datascan will be created in the same single region as the bucket. 4. If the BigQuery dataset is in single region, it must be in the same single region as the datascan.For supported values, refer to https://cloud.google.com/bigquery/docs/locations#supported_locations.",
           "type": "string"
         },
+        "project": {
+          "description": "Optional. The project of the BigQuery dataset to publish BigLake external or non-BigLake external tables to. If not specified, the project of the Cloud Storage bucket will be used. The format is \"projects/{project_id_or_number}\".",
+          "type": "string"
+        },
         "tableType": {
           "description": "Optional. Determines whether to publish discovered tables as BigLake external tables or non-BigLake external tables.",
           "enum": [
@@ -8720,6 +8724,19 @@
           "readOnly": true,
           "type": "string"
         },
+        "dimensions": {
+          "description": "Output only. The dimension-level results for this column.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataQualityDimensionResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "passed": {
+          "description": "Output only. Whether the column passed or failed.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "score": {
           "description": "Output only. The column-level data quality score for this data scan job if and only if the 'column' field is set.The score ranges between between 0, 100 (up to two decimal points).",
           "format": "float",
@@ -8767,6 +8784,11 @@
       "description": "The output of a DataQualityScan.",
       "id": "GoogleCloudDataplexV1DataQualityResult",
       "properties": {
+        "catalogPublishingStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus",
+          "description": "Output only. The status of publishing the data scan to Catalog.",
+          "readOnly": true
+        },
         "columns": {
           "description": "Output only. A list of results at the column level.A column will have a corresponding DataQualityColumnResult if and only if there is at least one rule with the 'column' field set to it.",
           "items": {
@@ -8875,7 +8897,7 @@
           "type": "string"
         },
         "dimension": {
-          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Supported dimensions are \"COMPLETENESS\", \"ACCURACY\", \"CONSISTENCY\", \"VALIDITY\", \"UNIQUENESS\", \"FRESHNESS\", \"VOLUME\"",
+          "description": "Required. The dimension a rule belongs to. Results are also aggregated at the dimension level. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
           "type": "string"
         },
         "ignoreNull": {
@@ -9230,6 +9252,10 @@
       "description": "DataQualityScan related setting.",
       "id": "GoogleCloudDataplexV1DataQualitySpec",
       "properties": {
+        "catalogPublishingEnabled": {
+          "description": "Optional. If set, the latest DataScan job result will be published to Dataplex Catalog.",
+          "type": "boolean"
+        },
         "postScanActions": {
           "$ref": "GoogleCloudDataplexV1DataQualitySpecPostScanActions",
           "description": "Optional. Actions to take upon job completion."
@@ -9341,7 +9367,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScan": {
-      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).",
+      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery). LINT.IfChange",
       "id": "GoogleCloudDataplexV1DataScan",
       "properties": {
         "createTime": {
@@ -9460,10 +9486,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataScanCatalogPublishingStatus": {
+      "description": "The status of publishing the data scan result to Catalog.",
+      "id": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. Execution state for catalog publishing.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The publishing state is unspecified.",
+            "Publish to catalog completed successfully.",
+            "Publish to catalog failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataScanEvent": {
       "description": "These messages contain information about the execution of a datascan. The monitored resource is 'DataScan'",
       "id": "GoogleCloudDataplexV1DataScanEvent",
       "properties": {
+        "catalogPublishingStatus": {
+          "$ref": "GoogleCloudDataplexV1DataScanCatalogPublishingStatus",
+          "description": "The status of publishing the data scan to Catalog."
+        },
         "createTime": {
           "description": "The time when the data scan job was created.",
           "format": "google-datetime",
@@ -9868,7 +9920,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could be: BigQuery table of type \"TABLE\" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "description": "Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could eitherbe: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type \"TABLE\" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
         }
       },
@@ -10467,7 +10519,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EntryLink": {
-      "description": "EntryLink represents a link between two entries.",
+      "description": "EntryLink represents a link between two Entries.",
       "id": "GoogleCloudDataplexV1EntryLink",
       "properties": {
         "createTime": {
@@ -10477,18 +10529,18 @@
           "type": "string"
         },
         "entryLinkType": {
-          "description": "Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: projects/{project}/locations/{location}/entryLinkTypes/{entry_link_type}.",
+          "description": "Required. Immutable. Relative resource name of the Entry Link Type used to create this Entry Link, of the form: `projects/{project_id_or_number}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}.",
           "type": "string"
         },
         "entryReferences": {
-          "description": "Required. Specifies the entries referenced in the entry link. There should be exactly two entry references.",
+          "description": "Required. Specifies the Entries referenced in the Entry Link. There should be exactly two entry references.",
           "items": {
             "$ref": "GoogleCloudDataplexV1EntryLinkEntryReference"
           },
           "type": "array"
         },
         "name": {
-          "description": "Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project}/locations/{location}/entryGroups/{entry_group}/entryLinks/{entry_link}.",
+          "description": "Output only. Immutable. Identifier. The relative resource name of the Entry Link, of the form: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entryLinks/{entry_link_id}",
           "readOnly": true,
           "type": "string"
         },
@@ -10502,28 +10554,28 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1EntryLinkEntryReference": {
-      "description": "Reference to the Entry that is linked through the entry link.",
+      "description": "Reference to the Entry that is linked through the Entry Link.",
       "id": "GoogleCloudDataplexV1EntryLinkEntryReference",
       "properties": {
         "name": {
-          "description": "Required. Immutable. The relative resource name of the referenced entry, of the form: projects/{project}/locations/{location}/entryGroups/{entryGroup}/entries/{entry}.",
+          "description": "Required. Immutable. The relative resource name of the referenced Entry, of the form: projects/{project_id_or_number}/locations/{location_id}/entryGroups/{entry_group_id}/entries/{entry_id}",
           "type": "string"
         },
         "path": {
-          "description": "Immutable. The path in the entry that is referenced in the entry link. Empty path denotes that the entry itself is referenced in the entry link.",
+          "description": "Immutable. The path in the Entry that is referenced in the Entry Link. Empty path denotes that the Entry itself is referenced in the Entry Link.",
           "type": "string"
         },
         "type": {
-          "description": "Required. Immutable. The reference type of the entry.",
+          "description": "Required. Immutable. The reference type of the Entry.",
           "enum": [
             "UNSPECIFIED",
             "SOURCE",
             "TARGET"
           ],
           "enumDescriptions": [
-            "Unspecified reference type. Implies that the entry is referenced in a non-directional entry link.",
-            "The entry is referenced as the source of the directional entry link.",
-            "The entry is referenced as the target of the directional entry link."
+            "Unspecified reference type. Implies that the Entry is referenced in a non-directional Entry Link.",
+            "The Entry is referenced as the source of the directional Entry Link.",
+            "The Entry is referenced as the target of the directional Entry Link."
           ],
           "type": "string"
         }
@@ -10941,27 +10993,27 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1Glossary": {
-      "description": "A Glossary represents a collection of categories and terms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the categories and terms within it.",
+      "description": "A Glossary represents a collection of GlossaryCategories and GlossaryTerms defined by the user. Glossary is a top level resource and is the GCP parent resource of all the GlossaryCategories and GlossaryTerms within it.",
       "id": "GoogleCloudDataplexV1Glossary",
       "properties": {
         "categoryCount": {
-          "description": "Output only. The number of categories in the glossary.",
+          "description": "Output only. The number of GlossaryCategories in the Glossary.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "createTime": {
-          "description": "Output only. The time at which the glossary was created.",
+          "description": "Output only. The time at which the Glossary was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Optional. The user-mutable description of the glossary.",
+          "description": "Optional. The user-mutable description of the Glossary.",
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly display name of the glossary. This is user-mutable. This will be same as the glossaryId, if not specified.",
+          "description": "Optional. User friendly display name of the Glossary. This is user-mutable. This will be same as the GlossaryId, if not specified.",
           "type": "string"
         },
         "etag": {
@@ -10976,12 +11028,12 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}",
+          "description": "Output only. Identifier. The resource name of the Glossary. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}",
           "readOnly": true,
           "type": "string"
         },
         "termCount": {
-          "description": "Output only. The number of terms in the glossary.",
+          "description": "Output only. The number of GlossaryTerms in the Glossary.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -10992,7 +11044,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. The time at which the glossary was last updated.",
+          "description": "Output only. The time at which the Glossary was last updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -11001,7 +11053,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1GlossaryCategory": {
-      "description": "A GlossaryCategory represents a collection of categories and terms within a Glossary that are related to each other.",
+      "description": "A GlossaryCategory represents a collection of GlossaryCategories and GlossaryTerms within a Glossary that are related to each other.",
       "id": "GoogleCloudDataplexV1GlossaryCategory",
       "properties": {
         "createTime": {
@@ -11015,7 +11067,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the categoryId, if not specified.",
+          "description": "Optional. User friendly display name of the GlossaryCategory. This is user-mutable. This will be same as the GlossaryCategoryId, if not specified.",
           "type": "string"
         },
         "labels": {
@@ -11026,12 +11078,12 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "description": "Output only. Identifier. The resource name of the GlossaryCategory. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
           "readOnly": true,
           "type": "string"
         },
         "parent": {
-          "description": "Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} OR projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "description": "Required. The immediate parent of the GlossaryCategory in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} OR projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
           "type": "string"
         },
         "uid": {
@@ -11049,7 +11101,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1GlossaryTerm": {
-      "description": "GlossaryTerms are the core of glossary. A GlossaryTerm holds a rich text description that can be attached to entries or specific columns to enrich them.",
+      "description": "GlossaryTerms are the core of Glossary. A GlossaryTerm holds a rich text description that can be attached to Entries or specific columns to enrich them.",
       "id": "GoogleCloudDataplexV1GlossaryTerm",
       "properties": {
         "createTime": {
@@ -11063,7 +11115,7 @@
           "type": "string"
         },
         "displayName": {
-          "description": "Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the termId, if not specified.",
+          "description": "Optional. User friendly display name of the GlossaryTerm. This is user-mutable. This will be same as the GlossaryTermId, if not specified.",
           "type": "string"
         },
         "labels": {
@@ -11074,12 +11126,12 @@
           "type": "object"
         },
         "name": {
-          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/terms/{termId}",
+          "description": "Output only. Identifier. The resource name of the GlossaryTerm. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/terms/{term_id}",
           "readOnly": true,
           "type": "string"
         },
         "parent": {
-          "description": "Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a Category. Format: projects/{projectId}/locations/{locationId}/glossaries/{glossaryId} OR projects/{projectId}/locations/{locationId}/glossaries/{glossaryId}/categories/{categoryId}",
+          "description": "Required. The immediate parent of the GlossaryTerm in the resource-hierarchy. It can either be a Glossary or a GlossaryCategory. Format: projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id} OR projects/{project_id_or_number}/locations/{location_id}/glossaries/{glossary_id}/categories/{category_id}",
           "type": "string"
         },
         "uid": {
@@ -11192,6 +11244,10 @@
         "entry": {
           "$ref": "GoogleCloudDataplexV1Entry",
           "description": "Information about an entry and its attached aspects."
+        },
+        "entryLink": {
+          "$ref": "GoogleCloudDataplexV1EntryLink",
+          "description": "Information about the entry link. User should provide either one of the entry or entry_link. While providing entry_link, user should not provide update_mask and aspect_keys."
         },
         "updateMask": {
           "description": "The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).",
@@ -11864,7 +11920,7 @@
       "id": "GoogleCloudDataplexV1ListGlossariesResponse",
       "properties": {
         "glossaries": {
-          "description": "Lists the glossaries in the specified parent.",
+          "description": "Lists the Glossaries in the specified parent.",
           "items": {
             "$ref": "GoogleCloudDataplexV1Glossary"
           },
@@ -11889,7 +11945,7 @@
       "id": "GoogleCloudDataplexV1ListGlossaryCategoriesResponse",
       "properties": {
         "categories": {
-          "description": "Lists the glossaryCategories in the specified parent.",
+          "description": "Lists the GlossaryCategories in the specified parent.",
           "items": {
             "$ref": "GoogleCloudDataplexV1GlossaryCategory"
           },
@@ -11918,7 +11974,7 @@
           "type": "string"
         },
         "terms": {
-          "description": "Lists the terms in the specified parent.",
+          "description": "Lists the GlossaryTerms in the specified parent.",
           "items": {
             "$ref": "GoogleCloudDataplexV1GlossaryTerm"
           },
@@ -12236,8 +12292,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "createdEntryLinks": {
+          "description": "Output only. The total number of entry links that were successfully created.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "deletedEntries": {
           "description": "Output only. The total number of entries that were deleted.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "deletedEntryLinks": {
+          "description": "Output only. The total number of entry links that were successfully deleted.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -12250,6 +12318,12 @@
         },
         "unchangedEntries": {
           "description": "Output only. The total number of entries that were unchanged.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unchangedEntryLinks": {
+          "description": "Output only. The total number of entry links that were left unchanged.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -12353,8 +12427,29 @@
           },
           "type": "array"
         },
+        "entryLinkTypes": {
+          "description": "Optional. The entry link types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryLinkTypes/{entry_link_type_id}. The job modifies only the entryLinks that belong to these entry link types.If the metadata import file attempts to create or delete an entry link whose entry link type isn't included in this list, the import job will skip those entry links.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "entryTypes": {
           "description": "Required. The entry types that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryTypes/{entry_type_id}. The job modifies only the entries and aspects that belong to these entry types.If the metadata import file attempts to modify an entry whose type isn't included in this list, the import job is halted before modifying any entries or aspects.The location of an entry type must either match the location of the job, or the entry type must be global.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "glossaries": {
+          "description": "Optional. The glossaries that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/glossaries/{glossary_id}.While importing Business Glossary entries, the user must provide glossaries. While importing entries, the user does not have to provide glossaries. If the metadata import file attempts to modify Business Glossary entries whose glossary isn't included in this list, the import job will skip those entries.The location of a glossary must either match the location of the job, or the glossary must be global.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "referencedEntryScopes": {
+          "description": "Optional. Defines the scope of entries that can be referenced in the entry links.Currently, projects are supported as valid scopes. Format: projects/{project_number_or_id}If the metadata import file attempts to create an entry link which references an entry that is not in the scope, the import job will skip that entry link.",
           "items": {
             "type": "string"
           },

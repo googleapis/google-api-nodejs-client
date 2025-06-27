@@ -4,15 +4,6 @@
 
 > Accesses the NoSQL document database built for automatic scaling, high performance, and ease of application development.
 
-## Support status
-**Note**: Google provides multiple libraries for this service. This library is in
-maintenance mode, and will continue to be made available for users who have
-existing applications. If you're building a new application, or modernizing a
-legacy application, please use [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) instead.
-The [@google-cloud/firestore](https://www.npmjs.com/package/@google-cloud/firestore) library is faster, easier to use, and better maintained.
-
-To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
-
 ## Installation
 
 ```sh

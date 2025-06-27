@@ -522,7 +522,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Resource name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
+                      "description": "Identifier. Resource name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/deployments/[^/]+$",
                       "required": true,
@@ -1111,6 +1111,158 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
+              },
+              "resources": {
+                "resourceChanges": {
+                  "methods": {
+                    "get": {
+                      "description": "Get a ResourceChange for a given preview.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/previews/{previewsId}/resourceChanges/{resourceChangesId}",
+                      "httpMethod": "GET",
+                      "id": "config.projects.locations.previews.resourceChanges.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource change to retrieve. Format: 'projects/{project_id}/locations/{location}/previews/{preview}/resourceChanges/{resource_change}'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/previews/[^/]+/resourceChanges/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "ResourceChange"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists ResourceChanges for a given preview.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/previews/{previewsId}/resourceChanges",
+                      "httpMethod": "GET",
+                      "id": "config.projects.locations.previews.resourceChanges.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Lists the resource changes that match the filter expression. A filter expression filters the resource changes listed in the response. The expression must be of the form '{field} {operator} {value}' where operators: '<', '>', '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = \"projects/foo/locations/us-central1/previews/dep/resourceChanges/baz",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field to use to sort the list.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. When requesting a page of resource changes, 'page_size' specifies number of resource changes to return. If unspecified, at most 500 will be returned. The maximum value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Token returned by previous call to 'ListResourceChanges' which specifies the position in the list from where to continue listing the resource changes.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent in whose context the ResourceChanges are listed. The parent value is in the format: 'projects/{project_id}/locations/{location}/previews/{preview}'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/previews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/resourceChanges",
+                      "response": {
+                        "$ref": "ListResourceChangesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "resourceDrifts": {
+                  "methods": {
+                    "get": {
+                      "description": "Get a ResourceDrift for a given preview.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/previews/{previewsId}/resourceDrifts/{resourceDriftsId}",
+                      "httpMethod": "GET",
+                      "id": "config.projects.locations.previews.resourceDrifts.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource drift to retrieve. Format: 'projects/{project_id}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/previews/[^/]+/resourceDrifts/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "ResourceDrift"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "List ResourceDrifts for a given preview.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/previews/{previewsId}/resourceDrifts",
+                      "httpMethod": "GET",
+                      "id": "config.projects.locations.previews.resourceDrifts.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. Lists the resource drifts that match the filter expression. A filter expression filters the resource drifts listed in the response. The expression must be of the form '{field} {operator} {value}' where operators: '<', '>', '<=', '>=', '!=', '=', ':' are supported (colon ':' represents a HAS operator which is roughly synonymous with equality). {field} can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = \"projects/foo/locations/us-central1/previews/dep/resourceDrifts/baz",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Field to use to sort the list.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. When requesting a page of resource drifts, 'page_size' specifies number of resource drifts to return. If unspecified, at most 500 will be returned. The maximum value is 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. Token returned by previous call to 'ListResourceDrifts' which specifies the position in the list from where to continue listing the resource drifts.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent in whose context the ResourceDrifts are listed. The parent value is in the format: 'projects/{project_id}/locations/{location}/previews/{preview}'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/previews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/resourceDrifts",
+                      "response": {
+                        "$ref": "ListResourceDriftsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
               }
             },
             "terraformVersions": {
@@ -1193,7 +1345,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250604",
   "rootUrl": "https://config.googleapis.com/",
   "schemas": {
     "ApplyResults": {
@@ -1378,7 +1530,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "User-defined metadata for the deployment.",
+          "description": "Optional. User-defined metadata for the deployment.",
           "type": "object"
         },
         "latestRevision": {
@@ -1410,7 +1562,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Resource name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
+          "description": "Identifier. Resource name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
           "type": "string"
         },
         "quotaValidation": {
@@ -1722,6 +1874,56 @@
         },
         "unreachable": {
           "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListResourceChangesResponse": {
+      "description": "A response to a 'ListResourceChanges' call. Contains a list of ResourceChanges.",
+      "id": "ListResourceChangesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the 'ListResourceChanges' method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "resourceChanges": {
+          "description": "List of ResourceChanges.",
+          "items": {
+            "$ref": "ResourceChange"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources, if any.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListResourceDriftsResponse": {
+      "description": "A response to a 'ListResourceDrifts' call. Contains a list of ResourceDrifts.",
+      "id": "ListResourceDriftsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token to request the next page of resources from the 'ListResourceDrifts' method. The value of an empty string means that there are no more resources to return.",
+          "type": "string"
+        },
+        "resourceDrifts": {
+          "description": "List of ResourceDrifts.",
+          "items": {
+            "$ref": "ResourceDrift"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable resources, if any.",
           "items": {
             "type": "string"
           },
@@ -2238,6 +2440,82 @@
       },
       "type": "object"
     },
+    "PropertyChange": {
+      "description": "A property change represents a change to a property in the state file.",
+      "id": "PropertyChange",
+      "properties": {
+        "after": {
+          "description": "Output only. Representations of the object value after the actions.",
+          "readOnly": true,
+          "type": "any"
+        },
+        "afterSensitivePaths": {
+          "description": "Output only. The paths of sensitive fields in `after`. Paths are relative to `path`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "before": {
+          "description": "Output only. Representations of the object value before the actions.",
+          "readOnly": true,
+          "type": "any"
+        },
+        "beforeSensitivePaths": {
+          "description": "Output only. The paths of sensitive fields in `before`. Paths are relative to `path`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "path": {
+          "description": "Output only. The path of the property change.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PropertyDrift": {
+      "description": "A property drift represents a drift to a property in the state file.",
+      "id": "PropertyDrift",
+      "properties": {
+        "after": {
+          "description": "Output only. Representations of the object value after the actions.",
+          "readOnly": true,
+          "type": "any"
+        },
+        "afterSensitivePaths": {
+          "description": "Output only. The paths of sensitive fields in `after`. Paths are relative to `path`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "before": {
+          "description": "Output only. Representations of the object value before the actions.",
+          "readOnly": true,
+          "type": "any"
+        },
+        "beforeSensitivePaths": {
+          "description": "Output only. The paths of sensitive fields in `before`. Paths are relative to `path`.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "path": {
+          "description": "Output only. The path of the property drift.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Resource": {
       "description": "Resource represents a Google Cloud Platform resource actuated by IM. Resources are child resources of Revisions.",
       "id": "Resource",
@@ -2309,6 +2587,137 @@
       "properties": {
         "fullResourceName": {
           "description": "CAI resource name in the format following https://cloud.google.com/apis/design/resource_names#full_resource_name",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceChange": {
+      "description": "A resource change represents a change to a resource in the state file.",
+      "id": "ResourceChange",
+      "properties": {
+        "intent": {
+          "description": "Output only. The intent of the resource change.",
+          "enum": [
+            "INTENT_UNSPECIFIED",
+            "CREATE",
+            "UPDATE",
+            "DELETE",
+            "RECREATE",
+            "UNCHANGED"
+          ],
+          "enumDescriptions": [
+            "The default value.",
+            "The resource will be created.",
+            "The resource will be updated.",
+            "The resource will be deleted.",
+            "The resource will be recreated.",
+            "The resource will be untouched."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the resource change. Format: 'projects/{project_id}/locations/{location}/previews/{preview}/resourceChanges/{resource_change}'.",
+          "type": "string"
+        },
+        "propertyChanges": {
+          "description": "Output only. The property changes of the resource change.",
+          "items": {
+            "$ref": "PropertyChange"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "terraformInfo": {
+          "$ref": "ResourceChangeTerraformInfo",
+          "description": "Output only. Terraform info of the resource change.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ResourceChangeTerraformInfo": {
+      "description": "Terraform info of a ResourceChange.",
+      "id": "ResourceChangeTerraformInfo",
+      "properties": {
+        "actions": {
+          "description": "Output only. TF resource actions.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "address": {
+          "description": "Output only. TF resource address that uniquely identifies the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provider": {
+          "description": "Output only. TF resource provider.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. TF resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. TF resource type.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ResourceDrift": {
+      "description": "A resource drift represents a drift to a resource in the state file.",
+      "id": "ResourceDrift",
+      "properties": {
+        "name": {
+          "description": "Identifier. The name of the resource drift. Format: 'projects/{project_id}/locations/{location}/previews/{preview}/resourceDrifts/{resource_drift}'.",
+          "type": "string"
+        },
+        "propertyDrifts": {
+          "description": "Output only. The property drifts of the resource drift.",
+          "items": {
+            "$ref": "PropertyDrift"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "terraformInfo": {
+          "$ref": "ResourceDriftTerraformInfo",
+          "description": "Output only. Terraform info of the resource drift.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "ResourceDriftTerraformInfo": {
+      "description": "Terraform info of a ResourceChange.",
+      "id": "ResourceDriftTerraformInfo",
+      "properties": {
+        "address": {
+          "description": "Output only. The address of the drifted resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provider": {
+          "description": "Output only. The provider of the drifted resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resourceName": {
+          "description": "Output only. TF resource name.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "type": {
+          "description": "Output only. The type of the drifted resource.",
+          "readOnly": true,
           "type": "string"
         }
       },

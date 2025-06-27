@@ -124,7 +124,7 @@
                   ],
                   "parameters": {
                     "organization": {
-                      "description": "Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/US`.",
+                      "description": "Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/us`.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -178,7 +178,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/US`.",
+                      "description": "Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/us`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -207,7 +207,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/US/dataExchanges/123`.",
+                      "description": "Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/us/dataExchanges/123`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
                       "required": true,
@@ -233,7 +233,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
+                      "description": "Required. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
                       "required": true,
@@ -299,7 +299,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/US`.",
+                      "description": "Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/us`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -325,7 +325,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
+                      "description": "Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
                       "required": true,
@@ -427,7 +427,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
+                          "description": "Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
                           "required": true,
@@ -456,7 +456,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.",
+                          "description": "Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+/listings/[^/]+$",
                           "required": true,
@@ -482,7 +482,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.",
+                          "description": "Required. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+/listings/[^/]+$",
                           "required": true,
@@ -548,7 +548,7 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
+                          "description": "Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+$",
                           "required": true,
@@ -574,7 +574,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`",
+                          "description": "Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+/listings/[^/]+$",
                           "required": true,
@@ -638,7 +638,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.",
+                          "description": "Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/dataExchanges/[^/]+/listings/[^/]+$",
                           "required": true,
@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20250418",
+  "revision": "20250507",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -819,7 +819,7 @@
           "type": "integer"
         },
         "name": {
-          "description": "Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.",
+          "description": "Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.",
           "readOnly": true,
           "type": "string"
         },
@@ -840,6 +840,50 @@
         },
         "primaryContact": {
           "description": "Optional. Email or URL of the data provider. Max Length: 1000 bytes.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DestinationDataset": {
+      "description": "Defines the destination bigquery dataset.",
+      "id": "DestinationDataset",
+      "properties": {
+        "datasetReference": {
+          "$ref": "DestinationDatasetReference",
+          "description": "Required. A reference that identifies the destination dataset."
+        },
+        "description": {
+          "description": "Optional. A user-friendly description of the dataset.",
+          "type": "string"
+        },
+        "friendlyName": {
+          "description": "Optional. A descriptive name for the dataset.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The labels associated with this dataset. You can use these to organize and group your datasets. You can set this property when inserting or updating a dataset. See https://cloud.google.com/resource-manager/docs/creating-managing-labels for more information.",
+          "type": "object"
+        },
+        "location": {
+          "description": "Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DestinationDatasetReference": {
+      "id": "DestinationDatasetReference",
+      "properties": {
+        "datasetId": {
+          "description": "Required. A unique ID for this dataset, without the project name. The ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_). The maximum length is 1,024 characters.",
+          "type": "string"
+        },
+        "projectId": {
+          "description": "Required. The ID of the project containing this dataset.",
           "type": "string"
         }
       },
@@ -1113,7 +1157,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`",
+          "description": "Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`",
           "readOnly": true,
           "type": "string"
         },
@@ -1330,9 +1374,13 @@
           "type": "string"
         },
         "dataExchange": {
-          "description": "Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/US/dataExchanges/456",
+          "description": "Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/us/dataExchanges/456",
           "readOnly": true,
           "type": "string"
+        },
+        "destinationDataset": {
+          "$ref": "DestinationDataset",
+          "description": "Optional. BigQuery destination dataset to create for the subscriber."
         },
         "lastModifyTime": {
           "description": "Output only. Timestamp when the subscription was last modified.",
@@ -1344,7 +1392,7 @@
           "additionalProperties": {
             "$ref": "LinkedResource"
           },
-          "description": "Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.",
+          "description": "Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/us/dataExchanges/456/listings/789 -> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.",
           "readOnly": true,
           "type": "object"
         },
@@ -1357,7 +1405,7 @@
           "type": "array"
         },
         "listing": {
-          "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789",
+          "description": "Output only. Resource name of the source Listing. e.g. projects/123/locations/us/dataExchanges/456/listings/789",
           "readOnly": true,
           "type": "string"
         },
@@ -1367,7 +1415,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.",
+          "description": "Output only. The resource name of the subscription. e.g. `projects/myproject/locations/us/subscriptions/123`.",
           "readOnly": true,
           "type": "string"
         },

@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20250417",
+  "revision": "20250623",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1500,19 +1500,19 @@
           "enumDescriptions": [
             "Application type unknown.",
             "Application type arc (Android app).",
-            "Deprecated. This vaule is no longer used. Application type built-in.",
+            "Deprecated. This value is no longer used. Application type built-in.",
             "Application type Linux (via Crostini).",
             "Application type Chrome app.",
             "Application type web.",
             "Application type Mac OS.",
             "Application type Plugin VM.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser (Lacros browser app).",
+            "Deprecated. This value is no longer used. Application type standalone browser (Lacros browser app).",
             "Application type remote.",
             "Application type borealis.",
             "Application type system web.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser chrome app.",
+            "Deprecated. This value is no longer used. Application type standalone browser chrome app.",
             "Application type extension.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser extension.",
+            "Deprecated. This value is no longer used. Application type standalone browser extension.",
             "Application type bruschetta."
           ],
           "type": "string"
@@ -1779,16 +1779,14 @@
             "CANARY",
             "DEV",
             "BETA",
-            "STABLE",
-            "LTS"
+            "STABLE"
           ],
           "enumDescriptions": [
             "No release channel specified.",
             "Canary release channel.",
             "Dev release channel.",
             "Beta release channel.",
-            "Stable release channel.",
-            "Long-term support release channel."
+            "Stable release channel."
           ],
           "readOnly": true,
           "type": "string"
@@ -2825,13 +2823,15 @@
             "STATE_UNSPECIFIED",
             "UNKNOWN",
             "ONLINE",
-            "OFFLINE"
+            "OFFLINE",
+            "DEVICE_OUTDATED"
           ],
           "enumDescriptions": [
             "State not specified",
             "Device is not eligible for heartbeat monitoring",
             "Device is online",
-            "Device is offline"
+            "Device is offline",
+            "Device is outdated"
           ],
           "type": "string"
         }
@@ -3610,12 +3610,14 @@
           "enum": [
             "RISK_ASSESSMENT_PROVIDER_UNSPECIFIED",
             "RISK_ASSESSMENT_PROVIDER_CRXCAVATOR",
-            "RISK_ASSESSMENT_PROVIDER_SPIN_AI"
+            "RISK_ASSESSMENT_PROVIDER_SPIN_AI",
+            "RISK_ASSESSMENT_PROVIDER_LAYERX"
           ],
           "enumDescriptions": [
             "Default value when no provider is specified.",
             "CRXcavator.",
-            "Spin.Ai."
+            "Spin.Ai.",
+            "LayerX Security."
           ],
           "type": "string"
         },
@@ -3851,19 +3853,19 @@
           "enumDescriptions": [
             "Application type unknown.",
             "Application type arc (Android app).",
-            "Deprecated. This vaule is no longer used. Application type built-in.",
+            "Deprecated. This value is no longer used. Application type built-in.",
             "Application type Linux (via Crostini).",
             "Application type Chrome app.",
             "Application type web.",
             "Application type Mac OS.",
             "Application type Plugin VM.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser (Lacros browser app).",
+            "Deprecated. This value is no longer used. Application type standalone browser (Lacros browser app).",
             "Application type remote.",
             "Application type borealis.",
             "Application type system web.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser chrome app.",
+            "Deprecated. This value is no longer used. Application type standalone browser chrome app.",
             "Application type extension.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser extension.",
+            "Deprecated. This value is no longer used. Application type standalone browser extension.",
             "Application type bruschetta."
           ],
           "type": "string"
@@ -4016,19 +4018,19 @@
           "enumDescriptions": [
             "Application type unknown.",
             "Application type arc (Android app).",
-            "Deprecated. This vaule is no longer used. Application type built-in.",
+            "Deprecated. This value is no longer used. Application type built-in.",
             "Application type Linux (via Crostini).",
             "Application type Chrome app.",
             "Application type web.",
             "Application type Mac OS.",
             "Application type Plugin VM.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser (Lacros browser app).",
+            "Deprecated. This value is no longer used. Application type standalone browser (Lacros browser app).",
             "Application type remote.",
             "Application type borealis.",
             "Application type system web.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser chrome app.",
+            "Deprecated. This value is no longer used. Application type standalone browser chrome app.",
             "Application type extension.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser extension.",
+            "Deprecated. This value is no longer used. Application type standalone browser extension.",
             "Application type bruschetta."
           ],
           "type": "string"
@@ -4085,19 +4087,19 @@
           "enumDescriptions": [
             "Application type unknown.",
             "Application type arc (Android app).",
-            "Deprecated. This vaule is no longer used. Application type built-in.",
+            "Deprecated. This value is no longer used. Application type built-in.",
             "Application type Linux (via Crostini).",
             "Application type Chrome app.",
             "Application type web.",
             "Application type Mac OS.",
             "Application type Plugin VM.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser (Lacros browser app).",
+            "Deprecated. This value is no longer used. Application type standalone browser (Lacros browser app).",
             "Application type remote.",
             "Application type borealis.",
             "Application type system web.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser chrome app.",
+            "Deprecated. This value is no longer used. Application type standalone browser chrome app.",
             "Application type extension.",
-            "Deprecated. This vaule is no longer used. Application type standalone browser extension.",
+            "Deprecated. This value is no longer used. Application type standalone browser extension.",
             "Application type bruschetta."
           ],
           "type": "string"
@@ -4428,6 +4430,11 @@
           "description": "Output only. Payload for network connection state change event. Present only when `event_type` is `NETWORK_STATE_CHANGE`.",
           "readOnly": true
         },
+        "osCrashEvent": {
+          "$ref": "GoogleChromeManagementV1TelemetryOsCrashEvent",
+          "description": "Output only. Payload for OS crash event. Present only when `event_type` is `OS_CRASH`.",
+          "readOnly": true
+        },
         "reportTime": {
           "description": "Timestamp that represents when the event was reported.",
           "format": "google-datetime",
@@ -4619,6 +4626,49 @@
         },
         "userOrgUnitId": {
           "description": "If set, only sends notifications for telemetry data coming from devices owned by users in this org unit.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementV1TelemetryOsCrashEvent": {
+      "description": "OS crash data.",
+      "id": "GoogleChromeManagementV1TelemetryOsCrashEvent",
+      "properties": {
+        "crashId": {
+          "description": "Crash id.",
+          "type": "string"
+        },
+        "crashType": {
+          "description": "Crash type.",
+          "enum": [
+            "CRASH_TYPE_UNSPECIFIED",
+            "CRASH_TYPE_KERNEL",
+            "CRASH_TYPE_EMBEDDED_CONTROLLER"
+          ],
+          "enumDescriptions": [
+            "Crash type unknown.",
+            "Kernel crash.",
+            "Embedded controller crash."
+          ],
+          "type": "string"
+        },
+        "sessionType": {
+          "description": "Session type.",
+          "enum": [
+            "SESSION_TYPE_UNSPECIFIED",
+            "SESSION_TYPE_SIGNED_IN_USER",
+            "SESSION_TYPE_KIOSK",
+            "SESSION_TYPE_MANAGED_GUEST",
+            "SESSION_TYPE_ACTIVE_DIRECTORY"
+          ],
+          "enumDescriptions": [
+            "Session type unknown.",
+            "Signed in user.",
+            "Kiosk.",
+            "Managed guest session.",
+            "Active directory session."
+          ],
           "type": "string"
         }
       },

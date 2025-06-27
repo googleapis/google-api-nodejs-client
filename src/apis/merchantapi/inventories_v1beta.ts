@@ -292,7 +292,7 @@ export namespace merchantapi_inventories_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -321,7 +321,7 @@ export namespace merchantapi_inventories_v1beta {
      */
     account?: string | null;
     /**
-     * Availability of the product in this region. For accepted attribute values, see the [regional product inventory data specification](https://support.google.com/merchants/answer/6324448).
+     * Availability of the product in this region. For accepted attribute values, see the [regional product inventory data specification](https://support.google.com/merchants/answer/14644124).
      */
     availability?: string | null;
     /**
@@ -381,6 +381,50 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Deletes the specified `LocalInventory` from the given product in your merchant account. It might take a up to an hour for the `LocalInventory` to be deleted from the specific product. Once you have received a successful delete response, wait for that period before attempting a delete again.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.localInventories.delete({
+     *     // Required. The name of the local inventory for the given product to delete. Format: `accounts/{account\}/products/{product\}/localInventories/{store_code\}`
+     *     name: 'accounts/my-account/products/my-product/localInventories/my-localInventorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -473,6 +517,82 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Inserts a `LocalInventory` resource to a product in your merchant account. Replaces the full `LocalInventory` resource if an entry with the same `storeCode` already exists for the product. It might take up to 30 minutes for the new or updated `LocalInventory` resource to appear in products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.localInventories.insert({
+     *     // Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
+     *     parent: 'accounts/my-account/products/my-product',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": "my_account",
+     *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
+     *       //   "instoreProductLocation": "my_instoreProductLocation",
+     *       //   "name": "my_name",
+     *       //   "pickupMethod": "my_pickupMethod",
+     *       //   "pickupSla": "my_pickupSla",
+     *       //   "price": {},
+     *       //   "quantity": "my_quantity",
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": {},
+     *       //   "storeCode": "my_storeCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": "my_account",
+     *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
+     *   //   "instoreProductLocation": "my_instoreProductLocation",
+     *   //   "name": "my_name",
+     *   //   "pickupMethod": "my_pickupMethod",
+     *   //   "pickupSla": "my_pickupSla",
+     *   //   "price": {},
+     *   //   "quantity": "my_quantity",
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": {},
+     *   //   "storeCode": "my_storeCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -564,6 +684,57 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Lists the `LocalInventory` resources for the given product in your merchant account. The response might contain fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be used to obtain additional results. `LocalInventory` resources are listed per product for a given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.localInventories.list({
+     *     // The maximum number of `LocalInventory` resources for the given product to return. The service returns fewer than this value if the number of inventories for the given product is less that than the `pageSize`. The default value is 25000. The maximum value is 25000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListLocalInventories` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListLocalInventories` must match the call that provided the page token. The token returned as nextPageToken in the response to the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The `name` of the parent product to list local inventories for. Format: `accounts/{account\}/products/{product\}`
+     *     parent: 'accounts/my-account/products/my-product',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "localInventories": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -702,6 +873,50 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Deletes the specified `RegionalInventory` resource from the given product in your merchant account. It might take up to an hour for the `RegionalInventory` to be deleted from the specific product. Once you have received a successful delete response, wait for that period before attempting a delete again.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.regionalInventories.delete({
+     *     // Required. The name of the `RegionalInventory` resource to delete. Format: `accounts/{account\}/products/{product\}/regionalInventories/{region\}`
+     *     name: 'accounts/my-account/products/my-product/regionalInventories/my-regionalInventorie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -794,6 +1009,74 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Inserts a `RegionalInventory` to a given product in your merchant account. Replaces the full `RegionalInventory` resource if an entry with the same `region` already exists for the product. It might take up to 30 minutes for the new or updated `RegionalInventory` resource to appear in products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.regionalInventories.insert({
+     *     // Required. The account and product where this inventory will be inserted. Format: `accounts/{account\}/products/{product\}`
+     *     parent: 'accounts/my-account/products/my-product',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": "my_account",
+     *       //   "availability": "my_availability",
+     *       //   "customAttributes": [],
+     *       //   "name": "my_name",
+     *       //   "price": {},
+     *       //   "region": "my_region",
+     *       //   "salePrice": {},
+     *       //   "salePriceEffectiveDate": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "account": "my_account",
+     *   //   "availability": "my_availability",
+     *   //   "customAttributes": [],
+     *   //   "name": "my_name",
+     *   //   "price": {},
+     *   //   "region": "my_region",
+     *   //   "salePrice": {},
+     *   //   "salePriceEffectiveDate": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -886,6 +1169,57 @@ export namespace merchantapi_inventories_v1beta {
 
     /**
      * Lists the `RegionalInventory` resources for the given product in your merchant account. The response might contain fewer items than specified by `pageSize`. If `pageToken` was returned in previous request, it can be used to obtain additional results. `RegionalInventory` resources are listed per product for a given account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('inventories_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.products.regionalInventories.list({
+     *     // The maximum number of `RegionalInventory` resources for the given product to return. The service returns fewer than this value if the number of inventories for the given product is less that than the `pageSize`. The default value is 25000. The maximum value is 100000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListRegionalInventories` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegionalInventories` must match the call that provided the page token. The token returned as nextPageToken in the response to the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The `name` of the parent product to list `RegionalInventory` resources for. Format: `accounts/{account\}/products/{product\}`
+     *     parent: 'accounts/my-account/products/my-product',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "regionalInventories": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

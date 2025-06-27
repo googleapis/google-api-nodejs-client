@@ -774,7 +774,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of data segment to activate. Format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}`",
+                  "description": "Required. Name of data segment to activate. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/dataSegments/[^/]+$",
                   "required": true,
@@ -802,7 +802,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent resource where this data segment will be created. Format: `buyers/{accountId}`",
+                  "description": "Required. The parent resource where this data segment will be created. v1alpha format: `buyers/{accountId}` v1beta format: `curators/{accountId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+$",
                   "required": true,
@@ -830,7 +830,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of data segment to deactivate. Format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}`",
+                  "description": "Required. Name of data segment to deactivate. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/dataSegments/[^/]+$",
                   "required": true,
@@ -858,7 +858,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Name of data segment to get. Format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}`",
+                  "description": "Required. Name of data segment to get. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{accountId}/dataSegments/{curatorDataSegmentId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/dataSegments/[^/]+$",
                   "required": true,
@@ -894,7 +894,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Name of the parent buyer that can access the data segment. Format: `buyers/{accountId}`",
+                  "description": "Required. Name of the parent curator that can access the data segment. v1alpha format: `buyers/{accountId}` v1beta format: `curators/{accountId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+$",
                   "required": true,
@@ -919,7 +919,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. Format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}`",
+                  "description": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`",
                   "location": "path",
                   "pattern": "^buyers/[^/]+/dataSegments/[^/]+$",
                   "required": true,
@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20250303",
+  "revision": "20250616",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1983,7 +1983,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. Format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}`",
+          "description": "Immutable. Identifier. The unique identifier for the data segment. Account ID corresponds to the account ID that created the segment. v1alpha format: `buyers/{accountId}/dataSegments/{curatorDataSegmentId}` v1beta format: `curators/{curatorAccountId}/dataSegments/{curatorDataSegmentId}`",
           "type": "string"
         },
         "state": {

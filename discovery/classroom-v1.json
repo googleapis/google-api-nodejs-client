@@ -4107,7 +4107,7 @@
       }
     }
   },
-  "revision": "20250420",
+  "revision": "20250526",
   "rootUrl": "https://classroom.googleapis.com/",
   "schemas": {
     "AddOnAttachment": {
@@ -4986,6 +4986,25 @@
       },
       "type": "object"
     },
+    "GeminiGem": {
+      "description": "Gemini Gem link.",
+      "id": "GeminiGem",
+      "properties": {
+        "id": {
+          "description": "Gems resource id.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the Gem. Read-only.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL that can be used to access the Gem. Read-only.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GlobalPermission": {
       "description": "Global user permission description.",
       "id": "GlobalPermission",
@@ -5564,7 +5583,7 @@
       "type": "object"
     },
     "Material": {
-      "description": "Material attached to course work. When creating attachments, setting the `form` field is not supported.",
+      "description": "Material attached to course work. When creating attachments, setting the `form`, `gem`, or `notebook` field is not supported.",
       "id": "Material",
       "properties": {
         "driveFile": {
@@ -5575,9 +5594,17 @@
           "$ref": "Form",
           "description": "Google Forms material. Read-only."
         },
+        "gem": {
+          "$ref": "GeminiGem",
+          "description": "Gemini Gem material. Read-only."
+        },
         "link": {
           "$ref": "Link",
           "description": "Link material. On creation, this is upgraded to a more appropriate type if possible, and this is reflected in the response."
+        },
+        "notebook": {
+          "$ref": "NotebookLmNotebook",
+          "description": "NotebookLM Notebook material. Read-only."
         },
         "youtubeVideo": {
           "$ref": "YouTubeVideo",
@@ -5710,6 +5737,25 @@
         },
         "givenName": {
           "description": "The user's first name. Read-only.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NotebookLmNotebook": {
+      "description": "NotebookLM Notebook link.",
+      "id": "NotebookLmNotebook",
+      "properties": {
+        "id": {
+          "description": "Notebook resource id.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the Notebook. Read-only.",
+          "type": "string"
+        },
+        "url": {
+          "description": "URL that can be used to access the Notebook. Read-only.",
           "type": "string"
         }
       },

@@ -141,7 +141,7 @@ export namespace fcm_v1 {
      */
     data?: {[key: string]: string} | null;
     /**
-     * If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in direct boot mode. See [Support Direct Boot mode](https://developer.android.com/training/articles/direct-boot).
      */
     directBootOk?: boolean | null;
     /**
@@ -160,6 +160,10 @@ export namespace fcm_v1 {
      * Package name of the application where the registration token must match in order to receive the message.
      */
     restrictedPackageName?: string | null;
+    /**
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are allowed to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.
+     */
+    restrictedSatelliteOk?: boolean | null;
     /**
      * How long (in seconds) the message should be kept in FCM storage if the device is offline. The maximum time to live supported is 4 weeks, and the default value is 4 weeks if not set. Set it to 0 if want to send the message immediately. In JSON format, the Duration type is encoded as a string rather than an object, where the string ends in the suffix "s" (indicating seconds) and is preceded by the number of seconds, with nanoseconds expressed as fractional seconds. For example, 3 seconds with 0 nanoseconds should be encoded in JSON format as "3s", while 3 seconds and 1 nanosecond should be expressed in JSON format as "3.000000001s". The ttl will be rounded down to the nearest second.
      */
@@ -495,6 +499,73 @@ export namespace fcm_v1 {
 
     /**
      * Send a message to specified target (a registration token, topic or condition).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/fcm.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const fcm = google.fcm('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/firebase.messaging',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await fcm.projects.messages.send({
+     *     // Required. It contains the Firebase project id (i.e. the unique identifier for your Firebase project), in the format of `projects/{project_id\}`. The numeric project number with no padding is also supported in the format of `projects/{project_number\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "message": {},
+     *       //   "validateOnly": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "android": {},
+     *   //   "apns": {},
+     *   //   "condition": "my_condition",
+     *   //   "data": {},
+     *   //   "fcmOptions": {},
+     *   //   "name": "my_name",
+     *   //   "notification": {},
+     *   //   "token": "my_token",
+     *   //   "topic": "my_topic",
+     *   //   "webpush": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

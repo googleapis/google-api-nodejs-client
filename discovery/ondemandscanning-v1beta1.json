@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250519",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -1117,6 +1117,13 @@
           "description": "The CPE of the resource being scanned.",
           "type": "string"
         },
+        "files": {
+          "description": "Files that make up the resource described by the occurrence.",
+          "items": {
+            "$ref": "File"
+          },
+          "type": "array"
+        },
         "lastScanTime": {
           "description": "The last time this resource was scanned.",
           "format": "google-datetime",
@@ -1163,6 +1170,21 @@
         },
         "sig": {
           "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "File": {
+      "id": "File",
+      "properties": {
+        "digest": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "type": "object"
+        },
+        "name": {
           "type": "string"
         }
       },

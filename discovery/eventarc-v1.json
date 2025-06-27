@@ -2466,7 +2466,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250624",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3779,6 +3779,11 @@
         "retryPolicy": {
           "$ref": "GoogleCloudEventarcV1PipelineRetryPolicy",
           "description": "Optional. The retry policy to use in the pipeline."
+        },
+        "satisfiesPzs": {
+          "description": "Output only. Whether or not this Pipeline satisfies the requirements of physical zone separation",
+          "readOnly": true,
+          "type": "boolean"
         },
         "uid": {
           "description": "Output only. Server-assigned unique identifier for the Pipeline. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.",

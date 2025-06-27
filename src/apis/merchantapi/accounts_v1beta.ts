@@ -127,19 +127,32 @@ export namespace merchantapi_accounts_v1beta {
   }
 
   /**
-   * Describes the accepted terms of service.
+   * Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).
+   */
+  export interface Schema$About {
+    /**
+     * Output only. The state of the URI.
+     */
+    state?: string | null;
+    /**
+     * Required. The about page URI.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
    */
   export interface Schema$Accepted {
     /**
-     * The account where the acceptance was recorded. This can be the account itself or, in the case of subaccounts, the MCA account.
+     * Required. The account where the acceptance was recorded. This can be the account itself or, in the case of subaccounts, the advanced account.
      */
     acceptedBy?: string | null;
     /**
-     * The accepted termsOfService.
+     * Required. The accepted termsOfService.
      */
     termsOfService?: string | null;
     /**
-     * When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message.
+     * Optional. When set, it states that the accepted `TermsOfService` is only valid until the end of this date (in UTC). A new one must be accepted before then. The information of the required `TermsOfService` is found in the `Required` message.
      */
     validUntil?: Schema$Date;
   }
@@ -153,7 +166,7 @@ export namespace merchantapi_accounts_v1beta {
     termsOfServiceAgreementState?: Schema$TermsOfServiceAgreementState;
   }
   /**
-   * The `Account` message represents a merchant's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a multi-client account (MCA) structure. In an MCA setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
+   * The `Account` message represents a business's account within Shopping Ads. It's the primary entity for managing product data, settings, and interactions with Google's services and external providers. Accounts can operate as standalone entities or be part of a advanced account structure. In an advanced account setup the parent account manages multiple sub-accounts. Establishing an account involves configuring attributes like the account name, time zone, and language preferences. The `Account` message is the parent entity for many other resources, for example, `AccountRelationship`, `Homepage`, `BusinessInfo` and so on.
    */
   export interface Schema$Account {
     /**
@@ -190,7 +203,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$AccountAggregation {}
   /**
-   * An [`AccountIssue`](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).
+   * Issues with your Merchant Center account that can impact all your products. For more information, see [Account-level issues in Merchant Center](https://support.google.com/merchants/answer/12153802?sjid=17798438912526418908-EU#account).
    */
   export interface Schema$AccountIssue {
     /**
@@ -206,7 +219,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     impactedDestinations?: Schema$ImpactedDestination[];
     /**
-     * Identifier. The resource name of the account issue. Format: `accounts/{account\}/issues/{id\}`
+     * Identifier. The resource name of the account issue. Format: `accounts/{account\}/issues/{id\}`. For example, `accounts/123456/issues/misrepresentation-of-self-or-products-unacceptable-business-practice-policy`.
      */
     name?: string | null;
     /**
@@ -223,7 +236,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$AccountManagement {}
   /**
-   * The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the merchant, such as product management or campaign management. It specifies the access rights and permissions to the merchant's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).
+   * The `AccountRelationship` message defines a formal connection between a merchant's account and a service provider's account. This relationship enables the provider to offer specific services to the business, such as product management or campaign management. It specifies the access rights and permissions to the business's data relevant to those services. Establishing an account relationship involves linking the merchant's account with a provider's account. The provider could be another Google account (like Google Ads or Google My Business) or a third-party platform (such as Shopify or WooCommerce).
    */
   export interface Schema$AccountRelationship {
     /**
@@ -231,7 +244,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     accountIdAlias?: string | null;
     /**
-     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
      */
     name?: string | null;
     /**
@@ -244,19 +257,19 @@ export namespace merchantapi_accounts_v1beta {
     providerDisplayName?: string | null;
   }
   /**
-   * The `AccountService` message represents a specific service that a provider account offers to a merchant account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the merchant and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.
+   * The `AccountService` message represents a specific service that a provider account offers to a Merchant Center account. `AccountService` defines the permissions and capabilities granted to the provider, allowing for operations such as product management or campaign management. The lifecycle of an `AccountService` involves a proposal phase, where one party suggests the service, and an approval phase, where the other party accepts or rejects it. This handshake mechanism ensures mutual consent before any access is granted. This mechanism safeguards both parties by ensuring that access rights are granted appropriately and that both the business and provider are aware of the services enabled. In scenarios where a user is an admin of both accounts, the approval can happen automatically. The mutability of a service is also managed through `AccountService`. Some services might be immutable, for example, if they were established through other systems or APIs, and you cannot alter them through this API.
    */
   export interface Schema$AccountService {
     /**
-     * Service type for account aggregation. This enables the provider, which is a Multi-Client Account (MCA), to manage multiple sub-accounts (client accounts). Through this service, the MCA provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many merchant accounts.
+     * Service type for account aggregation. This enables the provider, which is an advanced account, to manage multiple sub-accounts (client accounts). Through this service, the advanced account provider can perform administrative and operational tasks across all linked sub-accounts. This is useful for agencies, aggregators, or large retailers that need centralized control over many Merchant Center accounts.
      */
     accountAggregation?: Schema$AccountAggregation;
     /**
-     * Service type for account management. Enables the provider to perform administrative actions on the merchant's account, such as configuring account settings, managing users, or updating business information.
+     * Service type for account management. Enables the provider to perform administrative actions on the business's account, such as configuring account settings, managing users, or updating business information.
      */
     accountManagement?: Schema$AccountManagement;
     /**
-     * Service type for managing advertising campaigns. Grants the provider access to create and manage the merchant's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance.
+     * Service type for managing advertising campaigns. Grants the provider access to create and manage the business's ad campaigns, including setting up campaigns, adjusting bids, and optimizing performance.
      */
     campaignsManagement?: Schema$CampaignsManagement;
     /**
@@ -268,6 +281,10 @@ export namespace merchantapi_accounts_v1beta {
      */
     handshake?: Schema$Handshake;
     /**
+     * Service type for local listings management. The business group associated with the external account id will be used to provide local inventory to this Merchant Center account.
+     */
+    localListingManagement?: Schema$LocalListingManagement;
+    /**
      * Output only. Whether the service is mutable (e.g. through Approve / Reject RPCs). A service that was created through another system or API might be immutable.
      */
     mutability?: string | null;
@@ -276,7 +293,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string | null;
     /**
-     * Service type for managing products. This allows the provider to handle product data on behalf of the merchant, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the merchant's product information up-to-date across platforms.
+     * Service type for managing products. This allows the provider to handle product data on behalf of the business, including reading and writing product listings. It's commonly used when the provider offers inventory management or catalog synchronization services to keep the business's product information up-to-date across platforms.
      */
     productsManagement?: Schema$ProductsManagement;
     /**
@@ -348,7 +365,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$AutofeedSettings {
     /**
-     * Output only. Determines whether merchant is eligible for being enrolled into an autofeed.
+     * Output only. Determines whether the business is eligible for being enrolled into an autofeed.
      */
     eligible?: boolean | null;
     /**
@@ -390,7 +407,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     name?: string | null;
     /**
-     * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask.
+     * Not available for [advanced accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data This field is only updated (cleared) if provided in the update mask.
      */
     shippingImprovements?: Schema$AutomaticShippingImprovements;
   }
@@ -420,7 +437,7 @@ export namespace merchantapi_accounts_v1beta {
     effectiveAllowStrictAvailabilityUpdates?: boolean | null;
   }
   /**
-   * Not available for MCAs [accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data
+   * Not available for [advanced accounts](https://support.google.com/merchants/answer/188487). By turning on [automatic shipping improvements](https://support.google.com/merchants/answer/10027038), you are allowing Google to improve the accuracy of your delivery times shown to shoppers using Google. More accurate delivery times, especially when faster, typically lead to better conversion rates. Google will improve your estimated delivery times based on various factors: * Delivery address of an order * Current handling time and shipping time settings * Estimated weekdays or business days * Parcel tracking data
    */
   export interface Schema$AutomaticShippingImprovements {
     /**
@@ -442,11 +459,11 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$BusinessIdentity {
     /**
-     * Optional. Specifies whether the business identifies itself as being black-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
+     * Optional. Specifies whether the business identifies itself as being black-owned. This optional field will only be available for businesses with the business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
      */
     blackOwned?: Schema$IdentityAttribute;
     /**
-     * Optional. Specifies whether the business identifies itself as being latino-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
+     * Optional. Specifies whether the business identifies itself as being latino-owned. This optional field will only be available for businesses with the business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
      */
     latinoOwned?: Schema$IdentityAttribute;
     /**
@@ -458,20 +475,20 @@ export namespace merchantapi_accounts_v1beta {
      */
     promotionsConsent?: string | null;
     /**
-     * Optional. Specifies whether the business identifies itself as a small business. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces.
+     * Optional. Specifies whether the business identifies itself as a small business. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces.
      */
     smallBusiness?: Schema$IdentityAttribute;
     /**
-     * Optional. Specifies whether the business identifies itself as being veteran-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
+     * Optional. Specifies whether the business identifies itself as being veteran-owned. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
      */
     veteranOwned?: Schema$IdentityAttribute;
     /**
-     * Optional. Specifies whether the business identifies itself as being women-owned. This optional field will only be available for merchants with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
+     * Optional. Specifies whether the business identifies itself as being women-owned. This optional field will only be available for businesses with a business country set to `US`. It is also not applicable for marketplaces or marketplace sellers.
      */
     womenOwned?: Schema$IdentityAttribute;
   }
   /**
-   * The `BusinessInfo` message contains essential information about a merchant's business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.
+   * The `BusinessInfo` message contains essential information about a business. This message captures key business details such as physical address, customer service contacts, and region-specific identifiers.
    */
   export interface Schema$BusinessInfo {
     /**
@@ -550,7 +567,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     account?: Schema$Account;
     /**
-     * Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation`, which means you can only create sub accounts, not standalone account through this method. Additional `account_management` or `product_management` services may be provided.
+     * Required. An account service between the account to be created and the provider account is initialized as part of the creation. At least one such service needs to be provided. Currently exactly one of these needs to be `account_aggregation` and `accounts.createAndConfigure` method can be used to create a sub-account under an existing advanced account through this method. Additional `account_management` or `product_management` services may be provided.
      */
     service?: Schema$AddAccountService[];
     /**
@@ -605,7 +622,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     localCutoffTime?: Schema$LocalCutoffTime;
     /**
-     * Merchants can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.
+     * Businesses can opt-out of showing n+1 day local delivery when they have a shipping service configured to n day local delivery. For example, if the shipping service defines same-day delivery, and it's past the cut-off, setting this field to `true` results in the calculated shipping service rate returning `NO_DELIVERY_POST_CUTOFF`. In the same example, setting this field to `false` results in the calculated shipping time being one day. This is only for local delivery.
      */
     noDeliveryPostCutoff?: boolean | null;
     /**
@@ -727,6 +744,44 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$EnableProgramRequest {}
   /**
+   * Response message for the FindLfpProviders method.
+   */
+  export interface Schema$FindLfpProvidersResponse {
+    /**
+     * The LFP providers from the specified merchant in the specified country.
+     */
+    lfpProviders?: Schema$LfpProvider[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Collection of information related to a Google Business Profile (GBP) account.
+   */
+  export interface Schema$GbpAccount {
+    /**
+     * The id of the GBP account.
+     */
+    gbpAccountId?: string | null;
+    /**
+     * The name of the Business Profile. For personal accounts: Email id of the owner. For Business accounts: Name of the Business Account.
+     */
+    gbpAccountName?: string | null;
+    /**
+     * Number of listings under this account.
+     */
+    listingCount?: string | null;
+    /**
+     * Identifier. The resource name of the GBP account. Format: `accounts/{account\}/gbpAccount/{gbp_account\}`
+     */
+    name?: string | null;
+    /**
+     * The type of the Business Profile.
+     */
+    type?: string | null;
+  }
+  /**
    * A list of geotargets that defines the region area.
    */
   export interface Schema$GeoTargetArea {
@@ -774,7 +829,7 @@ export namespace merchantapi_accounts_v1beta {
     weights?: Schema$Weight[];
   }
   /**
-   * The `Homepage` message represents a merchant's store homepage within the system. A merchant's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the merchant to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).
+   * The `Homepage` message represents a business's store homepage within the system. A business's homepage is the primary domain where customers interact with their store. The homepage can be claimed and verified as a proof of ownership and allows the business to unlock features that require a verified website. For more information, see [Understanding online store URL verification](//support.google.com/merchants/answer/176793).
    */
   export interface Schema$Homepage {
     /**
@@ -835,6 +890,40 @@ export namespace merchantapi_accounts_v1beta {
     reportingContext?: string | null;
   }
   /**
+   * Collection of information related to InStock.
+   */
+  export interface Schema$InStock {
+    /**
+     * Output only. The state of the in-stock serving.
+     */
+    state?: string | null;
+    /**
+     * Optional. Product landing page URI. It is only used for the review of MHLSF in-stock serving. This URI domain should match with the business's homepage. Required to be empty if the lsf_type is GHLSF, and required when the lsf_type is MHLSF_FULL or MHLSF_BASIC.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).
+   */
+  export interface Schema$InventoryVerification {
+    /**
+     * Required. The name of the contact for the inventory verification process.
+     */
+    contact?: string | null;
+    /**
+     * Required. The email address of the contact for the inventory verification process.
+     */
+    contactEmail?: string | null;
+    /**
+     * Output only. The state of the contact verification.
+     */
+    contactState?: string | null;
+    /**
+     * Output only. The state of the inventory verification process.
+     */
+    state?: string | null;
+  }
+  /**
    * Settings for the Automatic Item Updates.
    */
   export interface Schema$ItemUpdatesAccountLevelSettings {
@@ -854,6 +943,76 @@ export namespace merchantapi_accounts_v1beta {
      * If `allow_availability_updates` is enabled, items are automatically updated in all your Shopping target countries. By default, availability updates will only be applied to items that are 'out of stock' on your website but 'in stock' on Shopping. Set this to true to also update items that are 'in stock' on your website, but 'out of stock' on Google Shopping. In order for this field to have an effect, you must also set `allow_availability_updates`.
      */
     allowStrictAvailabilityUpdates?: boolean | null;
+  }
+  /**
+   * Collection of information related to the LFP link.
+   */
+  export interface Schema$LfpLink {
+    /**
+     * Required. The account ID by which this merchant is known to the LFP provider.
+     */
+    externalAccountId?: string | null;
+    /**
+     * Required. The resource name of the LFP provider. Format: `lfpProviders/{lfp_provider\}`
+     */
+    lfpProvider?: string | null;
+    /**
+     * Output only. The state of the LFP link.
+     */
+    state?: string | null;
+  }
+  /**
+   * Collection of information related to a Local Feed Partnership (LFP) provider.
+   */
+  export interface Schema$LfpProvider {
+    /**
+     * The display name of the LFP provider.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the LFP provider. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}/lfpProviders/{lfp_provider\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. Region code defined by [CLDR](https://cldr.unicode.org/).
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Request message for the LinkGbpAccount method.
+   */
+  export interface Schema$LinkGbpAccountRequest {
+    /**
+     * Required. The email address of the Business Profile account.
+     */
+    gbpEmail?: string | null;
+  }
+  /**
+   * Response message for the LinkGbpAccount method.
+   */
+  export interface Schema$LinkGbpAccountResponse {
+    /**
+     * Empty response.
+     */
+    response?: Schema$Empty;
+  }
+  /**
+   * Request message for the LinkLfpProvider method.
+   */
+  export interface Schema$LinkLfpProviderRequest {
+    /**
+     * Required. The external account ID by which this merchant is known to the LFP provider.
+     */
+    externalAccountId?: string | null;
+  }
+  /**
+   * Response message for the LinkLfpProvider method.
+   */
+  export interface Schema$LinkLfpProviderResponse {
+    /**
+     * Empty response.
+     */
+    response?: Schema$Empty;
   }
   /**
    * Response message for the `ListAccountIssues` method.
@@ -895,7 +1054,7 @@ export namespace merchantapi_accounts_v1beta {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for the `ListAccounts` method.
+   * Response message for the `accounts.list` method.
    */
   export interface Schema$ListAccountsResponse {
     /**
@@ -906,6 +1065,32 @@ export namespace merchantapi_accounts_v1beta {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Response message for the ListGbpAccounts method.
+   */
+  export interface Schema$ListGbpAccountsResponse {
+    /**
+     * The GBP accounts from the specified merchant in the specified country.
+     */
+    gbpAccounts?: Schema$GbpAccount[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response message for the ListOmnichannelSettings method.
+   */
+  export interface Schema$ListOmnichannelSettingsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The omnichannel settings from the specified merchant.
+     */
+    omnichannelSettings?: Schema$OmnichannelSetting[];
   }
   /**
    * Response message for the `ListOnlineReturnPolicies` method.
@@ -942,7 +1127,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     nextPageToken?: string | null;
     /**
-     * The regions from the specified merchant.
+     * The regions from the specified business.
      */
     regions?: Schema$Region[];
   }
@@ -986,6 +1171,10 @@ export namespace merchantapi_accounts_v1beta {
     minute?: string | null;
   }
   /**
+   * `LocalListingManagement` payload.
+   */
+  export interface Schema$LocalListingManagement {}
+  /**
    * A list of location ID sets. Must be non-empty. Can only be set if all other fields are not set.
    */
   export interface Schema$LocationIdSet {
@@ -995,7 +1184,7 @@ export namespace merchantapi_accounts_v1beta {
     locationIds?: string[] | null;
   }
   /**
-   * [Loyalty program](https://support.google.com/merchants/answer/12922446) provided by a merchant.
+   * [Loyalty program](https://support.google.com/merchants/answer/12922446) provided by a business.
    */
   export interface Schema$LoyaltyProgram {
     /**
@@ -1008,7 +1197,7 @@ export namespace merchantapi_accounts_v1beta {
     programLabel?: string | null;
   }
   /**
-   * Subset of a merchants loyalty program.
+   * Subset of a business's loyalty program.
    */
   export interface Schema$LoyaltyProgramTiers {
     /**
@@ -1026,15 +1215,69 @@ export namespace merchantapi_accounts_v1beta {
     storeCodeSetWithMovs?: Schema$StoreCodeSetWithMov[];
   }
   /**
+   * Collection of information related to the omnichannel settings of a merchant.
+   */
+  export interface Schema$OmnichannelSetting {
+    /**
+     * Optional. The about page URI and state for this country.
+     */
+    about?: Schema$About;
+    /**
+     * Optional. The InStock URI and state for this country.
+     */
+    inStock?: Schema$InStock;
+    /**
+     * Optional. The inventory verification contact and state for this country.
+     */
+    inventoryVerification?: Schema$InventoryVerification;
+    /**
+     * Output only. The established link to a LFP provider.
+     */
+    lfpLink?: Schema$LfpLink;
+    /**
+     * Required. The Local Store Front type for this country.
+     */
+    lsfType?: string | null;
+    /**
+     * Identifier. The resource name of the omnichannel setting. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     */
+    name?: string | null;
+    /**
+     * Optional. The On Display to Order (ODO) policy URI and state for this country.
+     */
+    odo?: Schema$OnDisplayToOrder;
+    /**
+     * Optional. The Pickup URI and state for this country.
+     */
+    pickup?: Schema$Pickup;
+    /**
+     * Required. Immutable. Region code defined by [CLDR](https://cldr.unicode.org/). Must be provided in the Create method, and is immutable.
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).
+   */
+  export interface Schema$OnDisplayToOrder {
+    /**
+     * Output only. The state of the URI.
+     */
+    state?: string | null;
+    /**
+     * Required. The on display to order (ODO) policy URI.
+     */
+    uri?: string | null;
+  }
+  /**
    * [Online return policy](https://support.google.com/merchants/answer/10220642) object. This is currently used to represent return policies for ads and free listings programs.
    */
   export interface Schema$OnlineReturnPolicy {
     /**
-     * Optional. This field specifies if merchant only accepts defective products for returns.
+     * Optional. This field specifies if business only accepts defective products for returns.
      */
     acceptDefectiveOnly?: boolean | null;
     /**
-     * Optional. This field specifies if merchant allows customers to exchange products.
+     * Optional. This field specifies if business allows customers to exchange products.
      */
     acceptExchange?: boolean | null;
     /**
@@ -1058,7 +1301,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     policy?: Schema$Policy;
     /**
-     * Optional. The field specifies the number of days it takes for merchants to process refunds.
+     * Optional. The field specifies the number of days it takes for business to process refunds.
      */
     processRefundDays?: number | null;
     /**
@@ -1095,7 +1338,7 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$PhoneNumber {
     /**
-     * The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: "+15552220123" - incorrect: "+1 (555) 222-01234 x123". The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes
+     * The phone number, represented as a leading plus sign ('+'), followed by a phone number that uses a relaxed ITU E.164 format consisting of the country calling code (1 to 3 digits) and the subscriber number, with no additional spaces or formatting. For example: - correct: "+15552220123" - incorrect: "+1 (555) 222-01234 x123" The ITU E.164 format limits the latter to 12 digits, but in practice not all countries respect that, so we relax that restriction here. National-only numbers are not allowed. References: - https://www.itu.int/rec/T-REC-E.164-201011-I - https://en.wikipedia.org/wiki/E.164. - https://en.wikipedia.org/wiki/List_of_country_calling_codes
      */
     e164Number?: string | null;
     /**
@@ -1103,9 +1346,22 @@ export namespace merchantapi_accounts_v1beta {
      */
     extension?: string | null;
     /**
-     * A short code. Reference(s): - https://en.wikipedia.org/wiki/Short_code
+     * A short code. Reference(s): - https://wikipedia.org/wiki/Short_code
      */
     shortCode?: Schema$ShortCode;
+  }
+  /**
+   * Collection of information related to Pickup.
+   */
+  export interface Schema$Pickup {
+    /**
+     * Output only. The state of the pickup serving.
+     */
+    state?: string | null;
+    /**
+     * Required. Pickup product page URI. It is only used for the review of pickup serving. This URI domain should match with the business's homepage.
+     */
+    uri?: string | null;
   }
   /**
    * The available policies.
@@ -1121,7 +1377,7 @@ export namespace merchantapi_accounts_v1beta {
     type?: string | null;
   }
   /**
-   * Represents a postal address (for example, for postal delivery or payments addresses). Given a postal address, a postal service can deliver items to a premise, P.O. box or similar. It is not intended to model geographical locations (roads, towns, mountains). In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
+   * Represents a postal address, such as for postal delivery or payments addresses. With a postal address, a postal service can deliver items to a premise, P.O. box, or similar. A postal address is not intended to model geographical locations like roads, towns, or mountains. In typical usage, an address would be created by user input or from importing existing data, depending on the type of process. Advice on address input or editing: - Use an internationalization-ready address widget such as https://github.com/google/libaddressinput. - Users should not be presented with UI elements for input or editing of fields outside countries where that field is used. For more guidance on how to use this schema, see: https://support.google.com/business/answer/6397478.
    */
   export interface Schema$PostalAddress {
     /**
@@ -1254,7 +1510,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     eventTime?: string | null;
     /**
-     * Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.
+     * Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.
      */
     expirationTime?: string | null;
     /**
@@ -1275,7 +1531,7 @@ export namespace merchantapi_accounts_v1beta {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to merchant accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a merchant's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1375,15 +1631,28 @@ export namespace merchantapi_accounts_v1beta {
    */
   export interface Schema$RejectAccountServiceRequest {}
   /**
+   * Request message for the RequestInventoryVerification method.
+   */
+  export interface Schema$RequestInventoryVerificationRequest {}
+  /**
+   * Response message for the RequestInventoryVerification method.
+   */
+  export interface Schema$RequestInventoryVerificationResponse {
+    /**
+     * The omnichannel setting that was updated.
+     */
+    omnichannelSetting?: Schema$OmnichannelSetting;
+  }
+  /**
    * Describes the terms of service which are required to be accepted.
    */
   export interface Schema$Required {
     /**
-     * The `TermsOfService` that need to be accepted.
+     * Required. The `TermsOfService` that need to be accepted.
      */
     termsOfService?: string | null;
     /**
-     * Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.
+     * Required. Full URL to the terms of service file. This field is the same as `TermsOfService.file_uri`, it is added here for convenience only.
      */
     tosFileUri?: string | null;
   }
@@ -1486,11 +1755,11 @@ export namespace merchantapi_accounts_v1beta {
      */
     loyaltyPrograms?: Schema$LoyaltyProgram[];
     /**
-     * Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency. Cannot be set together with minimum_order_value_table.
+     * Optional. Minimum order value for this service. If set, indicates that customers will have to spend at least this amount. All prices within a service must have the same currency. Cannot be set together with `minimum_order_value_table`.
      */
     minimumOrderValue?: Schema$Price;
     /**
-     * Table of per store minimum order values for the pickup fulfillment type. Cannot be set together with minimum_order_value.
+     * Optional. Table of per store minimum order values for the pickup fulfillment type. Cannot be set together with `minimum_order_value`.
      */
     minimumOrderValueTable?: Schema$MinimumOrderValueTable;
     /**
@@ -1502,7 +1771,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     serviceName?: string | null;
     /**
-     * Type of locations this service ships orders to.
+     * Optional. Type of locations this service ships orders to.
      */
     shipmentType?: string | null;
     /**
@@ -1511,15 +1780,15 @@ export namespace merchantapi_accounts_v1beta {
     storeConfig?: Schema$StoreConfig;
   }
   /**
-   * The merchant account's [shipping settings](https://support.google.com/merchants/answer/6069284).
+   * The Merchant Center account's [shipping settings](https://support.google.com/merchants/answer/6069284). The `ShippingSettings` resource lets you retrieve and update the shipping settings of your advanced account and all its associated sub-accounts.
    */
   export interface Schema$ShippingSettings {
     /**
-     * Required. This field is used for avoid async issue. Make sure shipping setting data didn't change between get call and insert call. The user should do following steps： 1. Set etag field as empty string for initial shipping setting creation. 2. After initial creation, call get method to obtain an etag and current shipping setting data before call insert. 3. Modify to wanted shipping setting information. 4. Call insert method with the wanted shipping setting information with the etag obtained from step 2. 5. If shipping setting data changed between step 2 and step 4. Insert request will fail because the etag changes every time the shipping setting data changes. User should repeate step 2-4 with the new etag.
+     * Required. This field helps avoid async issues. It ensures that the shipping setting data doesn't change between the `get` call and the `insert` call. The user should follow these steps: 1. Set the etag field as an empty string for the initial shipping setting creation. 2. After the initial creation, call the `get` method to obtain an etag and the current shipping setting data before calling `insert`. 3. Modify the shipping setting information. 4. Call the `insert` method with the shipping setting information and the etag obtained in step 2. 5. If the shipping setting data changes between step 2 and step 4, the insert request will fail because the etag changes every time the shipping setting data changes. In this case, the user should repeat steps 2-4 with the new etag.
      */
     etag?: string | null;
     /**
-     * Identifier. The resource name of the shipping settings. Format: `accounts/{account\}/shippingSettings`
+     * Identifier. The resource name of the shipping settings. Format: `accounts/{account\}/shippingSettings`. For example, `accounts/123456/shippingSettings`.
      */
     name?: string | null;
     /**
@@ -1574,7 +1843,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     storeCodes?: string[] | null;
     /**
-     * Indicates whether all stores, or selected stores, listed by this merchant provide local delivery.
+     * Indicates whether all stores, or selected stores, listed by this business provide local delivery.
      */
     storeServiceType?: string | null;
   }
@@ -1625,27 +1894,27 @@ export namespace merchantapi_accounts_v1beta {
     regionCode?: string | null;
   }
   /**
-   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the merchant has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the merchant must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect 3Ps to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.
+   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services, we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`. The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.
    */
   export interface Schema$TermsOfServiceAgreementState {
     /**
-     * The accepted terms of service of this kind and for the associated region_code
+     * Optional. The accepted terms of service of this kind and for the associated region_code
      */
     accepted?: Schema$Accepted;
     /**
-     * Identifier. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}` For example, an identifier could be: `MERCHANT_CENTER-US`
+     * Identifier. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementState/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}` For example, an identifier could be: `MERCHANT_CENTER-EU` or `MERCHANT_CENTER-US`.
      */
     name?: string | null;
     /**
-     * Region code as defined by https://cldr.unicode.org/. This is the country the current state applies to.
+     * Required. Region code as defined by https://cldr.unicode.org/. This is the country the current state applies to.
      */
     regionCode?: string | null;
     /**
-     * The required terms of service
+     * Optional. The required terms of service
      */
     required?: Schema$Required;
     /**
-     * Terms of Service kind associated with the particular version.
+     * Required. Terms of Service kind associated with the particular version.
      */
     termsOfServiceKind?: string | null;
   }
@@ -1823,8 +2092,10 @@ export namespace merchantapi_accounts_v1beta {
     businessIdentity: Resource$Accounts$Businessidentity;
     businessInfo: Resource$Accounts$Businessinfo;
     emailPreferences: Resource$Accounts$Emailpreferences;
+    gbpAccounts: Resource$Accounts$Gbpaccounts;
     homepage: Resource$Accounts$Homepage;
     issues: Resource$Accounts$Issues;
+    omnichannelSettings: Resource$Accounts$Omnichannelsettings;
     onlineReturnPolicies: Resource$Accounts$Onlinereturnpolicies;
     programs: Resource$Accounts$Programs;
     regions: Resource$Accounts$Regions;
@@ -1848,8 +2119,12 @@ export namespace merchantapi_accounts_v1beta {
       this.emailPreferences = new Resource$Accounts$Emailpreferences(
         this.context
       );
+      this.gbpAccounts = new Resource$Accounts$Gbpaccounts(this.context);
       this.homepage = new Resource$Accounts$Homepage(this.context);
       this.issues = new Resource$Accounts$Issues(this.context);
+      this.omnichannelSettings = new Resource$Accounts$Omnichannelsettings(
+        this.context
+      );
       this.onlineReturnPolicies = new Resource$Accounts$Onlinereturnpolicies(
         this.context
       );
@@ -1867,6 +2142,66 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.createAndConfigure({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "account": {},
+     *       //   "service": [],
+     *       //   "user": [],
+     *       //   "users": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "adultContent": false,
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "testAccount": false,
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1956,7 +2291,53 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Deletes the specified account regardless of its type: standalone, MCA or sub-account. Deleting an MCA leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.
+     * Deletes the specified account regardless of its type: standalone, advanced account or sub-account. Deleting an advanced account leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.delete({
+     *     // Optional. If set to `true`, the account is deleted even if it provides services to other accounts or has processed offers.
+     *     force: 'placeholder-value',
+     *     // Required. The name of the account to delete. Format: `accounts/{account\}`
+     *     name: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2047,6 +2428,58 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves an account from your Merchant Center account. After inserting, updating, or deleting an account, it may take several minutes before changes take effect.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.get({
+     *     // Required. The name of the account to retrieve. Format: `accounts/{account\}`
+     *     name: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "adultContent": false,
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "testAccount": false,
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2136,7 +2569,58 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists accounts accessible to the calling user and matching the constraints of the request such as page size or filters. This is not just listing the sub-accounts of an MCA, but all accounts the calling user has access to including other MCAs, linked accounts, standalone accounts and so on. If no filter is provided, then it returns all the accounts the user has access to. This method is eventually consistent, meaning changes such as creating, updating an account or a change of relationships between accounts may not show up in the results immediately. Instead, these changes propagate over a short period, after which the updated information can match the associated predicates. That means, that searching by account name might not return a recently changed account even though it satisfies the predicate.
+     * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.list({
+     *     // Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).
+     *     filter: 'placeholder-value',
+     *     // Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 250 accounts are returned. The maximum value is 500; values above 500 are coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2228,7 +2712,58 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * List all sub-accounts for a given multi client account. This is a convenience wrapper for the more powerful `ListAccounts` method. This method will produce the same results as calling `ListsAccounts` with the following filter: `relationship(providerId={parent\} AND service(type="ACCOUNT_AGGREGATION"))`
+     * List all sub-accounts for a given advanced account. This is a convenience wrapper for the more powerful `accounts.list` method. This method will produce the same results as calling `ListsAccounts` with the following filter: `relationship(providerId={parent\} AND service(type="ACCOUNT_AGGREGATION"))`
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.listSubaccounts({
+     *     // Optional. The maximum number of accounts to return. The service may return fewer than this value. If unspecified, at most 250 accounts are returned. The maximum value is 500; values above 500 are coerced to 500.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The aggregation service provider. Format: `accounts/{accountId\}`
+     *     provider: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2322,7 +2857,75 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Updates an account regardless of its type: standalone, MCA or sub-account. Executing this method requires admin access.
+     * Updates an account regardless of its type: standalone, advanced account or sub-account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.patch({
+     *     // Identifier. The resource name of the account. Format: `accounts/{account\}`
+     *     name: 'accounts/my-account',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_name` - `adult_content` - `language_code` - `time_zone`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountId": "my_accountId",
+     *       //   "accountName": "my_accountName",
+     *       //   "adultContent": false,
+     *       //   "languageCode": "my_languageCode",
+     *       //   "name": "my_name",
+     *       //   "testAccount": false,
+     *       //   "timeZone": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountId": "my_accountId",
+     *   //   "accountName": "my_accountName",
+     *   //   "adultContent": false,
+     *   //   "languageCode": "my_languageCode",
+     *   //   "name": "my_name",
+     *   //   "testAccount": false,
+     *   //   "timeZone": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2445,7 +3048,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.
      */
     pageToken?: string;
   }
@@ -2456,7 +3059,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageSize?: number;
     /**
-     * Optional. A page token, received from a previous `ListAccounts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccounts` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `accounts.list` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided in the `accounts.list` request must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -2488,6 +3091,54 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the autofeed settings of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.autofeedSettings.getAutofeedSettings({
+     *     // Required. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`
+     *     name: 'accounts/my-account/autofeedSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eligible": false,
+     *   //   "enableProducts": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2582,6 +3233,67 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates the autofeed settings of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.autofeedSettings.updateAutofeedSettings({
+     *       // Identifier. The resource name of the autofeed settings. Format: `accounts/{account\}/autofeedSettings`.
+     *       name: 'accounts/my-account/autofeedSettings',
+     *       // Required. List of fields being updated.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "eligible": false,
+     *         //   "enableProducts": false,
+     *         //   "name": "my_name"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "eligible": false,
+     *   //   "enableProducts": false,
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2707,6 +3419,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the automatic improvements of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.automaticImprovements.getAutomaticImprovements({
+     *       // Required. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`
+     *       name: 'accounts/my-account/automaticImprovements',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "imageImprovements": {},
+     *   //   "itemUpdates": {},
+     *   //   "name": "my_name",
+     *   //   "shippingImprovements": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2803,6 +3565,71 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates the automatic improvements of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.automaticImprovements.updateAutomaticImprovements(
+     *       {
+     *         // Identifier. The resource name of the automatic improvements. Format: `accounts/{account\}/automaticImprovements`.
+     *         name: 'accounts/my-account/automaticImprovements',
+     *         // Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `item_updates` - `item_updates.account_level_settings` - `image_improvements` - `image_improvements.account_level_settings` - `shipping_improvements` - `shipping_improvements.allow_shipping_improvements`
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "imageImprovements": {},
+     *           //   "itemUpdates": {},
+     *           //   "name": "my_name",
+     *           //   "shippingImprovements": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "imageImprovements": {},
+     *   //   "itemUpdates": {},
+     *   //   "name": "my_name",
+     *   //   "shippingImprovements": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2930,6 +3757,58 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the business identity of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.businessIdentity.getBusinessIdentity({
+     *     // Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`. For example, `accounts/123456/businessIdentity`.
+     *     name: 'accounts/my-account/businessIdentity',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blackOwned": {},
+     *   //   "latinoOwned": {},
+     *   //   "name": "my_name",
+     *   //   "promotionsConsent": "my_promotionsConsent",
+     *   //   "smallBusiness": {},
+     *   //   "veteranOwned": {},
+     *   //   "womenOwned": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3024,6 +3903,75 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates the business identity of an account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.businessIdentity.updateBusinessIdentity({
+     *       // Identifier. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
+     *       name: 'accounts/my-account/businessIdentity',
+     *       // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `black_owned` - `latino_owned` - `promotions_consent` - `small_business` - `veteran_owned` - `women_owned`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "blackOwned": {},
+     *         //   "latinoOwned": {},
+     *         //   "name": "my_name",
+     *         //   "promotionsConsent": "my_promotionsConsent",
+     *         //   "smallBusiness": {},
+     *         //   "veteranOwned": {},
+     *         //   "womenOwned": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "blackOwned": {},
+     *   //   "latinoOwned": {},
+     *   //   "name": "my_name",
+     *   //   "promotionsConsent": "my_promotionsConsent",
+     *   //   "smallBusiness": {},
+     *   //   "veteranOwned": {},
+     *   //   "womenOwned": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3120,7 +4068,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Businessidentity$Getbusinessidentity
     extends StandardParameters {
     /**
-     * Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`
+     * Required. The resource name of the business identity. Format: `accounts/{account\}/businessIdentity`. For example, `accounts/123456/businessIdentity`.
      */
     name?: string;
   }
@@ -3149,6 +4097,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the business info of an account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.businessInfo.getBusinessInfo({
+     *     // Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`. For example, `accounts/123456/businessInfo`.
+     *     name: 'accounts/my-account/businessInfo',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "customerService": {},
+     *   //   "koreanBusinessRegistrationNumber": "my_koreanBusinessRegistrationNumber",
+     *   //   "name": "my_name",
+     *   //   "phone": {},
+     *   //   "phoneVerificationState": "my_phoneVerificationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3240,6 +4239,72 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates the business info of an account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.businessInfo.updateBusinessInfo({
+     *     // Identifier. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
+     *     name: 'accounts/my-account/businessInfo',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `address` - `customer_service` - `korean_business_registration_number`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "address": {},
+     *       //   "customerService": {},
+     *       //   "koreanBusinessRegistrationNumber": "my_koreanBusinessRegistrationNumber",
+     *       //   "name": "my_name",
+     *       //   "phone": {},
+     *       //   "phoneVerificationState": "my_phoneVerificationState"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "address": {},
+     *   //   "customerService": {},
+     *   //   "koreanBusinessRegistrationNumber": "my_koreanBusinessRegistrationNumber",
+     *   //   "name": "my_name",
+     *   //   "phone": {},
+     *   //   "phoneVerificationState": "my_phoneVerificationState"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3335,7 +4400,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Businessinfo$Getbusinessinfo
     extends StandardParameters {
     /**
-     * Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`
+     * Required. The resource name of the business info. Format: `accounts/{account\}/businessInfo`. For example, `accounts/123456/businessInfo`.
      */
     name?: string;
   }
@@ -3364,6 +4429,53 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/x/users/me/emailPreferences alias to get preferences for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.emailPreferences.getEmailPreferences({
+     *     // Required. The name of the `EmailPreferences` resource. Format: `accounts/{account\}/users/{email\}/emailPreferences`
+     *     name: 'accounts/my-account/users/my-user/emailPreferences',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "newsAndTips": "my_newsAndTips"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3457,7 +4569,66 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Updates the email preferences for a Merchant Center account user. MCA users should specify the MCA account rather than a sub-account of the MCA. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/x/users/me/emailPreferences alias to update preferences for the authenticated user.
+     * Updates the email preferences for a Merchant Center account user. Advanced account users should specify the advanced account rather than a sub-account of the advanced account. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/x/users/me/emailPreferences alias to update preferences for the authenticated user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.emailPreferences.updateEmailPreferences({
+     *       // Identifier. The name of the EmailPreferences. The endpoint is only supported for the authenticated user.
+     *       name: 'accounts/my-account/users/my-user/emailPreferences',
+     *       // Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `news_and_tips`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "name": "my_name",
+     *         //   "newsAndTips": "my_newsAndTips"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "newsAndTips": "my_newsAndTips"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3575,6 +4746,333 @@ export namespace merchantapi_accounts_v1beta {
     requestBody?: Schema$EmailPreferences;
   }
 
+  export class Resource$Accounts$Gbpaccounts {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Link the specified merchant to a GBP account for all countries. To run this method, you must have admin access to the Merchant Center account. If you don't have admin access, the request fails with the error message `User is not an administrator of account {ACCOUNT_ID\}`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.gbpAccounts.linkGbpAccount({
+     *     // Required. The name of the parent resource to which the GBP account is linked. Format: `accounts/{account\}`.
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "gbpEmail": "my_gbpEmail"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    linkGbpAccount(
+      params: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    linkGbpAccount(
+      params?: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LinkGbpAccountResponse>>;
+    linkGbpAccount(
+      params: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    linkGbpAccount(
+      params: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LinkGbpAccountResponse>,
+      callback: BodyResponseCallback<Schema$LinkGbpAccountResponse>
+    ): void;
+    linkGbpAccount(
+      params: Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount,
+      callback: BodyResponseCallback<Schema$LinkGbpAccountResponse>
+    ): void;
+    linkGbpAccount(
+      callback: BodyResponseCallback<Schema$LinkGbpAccountResponse>
+    ): void;
+    linkGbpAccount(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount
+        | BodyResponseCallback<Schema$LinkGbpAccountResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LinkGbpAccountResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LinkGbpAccountResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LinkGbpAccountResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/gbpAccounts:linkGbpAccount'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LinkGbpAccountResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LinkGbpAccountResponse>(parameters);
+      }
+    }
+
+    /**
+     * List the GBP accounts for a given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.gbpAccounts.list({
+     *     // Optional. The maximum number of `GbpAccount` resources to return. The service returns fewer than this value if the number of gbp accounts is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListGbpAccounts` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListGbpAccounts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource under which the GBP accounts are listed. Format: `accounts/{account\}`.
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gbpAccounts": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Gbpaccounts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounts$Gbpaccounts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListGbpAccountsResponse>>;
+    list(
+      params: Params$Resource$Accounts$Gbpaccounts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Gbpaccounts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListGbpAccountsResponse>,
+      callback: BodyResponseCallback<Schema$ListGbpAccountsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Gbpaccounts$List,
+      callback: BodyResponseCallback<Schema$ListGbpAccountsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListGbpAccountsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Gbpaccounts$List
+        | BodyResponseCallback<Schema$ListGbpAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListGbpAccountsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListGbpAccountsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListGbpAccountsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Gbpaccounts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Gbpaccounts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+parent}/gbpAccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListGbpAccountsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListGbpAccountsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Gbpaccounts$Linkgbpaccount
+    extends StandardParameters {
+    /**
+     * Required. The name of the parent resource to which the GBP account is linked. Format: `accounts/{account\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LinkGbpAccountRequest;
+  }
+  export interface Params$Resource$Accounts$Gbpaccounts$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of `GbpAccount` resources to return. The service returns fewer than this value if the number of gbp accounts is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListGbpAccounts` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListGbpAccounts` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource under which the GBP accounts are listed. Format: `accounts/{account\}`.
+     */
+    parent?: string;
+  }
+
   export class Resource$Accounts$Homepage {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -3582,7 +5080,63 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the merchant is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).
+     * Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the business is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.homepage.claim({
+     *     // Required. The name of the homepage to claim. Format: `accounts/{account\}/homepage`
+     *     name: 'accounts/my-account/homepage',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "overwrite": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimed": false,
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3674,6 +5228,54 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves a store's homepage.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.homepage.getHomepage({
+     *     // Required. The name of the homepage to retrieve. Format: `accounts/{account\}/homepage`
+     *     name: 'accounts/my-account/homepage',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimed": false,
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3765,6 +5367,60 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Unclaims a store's homepage. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.homepage.unclaim({
+     *     // Required. The name of the homepage to unclaim. Format: `accounts/{account\}/homepage`
+     *     name: 'accounts/my-account/homepage',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimed": false,
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3856,6 +5512,66 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates a store's homepage. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.homepage.updateHomepage({
+     *     // Identifier. The resource name of the store's homepage. Format: `accounts/{account\}/homepage`
+     *     name: 'accounts/my-account/homepage',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `uri`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "claimed": false,
+     *       //   "name": "my_name",
+     *       //   "uri": "my_uri"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "claimed": false,
+     *   //   "name": "my_name",
+     *   //   "uri": "my_uri"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4002,6 +5718,61 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Lists all account issues of a Merchant Center account. When called on a multi-client account, this method only returns issues belonging to that account, not its sub-accounts. To retrieve issues for sub-accounts, you must first call the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call `accounts.issues.list` for each sub-account individually.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.issues.list({
+     *     // Optional. The issues in the response will have human-readable fields in the given language. The format is [BCP-47](https://tools.ietf.org/html/bcp47), such as `en-US` or `sr-Latn`. If not value is provided, `en-US` will be used.
+     *     languageCode: 'placeholder-value',
+     *     // Optional. The maximum number of issues to return. The service may return fewer than this value. If unspecified, at most 50 issues will be returned. The maximum value is 100; values above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListAccountIssues` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListAccountIssues` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of issues. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *     // Optional. The [IANA](https://www.iana.org/time-zones) timezone used to localize times in human-readable fields. For example 'America/Los_Angeles'. If not set, 'America/Los_Angeles' will be used.
+     *     timeZone: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIssues": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4120,6 +5891,1182 @@ export namespace merchantapi_accounts_v1beta {
     timeZone?: string;
   }
 
+  export class Resource$Accounts$Omnichannelsettings {
+    context: APIRequestContext;
+    lfpProviders: Resource$Accounts$Omnichannelsettings$Lfpproviders;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.lfpProviders =
+        new Resource$Accounts$Omnichannelsettings$Lfpproviders(this.context);
+    }
+
+    /**
+     * Create the omnichannel settings for a given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.omnichannelSettings.create({
+     *     // Required. The parent resource where this omnichannel setting will be created. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "about": {},
+     *       //   "inStock": {},
+     *       //   "inventoryVerification": {},
+     *       //   "lfpLink": {},
+     *       //   "lsfType": "my_lsfType",
+     *       //   "name": "my_name",
+     *       //   "odo": {},
+     *       //   "pickup": {},
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": {},
+     *   //   "inStock": {},
+     *   //   "inventoryVerification": {},
+     *   //   "lfpLink": {},
+     *   //   "lsfType": "my_lsfType",
+     *   //   "name": "my_name",
+     *   //   "odo": {},
+     *   //   "pickup": {},
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Omnichannelsettings$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>;
+    create(
+      params: Params$Resource$Accounts$Omnichannelsettings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Omnichannelsettings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$OmnichannelSetting>,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Omnichannelsettings$Create,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$OmnichannelSetting>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Create
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Omnichannelsettings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/omnichannelSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OmnichannelSetting>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OmnichannelSetting>(parameters);
+      }
+    }
+
+    /**
+     * Get the omnichannel settings for a given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.omnichannelSettings.get({
+     *     // Required. The name of the omnichannel setting to retrieve. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     *     name: 'accounts/my-account/omnichannelSettings/my-omnichannelSetting',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": {},
+     *   //   "inStock": {},
+     *   //   "inventoryVerification": {},
+     *   //   "lfpLink": {},
+     *   //   "lsfType": "my_lsfType",
+     *   //   "name": "my_name",
+     *   //   "odo": {},
+     *   //   "pickup": {},
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Accounts$Omnichannelsettings$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>;
+    get(
+      params: Params$Resource$Accounts$Omnichannelsettings$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Omnichannelsettings$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OmnichannelSetting>,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    get(
+      params: Params$Resource$Accounts$Omnichannelsettings$Get,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$OmnichannelSetting>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Get
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Omnichannelsettings$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OmnichannelSetting>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OmnichannelSetting>(parameters);
+      }
+    }
+
+    /**
+     * List all the omnichannel settings for a given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.omnichannelSettings.list({
+     *     // Optional. The maximum number of omnichannel settings to return. The service may return fewer than this value. If unspecified, at most 50 omnichannel settings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListOmnichannelSettings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOmnichannelSettings` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of omnichannel settings. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "omnichannelSettings": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Accounts$Omnichannelsettings$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Accounts$Omnichannelsettings$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOmnichannelSettingsResponse>>;
+    list(
+      params: Params$Resource$Accounts$Omnichannelsettings$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Omnichannelsettings$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>,
+      callback: BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Accounts$Omnichannelsettings$List,
+      callback: BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$List
+        | BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOmnichannelSettingsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOmnichannelSettingsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Omnichannelsettings$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/omnichannelSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOmnichannelSettingsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOmnichannelSettingsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Update the omnichannel setting for a given merchant in a given country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.omnichannelSettings.patch({
+     *     // Identifier. The resource name of the omnichannel setting. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     *     name: 'accounts/my-account/omnichannelSettings/my-omnichannelSetting',
+     *     // Required. The list of fields to be updated. The following fields are supported in snake_case only: - `lsf_type` - `in_stock` - `pickup` - `odo` - `about` - `inventory_verification` Full replacement with wildcard `*`is supported, while empty/implied update mask is not.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "about": {},
+     *       //   "inStock": {},
+     *       //   "inventoryVerification": {},
+     *       //   "lfpLink": {},
+     *       //   "lsfType": "my_lsfType",
+     *       //   "name": "my_name",
+     *       //   "odo": {},
+     *       //   "pickup": {},
+     *       //   "regionCode": "my_regionCode"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "about": {},
+     *   //   "inStock": {},
+     *   //   "inventoryVerification": {},
+     *   //   "lfpLink": {},
+     *   //   "lsfType": "my_lsfType",
+     *   //   "name": "my_name",
+     *   //   "odo": {},
+     *   //   "pickup": {},
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Omnichannelsettings$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>;
+    patch(
+      params: Params$Resource$Accounts$Omnichannelsettings$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Omnichannelsettings$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$OmnichannelSetting>,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Omnichannelsettings$Patch,
+      callback: BodyResponseCallback<Schema$OmnichannelSetting>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$OmnichannelSetting>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Patch
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OmnichannelSetting>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OmnichannelSetting>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Omnichannelsettings$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OmnichannelSetting>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OmnichannelSetting>(parameters);
+      }
+    }
+
+    /**
+     * Requests inventory verification for a given merchant in a given country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.omnichannelSettings.requestInventoryVerification(
+     *       {
+     *         // Required. The name of the omnichannel setting to request inventory verification. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     *         name: 'accounts/my-account/omnichannelSettings/my-omnichannelSetting',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {}
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "omnichannelSetting": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    requestInventoryVerification(
+      params: Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    requestInventoryVerification(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$RequestInventoryVerificationResponse>
+    >;
+    requestInventoryVerification(
+      params: Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    requestInventoryVerification(
+      params: Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RequestInventoryVerificationResponse>,
+      callback: BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+    ): void;
+    requestInventoryVerification(
+      params: Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification,
+      callback: BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+    ): void;
+    requestInventoryVerification(
+      callback: BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+    ): void;
+    requestInventoryVerification(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification
+        | BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RequestInventoryVerificationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$RequestInventoryVerificationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+name}:requestInventoryVerification'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RequestInventoryVerificationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RequestInventoryVerificationResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Omnichannelsettings$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this omnichannel setting will be created. Format: `accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OmnichannelSetting;
+  }
+  export interface Params$Resource$Accounts$Omnichannelsettings$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the omnichannel setting to retrieve. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Omnichannelsettings$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of omnichannel settings to return. The service may return fewer than this value. If unspecified, at most 50 omnichannel settings will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListOmnichannelSettings` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOmnichannelSettings` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of omnichannel settings. Format: `accounts/{account\}`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Omnichannelsettings$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the omnichannel setting. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated. The following fields are supported in snake_case only: - `lsf_type` - `in_stock` - `pickup` - `odo` - `about` - `inventory_verification` Full replacement with wildcard `*`is supported, while empty/implied update mask is not.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OmnichannelSetting;
+  }
+  export interface Params$Resource$Accounts$Omnichannelsettings$Requestinventoryverification
+    extends StandardParameters {
+    /**
+     * Required. The name of the omnichannel setting to request inventory verification. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RequestInventoryVerificationRequest;
+  }
+
+  export class Resource$Accounts$Omnichannelsettings$Lfpproviders {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Find the LFP provider candidates in a given country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.omnichannelSettings.lfpProviders.find({
+     *     // Optional. The maximum number of `LfpProvider` resources to return. The service returns fewer than this value if the number of lfp providers is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `FindLfpProviders` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `FindLfpProviders` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the parent resource under which the LFP providers are found. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`.
+     *     parent: 'accounts/my-account/omnichannelSettings/my-omnichannelSetting',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "lfpProviders": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    find(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    find(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FindLfpProvidersResponse>>;
+    find(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    find(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FindLfpProvidersResponse>,
+      callback: BodyResponseCallback<Schema$FindLfpProvidersResponse>
+    ): void;
+    find(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find,
+      callback: BodyResponseCallback<Schema$FindLfpProvidersResponse>
+    ): void;
+    find(callback: BodyResponseCallback<Schema$FindLfpProvidersResponse>): void;
+    find(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find
+        | BodyResponseCallback<Schema$FindLfpProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FindLfpProvidersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FindLfpProvidersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FindLfpProvidersResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/lfpProviders:find'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FindLfpProvidersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FindLfpProvidersResponse>(parameters);
+      }
+    }
+
+    /**
+     * Link the specified merchant to a LFP provider for the specified country.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.omnichannelSettings.lfpProviders.linkLfpProvider(
+     *       {
+     *         // Required. The name of the LFP provider resource to link. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}/lfpProviders/{lfp_provider\}`. The `lfp_provider` is the LFP provider ID.
+     *         name: 'accounts/my-account/omnichannelSettings/my-omnichannelSetting/lfpProviders/my-lfpProvider',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "externalAccountId": "my_externalAccountId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    linkLfpProvider(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    linkLfpProvider(
+      params?: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LinkLfpProviderResponse>>;
+    linkLfpProvider(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    linkLfpProvider(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LinkLfpProviderResponse>,
+      callback: BodyResponseCallback<Schema$LinkLfpProviderResponse>
+    ): void;
+    linkLfpProvider(
+      params: Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider,
+      callback: BodyResponseCallback<Schema$LinkLfpProviderResponse>
+    ): void;
+    linkLfpProvider(
+      callback: BodyResponseCallback<Schema$LinkLfpProviderResponse>
+    ): void;
+    linkLfpProvider(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider
+        | BodyResponseCallback<Schema$LinkLfpProviderResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LinkLfpProviderResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LinkLfpProviderResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LinkLfpProviderResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}:linkLfpProvider').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LinkLfpProviderResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LinkLfpProviderResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Find
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of `LfpProvider` resources to return. The service returns fewer than this value if the number of lfp providers is less that than the `pageSize`. The default value is 50. The maximum value is 1000; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FindLfpProviders` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `FindLfpProviders` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the parent resource under which the LFP providers are found. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Accounts$Omnichannelsettings$Lfpproviders$Linklfpprovider
+    extends StandardParameters {
+    /**
+     * Required. The name of the LFP provider resource to link. Format: `accounts/{account\}/omnichannelSettings/{omnichannel_setting\}/lfpProviders/{lfp_provider\}`. The `lfp_provider` is the LFP provider ID.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$LinkLfpProviderRequest;
+  }
+
   export class Resource$Accounts$Onlinereturnpolicies {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -4127,7 +7074,374 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Gets an existing return policy for a given merchant.
+     * Creates a new return policy for a given business.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.onlineReturnPolicies.create({
+     *     // Required. The Merchant Center account for which the return policy will be created. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acceptDefectiveOnly": false,
+     *       //   "acceptExchange": false,
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "processRefundDays": 0,
+     *       //   "restockingFee": {},
+     *       //   "returnLabelSource": "my_returnLabelSource",
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnShippingFee": {},
+     *       //   "seasonalOverrides": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acceptDefectiveOnly": false,
+     *   //   "acceptExchange": false,
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "processRefundDays": 0,
+     *   //   "restockingFee": {},
+     *   //   "returnLabelSource": "my_returnLabelSource",
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnShippingFee": {},
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounts$Onlinereturnpolicies$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>;
+    create(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$OnlineReturnPolicy>,
+      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Create,
+      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$OnlineReturnPolicy>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Onlinereturnpolicies$Create
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Onlinereturnpolicies$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Onlinereturnpolicies$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/onlineReturnPolicies'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OnlineReturnPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OnlineReturnPolicy>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an existing return policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.onlineReturnPolicies.delete({
+     *     // Required. The name of the return policy to delete. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
+     *     name: 'accounts/my-account/onlineReturnPolicies/my-onlineReturnPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Accounts$Onlinereturnpolicies$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Onlinereturnpolicies$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Onlinereturnpolicies$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Onlinereturnpolicies$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets an existing return policy for a given business.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.onlineReturnPolicies.get({
+     *     // Required. The name of the return policy to retrieve. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
+     *     name: 'accounts/my-account/onlineReturnPolicies/my-onlineReturnPolicie',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acceptDefectiveOnly": false,
+     *   //   "acceptExchange": false,
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "processRefundDays": 0,
+     *   //   "restockingFee": {},
+     *   //   "returnLabelSource": "my_returnLabelSource",
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnShippingFee": {},
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4218,7 +7532,58 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Lists all existing return policies for a given merchant.
+     * Lists all existing return policies for a given business.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.onlineReturnPolicies.list({
+     *     // Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given business is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListOnlineReturnPolicies` call. Provide the page token to retrieve the subsequent page. When paginating, all other parameters provided to `ListOnlineReturnPolicies` must match the call that provided the page token. The token returned as nextPageToken in the response to the previous request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The Merchant Center account for which to list return policies. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "onlineReturnPolicies": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4316,8 +7681,202 @@ export namespace merchantapi_accounts_v1beta {
         );
       }
     }
+
+    /**
+     * Updates an existing return policy for a given business.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.onlineReturnPolicies.patch({
+     *     // Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
+     *     name: 'accounts/my-account/onlineReturnPolicies/my-onlineReturnPolicie',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `accept_defective_only` - `accept_exchange` - `item_conditions` - `policy` - `process_refund_days` - `restocking_fee` - `return_methods` - `return_policy_uri` - `return_shipping_fee`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "acceptDefectiveOnly": false,
+     *       //   "acceptExchange": false,
+     *       //   "countries": [],
+     *       //   "itemConditions": [],
+     *       //   "label": "my_label",
+     *       //   "name": "my_name",
+     *       //   "policy": {},
+     *       //   "processRefundDays": 0,
+     *       //   "restockingFee": {},
+     *       //   "returnLabelSource": "my_returnLabelSource",
+     *       //   "returnMethods": [],
+     *       //   "returnPolicyId": "my_returnPolicyId",
+     *       //   "returnPolicyUri": "my_returnPolicyUri",
+     *       //   "returnShippingFee": {},
+     *       //   "seasonalOverrides": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acceptDefectiveOnly": false,
+     *   //   "acceptExchange": false,
+     *   //   "countries": [],
+     *   //   "itemConditions": [],
+     *   //   "label": "my_label",
+     *   //   "name": "my_name",
+     *   //   "policy": {},
+     *   //   "processRefundDays": 0,
+     *   //   "restockingFee": {},
+     *   //   "returnLabelSource": "my_returnLabelSource",
+     *   //   "returnMethods": [],
+     *   //   "returnPolicyId": "my_returnPolicyId",
+     *   //   "returnPolicyUri": "my_returnPolicyUri",
+     *   //   "returnShippingFee": {},
+     *   //   "seasonalOverrides": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>;
+    patch(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$OnlineReturnPolicy>,
+      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
+      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$OnlineReturnPolicy>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Onlinereturnpolicies$Patch
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OnlineReturnPolicy>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Onlinereturnpolicies$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Onlinereturnpolicies$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OnlineReturnPolicy>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OnlineReturnPolicy>(parameters);
+      }
+    }
   }
 
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Create
+    extends StandardParameters {
+    /**
+     * Required. The Merchant Center account for which the return policy will be created. Format: `accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OnlineReturnPolicy;
+  }
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the return policy to delete. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Onlinereturnpolicies$Get
     extends StandardParameters {
     /**
@@ -4328,7 +7887,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Onlinereturnpolicies$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given merchant is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum
+     * Optional. The maximum number of `OnlineReturnPolicy` resources to return. The service returns fewer than this value if the number of return policies for the given business is less that than the `pageSize`. The default value is 10. The maximum value is 100; If a value higher than the maximum is specified, then the `pageSize` will default to the maximum
      */
     pageSize?: number;
     /**
@@ -4336,9 +7895,25 @@ export namespace merchantapi_accounts_v1beta {
      */
     pageToken?: string;
     /**
-     * Required. The merchant account for which to list return policies. Format: `accounts/{account\}`
+     * Required. The Merchant Center account for which to list return policies. Format: `accounts/{account\}`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Accounts$Onlinereturnpolicies$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
+     */
+    name?: string;
+    /**
+     * Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `accept_defective_only` - `accept_exchange` - `item_conditions` - `policy` - `process_refund_days` - `restocking_fee` - `return_methods` - `return_policy_uri` - `return_shipping_fee`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OnlineReturnPolicy;
   }
 
   export class Resource$Accounts$Programs {
@@ -4348,7 +7923,63 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Disable participation in the specified program for the account. Executing this method requires admin access.
+     * Disable participation in the specified program for the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.programs.disable({
+     *     // Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
+     *     name: 'accounts/my-account/programs/my-program',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeRegionCodes": [],
+     *   //   "documentationUri": "my_documentationUri",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "unmetRequirements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4439,7 +8070,63 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Enable participation in the specified program for the account. Executing this method requires admin access.
+     * Enable participation in the specified program for the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.programs.enable({
+     *     // Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
+     *     name: 'accounts/my-account/programs/my-program',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeRegionCodes": [],
+     *   //   "documentationUri": "my_documentationUri",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "unmetRequirements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4531,6 +8218,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the specified program for the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.programs.get({
+     *     // Required. The name of the program to retrieve. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
+     *     name: 'accounts/my-account/programs/my-program',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activeRegionCodes": [],
+     *   //   "documentationUri": "my_documentationUri",
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "unmetRequirements": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4622,6 +8359,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves all programs for the account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.programs.list({
+     *     // Optional. The maximum number of programs to return in a single response. If unspecified (or 0), a default size of 1000 is used. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A continuation token, received from a previous `ListPrograms` call. Provide this to retrieve the next page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The name of the account for which to retrieve all programs. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "programs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4717,7 +8505,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Programs$Disable
     extends StandardParameters {
     /**
-     * Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account\}/programs/{program\}`
+     * Required. The name of the program for which to disable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
     name?: string;
 
@@ -4729,7 +8517,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Programs$Enable
     extends StandardParameters {
     /**
-     * Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account\}/programs/{program\}`
+     * Required. The name of the program for which to enable participation for the given account. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
     name?: string;
 
@@ -4741,7 +8529,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Programs$Get
     extends StandardParameters {
     /**
-     * Required. The name of the program to retrieve. Format: `accounts/{account\}/programs/{program\}`
+     * Required. The name of the program to retrieve. Format: `accounts/{account\}/programs/{program\}`. For example, `accounts/123456/programs/free-listings`.
      */
     name?: string;
   }
@@ -4769,6 +8557,72 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Creates a region definition in your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.create({
+     *     // Required. The account to create a region for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *     // Required. The identifier for the region, unique over all regions of the same account.
+     *     regionId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "name": "my_name",
+     *       //   "postalCodeArea": {},
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "name": "my_name",
+     *   //   "postalCodeArea": {},
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4860,6 +8714,50 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Deletes a region definition from your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.delete({
+     *     // Required. The name of the region to delete. Format: `accounts/{account\}/regions/{region\}`
+     *     name: 'accounts/my-account/regions/my-region',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4951,6 +8849,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves a region defined in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.get({
+     *     // Required. The name of the region to retrieve. Format: `accounts/{account\}/regions/{region\}`
+     *     name: 'accounts/my-account/regions/my-region',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "name": "my_name",
+     *   //   "postalCodeArea": {},
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5042,6 +8991,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Lists the regions in your Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.list({
+     *     // Optional. The maximum number of regions to return. The service may return fewer than this value. If unspecified, at most 50 regions will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListRegions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListRegions` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The account to list regions for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5133,6 +9133,72 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates a region definition in your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.patch({
+     *     // Identifier. The resource name of the region. Format: `accounts/{account\}/regions/{region\}`
+     *     name: 'accounts/my-account/regions/my-region',
+     *     // Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "displayName": "my_displayName",
+     *       //   "geotargetArea": {},
+     *       //   "name": "my_name",
+     *       //   "postalCodeArea": {},
+     *       //   "regionalInventoryEligible": false,
+     *       //   "shippingEligible": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "geotargetArea": {},
+     *   //   "name": "my_name",
+     *   //   "postalCodeArea": {},
+     *   //   "regionalInventoryEligible": false,
+     *   //   "shippingEligible": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5293,6 +9359,55 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieve an account relationship.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.relationships.get({
+     *     // Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
+     *     name: 'accounts/my-account/relationships/my-relationship',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdAlias": "my_accountIdAlias",
+     *   //   "name": "my_name",
+     *   //   "provider": "my_provider",
+     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5384,6 +9499,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * List account relationships for the specified account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.relationships.list({
+     *     // Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The token returned by the previous `list` request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent account of the account relationship to filter by. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountRelationships": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5485,6 +9651,68 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates the account relationship. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.relationships.patch({
+     *     // Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
+     *     name: 'accounts/my-account/relationships/my-relationship',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `account_id_alias`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountIdAlias": "my_accountIdAlias",
+     *       //   "name": "my_name",
+     *       //   "provider": "my_provider",
+     *       //   "providerDisplayName": "my_providerDisplayName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountIdAlias": "my_accountIdAlias",
+     *   //   "name": "my_name",
+     *   //   "provider": "my_provider",
+     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5578,7 +9806,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Relationships$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Required. The resource name of the account relationship to get. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
      */
     name?: string;
   }
@@ -5600,7 +9828,7 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Relationships$Patch
     extends StandardParameters {
     /**
-     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`
+     * Identifier. The resource name of the account relationship. Format: `accounts/{account\}/relationships/{relationship\}`. For example, `accounts/123456/relationships/567890`.
      */
     name?: string;
     /**
@@ -5622,6 +9850,68 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Approve an account service proposal.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.services.approve({
+     *     // Required. The resource name of the account service to approve. Format: `accounts/{account\}/services/{service\}`
+     *     name: 'accounts/my-account/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAggregation": {},
+     *   //   "accountManagement": {},
+     *   //   "campaignsManagement": {},
+     *   //   "externalAccountId": "my_externalAccountId",
+     *   //   "handshake": {},
+     *   //   "localListingManagement": {},
+     *   //   "mutability": "my_mutability",
+     *   //   "name": "my_name",
+     *   //   "productsManagement": {},
+     *   //   "provider": "my_provider",
+     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5713,6 +10003,62 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieve an account service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.services.get({
+     *     // Required. The resource name of the account service to get. Format: `accounts/{account\}/services/{service\}`
+     *     name: 'accounts/my-account/services/my-service',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAggregation": {},
+     *   //   "accountManagement": {},
+     *   //   "campaignsManagement": {},
+     *   //   "externalAccountId": "my_externalAccountId",
+     *   //   "handshake": {},
+     *   //   "localListingManagement": {},
+     *   //   "mutability": "my_mutability",
+     *   //   "name": "my_name",
+     *   //   "productsManagement": {},
+     *   //   "provider": "my_provider",
+     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5804,6 +10150,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * List account services for the specified accounts. Supports filtering.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.services.list({
+     *     // Optional. The maximum number of elements to return in the response. Use for paging. If no `page_size` is specified, `100` is used as the default value. The maximum allowed value is `1000`.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The token returned by the previous `list` request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent account of the account service to filter by. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountServices": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5899,6 +10296,71 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Propose an account service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.services.propose({
+     *     // Required. The resource name of the parent account for the service. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountService": {},
+     *       //   "provider": "my_provider"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accountAggregation": {},
+     *   //   "accountManagement": {},
+     *   //   "campaignsManagement": {},
+     *   //   "externalAccountId": "my_externalAccountId",
+     *   //   "handshake": {},
+     *   //   "localListingManagement": {},
+     *   //   "mutability": "my_mutability",
+     *   //   "name": "my_name",
+     *   //   "productsManagement": {},
+     *   //   "provider": "my_provider",
+     *   //   "providerDisplayName": "my_providerDisplayName"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -5989,6 +10451,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Reject an account service (both proposed and approve services can be rejected).
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.services.reject({
+     *     // Required. The resource name of the account service to reject. Format: `accounts/{account\}/services/{service\}`
+     *     name: 'accounts/my-account/services/my-service',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6146,6 +10658,55 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieve shipping setting information.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.shippingSettings.getShippingSettings({
+     *     // Required. The name of the shipping setting to retrieve. Format: `accounts/{account\}/shippingsettings`
+     *     name: 'accounts/my-account/shippingSettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "services": [],
+     *   //   "warehouses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6239,7 +10800,67 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Replace the shipping setting of a merchant with the request shipping setting. Executing this method requires admin access.
+     * Replace the shipping setting of a business with the request shipping setting. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.shippingSettings.insert({
+     *     // Required. The account for which this shipping setting will be inserted. If you are using an advanced account, you must specify the unique identifier of the sub-account for which you want to insert the shipping setting. Format: `accounts/{ACCOUNT_ID\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "etag": "my_etag",
+     *       //   "name": "my_name",
+     *       //   "services": [],
+     *       //   "warehouses": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "etag": "my_etag",
+     *   //   "name": "my_name",
+     *   //   "services": [],
+     *   //   "warehouses": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6357,6 +10978,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Returns the state of a terms of service agreement.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.termsOfServiceAgreementStates.get({
+     *     // Required. The resource name of the terms of service version. Format: `accounts/{account\}/termsOfServiceAgreementStates/{identifier\}` The identifier format is: `{TermsOfServiceKind\}-{country\}`
+     *     name: 'accounts/my-account/termsOfServiceAgreementStates/my-termsOfServiceAgreementState',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accepted": {},
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "required": {},
+     *   //   "termsOfServiceKind": "my_termsOfServiceKind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6454,7 +11125,60 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Retrieves the state of the agreement for the application terms of service.
+     * Retrieves the state of the agreement for the application terms of service. Application terms of service covers permissions related to the usage of data provided through Merchant Center, CSS Center, Manufacturer Center, and more.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.termsOfServiceAgreementStates.retrieveForApplication(
+     *       {
+     *         // Required. The account for which to get a TermsOfServiceAgreementState Format: `accounts/{account\}`
+     *         parent: 'accounts/my-account',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accepted": {},
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode",
+     *   //   "required": {},
+     *   //   "termsOfServiceKind": "my_termsOfServiceKind"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6575,6 +11299,66 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Creates a Merchant Center account user. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.create({
+     *     // Required. The resource name of the account for which a user will be created. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *     // Required. The email address of the user (for example, `john.doe@gmail.com`).
+     *     userId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRights": [],
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRights": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6666,6 +11450,50 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager"
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.delete({
+     *     // Required. The name of the user to delete. Format: `accounts/{account\}/users/{email\}` It is also possible to delete the user corresponding to the caller by using `me` rather than an email address as in `accounts/{account\}/users/me`.
+     *     name: 'accounts/my-account/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6757,6 +11585,54 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves a Merchant Center account user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.get({
+     *     // Required. The name of the user to retrieve. Format: `accounts/{account\}/users/{email\}` It is also possible to retrieve the user corresponding to the caller by using `me` rather than an email address as in `accounts/{account\}/users/me`.
+     *     name: 'accounts/my-account/users/my-user',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRights": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6848,6 +11724,57 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Lists all users of a Merchant Center account.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.list({
+     *     // Optional. The maximum number of users to return. The service may return fewer than this value. If unspecified, at most 50 users will be returned. The maximum value is 100; values above 100 will be coerced to 100
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListUsers` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListUsers` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of users. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "users": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -6939,6 +11866,66 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Updates a Merchant Center account user. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.users.patch({
+     *     // Identifier. The resource name of the user. Format: `accounts/{account\}/user/{email\}` Use `me` to refer to your own email address, for example `accounts/{account\}/users/me`.
+     *     name: 'accounts/my-account/users/my-user',
+     *     // Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `access_rights`
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accessRights": [],
+     *       //   "name": "my_name",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "accessRights": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7099,6 +12086,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Accepts a `TermsOfService`. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.termsOfService.accept({
+     *     // Required. The account for which to accept the ToS. Format: `accounts/{account\}`
+     *     account: 'placeholder-value',
+     *     // Required. The resource name of the terms of service version. Format: `termsOfService/{version\}`
+     *     name: 'termsOfService/[^/]+',
+     *     // Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.
+     *     regionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "termsOfServiceAgreementState": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7196,6 +12233,56 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the `TermsOfService` associated with the provided version.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.termsOfService.get({
+     *     // Required. The resource name of the terms of service version. Format: `termsOfService/{version\}`
+     *     name: 'termsOfService/[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "external": false,
+     *   //   "fileUri": "my_fileUri",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -7287,6 +12374,58 @@ export namespace merchantapi_accounts_v1beta {
 
     /**
      * Retrieves the latest version of the `TermsOfService` for a given `kind` and `region_code`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.termsOfService.retrieveLatest({
+     *     // Required. The Kind this terms of service version applies to.
+     *     kind: 'placeholder-value',
+     *     // Required. Region code as defined by [CLDR](https://cldr.unicode.org/). This is either a country when the ToS applies specifically to that country or 001 when it applies globally.
+     *     regionCode: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "external": false,
+     *   //   "fileUri": "my_fileUri",
+     *   //   "kind": "my_kind",
+     *   //   "name": "my_name",
+     *   //   "regionCode": "my_regionCode"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

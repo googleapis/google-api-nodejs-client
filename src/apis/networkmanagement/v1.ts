@@ -112,6 +112,7 @@ export namespace networkmanagement_v1 {
    */
   export class Networkmanagement {
     context: APIRequestContext;
+    organizations: Resource$Organizations;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,6 +121,7 @@ export namespace networkmanagement_v1 {
         google,
       };
 
+      this.organizations = new Resource$Organizations(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
@@ -257,6 +259,10 @@ export namespace networkmanagement_v1 {
    */
   export interface Schema$CloudRunRevisionEndpoint {
     /**
+     * Output only. The URI of the Cloud Run service that the revision belongs to. The format is: projects/{project\}/locations/{location\}/services/{service\}
+     */
+    serviceUri?: string | null;
+    /**
      * A [Cloud Run](https://cloud.google.com/run) [revision](https://cloud.google.com/run/docs/reference/rest/v1/namespaces.revisions/get) URI. The format is: projects/{project\}/locations/{location\}/revisions/{revision\}
      */
     uri?: string | null;
@@ -380,6 +386,10 @@ export namespace networkmanagement_v1 {
    * Details of the final state "deliver" and associated resource.
    */
   export interface Schema$DeliverInfo {
+    /**
+     * Recognized type of a Google Service the packet is delivered to (if applicable).
+     */
+    googleServiceType?: string | null;
     /**
      * IP address of the target (if applicable).
      */
@@ -628,6 +638,10 @@ export namespace networkmanagement_v1 {
      */
     policy?: string | null;
     /**
+     * The priority of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.
+     */
+    policyPriority?: number | null;
+    /**
      * The URI of the firewall policy that this rule is associated with. This field is not applicable to VPC firewall rules and implied VPC firewall rules.
      */
     policyUri?: string | null;
@@ -785,13 +799,17 @@ export namespace networkmanagement_v1 {
      */
     pscNetworkAttachmentUri?: string | null;
     /**
-     * Indicates whether the Compute Engine instance is running.
+     * Indicates whether the Compute Engine instance is running. Deprecated: use the `status` field instead.
      */
     running?: boolean | null;
     /**
      * Service account authorized for the instance.
      */
     serviceAccount?: string | null;
+    /**
+     * The status of the instance.
+     */
+    status?: string | null;
     /**
      * URI of a Compute Engine instance.
      */
@@ -1057,7 +1075,7 @@ export namespace networkmanagement_v1 {
     type?: string | null;
   }
   /**
-   * For display only. Metadata associated with a Compute Engine network. Next ID: 7
+   * For display only. Metadata associated with a Compute Engine network.
    */
   export interface Schema$NetworkInfo {
     /**
@@ -1758,7 +1776,7 @@ export namespace networkmanagement_v1 {
      */
     metadataFields?: string[] | null;
     /**
-     * Identifier. Unique name of the configuration using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     * Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_number\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string | null;
     /**
@@ -1849,6 +1867,962 @@ export namespace networkmanagement_v1 {
     uri?: string | null;
   }
 
+  export class Resource$Organizations {
+    context: APIRequestContext;
+    locations: Resource$Organizations$Locations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.locations = new Resource$Organizations$Locations(this.context);
+    }
+  }
+
+  export class Resource$Organizations$Locations {
+    context: APIRequestContext;
+    operations: Resource$Organizations$Locations$Operations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.operations = new Resource$Organizations$Locations$Operations(
+        this.context
+      );
+    }
+
+    /**
+     * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.get({
+     *     // Resource name for the location.
+     *     name: 'organizations/my-organization/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Location>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Location>,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Get,
+      callback: BodyResponseCallback<Schema$Location>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Location>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Get
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Location>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Location>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Location>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Location>(parameters);
+      }
+    }
+
+    /**
+     * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'organizations/my-organization',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$List,
+      callback: BodyResponseCallback<Schema$ListLocationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListLocationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$List
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListLocationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListLocationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/locations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListLocationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListLocationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Get
+    extends StandardParameters {
+    /**
+     * Resource name for the location.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$List
+    extends StandardParameters {
+    /**
+     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     */
+    extraLocationTypes?: string[];
+    /**
+     * A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     */
+    filter?: string;
+    /**
+     * The resource that owns the locations collection, if applicable.
+     */
+    name?: string;
+    /**
+     * The maximum number of results to return. If not set, the service selects a default.
+     */
+    pageSize?: number;
+    /**
+     * A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     */
+    pageToken?: string;
+  }
+
+  export class Resource$Organizations$Locations$Operations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.operations.cancel(
+     *     {
+     *       // The name of the operation resource to be cancelled.
+     *       name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(
+      params: Params$Resource$Organizations$Locations$Operations$Cancel,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Empty>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Cancel
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Operations$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:cancel').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.operations.delete(
+     *     {
+     *       // The name of the operation resource to be deleted.
+     *       name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Operations$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Operations$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Operations$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'organizations/my-organization/locations/my-location/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Operations$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Operations$Get,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Operation>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$Get
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Operations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.organizations.locations.operations.list({
+     *     // The standard list filter.
+     *     filter: 'placeholder-value',
+     *     // The name of the operation's parent resource.
+     *     name: 'organizations/my-organization/locations/my-location',
+     *     // The standard list page size.
+     *     pageSize: 'placeholder-value',
+     *     // The standard list page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Operations$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Operations$List,
+      callback: BodyResponseCallback<Schema$ListOperationsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Operations$List
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Operations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Organizations$Locations$Operations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}/operations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Operations$Cancel
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be cancelled.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOperationRequest;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$Delete
+    extends StandardParameters {
+    /**
+     * The name of the operation resource to be deleted.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$Get
+    extends StandardParameters {
+    /**
+     * The name of the operation resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Operations$List
+    extends StandardParameters {
+    /**
+     * The standard list filter.
+     */
+    filter?: string;
+    /**
+     * The name of the operation's parent resource.
+     */
+    name?: string;
+    /**
+     * The standard list page size.
+     */
+    pageSize?: number;
+    /**
+     * The standard list page token.
+     */
+    pageToken?: string;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -1871,6 +2845,56 @@ export namespace networkmanagement_v1 {
 
     /**
      * Gets information about a location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.projects.locations.get({
+     *     // Resource name for the location.
+     *     name: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "locationId": "my_locationId",
+     *   //   "metadata": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1960,6 +2984,61 @@ export namespace networkmanagement_v1 {
 
     /**
      * Lists information about the supported locations for this service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.projects.locations.list({
+     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     extraLocationTypes: 'placeholder-value',
+     *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
+     *     filter: 'placeholder-value',
+     *     // The resource that owns the locations collection, if applicable.
+     *     name: 'projects/my-project',
+     *     // The maximum number of results to return. If not set, the service selects a default.
+     *     pageSize: 'placeholder-value',
+     *     // A page token received from the `next_page_token` field in the response. Send that page token to receive the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "locations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2106,6 +3185,81 @@ export namespace networkmanagement_v1 {
 
     /**
      * Creates a new Connectivity Test. After you create a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. If the endpoint specifications in `ConnectivityTest` are invalid (for example, containing non-existent resources in the network, or you don't have read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of AMBIGUOUS. For more information, see the Connectivity Test documentation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.create({
+     *       // Required. The parent resource of the Connectivity Test to create: `projects/{project_id\}/locations/global`
+     *       parent: 'projects/my-project/locations/global',
+     *       // Required. The logical name of the Connectivity Test in your project with the following restrictions: * Must contain only lowercase letters, numbers, and hyphens. * Must start with a letter. * Must be between 1-40 characters. * Must end with a number or a letter. * Must be unique within the customer project
+     *       testId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bypassFirewallChecks": false,
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "destination": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "probingDetails": {},
+     *         //   "protocol": "my_protocol",
+     *         //   "reachabilityDetails": {},
+     *         //   "relatedProjects": [],
+     *         //   "returnReachabilityDetails": {},
+     *         //   "roundTrip": false,
+     *         //   "source": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2199,6 +3353,57 @@ export namespace networkmanagement_v1 {
 
     /**
      * Deletes a specific `ConnectivityTest`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.delete({
+     *       // Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2289,6 +3494,67 @@ export namespace networkmanagement_v1 {
 
     /**
      * Gets the details of a specific Connectivity Test.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.get({
+     *       // Required. `ConnectivityTest` resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "bypassFirewallChecks": false,
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "destination": {},
+     *   //   "displayName": "my_displayName",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "probingDetails": {},
+     *   //   "protocol": "my_protocol",
+     *   //   "reachabilityDetails": {},
+     *   //   "relatedProjects": [],
+     *   //   "returnReachabilityDetails": {},
+     *   //   "roundTrip": false,
+     *   //   "source": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2379,6 +3645,61 @@ export namespace networkmanagement_v1 {
 
     /**
      * Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.getIamPolicy(
+     *       {
+     *         // Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
+     *         'options.requestedPolicyVersion': 'placeholder-value',
+     *         // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2472,6 +3793,63 @@ export namespace networkmanagement_v1 {
 
     /**
      * Lists all Connectivity Tests owned by a project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.list({
+     *       // Lists the `ConnectivityTests` that match the filter expression. A filter expression filters the resources listed in the response. The expression must be of the form ` ` where operators: `<`, `\>`, `<=`, `\>=`, `!=`, `=`, `:` are supported (colon `:` represents a HAS operator which is roughly synonymous with equality). can refer to a proto or JSON field, or a synthetic field. Field names can be camelCase or snake_case. Examples: - Filter by name: name = "projects/proj-1/locations/global/connectivityTests/test-1 - Filter by labels: - Resources that have a key called `foo` labels.foo:* - Resources that have a key called `foo` whose value is `bar` labels.foo = bar
+     *       filter: 'placeholder-value',
+     *       // Field to use to sort the list.
+     *       orderBy: 'placeholder-value',
+     *       // Number of `ConnectivityTests` to return.
+     *       pageSize: 'placeholder-value',
+     *       // Page token from an earlier query, as returned in `next_page_token`.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource of the Connectivity Tests: `projects/{project_id\}/locations/global`
+     *       parent: 'projects/my-project/locations/global',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2571,6 +3949,81 @@ export namespace networkmanagement_v1 {
 
     /**
      * Updates the configuration of an existing `ConnectivityTest`. After you update a test, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. The Reachability state in the test resource is updated with the new result. If the endpoint specifications in `ConnectivityTest` are invalid (for example, they contain non-existent resources in the network, or the user does not have read permissions to the network configurations of listed projects), then the reachability result returns a value of UNKNOWN. If the endpoint specifications in `ConnectivityTest` are incomplete, the reachability result returns a value of `AMBIGUOUS`. See the documentation in `ConnectivityTest` for more details.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.patch({
+     *       // Identifier. Unique name of the resource using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "bypassFirewallChecks": false,
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "destination": {},
+     *         //   "displayName": "my_displayName",
+     *         //   "labels": {},
+     *         //   "name": "my_name",
+     *         //   "probingDetails": {},
+     *         //   "protocol": "my_protocol",
+     *         //   "reachabilityDetails": {},
+     *         //   "relatedProjects": [],
+     *         //   "returnReachabilityDetails": {},
+     *         //   "roundTrip": false,
+     *         //   "source": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2661,6 +4114,63 @@ export namespace networkmanagement_v1 {
 
     /**
      * Rerun an existing `ConnectivityTest`. After the user triggers the rerun, the reachability analysis is performed as part of the long running operation, which completes when the analysis completes. Even though the test configuration remains the same, the reachability result may change due to underlying network configuration changes. If the endpoint specifications in `ConnectivityTest` become invalid (for example, specified resources are deleted in the network, or you lost read permissions to the network configurations of listed projects), then the reachability result returns a value of `UNKNOWN`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.rerun({
+     *       // Required. Connectivity Test resource name using the form: `projects/{project_id\}/locations/global/connectivityTests/{test_id\}`
+     *       name: 'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2751,6 +4261,68 @@ export namespace networkmanagement_v1 {
 
     /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.setIamPolicy(
+     *       {
+     *         // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "policy": {},
+     *           //   "updateMask": "my_updateMask"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2844,6 +4416,64 @@ export namespace networkmanagement_v1 {
 
     /**
      * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.connectivityTests.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/global/connectivityTests/my-connectivityTest',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3065,6 +4695,57 @@ export namespace networkmanagement_v1 {
 
     /**
      * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.operations.cancel({
+     *       // The name of the operation resource to be cancelled.
+     *       name: 'projects/my-project/locations/global/operations/my-operation',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3155,6 +4836,51 @@ export namespace networkmanagement_v1 {
 
     /**
      * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.global.operations.delete({
+     *       // The name of the operation resource to be deleted.
+     *       name: 'projects/my-project/locations/global/operations/my-operation',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3245,6 +4971,56 @@ export namespace networkmanagement_v1 {
 
     /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.projects.locations.global.operations.get({
+     *     // The name of the operation resource.
+     *     name: 'projects/my-project/locations/global/operations/my-operation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3334,6 +5110,61 @@ export namespace networkmanagement_v1 {
 
     /**
      * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.projects.locations.global.operations.list(
+     *     {
+     *       // The standard list filter.
+     *       filter: 'placeholder-value',
+     *       // The name of the operation's parent resource.
+     *       name: 'projects/my-project/locations/global',
+     *       // The standard list page size.
+     *       pageSize: 'placeholder-value',
+     *       // The standard list page token.
+     *       pageToken: 'placeholder-value',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "operations": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3482,6 +5313,80 @@ export namespace networkmanagement_v1 {
 
     /**
      * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.create({
+     *       // Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       parent: 'projects/my-project/locations/my-location',
+     *       // Required. ID of the `VpcFlowLogsConfig`.
+     *       vpcFlowLogsConfigId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "filterExpr": "my_filterExpr",
+     *         //   "flowSampling": {},
+     *         //   "interconnectAttachment": "my_interconnectAttachment",
+     *         //   "labels": {},
+     *         //   "metadata": "my_metadata",
+     *         //   "metadataFields": [],
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "targetResourceState": "my_targetResourceState",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "vpnTunnel": "my_vpnTunnel"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3575,6 +5480,57 @@ export namespace networkmanagement_v1 {
 
     /**
      * Deletes a specific `VpcFlowLogsConfig`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.delete({
+     *       // Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\} `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3665,6 +5621,67 @@ export namespace networkmanagement_v1 {
 
     /**
      * Gets the details of a specific `VpcFlowLogsConfig`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkmanagement.projects.locations.vpcFlowLogsConfigs.get(
+     *     {
+     *       // Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aggregationInterval": "my_aggregationInterval",
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "filterExpr": "my_filterExpr",
+     *   //   "flowSampling": {},
+     *   //   "interconnectAttachment": "my_interconnectAttachment",
+     *   //   "labels": {},
+     *   //   "metadata": "my_metadata",
+     *   //   "metadataFields": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "targetResourceState": "my_targetResourceState",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpnTunnel": "my_vpnTunnel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3755,6 +5772,63 @@ export namespace networkmanagement_v1 {
 
     /**
      * Lists all `VpcFlowLogsConfigs` in a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.list({
+     *       // Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     *       filter: 'placeholder-value',
+     *       // Optional. Field to use to sort the list.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Number of `VpcFlowLogsConfigs` to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vpcFlowLogsConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3854,6 +5928,80 @@ export namespace networkmanagement_v1 {
 
     /**
      * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail. 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.patch({
+     *       // Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_number\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "filterExpr": "my_filterExpr",
+     *         //   "flowSampling": {},
+     *         //   "interconnectAttachment": "my_interconnectAttachment",
+     *         //   "labels": {},
+     *         //   "metadata": "my_metadata",
+     *         //   "metadataFields": [],
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "targetResourceState": "my_targetResourceState",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "vpnTunnel": "my_vpnTunnel"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3946,7 +6094,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global`
+     * Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
     /**
@@ -3962,14 +6110,14 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\} `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Get
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
      */
     name?: string;
   }
@@ -3992,14 +6140,14 @@ export namespace networkmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Patch
     extends StandardParameters {
     /**
-     * Identifier. Unique name of the configuration using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     * Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_number\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
     /**

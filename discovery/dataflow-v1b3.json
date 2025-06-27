@@ -693,6 +693,41 @@
                     "https://www.googleapis.com/auth/compute"
                   ]
                 },
+                "getWorkerStacktraces": {
+                  "description": "Get worker stacktraces from debug capture.",
+                  "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces",
+                  "httpMethod": "POST",
+                  "id": "dataflow.projects.jobs.debug.getWorkerStacktraces",
+                  "parameterOrder": [
+                    "projectId",
+                    "jobId"
+                  ],
+                  "parameters": {
+                    "jobId": {
+                      "description": "The job for which to get stacktraces.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "projectId": {
+                      "description": "The project id.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces",
+                  "request": {
+                    "$ref": "GetWorkerStacktracesRequest"
+                  },
+                  "response": {
+                    "$ref": "GetWorkerStacktracesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/compute"
+                  ]
+                },
                 "sendCapture": {
                   "description": "Send encoded debug capture data for component.",
                   "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture",
@@ -2208,7 +2243,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250519",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
@@ -3792,6 +3827,31 @@
             "Flex Template."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetWorkerStacktracesRequest": {
+      "description": "Request to get worker stacktraces from debug capture.",
+      "id": "GetWorkerStacktracesRequest",
+      "properties": {
+        "workerId": {
+          "description": "The worker for which to get stacktraces. The returned stacktraces will be for the SDK harness running on this worker.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetWorkerStacktracesResponse": {
+      "description": "Response to get worker stacktraces from debug capture.",
+      "id": "GetWorkerStacktracesResponse",
+      "properties": {
+        "sdks": {
+          "description": "Repeated as unified worker may have multiple SDK processes.",
+          "items": {
+            "$ref": "Sdk"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5788,6 +5848,24 @@
       },
       "type": "object"
     },
+    "Sdk": {
+      "description": "A structured representation of an SDK.",
+      "id": "Sdk",
+      "properties": {
+        "sdkId": {
+          "description": "The SDK harness id.",
+          "type": "string"
+        },
+        "stacks": {
+          "description": "The stacktraces for the processes running on the SDK harness.",
+          "items": {
+            "$ref": "Stack"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "SdkBug": {
       "description": "A bug found in the Dataflow SDK.",
       "id": "SdkBug",
@@ -6490,6 +6568,35 @@
           "description": "The low order bits: n & 0xffffffff.",
           "format": "uint32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Stack": {
+      "description": "A structuredstacktrace for a process running on the worker.",
+      "id": "Stack",
+      "properties": {
+        "stackContent": {
+          "description": "The raw stack trace.",
+          "type": "string"
+        },
+        "threadCount": {
+          "description": "With java thread dumps we may get collapsed stacks e.g., N threads in stack \"\". Instead of having to copy over the same stack trace N times, this int field captures this.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "threadName": {
+          "description": "Thread name. For example, \"CommitThread-0,10,main\"",
+          "type": "string"
+        },
+        "threadState": {
+          "description": "The state of the thread. For example, \"WAITING\".",
+          "type": "string"
+        },
+        "timestamp": {
+          "description": "Timestamp at which the stack was captured.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"

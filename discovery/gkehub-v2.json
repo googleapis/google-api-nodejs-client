@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250612",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -1121,7 +1121,7 @@
           "type": "string"
         },
         "deploymentNamespace": {
-          "description": "Required. The namespace of the deployment resource to be overridden..",
+          "description": "Required. The namespace of the deployment resource to be overridden.",
           "type": "string"
         }
       },

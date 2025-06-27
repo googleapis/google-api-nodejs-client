@@ -133,12 +133,12 @@
               "type": "string"
             },
             "projectId": {
-              "description": "The project ID of the Google Cloud Platform project.",
+              "description": "Required. The project ID of the Google Cloud Platform project.",
               "location": "query",
               "type": "string"
             },
             "systemId": {
-              "description": "A system ID for filtering the results of the request.",
+              "description": "Optional. A system ID for filtering the results of the request.",
               "location": "query",
               "type": "string"
             }
@@ -326,7 +326,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Mask to control which fields get updated. Updates all if not present.",
+                  "description": "Optional. Mask to control which fields get updated. Updates all if not present.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -349,7 +349,7 @@
       }
     }
   },
-  "revision": "20250317",
+  "revision": "20250518",
   "rootUrl": "https://oslogin.googleapis.com/",
   "schemas": {
     "Empty": {

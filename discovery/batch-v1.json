@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250519",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1300,6 +1300,12 @@
             "SPOT",
             "PREEMPTIBLE"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Unspecified.",
             "Standard VM.",
@@ -1361,6 +1367,12 @@
             "STANDARD",
             "SPOT",
             "PREEMPTIBLE"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true
           ],
           "enumDescriptions": [
             "Unspecified.",

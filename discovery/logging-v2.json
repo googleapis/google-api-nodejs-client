@@ -1445,7 +1445,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/billingAccounts/{billingAccountsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.billingAccounts.logs.delete",
@@ -3534,7 +3534,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/folders/{foldersId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.folders.logs.delete",
@@ -4685,7 +4685,7 @@
     "logs": {
       "methods": {
         "delete": {
-          "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+          "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
           "flatPath": "v2/{v2Id}/{v2Id1}/logs/{logsId}",
           "httpMethod": "DELETE",
           "id": "logging.logs.delete",
@@ -6364,7 +6364,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/organizations/{organizationsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.organizations.logs.delete",
@@ -8172,7 +8172,7 @@
         "logs": {
           "methods": {
             "delete": {
-              "description": "Deletes all the log entries in a log for the _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
+              "description": "Deletes all the log entries in a log for the global _Default Log Bucket. The log reappears if it receives new entries. Log entries written shortly before the delete operation might not be deleted. Entries received after the delete operation with a timestamp before the operation will be deleted.",
               "flatPath": "v2/projects/{projectsId}/logs/{logsId}",
               "httpMethod": "DELETE",
               "id": "logging.projects.logs.delete",
@@ -8952,7 +8952,7 @@
       }
     }
   },
-  "revision": "20250411",
+  "revision": "20250530",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -10145,6 +10145,11 @@
           "description": "Output only. AppHub application metadata associated with this LogEntry. May be empty if there is no associated AppHub application or multiple associated applications (such as for VPC flow logs)",
           "readOnly": true
         },
+        "apphubDestination": {
+          "$ref": "AppHub",
+          "description": "Output only. AppHub application metadata associated with the destination application. This is only populated if the log represented \"edge\"-like data (such as for VPC flow logs) with a source and destination.",
+          "readOnly": true
+        },
         "errorGroups": {
           "description": "Output only. The Error Reporting (https://cloud.google.com/error-reporting) error groups associated with this LogEntry. Error Reporting sets the values for this field during error group creation.For more information, see View error details( https://cloud.google.com/error-reporting/docs/viewing-errors#view_error_details)This field isn't available during log routing (https://cloud.google.com/logging/docs/routing/overview)",
           "items": {
@@ -10343,8 +10348,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. A client-assigned identifier, such as \"load-balancer-exclusion\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
-          "readOnly": true,
+          "description": "Optional. A client-assigned identifier, such as \"load-balancer-exclusion\". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.",
           "type": "string"
         },
         "updateTime": {
@@ -10540,7 +10544,7 @@
           "type": "boolean"
         },
         "exclusions": {
-          "description": "Optional. Log entries that match any of these exclusion filters will not be exported.If a log entry is matched by both filter and one of exclusion_filters it will not be exported.",
+          "description": "Optional. Log entries that match any of these exclusion filters will not be exported.If a log entry is matched by both filter and one of exclusions it will not be exported.",
           "items": {
             "$ref": "LogExclusion"
           },
@@ -10559,8 +10563,7 @@
           "type": "boolean"
         },
         "name": {
-          "description": "Output only. The client-assigned sink identifier, unique within the project.For example: \"my-syslog-errors-to-pubsub\".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.",
-          "readOnly": true,
+          "description": "Optional. The client-assigned sink identifier, unique within the project.For example: \"my-syslog-errors-to-pubsub\".Sink identifiers are limited to 100 characters and can include only the following characters: upper and lower-case alphanumeric characters, underscores, hyphens, periods.First character has to be alphanumeric.",
           "type": "string"
         },
         "outputVersionFormat": {
@@ -11025,8 +11028,7 @@
           "description": "Logging query that can be executed in Logs Explorer or via Logging API."
         },
         "name": {
-          "description": "Output only. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
-          "readOnly": true,
+          "description": "Optional. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
           "type": "string"
         },
         "opsAnalyticsQuery": {

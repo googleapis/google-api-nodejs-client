@@ -4570,7 +4570,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250621",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
@@ -5367,6 +5367,10 @@
         },
         "paymentsManager": {
           "description": "Whether user can manage payment settings.",
+          "type": "boolean"
+        },
+        "readOnly": {
+          "description": "Optional. Whether user has standard read-only access.",
           "type": "boolean"
         },
         "reportingManager": {
@@ -10343,6 +10347,10 @@
           "format": "int64",
           "type": "string"
         },
+        "maximumRetailPrice": {
+          "$ref": "Price",
+          "description": "Maximum retail price (MRP) of the item. Applicable to India only."
+        },
         "minEnergyEfficiencyClass": {
           "description": "The energy efficiency class as defined in EU directive 2010/30/EU.",
           "type": "string"
@@ -11743,6 +11751,10 @@
           ],
           "type": "string"
         },
+        "customRedemptionRestriction": {
+          "description": "The custom redemption restriction for the promotion. If the `redemption_restriction` field is set to `CUSTOM`, this field must be set.",
+          "type": "string"
+        },
         "freeGiftDescription": {
           "description": "Free gift description for the promotion.",
           "type": "string"
@@ -11809,6 +11821,10 @@
         "longTitle": {
           "description": "Required. Long title for the promotion.",
           "type": "string"
+        },
+        "maxDiscountAmount": {
+          "$ref": "PriceAmount",
+          "description": "The maximum monetary discount a customer can receive for the promotion. This field is only supported with the `Percent off` coupon value type."
         },
         "minimumPurchaseAmount": {
           "$ref": "PriceAmount",
@@ -11933,6 +11949,28 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "redemptionRestriction": {
+          "description": "The redemption restriction for the promotion.",
+          "enum": [
+            "REDEMPTION_RESTRICTION_UNSPECIFIED",
+            "SUBSCRIBE_AND_SAVE",
+            "FIRST_ORDER",
+            "SIGN_UP_FOR_EMAIL",
+            "SIGN_UP_FOR_TEXT",
+            "FORMS_OF_PAYMENT",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "The redemption restriction is unspecified.",
+            "The customer must subscribe to the merchant's channel to redeem the promotion.",
+            "The customer must be a first-time customer to redeem the promotion.",
+            "The customer must sign up for email's to redeem the promotion.",
+            "The customer must sign up for text to redeem the promotion.",
+            "The customer must use a specific form of payment to redeem the promotion.",
+            "The customer must meet a custom restriction to redeem the promotion. If selected, the `custom_redemption_restriction` field must be set."
+          ],
+          "type": "string"
         },
         "shippingServiceNames": {
           "description": "Shipping service names for the promotion.",

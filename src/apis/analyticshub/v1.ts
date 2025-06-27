@@ -306,7 +306,7 @@ export namespace analyticshub_v1 {
      */
     logLinkedDatasetQueryUserEmail?: boolean | null;
     /**
-     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string | null;
     /**
@@ -385,10 +385,6 @@ export namespace analyticshub_v1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
-    /**
-     * Optional. The geographic locations where the dataset should be replicated. See https://cloud.google.com/bigquery/docs/locations for supported locations.
-     */
-    replicaLocations?: string[] | null;
   }
   export interface Schema$DestinationDatasetReference {
     /**
@@ -662,7 +658,7 @@ export namespace analyticshub_v1 {
      */
     logLinkedDatasetQueryUserEmail?: boolean | null;
     /**
-     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      */
     name?: string | null;
     /**
@@ -1053,7 +1049,7 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$SubscribeDataExchangeRequest {
     /**
-     * Required. The parent resource path of the Subscription. e.g. `projects/subscriberproject/locations/US`
+     * Required. The parent resource path of the Subscription. e.g. `projects/subscriberproject/locations/us`
      */
     destination?: string | null;
     /**
@@ -1113,15 +1109,19 @@ export namespace analyticshub_v1 {
      */
     creationTime?: string | null;
     /**
-     * Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/US/dataExchanges/456
+     * Output only. Resource name of the source Data Exchange. e.g. projects/123/locations/us/dataExchanges/456
      */
     dataExchange?: string | null;
+    /**
+     * Optional. BigQuery destination dataset to create for the subscriber.
+     */
+    destinationDataset?: Schema$DestinationDataset;
     /**
      * Output only. Timestamp when the subscription was last modified.
      */
     lastModifyTime?: string | null;
     /**
-     * Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/US/dataExchanges/456/listings/789 -\> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.
+     * Output only. Map of listing resource names to associated linked resource, e.g. projects/123/locations/us/dataExchanges/456/listings/789 -\> projects/123/datasets/my_dataset For listing-level subscriptions, this is a map of size 1. Only contains values if state == STATE_ACTIVE.
      */
     linkedDatasetMap?: {[key: string]: Schema$LinkedResource} | null;
     /**
@@ -1129,7 +1129,7 @@ export namespace analyticshub_v1 {
      */
     linkedResources?: Schema$LinkedResource[];
     /**
-     * Output only. Resource name of the source Listing. e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * Output only. Resource name of the source Listing. e.g. projects/123/locations/us/dataExchanges/456/listings/789
      */
     listing?: string | null;
     /**
@@ -1137,7 +1137,7 @@ export namespace analyticshub_v1 {
      */
     logLinkedDatasetQueryUserEmail?: boolean | null;
     /**
-     * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/US/subscriptions/123`.
+     * Output only. The resource name of the subscription. e.g. `projects/myproject/locations/us/subscriptions/123`.
      */
     name?: string | null;
     /**
@@ -1212,6 +1212,60 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all data exchanges from projects in a given organization and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.organizations.locations.dataExchanges.list({
+     *     // Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/us`.
+     *     organization: 'organizations/my-organization/locations/my-location',
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataExchanges": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1312,7 +1366,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Organizations$Locations$Dataexchanges$List
     extends StandardParameters {
     /**
-     * Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/US`.
+     * Required. The organization resource path of the projects containing DataExchanges. e.g. `organizations/myorg/locations/us`.
      */
     organization?: string;
     /**
@@ -1361,6 +1415,83 @@ export namespace analyticshub_v1 {
 
     /**
      * Creates a new data exchange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.create({
+     *     // Required. The ID of the data exchange. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
+     *     dataExchangeId: 'placeholder-value',
+     *     // Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/us`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "discoveryType": "my_discoveryType",
+     *       //   "displayName": "my_displayName",
+     *       //   "documentation": "my_documentation",
+     *       //   "icon": "my_icon",
+     *       //   "listingCount": 0,
+     *       //   "logLinkedDatasetQueryUserEmail": false,
+     *       //   "name": "my_name",
+     *       //   "primaryContact": "my_primaryContact",
+     *       //   "sharingEnvironmentConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "listingCount": 0,
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "sharingEnvironmentConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1452,6 +1583,53 @@ export namespace analyticshub_v1 {
 
     /**
      * Deletes an existing data exchange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.delete({
+     *     // Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/us/dataExchanges/123`.
+     *     name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1540,6 +1718,64 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the details of a data exchange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.get({
+     *     // Required. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     *     name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "listingCount": 0,
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "sharingEnvironmentConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1628,6 +1864,67 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1720,6 +2017,60 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all data exchanges in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.list({
+     *     // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call, to request the next page of results.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/us`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataExchanges": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1815,6 +2166,64 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all subscriptions on a given Data Exchange or Listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listSubscriptions({
+     *       // If selected, includes deleted subscriptions in the response (up to 63 days after deletion).
+     *       includeDeletedSubscriptions: 'placeholder-value',
+     *       // The maximum number of results to return in a single response page.
+     *       pageSize: 'placeholder-value',
+     *       // Page token, returned by a previous call.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/us/dataExchanges/456 OR e.g. projects/123/locations/us/dataExchanges/456/listings/789
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sharedResourceSubscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1917,6 +2326,83 @@ export namespace analyticshub_v1 {
 
     /**
      * Updates an existing data exchange.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.patch({
+     *     // Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     *     name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *     // Required. Field mask specifies the fields to update in the data exchange resource. The fields specified in the `updateMask` are relative to the resource and are not a full request.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "discoveryType": "my_discoveryType",
+     *       //   "displayName": "my_displayName",
+     *       //   "documentation": "my_documentation",
+     *       //   "icon": "my_icon",
+     *       //   "listingCount": 0,
+     *       //   "logLinkedDatasetQueryUserEmail": false,
+     *       //   "name": "my_name",
+     *       //   "primaryContact": "my_primaryContact",
+     *       //   "sharingEnvironmentConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "listingCount": 0,
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "sharingEnvironmentConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2005,6 +2491,68 @@ export namespace analyticshub_v1 {
 
     /**
      * Sets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2096,7 +2644,71 @@ export namespace analyticshub_v1 {
     }
 
     /**
-     * Creates a Subscription to a Data Clean Room. This is a long-running operation as it will create one or more linked datasets.
+     * Creates a Subscription to a Data Clean Room. This is a long-running operation as it will create one or more linked datasets. Throws a Bad Request error if the Data Exchange does not contain any listings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.subscribe({
+     *     // Required. Resource name of the Data Exchange. e.g. `projects/publisherproject/locations/us/dataExchanges/123`
+     *     name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "destination": "my_destination",
+     *       //   "destinationDataset": {},
+     *       //   "subscriberContact": "my_subscriberContact",
+     *       //   "subscription": "my_subscription"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2189,6 +2801,65 @@ export namespace analyticshub_v1 {
 
     /**
      * Returns the permissions that a caller has.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.testIamPermissions({
+     *       // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "permissions": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2291,7 +2962,7 @@ export namespace analyticshub_v1 {
      */
     dataExchangeId?: string;
     /**
-     * Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/US`.
+     * Required. The parent resource path of the data exchange. e.g. `projects/myproject/locations/us`.
      */
     parent?: string;
 
@@ -2303,14 +2974,14 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Delete
     extends StandardParameters {
     /**
-     * Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The full name of the data exchange resource that you want to delete. For example, `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
   }
@@ -2337,7 +3008,7 @@ export namespace analyticshub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/US`.
+     * Required. The parent resource path of the data exchanges. e.g. `projects/myproject/locations/us`.
      */
     parent?: string;
   }
@@ -2356,14 +3027,14 @@ export namespace analyticshub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/US/dataExchanges/456 OR e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/us/dataExchanges/456 OR e.g. projects/123/locations/us/dataExchanges/456/listings/789
      */
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Output only. The resource name of the data exchange. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     name?: string;
     /**
@@ -2391,7 +3062,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Subscribe
     extends StandardParameters {
     /**
-     * Required. Resource name of the Data Exchange. e.g. `projects/publisherproject/locations/US/dataExchanges/123`
+     * Required. Resource name of the Data Exchange. e.g. `projects/publisherproject/locations/us/dataExchanges/123`
      */
     name?: string;
 
@@ -2421,6 +3092,103 @@ export namespace analyticshub_v1 {
 
     /**
      * Creates a new listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.create({
+     *       // Required. The ID of the listing to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
+     *       listingId: 'placeholder-value',
+     *       // Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowOnlyMetadataSharing": false,
+     *         //   "bigqueryDataset": {},
+     *         //   "categories": [],
+     *         //   "commercialInfo": {},
+     *         //   "dataProvider": {},
+     *         //   "description": "my_description",
+     *         //   "discoveryType": "my_discoveryType",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentation": "my_documentation",
+     *         //   "icon": "my_icon",
+     *         //   "logLinkedDatasetQueryUserEmail": false,
+     *         //   "name": "my_name",
+     *         //   "primaryContact": "my_primaryContact",
+     *         //   "publisher": {},
+     *         //   "pubsubTopic": {},
+     *         //   "requestAccess": "my_requestAccess",
+     *         //   "resourceType": "my_resourceType",
+     *         //   "restrictedExportConfig": {},
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowOnlyMetadataSharing": false,
+     *   //   "bigqueryDataset": {},
+     *   //   "categories": [],
+     *   //   "commercialInfo": {},
+     *   //   "dataProvider": {},
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "publisher": {},
+     *   //   "pubsubTopic": {},
+     *   //   "requestAccess": "my_requestAccess",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "restrictedExportConfig": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2513,6 +3281,56 @@ export namespace analyticshub_v1 {
 
     /**
      * Deletes a listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.delete({
+     *       // Optional. If the listing is commercial then this field must be set to true, otherwise a failure is thrown. This acts as a safety guard to avoid deleting commercial listings accidentally.
+     *       deleteCommercial: 'placeholder-value',
+     *       // Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2602,6 +3420,73 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the details of a listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.listings.get({
+     *     // Required. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
+     *     name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowOnlyMetadataSharing": false,
+     *   //   "bigqueryDataset": {},
+     *   //   "categories": [],
+     *   //   "commercialInfo": {},
+     *   //   "dataProvider": {},
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "publisher": {},
+     *   //   "pubsubTopic": {},
+     *   //   "requestAccess": "my_requestAccess",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "restrictedExportConfig": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2691,6 +3576,68 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.getIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "options": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2783,6 +3730,63 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all listings in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.dataExchanges.listings.list(
+     *     {
+     *       // The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *       pageSize: 'placeholder-value',
+     *       // Page token, returned by a previous call, to request the next page of results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listings": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2877,6 +3881,66 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all subscriptions on a given Data Exchange or Listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.listSubscriptions(
+     *       {
+     *         // If selected, includes deleted subscriptions in the response (up to 63 days after deletion).
+     *         includeDeletedSubscriptions: 'placeholder-value',
+     *         // The maximum number of results to return in a single response page.
+     *         pageSize: 'placeholder-value',
+     *         // Page token, returned by a previous call.
+     *         pageToken: 'placeholder-value',
+     *         // Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/us/dataExchanges/456 OR e.g. projects/123/locations/us/dataExchanges/456/listings/789
+     *         resource:
+     *           'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "sharedResourceSubscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -2979,6 +4043,102 @@ export namespace analyticshub_v1 {
 
     /**
      * Updates an existing listing.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.patch({
+     *       // Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *       // Required. Field mask specifies the fields to update in the listing resource. The fields specified in the `updateMask` are relative to the resource and are not a full request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "allowOnlyMetadataSharing": false,
+     *         //   "bigqueryDataset": {},
+     *         //   "categories": [],
+     *         //   "commercialInfo": {},
+     *         //   "dataProvider": {},
+     *         //   "description": "my_description",
+     *         //   "discoveryType": "my_discoveryType",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentation": "my_documentation",
+     *         //   "icon": "my_icon",
+     *         //   "logLinkedDatasetQueryUserEmail": false,
+     *         //   "name": "my_name",
+     *         //   "primaryContact": "my_primaryContact",
+     *         //   "publisher": {},
+     *         //   "pubsubTopic": {},
+     *         //   "requestAccess": "my_requestAccess",
+     *         //   "resourceType": "my_resourceType",
+     *         //   "restrictedExportConfig": {},
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "allowOnlyMetadataSharing": false,
+     *   //   "bigqueryDataset": {},
+     *   //   "categories": [],
+     *   //   "commercialInfo": {},
+     *   //   "dataProvider": {},
+     *   //   "description": "my_description",
+     *   //   "discoveryType": "my_discoveryType",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "icon": "my_icon",
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "publisher": {},
+     *   //   "pubsubTopic": {},
+     *   //   "requestAccess": "my_requestAccess",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "restrictedExportConfig": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3068,6 +4228,69 @@ export namespace analyticshub_v1 {
 
     /**
      * Sets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.setIamPolicy({
+     *       // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *       resource:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "policy": {},
+     *         //   "updateMask": "my_updateMask"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3160,6 +4383,65 @@ export namespace analyticshub_v1 {
 
     /**
      * Subscribes to a listing. Currently, with Analytics Hub, you can create listings that reference only BigQuery datasets. Upon subscription to a listing for a BigQuery dataset, Analytics Hub creates a linked dataset in the subscriber's project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.subscribe({
+     *       // Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "destinationDataset": {},
+     *         //   "destinationPubsubSubscription": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "subscription": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3256,6 +4538,67 @@ export namespace analyticshub_v1 {
 
     /**
      * Returns the permissions that a caller has.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.listings.testIamPermissions(
+     *       {
+     *         // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *         resource:
+     *           'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/listings/my-listing',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "permissions": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3358,7 +4701,7 @@ export namespace analyticshub_v1 {
      */
     listingId?: string;
     /**
-     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     parent?: string;
 
@@ -3374,14 +4717,14 @@ export namespace analyticshub_v1 {
      */
     deleteCommercial?: boolean;
     /**
-     * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. Resource name of the listing to delete. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
   }
@@ -3408,7 +4751,7 @@ export namespace analyticshub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123`.
+     * Required. The parent resource path of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123`.
      */
     parent?: string;
   }
@@ -3427,14 +4770,14 @@ export namespace analyticshub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/US/dataExchanges/456 OR e.g. projects/123/locations/US/dataExchanges/456/listings/789
+     * Required. Resource name of the requested target. This resource may be either a Listing or a DataExchange. e.g. projects/123/locations/us/dataExchanges/456 OR e.g. projects/123/locations/us/dataExchanges/456/listings/789
      */
     resource?: string;
   }
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`
+     * Output only. The resource name of the listing. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`
      */
     name?: string;
     /**
@@ -3462,7 +4805,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Dataexchanges$Listings$Subscribe
     extends StandardParameters {
     /**
-     * Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/US/dataExchanges/123/listings/456`.
+     * Required. Resource name of the listing that you want to subscribe to. e.g. `projects/myproject/locations/us/dataExchanges/123/listings/456`.
      */
     name?: string;
 
@@ -3492,6 +4835,59 @@ export namespace analyticshub_v1 {
 
     /**
      * Deletes a subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.delete({
+     *     // Required. Resource name of the subscription to delete. e.g. projects/123/locations/us/subscriptions/456
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3580,6 +4976,69 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the details of a Subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.get({
+     *     // Required. Resource name of the subscription. e.g. projects/123/locations/us/subscriptions/456
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commercialInfo": {},
+     *   //   "creationTime": "my_creationTime",
+     *   //   "dataExchange": "my_dataExchange",
+     *   //   "destinationDataset": {},
+     *   //   "lastModifyTime": "my_lastModifyTime",
+     *   //   "linkedDatasetMap": {},
+     *   //   "linkedResources": [],
+     *   //   "listing": "my_listing",
+     *   //   "logLinkedDatasetQueryUserEmail": false,
+     *   //   "name": "my_name",
+     *   //   "organizationDisplayName": "my_organizationDisplayName",
+     *   //   "organizationId": "my_organizationId",
+     *   //   "resourceType": "my_resourceType",
+     *   //   "state": "my_state",
+     *   //   "subscriberContact": "my_subscriberContact"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3668,6 +5127,67 @@ export namespace analyticshub_v1 {
 
     /**
      * Gets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.getIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "options": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3760,6 +5280,62 @@ export namespace analyticshub_v1 {
 
     /**
      * Lists all subscriptions in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.list({
+     *     // An expression for filtering the results of the request. Eligible fields for filtering are: + `listing` + `data_exchange` Alternatively, a literal wrapped in double quotes may be provided. This will be checked for an exact match against both fields above. In all cases, the full Data Exchange or Listing resource name must be provided. Some example of using filters: + data_exchange="projects/myproject/locations/us/dataExchanges/123" + listing="projects/123/locations/us/dataExchanges/456/listings/789" + "projects/myproject/locations/us/dataExchanges/123"
+     *     filter: 'placeholder-value',
+     *     // The maximum number of results to return in a single response page.
+     *     pageSize: 'placeholder-value',
+     *     // Page token, returned by a previous call.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent resource path of the subscription. e.g. projects/myproject/locations/us
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "subscriptions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3855,6 +5431,65 @@ export namespace analyticshub_v1 {
 
     /**
      * Refreshes a Subscription to a Data Exchange. A Data Exchange can become stale when a publisher adds or removes data. This is a long-running operation as it may create many linked datasets.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.refresh({
+     *     // Required. Resource name of the Subscription to refresh. e.g. `projects/subscriberproject/locations/us/subscriptions/123`
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -3946,6 +5581,61 @@ export namespace analyticshub_v1 {
 
     /**
      * Revokes a given subscription.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.revoke({
+     *     // Required. Resource name of the subscription to revoke. e.g. projects/123/locations/us/subscriptions/456
+     *     name: 'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "revokeCommercial": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4038,6 +5728,68 @@ export namespace analyticshub_v1 {
 
     /**
      * Sets the IAM policy.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticshub.projects.locations.subscriptions.setIamPolicy({
+     *     // REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource:
+     *       'projects/my-project/locations/my-location/subscriptions/my-subscription',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "policy": {},
+     *       //   "updateMask": "my_updateMask"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "auditConfigs": [],
+     *   //   "bindings": [],
+     *   //   "etag": "my_etag",
+     *   //   "version": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -4132,14 +5884,14 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Subscriptions$Delete
     extends StandardParameters {
     /**
-     * Required. Resource name of the subscription to delete. e.g. projects/123/locations/US/subscriptions/456
+     * Required. Resource name of the subscription to delete. e.g. projects/123/locations/us/subscriptions/456
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Subscriptions$Get
     extends StandardParameters {
     /**
-     * Required. Resource name of the subscription. e.g. projects/123/locations/US/subscriptions/456
+     * Required. Resource name of the subscription. e.g. projects/123/locations/us/subscriptions/456
      */
     name?: string;
   }
@@ -4170,14 +5922,14 @@ export namespace analyticshub_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource path of the subscription. e.g. projects/myproject/locations/US
+     * Required. The parent resource path of the subscription. e.g. projects/myproject/locations/us
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Subscriptions$Refresh
     extends StandardParameters {
     /**
-     * Required. Resource name of the Subscription to refresh. e.g. `projects/subscriberproject/locations/US/subscriptions/123`
+     * Required. Resource name of the Subscription to refresh. e.g. `projects/subscriberproject/locations/us/subscriptions/123`
      */
     name?: string;
 
@@ -4189,7 +5941,7 @@ export namespace analyticshub_v1 {
   export interface Params$Resource$Projects$Locations$Subscriptions$Revoke
     extends StandardParameters {
     /**
-     * Required. Resource name of the subscription to revoke. e.g. projects/123/locations/US/subscriptions/456
+     * Required. Resource name of the subscription to revoke. e.g. projects/123/locations/us/subscriptions/456
      */
     name?: string;
 

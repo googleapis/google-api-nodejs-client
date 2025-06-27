@@ -142,6 +142,122 @@ export namespace firebaseml_v2beta {
     year?: number | null;
   }
   /**
+   * The generic reusable api auth config. Deprecated. Please use AuthConfig (google/cloud/aiplatform/master/auth.proto) instead.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ApiAuth {
+    /**
+     * The API secret.
+     */
+    apiKeyConfig?: Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig;
+  }
+  /**
+   * The API secret.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ApiAuthApiKeyConfig {
+    /**
+     * Required. The SecretManager secret version resource name storing API key. e.g. projects/{project\}/secrets/{secret\}/versions/{version\}
+     */
+    apiKeySecretVersion?: string | null;
+    /**
+     * The API key string. Either this or `api_key_secret_version` must be set.
+     */
+    apiKeyString?: string | null;
+  }
+  /**
+   * Auth configuration to run the extension.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfig {
+    /**
+     * Config for API key auth.
+     */
+    apiKeyConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig;
+    /**
+     * Type of auth scheme.
+     */
+    authType?: string | null;
+    /**
+     * Config for Google Service Account auth.
+     */
+    googleServiceAccountConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfigGoogleServiceAccountConfig;
+    /**
+     * Config for HTTP Basic auth.
+     */
+    httpBasicAuthConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfigHttpBasicAuthConfig;
+    /**
+     * Config for user oauth.
+     */
+    oauthConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfigOauthConfig;
+    /**
+     * Config for user OIDC auth.
+     */
+    oidcConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfigOidcConfig;
+  }
+  /**
+   * Config for authentication with API key.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigApiKeyConfig {
+    /**
+     * Optional. The name of the SecretManager secret version resource storing the API key. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If both `api_key_secret` and `api_key_string` are specified, this field takes precedence over `api_key_string`. - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
+     */
+    apiKeySecret?: string | null;
+    /**
+     * Optional. The API key to be used in the request directly.
+     */
+    apiKeyString?: string | null;
+    /**
+     * Optional. The location of the API key.
+     */
+    httpElementLocation?: string | null;
+    /**
+     * Optional. The parameter name of the API key. E.g. If the API request is "https://example.com/act?api_key=", "api_key" would be the parameter name.
+     */
+    name?: string | null;
+  }
+  /**
+   * Config for Google Service Account Authentication.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigGoogleServiceAccountConfig {
+    /**
+     * Optional. The service account that the extension execution service runs as. - If the service account is specified, the `iam.serviceAccounts.getAccessToken` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified service account. - If not specified, the Vertex AI Extension Service Agent will be used to execute the Extension.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
+   * Config for HTTP Basic Authentication.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigHttpBasicAuthConfig {
+    /**
+     * Required. The name of the SecretManager secret version resource storing the base64 encoded credentials. Format: `projects/{project\}/secrets/{secrete\}/versions/{version\}` - If specified, the `secretmanager.versions.access` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the specified resource.
+     */
+    credentialSecret?: string | null;
+  }
+  /**
+   * Config for user oauth.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigOauthConfig {
+    /**
+     * Access token for extension endpoint. Only used to propagate token from [[ExecuteExtensionRequest.runtime_auth_config]] at request time.
+     */
+    accessToken?: string | null;
+    /**
+     * The service account used to generate access tokens for executing the Extension. - If the service account is specified, the `iam.serviceAccounts.getAccessToken` permission should be granted to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents) on the provided service account.
+     */
+    serviceAccount?: string | null;
+  }
+  /**
+   * Config for user OIDC auth.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1AuthConfigOidcConfig {
+    /**
+     * OpenID Connect formatted ID token for extension endpoint. Only used to propagate token from [[ExecuteExtensionRequest.runtime_auth_config]] at request time.
+     */
+    idToken?: string | null;
+    /**
+     * The service account used to generate an OpenID Connect (OIDC)-compatible JWT token signed by the Google OIDC Provider (accounts.google.com) for extension endpoint (https://cloud.google.com/iam/docs/create-short-lived-credentials-direct#sa-credentials-oidc). - The audience for the token will be set to the URL in the server url defined in the OpenApi spec. - If the service account is provided, the service account should grant `iam.serviceAccounts.getOpenIdToken` permission to Vertex AI Extension Service Agent (https://cloud.google.com/vertex-ai/docs/general/access-control#service-agents).
+     */
+    serviceAccount?: string | null;
+  }
+  /**
    * Content blob.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1Blob {
@@ -150,7 +266,7 @@ export namespace firebaseml_v2beta {
      */
     data?: string | null;
     /**
-     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is not currently used in the Gemini GenerateContent calls.
+     * Optional. Display name of the blob. Used to provide a label or filename to distinguish blobs. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
      */
     displayName?: string | null;
     /**
@@ -198,6 +314,10 @@ export namespace firebaseml_v2beta {
      * Output only. List of ratings for the safety of a response candidate. There is at most one rating per category.
      */
     safetyRatings?: Schema$GoogleCloudAiplatformV1beta1SafetyRating[];
+    /**
+     * Output only. Metadata related to url context retrieval tool.
+     */
+    urlContextMetadata?: Schema$GoogleCloudAiplatformV1beta1UrlContextMetadata;
   }
   /**
    * Source attributions for content.
@@ -238,7 +358,7 @@ export namespace firebaseml_v2beta {
     citations?: Schema$GoogleCloudAiplatformV1beta1Citation[];
   }
   /**
-   * Result of executing the [ExecutableCode]. Always follows a `part` containing the [ExecutableCode].
+   * Result of executing the [ExecutableCode]. Only generated when using the [CodeExecution] tool, and always follows a `part` containing the [ExecutableCode].
    */
   export interface Schema$GoogleCloudAiplatformV1beta1CodeExecutionResult {
     /**
@@ -327,7 +447,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch {}
   /**
-   * Code generated by the model that is meant to be executed, and the result returned to the model. Generated when using the [FunctionDeclaration] tool and [FunctionCallingConfig] mode is set to [Mode.CODE].
+   * Code generated by the model that is meant to be executed, and the result returned to the model. Generated when using the [CodeExecution] tool, in which the code will be automatically executed, and a corresponding [CodeExecutionResult] will also be generated.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ExecutableCode {
     /**
@@ -340,11 +460,61 @@ export namespace firebaseml_v2beta {
     language?: string | null;
   }
   /**
+   * Retrieve from data source powered by external API for grounding. The external API is not owned by Google, but need to follow the pre-defined API spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExternalApi {
+    /**
+     * The authentication config to access the API. Deprecated. Please use auth_config instead.
+     */
+    apiAuth?: Schema$GoogleCloudAiplatformV1beta1ApiAuth;
+    /**
+     * The API spec that the external API implements.
+     */
+    apiSpec?: string | null;
+    /**
+     * The authentication config to access the API.
+     */
+    authConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfig;
+    /**
+     * Parameters for the elastic search API.
+     */
+    elasticSearchParams?: Schema$GoogleCloudAiplatformV1beta1ExternalApiElasticSearchParams;
+    /**
+     * The endpoint of the external API. The system will call the API at this endpoint to retrieve the data for grounding. Example: https://acme.com:443/search
+     */
+    endpoint?: string | null;
+    /**
+     * Parameters for the simple search API.
+     */
+    simpleSearchParams?: Schema$GoogleCloudAiplatformV1beta1ExternalApiSimpleSearchParams;
+  }
+  /**
+   * The search parameters to use for the ELASTIC_SEARCH spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExternalApiElasticSearchParams {
+    /**
+     * The ElasticSearch index to use.
+     */
+    index?: string | null;
+    /**
+     * Optional. Number of hits (chunks) to request. When specified, it is passed to Elasticsearch as the `num_hits` param.
+     */
+    numHits?: number | null;
+    /**
+     * The ElasticSearch search template to use.
+     */
+    searchTemplate?: string | null;
+  }
+  /**
+   * The search parameters to use for SIMPLE_SEARCH spec.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ExternalApiSimpleSearchParams {}
+  /**
    * URI based data.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1FileData {
     /**
-     * Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is not currently used in the Gemini GenerateContent calls.
+     * Optional. Display name of the file data. Used to provide a label or filename to distinguish file datas. This field is only returned in PromptMessage for prompt management. It is currently used in the Gemini GenerateContent calls only when server side tools (code_execution, google_search, and url_context) are enabled.
      */
     displayName?: string | null;
     /**
@@ -403,9 +573,17 @@ export namespace firebaseml_v2beta {
      */
     parameters?: Schema$GoogleCloudAiplatformV1beta1Schema;
     /**
+     * Optional. Describes the parameters to the function in JSON Schema format. The schema must describe an object where the properties are the parameters to the function. For example: ``` { "type": "object", "properties": { "name": { "type": "string" \}, "age": { "type": "integer" \} \}, "additionalProperties": false, "required": ["name", "age"], "propertyOrdering": ["name", "age"] \} ``` This field is mutually exclusive with `parameters`.
+     */
+    parametersJsonSchema?: any | null;
+    /**
      * Optional. Describes the output from this function in JSON Schema format. Reflects the Open API 3.03 Response Object. The Schema defines the type used for the response value of the function.
      */
     response?: Schema$GoogleCloudAiplatformV1beta1Schema;
+    /**
+     * Optional. Describes the output from this function in JSON Schema format. The value specified by the schema is the response value of the function. This field is mutually exclusive with `response`.
+     */
+    responseJsonSchema?: any | null;
   }
   /**
    * The result output from a [FunctionCall] that contains a string representing the [FunctionDeclaration.name] and a structured JSON object containing any output from the function is used as context to the model. This should contain the result of a [FunctionCall] made based on model prediction.
@@ -569,6 +747,10 @@ export namespace firebaseml_v2beta {
      */
     candidateCount?: number | null;
     /**
+     * Optional. If enabled, the model will detect emotions and adapt its responses accordingly.
+     */
+    enableAffectiveDialog?: boolean | null;
+    /**
      * Optional. Frequency penalties.
      */
     frequencyPenalty?: number | null;
@@ -592,6 +774,10 @@ export namespace firebaseml_v2beta {
      * Optional. Positive penalties.
      */
     presencePenalty?: number | null;
+    /**
+     * Optional. Output schema of the generated response. This is an alternative to `response_schema` that accepts [JSON Schema](https://json-schema.org/). If set, `response_schema` must be omitted, but `response_mime_type` is required. While the full JSON Schema may be sent, not all features are supported. Specifically, only the following properties are supported: - `$id` - `$defs` - `$ref` - `$anchor` - `type` - `format` - `title` - `description` - `enum` (for strings and numbers) - `items` - `prefixItems` - `minItems` - `maxItems` - `minimum` - `maximum` - `anyOf` - `oneOf` (interpreted the same as `anyOf`) - `properties` - `additionalProperties` - `required` The non-standard `propertyOrdering` property may also be set. Cyclic references are unrolled to a limited degree and, as such, may only be used within non-required properties. (Nullable properties are not sufficient.) If `$ref` is set on a sub-schema, no other properties, except for than those starting as a `$`, may be set.
+     */
+    responseJsonSchema?: any | null;
     /**
      * Optional. If true, export the logprobs results in response.
      */
@@ -690,7 +876,7 @@ export namespace firebaseml_v2beta {
      */
     includeThoughts?: boolean | null;
     /**
-     * Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.
+     * Optional. Indicates the thinking budget in tokens.
      */
     thinkingBudget?: number | null;
   }
@@ -788,7 +974,7 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingSupport {
     /**
-     * Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. This list must have the same size as the grounding_chunk_indices.
+     * Confidence score of the support references. Ranges from 0 to 1. 1 is the most confident. For Gemini 2.0 and before, this list must have the same size as the grounding_chunk_indices. For Gemini 2.5 and after, this list will be empty and should be ignored.
      */
     confidenceScores?: number[] | null;
     /**
@@ -885,9 +1071,13 @@ export namespace firebaseml_v2beta {
      */
     text?: string | null;
     /**
-     * Output only. Indicates if the part is thought from the model.
+     * Optional. Indicates if the part is thought from the model.
      */
     thought?: boolean | null;
+    /**
+     * Optional. An opaque signature for the thought so it can be reused in subsequent requests.
+     */
+    thoughtSignature?: string | null;
     /**
      * Optional. Video metadata. The metadata should only be specified while the video data is presented in inline_data or file_data.
      */
@@ -1015,6 +1205,10 @@ export namespace firebaseml_v2beta {
      */
     disableAttribution?: boolean | null;
     /**
+     * Use data source powered by external API for grounding.
+     */
+    externalApi?: Schema$GoogleCloudAiplatformV1beta1ExternalApi;
+    /**
      * Set to use data source powered by Vertex AI Search.
      */
     vertexAiSearch?: Schema$GoogleCloudAiplatformV1beta1VertexAISearch;
@@ -1057,6 +1251,10 @@ export namespace firebaseml_v2beta {
      * Output only. Harm category.
      */
     category?: string | null;
+    /**
+     * Output only. The overwritten threshold for the safety category of Gemini 2.0 image out. If minors are detected in the output image, the threshold of each safety category will be overwritten if user sets a lower threshold.
+     */
+    overwrittenThreshold?: string | null;
     /**
      * Output only. Harm probability levels in the content.
      */
@@ -1254,6 +1452,10 @@ export namespace firebaseml_v2beta {
      */
     codeExecution?: Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution;
     /**
+     * Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations.
+     */
+    computerUse?: Schema$GoogleCloudAiplatformV1beta1ToolComputerUse;
+    /**
      * Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance.
      */
     enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch;
@@ -1273,11 +1475,24 @@ export namespace firebaseml_v2beta {
      * Optional. Retrieval tool type. System will always execute the provided retrieval tool(s) to get external knowledge to answer the prompt. Retrieval results are presented to the model for generation.
      */
     retrieval?: Schema$GoogleCloudAiplatformV1beta1Retrieval;
+    /**
+     * Optional. Tool to support URL context retrieval.
+     */
+    urlContext?: Schema$GoogleCloudAiplatformV1beta1UrlContext;
   }
   /**
    * Tool that executes code generated by the model, and automatically returns the result to the model. See also [ExecutableCode]and [CodeExecutionResult] which are input and output to this tool.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolCodeExecution {}
+  /**
+   * Tool to support computer use.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ToolComputerUse {
+    /**
+     * Required. The environment being operated.
+     */
+    environment?: string | null;
+  }
   /**
    * Tool config. This config is shared for all tools provided in the request.
    */
@@ -1296,6 +1511,32 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1ToolGoogleSearch {}
   /**
+   * Tool to support URL context.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UrlContext {}
+  /**
+   * Metadata related to url context retrieval tool.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UrlContextMetadata {
+    /**
+     * Output only. List of url context.
+     */
+    urlMetadata?: Schema$GoogleCloudAiplatformV1beta1UrlMetadata[];
+  }
+  /**
+   * Context of the a single url retrieval.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1UrlMetadata {
+    /**
+     * Retrieved url by the tool.
+     */
+    retrievedUrl?: string | null;
+    /**
+     * Status of the url retrieval.
+     */
+    urlRetrievalStatus?: string | null;
+  }
+  /**
    * Retrieve from Vertex AI Search datastore or engine for grounding. datastore and engine are mutually exclusive. See https://cloud.google.com/products/agent-builder
    */
   export interface Schema$GoogleCloudAiplatformV1beta1VertexAISearch {
@@ -1303,6 +1544,10 @@ export namespace firebaseml_v2beta {
      * Optional. Fully-qualified Vertex AI Search data store resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
      */
     datastore?: string | null;
+    /**
+     * Specifications that define the specific DataStores to be searched, along with configurations for those data stores. This is only considered for Engines with multiple data stores. It should only be set if engine is used.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudAiplatformV1beta1VertexAISearchDataStoreSpec[];
     /**
      * Optional. Fully-qualified Vertex AI Search engine resource ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}`
      */
@@ -1315,6 +1560,19 @@ export namespace firebaseml_v2beta {
      * Optional. Number of search results to return per query. The default value is 10. The maximumm allowed value is 10.
      */
     maxResults?: number | null;
+  }
+  /**
+   * Define data stores within engine to filter on in a search call and configurations for those data stores. For more information, see https://cloud.google.com/generative-ai-app-builder/docs/reference/rpc/google.cloud.discoveryengine.v1#datastorespec
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1VertexAISearchDataStoreSpec {
+    /**
+     * Full resource name of DataStore, such as Format: `projects/{project\}/locations/{location\}/collections/{collection\}/dataStores/{dataStore\}`
+     */
+    dataStore?: string | null;
+    /**
+     * Optional. Filter specification to filter documents in the data store specified by data_store field. For more information on filtering, see [Filtering](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
   }
   /**
    * Retrieve from Vertex RAG Store for grounding.
@@ -1336,6 +1594,10 @@ export namespace firebaseml_v2beta {
      * Optional. Number of top k results to return from the selected corpora.
      */
     similarityTopK?: number | null;
+    /**
+     * Optional. Currently only supported for Gemini Multimodal Live API. In Gemini Multimodal Live API, if `store_context` bool is specified, Gemini will leverage it to automatically memorize the interactions between the client and Gemini, and retrieve context when needed to augment the response generation for users' ongoing and future interactions.
+     */
+    storeContext?: boolean | null;
     /**
      * Optional. Only return results with vector distance smaller than the threshold.
      */
@@ -1439,6 +1701,70 @@ export namespace firebaseml_v2beta {
 
     /**
      * Perform a token counting.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseml = google.firebaseml('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firebaseml.projects.locations.publishers.models.countTokens(
+     *     {
+     *       // Required. The name of the Endpoint requested to perform token counting. Format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     *       endpoint:
+     *         'projects/my-project/locations/my-location/publishers/my-publisher/models/my-model',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "contents": [],
+     *         //   "generationConfig": {},
+     *         //   "instances": [],
+     *         //   "model": "my_model",
+     *         //   "systemInstruction": {},
+     *         //   "tools": []
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "promptTokensDetails": [],
+     *   //   "totalBillableCharacters": 0,
+     *   //   "totalTokens": 0
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1541,6 +1867,74 @@ export namespace firebaseml_v2beta {
 
     /**
      * Generate content with multimodal inputs.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseml = google.firebaseml('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseml.projects.locations.publishers.models.generateContent({
+     *       // Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     *       model:
+     *         'projects/my-project/locations/my-location/publishers/my-publisher/models/my-model',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "cachedContent": "my_cachedContent",
+     *         //   "contents": [],
+     *         //   "generationConfig": {},
+     *         //   "labels": {},
+     *         //   "safetySettings": [],
+     *         //   "systemInstruction": {},
+     *         //   "toolConfig": {},
+     *         //   "tools": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "candidates": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "modelVersion": "my_modelVersion",
+     *   //   "promptFeedback": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "usageMetadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
@@ -1643,6 +2037,76 @@ export namespace firebaseml_v2beta {
 
     /**
      * Generate content with multimodal inputs with streaming support.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firebaseml.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firebaseml = google.firebaseml('v2beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await firebaseml.projects.locations.publishers.models.streamGenerateContent(
+     *       {
+     *         // Required. The fully qualified name of the publisher model or tuned model endpoint to use. Publisher model format: `projects/{project\}/locations/{location\}/publishers/x/models/x` Tuned model endpoint format: `projects/{project\}/locations/{location\}/endpoints/{endpoint\}`
+     *         model:
+     *           'projects/my-project/locations/my-location/publishers/my-publisher/models/my-model',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "cachedContent": "my_cachedContent",
+     *           //   "contents": [],
+     *           //   "generationConfig": {},
+     *           //   "labels": {},
+     *           //   "safetySettings": [],
+     *           //   "systemInstruction": {},
+     *           //   "toolConfig": {},
+     *           //   "tools": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "candidates": [],
+     *   //   "createTime": "my_createTime",
+     *   //   "modelVersion": "my_modelVersion",
+     *   //   "promptFeedback": {},
+     *   //   "responseId": "my_responseId",
+     *   //   "usageMetadata": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
      *
      * @param params - Parameters for request
      * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.

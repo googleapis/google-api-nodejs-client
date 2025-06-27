@@ -803,6 +803,274 @@
           "resources": {
             "applications": {
               "resources": {
+                "authorizedCertificates": {
+                  "methods": {
+                    "create": {
+                      "description": "Uploads the specified SSL certificate.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates",
+                      "httpMethod": "POST",
+                      "id": "appengine.projects.locations.applications.authorizedCertificates.create",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates",
+                      "request": {
+                        "$ref": "AuthorizedCertificate"
+                      },
+                      "response": {
+                        "$ref": "AuthorizedCertificate"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes the specified SSL certificate.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "httpMethod": "DELETE",
+                      "id": "appengine.projects.locations.applications.authorizedCertificates.delete",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "authorizedCertificatesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "authorizedCertificatesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the specified SSL certificate.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.authorizedCertificates.get",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "authorizedCertificatesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "authorizedCertificatesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Controls the set of fields returned in the GET response.",
+                          "enum": [
+                            "BASIC_CERTIFICATE",
+                            "FULL_CERTIFICATE"
+                          ],
+                          "enumDescriptions": [
+                            "Basic certificate information, including applicable domains and expiration date.",
+                            "The information from BASIC_CERTIFICATE, plus detailed information on the domain mappings that have this certificate mapped."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "response": {
+                        "$ref": "AuthorizedCertificate"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all SSL certificates the user is authorized to administer.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.authorizedCertificates.list",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Maximum results to return per page.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Continuation token for fetching the next page of results.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "view": {
+                          "description": "Controls the set of fields returned in the LIST response.",
+                          "enum": [
+                            "BASIC_CERTIFICATE",
+                            "FULL_CERTIFICATE"
+                          ],
+                          "enumDescriptions": [
+                            "Basic certificate information, including applicable domains and expiration date.",
+                            "The information from BASIC_CERTIFICATE, plus detailed information on the domain mappings that have this certificate mapped."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates",
+                      "response": {
+                        "$ref": "ListAuthorizedCertificatesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the specified SSL certificate. To renew a certificate and maintain its existing domain mappings, update certificate_data with a new certificate. The new certificate must be applicable to the same domains as the original certificate. The certificate display_name may also be updated.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "httpMethod": "PATCH",
+                      "id": "appengine.projects.locations.applications.authorizedCertificates.patch",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "authorizedCertificatesId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "authorizedCertificatesId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedCertificates/{authorizedCertificatesId}",
+                      "request": {
+                        "$ref": "AuthorizedCertificate"
+                      },
+                      "response": {
+                        "$ref": "AuthorizedCertificate"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "authorizedDomains": {
                   "methods": {
                     "list": {
@@ -849,6 +1117,118 @@
                       "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/authorizedDomains",
                       "response": {
                         "$ref": "ListAuthorizedDomainsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/appengine.admin",
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                      ]
+                    }
+                  }
+                },
+                "domainMappings": {
+                  "methods": {
+                    "create": {
+                      "description": "Maps a domain to an application. A user must be authorized to administer a domain in order to map it to an application. For a list of available authorized domains, see AuthorizedDomains.ListAuthorizedDomains.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings",
+                      "httpMethod": "POST",
+                      "id": "appengine.projects.locations.applications.domainMappings.create",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `parent`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "noManagedCertificate": {
+                          "description": "Whether a managed certificate should be provided by App Engine. If true, a certificate ID must be manaually set in the DomainMapping resource to configure SSL for this domain. If false, a managed certificate will be provisioned and a certificate ID will be automatically populated.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "overrideStrategy": {
+                          "description": "Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.",
+                          "enum": [
+                            "UNSPECIFIED_DOMAIN_OVERRIDE_STRATEGY",
+                            "STRICT",
+                            "OVERRIDE"
+                          ],
+                          "enumDescriptions": [
+                            "Strategy unspecified. Defaults to STRICT.",
+                            "Overrides not allowed. If a mapping already exists for the specified domain, the request will return an ALREADY_EXISTS (409).",
+                            "Overrides allowed. If a mapping already exists for the specified domain, the request will overwrite it. Note that this might stop another Google product from serving. For example, if the domain is mapped to another App Engine application, that app will no longer serve from that domain."
+                          ],
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings",
+                      "request": {
+                        "$ref": "DomainMapping"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets the specified domain mapping.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "httpMethod": "GET",
+                      "id": "appengine.projects.locations.applications.domainMappings.get",
+                      "parameterOrder": [
+                        "projectsId",
+                        "locationsId",
+                        "applicationsId",
+                        "domainMappingsId"
+                      ],
+                      "parameters": {
+                        "applicationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "domainMappingsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "locationsId": {
+                          "description": "Part of `name`. See documentation of `projectsId`.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectsId": {
+                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/projects/{projectsId}/locations/{locationsId}/applications/{applicationsId}/domainMappings/{domainMappingsId}",
+                      "response": {
+                        "$ref": "DomainMapping"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/appengine.admin",
@@ -958,7 +1338,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250616",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {

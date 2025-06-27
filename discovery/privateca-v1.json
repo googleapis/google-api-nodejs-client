@@ -1611,7 +1611,7 @@
       }
     }
   },
-  "revision": "20250326",
+  "revision": "20250528",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1662,6 +1662,47 @@
         "rsa": {
           "$ref": "RsaKeyType",
           "description": "Represents an allowed RSA key type."
+        }
+      },
+      "type": "object"
+    },
+    "AttributeTypeAndValue": {
+      "description": "AttributeTypeAndValue specifies an attribute type and value. It can use either a OID or enum value to specify the attribute type.",
+      "id": "AttributeTypeAndValue",
+      "properties": {
+        "objectId": {
+          "$ref": "ObjectId",
+          "description": "Object ID for an attribute type of an attribute and value pair."
+        },
+        "type": {
+          "description": "The attribute type of the attribute and value pair.",
+          "enum": [
+            "ATTRIBUTE_TYPE_UNSPECIFIED",
+            "COMMON_NAME",
+            "COUNTRY_CODE",
+            "ORGANIZATION",
+            "ORGANIZATIONAL_UNIT",
+            "LOCALITY",
+            "PROVINCE",
+            "STREET_ADDRESS",
+            "POSTAL_CODE"
+          ],
+          "enumDescriptions": [
+            "Attribute type is unspecified.",
+            "The \"common name\" of the subject.",
+            "The country code of the subject.",
+            "The organization of the subject.",
+            "The organizational unit of the subject.",
+            "The locality or city of the subject.",
+            "The province, territory, or regional state of the subject.",
+            "The street address of the subject.",
+            "The postal code of the subject."
+          ],
+          "type": "string"
+        },
+        "value": {
+          "description": "The value for the attribute type.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1882,11 +1923,13 @@
           "enum": [
             "SUBJECT_REQUEST_MODE_UNSPECIFIED",
             "DEFAULT",
+            "RDN_SEQUENCE",
             "REFLECTED_SPIFFE"
           ],
           "enumDescriptions": [
             "Not specified.",
             "The default mode used in most cases. Indicates that the certificate's Subject and/or SubjectAltNames are specified in the certificate request. This mode requires the caller to have the `privateca.certificates.create` permission.",
+            "A mode used to get an accurate representation of the Subject field's distinguished name. Indicates that the certificate's Subject and/or SubjectAltNames are specified in the certificate request. When parsing a PEM CSR this mode will maintain the sequence of RDNs found in the CSR's subject field in the issued Certificate. This mode requires the caller to have the `privateca.certificates.create` permission.",
             "A mode reserved for special cases. Indicates that the certificate should have one SPIFFE SubjectAltNames set by the service based on the caller's identity. This mode will ignore any explicitly specified Subject and/or SubjectAltNames in the certificate request. This mode requires the caller to have the `privateca.certificates.createForSelf` permission."
           ],
           "type": "string"
@@ -3110,6 +3153,20 @@
       },
       "type": "object"
     },
+    "RelativeDistinguishedName": {
+      "description": "RelativeDistinguishedName specifies a relative distinguished name which will be used to build a distinguished name.",
+      "id": "RelativeDistinguishedName",
+      "properties": {
+        "attributes": {
+          "description": "Attributes describes the attribute value assertions in the RDN.",
+          "items": {
+            "$ref": "AttributeTypeAndValue"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RevocationDetails": {
       "description": "Describes fields that are relavent to the revocation of a Certificate.",
       "id": "RevocationDetails",
@@ -3317,6 +3374,13 @@
         "province": {
           "description": "The province, territory, or regional state of the subject.",
           "type": "string"
+        },
+        "rdnSequence": {
+          "description": "This field can be used in place of the named subject fields.",
+          "items": {
+            "$ref": "RelativeDistinguishedName"
+          },
+          "type": "array"
         },
         "streetAddress": {
           "description": "The street address of the subject.",

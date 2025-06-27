@@ -2906,7 +2906,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
                   "location": "query",
                   "type": "string"
                 }
@@ -3065,7 +3065,7 @@
                   "type": "string"
                 },
                 "regionsVersion.version": {
-                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
                   "location": "query",
                   "type": "string"
                 },
@@ -3527,7 +3527,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
                           "location": "query",
                           "type": "string"
                         }
@@ -3784,7 +3784,7 @@
                           "type": "string"
                         },
                         "regionsVersion.version": {
-                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+                          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
                           "location": "query",
                           "type": "string"
                         },
@@ -3816,6 +3816,67 @@
     },
     "orders": {
       "methods": {
+        "batchget": {
+          "description": "Get order details for a list of orders.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/orders:batchGet",
+          "httpMethod": "GET",
+          "id": "androidpublisher.orders.batchget",
+          "parameterOrder": [
+            "packageName"
+          ],
+          "parameters": {
+            "orderIds": {
+              "description": "Required. The list of order IDs to retrieve order details for. There must be between 1 and 1000 (inclusive) order IDs per request. If any order ID is not found or does not match the provided package, the entire request will fail with an error. The order IDs must be distinct.",
+              "location": "query",
+              "repeated": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/orders:batchGet",
+          "response": {
+            "$ref": "BatchGetOrdersResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
+        "get": {
+          "description": "Get order details for a single order.",
+          "flatPath": "androidpublisher/v3/applications/{packageName}/orders/{orderId}",
+          "httpMethod": "GET",
+          "id": "androidpublisher.orders.get",
+          "parameterOrder": [
+            "packageName",
+            "orderId"
+          ],
+          "parameters": {
+            "orderId": {
+              "description": "Required. The order ID provided to the user when the subscription or in-app order was purchased.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "packageName": {
+              "description": "Required. The package name of the application for which this subscription or in-app item was purchased (for example, 'com.some.thing').",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "androidpublisher/v3/applications/{packageName}/orders/{orderId}",
+          "response": {
+            "$ref": "Order"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/androidpublisher"
+          ]
+        },
         "refund": {
           "description": "Refunds a user's subscription or in-app purchase order. Orders older than 3 years cannot be refunded.",
           "flatPath": "androidpublisher/v3/applications/{packageName}/orders/{orderId}:refund",
@@ -3988,7 +4049,7 @@
                   "type": "string"
                 },
                 "subscriptionId": {
-                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "description": "Note: Since May 21, 2025, subscription_id is not required, and not recommended for subscription with add-ons. The purchased subscription ID (for example, 'monthly001').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -4026,7 +4087,7 @@
                   "type": "string"
                 },
                 "subscriptionId": {
-                  "description": "The purchased subscription ID (for example, 'monthly001').",
+                  "description": "Note: Since May 21, 2025, subscription_id is not required, and not recommended for subscription with add-ons. The purchased subscription ID (for example, 'monthly001').",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -4085,7 +4146,8 @@
               ]
             },
             "get": {
-              "description": "Checks whether a user's subscription purchase is valid and returns its expiry time.",
+              "deprecated": true,
+              "description": "Deprecated: Use purchases.subscriptionsv2.get instead. Checks whether a user's subscription purchase is valid and returns its expiry time.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}",
               "httpMethod": "GET",
               "id": "androidpublisher.purchases.subscriptions.get",
@@ -4123,7 +4185,8 @@
               ]
             },
             "refund": {
-              "description": "Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.",
+              "deprecated": true,
+              "description": "Deprecated: Use orders.refund instead. Refunds a user's subscription purchase, but the subscription remains valid until its expiration time and it will continue to recur.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:refund",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.refund",
@@ -4158,7 +4221,8 @@
               ]
             },
             "revoke": {
-              "description": "Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.",
+              "deprecated": true,
+              "description": "Deprecated: Use purchases.subscriptionsv2.revoke instead. Refunds and immediately revokes a user's subscription purchase. Access to the subscription will be terminated immediately and it will stop recurring.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:revoke",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.revoke",
@@ -4732,7 +4796,7 @@
       }
     }
   },
-  "revision": "20250318",
+  "revision": "20250602",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -5317,7 +5381,7 @@
         },
         "recurringPrice": {
           "$ref": "Money",
-          "description": "The current recurring price of the auto renewing plan."
+          "description": "The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and taxes, call orders.get API instead if transaction details are needed."
         }
       },
       "type": "object"
@@ -5376,6 +5440,20 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetOrdersResponse": {
+      "description": "Response for the orders.batchGet API.",
+      "id": "BatchGetOrdersResponse",
+      "properties": {
+        "orders": {
+          "description": "Details for the requested order IDs.",
+          "items": {
+            "$ref": "Order"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5599,6 +5677,25 @@
       },
       "type": "object"
     },
+    "BuyerAddress": {
+      "description": "Address information for the customer, for use in tax computation.",
+      "id": "BuyerAddress",
+      "properties": {
+        "buyerCountry": {
+          "description": "Two letter country code based on ISO-3166-1 Alpha-2 (UN country codes).",
+          "type": "string"
+        },
+        "buyerPostcode": {
+          "description": "Postal code of an address. When Google is the Merchant of Record for the order, this information is not included.",
+          "type": "string"
+        },
+        "buyerState": {
+          "description": "Top-level administrative subdivision of the buyer address country. When Google is the Merchant of Record for the order, this information is not included.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelAppRecoveryRequest": {
       "description": "Request message for CancelAppRecovery.",
       "id": "CancelAppRecoveryRequest",
@@ -5661,6 +5758,18 @@
         "userInitiatedCancellation": {
           "$ref": "UserInitiatedCancellation",
           "description": "Subscription was canceled by user."
+        }
+      },
+      "type": "object"
+    },
+    "CancellationEvent": {
+      "description": "Details of when the order was canceled.",
+      "id": "CancellationEvent",
+      "properties": {
+        "eventTime": {
+          "description": "The time when the order was canceled.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -7207,6 +7316,45 @@
       },
       "type": "object"
     },
+    "LineItem": {
+      "description": "Details of a line item.",
+      "id": "LineItem",
+      "properties": {
+        "listingPrice": {
+          "$ref": "Money",
+          "description": "Item's listed price on Play Store, this may or may not include tax. Excludes any discounts or promotions."
+        },
+        "oneTimePurchaseDetails": {
+          "$ref": "OneTimePurchaseDetails",
+          "description": "Details of a one-time purchase."
+        },
+        "paidAppDetails": {
+          "$ref": "PaidAppDetails",
+          "description": "Details of a paid app purchase."
+        },
+        "productId": {
+          "description": "The purchased product ID or in-app SKU (for example, 'monthly001' or 'com.some.thing.inapp1').",
+          "type": "string"
+        },
+        "productTitle": {
+          "description": "Developer-specified name of the product. Displayed in buyer's locale. Example: coins, monthly subscription, etc.",
+          "type": "string"
+        },
+        "subscriptionDetails": {
+          "$ref": "SubscriptionDetails",
+          "description": "Details of a subscription purchase."
+        },
+        "tax": {
+          "$ref": "Money",
+          "description": "The tax paid for this line item."
+        },
+        "total": {
+          "$ref": "Money",
+          "description": "The total amount paid by the user for this line item, taking into account discounts and tax."
+        }
+      },
+      "type": "object"
+    },
     "ListAppRecoveriesResponse": {
       "description": "Response message for ListAppRecoveries. -- api-linter: core::0158::response-next-page-token-field=disabled",
       "id": "ListAppRecoveriesResponse",
@@ -7613,6 +7761,141 @@
       },
       "type": "object"
     },
+    "OneTimePurchaseDetails": {
+      "description": "Details of a one-time purchase.",
+      "id": "OneTimePurchaseDetails",
+      "properties": {
+        "offerId": {
+          "description": "The offer ID of the one-time purchase offer.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The number of items purchased (for multi-quantity item purchases).",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Order": {
+      "description": "The Order resource encapsulates comprehensive information about a transaction made on Google Play. It includes a variety of attributes that provide details about the order itself, the products purchased, and the history of events related to the order. The Orders APIs provide real-time access to your order data within the Google Play ecosystem. You can retrieve detailed information and metadata for both one-time and recurring orders, including transaction details like charges, taxes, and refunds, as well as metadata such as pricing phases for subscriptions. The Orders APIs let you automate tasks related to order management, reducing the need for manual checks via the Play Developer Console. The following are some of the use cases for this API: + Real-time order data retrieval - Get order details and metadata immediately after a purchase using an order ID. + Order update synchronization - Periodically sync order updates to maintain an up-to-date record of order information. Note: + The Orders API calls count towards your Play Developer API quota, which defaults to 200K daily, and may be insufficient to sync extensive order histories. + A maximum of 1000 orders can be retrieved per call. Using larger page sizes is recommended to minimize quota usage. Check your quota in the Cloud Console and request more if required.",
+      "id": "Order",
+      "properties": {
+        "buyerAddress": {
+          "$ref": "BuyerAddress",
+          "description": "Address information for the customer, for use in tax computation. When Google is the Merchant of Record for the order, only country is shown."
+        },
+        "createTime": {
+          "description": "The time when the order was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "developerRevenueInBuyerCurrency": {
+          "$ref": "Money",
+          "description": "Your revenue for this order in the buyer's currency, including deductions of partial refunds, taxes and fees. Google deducts standard transaction and third party fees from each sale, including VAT in some regions."
+        },
+        "lastEventTime": {
+          "description": "The time of the last event that occurred on the order.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "lineItems": {
+          "description": "The individual line items making up this order.",
+          "items": {
+            "$ref": "LineItem"
+          },
+          "type": "array"
+        },
+        "orderDetails": {
+          "$ref": "OrderDetails",
+          "description": "Detailed information about the order at creation time."
+        },
+        "orderHistory": {
+          "$ref": "OrderHistory",
+          "description": "Details about events which modified the order."
+        },
+        "orderId": {
+          "description": "The order ID.",
+          "type": "string"
+        },
+        "pointsDetails": {
+          "$ref": "PointsDetails",
+          "description": "Play points applied to the order, including offer information, discount rate and point values."
+        },
+        "purchaseToken": {
+          "description": "The token provided to the user's device when the subscription or item was purchased.",
+          "type": "string"
+        },
+        "state": {
+          "description": "The state of the order.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "PROCESSED",
+            "CANCELED",
+            "PENDING_REFUND",
+            "PARTIALLY_REFUNDED",
+            "REFUNDED"
+          ],
+          "enumDescriptions": [
+            "State unspecified. This value is not used.",
+            "Order has been created and is waiting to be processed.",
+            "Order has been successfully processed.",
+            "Order was canceled before being processed.",
+            "Requested refund is waiting to be processed.",
+            "Part of the order amount was refunded.",
+            "The full order amount was refunded."
+          ],
+          "type": "string"
+        },
+        "tax": {
+          "$ref": "Money",
+          "description": "The total tax paid as a part of this order."
+        },
+        "total": {
+          "$ref": "Money",
+          "description": "The final amount paid by the customer, taking into account discounts and taxes."
+        }
+      },
+      "type": "object"
+    },
+    "OrderDetails": {
+      "description": "Detailed information about the order at creation time.",
+      "id": "OrderDetails",
+      "properties": {
+        "taxInclusive": {
+          "description": "Indicates whether the listed price was tax inclusive or not.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "OrderHistory": {
+      "description": "Details about events which modified the order.",
+      "id": "OrderHistory",
+      "properties": {
+        "cancellationEvent": {
+          "$ref": "CancellationEvent",
+          "description": "Details of when the order was canceled."
+        },
+        "partialRefundEvents": {
+          "description": "Details of the partial refund events for this order.",
+          "items": {
+            "$ref": "PartialRefundEvent"
+          },
+          "type": "array"
+        },
+        "processedEvent": {
+          "$ref": "ProcessedEvent",
+          "description": "Details of when the order was processed."
+        },
+        "refundEvent": {
+          "$ref": "RefundEvent",
+          "description": "Details of when the order was fully refunded."
+        }
+      },
+      "type": "object"
+    },
     "OtherRecurringProduct": {
       "description": "Details of a recurring external transaction product which doesn't belong to any other more specific category.",
       "id": "OtherRecurringProduct",
@@ -7716,6 +7999,12 @@
       },
       "type": "object"
     },
+    "PaidAppDetails": {
+      "description": "Details of a paid app purchase.",
+      "id": "PaidAppDetails",
+      "properties": {},
+      "type": "object"
+    },
     "PartialRefund": {
       "description": "A partial refund of a transaction.",
       "id": "PartialRefund",
@@ -7727,6 +8016,41 @@
         "refundPreTaxAmount": {
           "$ref": "Price",
           "description": "Required. The pre-tax amount of the partial refund. Should be less than the remaining pre-tax amount of the transaction."
+        }
+      },
+      "type": "object"
+    },
+    "PartialRefundEvent": {
+      "description": "Details of the partial refund events for this order.",
+      "id": "PartialRefundEvent",
+      "properties": {
+        "createTime": {
+          "description": "The time when the partial refund was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "processTime": {
+          "description": "The time when the partial refund was processed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "refundDetails": {
+          "$ref": "RefundDetails",
+          "description": "Details for the partial refund."
+        },
+        "state": {
+          "description": "The state of the partial refund.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "PROCESSED_SUCCESSFULLY"
+          ],
+          "enumDescriptions": [
+            "State unspecified. This value is not used.",
+            "The partial refund has been created, but not yet processed.",
+            "The partial refund was processed successfully."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -7747,6 +8071,31 @@
       "description": "This is an indicator of whether there is a pending cancellation on the virtual installment plan. The cancellation will happen only after the user finished all committed payments.",
       "id": "PendingCancellation",
       "properties": {},
+      "type": "object"
+    },
+    "PointsDetails": {
+      "description": "Details relating to any Play Points applied to an order.",
+      "id": "PointsDetails",
+      "properties": {
+        "pointsCouponValue": {
+          "$ref": "Money",
+          "description": "The monetary value of a Play Points coupon. This is the discount the coupon provides, which may not be the total amount. Only set when Play Points coupons have been used. E.g. for a 100 points for $2 coupon, this is $2."
+        },
+        "pointsDiscountRateMicros": {
+          "description": "The percentage rate which the Play Points promotion reduces the cost by. E.g. for a 100 points for $2 coupon, this is 500,000. Since $2 has an estimate of 200 points, but the actual Points required, 100, is 50% of this, and 50% in micros is 500,000. Between 0 and 1,000,000.",
+          "format": "int64",
+          "type": "string"
+        },
+        "pointsOfferId": {
+          "description": "ID unique to the play points offer in use for this order.",
+          "type": "string"
+        },
+        "pointsSpent": {
+          "description": "The number of Play Points applied in this order. E.g. for a 100 points for $2 coupon, this is 100. For coupon stacked with base offer, this is the total points spent across both.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "PrepaidBasePlanType": {
@@ -7796,6 +8145,18 @@
         },
         "priceMicros": {
           "description": "Price in 1/million of the currency base unit, represented as a string.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ProcessedEvent": {
+      "description": "Details of when the order was processed.",
+      "id": "ProcessedEvent",
+      "properties": {
+        "eventTime": {
+          "description": "The time when the order was processed.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -7919,6 +8280,51 @@
         "otherRecurringProduct": {
           "$ref": "OtherRecurringProduct",
           "description": "Details of a recurring external transaction product which doesn't belong to any other specific category."
+        }
+      },
+      "type": "object"
+    },
+    "RefundDetails": {
+      "description": "Details for a partial or full refund.",
+      "id": "RefundDetails",
+      "properties": {
+        "tax": {
+          "$ref": "Money",
+          "description": "The amount of tax refunded."
+        },
+        "total": {
+          "$ref": "Money",
+          "description": "The total amount refunded, including tax."
+        }
+      },
+      "type": "object"
+    },
+    "RefundEvent": {
+      "description": "Details of when the order was fully refunded.",
+      "id": "RefundEvent",
+      "properties": {
+        "eventTime": {
+          "description": "The time when the order was fully refunded.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "refundDetails": {
+          "$ref": "RefundDetails",
+          "description": "Details for the full refund."
+        },
+        "refundReason": {
+          "description": "The reason the order was refunded.",
+          "enum": [
+            "REFUND_REASON_UNSPECIFIED",
+            "OTHER",
+            "CHARGEBACK"
+          ],
+          "enumDescriptions": [
+            "Refund reason unspecified. This value is not used.",
+            "The order was refunded for a reason other than the listed reasons here.",
+            "The order was charged back."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -8113,7 +8519,7 @@
       "id": "RegionsVersion",
       "properties": {
         "version": {
-          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available. The latest version is 2022/02.",
+          "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
           "type": "string"
         }
       },
@@ -8273,7 +8679,11 @@
       "properties": {
         "fullRefund": {
           "$ref": "RevocationContextFullRefund",
-          "description": "Optional. Used when users should be refunded the full amount of the latest order of the subscription."
+          "description": "Optional. Used when users should be refunded the full amount of latest charge on each item in the subscription."
+        },
+        "itemBasedRefund": {
+          "$ref": "RevocationContextItemBasedRefund",
+          "description": "Optional. Used when a specific item should be refunded in a subscription with add-on items."
         },
         "proratedRefund": {
           "$ref": "RevocationContextProratedRefund",
@@ -8286,6 +8696,17 @@
       "description": "Used to determine if the refund type in the RevocationContext is a full refund.",
       "id": "RevocationContextFullRefund",
       "properties": {},
+      "type": "object"
+    },
+    "RevocationContextItemBasedRefund": {
+      "description": "Used to determine what specific item to revoke in a subscription with multiple items.",
+      "id": "RevocationContextItemBasedRefund",
+      "properties": {
+        "productId": {
+          "description": "Required. If the subscription is a subscription with add-ons, the product id of the subscription item to revoke.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RevocationContextProratedRefund": {
@@ -8590,6 +9011,47 @@
       },
       "type": "object"
     },
+    "SubscriptionDetails": {
+      "description": "Details of a subscription purchase.",
+      "id": "SubscriptionDetails",
+      "properties": {
+        "basePlanId": {
+          "description": "The base plan ID of the subscription.",
+          "type": "string"
+        },
+        "offerId": {
+          "description": "The offer ID for the current subscription offer.",
+          "type": "string"
+        },
+        "offerPhase": {
+          "description": "The pricing phase for the billing period funded by this order.",
+          "enum": [
+            "OFFER_PHASE_UNSPECIFIED",
+            "BASE",
+            "INTRODUCTORY",
+            "FREE_TRIAL"
+          ],
+          "enumDescriptions": [
+            "Offer phase unspecified. This value is not used.",
+            "The order funds a base price period.",
+            "The order funds an introductory pricing period.",
+            "The order funds a free trial period."
+          ],
+          "type": "string"
+        },
+        "servicePeriodEndTime": {
+          "description": "The end of the billing period funded by this order. This is a snapshot of the billing/service period end time at the moment the order was processed, and should be used only for accounting. To get the current end time of the subscription service period, use purchases.subscriptionsv2.get.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "servicePeriodStartTime": {
+          "description": "The start of the billing period funded by this order. This is a snapshot of the billing/service period start time at the moment the order was processed, and should be used only for accounting.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SubscriptionItemPriceChangeDetails": {
       "description": "Price change related information of a subscription item.",
       "id": "SubscriptionItemPriceChangeDetails",
@@ -8625,13 +9087,15 @@
             "PRICE_CHANGE_STATE_UNSPECIFIED",
             "OUTSTANDING",
             "CONFIRMED",
-            "APPLIED"
+            "APPLIED",
+            "CANCELED"
           ],
           "enumDescriptions": [
             "Price change state unspecified. This value should not be used.",
             "Waiting for the user to agree for the price change.",
             "The price change is confirmed to happen for the user.",
-            "The price change is applied, i.e. the user has started being charged the new price."
+            "The price change is applied, i.e. the user has started being charged the new price.",
+            "The price change was canceled."
           ],
           "type": "string"
         }
@@ -8941,6 +9405,10 @@
           "format": "google-datetime",
           "type": "string"
         },
+        "latestSuccessfulOrderId": {
+          "description": "The order id of the latest successful order associated with this item. Not present if the item is not owned by the user yet (e.g. the item being deferred replaced to).",
+          "type": "string"
+        },
         "offerDetails": {
           "$ref": "OfferDetails",
           "description": "The offer details for this item."
@@ -8991,7 +9459,8 @@
           "type": "string"
         },
         "latestOrderId": {
-          "description": "The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.",
+          "deprecated": true,
+          "description": "Deprecated: Use line_items.latest_successful_order_id instead. The order id of the latest order associated with the purchase of the subscription. For autoRenewing subscription, this is the order id of signup order if it is not renewed yet, or the last recurring order id (success, pending, or declined order). For prepaid subscription, this is the order id associated with the queried purchase token.",
           "type": "string"
         },
         "lineItems": {
@@ -9090,7 +9559,7 @@
       "type": "object"
     },
     "SubscriptionTaxAndComplianceSettings": {
-      "description": "Details about taxation, Google Play policy and legal compliance for subscription products.",
+      "description": "Details about taxation, Google Play policy, and legal compliance for subscription products.",
       "id": "SubscriptionTaxAndComplianceSettings",
       "properties": {
         "eeaWithdrawalRightType": {

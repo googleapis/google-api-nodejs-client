@@ -14,7 +14,7 @@
   "canonicalName": "Merchant",
   "description": "Programmatically manage your Merchant Center Accounts.",
   "discoveryVersion": "v1",
-  "documentationLink": "https://developers.devsite.corp.google.com/merchant/api",
+  "documentationLink": "https://developers.google.com/merchant/api",
   "fullyEncodeReservedExpansion": true,
   "icons": {
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
@@ -119,7 +119,7 @@
               ],
               "parameters": {
                 "dataSource": {
-                  "description": "Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account}/dataSources/{datasource}`.",
+                  "description": "Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -140,7 +140,7 @@
               ]
             },
             "insert": {
-              "description": "Uploads a product input to your Merchant Center account. If an input with the same contentLanguage, offerId, and dataSource already exists, this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
+              "description": "[Uploads a product input to your Merchant Center account](/merchant/api/guides/products/overview#upload-product-input). You must have a products data source to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If an input with the same contentLanguage, offerId, and dataSource already exists, this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.",
               "flatPath": "products/v1beta/accounts/{accountsId}/productInputs:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.productInputs.insert",
@@ -149,7 +149,7 @@
               ],
               "parameters": {
                 "dataSource": {
-                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`.",
+                  "description": "Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Overview of Data sources sub-API](/merchant/api/guides/data-sources/overview). Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -182,7 +182,7 @@
               ],
               "parameters": {
                 "dataSource": {
-                  "description": "Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`.",
+                  "description": "Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account}/dataSources/{datasource}`. For example, `accounts/123456/dataSources/104628`.",
                   "location": "query",
                   "type": "string"
                 },
@@ -250,7 +250,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "The maximum number of products to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of products will be returned.",
+                  "description": "The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250621",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -296,7 +296,7 @@
           "type": "array"
         },
         "adsGrouping": {
-          "description": "Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise.",
+          "description": "Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).",
           "type": "string"
         },
         "adsLabels": {
@@ -320,10 +320,10 @@
         },
         "autoPricingMinPrice": {
           "$ref": "Price",
-          "description": "A safeguard in the \"Automated Discounts\" (https://support.google.com/merchants/answer/10295759) and \"Dynamic Promotions\" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on merchants' offers do not fall below this value, thereby preserving the offer's value and profitability."
+          "description": "A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and \"Dynamic Promotions\" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability."
         },
         "availability": {
-          "description": "Availability status of the item.",
+          "description": "[Availability](https://support.google.com/merchants/answer/6324448) status of the item. For example, \"in_stock\" or \"out_of_stock\".",
           "type": "string"
         },
         "availabilityDate": {
@@ -332,7 +332,7 @@
           "type": "string"
         },
         "brand": {
-          "description": "Brand of the item.",
+          "description": "[Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, \"Google\".",
           "type": "string"
         },
         "canonicalLink": {
@@ -354,11 +354,11 @@
           "type": "array"
         },
         "color": {
-          "description": "Color of the item.",
+          "description": "[Color](https://support.google.com/merchants/answer/6324487) of the item. For example, \"red\".",
           "type": "string"
         },
         "condition": {
-          "description": "Condition or state of the item.",
+          "description": "[Condition](https://support.google.com/merchants/answer/6324469) or state of the item. For example, \"new\" or \"used\".",
           "type": "string"
         },
         "costOfGoodsSold": {
@@ -366,23 +366,23 @@
           "description": "Cost of goods sold. Used for gross profit reporting."
         },
         "customLabel0": {
-          "description": "Custom label 0 for custom grouping of items in a Shopping campaign.",
+          "description": "[Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.",
           "type": "string"
         },
         "customLabel1": {
-          "description": "Custom label 1 for custom grouping of items in a Shopping campaign.",
+          "description": "[Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.",
           "type": "string"
         },
         "customLabel2": {
-          "description": "Custom label 2 for custom grouping of items in a Shopping campaign.",
+          "description": "[Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.",
           "type": "string"
         },
         "customLabel3": {
-          "description": "Custom label 3 for custom grouping of items in a Shopping campaign.",
+          "description": "[Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.",
           "type": "string"
         },
         "customLabel4": {
-          "description": "Custom label 4 for custom grouping of items in a Shopping campaign.",
+          "description": "[Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.",
           "type": "string"
         },
         "description": {
@@ -390,7 +390,7 @@
           "type": "string"
         },
         "disclosureDate": {
-          "description": "The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date]( https://support.google.com/merchants/answer/13034208) for more information.",
+          "description": "The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -403,7 +403,7 @@
           "type": "string"
         },
         "displayAdsSimilarIds": {
-          "description": "Advertiser-specified recommendations.",
+          "description": "Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).",
           "items": {
             "type": "string"
           },
@@ -414,7 +414,7 @@
           "type": "string"
         },
         "displayAdsValue": {
-          "description": "Offer margin for dynamic remarketing campaigns.",
+          "description": "Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).",
           "format": "double",
           "type": "number"
         },
@@ -423,7 +423,7 @@
           "type": "string"
         },
         "excludedDestinations": {
-          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center).",
+          "description": "The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.",
           "items": {
             "type": "string"
           },
@@ -446,7 +446,7 @@
           "type": "array"
         },
         "gender": {
-          "description": "Target gender of the item.",
+          "description": "Target [gender](https://support.google.com/merchants/answer/6324479) of the item. For example, \"male\" or \"female\".",
           "type": "string"
         },
         "googleProductCategory": {
@@ -469,7 +469,7 @@
           "type": "string"
         },
         "includedDestinations": {
-          "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`.",
+          "description": "The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.",
           "items": {
             "type": "string"
           },
@@ -480,7 +480,7 @@
           "description": "Number and amount of installments to pay for an item."
         },
         "isBundle": {
-          "description": "Whether the item is a merchant-defined bundle. A bundle is a custom grouping of different products sold by a merchant for a single price.",
+          "description": "Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.",
           "type": "boolean"
         },
         "itemGroupId": {
@@ -499,7 +499,7 @@
           "type": "string"
         },
         "linkTemplate": {
-          "description": "Link template for merchant hosted local storefront.",
+          "description": "[Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.",
           "type": "string"
         },
         "loyaltyPoints": {
@@ -514,7 +514,7 @@
           "type": "array"
         },
         "material": {
-          "description": "The material of which the item is made.",
+          "description": "The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, \"Leather\" or \"Cotton\".",
           "type": "string"
         },
         "maxEnergyEfficiencyClass": {
@@ -525,6 +525,10 @@
           "description": "Maximal product handling time (in business days).",
           "format": "int64",
           "type": "string"
+        },
+        "maximumRetailPrice": {
+          "$ref": "Price",
+          "description": "Maximum retail price (MRP) of the item. Applicable to India only."
         },
         "minEnergyEfficiencyClass": {
           "description": "The energy efficiency class as defined in EU directive 2010/30/EU.",
@@ -540,7 +544,7 @@
           "type": "string"
         },
         "mobileLinkTemplate": {
-          "description": "Link template for merchant hosted local storefront optimized for mobile devices.",
+          "description": "[Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.",
           "type": "string"
         },
         "mpn": {
@@ -548,12 +552,12 @@
           "type": "string"
         },
         "multipack": {
-          "description": "The number of identical products in a merchant-defined multipack.",
+          "description": "The number of identical products in a business-defined multipack.",
           "format": "int64",
           "type": "string"
         },
         "pattern": {
-          "description": "The item's pattern (for example, polka dots).",
+          "description": "The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.",
           "type": "string"
         },
         "pause": {
@@ -561,11 +565,11 @@
           "type": "string"
         },
         "pickupMethod": {
-          "description": "The pick up option for the item.",
+          "description": "The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.",
           "type": "string"
         },
         "pickupSla": {
-          "description": "Item store pickup timeline.",
+          "description": "Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).",
           "type": "string"
         },
         "price": {
@@ -584,7 +588,7 @@
           "description": "The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
         },
         "productHighlights": {
-          "description": "Bullet points describing the most relevant highlights of a product.",
+          "description": "Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100).",
           "items": {
             "type": "string"
           },
@@ -595,7 +599,7 @@
           "description": "The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive)."
         },
         "productTypes": {
-          "description": "Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/188494#product_type)).",
+          "description": "Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category)).",
           "items": {
             "type": "string"
           },
@@ -622,7 +626,7 @@
         },
         "salePriceEffectiveDate": {
           "$ref": "Interval",
-          "description": "Date range during which the item is on sale (see [product data specification](https://support.google.com/merchants/answer/188494#sale_price_effective_date))."
+          "description": "Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability)."
         },
         "sellOnGoogleQuantity": {
           "description": "The quantity of the product that is available for selling on Google. Supported only for online products.",
@@ -657,22 +661,22 @@
           "description": "Width of the item for shipping."
         },
         "shoppingAdsExcludedCountries": {
-          "description": "List of country codes (ISO 3166-1 alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.",
+          "description": "List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "size": {
-          "description": "Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value (see [https://support.google.com/merchants/answer/6324492](size definition)).",
+          "description": "Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).",
           "type": "string"
         },
         "sizeSystem": {
-          "description": "System in which the size is specified. Recommended for apparel items.",
+          "description": "System in which the size is specified. Recommended for apparel items. For example, \"US\", \"UK\", \"DE\". For more information, see [Size system](https://support.google.com/merchants/answer/6324502).",
           "type": "string"
         },
         "sizeTypes": {
-          "description": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided (see [https://support.google.com/merchants/answer/6324497](size type)).",
+          "description": "The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497). For example, \"petite\", \"plus size\".",
           "items": {
             "type": "string"
           },
@@ -699,7 +703,7 @@
         },
         "taxCategory": {
           "deprecated": true,
-          "description": "The tax category of the product.",
+          "description": "The [tax category](https://support.google.com/merchants/answer/7569847) of the product.",
           "type": "string"
         },
         "taxes": {
@@ -1105,7 +1109,7 @@
           "type": "string"
         },
         "resolution": {
-          "description": "Whether the issue can be resolved by the merchant.",
+          "description": "Whether the issue can be resolved by the business.",
           "type": "string"
         },
         "severity": {
@@ -1188,7 +1192,7 @@
           "description": "The price for members of the given tier, that is, the instant discount price. Must be smaller or equal to the regular price."
         },
         "programLabel": {
-          "description": "The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a merchant entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a merchant. The corresponding program must be linked to the merchant account.",
+          "description": "The label of the loyalty program. This is an internal label that uniquely identifies the relationship between a business entity and a loyalty program entity. The label must be provided so that the system can associate the assets below (for example, price and points) with a business. The corresponding program must be linked to the Merchant Center account.",
           "type": "string"
         },
         "shippingLabel": {
@@ -1266,7 +1270,7 @@
           "type": "string"
         },
         "feedLabel": {
-          "description": "Output only. The feed label for the product.",
+          "description": "Output only. The feed label lets you categorize and identify your products. The maximum allowed characters is 20 and the supported characters are`A-Z`, `0-9`, hyphen and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087)",
           "readOnly": true,
           "type": "string"
         },
@@ -1415,7 +1419,7 @@
       "type": "object"
     },
     "ProductInput": {
-      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.",
+      "description": "This resource represents input data you submit for a product, not the processed product that you see in Merchant Center, in Shopping ads, or across Google surfaces. Product inputs, rules and supplemental data source data are combined to create the processed Product. For more information, see [Manage products](/merchant/api/guides/products/overview). Required product input attributes to pass data validation checks are primarily defined in the [Products Data Specification](https://support.google.com/merchants/answer/188494). The following attributes are required: feedLabel, contentLanguage and offerId. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved. All fields in the product input and its sub-messages match the English name of their corresponding attribute in the [Products Data Specification](https://support.google.com/merchants/answer/188494) with [some exceptions](https://support.google.com/merchants/answer/7052112). The following reference documentation lists the field names in the **camelCase** casing style while the Products Data Specification lists the names in the **snake_case** casing style.",
       "id": "ProductInput",
       "properties": {
         "attributes": {
@@ -1448,7 +1452,7 @@
           "type": "array"
         },
         "feedLabel": {
-          "description": "Required. Immutable. The [feed label](https://developers.google.com/shopping-content/guides/products/feed-labels) for the product.",
+          "description": "Required. Immutable. The label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087).",
           "type": "string"
         },
         "name": {
@@ -1541,7 +1545,7 @@
           "type": "string"
         },
         "expirationTime": {
-          "description": "Optional. The product expiration time. This field will not bet set if the notification is sent for a product deletion event.",
+          "description": "Optional. The product expiration time. This field will not be set if the notification is sent for a product deletion event.",
           "format": "google-datetime",
           "type": "string"
         },

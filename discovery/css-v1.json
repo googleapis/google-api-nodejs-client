@@ -330,7 +330,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the CSS product to retrieve.",
+                  "description": "Required. The name of the CSS product to retrieve. Format: `accounts/{account}/cssProducts/{css_product}`",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/cssProducts/[^/]+$",
                   "required": true,
@@ -547,7 +547,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250603",
   "rootUrl": "https://css.googleapis.com/",
   "schemas": {
     "Account": {

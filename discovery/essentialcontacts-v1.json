@@ -850,7 +850,7 @@
       }
     }
   },
-  "revision": "20240707",
+  "revision": "20250522",
   "rootUrl": "https://essentialcontacts.googleapis.com/",
   "schemas": {
     "GoogleCloudEssentialcontactsV1ComputeContactsResponse": {
@@ -918,8 +918,9 @@
           "type": "array"
         },
         "validateTime": {
-          "description": "The last time the validation_state was updated, either manually or automatically. A contact is considered stale if its validation state was updated more than 1 year ago.",
+          "description": "Output only. The last time the validation_state was updated, either manually or automatically. A contact is considered stale if its validation state was updated more than 1 year ago.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "validationState": {

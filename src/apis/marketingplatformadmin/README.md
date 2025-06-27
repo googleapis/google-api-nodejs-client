@@ -4,6 +4,15 @@
 
 > The Google Marketing Platform Admin API allows for programmatic access to the Google Marketing Platform configuration data. You can use the Google Marketing Platform Admin API to manage links between your Google Marketing Platform organization and Google Analytics accounts, and to set the service level of your GA4 properties.
 
+## Support status
+**Note**: Google provides multiple libraries for this service. This library is in
+maintenance mode, and will continue to be made available for users who have
+existing applications. If you're building a new application, or modernizing a
+legacy application, please use [@google-ads/marketing-platform-admin](https://www.npmjs.com/package/@google-ads/marketing-platform-admin) instead.
+The [@google-ads/marketing-platform-admin](https://www.npmjs.com/package/@google-ads/marketing-platform-admin) library is faster, easier to use, and better maintained.
+
+To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
+
 ## Installation
 
 ```sh

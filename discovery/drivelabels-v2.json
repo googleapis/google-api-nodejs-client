@@ -460,6 +460,31 @@
             "https://www.googleapis.com/auth/drive.labels"
           ]
         },
+        "updateLabelEnabledAppSettings": {
+          "description": "Updates a Label's EabledAppSettings. Enabling a Label in a Workspace Application allows it to be used in that application. This change is not revisioned, does not require publishing, and takes effect immediately.",
+          "flatPath": "v2/labels/{labelsId}:updateLabelEnabledAppSettings",
+          "httpMethod": "POST",
+          "id": "drivelabels.labels.updateLabelEnabledAppSettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The resource name of the Label to update. The resource name of the Label to update.",
+              "location": "path",
+              "pattern": "^labels/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v2/{+name}:updateLabelEnabledAppSettings",
+          "request": {
+            "$ref": "GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest"
+          },
+          "response": {
+            "$ref": "GoogleAppsDriveLabelsV2Label"
+          }
+        },
         "updatePermissions": {
           "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
           "flatPath": "v2/labels/{labelsId}/permissions",
@@ -1032,7 +1057,7 @@
       }
     }
   },
-  "revision": "20250331",
+  "revision": "20250602",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2BadgeColors": {
@@ -2280,6 +2305,10 @@
           "description": "Output only. UI display hints for rendering the label.",
           "readOnly": true
         },
+        "enabledAppSettings": {
+          "$ref": "GoogleAppsDriveLabelsV2LabelEnabledAppSettings",
+          "description": "Optional. The EnabledAppSettings for this Label."
+        },
         "fields": {
           "description": "List of fields in descending priority order.",
           "items": {
@@ -2428,6 +2457,41 @@
         "shownInApply": {
           "description": "This label should be shown in the apply menu when applying values to a Drive item.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsDriveLabelsV2LabelEnabledAppSettings": {
+      "description": "Describes the Workspace apps in which the Label can be used.",
+      "id": "GoogleAppsDriveLabelsV2LabelEnabledAppSettings",
+      "properties": {
+        "enabledApps": {
+          "description": "Optional. The list of Apps where the Label can be used.",
+          "items": {
+            "$ref": "GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp": {
+      "description": "An App where the Label can be used.",
+      "id": "GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp",
+      "properties": {
+        "app": {
+          "description": "Optional. The name of the App.",
+          "enum": [
+            "APP_UNSPECIFIED",
+            "DRIVE",
+            "GMAIL"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "Drive.",
+            "Gmail"
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -2865,6 +2929,37 @@
         },
         "view": {
           "description": "When specified, only certain fields belonging to the indicated view will be returned.",
+          "enum": [
+            "LABEL_VIEW_BASIC",
+            "LABEL_VIEW_FULL"
+          ],
+          "enumDescriptions": [
+            "Implies the field mask: `name,id,revision_id,label_type,properties.*`",
+            "All possible fields."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest": {
+      "description": "Request to update the `EnabledAppSettings` of the given Label. This change is not revisioned, does not require publishing, and takes effect immediately. \\",
+      "id": "GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest",
+      "properties": {
+        "enabledAppSettings": {
+          "$ref": "GoogleAppsDriveLabelsV2LabelEnabledAppSettings",
+          "description": "Required. The new `EnabledAppSettings` value for the Label."
+        },
+        "languageCode": {
+          "description": "Optional. The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used.",
+          "type": "string"
+        },
+        "useAdminAccess": {
+          "description": "Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "type": "boolean"
+        },
+        "view": {
+          "description": "Optional. When specified, only certain fields belonging to the indicated view will be returned.",
           "enum": [
             "LABEL_VIEW_BASIC",
             "LABEL_VIEW_FULL"

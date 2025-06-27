@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20250424",
+  "revision": "20250612",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -289,7 +289,8 @@
             "OGG_OPUS",
             "MULAW",
             "ALAW",
-            "PCM"
+            "PCM",
+            "M4A"
           ],
           "enumDescriptions": [
             "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
@@ -299,7 +300,8 @@
             "Opus encoded audio wrapped in an ogg container. The result is a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. Audio content returned as MULAW also contains a WAV header.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/A-law. Audio content returned as ALAW also contains a WAV header.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or any other) header."
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Note that as opposed to LINEAR16, audio won't be wrapped in a WAV (or any other) header.",
+            "M4A audio."
           ],
           "type": "string"
         },

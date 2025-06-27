@@ -306,7 +306,7 @@
       "methods": {
         "action": {
           "deprecated": true,
-          "description": "Use [BatchChangeChromeOsDeviceStatus](/admin-sdk/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
+          "description": "Use [BatchChangeChromeOsDeviceStatus](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{resourceId}/action",
           "httpMethod": "POST",
           "id": "directory.chromeosdevices.action",
@@ -316,13 +316,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "resourceId": {
-              "description": "The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.",
+              "description": "The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -347,13 +347,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -391,7 +391,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -425,7 +425,7 @@
                 "The date and time the Chrome device was last synchronized with the policy settings in the Admin console.",
                 "Chrome device notes as annotated by the administrator.",
                 "The Chrome device serial number entered when the device was enabled.",
-                "Chrome device status. For more information, see the <a [chromeosdevices](/admin-sdk/directory/v1/reference/chromeosdevices.html)."
+                "Chrome device status. For more information, see the <a [chromeosdevices](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices.html)."
               ],
               "location": "query",
               "type": "string"
@@ -454,7 +454,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators",
+              "description": "Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators",
               "location": "query",
               "type": "string"
             },
@@ -513,7 +513,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
+          "description": "Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/chromeos/{deviceId}",
           "httpMethod": "PATCH",
           "id": "directory.chromeosdevices.patch",
@@ -523,13 +523,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -570,13 +570,13 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "deviceId": {
-              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.",
+              "description": "The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -824,7 +824,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+$",
                       "required": true,
@@ -852,7 +852,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id}`",
+                      "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+$",
                       "required": true,
@@ -880,7 +880,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+$",
                       "required": true,
@@ -933,7 +933,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+/chrome/printServers/[^/]+$",
                       "required": true,
@@ -985,7 +985,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+                      "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
                       "location": "path",
                       "pattern": "^customers/[^/]+$",
                       "required": true,
@@ -1355,7 +1355,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1413,7 +1413,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1476,7 +1476,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1534,7 +1534,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1625,7 +1625,7 @@
           "parameterOrder": [],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "query",
               "type": "string"
             },
@@ -1692,7 +1692,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a group's properties. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
+          "description": "Updates a group's properties. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/groups/{groupKey}",
           "httpMethod": "PATCH",
           "id": "directory.groups.patch",
@@ -1961,7 +1961,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).",
+          "description": "Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes).",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members",
           "httpMethod": "GET",
           "id": "directory.members.list",
@@ -2011,7 +2011,7 @@
           ]
         },
         "patch": {
-          "description": "Updates the membership properties of a user in the specified group. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
+          "description": "Updates the membership properties of a user in the specified group. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).",
           "flatPath": "admin/directory/v1/groups/{groupKey}/members/{memberKey}",
           "httpMethod": "PATCH",
           "id": "directory.members.patch",
@@ -2095,7 +2095,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2127,7 +2127,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2155,7 +2155,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2191,7 +2191,7 @@
           ]
         },
         "list": {
-          "description": "Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).",
+          "description": "Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes).",
           "flatPath": "admin/directory/v1/customer/{customerId}/devices/mobile",
           "httpMethod": "GET",
           "id": "directory.mobiledevices.list",
@@ -2200,7 +2200,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2258,7 +2258,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators",
+              "description": "Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/search-operators",
               "location": "query",
               "type": "string"
             },
@@ -2301,7 +2301,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2330,7 +2330,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2362,7 +2362,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2389,7 +2389,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2426,7 +2426,7 @@
           ]
         },
         "patch": {
-          "description": "Updates an organizational unit. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch)",
+          "description": "Updates an organizational unit. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch)",
           "flatPath": "admin/directory/v1/customer/{customerId}/orgunits/{orgunitsId}",
           "httpMethod": "PATCH",
           "id": "directory.orgunits.patch",
@@ -2436,7 +2436,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2471,7 +2471,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).",
+              "description": "The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).",
               "location": "path",
               "required": true,
               "type": "string"
@@ -2509,7 +2509,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3251,7 +3251,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3309,7 +3309,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3395,7 +3395,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3453,7 +3453,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3592,7 +3592,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3650,7 +3650,7 @@
           ],
           "parameters": {
             "customerId": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -3908,7 +3908,7 @@
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "admin_view",
                 "domain_public"
@@ -3967,7 +3967,7 @@
               "type": "string"
             },
             "customer": {
-              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
+              "description": "The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.",
               "location": "query",
               "type": "string"
             },
@@ -4041,7 +4041,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).",
+              "description": "Query string for searching user fields. For more information on constructing user queries, see [Search for Users](https://developers.google.com/workspace/admin/directory/v1/guides/search-users).",
               "location": "query",
               "type": "string"
             },
@@ -4065,7 +4065,7 @@
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "admin_view",
                 "domain_public"
@@ -4113,7 +4113,7 @@
           ]
         },
         "patch": {
-          "description": "Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/admin-sdk/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
+          "description": "Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/workspace/admin/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PATCH",
           "id": "directory.users.patch",
@@ -4185,7 +4185,7 @@
           ]
         },
         "update": {
-          "description": "Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-users#update_user) for more information.",
+          "description": "Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#update_user) for more information.",
           "flatPath": "admin/directory/v1/users/{userKey}",
           "httpMethod": "PUT",
           "id": "directory.users.update",
@@ -4322,7 +4322,7 @@
             },
             "viewType": {
               "default": "admin_view",
-              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).",
+              "description": "Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).",
               "enum": [
                 "admin_view",
                 "domain_public"
@@ -4543,7 +4543,7 @@
               ]
             },
             "patch": {
-              "description": "Adds a photo for the user. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).",
+              "description": "Adds a photo for the user. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).",
               "flatPath": "admin/directory/v1/users/{userKey}/photos/thumbnail",
               "httpMethod": "PATCH",
               "id": "directory.users.photos.patch",
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250513",
+  "revision": "20250623",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5387,7 +5387,7 @@
       "type": "object"
     },
     "ChromeOsDevice": {
-      "description": "Google Chrome devices run on the [Chrome OS](https://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).",
+      "description": "Google Chrome devices run on the [Chrome OS](https://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices).",
       "id": "ChromeOsDevice",
       "properties": {
         "activeTimeRanges": {
@@ -5396,8 +5396,8 @@
             "properties": {
               "activeTime": {
                 "description": "Duration of usage in milliseconds.",
-                "format": "int32",
-                "type": "integer"
+                "format": "int64",
+                "type": "string"
               },
               "date": {
                 "description": "Date of usage",
@@ -5809,7 +5809,7 @@
           "type": "string"
         },
         "meid": {
-          "description": "The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices.html#export_meid).",
+          "description": "The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices.html#export_meid).",
           "type": "string"
         },
         "model": {
@@ -5817,7 +5817,7 @@
           "type": "string"
         },
         "notes": {
-          "description": "Notes about this device added by the administrator. This property can be [searched](https://support.google.com/chrome/a/answer/1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.",
+          "description": "Notes about this device added by the administrator. This property can be [searched](https://support.google.com/chrome/a/answer/1698333) with the [list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.",
           "type": "string"
         },
         "orderNumber": {
@@ -5825,11 +5825,11 @@
           "type": "string"
         },
         "orgUnitId": {
-          "description": "The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).",
+          "description": "The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).",
           "type": "string"
         },
         "orgUnitPath": {
-          "description": "The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).",
+          "description": "The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).",
           "type": "string"
         },
         "osUpdateStatus": {
@@ -6033,12 +6033,12 @@
       "id": "CreatePrintServerRequest",
       "properties": {
         "parent": {
-          "description": "Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
+          "description": "Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id}`",
           "type": "string"
         },
         "printServer": {
           "$ref": "PrintServer",
-          "description": "Required. A print server to create. If you want to place the print server under a specific organizational unit (OU), then populate the `org_unit_id`. Otherwise the print server is created under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/admin-sdk/directory/v1/guides/manage-org-units)."
+          "description": "Required. A print server to create. If you want to place the print server under a specific organizational unit (OU), then populate the `org_unit_id`. Otherwise the print server is created under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/workspace/admin/directory/v1/guides/manage-org-units)."
         }
       },
       "type": "object"
@@ -6088,7 +6088,7 @@
           "type": "string"
         },
         "language": {
-          "description": "The customer's ISO 639-2 language code. See the [Language Codes](/admin-sdk/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.",
+          "description": "The customer's ISO 639-2 language code. See the [Language Codes](https://developers.google.com/workspace/admin/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.",
           "type": "string"
         },
         "phoneNumber": {
@@ -6215,9 +6215,9 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/workspace/admin/directory/reference/rest/v1/chromeosdevices)",
             "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
-            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/workspace/admin/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         }
@@ -6229,7 +6229,7 @@
       "id": "DirectoryChromeosdevicesCommandResult",
       "properties": {
         "commandResultPayload": {
-          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The URL provides a link to the Chrome Remote Desktop session. * `FETCH_CRD_AVAILABILITY_INFO`: Payload is a stringified JSON object in the form: { \"deviceIdleTimeInSeconds\": number, \"userSessionType\": string, \"remoteSupportAvailability\": string, \"remoteAccessAvailability\": string }. The \"remoteSupportAvailability\" field is set to \"AVAILABLE\" if `shared` CRD session to the device is available. The \"remoteAccessAvailability\" field is set to \"AVAILABLE\" if `private` CRD session to the device is available.",
+          "description": "The payload for the command result. The following commands respond with a payload: * `DEVICE_START_CRD_SESSION`: Payload is a stringified JSON object in the form: { \"url\": url }. The provided URL links to the Chrome Remote Desktop session and requires authentication using only the `email` associated with the command's issuance. * `FETCH_CRD_AVAILABILITY_INFO`: Payload is a stringified JSON object in the form: { \"deviceIdleTimeInSeconds\": number, \"userSessionType\": string, \"remoteSupportAvailability\": string, \"remoteAccessAvailability\": string }. The \"remoteSupportAvailability\" field is set to \"AVAILABLE\" if `shared` CRD session to the device is available. The \"remoteAccessAvailability\" field is set to \"AVAILABLE\" if `private` CRD session to the device is available.",
           "type": "string"
         },
         "errorMessage": {
@@ -6286,14 +6286,14 @@
             "Wipe all the users off of the device. Executing this command in the device will remove all user profile data, but it will keep device policy and enrollment.",
             "Wipes the device by performing a power wash. Executing this command in the device will remove all data including user policies, device policies and enrollment policies. Warning: This will revert the device back to a factory state with no enrollment unless the device is subject to forced or auto enrollment. Use with caution, as this is an irreversible action!",
             "Starts a Chrome Remote Desktop session.",
-            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)",
+            "Capture the system logs of a kiosk device. The logs can be downloaded from the downloadUrl link present in `deviceFiles` field of [chromeosdevices](https://developers.google.com/workspace/admin/directory/reference/rest/v1/chromeosdevices)",
             "Fetches available type(s) of Chrome Remote Desktop sessions (private or shared) that can be used to remotely connect to the device.",
-            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/admin-sdk/directory/reference/rest/v1/chromeosdevices)"
+            "Fetch support packet from a device remotely. Support packet is a zip archive that contains various system logs and debug data from a ChromeOS device. The support packet can be downloaded from the downloadURL link present in the `deviceFiles` field of [`chromeosdevices`](https://developers.google.com/workspace/admin/directory/reference/rest/v1/chromeosdevices)"
           ],
           "type": "string"
         },
         "payload": {
-          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true, \"crdSessionType\": string }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`. `crdSessionType` can only select from values `private` (which grants the remote admin exclusive control of the ChromeOS device) or `shared` (which allows the admin and the local user to share control of the ChromeOS device). If not set, `crdSessionType` defaults to `shared`. * `REBOOT`: Payload is a stringified JSON object in the form: { \"user_session_delay_seconds\": 300 }. The `user_session_delay_seconds` is the amount of seconds to wait before rebooting the device if a user is logged in. It has to be an integer in the range [0,300]. When payload is not present for reboot, 0 delay is the default. Note: This only applies if an actual user is logged in, including a Guest. If the device is in the login screen or in Kiosk mode the value is not respected and the device immediately reboots. * `FETCH_SUPPORT_PACKET`: Payload is optionally a stringified JSON object in the form: {\"supportPacketDetails\":{ \"issueCaseId\": optional_support_case_id_string, \"issueDescription\": optional_issue_description_string, \"requestedDataCollectors\": []}} The list of available `data_collector_enums` are as following: Chrome System Information (1), Crash IDs (2), Memory Details (3), UI Hierarchy (4), Additional ChromeOS Platform Logs (5), Device Event (6), Intel WiFi NICs Debug Dump (7), Touch Events (8), Lacros (9), Lacros System Information (10), ChromeOS Flex Logs (11), DBus Details (12), ChromeOS Network Routes (13), ChromeOS Shill (Connection Manager) Logs (14), Policies (15), ChromeOS System State and Logs (16), ChromeOS System Logs (17), ChromeOS Chrome User Logs (18), ChromeOS Bluetooth (19), ChromeOS Connected Input Devices (20), ChromeOS Traffic Counters (21), ChromeOS Virtual Keyboard (22), ChromeOS Network Health (23). See more details in [help article](https://support.google.com/chrome/a?p=remote-log).",
+          "description": "The payload for the command, provide it only if command supports it. The following commands support adding payload: * `SET_VOLUME`: Payload is a stringified JSON object in the form: { \"volume\": 50 }. The volume has to be an integer in the range [0,100]. * `DEVICE_START_CRD_SESSION`: Payload is optionally a stringified JSON object in the form: { \"ackedUserPresence\": true, \"crdSessionType\": string }. `ackedUserPresence` is a boolean. By default, `ackedUserPresence` is set to `false`. To start a Chrome Remote Desktop session for an active device, set `ackedUserPresence` to `true`. `crdSessionType` can only select from values `private` (which grants the remote admin exclusive control of the ChromeOS device) or `shared` (which allows the admin and the local user to share control of the ChromeOS device). If not set, `crdSessionType` defaults to `shared`. The `FETCH_CRD_AVAILABILITY_INFO` command can be used to determine available session types on the device. * `REBOOT`: Payload is a stringified JSON object in the form: { \"user_session_delay_seconds\": 300 }. The `user_session_delay_seconds` is the amount of seconds to wait before rebooting the device if a user is logged in. It has to be an integer in the range [0,300]. When payload is not present for reboot, 0 delay is the default. Note: This only applies if an actual user is logged in, including a Guest. If the device is in the login screen or in Kiosk mode the value is not respected and the device immediately reboots. * `FETCH_SUPPORT_PACKET`: Payload is optionally a stringified JSON object in the form: {\"supportPacketDetails\":{ \"issueCaseId\": optional_support_case_id_string, \"issueDescription\": optional_issue_description_string, \"requestedDataCollectors\": []}} The list of available `data_collector_enums` are as following: Chrome System Information (1), Crash IDs (2), Memory Details (3), UI Hierarchy (4), Additional ChromeOS Platform Logs (5), Device Event (6), Intel WiFi NICs Debug Dump (7), Touch Events (8), Lacros (9), Lacros System Information (10), ChromeOS Flex Logs (11), DBus Details (12), ChromeOS Network Routes (13), ChromeOS Shill (Connection Manager) Logs (14), Policies (15), ChromeOS System State and Logs (16), ChromeOS System Logs (17), ChromeOS Chrome User Logs (18), ChromeOS Bluetooth (19), ChromeOS Connected Input Devices (20), ChromeOS Traffic Counters (21), ChromeOS Virtual Keyboard (22), ChromeOS Network Health (23). See more details in [help article](https://support.google.com/chrome/a?p=remote-log).",
           "type": "string"
         }
       },
@@ -6595,7 +6595,7 @@
       "type": "object"
     },
     "Group": {
-      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/admin-sdk/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.",
+      "description": "Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/workspace/admin/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.",
       "id": "Group",
       "properties": {
         "adminCreated": {
@@ -6761,7 +6761,7 @@
       "type": "object"
     },
     "Member": {
-      "description": "A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-group-members).",
+      "description": "A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-group-members).",
       "id": "Member",
       "properties": {
         "delivery_settings": {
@@ -6839,7 +6839,7 @@
       "type": "object"
     },
     "MobileDevice": {
-      "description": "Google Workspace Mobile Management includes Android, [Google Sync](https://support.google.com/a/answer/135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).",
+      "description": "Google Workspace Mobile Management includes Android, [Google Sync](https://support.google.com/a/answer/135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices.html).",
       "id": "MobileDevice",
       "properties": {
         "adbStatus": {
@@ -6916,7 +6916,7 @@
           "type": "string"
         },
         "email": {
-          "description": "The list of the owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.",
+          "description": "The list of the owner's email addresses. If your application needs the current list of user emails, use the [get](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#get_user) method.",
           "items": {
             "type": "string"
           },
@@ -6974,11 +6974,11 @@
           "type": "string"
         },
         "model": {
-          "description": "The mobile device's model name, for example Nexus S. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile=devices#update_mobile_device).",
+          "description": "The mobile device's model name, for example Nexus S. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile=devices#update_mobile_device).",
           "type": "string"
         },
         "name": {
-          "description": "The list of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).",
+          "description": "The list of the owner's user names. If your application needs the current list of device owner names, use the [get](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#get_user).",
           "items": {
             "type": "string"
           },
@@ -6989,7 +6989,7 @@
           "type": "string"
         },
         "os": {
-          "description": "The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
+          "description": "The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
           "type": "string"
         },
         "otherAccountsInfo": {
@@ -7037,7 +7037,7 @@
           "type": "boolean"
         },
         "userAgent": {
-          "description": "Gives information about the device such as `os` version. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
+          "description": "Gives information about the device such as `os` version. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices#update_mobile_device).",
           "type": "string"
         },
         "wifiMacAddress": {
@@ -7089,7 +7089,7 @@
       "type": "object"
     },
     "OrgUnit": {
-      "description": "Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-org-units.html). The customer's organizational unit hierarchy is limited to 35 levels of depth.",
+      "description": "Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-org-units.html). The customer's organizational unit hierarchy is limited to 35 levels of depth.",
       "id": "OrgUnit",
       "properties": {
         "blockInheritance": {
@@ -7124,7 +7124,7 @@
           "type": "string"
         },
         "orgUnitPath": {
-          "description": "The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which Google Workspace services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](https://support.google.com/a/answer/4352075). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).",
+          "description": "The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which Google Workspace services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](https://support.google.com/a/answer/4352075). For more information about moving a user to a different organization, see [Update a user](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#update_user).",
           "type": "string"
         },
         "parentOrgUnitId": {
@@ -7230,7 +7230,7 @@
           "type": "string"
         },
         "orgUnitId": {
-          "description": "ID of the organization unit (OU) that owns this print server. This value can only be set when the print server is initially created. If it's not populated, the print server is placed under the root OU. The `org_unit_id` can be retrieved using the [Directory API](/admin-sdk/directory/reference/rest/v1/orgunits).",
+          "description": "ID of the organization unit (OU) that owns this print server. This value can only be set when the print server is initially created. If it's not populated, the print server is placed under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/workspace/admin/directory/reference/rest/v1/orgunits).",
           "type": "string"
         },
         "uri": {
@@ -7401,7 +7401,7 @@
           "type": "string"
         },
         "serviceId": {
-          "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).",
+          "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](https://developers.google.com/workspace/admin/directory/v1/reference/privileges/list).",
           "type": "string"
         },
         "serviceName": {
@@ -7485,7 +7485,7 @@
                 "type": "string"
               },
               "serviceId": {
-                "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).",
+                "description": "The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](https://developers.google.com/workspace/admin/directory/v1/reference/privileges/list).",
                 "type": "string"
               }
             },
@@ -7653,7 +7653,7 @@
       "type": "object"
     },
     "SchemaFieldSpec": {
-      "description": "You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](/admin-sdk/directory/v1/guides/manage-schemas).",
+      "description": "You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](https://developers.google.com/workspace/admin/directory/v1/guides/manage-schemas).",
       "id": "SchemaFieldSpec",
       "properties": {
         "displayName": {
@@ -7726,7 +7726,7 @@
         },
         "readAccessType": {
           "default": "ALL_DOMAIN_USERS",
-          "description": "Specifies who can view values of this field. See [Retrieve users as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.",
+          "description": "Specifies who can view values of this field. See [Retrieve users as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.",
           "type": "string"
         }
       },
@@ -7849,7 +7849,7 @@
       "type": "object"
     },
     "User": {
-      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).",
+      "description": "The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-user-aliases.html).",
       "id": "User",
       "properties": {
         "addresses": {
@@ -7891,7 +7891,7 @@
           "type": "object"
         },
         "customerId": {
-          "description": "Output only. The customer ID to [retrieve all account users](/admin-sdk/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](/admin-sdk/directory/v1/reference/users/list) request.",
+          "description": "Output only. The customer ID to [retrieve all account users](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](https://developers.google.com/workspace/admin/directory/v1/reference/users/list) request.",
           "readOnly": true,
           "type": "string"
         },
@@ -7938,7 +7938,7 @@
           "type": "boolean"
         },
         "isAdmin": {
-          "description": "Output only. Indicates a user with super admininistrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](/admin-sdk/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](/admin-sdk/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](/admin-sdk/directory/v1/reference/users/insert.html) or [update](/admin-sdk/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.",
+          "description": "Output only. Indicates a user with super administrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](https://developers.google.com/workspace/admin/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](https://developers.google.com/workspace/admin/directory/v1/reference/users/insert.html) or [update](https://developers.google.com/workspace/admin/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.",
           "readOnly": true,
           "type": "boolean"
         },

@@ -529,7 +529,7 @@
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Required. The list of fields to update. Fields are specified relative to the connection. A field will be overwritten if it is in the mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled`",
+                      "description": "Required. The list of fields to update. Fields are specified relative to the connection. A field will be overwritten if it is in the mask. The field mask must not be empty, and it must not contain fields that are immutable or only set by the server. You can modify only the fields listed below. To lock/unlock a connection: * `lock_config` To suspend/resume a connection: * `suspended` To update the connection details: * `description` * `labels` * `connector_version` * `config_variables` * `auth_config` * `destination_configs` * `node_config` * `log_config` * `ssl_config` * `eventing_enablement_type` * `eventing_config` * `auth_override_enabled` * `async_operations_enabled`",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1506,7 +1506,7 @@
                   ],
                   "parameters": {
                     "endpointAttachmentId": {
-                      "description": "Required. Identifier to assign to the EndpointAttachment. Must be unique within scope of the parent resource.",
+                      "description": "Required. Identifier to assign to the EndpointAttachment. Must be unique within scope of the parent resource. The regex is: `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`.",
                       "location": "query",
                       "type": "string"
                     },
@@ -2600,21 +2600,6 @@
                               "required": true,
                               "type": "string"
                             },
-                            "schemaView": {
-                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
-                              "enum": [
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
-                              ],
-                              "enumDescriptions": [
-                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
-                                "Return basic connector version schema.",
-                                "Return enriched connector version schema."
-                              ],
-                              "location": "query",
-                              "type": "string"
-                            },
                             "view": {
                               "description": "Specifies which fields of the ConnectorVersion are returned in the response. Defaults to `CUSTOMER` view.",
                               "enum": [
@@ -2660,25 +2645,9 @@
                               "type": "string"
                             },
                             "parent": {
-                              "description": "Required. Parent resource of the connectors, of the form: `projects/*/locations/*/providers/*/connectors/*` Only global location is supported for ConnectorVersion resource.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/providers/[^/]+/connectors/[^/]+$",
                               "required": true,
-                              "type": "string"
-                            },
-                            "schemaView": {
-                              "description": "Optional. Enum to control whether schema enrichment related fields should be included in the response.",
-                              "enum": [
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_UNSPECIFIED",
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_BASIC",
-                                "CONNECTOR_VERSION_SCHEMA_VIEW_ENRICHED"
-                              ],
-                              "enumDescriptions": [
-                                "VIEW_UNSPECIFIED. The unset value. Defaults to BASIC View.",
-                                "Return basic connector version schema.",
-                                "Return enriched connector version schema."
-                              ],
-                              "location": "query",
                               "type": "string"
                             },
                             "view": {
@@ -2783,7 +2752,7 @@
       }
     }
   },
-  "revision": "20250507",
+  "revision": "20250604",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3958,13 +3927,6 @@
           "description": "Output only. Resource name of the Version. Format: projects/{project}/locations/{location}/providers/{provider}/connectors/{connector}/versions/{version} Only global location is supported for Connector resource.",
           "readOnly": true,
           "type": "string"
-        },
-        "priorityEntityTypes": {
-          "description": "Optional. The priority entity types for the connector version.",
-          "items": {
-            "$ref": "PriorityEntityType"
-          },
-          "type": "array"
         },
         "releaseVersion": {
           "description": "Output only. ReleaseVersion of the connector, for example: \"1.0.1-alpha\".",
@@ -5341,7 +5303,7 @@
       "type": "object"
     },
     "EventingConfig": {
-      "description": "Eventing Configuration of a connection next: 18",
+      "description": "Eventing Configuration of a connection next: 19",
       "id": "EventingConfig",
       "properties": {
         "additionalVariables": {
@@ -5374,6 +5336,13 @@
         "listenerAuthConfig": {
           "$ref": "AuthConfig",
           "description": "Optional. Auth details for the event listener."
+        },
+        "privateConnectivityAllowlistedProjects": {
+          "description": "Optional. List of projects to be allowlisted for the service attachment created in the tenant project for eventing ingress.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "privateConnectivityEnabled": {
           "description": "Optional. Private Connectivity Enabled.",
@@ -7618,30 +7587,6 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "PriorityEntityType": {
-      "description": "PriorityEntityType represents an entity type with its associated priority and order.",
-      "id": "PriorityEntityType",
-      "properties": {
-        "description": {
-          "description": "The description of the entity type.",
-          "type": "string"
-        },
-        "id": {
-          "description": "The entity type.",
-          "type": "string"
-        },
-        "order": {
-          "description": "The order of the entity type within its priority group.",
-          "format": "int32",
-          "type": "integer"
-        },
-        "priority": {
-          "description": "The priority of the entity type, such as P0, P1, etc.",
-          "type": "string"
         }
       },
       "type": "object"
