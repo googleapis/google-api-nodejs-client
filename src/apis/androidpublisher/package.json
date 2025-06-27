@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/androidpublisher",
-  "version": "28.0.1",
+  "version": "29.0.0",
   "description": "androidpublisher",
   "main": "build/index.js",
   "types": "build/index.d.ts",
