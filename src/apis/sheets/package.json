@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/sheets",
-  "version": "10.0.1",
+  "version": "11.0.0",
   "description": "sheets",
   "main": "build/index.js",
   "types": "build/index.d.ts",
