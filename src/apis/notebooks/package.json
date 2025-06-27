@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/notebooks",
-  "version": "9.0.1",
+  "version": "10.0.0",
   "description": "notebooks",
   "main": "build/index.js",
   "types": "build/index.d.ts",
