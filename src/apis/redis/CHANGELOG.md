@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v16.0.1...redis-v17.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **redis:** update the API ([39effc6](https://github.com/googleapis/google-api-nodejs-client/commit/39effc63b379515ed666b2d2a7c8e1dc75072bfd))
+* **redis:** update the API ([6048907](https://github.com/googleapis/google-api-nodejs-client/commit/604890790fb2584dc5032ae433c74d4fa1692ce3))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/redis-v16.0.0...redis-v16.0.1) (2025-06-04)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v8.0.1...dataform-v9.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **dataform:** update the API ([c0769aa](https://github.com/googleapis/google-api-nodejs-client/commit/c0769aaaf207bcffe1f88e8a3fca7d9bb9e393aa))
+* **dataform:** update the API ([9631e97](https://github.com/googleapis/google-api-nodejs-client/commit/9631e97b71b61ab9f0e99565d579ba5ed1da0500))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v8.0.0...dataform-v8.0.1) (2025-06-04)
 
 

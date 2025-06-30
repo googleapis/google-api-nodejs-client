@@ -1,5 +1,23 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v7.0.1...recaptchaenterprise-v8.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **recaptchaenterprise:** update the API ([0a88fa7](https://github.com/googleapis/google-api-nodejs-client/commit/0a88fa7b95930549a037c6e0344277e749ad71ef))
+* **recaptchaenterprise:** update the API ([b7e8b88](https://github.com/googleapis/google-api-nodejs-client/commit/b7e8b887f9e74cc8880215e00823614901500015))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recaptchaenterprise-v7.0.0...recaptchaenterprise-v7.0.1) (2025-06-04)
 
 

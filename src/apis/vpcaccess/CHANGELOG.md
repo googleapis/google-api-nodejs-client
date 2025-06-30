@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v2.0.1...vpcaccess-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+* **vpcaccess:** update the API ([03830cd](https://github.com/googleapis/google-api-nodejs-client/commit/03830cd906a135aaa2a94af86d0a1ed2148cb2cb))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **vpcaccess:** update the API ([4b3a75e](https://github.com/googleapis/google-api-nodejs-client/commit/4b3a75e36e8f38e986910b9c6c89d1cfff54e39b))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vpcaccess-v2.0.0...vpcaccess-v2.0.1) (2025-06-04)
 
 

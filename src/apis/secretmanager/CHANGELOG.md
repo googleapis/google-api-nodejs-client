@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v2.0.1...secretmanager-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **secretmanager:** update the API ([0e43d0d](https://github.com/googleapis/google-api-nodejs-client/commit/0e43d0d4f71d10d52071622e578e9bc05d991033))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **secretmanager:** update the API ([77a764e](https://github.com/googleapis/google-api-nodejs-client/commit/77a764ef4376b2daf50c17da6bb654c0434e4354))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v2.0.0...secretmanager-v2.0.1) (2025-06-04)
 
 
