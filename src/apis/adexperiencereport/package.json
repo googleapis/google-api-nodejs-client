@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/adexperiencereport",
-  "version": "2.0.1",
+  "version": "3.0.0",
   "description": "adexperiencereport",
   "main": "build/index.js",
   "types": "build/index.d.ts",

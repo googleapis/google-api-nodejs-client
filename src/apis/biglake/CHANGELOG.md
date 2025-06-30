@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v1.0.1...biglake-v2.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **biglake:** update the API ([858ac91](https://github.com/googleapis/google-api-nodejs-client/commit/858ac910eaa4975a43dffebc5cd867229ba3def5))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/biglake-v1.0.0...biglake-v1.0.1) (2025-06-04)
 
 
