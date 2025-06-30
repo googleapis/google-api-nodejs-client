@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/acceleratedmobilepageurl-v2.0.1...acceleratedmobilepageurl-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **acceleratedmobilepageurl:** update the API ([1dbb616](https://github.com/googleapis/google-api-nodejs-client/commit/1dbb6165c447bdd022d31773966f62e575989467))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/acceleratedmobilepageurl-v2.0.0...acceleratedmobilepageurl-v2.0.1) (2025-06-04)
 
 

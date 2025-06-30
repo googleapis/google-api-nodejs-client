@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v5.0.1...classroom-v6.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **classroom:** update the API ([b6fb9b6](https://github.com/googleapis/google-api-nodejs-client/commit/b6fb9b632bb2024931e997293154dd19495eac9b))
+* **classroom:** update the API ([df95121](https://github.com/googleapis/google-api-nodejs-client/commit/df95121fd1dff37d485ca8608fab1f2632030e42))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v5.0.0...classroom-v5.0.1) (2025-06-04)
 
 

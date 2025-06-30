@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v16.0.1...cloudtasks-v17.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **cloudtasks:** update the API ([199daf2](https://github.com/googleapis/google-api-nodejs-client/commit/199daf20b14b70aec09920e895348fb8f6151c3e))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **cloudtasks:** update the API ([739733f](https://github.com/googleapis/google-api-nodejs-client/commit/739733f485496743cb81b15573fe5b695ca6a17c))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudtasks-v16.0.0...cloudtasks-v16.0.1) (2025-06-04)
 
 

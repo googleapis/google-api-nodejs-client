@@ -1,5 +1,26 @@
 # Changelog
 
+## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v17.0.1...civicinfo-v18.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **civicinfo:** This release has breaking changes.
+* **civicinfo:** This release has breaking changes.
+
+### Features
+
+* **civicinfo:** update the API ([4f6e0e5](https://github.com/googleapis/google-api-nodejs-client/commit/4f6e0e5edb2451e1c91f57365c67cf6594235412))
+* **civicinfo:** update the API ([6cbcdb1](https://github.com/googleapis/google-api-nodejs-client/commit/6cbcdb171fa6ba559c0e33a570da48b7ad3efb6e))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **civicinfo:** update the API ([7308927](https://github.com/googleapis/google-api-nodejs-client/commit/73089270e885c6fb6c9c5d91cbccb793a10f7418))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v17.0.0...civicinfo-v17.0.1) (2025-06-04)
 
 

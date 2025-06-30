@@ -1,5 +1,23 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v8.0.1...contactcenteraiplatform-v9.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **contactcenteraiplatform:** update the API ([7577db9](https://github.com/googleapis/google-api-nodejs-client/commit/7577db9952e53105b19e542f18e78b89e14bc1eb))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **contactcenteraiplatform:** update the API ([6cf3c8c](https://github.com/googleapis/google-api-nodejs-client/commit/6cf3c8c909d25417e275057d6d158af4f0d100ee))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v8.0.0...contactcenteraiplatform-v8.0.1) (2025-06-04)
 
 
