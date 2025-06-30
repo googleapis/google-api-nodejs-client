@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v4.0.1...customsearch-v5.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **customsearch:** update the API ([86ed79b](https://github.com/googleapis/google-api-nodejs-client/commit/86ed79beb5c5e9cf4e1db6b1775e0dc881244db3))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v4.0.0...customsearch-v4.0.1) (2025-06-04)
 
 

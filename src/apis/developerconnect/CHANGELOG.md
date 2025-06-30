@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v1.0.1...developerconnect-v2.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **developerconnect:** update the API ([c6e53e6](https://github.com/googleapis/google-api-nodejs-client/commit/c6e53e69f6f8478bb50eb1f144f8e3c2030c2ec4))
+* **developerconnect:** update the API ([857497d](https://github.com/googleapis/google-api-nodejs-client/commit/857497da69522814bf180e2d3fd35f6fb9411d8c))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/developerconnect-v1.0.0...developerconnect-v1.0.1) (2025-06-04)
 
 

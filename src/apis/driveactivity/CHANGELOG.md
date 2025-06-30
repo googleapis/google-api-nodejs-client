@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v3.0.1...driveactivity-v4.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **driveactivity:** update the API ([c0f26a5](https://github.com/googleapis/google-api-nodejs-client/commit/c0f26a594f731286ac34b54c2ed36938fb285e94))
+* **driveactivity:** update the API ([6b1c74e](https://github.com/googleapis/google-api-nodejs-client/commit/6b1c74ecb1d885dcd15b6aa907e6057c246714b9))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v3.0.0...driveactivity-v3.0.1) (2025-06-04)
 
 
