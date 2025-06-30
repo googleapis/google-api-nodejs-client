@@ -2708,6 +2708,10 @@ export namespace container_v1 {
      */
     podPidsLimit?: string | null;
     /**
+     * Optional. Defines whether to enable single process OOM killer. If true, will prevent the memory.oom.group flag from being set for container cgroups in cgroups v2. This causes processes in the container to be OOM killed individually instead of as a group.
+     */
+    singleProcessOomKill?: boolean | null;
+    /**
      * Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/
      */
     topologyManager?: Schema$TopologyManager;
@@ -2778,6 +2782,10 @@ export namespace container_v1 {
      * The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.
      */
     podRange?: string | null;
+    /**
+     * Output only. The subnetwork path for the node pool. Format: projects/{project\}/regions/{region\}/subnetworks/{subnetwork\} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.
+     */
+    subnetwork?: string | null;
   }
   /**
    * NodePool contains the name and configuration for a cluster's node pool. Node pools are a set of nodes (i.e. VM's), with a common configuration and specification, under the control of the cluster master. They may have a set of Kubernetes labels applied to them, which may be used to reference them during pod scheduling. They may also be resized up or down, to accommodate the workload.
@@ -3940,6 +3948,10 @@ export namespace container_v1 {
    * SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.
    */
   export interface Schema$SoleTenantConfig {
+    /**
+     * Optional. The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node. This field can only be set if the node pool is created in a shared sole-tenant node group.
+     */
+    minNodeCpus?: number | null;
     /**
      * NodeAffinities used to match to a shared sole tenant node group.
      */
