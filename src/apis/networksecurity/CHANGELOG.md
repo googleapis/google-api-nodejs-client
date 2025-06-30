@@ -1,5 +1,16 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v9.0.1...networksecurity-v10.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networksecurity:** This release has breaking changes.
+
+### Features
+
+* **networksecurity:** update the API ([ac15584](https://github.com/googleapis/google-api-nodejs-client/commit/ac15584a56ae74d1a9494bcfa515a259dccb2095))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v9.0.0...networksecurity-v9.0.1) (2025-06-04)
 
 
