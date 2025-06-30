@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v12.0.1...cloudsupport-v13.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudsupport:** This release has breaking changes.
+* upgrade to node 18
+
+### Features
+
+* **cloudsupport:** update the API ([b49eb95](https://github.com/googleapis/google-api-nodejs-client/commit/b49eb95a2ee18870eed570b0a159e1b58a36fe00))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v12.0.0...cloudsupport-v12.0.1) (2025-06-04)
 
 

@@ -1,5 +1,24 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v9.0.1...migrationcenter-v10.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **migrationcenter:** This release has breaking changes.
+* upgrade to node 18
+
+### Features
+
+* **migrationcenter:** update the API ([2dbc56a](https://github.com/googleapis/google-api-nodejs-client/commit/2dbc56ae77998597998b4091f90c044bd3685ca4))
+* **migrationcenter:** update the API ([b15d77c](https://github.com/googleapis/google-api-nodejs-client/commit/b15d77c5c56740724aa90968f07e8e00f55e3b63))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/migrationcenter-v9.0.0...migrationcenter-v9.0.1) (2025-06-04)
 
 

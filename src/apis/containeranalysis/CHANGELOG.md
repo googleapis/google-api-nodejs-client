@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v12.0.1...containeranalysis-v13.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **containeranalysis:** update the API ([82f8da1](https://github.com/googleapis/google-api-nodejs-client/commit/82f8da1b4f498a57925653dada8ee71d7b26de81))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([b6baad9](https://github.com/googleapis/google-api-nodejs-client/commit/b6baad958e0c484c55ebd92e706d9f802b8c0c7d))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v12.0.0...containeranalysis-v12.0.1) (2025-06-04)
 
 
