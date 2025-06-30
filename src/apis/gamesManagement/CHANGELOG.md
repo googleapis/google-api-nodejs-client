@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v3.0.1...gamesmanagement-v4.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **gamesManagement:** update the API ([5eb6d53](https://github.com/googleapis/google-api-nodejs-client/commit/5eb6d5361e17df0266d5bf4af094ac0e6f2eb1d3))
+* **gamesManagement:** update the API ([86de3de](https://github.com/googleapis/google-api-nodejs-client/commit/86de3dee2fdf2e1b6c2f334eba06906f721bc30a))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesmanagement-v3.0.0...gamesmanagement-v3.0.1) (2025-06-04)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v5.0.1...homegraph-v6.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **homegraph:** update the API ([505a241](https://github.com/googleapis/google-api-nodejs-client/commit/505a241c26702cb7d536b5054cd18de916508433))
+* **homegraph:** update the API ([eecdf3b](https://github.com/googleapis/google-api-nodejs-client/commit/eecdf3b11130d7264a5441647ff446a22f064c80))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/homegraph-v5.0.0...homegraph-v5.0.1) (2025-06-04)
 
 
