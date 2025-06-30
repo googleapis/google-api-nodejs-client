@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v4.0.1...cloudchannel-v5.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **cloudchannel:** update the API ([8d281ea](https://github.com/googleapis/google-api-nodejs-client/commit/8d281ea65ed75a8270bb7e862c55a6fd09087953))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([452753e](https://github.com/googleapis/google-api-nodejs-client/commit/452753e915495caaa495de8389f4580c4b81b579))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v4.0.0...cloudchannel-v4.0.1) (2025-06-04)
 
 

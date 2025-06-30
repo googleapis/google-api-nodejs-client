@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/lifesciences-v3.0.1...lifesciences-v4.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **lifesciences:** update the API ([5a03630](https://github.com/googleapis/google-api-nodejs-client/commit/5a036306d2187f5c0d9ccf6faa4176e0f8d03e72))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **lifesciences:** update the API ([05f40d9](https://github.com/googleapis/google-api-nodejs-client/commit/05f40d9653da6fd227c7e6ba58f9461c3d85c2f3))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/lifesciences-v3.0.0...lifesciences-v3.0.1) (2025-06-04)
 
 

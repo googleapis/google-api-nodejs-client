@@ -1,5 +1,22 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v2.0.1...apikeys-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **apikeys:** update the API ([a25ed5a](https://github.com/googleapis/google-api-nodejs-client/commit/a25ed5abbd329955d1a5f6190908957e9b3e51cd))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v2.0.0...apikeys-v2.0.1) (2025-06-04)
 
 

@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v5.0.1...jobs-v6.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **jobs:** update the API ([cbce126](https://github.com/googleapis/google-api-nodejs-client/commit/cbce126a0d27de7f56aebd92ff36630a2d86cee6))
+* **jobs:** update the API ([4ca07f1](https://github.com/googleapis/google-api-nodejs-client/commit/4ca07f1741b8169f6f6a1e2927f1a9baaebdcb50))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v5.0.0...jobs-v5.0.1) (2025-06-04)
 
 
