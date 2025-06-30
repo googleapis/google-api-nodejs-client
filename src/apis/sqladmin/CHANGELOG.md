@@ -1,5 +1,26 @@
 # Changelog
 
+## [31.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v30.0.1...sqladmin-v31.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **sqladmin:** This release has breaking changes.
+* **sqladmin:** This release has breaking changes.
+
+### Features
+
+* **sqladmin:** update the API ([3f48bd3](https://github.com/googleapis/google-api-nodejs-client/commit/3f48bd3772b95e82e0e618d1c0b41ce5941d3954))
+* **sqladmin:** update the API ([9755a1f](https://github.com/googleapis/google-api-nodejs-client/commit/9755a1f1636059eb3dc7764d06e070ac6889100d))
+* **sqladmin:** update the API ([0a3a02e](https://github.com/googleapis/google-api-nodejs-client/commit/0a3a02e9b423dd32b85f564f62dbe16811843789))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [30.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sqladmin-v30.0.0...sqladmin-v30.0.1) (2025-06-04)
 
 

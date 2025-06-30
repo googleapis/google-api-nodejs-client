@@ -1,5 +1,24 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v6.0.1...osconfig-v7.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **osconfig:** This release has breaking changes.
+
+### Features
+
+* **osconfig:** update the API ([d13ec58](https://github.com/googleapis/google-api-nodejs-client/commit/d13ec58dbb849ed7f7b07ff247974e8623eb988c))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **osconfig:** update the API ([657f77a](https://github.com/googleapis/google-api-nodejs-client/commit/657f77ab9cb133e302f789553c9e93f3cfd4f81d))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v6.0.0...osconfig-v6.0.1) (2025-06-04)
 
 

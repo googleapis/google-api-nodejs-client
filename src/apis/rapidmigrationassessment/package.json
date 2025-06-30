@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/rapidmigrationassessment",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "rapidmigrationassessment",
   "main": "build/index.js",
   "types": "build/index.d.ts",
