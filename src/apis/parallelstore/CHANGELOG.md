@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v1.0.1...parallelstore-v2.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **parallelstore:** update the API ([770e761](https://github.com/googleapis/google-api-nodejs-client/commit/770e76164b25a3fe37ccda2e315fd2a1fb88fe0d))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **parallelstore:** update the API ([7e88aaa](https://github.com/googleapis/google-api-nodejs-client/commit/7e88aaa935a2fbab7f0a00b78e4e4378c8c25644))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/parallelstore-v1.0.0...parallelstore-v1.0.1) (2025-06-04)
 
 

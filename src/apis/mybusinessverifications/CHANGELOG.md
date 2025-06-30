@@ -1,5 +1,23 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v3.0.1...mybusinessverifications-v4.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **mybusinessverifications:** update the API ([6ac3ae0](https://github.com/googleapis/google-api-nodejs-client/commit/6ac3ae0a12753f2e246c33926a4bb56fcff24258))
+* **mybusinessverifications:** update the API ([2f994af](https://github.com/googleapis/google-api-nodejs-client/commit/2f994af530e3ce874ea3f4603ebd049ad4a7d53b))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v3.0.0...mybusinessverifications-v3.0.1) (2025-06-04)
 
 
