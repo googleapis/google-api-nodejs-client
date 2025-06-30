@@ -1,5 +1,23 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v4.0.1...looker-v5.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **looker:** update the API ([c330623](https://github.com/googleapis/google-api-nodejs-client/commit/c3306231dd30d2b83f0330a2303be9a7b548c738))
+* **looker:** update the API ([bb547f7](https://github.com/googleapis/google-api-nodejs-client/commit/bb547f70ebce46a419aa4608b09d01366e07b4ad))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v4.0.0...looker-v4.0.1) (2025-06-04)
 
 
