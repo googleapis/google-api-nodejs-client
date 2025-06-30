@@ -1271,7 +1271,7 @@ export namespace networkconnectivity_v1 {
      */
     limit?: string | null;
     /**
-     * Required. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.
+     * Optional. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.
      */
     producerInstanceLocation?: string | null;
     /**

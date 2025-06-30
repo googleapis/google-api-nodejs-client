@@ -597,6 +597,133 @@
                 }
               }
             },
+            "reservationGroups": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new reservation group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservationGroups",
+                  "httpMethod": "POST",
+                  "id": "bigqueryreservation.projects.locations.reservationGroups.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Project, location. E.g., `projects/myproject/locations/US`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "reservationGroupId": {
+                      "description": "Required. The reservation group ID. It must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/reservationGroups",
+                  "request": {
+                    "$ref": "ReservationGroup"
+                  },
+                  "response": {
+                    "$ref": "ReservationGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a reservation. Returns `google.rpc.Code.FAILED_PRECONDITION` when reservation has assignments.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservationGroups/{reservationGroupsId}",
+                  "httpMethod": "DELETE",
+                  "id": "bigqueryreservation.projects.locations.reservationGroups.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the reservation group to retrieve. E.g., `projects/myproject/locations/US/reservationGroups/team1-prod`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reservationGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Returns information about the reservation group.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservationGroups/{reservationGroupsId}",
+                  "httpMethod": "GET",
+                  "id": "bigqueryreservation.projects.locations.reservationGroups.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Resource name of the reservation group to retrieve. E.g., `projects/myproject/locations/US/reservationGroups/team1-prod`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/reservationGroups/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "ReservationGroup"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the reservation groups for the project in the specified location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/reservationGroups",
+                  "httpMethod": "GET",
+                  "id": "bigqueryreservation.projects.locations.reservationGroups.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "The maximum number of items to return per page.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "The next_page_token value returned from a previous List request, if any.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource name containing project and location, e.g.: `projects/myproject/locations/US`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/reservationGroups",
+                  "response": {
+                    "$ref": "ListReservationGroupsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/bigquery",
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "reservations": {
               "methods": {
                 "create": {
@@ -1140,7 +1267,7 @@
       }
     }
   },
-  "revision": "20250611",
+  "revision": "20250620",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1558,6 +1685,24 @@
       },
       "type": "object"
     },
+    "ListReservationGroupsResponse": {
+      "description": "The response for ReservationService.ListReservationGroups.",
+      "id": "ListReservationGroupsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "reservationGroups": {
+          "description": "List of reservations visible to the user.",
+          "items": {
+            "$ref": "ReservationGroup"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListReservationsResponse": {
       "description": "The response for ReservationService.ListReservations.",
       "id": "ListReservationsResponse",
@@ -1713,7 +1858,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. The labels associated with this reservation. You can use these to organize and group your reservations. You can set this property when inserting or updating a reservation.",
+          "description": "Optional. The labels associated with this reservation. You can use these to organize and group your reservations. You can set this property when you create or update a reservation.",
           "type": "object"
         },
         "maxSlots": {
@@ -1745,6 +1890,10 @@
           "description": "Output only. The Disaster Recovery(DR) replication status of the reservation. This is only available for the primary replicas of DR/failover reservations and provides information about the both the staleness of the secondary and the last error encountered while trying to replicate changes from the primary to the secondary. If this field is blank, it means that the reservation is either not a DR reservation or the reservation is a DR secondary or that any replication operations on the reservation have succeeded.",
           "readOnly": true
         },
+        "reservationGroup": {
+          "description": "Optional. The reservation group that this reservation belongs to. You can set this property when you create or update a reservation. Reservations do not need to belong to a reservation group. Format: projects/{project}/locations/{location}/reservationGroups/{reservation_group} or just {reservation_group}",
+          "type": "string"
+        },
         "scalingMode": {
           "description": "Optional. The scaling mode for the reservation. If the field is present but max_slots is not present, requests will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
           "enum": [
@@ -1774,6 +1923,17 @@
           "description": "Output only. Last update time of the reservation.",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ReservationGroup": {
+      "description": "A reservation group is a container for reservations.",
+      "id": "ReservationGroup",
+      "properties": {
+        "name": {
+          "description": "Identifier. The resource name of the reservation group, e.g., `projects/*/locations/*/reservationGroups/team1-prod`. The reservation_group_id must only contain lower case alphanumeric characters or dashes. It must start with a letter and must not end with a dash. Its maximum length is 64 characters.",
           "type": "string"
         }
       },

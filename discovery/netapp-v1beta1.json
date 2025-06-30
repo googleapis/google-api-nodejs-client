@@ -2270,7 +2270,7 @@
       }
     }
   },
-  "revision": "20250528",
+  "revision": "20250616",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3749,7 +3749,7 @@
             "Incremental replication is in progress.",
             "Baseline replication is in progress.",
             "Replication is aborted.",
-            "Mirror state for when replication is managed from Onprem ONTAP."
+            "Replication is being managed from Onprem ONTAP."
           ],
           "readOnly": true,
           "type": "string"

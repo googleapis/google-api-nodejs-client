@@ -1080,6 +1080,10 @@ export namespace analyticsadmin_v1alpha {
      */
     reportingDataAnnotation?: Schema$GoogleAnalyticsAdminV1alphaReportingDataAnnotation;
     /**
+     * A snapshot of a ReportingIdentitySettings resource in change history.
+     */
+    reportingIdentitySettings?: Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings;
+    /**
      * A snapshot of a SearchAds360Link resource in change history.
      */
     searchAds360Link?: Schema$GoogleAnalyticsAdminV1alphaSearchAds360Link;
@@ -2716,6 +2720,19 @@ export namespace analyticsadmin_v1alpha {
      * Required. The start date for this range. Must be a valid date with year, month, and day set. The date may be in the past, present, or future.
      */
     startDate?: Schema$GoogleTypeDate;
+  }
+  /**
+   * A resource containing settings related to reporting identity.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings {
+    /**
+     * Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format: properties/{property_id\}/reportingIdentitySettings Example: "properties/1234/reportingIdentitySettings"
+     */
+    name?: string | null;
+    /**
+     * The strategy used for identifying user identities in reports.
+     */
+    reportingIdentity?: string | null;
   }
   /**
    * A link that references a source property under the parent rollup property.
@@ -7978,6 +7995,155 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Returns the singleton data retention settings for this property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/analytics.edit',
+     *       'https://www.googleapis.com/auth/analytics.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.getReportingIdentitySettings({
+     *     // Required. The name of the settings to lookup. Format: properties/{property\}/reportingIdentitySettings Example: "properties/1000/reportingIdentitySettings"
+     *     name: 'properties/my-propertie/reportingIdentitySettings',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name",
+     *   //   "reportingIdentity": "my_reportingIdentity"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getReportingIdentitySettings(
+      params: Params$Resource$Properties$Getreportingidentitysettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getReportingIdentitySettings(
+      params?: Params$Resource$Properties$Getreportingidentitysettings,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    >;
+    getReportingIdentitySettings(
+      params: Params$Resource$Properties$Getreportingidentitysettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getReportingIdentitySettings(
+      params: Params$Resource$Properties$Getreportingidentitysettings,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    getReportingIdentitySettings(
+      params: Params$Resource$Properties$Getreportingidentitysettings,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    getReportingIdentitySettings(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+    ): void;
+    getReportingIdentitySettings(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Getreportingidentitysettings
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Getreportingidentitysettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Getreportingidentitysettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaReportingIdentitySettings>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Returns child Properties under the specified parent Account. Properties will be excluded if the caller does not have access. Soft-deleted (ie: "trashed") properties are excluded by default. Returns an empty list if no relevant properties are found.
      * @example
      * ```js
@@ -9519,6 +9685,13 @@ export namespace analyticsadmin_v1alpha {
     extends StandardParameters {
     /**
      * Required. The name of the google signals settings to retrieve. Format: properties/{property\}/googleSignalsSettings
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Properties$Getreportingidentitysettings
+    extends StandardParameters {
+    /**
+     * Required. The name of the settings to lookup. Format: properties/{property\}/reportingIdentitySettings Example: "properties/1000/reportingIdentitySettings"
      */
     name?: string;
   }

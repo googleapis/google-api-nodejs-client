@@ -1640,6 +1640,31 @@ export namespace bigquery_v2 {
     externalSource?: string | null;
   }
   /**
+   * Options for the runtime of the external system.
+   */
+  export interface Schema$ExternalRuntimeOptions {
+    /**
+     * Optional. Amount of CPU provisioned for the container instance. If not specified, the default value is 0.33 vCPUs.
+     */
+    containerCpu?: number | null;
+    /**
+     * Optional. Amount of memory provisioned for the container instance. Format: {number\}{unit\} where unit is one of "M", "G", "Mi" and "Gi" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi.
+     */
+    containerMemory?: string | null;
+    /**
+     * Optional. Maximum number of rows in each batch sent to the external runtime. If absent or if 0, BigQuery dynamically decides the number of rows in a batch.
+     */
+    maxBatchingRows?: string | null;
+    /**
+     * Optional. Fully qualified name of the connection whose service account will be used to execute the code in the container. Format: ```"projects/{project_id\}/locations/{location_id\}/connections/{connection_id\}"```
+     */
+    runtimeConnection?: string | null;
+    /**
+     * Optional. Language runtime version (e.g. python-3.11).
+     */
+    runtimeVersion?: string | null;
+  }
+  /**
    * The external service cost is a portion of the total cost, these costs are not additive with total_bytes_billed. Moreover, this field only track external service costs that will show up as BigQuery costs (e.g. training BigQuery ML job with google cloud CAIP or Automl Tables services), not other costs which may be accrued by running the query (e.g. reading from Bigtable or Cloud Storage). The external service costs with different billing sku (e.g. CAIP job is charged based on VM usage) are converted to BigQuery billed_bytes and slot_ms with equivalent amount of US dollars. Services may not directly correlate to these metrics, but these are the equivalents for billing purposes. Output only.
    */
   export interface Schema$ExternalServiceCost {
@@ -2127,7 +2152,7 @@ export namespace bigquery_v2 {
      */
     id?: string | null;
     /**
-     * Output only. The reason why a Job was created. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     * Output only. The reason why a Job was created.
      */
     jobCreationReason?: Schema$JobCreationReason;
     /**
@@ -2591,7 +2616,7 @@ export namespace bigquery_v2 {
     writeDisposition?: string | null;
   }
   /**
-   * Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`. [Preview](https://cloud.google.com/products/#product-launch-stages)
+   * Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`.
    */
   export interface Schema$JobCreationReason {
     /**
@@ -3527,6 +3552,19 @@ export namespace bigquery_v2 {
     projectId?: string | null;
   }
   /**
+   * Options for a user-defined Python function.
+   */
+  export interface Schema$PythonOptions {
+    /**
+     * Required. The entry point function in the user's Python code.
+     */
+    entryPoint?: string | null;
+    /**
+     * Optional. A list of package names along with versions to be installed. Follows requirements.txt syntax (e.g. numpy==2.0, permutation, urllib3<2.2.1)
+     */
+    packages?: string[] | null;
+  }
+  /**
    * Query optimization information for a QUERY job.
    */
   export interface Schema$QueryInfo {
@@ -3631,7 +3669,7 @@ export namespace bigquery_v2 {
      */
     formatOptions?: Schema$DataFormatOptions;
     /**
-     * Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     * Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode.
      */
     jobCreationMode?: string | null;
     /**
@@ -3725,7 +3763,7 @@ export namespace bigquery_v2 {
      */
     jobComplete?: boolean | null;
     /**
-     * Optional. The reason why a Job was created. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     * Optional. The reason why a Job was created. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset.
      */
     jobCreationReason?: Schema$JobCreationReason;
     /**
@@ -3749,7 +3787,7 @@ export namespace bigquery_v2 {
      */
     pageToken?: string | null;
     /**
-     * Auto-generated ID for the query. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     * Auto-generated ID for the query.
      */
     queryId?: string | null;
     /**
@@ -3976,6 +4014,10 @@ export namespace bigquery_v2 {
      */
     etag?: string | null;
     /**
+     * Optional. Options for the runtime of the external system executing the routine. This field is only applicable for Python UDFs. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     */
+    externalRuntimeOptions?: Schema$ExternalRuntimeOptions;
+    /**
      * Optional. If language = "JAVASCRIPT", this field stores the path of the imported JAVASCRIPT libraries.
      */
     importedLibraries?: string[] | null;
@@ -3987,6 +4029,10 @@ export namespace bigquery_v2 {
      * Output only. The time when this routine was last modified, in milliseconds since the epoch.
      */
     lastModifiedTime?: string | null;
+    /**
+     * Optional. Options for Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     */
+    pythonOptions?: Schema$PythonOptions;
     /**
      * Optional. Remote function specific options.
      */
@@ -9473,9 +9519,11 @@ export namespace bigquery_v2 {
      *   //   "description": "my_description",
      *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
+     *   //   "externalRuntimeOptions": {},
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "pythonOptions": {},
      *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
@@ -9783,9 +9831,11 @@ export namespace bigquery_v2 {
      *       //   "description": "my_description",
      *       //   "determinismLevel": "my_determinismLevel",
      *       //   "etag": "my_etag",
+     *       //   "externalRuntimeOptions": {},
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "pythonOptions": {},
      *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
@@ -9808,9 +9858,11 @@ export namespace bigquery_v2 {
      *   //   "description": "my_description",
      *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
+     *   //   "externalRuntimeOptions": {},
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "pythonOptions": {},
      *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
@@ -10222,6 +10274,158 @@ export namespace bigquery_v2 {
     }
 
     /**
+     * Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may "fail open" without warning.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/bigquery.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const bigquery = google.bigquery('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await bigquery.routines.testIamPermissions({
+     *     // REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     *     resource: 'projects/my-project/datasets/my-dataset/routines/my-routine',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "permissions": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "permissions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    testIamPermissions(
+      params: Params$Resource$Routines$Testiampermissions,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    testIamPermissions(
+      params?: Params$Resource$Routines$Testiampermissions,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>;
+    testIamPermissions(
+      params: Params$Resource$Routines$Testiampermissions,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Routines$Testiampermissions,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      params: Params$Resource$Routines$Testiampermissions,
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      callback: BodyResponseCallback<Schema$TestIamPermissionsResponse>
+    ): void;
+    testIamPermissions(
+      paramsOrCallback?:
+        | Params$Resource$Routines$Testiampermissions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$TestIamPermissionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$TestIamPermissionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Routines$Testiampermissions;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Routines$Testiampermissions;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://bigquery.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/bigquery/v2/{+resource}:testIamPermissions'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['resource'],
+        pathParams: ['resource'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$TestIamPermissionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$TestIamPermissionsResponse>(parameters);
+      }
+    }
+
+    /**
      * Updates information in an existing routine. The update method replaces the entire Routine resource.
      * @example
      * ```js
@@ -10273,9 +10477,11 @@ export namespace bigquery_v2 {
      *       //   "description": "my_description",
      *       //   "determinismLevel": "my_determinismLevel",
      *       //   "etag": "my_etag",
+     *       //   "externalRuntimeOptions": {},
      *       //   "importedLibraries": [],
      *       //   "language": "my_language",
      *       //   "lastModifiedTime": "my_lastModifiedTime",
+     *       //   "pythonOptions": {},
      *       //   "remoteFunctionOptions": {},
      *       //   "returnTableType": {},
      *       //   "returnType": {},
@@ -10298,9 +10504,11 @@ export namespace bigquery_v2 {
      *   //   "description": "my_description",
      *   //   "determinismLevel": "my_determinismLevel",
      *   //   "etag": "my_etag",
+     *   //   "externalRuntimeOptions": {},
      *   //   "importedLibraries": [],
      *   //   "language": "my_language",
      *   //   "lastModifiedTime": "my_lastModifiedTime",
+     *   //   "pythonOptions": {},
      *   //   "remoteFunctionOptions": {},
      *   //   "returnTableType": {},
      *   //   "returnType": {},
@@ -10503,6 +10711,18 @@ export namespace bigquery_v2 {
      * Request body metadata
      */
     requestBody?: Schema$SetIamPolicyRequest;
+  }
+  export interface Params$Resource$Routines$Testiampermissions
+    extends StandardParameters {
+    /**
+     * REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.
+     */
+    resource?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$TestIamPermissionsRequest;
   }
   export interface Params$Resource$Routines$Update extends StandardParameters {
     /**

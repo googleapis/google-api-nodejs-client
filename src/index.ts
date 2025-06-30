@@ -150,6 +150,7 @@ export {cloudidentity_v1} from './apis/cloudidentity/v1';
 export {cloudidentity_v1beta1} from './apis/cloudidentity/v1beta1';
 export {cloudiot_v1} from './apis/cloudiot/v1';
 export {cloudkms_v1} from './apis/cloudkms/v1';
+export {cloudlocationfinder_v1alpha} from './apis/cloudlocationfinder/v1alpha';
 export {cloudprofiler_v2} from './apis/cloudprofiler/v2';
 export {cloudresourcemanager_v1} from './apis/cloudresourcemanager/v1';
 export {cloudresourcemanager_v1beta1} from './apis/cloudresourcemanager/v1beta1';

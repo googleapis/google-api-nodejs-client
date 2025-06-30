@@ -2772,6 +2772,289 @@
                       ]
                     }
                   }
+                },
+                "schemaBundles": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new schema bundle in the specified table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where this schema bundle will be created. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "schemaBundleId": {
+                          "description": "Required. The unique ID to use for the schema bundle, which will become the final component of the schema bundle's resource name.",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/schemaBundles",
+                      "request": {
+                        "$ref": "SchemaBundle"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a schema bundle in the specified table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}",
+                      "httpMethod": "DELETE",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "etag": {
+                          "description": "Optional. The etag of the schema bundle. If this is provided, it must match the server's etag. The server returns an ABORTED error on a mismatched etag.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "name": {
+                          "description": "Required. The unique name of the schema bundle to delete. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "Empty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets metadata information about the specified schema bundle.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The unique name of the schema bundle to retrieve. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "response": {
+                        "$ref": "SchemaBundle"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "getIamPolicy": {
+                      "description": "Gets the access control policy for a Bigtable resource. Returns an empty policy if the resource exists but does not have a policy set.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:getIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.getIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:getIamPolicy",
+                      "request": {
+                        "$ref": "GetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all schema bundles associated with the specified table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles",
+                      "httpMethod": "GET",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "The maximum number of schema bundles to return. If the value is positive, the server may return at most this value. If unspecified, the server will return the maximum allowed page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "A page token, received from a previous `ListSchemaBundles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListSchemaBundles` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of schema bundles. Values are of the form `projects/{project}/instances/{instance}/tables/{table}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/schemaBundles",
+                      "response": {
+                        "$ref": "ListSchemaBundlesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates a schema bundle in the specified table.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}",
+                      "httpMethod": "PATCH",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "ignoreWarnings": {
+                          "description": "Optional. If set, ignore the safety checks when updating the Schema Bundle. The safety checks are: - The new Schema Bundle is backwards compatible with the existing Schema Bundle.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "name": {
+                          "description": "Identifier. The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to update.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}",
+                      "request": {
+                        "$ref": "SchemaBundle"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setIamPolicy": {
+                      "description": "Sets the access control policy on a Bigtable resource. Replaces any existing policy.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:setIamPolicy",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.setIamPolicy",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy is being specified. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:setIamPolicy",
+                      "request": {
+                        "$ref": "SetIamPolicyRequest"
+                      },
+                      "response": {
+                        "$ref": "Policy"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "testIamPermissions": {
+                      "description": "Returns permissions that the caller has on the specified Bigtable resource.",
+                      "flatPath": "v2/projects/{projectsId}/instances/{instancesId}/tables/{tablesId}/schemaBundles/{schemaBundlesId}:testIamPermissions",
+                      "httpMethod": "POST",
+                      "id": "bigtableadmin.projects.instances.tables.schemaBundles.testIamPermissions",
+                      "parameterOrder": [
+                        "resource"
+                      ],
+                      "parameters": {
+                        "resource": {
+                          "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+/schemaBundles/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+resource}:testIamPermissions",
+                      "request": {
+                        "$ref": "TestIamPermissionsRequest"
+                      },
+                      "response": {
+                        "$ref": "TestIamPermissionsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/bigtable.admin",
+                        "https://www.googleapis.com/auth/bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin",
+                        "https://www.googleapis.com/auth/cloud-bigtable.admin.table",
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -2868,7 +3151,7 @@
       }
     }
   },
-  "revision": "20250610",
+  "revision": "20250624",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -3677,6 +3960,27 @@
         },
         "parent": {
           "description": "Required. The parent instance where this materialized view will be created. Format: `projects/{project}/instances/{instance}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CreateSchemaBundleMetadata": {
+      "description": "The metadata for the Operation returned by CreateSchemaBundle.",
+      "id": "CreateSchemaBundleMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
@@ -4576,6 +4880,24 @@
       },
       "type": "object"
     },
+    "ListSchemaBundlesResponse": {
+      "description": "The response for ListSchemaBundles.",
+      "id": "ListSchemaBundlesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "schemaBundles": {
+          "description": "The schema bundles from the specified table.",
+          "items": {
+            "$ref": "SchemaBundle"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListTablesResponse": {
       "description": "Response message for google.bigtable.admin.v2.BigtableTableAdmin.ListTables",
       "id": "ListTablesResponse",
@@ -4894,6 +5216,18 @@
       },
       "type": "object"
     },
+    "ProtoSchema": {
+      "description": "Represents a protobuf schema.",
+      "id": "ProtoSchema",
+      "properties": {
+        "protoDescriptors": {
+          "description": "Required. Contains a protobuf-serialized [google.protobuf.FileDescriptorSet](https://github.com/protocolbuffers/protobuf/blob/main/src/google/protobuf/descriptor.proto), which could include multiple proto files. To generate it, [install](https://grpc.io/docs/protoc-installation/) and run `protoc` with `--include_imports` and `--descriptor_set_out`. For example, to generate for moon/shot/app.proto, run ``` $protoc --proto_path=/app_path --proto_path=/lib_path \\ --include_imports \\ --descriptor_set_out=descriptors.pb \\ moon/shot/app.proto ``` For more details, see protobuffer [self description](https://developers.google.com/protocol-buffers/docs/techniques#self-description).",
+          "format": "byte",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RestoreInfo": {
       "description": "Information about a table restore.",
       "id": "RestoreInfo",
@@ -4970,6 +5304,25 @@
       "description": "If enabled, Bigtable will route the request based on the row key of the request, rather than randomly. Instead, each row key will be assigned to a cluster, and will stick to that cluster. If clusters are added or removed, then this may affect which row keys stick to which clusters. To avoid this, users can use a cluster group to specify which clusters are to be used. In this case, new clusters that are not a part of the cluster group will not be routed to, and routing will be unaffected by the new cluster. Moreover, clusters specified in the cluster group cannot be deleted unless removed from the cluster group.",
       "id": "RowAffinity",
       "properties": {},
+      "type": "object"
+    },
+    "SchemaBundle": {
+      "description": "A named collection of related schemas.",
+      "id": "SchemaBundle",
+      "properties": {
+        "etag": {
+          "description": "Optional. The etag for this schema bundle. This may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+          "type": "string"
+        },
+        "protoSchema": {
+          "$ref": "ProtoSchema",
+          "description": "Schema for Protobufs."
+        }
+      },
       "type": "object"
     },
     "SetIamPolicyRequest": {
@@ -5468,6 +5821,27 @@
         "updateMask": {
           "description": "Optional. The list of fields to update.",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateSchemaBundleMetadata": {
+      "description": "The metadata for the Operation returned by UpdateSchemaBundle.",
+      "id": "UpdateSchemaBundleMetadata",
+      "properties": {
+        "endTime": {
+          "description": "If set, the time at which this operation finished or was canceled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "The unique name identifying this schema bundle. Values are of the form `projects/{project}/instances/{instance}/tables/{table}/schemaBundles/{schema_bundle}`",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "The time at which this operation started.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
