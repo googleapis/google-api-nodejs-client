@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/speech",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "speech",
   "main": "build/index.js",
   "types": "build/index.d.ts",
