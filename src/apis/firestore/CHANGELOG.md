@@ -1,5 +1,23 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v13.0.1...firestore-v14.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **firestore:** update the API ([f71c04a](https://github.com/googleapis/google-api-nodejs-client/commit/f71c04af24a3244f970f4ce2cec6b2328b7d5dc8))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **firestore:** update the API ([5f2cffa](https://github.com/googleapis/google-api-nodejs-client/commit/5f2cffa6cd359ff5e1ff364a38e9c96dd938ea44))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v13.0.0...firestore-v13.0.1) (2025-06-04)
 
 

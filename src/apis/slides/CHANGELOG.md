@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v2.0.1...slides-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **slides:** update the API ([e4ae19d](https://github.com/googleapis/google-api-nodejs-client/commit/e4ae19df9b9feb7da987c0bc320f36906b8313ed))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **slides:** update the API ([89de22e](https://github.com/googleapis/google-api-nodejs-client/commit/89de22eb5d4a790870a23e4c380bad271cad5fbf))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/slides-v2.0.0...slides-v2.0.1) (2025-06-04)
 
 
