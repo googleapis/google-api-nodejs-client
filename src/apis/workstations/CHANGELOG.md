@@ -1,5 +1,23 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v12.0.1...workstations-v13.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+* **workstations:** update the API ([a61f1e5](https://github.com/googleapis/google-api-nodejs-client/commit/a61f1e516c84f2a87155c84aa311f5814abd9b90))
+* **workstations:** update the API ([2997287](https://github.com/googleapis/google-api-nodejs-client/commit/2997287e91c4d228a555e2a4aa8c979936cdbf5c))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v12.0.0...workstations-v12.0.1) (2025-06-04)
 
 

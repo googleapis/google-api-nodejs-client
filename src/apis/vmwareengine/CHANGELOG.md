@@ -1,5 +1,23 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v2.0.1...vmwareengine-v3.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+* **vmwareengine:** update the API ([025ba8e](https://github.com/googleapis/google-api-nodejs-client/commit/025ba8e7e6ae8f98b3ce6285951e62aed78bde00))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **vmwareengine:** update the API ([9e83c2e](https://github.com/googleapis/google-api-nodejs-client/commit/9e83c2e33cacf23df0b5e56f6431ee42b150bc0c))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v2.0.0...vmwareengine-v2.0.1) (2025-06-04)
 
 

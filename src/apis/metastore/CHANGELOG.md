@@ -1,5 +1,23 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v9.0.1...metastore-v10.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **metastore:** update the API ([aedca40](https://github.com/googleapis/google-api-nodejs-client/commit/aedca40937630ae29cec2e3d48dff06d37da32d9))
+* **metastore:** update the API ([f0050d7](https://github.com/googleapis/google-api-nodejs-client/commit/f0050d7dd5300dca021075c18dced4a2275e67f5))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v9.0.0...metastore-v9.0.1) (2025-06-04)
 
 

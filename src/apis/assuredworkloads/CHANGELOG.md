@@ -1,5 +1,22 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v11.0.1...assuredworkloads-v12.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **assuredworkloads:** update the API ([be016ed](https://github.com/googleapis/google-api-nodejs-client/commit/be016ed68b8d69b84774e993a00e23fca2b2c5a0))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/assuredworkloads-v11.0.0...assuredworkloads-v11.0.1) (2025-06-04)
 
 
