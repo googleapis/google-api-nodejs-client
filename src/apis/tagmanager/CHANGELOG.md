@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v11.0.1...tagmanager-v12.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **tagmanager:** This release has breaking changes.
+
+### Features
+
+* **tagmanager:** update the API ([cfb5ee9](https://github.com/googleapis/google-api-nodejs-client/commit/cfb5ee972671e166176c4a21cb965d7a9658afed))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **tagmanager:** update the API ([53e34e2](https://github.com/googleapis/google-api-nodejs-client/commit/53e34e2dc0de93b5caa74f429374058085c35dad))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tagmanager-v11.0.0...tagmanager-v11.0.1) (2025-06-04)
 
 

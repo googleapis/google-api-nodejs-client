@@ -1,5 +1,16 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v12.0.1...documentai-v13.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **documentai:** This release has breaking changes.
+
+### Features
+
+* **documentai:** update the API ([1f16ec6](https://github.com/googleapis/google-api-nodejs-client/commit/1f16ec6d54433d72570f58e223e47ba1aacc5e33))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/documentai-v12.0.0...documentai-v12.0.1) (2025-06-04)
 
 

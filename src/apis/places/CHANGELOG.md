@@ -1,5 +1,24 @@
 # Changelog
 
+## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v11.0.1...places-v12.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **places:** This release has breaking changes.
+
+### Features
+
+* **places:** update the API ([ce19938](https://github.com/googleapis/google-api-nodejs-client/commit/ce199384fb60be0f859cf78fd2877c60b55e4a5c))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **places:** update the API ([33dcc07](https://github.com/googleapis/google-api-nodejs-client/commit/33dcc07d5eb94b39359c7a2fa9d7007be8bc5cde))
+
 ## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v11.0.0...places-v11.0.1) (2025-06-04)
 
 

@@ -1,5 +1,25 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v22.0.1...connectors-v23.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* **connectors:** This release has breaking changes.
+* upgrade to node 18
+* **connectors:** This release has breaking changes.
+
+### Features
+
+* **connectors:** update the API ([791a4fe](https://github.com/googleapis/google-api-nodejs-client/commit/791a4fe7bca2d07b459bb97d0584831fc594f373))
+* **connectors:** update the API ([0fdf1a8](https://github.com/googleapis/google-api-nodejs-client/commit/0fdf1a88b8211e399f1f026bed93519afc3e7e8a))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v22.0.0...connectors-v22.0.1) (2025-06-04)
 
 

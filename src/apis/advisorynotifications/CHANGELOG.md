@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v4.0.1...advisorynotifications-v5.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **advisorynotifications:** update the API ([c5ab0f4](https://github.com/googleapis/google-api-nodejs-client/commit/c5ab0f4e98498407324d7bd72ad397aea881f44b))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v4.0.0...advisorynotifications-v4.0.1) (2025-06-04)
 
 

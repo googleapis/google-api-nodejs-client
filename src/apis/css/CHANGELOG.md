@@ -1,5 +1,23 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/css-v1.0.1...css-v2.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **css:** update the API ([1c8c75d](https://github.com/googleapis/google-api-nodejs-client/commit/1c8c75db50a0ed04c16b9b6bc3fb86ea33aa94ea))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **css:** update the API ([f81db39](https://github.com/googleapis/google-api-nodejs-client/commit/f81db39785b99705e71a92b3f53532b0b8b0a17f))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/css-v1.0.0...css-v1.0.1) (2025-06-04)
 
 

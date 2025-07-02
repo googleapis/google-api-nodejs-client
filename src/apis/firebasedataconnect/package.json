@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebasedataconnect",
-  "version": "1.0.1",
+  "version": "2.0.0",
   "description": "firebasedataconnect",
   "main": "build/index.js",
   "types": "build/index.d.ts",

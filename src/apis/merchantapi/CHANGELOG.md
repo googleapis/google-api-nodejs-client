@@ -1,5 +1,25 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v6.0.1...merchantapi-v7.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **merchantapi:** This release has breaking changes.
+
+### Features
+
+* **merchantapi:** update the API ([1cae816](https://github.com/googleapis/google-api-nodejs-client/commit/1cae8164cfd1d97c63672ea4c42fc14347ce62ec))
+* **merchantapi:** update the API ([f04cb22](https://github.com/googleapis/google-api-nodejs-client/commit/f04cb22e3b15a3bb8f65d68caf57bb5d0dfc04cf))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **merchantapi:** update the API ([9ceb28b](https://github.com/googleapis/google-api-nodejs-client/commit/9ceb28bebdca926a2cb06e6a7936f960f8da0324))
+
 ## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v6.0.0...merchantapi-v6.0.1) (2025-06-04)
 
 

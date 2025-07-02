@@ -1,5 +1,23 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v10.0.1...monitoring-v11.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **monitoring:** update the API ([bb6c39a](https://github.com/googleapis/google-api-nodejs-client/commit/bb6c39a9d03832e0032889e684e64ec86fca0614))
+* **monitoring:** update the API ([547de3c](https://github.com/googleapis/google-api-nodejs-client/commit/547de3ca7a5abaf3dad71414610a9f0d26d63371))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/monitoring-v10.0.0...monitoring-v10.0.1) (2025-06-04)
 
 

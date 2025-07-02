@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudbuild",
-  "version": "12.0.1",
+  "version": "13.0.0",
   "description": "cloudbuild",
   "main": "build/index.js",
   "types": "build/index.d.ts",

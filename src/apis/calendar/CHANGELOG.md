@@ -1,5 +1,22 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v10.0.1...calendar-v11.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([eda4163](https://github.com/googleapis/google-api-nodejs-client/commit/eda4163e66b21c555034f281678b6af7765adcc0))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v10.0.0...calendar-v10.0.1) (2025-06-04)
 
 

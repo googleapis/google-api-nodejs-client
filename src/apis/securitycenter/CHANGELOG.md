@@ -1,5 +1,24 @@
 # Changelog
 
+## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v13.0.1...securitycenter-v14.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+* **securitycenter:** This release has breaking changes.
+
+### Features
+
+* **securitycenter:** update the API ([87add49](https://github.com/googleapis/google-api-nodejs-client/commit/87add49cb4e2f08188e18a8b696a56d638be5e1e))
+* **securitycenter:** update the API ([91ec71f](https://github.com/googleapis/google-api-nodejs-client/commit/91ec71f7891301cd29b1aaeb56ec6060e4f2d871))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v13.0.0...securitycenter-v13.0.1) (2025-06-04)
 
 

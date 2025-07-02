@@ -1,5 +1,23 @@
 # Changelog
 
+## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v16.0.1...storage-v17.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **storage:** update the API ([2fc0241](https://github.com/googleapis/google-api-nodejs-client/commit/2fc02412565c648fbcabcc4f52c82f327d8b8528))
+* **storage:** update the API ([fe20750](https://github.com/googleapis/google-api-nodejs-client/commit/fe20750f404e0790ad51569e7c52f1525952850c))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v16.0.0...storage-v16.0.1) (2025-06-04)
 
 

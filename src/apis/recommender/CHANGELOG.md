@@ -1,5 +1,23 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v5.0.1...recommender-v6.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **recommender:** update the API ([9c38f3e](https://github.com/googleapis/google-api-nodejs-client/commit/9c38f3e758f374719d62599584544134a4b34661))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **recommender:** update the API ([b2a68c7](https://github.com/googleapis/google-api-nodejs-client/commit/b2a68c765c958efa20eb1e3ab94dd64d17bd6752))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/recommender-v5.0.0...recommender-v5.0.1) (2025-06-04)
 
 

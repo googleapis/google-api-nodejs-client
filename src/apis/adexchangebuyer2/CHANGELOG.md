@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adexchangebuyer2-v5.0.1...adexchangebuyer2-v6.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **adexchangebuyer2:** update the API ([bbc05fa](https://github.com/googleapis/google-api-nodejs-client/commit/bbc05faca8153c814322627b1282d9f211ef0e60))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adexchangebuyer2-v5.0.0...adexchangebuyer2-v5.0.1) (2025-06-04)
 
 

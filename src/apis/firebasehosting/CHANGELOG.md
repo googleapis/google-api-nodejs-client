@@ -1,5 +1,22 @@
 # Changelog
 
+## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v10.0.1...firebasehosting-v11.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+* **firebasehosting:** update the API ([018f4ae](https://github.com/googleapis/google-api-nodejs-client/commit/018f4ae2e7e1230ae1b8b1661a9fb19b33e43b3d))
+
 ## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasehosting-v10.0.0...firebasehosting-v10.0.1) (2025-06-04)
 
 

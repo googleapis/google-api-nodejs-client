@@ -1,5 +1,24 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v27.0.1...networkservices-v28.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* **networkservices:** update the API ([ba84227](https://github.com/googleapis/google-api-nodejs-client/commit/ba8422749eff2576afacb502d38eb722171ee9c9))
+* **networkservices:** update the API ([6220f5d](https://github.com/googleapis/google-api-nodejs-client/commit/6220f5d6ef7f0730e05dbe40ac65b085d8b838f1))
+* **networkservices:** update the API ([3ed283d](https://github.com/googleapis/google-api-nodejs-client/commit/3ed283d7a8e49e1ced62b8d08ac2df6f9db18fd8))
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v27.0.0...networkservices-v27.0.1) (2025-06-04)
 
 

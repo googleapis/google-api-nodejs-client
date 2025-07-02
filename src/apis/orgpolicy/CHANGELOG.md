@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v5.0.1...orgpolicy-v5.0.2) (2025-06-30)
+
+
+### Bug Fixes
+
+* **orgpolicy:** update the API ([3978a1e](https://github.com/googleapis/google-api-nodejs-client/commit/3978a1e45371cfdbd744b33702cbbcb635a5fd42))
+
 ## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/orgpolicy-v5.0.0...orgpolicy-v5.0.1) (2025-06-04)
 
 

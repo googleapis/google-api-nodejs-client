@@ -1,5 +1,23 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v14.0.1...artifactregistry-v15.0.0) (2025-06-30)
+
+
+### ⚠ BREAKING CHANGES
+
+* upgrade to node 18
+
+### Features
+
+* upgrade to node 18 ([682fbb8](https://github.com/googleapis/google-api-nodejs-client/commit/682fbb869189ae92b3e9a194d37d0548af0c1f92))
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([c8a8e05](https://github.com/googleapis/google-api-nodejs-client/commit/c8a8e05828d6c05e5bfc2da872578d232a9724ea))
+* **artifactregistry:** update the API ([b2bb626](https://github.com/googleapis/google-api-nodejs-client/commit/b2bb626dff7e39ba5b086e8307a7a8ed870ddb5c))
+* **deps:** upgrade googleapis-common to 8.0.2-rc ([f4b0990](https://github.com/googleapis/google-api-nodejs-client/commit/f4b099071040cfbcfe4a2e7d487d45ee93b369e0))
+
 ## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v14.0.0...artifactregistry-v14.0.1) (2025-06-04)
 
 
