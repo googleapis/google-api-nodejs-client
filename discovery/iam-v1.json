@@ -1529,34 +1529,6 @@
             },
             "workloadIdentityPools": {
               "methods": {
-                "addAttestationRule": {
-                  "description": "Add an AttestationRule on a WorkloadIdentityPoolManagedIdentity. The total attestation rules after addition must not exceed 50.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:addAttestationRule",
-                  "httpMethod": "POST",
-                  "id": "iam.projects.locations.workloadIdentityPools.addAttestationRule",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "Required. The resource name of the managed identity or namespace resource to add an attestation rule to.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:addAttestationRule",
-                  "request": {
-                    "$ref": "AddAttestationRuleRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "create": {
                   "description": "Creates a new WorkloadIdentityPool. You cannot reuse the name of a deleted pool until 30 days after deletion.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools",
@@ -1709,47 +1681,6 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
-                "listAttestationRules": {
-                  "description": "List all AttestationRule on a WorkloadIdentityPoolManagedIdentity.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:listAttestationRules",
-                  "httpMethod": "GET",
-                  "id": "iam.projects.locations.workloadIdentityPools.listAttestationRules",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "filter": {
-                      "description": "Optional. A query filter. Supports the following function: * `container_ids()`: Returns only the AttestationRules under the specific container ids. The function expects a comma-delimited list with only project numbers and must use the format `projects/`. For example: `container_ids(projects/, projects/,...)`.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "pageSize": {
-                      "description": "Optional. The maximum number of AttestationRules to return. If unspecified, at most 50 AttestationRules are returned. The maximum value is 100; values above 100 are truncated to 100.",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "pageToken": {
-                      "description": "Optional. A page token, received from a previous `ListWorkloadIdentityPoolProviderKeys` call. Provide this to retrieve the subsequent page.",
-                      "location": "query",
-                      "type": "string"
-                    },
-                    "resource": {
-                      "description": "Required. The resource name of the managed identity or namespace resource to list attestation rules of.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:listAttestationRules",
-                  "response": {
-                    "$ref": "ListAttestationRulesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "patch": {
                   "description": "Updates an existing WorkloadIdentityPool.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}",
@@ -1776,62 +1707,6 @@
                   "path": "v1/{+name}",
                   "request": {
                     "$ref": "WorkloadIdentityPool"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "removeAttestationRule": {
-                  "description": "Remove an AttestationRule on a WorkloadIdentityPoolManagedIdentity.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:removeAttestationRule",
-                  "httpMethod": "POST",
-                  "id": "iam.projects.locations.workloadIdentityPools.removeAttestationRule",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "Required. The resource name of the managed identity or namespace resource to remove an attestation rule from.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:removeAttestationRule",
-                  "request": {
-                    "$ref": "RemoveAttestationRuleRequest"
-                  },
-                  "response": {
-                    "$ref": "Operation"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
-                "setAttestationRules": {
-                  "description": "Set all AttestationRule on a WorkloadIdentityPoolManagedIdentity. A maximum of 50 AttestationRules can be set.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/workloadIdentityPools/{workloadIdentityPoolsId}:setAttestationRules",
-                  "httpMethod": "POST",
-                  "id": "iam.projects.locations.workloadIdentityPools.setAttestationRules",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "resource": {
-                      "description": "Required. The resource name of the managed identity or namespace resource to add an attestation rule to.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:setAttestationRules",
-                  "request": {
-                    "$ref": "SetAttestationRulesRequest"
                   },
                   "response": {
                     "$ref": "Operation"
@@ -3898,7 +3773,7 @@
       }
     }
   },
-  "revision": "20250619",
+  "revision": "20250627",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
