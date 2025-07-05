@@ -685,6 +685,34 @@
             },
             "clients": {
               "methods": {
+                "changeConfig": {
+                  "description": "Updates the client customer configuration for the given project and location resource name",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:changeConfig",
+                  "httpMethod": "POST",
+                  "id": "integrations.projects.locations.clients.changeConfig",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Required: Format - projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/clients:changeConfig",
+                  "request": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaChangeCustomerConfigRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudIntegrationsV1alphaChangeCustomerConfigResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "deprovision": {
                   "description": "Perform the deprovisioning steps to disable a user GCP project to use IP and purge all related data in a wipeout-compliant way.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/clients:deprovision",
@@ -4848,7 +4876,7 @@
       }
     }
   },
-  "revision": "20250610",
+  "revision": "20250627",
   "rootUrl": "https://integrations.googleapis.com/",
   "schemas": {
     "CrmlogErrorCode": {
@@ -11055,6 +11083,33 @@
       },
       "type": "object"
     },
+    "GoogleCloudIntegrationsV1alphaChangeCustomerConfigRequest": {
+      "description": "Request for the ChangeCustomerConfig rpc",
+      "id": "GoogleCloudIntegrationsV1alphaChangeCustomerConfigRequest",
+      "properties": {
+        "customerConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCustomerConfig",
+          "description": "Optional. The customer configuration to be updated."
+        },
+        "updateMask": {
+          "description": "Required. Field mask specifying the fields in the customer config that have been modified and must be updated. If absent or empty, no fields are updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaChangeCustomerConfigResponse": {
+      "description": "Response for the ChangeCustomerConfig rpc",
+      "id": "GoogleCloudIntegrationsV1alphaChangeCustomerConfigResponse",
+      "properties": {
+        "customerConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCustomerConfig",
+          "description": "Required. The updated customer configuration."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudIntegrationsV1alphaClientCertificate": {
       "description": "Contains client certificate information",
       "id": "GoogleCloudIntegrationsV1alphaClientCertificate",
@@ -11109,20 +11164,23 @@
           "type": "string"
         },
         "cloudKmsConfig": {
-          "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig",
-          "description": "Cloud KMS config for Auth Module to encrypt/decrypt credentials."
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig"
         },
         "createTime": {
           "description": "The timestamp when the client was first created.",
           "format": "google-datetime",
           "type": "string"
         },
+        "customerConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCustomerConfig",
+          "description": "Optional. Customer configuration information for the given client."
+        },
         "description": {
           "description": "Description of what the client is used for",
           "type": "string"
         },
         "enableHttpCall": {
-          "description": "Optional. Indicates the client enables making HTTP call.",
+          "description": "Optional. ",
           "type": "boolean"
         },
         "enableInternalIp": {
@@ -11130,11 +11188,11 @@
           "type": "boolean"
         },
         "enableManagedAiFeatures": {
-          "description": "Optional. Indicates if the Cloud Companion APIs will be used in the tenant project, i.e. if customer can use the managed AI features for free.",
+          "description": "Optional. ",
           "type": "boolean"
         },
         "enableVariableMasking": {
-          "description": "Optional. True if variable masking feature should be turned on for this region",
+          "description": "Optional. ",
           "type": "boolean"
         },
         "id": {
@@ -11158,7 +11216,6 @@
           "type": "string"
         },
         "runAsServiceAccount": {
-          "description": "Default run-as service account email, set up during project provision time, that will be used to generate auth token to be used in Connector task, Rest caller task, Cloud function task and Subworkflows.",
           "type": "string"
         }
       },
@@ -11434,6 +11491,33 @@
         "usernameAndPassword": {
           "$ref": "GoogleCloudIntegrationsV1alphaUsernameAndPassword",
           "description": "Username and password credential"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudIntegrationsV1alphaCustomerConfig": {
+      "description": "Customer configuration information for the given client",
+      "id": "GoogleCloudIntegrationsV1alphaCustomerConfig",
+      "properties": {
+        "cloudKmsConfig": {
+          "$ref": "GoogleCloudIntegrationsV1alphaCloudKmsConfig",
+          "description": "Optional. Cloud KMS config for Auth Module to encrypt/decrypt credentials."
+        },
+        "enableHttpCall": {
+          "description": "Optional. Indicates if the client should be allowed to make HTTP calls. True if http call feature should be turned on for this region.",
+          "type": "boolean"
+        },
+        "enableManagedAiFeatures": {
+          "description": "Optional. Indicates if the client should be allowed to use managed AI features, i.e. using Cloud Companion APIs of the tenant project. This will allow the customers to use features like Troubleshooting, OpenAPI spec enrichment, etc. for free.",
+          "type": "boolean"
+        },
+        "enableVariableMasking": {
+          "description": "Optional. True if variable masking feature should be turned on for this region.",
+          "type": "boolean"
+        },
+        "runAsServiceAccount": {
+          "description": "Optional. Run-as service account to be updated for the provisioned client.",
+          "type": "string"
         }
       },
       "type": "object"
