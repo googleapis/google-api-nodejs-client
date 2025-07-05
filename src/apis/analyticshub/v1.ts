@@ -622,7 +622,7 @@ export namespace analyticshub_v1 {
      */
     bigqueryDataset?: Schema$BigQueryDatasetSource;
     /**
-     * Optional. Categories of the listing. Up to two categories are allowed.
+     * Optional. Categories of the listing. Up to five categories are allowed.
      */
     categories?: string[] | null;
     /**
