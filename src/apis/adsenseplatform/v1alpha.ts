@@ -787,7 +787,10 @@ export namespace adsenseplatform_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1278,7 +1281,10 @@ export namespace adsenseplatform_v1alpha {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/adsense',
+     *       'https://www.googleapis.com/auth/adsense.readonly',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -1542,6 +1548,155 @@ export namespace adsenseplatform_v1alpha {
         return createAPIRequest<Schema$ListPlatformGroupsResponse>(parameters);
       }
     }
+
+    /**
+     * Update a Platform Group.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/adsenseplatform.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const adsenseplatform = google.adsenseplatform('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/adsense'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await adsenseplatform.accounts.platforms.groups.patch({
+     *     // Identifier. Format: accounts/{account\}/platforms/{platform\}/groups/{platform_group\}
+     *     name: 'accounts/my-account/platforms/my-platform/groups/my-group',
+     *     // Optional. The list of fields to update - currently only supports updating the `description` field.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "description": "my_description",
+     *       //   "name": "my_name",
+     *       //   "revshareMillipercent": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "description": "my_description",
+     *   //   "name": "my_name",
+     *   //   "revshareMillipercent": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Accounts$Platforms$Groups$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Accounts$Platforms$Groups$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$PlatformGroup>>;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Groups$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Groups$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$PlatformGroup>,
+      callback: BodyResponseCallback<Schema$PlatformGroup>
+    ): void;
+    patch(
+      params: Params$Resource$Accounts$Platforms$Groups$Patch,
+      callback: BodyResponseCallback<Schema$PlatformGroup>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$PlatformGroup>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Platforms$Groups$Patch
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$PlatformGroup>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$PlatformGroup>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Platforms$Groups$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Platforms$Groups$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://adsenseplatform.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$PlatformGroup>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$PlatformGroup>(parameters);
+      }
+    }
   }
 
   export interface Params$Resource$Accounts$Platforms$Groups$Get
@@ -1565,6 +1720,22 @@ export namespace adsenseplatform_v1alpha {
      * Required. The name of the platform to retrieve. Format: accounts/{account\}/platforms/{platform\}
      */
     parent?: string;
+  }
+  export interface Params$Resource$Accounts$Platforms$Groups$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Format: accounts/{account\}/platforms/{platform\}/groups/{platform_group\}
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update - currently only supports updating the `description` field.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PlatformGroup;
   }
 
   export class Resource$Platforms {
