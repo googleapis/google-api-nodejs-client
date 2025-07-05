@@ -2272,6 +2272,10 @@ export namespace datamigration_v1 {
      */
     name?: string | null;
     /**
+     * PSC Interface configuration.
+     */
+    pscInterfaceConfig?: Schema$PscInterfaceConfig;
+    /**
      * Output only. Reserved for future use.
      */
     satisfiesPzi?: boolean | null;
@@ -2318,6 +2322,15 @@ export namespace datamigration_v1 {
      * Optional. The object filter to apply to the migration job.
      */
     objectsFilter?: Schema$MigrationJobObjectsConfig;
+  }
+  /**
+   * The PSC Interface configuration is used to create PSC Interface between DMS's internal VPC and the consumer's PSC.
+   */
+  export interface Schema$PscInterfaceConfig {
+    /**
+     * Required. Fully qualified name of the Network Attachment that DMS will connect to. Format: `projects/{{project\}\}/regions/{{region\}\}/networkAttachments/{{name\}\}`
+     */
+    networkAttachment?: string | null;
   }
   /**
    * Request message for 'RestartMigrationJob' request.
@@ -13382,6 +13395,8 @@ export namespace datamigration_v1 {
      *     requestId: 'placeholder-value',
      *     // Optional. If set to true, will skip validations.
      *     skipValidation: 'placeholder-value',
+     *     // Optional. For PSC Interface only - get the tenant project before creating the resource.
+     *     validateOnly: 'placeholder-value',
      *
      *     // Request body metadata
      *     requestBody: {
@@ -13392,6 +13407,7 @@ export namespace datamigration_v1 {
      *       //   "error": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "pscInterfaceConfig": {},
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
@@ -13694,6 +13710,7 @@ export namespace datamigration_v1 {
      *   //   "error": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "pscInterfaceConfig": {},
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
@@ -14424,6 +14441,10 @@ export namespace datamigration_v1 {
      * Optional. If set to true, will skip validations.
      */
     skipValidation?: boolean;
+    /**
+     * Optional. For PSC Interface only - get the tenant project before creating the resource.
+     */
+    validateOnly?: boolean;
 
     /**
      * Request body metadata
