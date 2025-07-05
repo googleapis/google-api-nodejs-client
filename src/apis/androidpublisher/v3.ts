@@ -2529,6 +2529,56 @@ export namespace androidpublisher_v3 {
     eventTime?: string | null;
   }
   /**
+   * Contains item-level info for a ProductPurchaseV2.
+   */
+  export interface Schema$ProductLineItem {
+    /**
+     * The purchased product ID (for example, 'monthly001').
+     */
+    productId?: string | null;
+    /**
+     * The offer details for this item.
+     */
+    productOfferDetails?: Schema$ProductOfferDetails;
+  }
+  /**
+   * Offer details information related to a purchase line item.
+   */
+  export interface Schema$ProductOfferDetails {
+    /**
+     * Output only. The consumption state of the purchase.
+     */
+    consumptionState?: string | null;
+    /**
+     * The offer ID. Only present for offers.
+     */
+    offerId?: string | null;
+    /**
+     * The latest offer tags associated with the offer. It includes tags inherited from the purchase option.
+     */
+    offerTags?: string[] | null;
+    /**
+     * The per-transaction offer token used to make this purchase line item.
+     */
+    offerToken?: string | null;
+    /**
+     * The purchase option ID.
+     */
+    purchaseOptionId?: string | null;
+    /**
+     * The quantity associated with the purchase of the inapp product.
+     */
+    quantity?: number | null;
+    /**
+     * The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds.
+     */
+    refundableQuantity?: number | null;
+    /**
+     * Offer details about rent offers. This will only be set for rental line items.
+     */
+    rentOfferDetails?: Schema$RentOfferDetails;
+  }
+  /**
    * A ProductPurchase resource indicates the status of a user's inapp product purchase.
    */
   export interface Schema$ProductPurchase {
@@ -2601,6 +2651,60 @@ export namespace androidpublisher_v3 {
      * Payload to attach to the purchase.
      */
     developerPayload?: string | null;
+  }
+  /**
+   * A ProductPurchaseV2 resource indicates the status of a user's inapp product purchase.
+   */
+  export interface Schema$ProductPurchaseV2 {
+    /**
+     * Output only. The acknowledgement state of the purchase.
+     */
+    acknowledgementState?: string | null;
+    /**
+     * This kind represents a ProductPurchaseV2 object in the androidpublisher service.
+     */
+    kind?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.
+     */
+    obfuscatedExternalAccountId?: string | null;
+    /**
+     * An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.
+     */
+    obfuscatedExternalProfileId?: string | null;
+    /**
+     * The order id associated with the purchase of the inapp product. May not be set if there is no order associated with the purchase.
+     */
+    orderId?: string | null;
+    /**
+     * Contains item-level info for a ProductPurchaseV2.
+     */
+    productLineItem?: Schema$ProductLineItem[];
+    /**
+     * The time when the purchase was successful, i.e., when the PurchaseState has changed to PURCHASED. This field will not be present until the payment is complete. For example, if the user initiated a pending transaction (https://developer.android.com/google/play/billing/integrate#pending), this field will not be populated until the user successfully completes the steps required to complete the transaction.
+     */
+    purchaseCompletionTime?: string | null;
+    /**
+     * Information about the purchase state of the purchase.
+     */
+    purchaseStateContext?: Schema$PurchaseStateContext;
+    /**
+     * ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.
+     */
+    regionCode?: string | null;
+    /**
+     * Information related to test purchases. This will only be set for test purchases.
+     */
+    testPurchaseContext?: Schema$TestPurchaseContext;
+  }
+  /**
+   * Context about the purchase state.
+   */
+  export interface Schema$PurchaseStateContext {
+    /**
+     * Output only. The purchase state of the purchase.
+     */
+    purchaseState?: string | null;
   }
   /**
    * Represents a transaction that is part of a recurring series of payments. This can be a subscription or a one-time product with multiple payments (such as preorder).
@@ -2820,6 +2924,10 @@ export namespace androidpublisher_v3 {
      */
     versionCode?: string | null;
   }
+  /**
+   * Offer details information related to a rental line item.
+   */
+  export interface Schema$RentOfferDetails {}
   /**
    * Information specific to cancellations caused by subscription replacement.
    */
@@ -3711,6 +3819,15 @@ export namespace androidpublisher_v3 {
    * Whether this subscription purchase is a test purchase.
    */
   export interface Schema$TestPurchase {}
+  /**
+   * Context about a test purchase.
+   */
+  export interface Schema$TestPurchaseContext {
+    /**
+     * The fop type of the test purchase.
+     */
+    fopType?: string | null;
+  }
   /**
    * Represents texture compression format.
    */
@@ -20218,12 +20335,14 @@ export namespace androidpublisher_v3 {
   export class Resource$Purchases {
     context: APIRequestContext;
     products: Resource$Purchases$Products;
+    productsv2: Resource$Purchases$Productsv2;
     subscriptions: Resource$Purchases$Subscriptions;
     subscriptionsv2: Resource$Purchases$Subscriptionsv2;
     voidedpurchases: Resource$Purchases$Voidedpurchases;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.products = new Resource$Purchases$Products(this.context);
+      this.productsv2 = new Resource$Purchases$Productsv2(this.context);
       this.subscriptions = new Resource$Purchases$Subscriptions(this.context);
       this.subscriptionsv2 = new Resource$Purchases$Subscriptionsv2(
         this.context
@@ -20720,6 +20839,177 @@ export namespace androidpublisher_v3 {
      * The inapp product SKU (for example, 'com.some.thing.inapp1').
      */
     productId?: string;
+    /**
+     * The token provided to the user's device when the inapp product was purchased.
+     */
+    token?: string;
+  }
+
+  export class Resource$Purchases$Productsv2 {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Checks the purchase and consumption status of an inapp item.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.productsv2.getproductpurchasev2({
+     *     // The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // The token provided to the user's device when the inapp product was purchased.
+     *     token: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "acknowledgementState": "my_acknowledgementState",
+     *   //   "kind": "my_kind",
+     *   //   "obfuscatedExternalAccountId": "my_obfuscatedExternalAccountId",
+     *   //   "obfuscatedExternalProfileId": "my_obfuscatedExternalProfileId",
+     *   //   "orderId": "my_orderId",
+     *   //   "productLineItem": [],
+     *   //   "purchaseCompletionTime": "my_purchaseCompletionTime",
+     *   //   "purchaseStateContext": {},
+     *   //   "regionCode": "my_regionCode",
+     *   //   "testPurchaseContext": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getproductpurchasev2(
+      params: Params$Resource$Purchases$Productsv2$Getproductpurchasev2,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getproductpurchasev2(
+      params?: Params$Resource$Purchases$Productsv2$Getproductpurchasev2,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ProductPurchaseV2>>;
+    getproductpurchasev2(
+      params: Params$Resource$Purchases$Productsv2$Getproductpurchasev2,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getproductpurchasev2(
+      params: Params$Resource$Purchases$Productsv2$Getproductpurchasev2,
+      options: MethodOptions | BodyResponseCallback<Schema$ProductPurchaseV2>,
+      callback: BodyResponseCallback<Schema$ProductPurchaseV2>
+    ): void;
+    getproductpurchasev2(
+      params: Params$Resource$Purchases$Productsv2$Getproductpurchasev2,
+      callback: BodyResponseCallback<Schema$ProductPurchaseV2>
+    ): void;
+    getproductpurchasev2(
+      callback: BodyResponseCallback<Schema$ProductPurchaseV2>
+    ): void;
+    getproductpurchasev2(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Productsv2$Getproductpurchasev2
+        | BodyResponseCallback<Schema$ProductPurchaseV2>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ProductPurchaseV2>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ProductPurchaseV2>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ProductPurchaseV2>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Productsv2$Getproductpurchasev2;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Purchases$Productsv2$Getproductpurchasev2;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/productsv2/tokens/{token}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ProductPurchaseV2>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ProductPurchaseV2>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Purchases$Productsv2$Getproductpurchasev2
+    extends StandardParameters {
+    /**
+     * The package name of the application the inapp product was sold in (for example, 'com.some.thing').
+     */
+    packageName?: string;
     /**
      * The token provided to the user's device when the inapp product was purchased.
      */
