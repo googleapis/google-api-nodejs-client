@@ -5300,7 +5300,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250701",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -5755,7 +5755,7 @@
       "id": "GoogleCloudContactcenterinsightsV1AuthorizedView",
       "properties": {
         "conversationFilter": {
-          "description": "A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations liked to the conversation) that this AuthorizedView has.",
+          "description": "A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations linked to the conversation) that this AuthorizedView has.",
           "type": "string"
         },
         "createTime": {
