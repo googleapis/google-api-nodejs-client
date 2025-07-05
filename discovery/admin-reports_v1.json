@@ -628,7 +628,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250626",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {
@@ -1221,7 +1221,7 @@
           "type": "string"
         },
         "parameters": {
-          "description": "Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](https://developers.google.com/workspace/admin/reports/v1/reference/usage-ref-appendix-a/entities).",
+          "description": "Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](/admin-sdk/reports/v1/reference/usage-ref-appendix-a/entities).",
           "items": {
             "properties": {
               "boolValue": {

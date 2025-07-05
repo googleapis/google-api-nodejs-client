@@ -202,7 +202,7 @@
           ]
         },
         "insert": {
-          "description": "Inserts a data transfer request. See the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference for specific application requirements.",
+          "description": "Inserts a data transfer request. See the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference for specific application requirements.",
           "flatPath": "admin/datatransfer/v1/transfers",
           "httpMethod": "POST",
           "id": "datatransfer.transfers.insert",
@@ -272,7 +272,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250626",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Application": {
@@ -284,7 +284,7 @@
           "type": "string"
         },
         "id": {
-          "description": "The application's ID. Retrievable by using the [`applications.list()`](https://developers.google.com/workspace/admin/data-transfer/reference/rest/v1/applications/list) method.",
+          "description": "The application's ID. Retrievable by using the [`applications.list()`](/admin-sdk/data-transfer/reference/rest/v1/applications/list) method.",
           "format": "int64",
           "type": "string"
         },
@@ -317,7 +317,7 @@
           "type": "string"
         },
         "applicationTransferParams": {
-          "description": "The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference.",
+          "description": "The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference.",
           "items": {
             "$ref": "ApplicationTransferParam"
           },
