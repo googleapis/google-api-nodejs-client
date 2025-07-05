@@ -1007,6 +1007,12 @@ export namespace storage_v1 {
      */
     contentType?: string | null;
     /**
+     * User-defined or system-defined object contexts. Each object context is a key-payload pair, where the key provides the identification and the payload holds the associated value and additional metadata.
+     */
+    contexts?: {
+      custom?: {[key: string]: Schema$ObjectCustomContextPayload};
+    } | null;
+    /**
      * CRC32c checksum, as described in RFC 4960, Appendix B; encoded using base64 in big-endian byte order. For more information about using the CRC32c checksum, see [Data Validation and Change Detection](https://cloud.google.com/storage/docs/data-validation).
      */
     crc32c?: string | null;
@@ -1206,6 +1212,23 @@ export namespace storage_v1 {
      * The kind of item this is. For lists of object access control entries, this is always storage#objectAccessControls.
      */
     kind?: string | null;
+  }
+  /**
+   * The payload of a single user-defined object context.
+   */
+  export interface Schema$ObjectCustomContextPayload {
+    /**
+     * The time at which the object context was created in RFC 3339 format.
+     */
+    createTime?: string | null;
+    /**
+     * The time at which the object context was last updated in RFC 3339 format.
+     */
+    updateTime?: string | null;
+    /**
+     * The value of the object context.
+     */
+    value?: string | null;
   }
   /**
    * A list of objects.
@@ -11597,6 +11620,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -11805,6 +11829,7 @@ export namespace storage_v1 {
      *       //   "contentEncoding": "my_contentEncoding",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "contentType": "my_contentType",
+     *       //   "contexts": {},
      *       //   "crc32c": "my_crc32c",
      *       //   "customTime": "my_customTime",
      *       //   "customerEncryption": {},
@@ -11849,6 +11874,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -12204,6 +12230,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -12553,6 +12580,7 @@ export namespace storage_v1 {
      *       //   "contentEncoding": "my_contentEncoding",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "contentType": "my_contentType",
+     *       //   "contexts": {},
      *       //   "crc32c": "my_crc32c",
      *       //   "customTime": "my_customTime",
      *       //   "customerEncryption": {},
@@ -12601,6 +12629,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -12774,6 +12803,8 @@ export namespace storage_v1 {
      *     delimiter: 'placeholder-value',
      *     // Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      *     endOffset: 'placeholder-value',
+     *     // Filter the returned objects. Currently only supported for the contexts field. If delimiter is set, the returned prefixes are exempt from this filter.
+     *     filter: 'placeholder-value',
      *     // Only applicable if delimiter is set to '/'. If true, will also include folders and managed folders (besides objects) in the returned prefixes.
      *     includeFoldersAsPrefixes: 'placeholder-value',
      *     // If true, objects that end in exactly one instance of delimiter will have their metadata included in items in addition to prefixes.
@@ -12976,6 +13007,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -13171,6 +13203,7 @@ export namespace storage_v1 {
      *       //   "contentEncoding": "my_contentEncoding",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "contentType": "my_contentType",
+     *       //   "contexts": {},
      *       //   "crc32c": "my_crc32c",
      *       //   "customTime": "my_customTime",
      *       //   "customerEncryption": {},
@@ -13215,6 +13248,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -13410,6 +13444,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -13621,6 +13656,7 @@ export namespace storage_v1 {
      *       //   "contentEncoding": "my_contentEncoding",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "contentType": "my_contentType",
+     *       //   "contexts": {},
      *       //   "crc32c": "my_crc32c",
      *       //   "customTime": "my_customTime",
      *       //   "customerEncryption": {},
@@ -14157,6 +14193,7 @@ export namespace storage_v1 {
      *       //   "contentEncoding": "my_contentEncoding",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "contentType": "my_contentType",
+     *       //   "contexts": {},
      *       //   "crc32c": "my_crc32c",
      *       //   "customTime": "my_customTime",
      *       //   "customerEncryption": {},
@@ -14201,6 +14238,7 @@ export namespace storage_v1 {
      *   //   "contentEncoding": "my_contentEncoding",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "contentType": "my_contentType",
+     *   //   "contexts": {},
      *   //   "crc32c": "my_crc32c",
      *   //   "customTime": "my_customTime",
      *   //   "customerEncryption": {},
@@ -14816,6 +14854,10 @@ export namespace storage_v1 {
      * Filter results to objects whose names are lexicographically before endOffset. If startOffset is also set, the objects listed will have names between startOffset (inclusive) and endOffset (exclusive).
      */
     endOffset?: string;
+    /**
+     * Filter the returned objects. Currently only supported for the contexts field. If delimiter is set, the returned prefixes are exempt from this filter.
+     */
+    filter?: string;
     /**
      * Only applicable if delimiter is set to '/'. If true, will also include folders and managed folders (besides objects) in the returned prefixes.
      */
