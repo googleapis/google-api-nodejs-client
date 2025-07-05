@@ -1091,7 +1091,7 @@
               "supportsMediaUpload": true
             },
             "list": {
-              "description": "Lists the messages in the user's mailbox.",
+              "description": "Lists the messages in the user's mailbox. For example usage, see [List Gmail messages](https://developers.google.com/workspace/gmail/api/guides/list-messages).",
               "flatPath": "gmail/v1/users/{userId}/messages",
               "httpMethod": "GET",
               "id": "gmail.users.messages.list",
@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250630",
   "rootUrl": "https://gmail.googleapis.com/",
   "schemas": {
     "AutoForwarding": {
