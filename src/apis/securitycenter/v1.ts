@@ -4452,6 +4452,10 @@ export namespace securitycenter_v1 {
      * When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter.
      */
     script?: Schema$GoogleCloudSecuritycenterV2File;
+    /**
+     * The ID of the user that executed the process. E.g. If this is the root user this will always be 0.
+     */
+    userId?: string | null;
   }
   /**
    * Indicates what signature matched this process.
@@ -5869,6 +5873,10 @@ export namespace securitycenter_v1 {
      * When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter.
      */
     script?: Schema$File;
+    /**
+     * The ID of the user that executed the process. E.g. If this is the root user this will always be 0.
+     */
+    userId?: string | null;
   }
   /**
    * Indicates what signature matched this process.

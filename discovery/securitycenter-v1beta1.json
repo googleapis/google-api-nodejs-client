@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250625",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -7490,6 +7490,11 @@
         "script": {
           "$ref": "GoogleCloudSecuritycenterV2File",
           "description": "When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter."
+        },
+        "userId": {
+          "description": "The ID of the user that executed the process. E.g. If this is the root user this will always be 0.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9767,6 +9772,11 @@
         "script": {
           "$ref": "File",
           "description": "When the process represents the invocation of a script, `binary` provides information about the interpreter, while `script` provides information about the script file provided to the interpreter."
+        },
+        "userId": {
+          "description": "The ID of the user that executed the process. E.g. If this is the root user this will always be 0.",
+          "format": "int64",
+          "type": "string"
         }
       },
       "type": "object"
