@@ -891,7 +891,7 @@
       }
     }
   },
-  "revision": "20250526",
+  "revision": "20250623",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -913,7 +913,7 @@
       "type": "object"
     },
     "CreateProjectRequest": {
-      "description": "Request to create a script project. Request to create a script project.",
+      "description": "Request to create a script project.",
       "id": "CreateProjectRequest",
       "properties": {
         "parentId": {
