@@ -5309,7 +5309,7 @@
       }
     }
   },
-  "revision": "20250617",
+  "revision": "20250625",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -8455,7 +8455,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM).",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). LINT: LEGACY_NAMES",
             "[`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
@@ -11915,6 +11915,10 @@
       "properties": {
         "name": {
           "description": "Optional. The name of the voice. If not set, the service will choose a voice based on the other parameters such as language_code and ssml_gender. For the list of available voices, please refer to [Supported voices and languages](https://cloud.google.com/text-to-speech/docs/voices).",
+          "type": "string"
+        },
+        "secondLanguageModel": {
+          "description": "Optional. The name of the second voice (non-English) if language detection is supported.",
           "type": "string"
         },
         "ssmlGender": {

@@ -313,6 +313,7 @@
     "src/apis/appengine": {},
     "src/apis/dlp": {},
     "src/apis/apigateway": {},
-    "src/apis/saasservicemgmt": {}
+    "src/apis/saasservicemgmt": {},
+    "src/apis/cloudlocationfinder": {}
   }
 }

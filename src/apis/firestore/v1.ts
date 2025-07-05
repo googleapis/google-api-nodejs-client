@@ -756,6 +756,56 @@ export namespace firestore_v1 {
     namespaceIds?: string[] | null;
   }
   /**
+   * Metadata for the long-running operation from the CloneDatabase request.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CloneDatabaseMetadata {
+    /**
+     * The name of the database being cloned to.
+     */
+    database?: string | null;
+    /**
+     * The time the clone finished, unset for ongoing clones.
+     */
+    endTime?: string | null;
+    /**
+     * The operation state of the clone.
+     */
+    operationState?: string | null;
+    /**
+     * The snapshot from which this database was cloned.
+     */
+    pitrSnapshot?: Schema$GoogleFirestoreAdminV1PitrSnapshot;
+    /**
+     * How far along the clone is as an estimated percentage of remaining time.
+     */
+    progressPercentage?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The time the clone was started.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * The request message for FirestoreAdmin.CloneDatabase.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CloneDatabaseRequest {
+    /**
+     * Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8\}(-[0-9a-f]{4\}){3\}-[0-9a-f]{12\}/. "(default)" database ID is also valid.
+     */
+    databaseId?: string | null;
+    /**
+     * Optional. Encryption configuration for the cloned database. If this field is not specified, the cloned database will use the same encryption configuration as the source database, namely use_source_encryption.
+     */
+    encryptionConfig?: Schema$GoogleFirestoreAdminV1EncryptionConfig;
+    /**
+     * Required. Specification of the PITR data to clone from. The source database must exist. The cloned database will be created in the same location as the source database.
+     */
+    pitrSnapshot?: Schema$GoogleFirestoreAdminV1PitrSnapshot;
+    /**
+     * Optional. Immutable. Tags to be bound to the cloned database. The tags should be provided in the format of `tagKeys/{tag_key_id\} -\> tagValues/{tag_value_id\}`.
+     */
+    tags?: {[key: string]: string} | null;
+  }
+  /**
    * The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.
    */
   export interface Schema$GoogleFirestoreAdminV1CmekConfig {
@@ -1285,6 +1335,23 @@ export namespace firestore_v1 {
    * The metadata message for google.cloud.location.Location.metadata.
    */
   export interface Schema$GoogleFirestoreAdminV1LocationMetadata {}
+  /**
+   * A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.
+   */
+  export interface Schema$GoogleFirestoreAdminV1PitrSnapshot {
+    /**
+     * Required. The name of the database that this was a snapshot of. Format: `projects/{project\}/databases/{database\}`.
+     */
+    database?: string | null;
+    /**
+     * Output only. Public UUID of the database the snapshot was associated with.
+     */
+    databaseUid?: string | null;
+    /**
+     * Required. Snapshot time of the database.
+     */
+    snapshotTime?: string | null;
+  }
   /**
    * Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.
    */
@@ -2353,6 +2420,165 @@ export namespace firestore_v1 {
         params,
         requiredParams: ['name'],
         pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new database by cloning an existing one. The new database must be in the same cloud region or multi-region location as the existing database. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing database. The long-running operation can be used to track the progress of the clone, with the Operation's metadata field type being the CloneDatabaseMetadata. The response type is the Database if the clone was successful. The new database is not readable or writeable until the LRO has completed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/firestore.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const firestore = google.firestore('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/datastore',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await firestore.projects.databases.clone({
+     *     // Required. The project to clone the database in. Format is `projects/{project_id\}`.
+     *     parent: 'projects/my-project',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "databaseId": "my_databaseId",
+     *       //   "encryptionConfig": {},
+     *       //   "pitrSnapshot": {},
+     *       //   "tags": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    clone(
+      params: Params$Resource$Projects$Databases$Clone,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    clone(
+      params?: Params$Resource$Projects$Databases$Clone,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    clone(
+      params: Params$Resource$Projects$Databases$Clone,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    clone(
+      params: Params$Resource$Projects$Databases$Clone,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clone(
+      params: Params$Resource$Projects$Databases$Clone,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clone(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    clone(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Databases$Clone
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Databases$Clone;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Databases$Clone;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://firestore.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/databases:clone').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
         context: this.context,
       };
       if (callback) {
@@ -3669,6 +3895,18 @@ export namespace firestore_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleFirestoreAdminV1BulkDeleteDocumentsRequest;
+  }
+  export interface Params$Resource$Projects$Databases$Clone
+    extends StandardParameters {
+    /**
+     * Required. The project to clone the database in. Format is `projects/{project_id\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleFirestoreAdminV1CloneDatabaseRequest;
   }
   export interface Params$Resource$Projects$Databases$Create
     extends StandardParameters {

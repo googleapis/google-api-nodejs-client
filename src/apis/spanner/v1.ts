@@ -537,6 +537,31 @@ export namespace spanner_v1 {
     quorumType?: Schema$QuorumType;
   }
   /**
+   * Spanner Change Streams enable customers to capture and stream out changes to their Spanner databases in real-time. A change stream can be created with option partition_mode='IMMUTABLE_KEY_RANGE' or partition_mode='MUTABLE_KEY_RANGE'. This message is only used in Change Streams created with the option partition_mode='MUTABLE_KEY_RANGE'. Spanner automatically creates a special Table-Valued Function (TVF) along with each Change Streams. The function provides access to the change stream's records. The function is named READ_ (where is the name of the change stream), and it returns a table with only one column called ChangeRecord.
+   */
+  export interface Schema$ChangeStreamRecord {
+    /**
+     * Data change record describing a data change for a change stream partition.
+     */
+    dataChangeRecord?: Schema$DataChangeRecord;
+    /**
+     * Heartbeat record describing a heartbeat for a change stream partition.
+     */
+    heartbeatRecord?: Schema$HeartbeatRecord;
+    /**
+     * Partition end record describing a terminated change stream partition.
+     */
+    partitionEndRecord?: Schema$PartitionEndRecord;
+    /**
+     * Partition event record describing key range changes for a change stream partition.
+     */
+    partitionEventRecord?: Schema$PartitionEventRecord;
+    /**
+     * Partition start record describing a new change stream partition.
+     */
+    partitionStartRecord?: Schema$PartitionStartRecord;
+  }
+  /**
    * Metadata associated with a parent-child relationship appearing in a PlanNode.
    */
   export interface Schema$ChildLink {
@@ -552,6 +577,27 @@ export namespace spanner_v1 {
      * Only present if the child node is SCALAR and corresponds to an output variable of the parent node. The field carries the name of the output variable. For example, a `TableScan` operator that reads rows from a table will have child links to the `SCALAR` nodes representing the output variables created for each column that is read by the operator. The corresponding `variable` fields will be set to the variable names assigned to the columns.
      */
     variable?: string | null;
+  }
+  /**
+   * Metadata for a column.
+   */
+  export interface Schema$ColumnMetadata {
+    /**
+     * Indicates whether the column is a primary key column.
+     */
+    isPrimaryKey?: boolean | null;
+    /**
+     * Name of the column.
+     */
+    name?: string | null;
+    /**
+     * Ordinal position of the column based on the original table definition in the schema starting with a value of 1.
+     */
+    ordinalPosition?: string | null;
+    /**
+     * Type of the column.
+     */
+    type?: Schema$Type;
   }
   /**
    * The request for Commit.
@@ -976,6 +1022,63 @@ export namespace spanner_v1 {
     name?: string | null;
   }
   /**
+   * A data change record contains a set of changes to a table with the same modification type (insert, update, or delete) committed at the same commit timestamp in one change stream partition for the same transaction. Multiple data change records can be returned for the same transaction across multiple change stream partitions.
+   */
+  export interface Schema$DataChangeRecord {
+    /**
+     * Provides metadata describing the columns associated with the mods listed below.
+     */
+    columnMetadata?: Schema$ColumnMetadata[];
+    /**
+     * Indicates the timestamp in which the change was committed. DataChangeRecord.commit_timestamps, PartitionStartRecord.start_timestamps, PartitionEventRecord.commit_timestamps, and PartitionEndRecord.end_timestamps can have the same value in the same partition.
+     */
+    commitTimestamp?: string | null;
+    /**
+     * Indicates whether this is the last record for a transaction in the current partition. Clients can use this field to determine when all records for a transaction in the current partition have been received.
+     */
+    isLastRecordInTransactionInPartition?: boolean | null;
+    /**
+     * Indicates whether the transaction is a system transaction. System transactions include those issued by time-to-live (TTL), column backfill, etc.
+     */
+    isSystemTransaction?: boolean | null;
+    /**
+     * Describes the changes that were made.
+     */
+    mods?: Schema$Mod[];
+    /**
+     * Describes the type of change.
+     */
+    modType?: string | null;
+    /**
+     * Indicates the number of partitions that return data change records for this transaction. This value can be helpful in assembling all records associated with a particular transaction.
+     */
+    numberOfPartitionsInTransaction?: number | null;
+    /**
+     * Indicates the number of data change records that are part of this transaction across all change stream partitions. This value can be used to assemble all the records associated with a particular transaction.
+     */
+    numberOfRecordsInTransaction?: number | null;
+    /**
+     * Record sequence numbers are unique and monotonically increasing (but not necessarily contiguous) for a specific timestamp across record types in the same partition. To guarantee ordered processing, the reader should process records (of potentially different types) in record_sequence order for a specific timestamp in the same partition. The record sequence number ordering across partitions is only meaningful in the context of a specific transaction. Record sequence numbers are unique across partitions for a specific transaction. Sort the DataChangeRecords for the same server_transaction_id by record_sequence to reconstruct the ordering of the changes within the transaction.
+     */
+    recordSequence?: string | null;
+    /**
+     * Provides a globally unique string that represents the transaction in which the change was committed. Multiple transactions can have the same commit timestamp, but each transaction has a unique server_transaction_id.
+     */
+    serverTransactionId?: string | null;
+    /**
+     * Name of the table affected by the change.
+     */
+    table?: string | null;
+    /**
+     * Indicates the transaction tag associated with this transaction.
+     */
+    transactionTag?: string | null;
+    /**
+     * Describes the value capture type that was specified in the change stream configuration when this change was captured.
+     */
+    valueCaptureType?: string | null;
+  }
+  /**
    * Action information extracted from a DDL statement. This proto is used to display the brief info of the DDL statement for the operation UpdateDatabaseDdl.
    */
   export interface Schema$DdlStatementActionInfo {
@@ -1287,6 +1390,15 @@ export namespace spanner_v1 {
      * Optional. The maximum policy version that will be used to format the policy. Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected. Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset. The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     requestedPolicyVersion?: number | null;
+  }
+  /**
+   * A heartbeat record is returned as a progress indicator, when there are no data changes or any other partition record types in the change stream partition.
+   */
+  export interface Schema$HeartbeatRecord {
+    /**
+     * Indicates the timestamp at which the query has returned all the records in the change stream partition with timestamp <= heartbeat timestamp. The heartbeat timestamp will not be the same as the timestamps of other record types in the same partition.
+     */
+    timestamp?: string | null;
   }
   /**
    * An `IncludeReplicas` contains a repeated set of `ReplicaSelection` which indicates the order in which replicas should be considered.
@@ -1938,6 +2050,45 @@ export namespace spanner_v1 {
     cols?: number[] | null;
   }
   /**
+   * A mod describes all data changes in a watched table row.
+   */
+  export interface Schema$Mod {
+    /**
+     * Returns the value of the primary key of the modified row.
+     */
+    keys?: Schema$ModValue[];
+    /**
+     * Returns the new values after the change for the modified columns. Always empty for DELETE.
+     */
+    newValues?: Schema$ModValue[];
+    /**
+     * Returns the old values before the change for the modified columns. Always empty for INSERT, or if old values are not being captured specified by value_capture_type.
+     */
+    oldValues?: Schema$ModValue[];
+  }
+  /**
+   * Returns the value and associated metadata for a particular field of the Mod.
+   */
+  export interface Schema$ModValue {
+    /**
+     * Index within the repeated column_metadata field, to obtain the column metadata for the column that was modified.
+     */
+    columnMetadataIndex?: number | null;
+    /**
+     * The value of the column.
+     */
+    value?: any | null;
+  }
+  /**
+   * Describes move-in of the key ranges into the change stream partition identified by partition_token. To maintain processing the changes for a particular key in timestamp order, the query processing the change stream partition identified by partition_token should not advance beyond the partition event record commit timestamp until the queries processing the source change stream partitions have processed all change stream records with timestamps <= the partition event record commit timestamp.
+   */
+  export interface Schema$MoveInEvent {
+    /**
+     * An unique partition identifier describing the source change stream partition that recorded changes for the key range that is moving into this partition.
+     */
+    sourcePartitionToken?: string | null;
+  }
+  /**
    * The request for MoveInstance.
    */
   export interface Schema$MoveInstanceRequest {
@@ -1949,6 +2100,15 @@ export namespace spanner_v1 {
      * Optional. The configuration for each database in the target instance configuration.
      */
     targetDatabaseMoveConfigs?: Schema$DatabaseMoveConfig[];
+  }
+  /**
+   * Describes move-out of the key ranges out of the change stream partition identified by partition_token. To maintain processing the changes for a particular key in timestamp order, the query processing the MoveOutEvent in the partition identified by partition_token should inform the queries processing the destination partitions that they can unblock and proceed processing records past the commit_timestamp.
+   */
+  export interface Schema$MoveOutEvent {
+    /**
+     * An unique partition identifier describing the destination change stream partition that will record changes for the key range that is moving out of this partition.
+     */
+    destinationPartitionToken?: string | null;
   }
   /**
    * When a read-write transaction is executed on a multiplexed session, this precommit token is sent back to the client as a part of the Transaction message in the BeginTransaction response and also as a part of the ResultSet and PartialResultSet responses.
@@ -2099,6 +2259,48 @@ export namespace spanner_v1 {
    */
   export interface Schema$PartitionedDml {}
   /**
+   * A partition end record serves as a notification that the client should stop reading the partition. No further records are expected to be retrieved on it.
+   */
+  export interface Schema$PartitionEndRecord {
+    /**
+     * End timestamp at which the change stream partition is terminated. All changes generated by this partition will have timestamps <= end_timestamp. DataChangeRecord.commit_timestamps, PartitionStartRecord.start_timestamps, PartitionEventRecord.commit_timestamps, and PartitionEndRecord.end_timestamps can have the same value in the same partition. PartitionEndRecord is the last record returned for a partition.
+     */
+    endTimestamp?: string | null;
+    /**
+     * Unique partition identifier describing the terminated change stream partition. partition_token is equal to the partition token of the change stream partition currently queried to return this PartitionEndRecord.
+     */
+    partitionToken?: string | null;
+    /**
+     * Record sequence numbers are unique and monotonically increasing (but not necessarily contiguous) for a specific timestamp across record types in the same partition. To guarantee ordered processing, the reader should process records (of potentially different types) in record_sequence order for a specific timestamp in the same partition.
+     */
+    recordSequence?: string | null;
+  }
+  /**
+   * A partition event record describes key range changes for a change stream partition. The changes to a row defined by its primary key can be captured in one change stream partition for a specific time range, and then be captured in a different change stream partition for a different time range. This movement of key ranges across change stream partitions is a reflection of activities, such as Spanner's dynamic splitting and load balancing, etc. Processing this event is needed if users want to guarantee processing of the changes for any key in timestamp order. If time ordered processing of changes for a primary key is not needed, this event can be ignored. To guarantee time ordered processing for each primary key, if the event describes move-ins, the reader of this partition needs to wait until the readers of the source partitions have processed all records with timestamps <= this PartitionEventRecord.commit_timestamp, before advancing beyond this PartitionEventRecord. If the event describes move-outs, the reader can notify the readers of the destination partitions that they can continue processing.
+   */
+  export interface Schema$PartitionEventRecord {
+    /**
+     * Indicates the commit timestamp at which the key range change occurred. DataChangeRecord.commit_timestamps, PartitionStartRecord.start_timestamps, PartitionEventRecord.commit_timestamps, and PartitionEndRecord.end_timestamps can have the same value in the same partition.
+     */
+    commitTimestamp?: string | null;
+    /**
+     * Set when one or more key ranges are moved into the change stream partition identified by partition_token. Example: Two key ranges are moved into partition (P1) from partition (P2) and partition (P3) in a single transaction at timestamp T. The PartitionEventRecord returned in P1 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P1" move_in_events { source_partition_token: "P2" \} move_in_events { source_partition_token: "P3" \} \} The PartitionEventRecord returned in P2 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P2" move_out_events { destination_partition_token: "P1" \} \} The PartitionEventRecord returned in P3 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P3" move_out_events { destination_partition_token: "P1" \} \}
+     */
+    moveInEvents?: Schema$MoveInEvent[];
+    /**
+     * Set when one or more key ranges are moved out of the change stream partition identified by partition_token. Example: Two key ranges are moved out of partition (P1) to partition (P2) and partition (P3) in a single transaction at timestamp T. The PartitionEventRecord returned in P1 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P1" move_out_events { destination_partition_token: "P2" \} move_out_events { destination_partition_token: "P3" \} \} The PartitionEventRecord returned in P2 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P2" move_in_events { source_partition_token: "P1" \} \} The PartitionEventRecord returned in P3 will reflect the move as: PartitionEventRecord { commit_timestamp: T partition_token: "P3" move_in_events { source_partition_token: "P1" \} \}
+     */
+    moveOutEvents?: Schema$MoveOutEvent[];
+    /**
+     * Unique partition identifier describing the partition this event occurred on. partition_token is equal to the partition token of the change stream partition currently queried to return this PartitionEventRecord.
+     */
+    partitionToken?: string | null;
+    /**
+     * Record sequence numbers are unique and monotonically increasing (but not necessarily contiguous) for a specific timestamp across record types in the same partition. To guarantee ordered processing, the reader should process records (of potentially different types) in record_sequence order for a specific timestamp in the same partition.
+     */
+    recordSequence?: string | null;
+  }
+  /**
    * Options for a `PartitionQueryRequest` and `PartitionReadRequest`.
    */
   export interface Schema$PartitionOptions {
@@ -2177,6 +2379,23 @@ export namespace spanner_v1 {
      * Transaction created by this request.
      */
     transaction?: Schema$Transaction;
+  }
+  /**
+   * A partition start record serves as a notification that the client should schedule the partitions to be queried. PartitionStartRecord returns information about one or more partitions.
+   */
+  export interface Schema$PartitionStartRecord {
+    /**
+     * Unique partition identifiers to be used in queries.
+     */
+    partitionTokens?: string[] | null;
+    /**
+     * Record sequence numbers are unique and monotonically increasing (but not necessarily contiguous) for a specific timestamp across record types in the same partition. To guarantee ordered processing, the reader should process records (of potentially different types) in record_sequence order for a specific timestamp in the same partition.
+     */
+    recordSequence?: string | null;
+    /**
+     * Start timestamp at which the partitions should be queried to return change stream records with timestamps \>= start_timestamp. DataChangeRecord.commit_timestamps, PartitionStartRecord.start_timestamps, PartitionEventRecord.commit_timestamps, and PartitionEndRecord.end_timestamps can have the same value in the same partition.
+     */
+    startTimestamp?: string | null;
   }
   /**
    * Node information for nodes appearing in a QueryPlan.plan_nodes.
@@ -2828,7 +3047,7 @@ export namespace spanner_v1 {
     readTimestamp?: string | null;
   }
   /**
-   * Transactions: Each session can have at most one active transaction at a time (note that standalone reads and queries use a transaction internally and do count towards the one transaction limit). After the active transaction is completed, the session can immediately be re-used for the next transaction. It is not necessary to create a new session for each transaction. Transaction modes: Cloud Spanner supports three transaction modes: 1. Locking read-write. This type of transaction is the only way to write data into Cloud Spanner. These transactions rely on pessimistic locking and, if necessary, two-phase commit. Locking read-write transactions may abort, requiring the application to retry. 2. Snapshot read-only. Snapshot read-only transactions provide guaranteed consistency across several reads, but do not allow writes. Snapshot read-only transactions can be configured to read at timestamps in the past, or configured to perform a strong read (where Spanner selects a timestamp such that the read is guaranteed to see the effects of all transactions that have committed before the start of the read). Snapshot read-only transactions do not need to be committed. Queries on change streams must be performed with the snapshot read-only transaction mode, specifying a strong read. See TransactionOptions.ReadOnly.strong for more details. 3. Partitioned DML. This type of transaction is used to execute a single Partitioned DML statement. Partitioned DML partitions the key space and runs the DML statement over each partition in parallel using separate, internal transactions that commit independently. Partitioned DML transactions do not need to be committed. For transactions that only read, snapshot read-only transactions provide simpler semantics and are almost always faster. In particular, read-only transactions do not take locks, so they do not conflict with read-write transactions. As a consequence of not taking locks, they also do not abort, so retry loops are not needed. Transactions may only read-write data in a single database. They may, however, read-write data in different tables within that database. Locking read-write transactions: Locking transactions may be used to atomically read-modify-write data anywhere in a database. This type of transaction is externally consistent. Clients should attempt to minimize the amount of time a transaction is active. Faster transactions commit with higher probability and cause less contention. Cloud Spanner attempts to keep read locks active as long as the transaction continues to do reads, and the transaction has not been terminated by Commit or Rollback. Long periods of inactivity at the client may cause Cloud Spanner to release a transaction's locks and abort it. Conceptually, a read-write transaction consists of zero or more reads or SQL statements followed by Commit. At any time before Commit, the client can send a Rollback request to abort the transaction. Semantics: Cloud Spanner can commit the transaction if all read locks it acquired are still valid at commit time, and it is able to acquire write locks for all writes. Cloud Spanner can abort the transaction for any reason. If a commit attempt returns `ABORTED`, Cloud Spanner guarantees that the transaction has not modified any user data in Cloud Spanner. Unless the transaction commits, Cloud Spanner makes no guarantees about how long the transaction's locks were held for. It is an error to use Cloud Spanner locks for any sort of mutual exclusion other than between Cloud Spanner transactions themselves. Retrying aborted transactions: When a transaction aborts, the application can choose to retry the whole transaction again. To maximize the chances of successfully committing the retry, the client should execute the retry in the same session as the original attempt. The original session's lock priority increases with each consecutive abort, meaning that each attempt has a slightly better chance of success than the previous. Note that the lock priority is preserved per session (not per transaction). Lock priority is set by the first read or write in the first attempt of a read-write transaction. If the application starts a new session to retry the whole transaction, the transaction loses its original lock priority. Moreover, the lock priority is only preserved if the transaction fails with an `ABORTED` error. Under some circumstances (for example, many transactions attempting to modify the same row(s)), a transaction can abort many times in a short period before successfully committing. Thus, it is not a good idea to cap the number of retries a transaction can attempt; instead, it is better to limit the total amount of time spent retrying. Idle transactions: A transaction is considered idle if it has no outstanding reads or SQL queries and has not started a read or SQL query within the last 10 seconds. Idle transactions can be aborted by Cloud Spanner so that they don't hold on to locks indefinitely. If an idle transaction is aborted, the commit fails with error `ABORTED`. If this behavior is undesirable, periodically executing a simple SQL query in the transaction (for example, `SELECT 1`) prevents the transaction from becoming idle. Snapshot read-only transactions: Snapshot read-only transactions provides a simpler method than locking read-write transactions for doing several consistent reads. However, this type of transaction does not support writes. Snapshot transactions do not take locks. Instead, they work by choosing a Cloud Spanner timestamp, then executing all reads at that timestamp. Since they do not acquire locks, they do not block concurrent read-write transactions. Unlike locking read-write transactions, snapshot read-only transactions never abort. They can fail if the chosen read timestamp is garbage collected; however, the default garbage collection policy is generous enough that most applications do not need to worry about this in practice. Snapshot read-only transactions do not need to call Commit or Rollback (and in fact are not permitted to do so). To execute a snapshot transaction, the client specifies a timestamp bound, which tells Cloud Spanner how to choose a read timestamp. The types of timestamp bound are: - Strong (the default). - Bounded staleness. - Exact staleness. If the Cloud Spanner database to be read is geographically distributed, stale read-only transactions can execute more quickly than strong or read-write transactions, because they are able to execute far from the leader replica. Each type of timestamp bound is discussed in detail below. Strong: Strong reads are guaranteed to see the effects of all transactions that have committed before the start of the read. Furthermore, all rows yielded by a single read are consistent with each other -- if any part of the read observes a transaction, all parts of the read see the transaction. Strong reads are not repeatable: two consecutive strong read-only transactions might return inconsistent results if there are concurrent writes. If consistency across reads is required, the reads should be executed within a transaction or at an exact read timestamp. Queries on change streams (see below for more details) must also specify the strong read timestamp bound. See TransactionOptions.ReadOnly.strong. Exact staleness: These timestamp bounds execute reads at a user-specified timestamp. Reads at a timestamp are guaranteed to see a consistent prefix of the global transaction history: they observe modifications done by all transactions with a commit timestamp less than or equal to the read timestamp, and observe none of the modifications done by transactions with a larger commit timestamp. They block until all conflicting transactions that can be assigned commit timestamps <= the read timestamp have finished. The timestamp can either be expressed as an absolute Cloud Spanner commit timestamp or a staleness relative to the current time. These modes do not require a "negotiation phase" to pick a timestamp. As a result, they execute slightly faster than the equivalent boundedly stale concurrency modes. On the other hand, boundedly stale reads usually return fresher results. See TransactionOptions.ReadOnly.read_timestamp and TransactionOptions.ReadOnly.exact_staleness. Bounded staleness: Bounded staleness modes allow Cloud Spanner to pick the read timestamp, subject to a user-provided staleness bound. Cloud Spanner chooses the newest timestamp within the staleness bound that allows execution of the reads at the closest available replica without blocking. All rows yielded are consistent with each other -- if any part of the read observes a transaction, all parts of the read see the transaction. Boundedly stale reads are not repeatable: two stale reads, even if they use the same staleness bound, can execute at different timestamps and thus return inconsistent results. Boundedly stale reads execute in two phases: the first phase negotiates a timestamp among all replicas needed to serve the read. In the second phase, reads are executed at the negotiated timestamp. As a result of the two phase execution, bounded staleness reads are usually a little slower than comparable exact staleness reads. However, they are typically able to return fresher results, and are more likely to execute at the closest replica. Because the timestamp negotiation requires up-front knowledge of which rows are read, it can only be used with single-use read-only transactions. See TransactionOptions.ReadOnly.max_staleness and TransactionOptions.ReadOnly.min_read_timestamp. Old read timestamps and garbage collection: Cloud Spanner continuously garbage collects deleted and overwritten data in the background to reclaim storage space. This process is known as "version GC". By default, version GC reclaims versions after they are one hour old. Because of this, Cloud Spanner can't perform reads at read timestamps more than one hour in the past. This restriction also applies to in-progress reads and/or SQL queries whose timestamp become too old while executing. Reads and SQL queries with too-old read timestamps fail with the error `FAILED_PRECONDITION`. You can configure and extend the `VERSION_RETENTION_PERIOD` of a database up to a period as long as one week, which allows Cloud Spanner to perform reads up to one week in the past. Querying change Streams: A Change Stream is a schema object that can be configured to watch data changes on the entire database, a set of tables, or a set of columns in a database. When a change stream is created, Spanner automatically defines a corresponding SQL Table-Valued Function (TVF) that can be used to query the change records in the associated change stream using the ExecuteStreamingSql API. The name of the TVF for a change stream is generated from the name of the change stream: READ_. All queries on change stream TVFs must be executed using the ExecuteStreamingSql API with a single-use read-only transaction with a strong read-only timestamp_bound. The change stream TVF allows users to specify the start_timestamp and end_timestamp for the time range of interest. All change records within the retention period is accessible using the strong read-only timestamp_bound. All other TransactionOptions are invalid for change stream queries. In addition, if TransactionOptions.read_only.return_read_timestamp is set to true, a special value of 2^63 - 2 is returned in the Transaction message that describes the transaction, instead of a valid read timestamp. This special value should be discarded and not used for any subsequent queries. Please see https://cloud.google.com/spanner/docs/change-streams for more details on how to query the change stream TVFs. Partitioned DML transactions: Partitioned DML transactions are used to execute DML statements with a different execution strategy that provides different, and often better, scalability properties for large, table-wide operations than DML in a ReadWrite transaction. Smaller scoped statements, such as an OLTP workload, should prefer using ReadWrite transactions. Partitioned DML partitions the keyspace and runs the DML statement on each partition in separate, internal transactions. These transactions commit automatically when complete, and run independently from one another. To reduce lock contention, this execution strategy only acquires read locks on rows that match the WHERE clause of the statement. Additionally, the smaller per-partition transactions hold locks for less time. That said, Partitioned DML is not a drop-in replacement for standard DML used in ReadWrite transactions. - The DML statement must be fully-partitionable. Specifically, the statement must be expressible as the union of many statements which each access only a single row of the table. - The statement is not applied atomically to all rows of the table. Rather, the statement is applied atomically to partitions of the table, in independent transactions. Secondary index rows are updated atomically with the base table rows. - Partitioned DML does not guarantee exactly-once execution semantics against a partition. The statement is applied at least once to each partition. It is strongly recommended that the DML statement should be idempotent to avoid unexpected results. For instance, it is potentially dangerous to run a statement such as `UPDATE table SET column = column + 1` as it could be run multiple times against some rows. - The partitions are committed automatically - there is no support for Commit or Rollback. If the call returns an error, or if the client issuing the ExecuteSql call dies, it is possible that some rows had the statement executed on them successfully. It is also possible that statement was never executed against other rows. - Partitioned DML transactions may only contain the execution of a single DML statement via ExecuteSql or ExecuteStreamingSql. - If any error is encountered during the execution of the partitioned DML operation (for instance, a UNIQUE INDEX violation, division by zero, or a value that can't be stored due to schema constraints), then the operation is stopped at that point and an error is returned. It is possible that at this point, some partitions have been committed (or even committed multiple times), and other partitions have not been run at all. Given the above, Partitioned DML is good fit for large, database-wide, operations that are idempotent, such as deleting old rows from a very large table.
+   * Options to use for transactions.
    */
   export interface Schema$TransactionOptions {
     /**

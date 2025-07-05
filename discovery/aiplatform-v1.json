@@ -20248,7 +20248,7 @@
       }
     }
   },
-  "revision": "20250613",
+  "revision": "20250625",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -28847,7 +28847,7 @@
           "type": "boolean"
         },
         "thinkingBudget": {
-          "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
+          "description": "Optional. Indicates the thinking budget in tokens.",
           "format": "int32",
           "type": "integer"
         }
@@ -32079,7 +32079,7 @@
           "type": "string"
         },
         "invokeRoutePrefix": {
-          "description": "Immutable. Invoke route prefix for the custom container. \"/*\" is the only supported value right now. By setting this field, any non-root route on this model will be accessible with [PredictionService.Invoke] eg: \"/invoke/foo/bar\". Only one of `predict_route` or `invoke_route_prefix` can be set, and we default to using `predict_route` if this field is not set. If this field is set, the Model can only be deployed to dedicated endpoint.",
+          "description": "Immutable. Invoke route prefix for the custom container. \"/*\" is the only supported value right now. By setting this field, any non-root route on this model will be accessible with invoke http call eg: \"/invoke/foo/bar\", however the [PredictionService.Invoke] RPC is not supported yet. Only one of `predict_route` or `invoke_route_prefix` can be set, and we default to using `predict_route` if this field is not set. If this field is set, the Model can only be deployed to dedicated endpoint.",
           "type": "string"
         },
         "livenessProbe": {
@@ -34372,7 +34372,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1PSCAutomationConfig": {
-      "description": "PSC config that is used to automatically create forwarding rule via ServiceConnectionMap.",
+      "description": "PSC config that is used to automatically create PSC endpoints in the user projects.",
       "id": "GoogleCloudAiplatformV1PSCAutomationConfig",
       "properties": {
         "errorMessage": {
@@ -34391,7 +34391,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert): `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in '12345', and {network} is network name.",
+          "description": "Required. The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get): `projects/{project}/global/networks/{network}`.",
           "type": "string"
         },
         "projectId": {
@@ -35679,6 +35679,13 @@
           "description": "A list of Projects from which the forwarding rule will target the service attachment.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "pscAutomationConfigs": {
+          "description": "Optional. List of projects and networks where the PSC endpoints will be created. This field is used by Online Inference(Prediction) only.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1PSCAutomationConfig"
           },
           "type": "array"
         },

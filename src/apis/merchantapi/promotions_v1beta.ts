@@ -192,9 +192,6 @@ export namespace merchantapi_promotions_v1beta {
      * Optional. [Minimum purchase amount](https://support.google.com/merchants/answer/13837705?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.
      */
     minimumPurchaseAmount?: Schema$Price;
-    /**
-     * Optional. [Minimum purchase quantity](https://support.google.com/merchants/answer/13838182?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.
-     */
     minimumPurchaseQuantity?: string | null;
     /**
      * Optional. The [money off amount](https://support.google.com/merchants/answer/13838101?ref_topic=13773355&sjid=17642868584668136159-NC) offered in the promotion.

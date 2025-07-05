@@ -1167,7 +1167,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRun {
     /**
-     * The number of documents deleted.
+     * Optional. The number of documents deleted.
      */
     deletedRecordCount?: string | null;
     /**
@@ -1175,7 +1175,7 @@ export namespace discoveryengine_v1 {
      */
     entityName?: string | null;
     /**
-     * The total number of documents failed at sync at any stage (extraction, indexing, etc).
+     * Optional. The total number of documents failed at sync at indexing stage.
      */
     errorRecordCount?: string | null;
     /**
@@ -1183,11 +1183,11 @@ export namespace discoveryengine_v1 {
      */
     errors?: Schema$GoogleRpcStatus[];
     /**
-     * The number of documents extracted from connector source, ready to be ingested to VAIS.
+     * Optional. The number of documents extracted from connector source, ready to be ingested to VAIS.
      */
     extractedRecordCount?: string | null;
     /**
-     * The number of documents indexed.
+     * Optional. The number of documents indexed.
      */
     indexedRecordCount?: string | null;
     /**
@@ -1195,11 +1195,11 @@ export namespace discoveryengine_v1 {
      */
     progress?: Schema$GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRunProgress;
     /**
-     * The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.
+     * Optional. The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.
      */
     scheduledRecordCount?: string | null;
     /**
-     * The number of requests sent to 3p API.
+     * Optional. The number of requests sent to 3p API.
      */
     sourceApiRequestCount?: string | null;
     /**
@@ -1632,6 +1632,10 @@ export namespace discoveryengine_v1 {
      * Optional. Any authentication parameters specific to EUA connectors.
      */
     authParams?: {[key: string]: any} | null;
+    /**
+     * Optional. The tenant project the connector is connected to.
+     */
+    tenant?: Schema$GoogleCloudDiscoveryengineV1alphaTenant;
   }
   /**
    * The configuration for realtime sync to store additional params for realtime sync.
@@ -4089,6 +4093,23 @@ export namespace discoveryengine_v1 {
      * This number is an estimation on how much total quota this project needs to successfully complete indexing.
      */
     totalRequiredQuota?: string | null;
+  }
+  /**
+   * Tenant information for a connector source. This includes some of the same information stored in the Credential message, but is limited to only what is needed to provide a list of accessible tenants to the user.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaTenant {
+    /**
+     * Optional display name for the tenant, e.g. "My Slack Team".
+     */
+    displayName?: string | null;
+    /**
+     * The tenant's instance ID. Examples: Jira ("8594f221-9797-5f78-1fa4-485e198d7cd0"), Slack ("T123456").
+     */
+    id?: string | null;
+    /**
+     * The URI of the tenant, if applicable. For example, the URI of a Jira instance is https://my-jira-instance.atlassian.net, and a Slack tenant does not have a URI.
+     */
+    uri?: string | null;
   }
   /**
    * Metadata related to the progress of the TrainCustomModel operation. This is returned by the google.longrunning.Operation.metadata field.

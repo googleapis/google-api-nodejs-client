@@ -1606,6 +1606,21 @@
       "version": "v1"
     },
     {
+      "description": "",
+      "discoveryRestUrl": "https://cloudlocationfinder.googleapis.com/$discovery/rest?version=v1alpha",
+      "documentationLink": "https://cloud.google.com/location-finder/docs",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "cloudlocationfinder:v1alpha",
+      "kind": "discovery#directoryItem",
+      "name": "cloudlocationfinder",
+      "preferred": true,
+      "title": "Cloud Location Finder API",
+      "version": "v1alpha"
+    },
+    {
       "description": "Manages continuous profiling information.",
       "discoveryRestUrl": "https://cloudprofiler.googleapis.com/$discovery/rest?version=v2",
       "documentationLink": "https://cloud.google.com/profiler/",
@@ -2059,7 +2074,7 @@
       "version": "v1"
     },
     {
-      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in Artifact Registry. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1alpha1",
       "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
       "icons": {
@@ -2074,7 +2089,7 @@
       "version": "v1alpha1"
     },
     {
-      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in Artifact Registry. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1beta1",
       "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
       "icons": {
@@ -2089,7 +2104,7 @@
       "version": "v1beta1"
     },
     {
-      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in both Artifact Registry and with Advanced Vulnerability Insights (runtime scanning) in GKE. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
+      "description": "This API is a prerequisite for leveraging Artifact Analysis scanning capabilities in Artifact Registry. In addition, the Container Analysis API is an implementation of the Grafeas API, which enables storing, querying, and retrieval of critical metadata about all of your software artifacts.",
       "discoveryRestUrl": "https://containeranalysis.googleapis.com/$discovery/rest?version=v1",
       "documentationLink": "https://cloud.google.com/container-analysis/api/reference/rest/",
       "icons": {
@@ -5164,6 +5179,21 @@
       "name": "parallelstore",
       "preferred": true,
       "title": "Parallelstore API",
+      "version": "v1"
+    },
+    {
+      "description": "Parameter Manager is a single source of truth to store, access and manage the lifecycle of your workload parameters. Parameter Manager aims to make management of sensitive application parameters effortless for customers without diminishing focus on security.",
+      "discoveryRestUrl": "https://parametermanager.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/secret-manager/parameter-manager/docs/overview",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "parametermanager:v1",
+      "kind": "discovery#directoryItem",
+      "name": "parametermanager",
+      "preferred": true,
+      "title": "Parameter Manager API",
       "version": "v1"
     },
     {

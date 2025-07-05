@@ -1332,6 +1332,124 @@
                 "https://www.googleapis.com/auth/content"
               ]
             }
+          },
+          "resources": {
+            "checkoutSettings": {
+              "methods": {
+                "create": {
+                  "description": "Creates `CheckoutSettings` for the given merchant.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "httpMethod": "POST",
+                  "id": "merchantapi.accounts.programs.checkoutSettings.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The merchant account for which the `CheckoutSettings` will be created.",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/programs/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+parent}/checkoutSettings",
+                  "request": {
+                    "$ref": "CheckoutSettings"
+                  },
+                  "response": {
+                    "$ref": "CheckoutSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                },
+                "deleteCheckoutSettings": {
+                  "description": "Deletes `CheckoutSettings` and unenrolls merchant from `Checkout` program.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "httpMethod": "DELETE",
+                  "id": "merchantapi.accounts.programs.checkoutSettings.deleteCheckoutSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name/identifier of the merchant account. Format: `accounts/{account}/programs/{program}/checkoutSettings`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/programs/[^/]+/checkoutSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                },
+                "getCheckoutSettings": {
+                  "description": "Gets `CheckoutSettings` for the given merchant. This includes information about review state, enrollment state and URL settings.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "httpMethod": "GET",
+                  "id": "merchantapi.accounts.programs.checkoutSettings.getCheckoutSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name/identifier of the merchant account. Format: `accounts/{account}/programs/{program}/checkoutSettings`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/programs/[^/]+/checkoutSettings$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+name}",
+                  "response": {
+                    "$ref": "CheckoutSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                },
+                "updateCheckoutSettings": {
+                  "description": "Updates `CheckoutSettings` for the given merchant.",
+                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "httpMethod": "PATCH",
+                  "id": "merchantapi.accounts.programs.checkoutSettings.updateCheckoutSettings",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the program configuration settings. Format: `accounts/{account}/programs/{program}/checkoutSettings`",
+                      "location": "path",
+                      "pattern": "^accounts/[^/]+/programs/[^/]+/checkoutSettings$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `eligible_destinations` - `uri_settings`",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "accounts/v1beta/{+name}",
+                  "request": {
+                    "$ref": "CheckoutSettings"
+                  },
+                  "response": {
+                    "$ref": "CheckoutSettings"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/content"
+                  ]
+                }
+              }
+            }
           }
         },
         "regions": {
@@ -2108,7 +2226,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250628",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2675,6 +2793,131 @@
         "percentageAdjustment": {
           "description": "Optional. Multiplicative shipping rate modifier as a number in decimal notation. Can be negative. For example `\"5.4\"` increases the rate by 5.4%, `\"-3\"` decreases the rate by 3%.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CheckoutSettings": {
+      "description": "[CheckoutSettings](https://support.google.com/merchants/answer/13945960) for a specific merchant.",
+      "id": "CheckoutSettings",
+      "properties": {
+        "effectiveEnrollmentState": {
+          "description": "Output only. The effective value of enrollment_state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).",
+          "enum": [
+            "CHECKOUT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED",
+            "OPTED_OUT"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the program.",
+            "Merchant has enrolled into the program by providing either an account level URL or checkout URLs as part of their feed.",
+            "Merchant has previously enrolled but opted out of the program."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveReviewState": {
+          "description": "Output only. The effective value of `review_state` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).",
+          "enum": [
+            "CHECKOUT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "effectiveUriSettings": {
+          "$ref": "UriSettings",
+          "description": "Output only. The effective value of `uri_settings` for a given merchant. If account level settings are present then this value will be a copy of url settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).",
+          "readOnly": true
+        },
+        "eligibleDestinations": {
+          "description": "Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
+          "items": {
+            "enum": [
+              "DESTINATION_ENUM_UNSPECIFIED",
+              "SHOPPING_ADS",
+              "DISPLAY_ADS",
+              "LOCAL_INVENTORY_ADS",
+              "FREE_LISTINGS",
+              "FREE_LOCAL_LISTINGS",
+              "YOUTUBE_SHOPPING",
+              "YOUTUBE_SHOPPING_CHECKOUT",
+              "YOUTUBE_AFFILIATE",
+              "FREE_VEHICLE_LISTINGS",
+              "VEHICLE_ADS",
+              "CLOUD_RETAIL",
+              "LOCAL_CLOUD_RETAIL"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "[Shopping ads](https://support.google.com/google-ads/answer/2454022).",
+              "[Display ads](https://support.google.com/merchants/answer/6069387).",
+              "[Local inventory ads](https://support.google.com/merchants/answer/3057972).",
+              "[Free listings](https://support.google.com/merchants/answer/9199328).",
+              "[Free local product listings](https://support.google.com/merchants/answer/9825611).",
+              "[YouTube Shopping](https://support.google.com/merchants/answer/12362804).",
+              "Youtube shopping checkout.",
+              "[Youtube Affiliate](https://support.google.com/youtube/answer/13376398).",
+              "[Free vehicle listings](https://support.google.com/merchants/answer/11189169).",
+              "[Vehicle ads](https://support.google.com/merchants/answer/11189169).",
+              "[Cloud retail](https://cloud.google.com/solutions/retail).",
+              "[Local cloud retail](https://cloud.google.com/solutions/retail)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "enrollmentState": {
+          "description": "Output only. Reflects the merchant enrollment state in `Checkout` program.",
+          "enum": [
+            "CHECKOUT_ENROLLMENT_STATE_UNSPECIFIED",
+            "INACTIVE",
+            "ENROLLED",
+            "OPTED_OUT"
+          ],
+          "enumDescriptions": [
+            "Default enrollment state when enrollment state is not specified.",
+            "Merchant has not enrolled into the program.",
+            "Merchant has enrolled into the program by providing either an account level URL or checkout URLs as part of their feed.",
+            "Merchant has previously enrolled but opted out of the program."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the program configuration settings. Format: `accounts/{account}/programs/{program}/checkoutSettings`",
+          "type": "string"
+        },
+        "reviewState": {
+          "description": "Output only. Reflects the merchant review state in `Checkout` program. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an `enrollment_state` of `ENROLLED` before a review can begin for the merchant.For more details, check the help center doc.",
+          "enum": [
+            "CHECKOUT_REVIEW_STATE_UNSPECIFIED",
+            "IN_REVIEW",
+            "APPROVED",
+            "DISAPPROVED"
+          ],
+          "enumDescriptions": [
+            "Default review state when review state is not specified.",
+            "Merchant provided URLs are being reviewed for data quality issues.",
+            "Merchant account has been approved. Indicates the data quality checks have passed.",
+            "Merchant account has been disapproved due to data quality issues."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "uriSettings": {
+          "$ref": "UriSettings",
+          "description": "URI settings for cart or checkout URL."
         }
       },
       "type": "object"
@@ -4908,6 +5151,21 @@
       "description": "Request message for the `UnclaimHomepage` method.",
       "id": "UnclaimHomepageRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UriSettings": {
+      "description": "URL settings for cart or checkout URL.",
+      "id": "UriSettings",
+      "properties": {
+        "cartUriTemplate": {
+          "description": "Cart URL template. When the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart. For more details, check the [help center doc](https://support.google.com/merchants/answer/13945960#method1&zippy=%2Cproduct-level-url-formatting%2Caccount-level-url-formatting)",
+          "type": "string"
+        },
+        "checkoutUriTemplate": {
+          "description": "Checkout URL template. When the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart. For more details, check the [help center doc](https://support.google.com/merchants/answer/13945960#method1&zippy=%2Cproduct-level-url-formatting%2Caccount-level-url-formatting)",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "User": {

@@ -476,6 +476,10 @@ export namespace secretmanager_v1beta2 {
      */
     rotation?: Schema$Rotation;
     /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" Tags are used to organize and group resources. Tags can be used to control policy evaluation for the resource.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * Optional. A list of up to 10 Pub/Sub topics to which messages are published when control plane operations are called on the secret or its versions.
      */
     topics?: Schema$Topic[];
@@ -1157,6 +1161,7 @@ export namespace secretmanager_v1beta2 {
      *       //   "name": "my_name",
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
      *       //   "versionAliases": {},
@@ -1177,6 +1182,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},
@@ -1462,6 +1468,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},
@@ -1900,6 +1907,7 @@ export namespace secretmanager_v1beta2 {
      *       //   "name": "my_name",
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
      *       //   "versionAliases": {},
@@ -1920,6 +1928,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},
@@ -3631,6 +3640,7 @@ export namespace secretmanager_v1beta2 {
      *       //   "name": "my_name",
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
      *       //   "versionAliases": {},
@@ -3651,6 +3661,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},
@@ -3936,6 +3947,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},
@@ -4374,6 +4386,7 @@ export namespace secretmanager_v1beta2 {
      *       //   "name": "my_name",
      *       //   "replication": {},
      *       //   "rotation": {},
+     *       //   "tags": {},
      *       //   "topics": [],
      *       //   "ttl": "my_ttl",
      *       //   "versionAliases": {},
@@ -4394,6 +4407,7 @@ export namespace secretmanager_v1beta2 {
      *   //   "name": "my_name",
      *   //   "replication": {},
      *   //   "rotation": {},
+     *   //   "tags": {},
      *   //   "topics": [],
      *   //   "ttl": "my_ttl",
      *   //   "versionAliases": {},

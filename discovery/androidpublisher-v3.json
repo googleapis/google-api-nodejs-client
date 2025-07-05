@@ -4029,6 +4029,41 @@
             }
           }
         },
+        "productsv2": {
+          "methods": {
+            "getproductpurchasev2": {
+              "description": "Checks the purchase and consumption status of an inapp item.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/productsv2/tokens/{token}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.purchases.productsv2.getproductpurchasev2",
+              "parameterOrder": [
+                "packageName",
+                "token"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "The package name of the application the inapp product was sold in (for example, 'com.some.thing').",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "token": {
+                  "description": "The token provided to the user's device when the inapp product was purchased.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/purchases/productsv2/tokens/{token}",
+              "response": {
+                "$ref": "ProductPurchaseV2"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          }
+        },
         "subscriptions": {
           "methods": {
             "acknowledge": {
@@ -4796,7 +4831,7 @@
       }
     }
   },
-  "revision": "20250602",
+  "revision": "20250701",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -8162,6 +8197,76 @@
       },
       "type": "object"
     },
+    "ProductLineItem": {
+      "description": "Contains item-level info for a ProductPurchaseV2.",
+      "id": "ProductLineItem",
+      "properties": {
+        "productId": {
+          "description": "The purchased product ID (for example, 'monthly001').",
+          "type": "string"
+        },
+        "productOfferDetails": {
+          "$ref": "ProductOfferDetails",
+          "description": "The offer details for this item."
+        }
+      },
+      "type": "object"
+    },
+    "ProductOfferDetails": {
+      "description": "Offer details information related to a purchase line item.",
+      "id": "ProductOfferDetails",
+      "properties": {
+        "consumptionState": {
+          "description": "Output only. The consumption state of the purchase.",
+          "enum": [
+            "CONSUMPTION_STATE_UNSPECIFIED",
+            "CONSUMPTION_STATE_YET_TO_BE_CONSUMED",
+            "CONSUMPTION_STATE_CONSUMED"
+          ],
+          "enumDescriptions": [
+            "Consumption state unspecified. This value should never be set.",
+            "Yet to be consumed.",
+            "Consumed already."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "offerId": {
+          "description": "The offer ID. Only present for offers.",
+          "type": "string"
+        },
+        "offerTags": {
+          "description": "The latest offer tags associated with the offer. It includes tags inherited from the purchase option.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "offerToken": {
+          "description": "The per-transaction offer token used to make this purchase line item.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "The purchase option ID.",
+          "type": "string"
+        },
+        "quantity": {
+          "description": "The quantity associated with the purchase of the inapp product.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "refundableQuantity": {
+          "description": "The quantity eligible for refund, i.e. quantity that hasn't been refunded. The value reflects quantity-based partial refunds and full refunds.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "rentOfferDetails": {
+          "$ref": "RentOfferDetails",
+          "description": "Offer details about rent offers. This will only be set for rental line items."
+        }
+      },
+      "type": "object"
+    },
     "ProductPurchase": {
       "description": "A ProductPurchase resource indicates the status of a user's inapp product purchase.",
       "id": "ProductPurchase",
@@ -8236,12 +8341,98 @@
       },
       "type": "object"
     },
+    "ProductPurchaseV2": {
+      "description": "A ProductPurchaseV2 resource indicates the status of a user's inapp product purchase.",
+      "id": "ProductPurchaseV2",
+      "properties": {
+        "acknowledgementState": {
+          "description": "Output only. The acknowledgement state of the purchase.",
+          "enum": [
+            "ACKNOWLEDGEMENT_STATE_UNSPECIFIED",
+            "ACKNOWLEDGEMENT_STATE_PENDING",
+            "ACKNOWLEDGEMENT_STATE_ACKNOWLEDGED"
+          ],
+          "enumDescriptions": [
+            "Unspecified acknowledgement state.",
+            "The purchase is not acknowledged yet.",
+            "The purchase is acknowledged."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "description": "This kind represents a ProductPurchaseV2 object in the androidpublisher service.",
+          "type": "string"
+        },
+        "obfuscatedExternalAccountId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the user's account in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedaccountid when the purchase was made.",
+          "type": "string"
+        },
+        "obfuscatedExternalProfileId": {
+          "description": "An obfuscated version of the id that is uniquely associated with the user's profile in your app. Only present if specified using https://developer.android.com/reference/com/android/billingclient/api/BillingFlowParams.Builder#setobfuscatedprofileid when the purchase was made.",
+          "type": "string"
+        },
+        "orderId": {
+          "description": "The order id associated with the purchase of the inapp product. May not be set if there is no order associated with the purchase.",
+          "type": "string"
+        },
+        "productLineItem": {
+          "description": "Contains item-level info for a ProductPurchaseV2.",
+          "items": {
+            "$ref": "ProductLineItem"
+          },
+          "type": "array"
+        },
+        "purchaseCompletionTime": {
+          "description": "The time when the purchase was successful, i.e., when the PurchaseState has changed to PURCHASED. This field will not be present until the payment is complete. For example, if the user initiated a pending transaction (https://developer.android.com/google/play/billing/integrate#pending), this field will not be populated until the user successfully completes the steps required to complete the transaction.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "purchaseStateContext": {
+          "$ref": "PurchaseStateContext",
+          "description": "Information about the purchase state of the purchase."
+        },
+        "regionCode": {
+          "description": "ISO 3166-1 alpha-2 billing region code of the user at the time the product was granted.",
+          "type": "string"
+        },
+        "testPurchaseContext": {
+          "$ref": "TestPurchaseContext",
+          "description": "Information related to test purchases. This will only be set for test purchases."
+        }
+      },
+      "type": "object"
+    },
     "ProductPurchasesAcknowledgeRequest": {
       "description": "Request for the product.purchases.acknowledge API.",
       "id": "ProductPurchasesAcknowledgeRequest",
       "properties": {
         "developerPayload": {
           "description": "Payload to attach to the purchase.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "PurchaseStateContext": {
+      "description": "Context about the purchase state.",
+      "id": "PurchaseStateContext",
+      "properties": {
+        "purchaseState": {
+          "description": "Output only. The purchase state of the purchase.",
+          "enum": [
+            "PURCHASE_STATE_UNSPECIFIED",
+            "PURCHASED",
+            "CANCELLED",
+            "PENDING"
+          ],
+          "enumDescriptions": [
+            "Purchase state unspecified. This value should never be set.",
+            "Purchased successfully.",
+            "Purchase canceled.",
+            "The purchase is in a pending state and has not yet been completed. For more information on handling pending purchases, see https://developer.android.com/google/play/billing/integrate#pending."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8570,6 +8761,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "RentOfferDetails": {
+      "description": "Offer details information related to a rental line item.",
+      "id": "RentOfferDetails",
+      "properties": {},
       "type": "object"
     },
     "ReplacementCancellation": {
@@ -9761,6 +9958,25 @@
       "description": "Whether this subscription purchase is a test purchase.",
       "id": "TestPurchase",
       "properties": {},
+      "type": "object"
+    },
+    "TestPurchaseContext": {
+      "description": "Context about a test purchase.",
+      "id": "TestPurchaseContext",
+      "properties": {
+        "fopType": {
+          "description": "The fop type of the test purchase.",
+          "enum": [
+            "FOP_TYPE_UNSPECIFIED",
+            "TEST"
+          ],
+          "enumDescriptions": [
+            "Fop type unspecified. This value should never be set.",
+            "The purchase was made using a test card."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "Testers": {

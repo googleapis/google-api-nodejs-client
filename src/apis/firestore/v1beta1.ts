@@ -866,6 +866,35 @@ export namespace firestore_v1beta1 {
     startTime?: string | null;
   }
   /**
+   * Metadata for the long-running operation from the CloneDatabase request.
+   */
+  export interface Schema$GoogleFirestoreAdminV1CloneDatabaseMetadata {
+    /**
+     * The name of the database being cloned to.
+     */
+    database?: string | null;
+    /**
+     * The time the clone finished, unset for ongoing clones.
+     */
+    endTime?: string | null;
+    /**
+     * The operation state of the clone.
+     */
+    operationState?: string | null;
+    /**
+     * The snapshot from which this database was cloned.
+     */
+    pitrSnapshot?: Schema$GoogleFirestoreAdminV1PitrSnapshot;
+    /**
+     * How far along the clone is as an estimated percentage of remaining time.
+     */
+    progressPercentage?: Schema$GoogleFirestoreAdminV1Progress;
+    /**
+     * The time the clone was started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Metadata related to the create database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1CreateDatabaseMetadata {}
@@ -873,6 +902,23 @@ export namespace firestore_v1beta1 {
    * Metadata related to the delete database operation.
    */
   export interface Schema$GoogleFirestoreAdminV1DeleteDatabaseMetadata {}
+  /**
+   * A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.
+   */
+  export interface Schema$GoogleFirestoreAdminV1PitrSnapshot {
+    /**
+     * Required. The name of the database that this was a snapshot of. Format: `projects/{project\}/databases/{database\}`.
+     */
+    database?: string | null;
+    /**
+     * Output only. Public UUID of the database the snapshot was associated with.
+     */
+    databaseUid?: string | null;
+    /**
+     * Required. Snapshot time of the database.
+     */
+    snapshotTime?: string | null;
+  }
   /**
    * Describes the progress of the operation. Unit of work is generic and must be interpreted based on where Progress is used.
    */

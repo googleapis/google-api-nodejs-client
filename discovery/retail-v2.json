@@ -2282,7 +2282,7 @@
       }
     }
   },
-  "revision": "20250613",
+  "revision": "20250626",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -3753,6 +3753,10 @@
           },
           "type": "array"
         },
+        "inlineSource": {
+          "$ref": "GoogleCloudRetailV2IntentClassificationConfigInlineSource",
+          "description": "Optional. Inline source for intent classifications."
+        },
         "modelPreamble": {
           "description": "Optional. Customers can use the preamble to specify any requirements for blocklisting intent classification. This preamble will be added to the blocklisting intent classification model prompt.",
           "type": "string"
@@ -3764,6 +3768,10 @@
       "description": "An example for intent classification.",
       "id": "GoogleCloudRetailV2IntentClassificationConfigExample",
       "properties": {
+        "classifiedPositive": {
+          "description": "Required. Whether the example is classified positively.",
+          "type": "boolean"
+        },
         "intentType": {
           "description": "Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype",
           "type": "string"
@@ -3775,6 +3783,49 @@
         "reason": {
           "description": "Optional. The reason for the intent classification. This is used to explain the intent classification decision.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2IntentClassificationConfigInlineForceIntent": {
+      "description": "An inline force intent classification configuration.",
+      "id": "GoogleCloudRetailV2IntentClassificationConfigInlineForceIntent",
+      "properties": {
+        "intentType": {
+          "description": "Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype",
+          "type": "string"
+        },
+        "operation": {
+          "description": "Optional. The operation to perform for the query.",
+          "enum": [
+            "OPERATION_UNSPECIFIED",
+            "EXACT_MATCH",
+            "CONTAINS"
+          ],
+          "enumDescriptions": [
+            "Unspecified match operation.",
+            "Exact match.",
+            "Contains match."
+          ],
+          "type": "string"
+        },
+        "query": {
+          "description": "Optional. A example query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRetailV2IntentClassificationConfigInlineSource": {
+      "description": "Inline source for intent classifications.",
+      "id": "GoogleCloudRetailV2IntentClassificationConfigInlineSource",
+      "properties": {
+        "inlineForceIntents": {
+          "description": "Optional. A list of inline force intent classifications.",
+          "items": {
+            "$ref": "GoogleCloudRetailV2IntentClassificationConfigInlineForceIntent"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5378,6 +5429,13 @@
           "$ref": "GoogleCloudRetailV2SearchRequestTileNavigationSpec",
           "description": "Optional. This field specifies tile navigation related parameters."
         },
+        "userAttributes": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRetailV2StringList"
+          },
+          "description": "Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplcate keys are not allowed within a single query. Example: user_attributes: [ { key: \"pets\" value { values: \"dog\" values: \"cat\" } }, { key: \"state\" value { values: \"CA\" } } ]",
+          "type": "object"
+        },
         "userInfo": {
           "$ref": "GoogleCloudRetailV2UserInfo",
           "description": "User information."
@@ -6132,6 +6190,20 @@
       "description": "Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.",
       "id": "GoogleCloudRetailV2SetInventoryResponse",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudRetailV2StringList": {
+      "description": "A list of string values.",
+      "id": "GoogleCloudRetailV2StringList",
+      "properties": {
+        "values": {
+          "description": "String values.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudRetailV2Tile": {

@@ -2015,7 +2015,7 @@ export namespace networksecurity_v1beta1 {
     sources?: Schema$Source[];
   }
   /**
-   * Represents a Secure Access Connect (SAC) Attachment resource. A Secure Access Connect attachment enables NCC Gateway to process traffic with an SSE product.
+   * Represents a Secure Access Connect (SAC) attachment resource. A Secure Access Connect attachment enables NCC Gateway to process traffic with an SSE product.
    */
   export interface Schema$SACAttachment {
     /**
@@ -2064,7 +2064,7 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$SACAttachmentSACAttachmentSymantecOptions {
     /**
-     * Immutable. Name to be used when creating a location on the customer's behalf in Symantec's Location API. Not to be confused with GCP locations.
+     * Immutable. Name to be used when creating a location on the customer's behalf in Symantec's Location API. Not to be confused with Google Cloud locations.
      */
     symantecLocationName?: string | null;
     /**
@@ -2073,7 +2073,7 @@ export namespace networksecurity_v1beta1 {
     symantecSite?: string | null;
   }
   /**
-   * Represents a Secure Access Connect (SAC) Realm resource. A Secure Access Connect realm establishes a connection between your Google Cloud project and an SSE service.
+   * Represents a Secure Access Connect (SAC) realm resource. A Secure Access Connect realm establishes a connection between your Google Cloud project and an SSE service.
    */
   export interface Schema$SACRealm {
     /**

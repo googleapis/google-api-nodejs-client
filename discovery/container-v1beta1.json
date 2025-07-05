@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250603",
+  "revision": "20250617",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -6704,6 +6704,10 @@
           "format": "int64",
           "type": "string"
         },
+        "singleProcessOomKill": {
+          "description": "Optional. Defines whether to enable single process OOM killer. If true, will prevent the memory.oom.group flag from being set for container cgroups in cgroups v2. This causes processes in the container to be OOM killed individually instead of as a group.",
+          "type": "boolean"
+        },
         "topologyManager": {
           "$ref": "TopologyManager",
           "description": "Optional. Controls Topology Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/topology-manager/"
@@ -6790,6 +6794,11 @@
         },
         "podRange": {
           "description": "The ID of the secondary range for pod IPs. If `create_pod_range` is true, this ID is used for the new range. If `create_pod_range` is false, uses an existing secondary range with this ID. Only applicable if `ip_allocation_policy.use_ip_aliases` is true. This field cannot be changed after the node pool has been created.",
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Output only. The subnetwork path for the node pool. Format: projects/{project}/regions/{region}/subnetworks/{subnetwork} If the cluster is associated with multiple subnetworks, the subnetwork for the node pool is picked based on the IP utilization during node pool creation and is immutable.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8615,6 +8624,11 @@
       "description": "SoleTenantConfig contains the NodeAffinities to specify what shared sole tenant node groups should back the node pool.",
       "id": "SoleTenantConfig",
       "properties": {
+        "minNodeCpus": {
+          "description": "Optional. The minimum number of virtual CPUs this instance will consume when running on a sole-tenant node. This field can only be set if the node pool is created in a shared sole-tenant node group.",
+          "format": "int32",
+          "type": "integer"
+        },
         "nodeAffinities": {
           "description": "NodeAffinities used to match to a shared sole tenant node group.",
           "items": {
@@ -8772,7 +8786,8 @@
             "SET_BY_OPERATOR",
             "CLOUD_KMS_KEY_ERROR",
             "CA_EXPIRING",
-            "NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS"
+            "NODE_SERVICE_ACCOUNT_MISSING_PERMISSIONS",
+            "CLOUD_KMS_KEY_DESTROYED"
           ],
           "enumDescriptions": [
             "UNKNOWN indicates a generic condition.",
@@ -8782,7 +8797,8 @@
             "Cluster state was manually changed by an SRE due to a system logic error.",
             "Unable to perform an encrypt operation against the CloudKMS key used for etcd level encryption.",
             "Cluster CA is expiring soon.",
-            "Node service account is missing permissions."
+            "Node service account is missing permissions.",
+            "Cloud KMS key version used for etcd level encryption has been destroyed. This is a permanent error."
           ],
           "type": "string"
         },
