@@ -5356,7 +5356,7 @@
       }
     }
   },
-  "revision": "20250604",
+  "revision": "20250608",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -8332,7 +8332,7 @@
       "type": "object"
     },
     "SACAttachment": {
-      "description": "Represents a Secure Access Connect (SAC) Attachment resource. A Secure Access Connect attachment enables NCC Gateway to process traffic with an SSE product.",
+      "description": "Represents a Secure Access Connect (SAC) attachment resource. A Secure Access Connect attachment enables NCC Gateway to process traffic with an SSE product.",
       "id": "SACAttachment",
       "properties": {
         "country": {
@@ -8403,7 +8403,7 @@
       "id": "SACAttachmentSACAttachmentSymantecOptions",
       "properties": {
         "symantecLocationName": {
-          "description": "Immutable. Name to be used when creating a location on the customer's behalf in Symantec's Location API. Not to be confused with GCP locations.",
+          "description": "Immutable. Name to be used when creating a location on the customer's behalf in Symantec's Location API. Not to be confused with Google Cloud locations.",
           "type": "string"
         },
         "symantecSite": {
@@ -8414,7 +8414,7 @@
       "type": "object"
     },
     "SACRealm": {
-      "description": "Represents a Secure Access Connect (SAC) Realm resource. A Secure Access Connect realm establishes a connection between your Google Cloud project and an SSE service.",
+      "description": "Represents a Secure Access Connect (SAC) realm resource. A Secure Access Connect realm establishes a connection between your Google Cloud project and an SSE service.",
       "id": "SACRealm",
       "properties": {
         "createTime": {
