@@ -261,7 +261,7 @@ export namespace cloudasset_v1p7beta1 {
      */
     dataset?: string | null;
     /**
-     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMEMT error.
+     * If the destination table already exists and this flag is `TRUE`, the table will be overwritten by the contents of assets snapshot. If the flag is `FALSE` or unset and the destination table already exists, the export call returns an INVALID_ARGUMENT error.
      */
     force?: boolean | null;
     /**
