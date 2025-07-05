@@ -2249,6 +2249,19 @@ export namespace dlp_v2 {
     fileOffset?: string | null;
   }
   /**
+   * A domain represents a thematic category that a data profile can fall under.
+   */
+  export interface Schema$GooglePrivacyDlpV2Domain {
+    /**
+     * A domain category that this profile is related to.
+     */
+    category?: string | null;
+    /**
+     * The collection of signals that influenced selection of the category.
+     */
+    signals?: string[] | null;
+  }
+  /**
    * An entity in a dataset is a field or set of fields that correspond to a single person. For example, in medical records the `EntityId` might be a patient identifier, or for financial records it might be an account identifier. This message is used when generalizations or analysis must take into account that multiple rows correspond to the same entity.
    */
   export interface Schema$GooglePrivacyDlpV2EntityId {
@@ -2478,6 +2491,10 @@ export namespace dlp_v2 {
      * For resources that have multiple storage locations, these are those regions. For Cloud Storage this is the list of regions chosen for dual-region storage. `file_store_location` will normally be the corresponding multi-region for the list of individual locations. The first region is always picked as the processing and storage location for the data profile.
      */
     dataStorageLocations?: string[] | null;
+    /**
+     * Domains associated with the profile.
+     */
+    domains?: Schema$GooglePrivacyDlpV2Domain[];
     /**
      * FileClusterSummary per each cluster.
      */
@@ -4797,6 +4814,10 @@ export namespace dlp_v2 {
      */
     dataSourceType?: Schema$GooglePrivacyDlpV2DataSourceType;
     /**
+     * Domains associated with the profile.
+     */
+    domains?: Schema$GooglePrivacyDlpV2Domain[];
+    /**
      * How the table is encrypted.
      */
     encryptionStatus?: string | null;
@@ -4869,7 +4890,7 @@ export namespace dlp_v2 {
      */
     sensitivityScore?: Schema$GooglePrivacyDlpV2SensitivityScore;
     /**
-     * State of a profile.
+     * State of a profile. This will always be set to DONE when the table data profile is written to another service like BigQuery or Pub/Sub.
      */
     state?: string | null;
     /**
@@ -10980,6 +11001,7 @@ export namespace dlp_v2 {
      *   //   "dataRiskLevel": {},
      *   //   "dataSourceType": {},
      *   //   "dataStorageLocations": [],
+     *   //   "domains": [],
      *   //   "fileClusterSummaries": [],
      *   //   "fileStoreInfoTypeSummaries": [],
      *   //   "fileStoreIsEmpty": false,
@@ -14508,6 +14530,7 @@ export namespace dlp_v2 {
      *   //   "datasetId": "my_datasetId",
      *   //   "datasetLocation": "my_datasetLocation",
      *   //   "datasetProjectId": "my_datasetProjectId",
+     *   //   "domains": [],
      *   //   "encryptionStatus": "my_encryptionStatus",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "failedColumnCount": "my_failedColumnCount",
@@ -24754,6 +24777,7 @@ export namespace dlp_v2 {
      *   //   "dataRiskLevel": {},
      *   //   "dataSourceType": {},
      *   //   "dataStorageLocations": [],
+     *   //   "domains": [],
      *   //   "fileClusterSummaries": [],
      *   //   "fileStoreInfoTypeSummaries": [],
      *   //   "fileStoreIsEmpty": false,
@@ -28791,6 +28815,7 @@ export namespace dlp_v2 {
      *   //   "datasetId": "my_datasetId",
      *   //   "datasetLocation": "my_datasetLocation",
      *   //   "datasetProjectId": "my_datasetProjectId",
+     *   //   "domains": [],
      *   //   "encryptionStatus": "my_encryptionStatus",
      *   //   "expirationTime": "my_expirationTime",
      *   //   "failedColumnCount": "my_failedColumnCount",
