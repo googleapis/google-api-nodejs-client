@@ -632,6 +632,19 @@ export namespace drive_v3 {
     restrictedForWriters?: boolean | null;
   }
   /**
+   * Download restrictions applied to the file.
+   */
+  export interface Schema$DownloadRestrictionsMetadata {
+    /**
+     * The effective download restriction applied to this file. This considers all restriction settings and DLP rules.
+     */
+    effectiveDownloadRestrictionWithContext?: Schema$DownloadRestriction;
+    /**
+     * The download restriction of the file applied directly by the owner or organizer. This does not take into account shared drive settings or DLP rules.
+     */
+    itemDownloadRestriction?: Schema$DownloadRestriction;
+  }
+  /**
    * Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.
    */
   export interface Schema$Drive {
@@ -655,6 +668,7 @@ export namespace drive_v3 {
       canAddChildren?: boolean;
       canChangeCopyRequiresWriterPermissionRestriction?: boolean;
       canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeDownloadRestriction?: boolean;
       canChangeDriveBackground?: boolean;
       canChangeDriveMembersOnlyRestriction?: boolean;
       canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
@@ -752,6 +766,7 @@ export namespace drive_v3 {
       canAddFolderFromAnotherDrive?: boolean;
       canAddMyDriveParent?: boolean;
       canChangeCopyRequiresWriterPermission?: boolean;
+      canChangeItemDownloadRestriction?: boolean;
       canChangeSecurityUpdateEnabled?: boolean;
       canChangeViewersCanCopyContent?: boolean;
       canComment?: boolean;
@@ -814,6 +829,10 @@ export namespace drive_v3 {
      * A short description of the file.
      */
     description?: string | null;
+    /**
+     * Download restrictions applied on the file.
+     */
+    downloadRestrictions?: Schema$DownloadRestrictionsMetadata;
     /**
      * Output only. ID of the shared drive the file resides in. Only populated for items in shared drives.
      */
@@ -1625,6 +1644,7 @@ export namespace drive_v3 {
       canAddChildren?: boolean;
       canChangeCopyRequiresWriterPermissionRestriction?: boolean;
       canChangeDomainUsersOnlyRestriction?: boolean;
+      canChangeDownloadRestriction?: boolean;
       canChangeSharingFoldersRequiresOrganizerPermissionRestriction?: boolean;
       canChangeTeamDriveBackground?: boolean;
       canChangeTeamMembersOnlyRestriction?: boolean;
@@ -5632,6 +5652,7 @@ export namespace drive_v3 {
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
+     *       //   "downloadRestrictions": {},
      *       //   "driveId": "my_driveId",
      *       //   "explicitlyTrashed": false,
      *       //   "exportLinks": {},
@@ -5702,6 +5723,7 @@ export namespace drive_v3 {
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
+     *   //   "downloadRestrictions": {},
      *   //   "driveId": "my_driveId",
      *   //   "explicitlyTrashed": false,
      *   //   "exportLinks": {},
@@ -5920,6 +5942,7 @@ export namespace drive_v3 {
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
+     *       //   "downloadRestrictions": {},
      *       //   "driveId": "my_driveId",
      *       //   "explicitlyTrashed": false,
      *       //   "exportLinks": {},
@@ -5994,6 +6017,7 @@ export namespace drive_v3 {
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
+     *   //   "downloadRestrictions": {},
      *   //   "driveId": "my_driveId",
      *   //   "explicitlyTrashed": false,
      *   //   "exportLinks": {},
@@ -6913,6 +6937,7 @@ export namespace drive_v3 {
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
+     *   //   "downloadRestrictions": {},
      *   //   "driveId": "my_driveId",
      *   //   "explicitlyTrashed": false,
      *   //   "exportLinks": {},
@@ -7614,6 +7639,7 @@ export namespace drive_v3 {
      *       //   "copyRequiresWriterPermission": false,
      *       //   "createdTime": "my_createdTime",
      *       //   "description": "my_description",
+     *       //   "downloadRestrictions": {},
      *       //   "driveId": "my_driveId",
      *       //   "explicitlyTrashed": false,
      *       //   "exportLinks": {},
@@ -7688,6 +7714,7 @@ export namespace drive_v3 {
      *   //   "copyRequiresWriterPermission": false,
      *   //   "createdTime": "my_createdTime",
      *   //   "description": "my_description",
+     *   //   "downloadRestrictions": {},
      *   //   "driveId": "my_driveId",
      *   //   "explicitlyTrashed": false,
      *   //   "exportLinks": {},

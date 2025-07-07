@@ -2806,7 +2806,7 @@
       }
     }
   },
-  "revision": "20250511",
+  "revision": "20250701",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3458,6 +3458,21 @@
       },
       "type": "object"
     },
+    "DownloadRestrictionsMetadata": {
+      "description": "Download restrictions applied to the file.",
+      "id": "DownloadRestrictionsMetadata",
+      "properties": {
+        "effectiveDownloadRestrictionWithContext": {
+          "$ref": "DownloadRestriction",
+          "description": "The effective download restriction applied to this file. This considers all restriction settings and DLP rules."
+        },
+        "itemDownloadRestriction": {
+          "$ref": "DownloadRestriction",
+          "description": "The download restriction of the file applied directly by the owner or organizer. This does not take into account shared drive settings or DLP rules."
+        }
+      },
+      "type": "object"
+    },
     "Drive": {
       "description": "Representation of a shared drive. Some resource methods (such as `drives.update`) require a `driveId`. Use the `drives.list` method to retrieve the ID for a shared drive.",
       "id": "Drive",
@@ -3504,6 +3519,10 @@
             },
             "canChangeDomainUsersOnlyRestriction": {
               "description": "Output only. Whether the current user can change the `domainUsersOnly` restriction of this shared drive.",
+              "type": "boolean"
+            },
+            "canChangeDownloadRestriction": {
+              "description": "Output only. Whether the current user can change organizer-applied download restrictions of this shared drive.",
               "type": "boolean"
             },
             "canChangeDriveBackground": {
@@ -3699,6 +3718,10 @@
             },
             "canChangeCopyRequiresWriterPermission": {
               "description": "Output only. Whether the current user can change the `copyRequiresWriterPermission` restriction of this file.",
+              "type": "boolean"
+            },
+            "canChangeItemDownloadRestriction": {
+              "description": "Output only. Whether the current user can change the owner-applied download restrictions of the file.",
               "type": "boolean"
             },
             "canChangeSecurityUpdateEnabled": {
@@ -3909,6 +3932,10 @@
         "description": {
           "description": "A short description of the file.",
           "type": "string"
+        },
+        "downloadRestrictions": {
+          "$ref": "DownloadRestrictionsMetadata",
+          "description": "Download restrictions applied on the file."
         },
         "driveId": {
           "description": "Output only. ID of the shared drive the file resides in. Only populated for items in shared drives.",
@@ -5127,6 +5154,10 @@
             },
             "canChangeDomainUsersOnlyRestriction": {
               "description": "Whether the current user can change the `domainUsersOnly` restriction of this Team Drive.",
+              "type": "boolean"
+            },
+            "canChangeDownloadRestriction": {
+              "description": "Whether the current user can change organizer-applied download restrictions of this shared drive.",
               "type": "boolean"
             },
             "canChangeSharingFoldersRequiresOrganizerPermissionRestriction": {
