@@ -101,6 +101,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://europe-west10-aiplatform.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://europe-west2-aiplatform.googleapis.com/",
       "location": "europe-west2"
     },
@@ -20390,6 +20395,11 @@
                             "parent"
                           ],
                           "parameters": {
+                            "filter": {
+                              "description": "Optional. The standard list filter. Supported fields: * `timestamp` range (i.e. `timestamp>=\"2025-01-31T11:30:00-04:00\"` where the timestamp is in RFC 3339 format) More detail in [AIP-160](https://google.aip.dev/160).",
+                              "location": "query",
+                              "type": "string"
+                            },
                             "pageSize": {
                               "description": "Optional. The maximum number of events to return. The service may return fewer than this value. If unspecified, at most 100 events will be returned. These events are ordered by timestamp in ascending order.",
                               "format": "int32",
@@ -25213,6 +25223,11 @@
                     "parent"
                   ],
                   "parameters": {
+                    "filter": {
+                      "description": "Optional. The standard list filter. Supported fields: * `timestamp` range (i.e. `timestamp>=\"2025-01-31T11:30:00-04:00\"` where the timestamp is in RFC 3339 format) More detail in [AIP-160](https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The maximum number of events to return. The service may return fewer than this value. If unspecified, at most 100 events will be returned. These events are ordered by timestamp in ascending order.",
                       "format": "int32",
@@ -25247,7 +25262,7 @@
       }
     }
   },
-  "revision": "20250613",
+  "revision": "20250701",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -29477,6 +29492,10 @@
           },
           "type": "array"
         },
+        "flexStart": {
+          "$ref": "GoogleCloudAiplatformV1beta1FlexStart",
+          "description": "Optional. Immutable. If set, use DWS resource to schedule the deployment workload. reference: (https://cloud.google.com/blog/products/compute/introducing-dynamic-workload-scheduler)"
+        },
         "machineSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1MachineSpec",
           "description": "Required. Immutable. The specification of a single machine being used."
@@ -31161,6 +31180,14 @@
         "branch": {
           "description": "Optional. The branch of the event. The format is like agent_1.agent_2.agent_3, where agent_1 is the parent of agent_2, and agent_2 is the parent of agent_3. Branch is used when multiple child agents shouldn't see their siblings' conversation history.",
           "type": "string"
+        },
+        "customMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "The custom metadata of the LlmResponse.",
+          "type": "object"
         },
         "groundingMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingMetadata",
@@ -33386,7 +33413,7 @@
       "id": "GoogleCloudAiplatformV1beta1FeatureValueMetadata",
       "properties": {
         "generateTime": {
-          "description": "Feature generation timestamp. Typically, it is provided by user at feature ingestion time. If not, feature store will use the system timestamp when the data is ingested into feature store. For streaming ingestion, the time, aligned by days, must be no older than five years (1825 days) and no later than one year (366 days) in the future.",
+          "description": "Feature generation timestamp. Typically, it is provided by user at feature ingestion time. If not, feature store will use the system timestamp when the data is ingested into feature store. Legacy Feature Store: For streaming ingestion, the time, aligned by days, must be no older than five years (1825 days) and no later than one year (366 days) in the future.",
           "format": "google-datetime",
           "type": "string"
         }
@@ -34462,6 +34489,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1FlexStart": {
+      "description": "FlexStart is used to schedule the deployment workload on DWS resource. It contains the max duration of the deployment.",
+      "id": "GoogleCloudAiplatformV1beta1FlexStart",
+      "properties": {
+        "maxRuntimeDuration": {
+          "description": "The max duration of the deployment is max_runtime_duration. The deployment will be terminated after the duration. The max_runtime_duration can be set up to 7 days.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1FluencyInput": {
       "description": "Input for fluency metric.",
       "id": "GoogleCloudAiplatformV1beta1FluencyInput",
@@ -35448,7 +35487,7 @@
           "type": "boolean"
         },
         "thinkingBudget": {
-          "description": "Optional. Indicates the thinking budget in tokens. This is only applied when enable_thinking is true.",
+          "description": "Optional. Indicates the thinking budget in tokens.",
           "format": "int32",
           "type": "integer"
         }
@@ -38442,7 +38481,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1Metric": {
-      "description": "The metric used for dataset level evaluation.",
+      "description": "The metric used for running evaluations.",
       "id": "GoogleCloudAiplatformV1beta1Metric",
       "properties": {
         "aggregationMetrics": {
@@ -39117,7 +39156,7 @@
           "type": "string"
         },
         "invokeRoutePrefix": {
-          "description": "Immutable. Invoke route prefix for the custom container. \"/*\" is the only supported value right now. By setting this field, any non-root route on this model will be accessible with [PredictionService.Invoke] eg: \"/invoke/foo/bar\". Only one of `predict_route` or `invoke_route_prefix` can be set, and we default to using `predict_route` if this field is not set. If this field is set, the Model can only be deployed to dedicated endpoint.",
+          "description": "Immutable. Invoke route prefix for the custom container. \"/*\" is the only supported value right now. By setting this field, any non-root route on this model will be accessible with invoke http call eg: \"/invoke/foo/bar\", however the [PredictionService.Invoke] RPC is not supported yet. Only one of `predict_route` or `invoke_route_prefix` can be set, and we default to using `predict_route` if this field is not set. If this field is set, the Model can only be deployed to dedicated endpoint.",
           "type": "string"
         },
         "livenessProbe": {
@@ -42189,7 +42228,7 @@
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1PSCAutomationConfig": {
-      "description": "PSC config that is used to automatically create forwarding rule via ServiceConnectionMap.",
+      "description": "PSC config that is used to automatically create PSC endpoints in the user projects.",
       "id": "GoogleCloudAiplatformV1beta1PSCAutomationConfig",
       "properties": {
         "errorMessage": {
@@ -42208,7 +42247,7 @@
           "type": "string"
         },
         "network": {
-          "description": "Required. The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/insert): `projects/{project}/global/networks/{network}`. Where {project} is a project number, as in '12345', and {network} is network name.",
+          "description": "Required. The full name of the Google Compute Engine [network](https://cloud.google.com/compute/docs/networks-and-firewalls#networks). [Format](https://cloud.google.com/compute/docs/reference/rest/v1/networks/get): `projects/{project}/global/networks/{network}`.",
           "type": "string"
         },
         "projectId": {
@@ -43114,6 +43153,11 @@
           "description": "Output only. The user specified name of the task that is defined in pipeline_spec.",
           "readOnly": true,
           "type": "string"
+        },
+        "taskUniqueName": {
+          "description": "Output only. The unique name of a task. This field is used by rerun pipeline job. Console UI and Vertex AI SDK will support triggering pipeline job reruns. The name is constructed by concatenating all the parent tasks name with the task name. For example, if a task named \"child_task\" has a parent task named \"parent_task_1\" and parent task 1 has a parent task named \"parent_task_2\", the task unique name will be \"parent_task_2.parent_task_1.child_task\".",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -43678,6 +43722,13 @@
           "description": "A list of Projects from which the forwarding rule will target the service attachment.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "pscAutomationConfigs": {
+          "description": "Optional. List of projects and networks where the PSC endpoints will be created. This field is used by Online Inference(Prediction) only.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1PSCAutomationConfig"
           },
           "type": "array"
         },
@@ -46074,7 +46125,7 @@
       "id": "GoogleCloudAiplatformV1beta1ReasoningEngineContextSpecMemoryBankConfigGenerationConfig",
       "properties": {
         "model": {
-          "description": "Required. The model used to generate memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}` or `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "description": "Required. The model used to generate memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}`.",
           "type": "string"
         }
       },
@@ -46085,7 +46136,7 @@
       "id": "GoogleCloudAiplatformV1beta1ReasoningEngineContextSpecMemoryBankConfigSimilaritySearchConfig",
       "properties": {
         "embeddingModel": {
-          "description": "Required. The model used to generate embeddings to lookup similar memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}` or `projects/{project}/locations/{location}/endpoints/{endpoint}`.",
+          "description": "Required. The model used to generate embeddings to lookup similar memories. Format: `projects/{project}/locations/{location}/publishers/google/models/{model}`.",
           "type": "string"
         }
       },
@@ -55809,7 +55860,7 @@
           "type": "string"
         },
         "model": {
-          "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}`.",
+          "description": "Output only. The resource name of the TunedModel. Format: `projects/{project}/locations/{location}/models/{model}@{version_id}` When tuning from a base model, the version_id will be 1. For continuous tuning, the version id will be incremented by 1 from the last version id in the parent model. E.g., `projects/{project}/locations/{location}/models/{model}@{last_version_id + 1}`",
           "readOnly": true,
           "type": "string"
         }
