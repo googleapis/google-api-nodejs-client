@@ -550,6 +550,43 @@ export namespace merchantapi_accounts_v1beta {
     percentageAdjustment?: string | null;
   }
   /**
+   * [CheckoutSettings](https://support.google.com/merchants/answer/13945960) for a specific merchant.
+   */
+  export interface Schema$CheckoutSettings {
+    /**
+     * Output only. The effective value of enrollment_state for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).
+     */
+    effectiveEnrollmentState?: string | null;
+    /**
+     * Output only. The effective value of `review_state` for a given merchant ID. If account level settings are present then this value will be a copy of the account level settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).
+     */
+    effectiveReviewState?: string | null;
+    /**
+     * Output only. The effective value of `uri_settings` for a given merchant. If account level settings are present then this value will be a copy of url settings. Otherwise, it will have the value of the parent account (for only marketplace sellers).
+     */
+    effectiveUriSettings?: Schema$UriSettings;
+    /**
+     * Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`
+     */
+    eligibleDestinations?: string[] | null;
+    /**
+     * Output only. Reflects the merchant enrollment state in `Checkout` program.
+     */
+    enrollmentState?: string | null;
+    /**
+     * Identifier. The resource name of the program configuration settings. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     */
+    name?: string | null;
+    /**
+     * Output only. Reflects the merchant review state in `Checkout` program. This is set based on the data quality reviews of the URL provided by the merchant. A merchant with enrollment state as `ENROLLED` can be in the following review states: `IN_REVIEW`, `APPROVED` or `DISAPPROVED`. A merchant must be in an `enrollment_state` of `ENROLLED` before a review can begin for the merchant.For more details, check the help center doc.
+     */
+    reviewState?: string | null;
+    /**
+     * URI settings for cart or checkout URL.
+     */
+    uriSettings?: Schema$UriSettings;
+  }
+  /**
    * Request message for the `ClaimHomepage` method.
    */
   export interface Schema$ClaimHomepageRequest {
@@ -1974,6 +2011,19 @@ export namespace merchantapi_accounts_v1beta {
    * Request message for the `UnclaimHomepage` method.
    */
   export interface Schema$UnclaimHomepageRequest {}
+  /**
+   * URL settings for cart or checkout URL.
+   */
+  export interface Schema$UriSettings {
+    /**
+     * Cart URL template. When the placeholders are expanded will redirect the buyer to the cart page on the merchant website with the selected item in cart. For more details, check the [help center doc](https://support.google.com/merchants/answer/13945960#method1&zippy=%2Cproduct-level-url-formatting%2Caccount-level-url-formatting)
+     */
+    cartUriTemplate?: string | null;
+    /**
+     * Checkout URL template. When the placeholders are expanded will redirect the buyer to the merchant checkout page with the item in the cart. For more details, check the [help center doc](https://support.google.com/merchants/answer/13945960#method1&zippy=%2Cproduct-level-url-formatting%2Caccount-level-url-formatting)
+     */
+    checkoutUriTemplate?: string | null;
+  }
   /**
    * The `User` message represents a user associated with a Merchant Center account. It is used to manage user permissions and access rights within the account. For more information, see [Frequently asked questions about people and access levels](//support.google.com/merchants/answer/12160472).
    */
@@ -7918,8 +7968,12 @@ export namespace merchantapi_accounts_v1beta {
 
   export class Resource$Accounts$Programs {
     context: APIRequestContext;
+    checkoutSettings: Resource$Accounts$Programs$Checkoutsettings;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.checkoutSettings = new Resource$Accounts$Programs$Checkoutsettings(
+        this.context
+      );
     }
 
     /**
@@ -8547,6 +8601,669 @@ export namespace merchantapi_accounts_v1beta {
      * Required. The name of the account for which to retrieve all programs. Format: `accounts/{account\}`
      */
     parent?: string;
+  }
+
+  export class Resource$Accounts$Programs$Checkoutsettings {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates `CheckoutSettings` for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.programs.checkoutSettings.create({
+     *     // Required. The merchant account for which the `CheckoutSettings` will be created.
+     *     parent: 'accounts/my-account/programs/my-program',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *       //   "effectiveReviewState": "my_effectiveReviewState",
+     *       //   "effectiveUriSettings": {},
+     *       //   "eligibleDestinations": [],
+     *       //   "enrollmentState": "my_enrollmentState",
+     *       //   "name": "my_name",
+     *       //   "reviewState": "my_reviewState",
+     *       //   "uriSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "eligibleDestinations": [],
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "name": "my_name",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Accounts$Programs$Checkoutsettings$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>;
+    create(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    create(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Create,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$CheckoutSettings>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Programs$Checkoutsettings$Create
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Programs$Checkoutsettings$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Programs$Checkoutsettings$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1beta/{+parent}/checkoutSettings'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+
+    /**
+     * Deletes `CheckoutSettings` and unenrolls merchant from `Checkout` program.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.programs.checkoutSettings.deleteCheckoutSettings(
+     *       {
+     *         // Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     *         name: 'accounts/my-account/programs/my-program/checkoutSettings',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deleteCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deleteCheckoutSettings(
+      params?: Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    deleteCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deleteCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    deleteCheckoutSettings(callback: BodyResponseCallback<Schema$Empty>): void;
+    deleteCheckoutSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets `CheckoutSettings` for the given merchant. This includes information about review state, enrollment state and URL settings.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.programs.checkoutSettings.getCheckoutSettings({
+     *       // Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     *       name: 'accounts/my-account/programs/my-program/checkoutSettings',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "eligibleDestinations": [],
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "name": "my_name",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getCheckoutSettings(
+      params?: Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>;
+    getCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    getCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    getCheckoutSettings(
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    getCheckoutSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+
+    /**
+     * Updates `CheckoutSettings` for the given merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.programs.checkoutSettings.updateCheckoutSettings(
+     *       {
+     *         // Identifier. The resource name of the program configuration settings. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     *         name: 'accounts/my-account/programs/my-program/checkoutSettings',
+     *         // Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `eligible_destinations` - `uri_settings`
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *           //   "effectiveReviewState": "my_effectiveReviewState",
+     *           //   "effectiveUriSettings": {},
+     *           //   "eligibleDestinations": [],
+     *           //   "enrollmentState": "my_enrollmentState",
+     *           //   "name": "my_name",
+     *           //   "reviewState": "my_reviewState",
+     *           //   "uriSettings": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveEnrollmentState": "my_effectiveEnrollmentState",
+     *   //   "effectiveReviewState": "my_effectiveReviewState",
+     *   //   "effectiveUriSettings": {},
+     *   //   "eligibleDestinations": [],
+     *   //   "enrollmentState": "my_enrollmentState",
+     *   //   "name": "my_name",
+     *   //   "reviewState": "my_reviewState",
+     *   //   "uriSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateCheckoutSettings(
+      params?: Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>;
+    updateCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings,
+      options: MethodOptions | BodyResponseCallback<Schema$CheckoutSettings>,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    updateCheckoutSettings(
+      params: Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings,
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    updateCheckoutSettings(
+      callback: BodyResponseCallback<Schema$CheckoutSettings>
+    ): void;
+    updateCheckoutSettings(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckoutSettings>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckoutSettings>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckoutSettings>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckoutSettings>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Create
+    extends StandardParameters {
+    /**
+     * Required. The merchant account for which the `CheckoutSettings` will be created.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckoutSettings;
+  }
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Deletecheckoutsettings
+    extends StandardParameters {
+    /**
+     * Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Getcheckoutsettings
+    extends StandardParameters {
+    /**
+     * Required. The name/identifier of the merchant account. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Accounts$Programs$Checkoutsettings$Updatecheckoutsettings
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the program configuration settings. Format: `accounts/{account\}/programs/{program\}/checkoutSettings`
+     */
+    name?: string;
+    /**
+     * Required. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `eligible_destinations` - `uri_settings`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckoutSettings;
   }
 
   export class Resource$Accounts$Regions {
