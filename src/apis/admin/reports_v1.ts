@@ -512,7 +512,7 @@ export namespace admin_reports_v1 {
      */
     kind?: string | null;
     /**
-     * Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](https://developers.google.com/workspace/admin/reports/v1/reference/usage-ref-appendix-a/entities).
+     * Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](/admin-sdk/reports/v1/reference/usage-ref-appendix-a/entities).
      */
     parameters?: Array<{
       boolValue?: boolean;
