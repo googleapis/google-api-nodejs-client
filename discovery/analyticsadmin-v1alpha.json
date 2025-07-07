@@ -907,6 +907,32 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "getReportingIdentitySettings": {
+          "description": "Returns the singleton data retention settings for this property.",
+          "flatPath": "v1alpha/properties/{propertiesId}/reportingIdentitySettings",
+          "httpMethod": "GET",
+          "id": "analyticsadmin.properties.getReportingIdentitySettings",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the settings to lookup. Format: properties/{property}/reportingIdentitySettings Example: \"properties/1000/reportingIdentitySettings\"",
+              "location": "path",
+              "pattern": "^properties/[^/]+/reportingIdentitySettings$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}",
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaReportingIdentitySettings"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit",
+            "https://www.googleapis.com/auth/analytics.readonly"
+          ]
+        },
         "list": {
           "description": "Returns child Properties under the specified parent Account. Properties will be excluded if the caller does not have access. Soft-deleted (ie: \"trashed\") properties are excluded by default. Returns an empty list if no relevant properties are found.",
           "flatPath": "v1alpha/properties",
@@ -5146,7 +5172,7 @@
       }
     }
   },
-  "revision": "20250615",
+  "revision": "20250625",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -6533,6 +6559,10 @@
         "reportingDataAnnotation": {
           "$ref": "GoogleAnalyticsAdminV1alphaReportingDataAnnotation",
           "description": "A snapshot of a ReportingDataAnnotation resource in change history."
+        },
+        "reportingIdentitySettings": {
+          "$ref": "GoogleAnalyticsAdminV1alphaReportingIdentitySettings",
+          "description": "A snapshot of a ReportingIdentitySettings resource in change history."
         },
         "searchAds360Link": {
           "$ref": "GoogleAnalyticsAdminV1alphaSearchAds360Link",
@@ -8960,6 +8990,34 @@
       },
       "type": "object"
     },
+    "GoogleAnalyticsAdminV1alphaReportingIdentitySettings": {
+      "description": "A resource containing settings related to reporting identity.",
+      "id": "GoogleAnalyticsAdminV1alphaReportingIdentitySettings",
+      "properties": {
+        "name": {
+          "description": "Output only. Identifier. Resource name for this reporting identity settings singleton resource. Format: properties/{property_id}/reportingIdentitySettings Example: \"properties/1234/reportingIdentitySettings\"",
+          "readOnly": true,
+          "type": "string"
+        },
+        "reportingIdentity": {
+          "description": "The strategy used for identifying user identities in reports.",
+          "enum": [
+            "IDENTITY_BLENDING_STRATEGY_UNSPECIFIED",
+            "BLENDED",
+            "OBSERVED",
+            "DEVICE_BASED"
+          ],
+          "enumDescriptions": [
+            "Unspecified blending strategy.",
+            "Blended reporting identity strategy.",
+            "Observed reporting identity strategy.",
+            "Device-based reporting identity strategy."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink": {
       "description": "A link that references a source property under the parent rollup property.",
       "id": "GoogleAnalyticsAdminV1alphaRollupPropertySourceLink",
@@ -9232,7 +9290,8 @@
               "KEY_EVENT",
               "CALCULATED_METRIC",
               "REPORTING_DATA_ANNOTATION",
-              "SUBPROPERTY_SYNC_CONFIG"
+              "SUBPROPERTY_SYNC_CONFIG",
+              "REPORTING_IDENTITY_SETTINGS"
             ],
             "enumDescriptions": [
               "Resource type unknown or not specified.",
@@ -9263,7 +9322,8 @@
               "KeyEvent resource",
               "CalculatedMetric resource",
               "ReportingDataAnnotation resource",
-              "SubpropertySyncConfig resource"
+              "SubpropertySyncConfig resource",
+              "ReportingIdentitySettings resource"
             ],
             "type": "string"
           },
