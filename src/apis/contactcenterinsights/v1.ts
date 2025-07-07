@@ -2940,7 +2940,7 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1AuthorizedView {
     /**
-     * A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations liked to the conversation) that this AuthorizedView has.
+     * A filter to reduce conversation results to a specific subset. The AuthorizedView's assigned permission (read/write) could be applied to the subset of conversations. If conversation_filter is empty, there is no restriction on the conversations that the AuthorizedView can access. Having *authorizedViews.get* access to the AuthorizedView means having the same read/write access to the Conversations (as well as metadata/annotations linked to the conversation) that this AuthorizedView has.
      */
     conversationFilter?: string | null;
     /**
