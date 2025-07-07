@@ -25,6 +25,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://apigee.eu.rep.googleapis.com/",
       "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://apigee.in.rep.googleapis.com/",
+      "location": "in"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -11122,7 +11127,7 @@
       }
     }
   },
-  "revision": "20250622",
+  "revision": "20250701",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
