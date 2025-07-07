@@ -8602,7 +8602,7 @@
       }
     }
   },
-  "revision": "20250617",
+  "revision": "20250627",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -9614,7 +9614,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM).",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). LINT: LEGACY_NAMES",
             "[`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
@@ -12060,7 +12060,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM).",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). LINT: LEGACY_NAMES",
             "[`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
@@ -17472,7 +17472,7 @@
           "type": "array"
         },
         "sdp": {
-          "description": "Optional. SDP of the call. It's initially the SDP answer to the endpoint, but maybe later updated for the purpose of making the link active, etc.",
+          "description": "Optional. SDP of the call. It's initially the SDP answer to the incoming call, but maybe later updated for the purpose of making the link active, etc.",
           "type": "string"
         },
         "sipHeaders": {
@@ -18566,7 +18566,7 @@
       "id": "GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig",
       "properties": {
         "baselineModelVersion": {
-          "description": "Version of current baseline model. It will be ignored if model is set. Valid versions are: Article Suggestion baseline model: - 0.9 - 1.0 (default) Summarization baseline model: - 1.0",
+          "description": "Version of current baseline model. It will be ignored if model is set. Valid versions are: - Article Suggestion baseline model: - 0.9 - 1.0 (default) - Summarization baseline model: - 1.0",
           "type": "string"
         },
         "model": {
@@ -19099,7 +19099,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM).",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). LINT: LEGACY_NAMES",
             "[`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
@@ -21187,9 +21187,9 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header. LINT: LEGACY_NAMES",
             "MP3 audio at 32kbps.",
-            "MP3 audio at 64kbps.",
+            "MP3 audio at 64kbps. LINT: LEGACY_NAMES",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."
@@ -22177,7 +22177,7 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM).",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). LINT: LEGACY_NAMES",
             "[`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000.",
@@ -23041,9 +23041,9 @@
           ],
           "enumDescriptions": [
             "Not specified.",
-            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
+            "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header. LINT: LEGACY_NAMES",
             "MP3 audio at 32kbps.",
-            "MP3 audio at 64kbps.",
+            "MP3 audio at 64kbps. LINT: LEGACY_NAMES",
             "Opus encoded audio wrapped in an ogg container. The result will be a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
             "8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law.",
             "8-bit samples that compand 13-bit audio samples using G.711 PCMU/a-law."

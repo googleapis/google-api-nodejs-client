@@ -4718,7 +4718,7 @@ export namespace dialogflow_v2beta1 {
      */
     extraMimeContents?: Schema$GoogleCloudDialogflowV2beta1ConversationTelephonyConnectionInfoMimeContent[];
     /**
-     * Optional. SDP of the call. It's initially the SDP answer to the endpoint, but maybe later updated for the purpose of making the link active, etc.
+     * Optional. SDP of the call. It's initially the SDP answer to the incoming call, but maybe later updated for the purpose of making the link active, etc.
      */
     sdp?: string | null;
     /**
@@ -5507,7 +5507,7 @@ export namespace dialogflow_v2beta1 {
    */
   export interface Schema$GoogleCloudDialogflowV2beta1HumanAgentAssistantConfigConversationModelConfig {
     /**
-     * Version of current baseline model. It will be ignored if model is set. Valid versions are: Article Suggestion baseline model: - 0.9 - 1.0 (default) Summarization baseline model: - 1.0
+     * Version of current baseline model. It will be ignored if model is set. Valid versions are: - Article Suggestion baseline model: - 0.9 - 1.0 (default) - Summarization baseline model: - 1.0
      */
     baselineModelVersion?: string | null;
     /**
