@@ -899,6 +899,10 @@ export namespace apihub_v1 {
      */
     environment?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
+     * Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API.
+     */
+    managementUrl?: Schema$GoogleCloudApihubV1AttributeValues;
+    /**
      * Identifier. The name of the deployment. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}`
      */
     name?: string | null;
@@ -911,9 +915,21 @@ export namespace apihub_v1 {
      */
     slo?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
+     * Optional. The environment at source for the deployment. For example: prod, dev, staging, etc.
+     */
+    sourceEnvironment?: string | null;
+    /**
      * Output only. The list of sources and metadata from the sources of the deployment.
      */
     sourceMetadata?: Schema$GoogleCloudApihubV1SourceMetadata[];
+    /**
+     * Optional. The project to which the deployment belongs. For GCP gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.
+     */
+    sourceProject?: string | null;
+    /**
+     * Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API.
+     */
+    sourceUri?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
      * Output only. The time at which the deployment was last updated.
      */
@@ -1538,6 +1554,10 @@ export namespace apihub_v1 {
      */
     documentation?: Schema$GoogleCloudApihubV1Documentation;
     /**
+     * Optional. The type of the gateway.
+     */
+    gatewayType?: string | null;
+    /**
      * Optional. This field is optional. It is used to notify the plugin hosting service for any lifecycle changes of the plugin instance and trigger execution of plugin instance actions in case of API hub managed actions. This field should be provided if the plugin instance lifecycle of the developed plugin needs to be managed from API hub. Also, in this case the plugin hosting service interface needs to be implemented. This field should not be provided if the plugin wants to manage plugin instance lifecycle events outside of hub interface and use plugin framework for only registering of plugin and plugin instances to capture the source of data into hub. Note, in this case the plugin hosting service interface is not required to be implemented. Also, the plugin instance lifecycle actions will be disabled from API hub's UI.
      */
     hostingService?: Schema$GoogleCloudApihubV1HostingService;
@@ -1622,6 +1642,10 @@ export namespace apihub_v1 {
      */
     name?: string | null;
     /**
+     * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This is a required field.
+     */
+    sourceProjectId?: string | null;
+    /**
      * Output only. The current state of the plugin instance (e.g., enabled, disabled, provisioning).
      */
     state?: string | null;
@@ -1647,6 +1671,10 @@ export namespace apihub_v1 {
      */
     hubInstanceAction?: Schema$GoogleCloudApihubV1ExecutionStatus;
     /**
+     * Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of Non-GCP plugins like OPDK.
+     */
+    resourceConfig?: Schema$GoogleCloudApihubV1ResourceConfig;
+    /**
      * Optional. The schedule for this plugin instance action. This can only be set if the plugin supports API_HUB_SCHEDULE_TRIGGER mode for this action.
      */
     scheduleCronExpression?: string | null;
@@ -1654,6 +1682,10 @@ export namespace apihub_v1 {
      * Optional. The time zone for the schedule cron expression. If not provided, UTC will be used.
      */
     scheduleTimeZone?: string | null;
+    /**
+     * Optional. The service account used to publish data. Note, the service account will only be accepted for non GCP plugins like OPDK.
+     */
+    serviceAccount?: string | null;
     /**
      * Output only. The current state of the plugin action in the plugin instance.
      */
@@ -1710,6 +1742,19 @@ export namespace apihub_v1 {
      * Required. Start of the issue.
      */
     start?: Schema$GoogleCloudApihubV1Point;
+  }
+  /**
+   * The configuration of resources created for a given plugin instance action.
+   */
+  export interface Schema$GoogleCloudApihubV1ResourceConfig {
+    /**
+     * Output only. The type of the action.
+     */
+    actionType?: string | null;
+    /**
+     * Output only. The pubsub topic to publish the data to. Format is projects/{project\}/topics/{topic\}
+     */
+    pubsubTopic?: string | null;
   }
   /**
    * Runtime project attachment represents an attachment from the runtime project to the host project. Api Hub looks for deployments in the attached runtime projects and creates corresponding resources in Api Hub for the discovered deployments.
@@ -10278,10 +10323,14 @@ export namespace apihub_v1 {
      *       //   "documentation": {},
      *       //   "endpoints": [],
      *       //   "environment": {},
+     *       //   "managementUrl": {},
      *       //   "name": "my_name",
      *       //   "resourceUri": "my_resourceUri",
      *       //   "slo": {},
+     *       //   "sourceEnvironment": "my_sourceEnvironment",
      *       //   "sourceMetadata": [],
+     *       //   "sourceProject": "my_sourceProject",
+     *       //   "sourceUri": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -10299,10 +10348,14 @@ export namespace apihub_v1 {
      *   //   "documentation": {},
      *   //   "endpoints": [],
      *   //   "environment": {},
+     *   //   "managementUrl": {},
      *   //   "name": "my_name",
      *   //   "resourceUri": "my_resourceUri",
      *   //   "slo": {},
+     *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
+     *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceUri": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -10587,10 +10640,14 @@ export namespace apihub_v1 {
      *   //   "documentation": {},
      *   //   "endpoints": [],
      *   //   "environment": {},
+     *   //   "managementUrl": {},
      *   //   "name": "my_name",
      *   //   "resourceUri": "my_resourceUri",
      *   //   "slo": {},
+     *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
+     *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceUri": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -10896,10 +10953,14 @@ export namespace apihub_v1 {
      *       //   "documentation": {},
      *       //   "endpoints": [],
      *       //   "environment": {},
+     *       //   "managementUrl": {},
      *       //   "name": "my_name",
      *       //   "resourceUri": "my_resourceUri",
      *       //   "slo": {},
+     *       //   "sourceEnvironment": "my_sourceEnvironment",
      *       //   "sourceMetadata": [],
+     *       //   "sourceProject": "my_sourceProject",
+     *       //   "sourceUri": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -10917,10 +10978,14 @@ export namespace apihub_v1 {
      *   //   "documentation": {},
      *   //   "endpoints": [],
      *   //   "environment": {},
+     *   //   "managementUrl": {},
      *   //   "name": "my_name",
      *   //   "resourceUri": "my_resourceUri",
      *   //   "slo": {},
+     *   //   "sourceEnvironment": "my_sourceEnvironment",
      *   //   "sourceMetadata": [],
+     *   //   "sourceProject": "my_sourceProject",
+     *   //   "sourceUri": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -13125,6 +13190,7 @@ export namespace apihub_v1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "documentation": {},
+     *       //   "gatewayType": "my_gatewayType",
      *       //   "hostingService": {},
      *       //   "name": "my_name",
      *       //   "ownershipType": "my_ownershipType",
@@ -13145,6 +13211,7 @@ export namespace apihub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
+     *   //   "gatewayType": "my_gatewayType",
      *   //   "hostingService": {},
      *   //   "name": "my_name",
      *   //   "ownershipType": "my_ownershipType",
@@ -13446,6 +13513,7 @@ export namespace apihub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
+     *   //   "gatewayType": "my_gatewayType",
      *   //   "hostingService": {},
      *   //   "name": "my_name",
      *   //   "ownershipType": "my_ownershipType",
@@ -13605,6 +13673,7 @@ export namespace apihub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
+     *   //   "gatewayType": "my_gatewayType",
      *   //   "hostingService": {},
      *   //   "name": "my_name",
      *   //   "ownershipType": "my_ownershipType",
@@ -13755,6 +13824,7 @@ export namespace apihub_v1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "documentation": {},
+     *   //   "gatewayType": "my_gatewayType",
      *   //   "hostingService": {},
      *   //   "name": "my_name",
      *   //   "ownershipType": "my_ownershipType",
@@ -14461,6 +14531,7 @@ export namespace apihub_v1 {
      *       //   "displayName": "my_displayName",
      *       //   "errorMessage": "my_errorMessage",
      *       //   "name": "my_name",
+     *       //   "sourceProjectId": "my_sourceProjectId",
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -15228,6 +15299,7 @@ export namespace apihub_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "errorMessage": "my_errorMessage",
      *   //   "name": "my_name",
+     *   //   "sourceProjectId": "my_sourceProjectId",
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -15489,6 +15561,179 @@ export namespace apihub_v1 {
         );
       }
     }
+
+    /**
+     * Updates a plugin instance in the API hub. The following fields in the plugin_instance can be updated currently: * display_name * schedule_cron_expression The update_mask should be used to specify the fields being updated. To update the auth_config and additional_config of the plugin instance, use the ApplyPluginInstanceConfig method.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.plugins.instances.patch({
+     *     // Identifier. The unique name of the plugin instance resource. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
+     *     name: 'projects/my-project/locations/my-location/plugins/my-plugin/instances/my-instance',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "actions": [],
+     *       //   "additionalConfig": {},
+     *       //   "authConfig": {},
+     *       //   "createTime": "my_createTime",
+     *       //   "displayName": "my_displayName",
+     *       //   "errorMessage": "my_errorMessage",
+     *       //   "name": "my_name",
+     *       //   "sourceProjectId": "my_sourceProjectId",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "actions": [],
+     *   //   "additionalConfig": {},
+     *   //   "authConfig": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "displayName": "my_displayName",
+     *   //   "errorMessage": "my_errorMessage",
+     *   //   "name": "my_name",
+     *   //   "sourceProjectId": "my_sourceProjectId",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Plugins$Instances$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1PluginInstance>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Plugins$Instances$Patch
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1PluginInstance>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1PluginInstance>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Plugins$Instances$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Plugins$Instances$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1PluginInstance>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1PluginInstance>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Plugins$Instances$Create
@@ -15575,6 +15820,22 @@ export namespace apihub_v1 {
      * Required. The parent resource where this plugin will be created. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`. To list plugin instances for multiple plugins, use the - character instead of the plugin ID.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The unique name of the plugin instance resource. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1PluginInstance;
   }
 
   export class Resource$Projects$Locations$Plugins$Styleguide {
