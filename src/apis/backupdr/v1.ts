@@ -350,6 +350,10 @@ export namespace backupdr_v1 {
      */
     backupType?: string | null;
     /**
+     * Output only. Cloud SQL specific backup properties.
+     */
+    cloudSqlInstanceBackupProperties?: Schema$CloudSqlInstanceBackupProperties;
+    /**
      * Output only. Compute Engine specific backup properties.
      */
     computeInstanceBackupProperties?: Schema$ComputeInstanceBackupProperties;
@@ -677,6 +681,10 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. Required for CloudSQL resource_type Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
+     */
+    logRetentionDays?: string | null;
+    /**
      * Output only. Identifier. The resource name of the `BackupPlan`. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}`
      */
     name?: string | null;
@@ -721,6 +729,10 @@ export namespace backupdr_v1 {
      * Output only. The resource id of the `BackupPlanRevision`. Format: `projects/{project\}/locations/{location\}/backupPlans/{backup_plan\}/revisions/{revision_id\}`
      */
     backupPlanRevisionName?: string | null;
+    /**
+     * Output only. Cloud SQL instance's backup plan association properties.
+     */
+    cloudSqlInstanceBackupPlanAssociationProperties?: Schema$CloudSqlInstanceBackupPlanAssociationProperties;
     /**
      * Output only. The time when the instance was created.
      */
@@ -784,7 +796,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupRule {
     /**
-     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum value is 1 and maximum value is 90 for hourly backups. Minimum value is 1 and maximum value is 186 for daily backups. Minimum value is 7 and maximum value is 366 for weekly backups. Minimum value is 30 and maximum value is 732 for monthly backups. Minimum value is 365 and maximum value is 36159 for yearly backups.
+     * Required. Configures the duration for which backup data will be kept. It is defined in “days”. The value should be greater than or equal to minimum enforced retention of the backup vault. Minimum value is 1 and maximum value is 36159 for custom retention on-demand backup. Minimum and maximum values are workload specific for all other rules.
      */
     backupRetentionDays?: number | null;
     /**
@@ -899,6 +911,87 @@ export namespace backupdr_v1 {
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
+  /**
+   * Cloud SQL instance's BPA properties.
+   */
+  export interface Schema$CloudSqlInstanceBackupPlanAssociationProperties {
+    /**
+     * Output only. The time when the instance was created.
+     */
+    instanceCreateTime?: string | null;
+  }
+  /**
+   * CloudSqlInstanceBackupProperties represents Cloud SQL Instance Backup properties. .
+   */
+  export interface Schema$CloudSqlInstanceBackupProperties {
+    /**
+     * Output only. The installed database version of the Cloud SQL instance when the backup was taken.
+     */
+    databaseInstalledVersion?: string | null;
+    /**
+     * Output only. Whether the backup is a final backup.
+     */
+    finalBackup?: boolean | null;
+    /**
+     * Output only. The tier (or machine type) for this instance. Example: `db-custom-1-3840`
+     */
+    instanceTier?: string | null;
+    /**
+     * Output only. The source instance of the backup. Format: projects/{project\}/instances/{instance\}
+     */
+    sourceInstance?: string | null;
+  }
+  /**
+   * CloudSqlInstanceDataSourceProperties represents the properties of a Cloud SQL resource that are stored in the DataSource. .
+   */
+  export interface Schema$CloudSqlInstanceDataSourceProperties {
+    /**
+     * Output only. The installed database version of the Cloud SQL instance.
+     */
+    databaseInstalledVersion?: string | null;
+    /**
+     * Output only. The instance creation timestamp.
+     */
+    instanceCreateTime?: string | null;
+    /**
+     * Output only. The tier (or machine type) for this instance. Example: `db-custom-1-3840`
+     */
+    instanceTier?: string | null;
+    /**
+     * Output only. Name of the Cloud SQL instance backed up by the datasource. Format: projects/{project\}/instances/{instance\}
+     */
+    name?: string | null;
+  }
+  /**
+   * CloudSqlInstanceDataSourceReferenceProperties represents the properties of a Cloud SQL resource that are stored in the DataSourceReference. .
+   */
+  export interface Schema$CloudSqlInstanceDataSourceReferenceProperties {
+    /**
+     * Output only. The installed database version of the Cloud SQL instance.
+     */
+    databaseInstalledVersion?: string | null;
+    /**
+     * Output only. The instance creation timestamp.
+     */
+    instanceCreateTime?: string | null;
+    /**
+     * Output only. The tier (or machine type) for this instance. Example: `db-custom-1-3840`
+     */
+    instanceTier?: string | null;
+    /**
+     * Output only. Name of the Cloud SQL instance backed up by the datasource. Format: projects/{project\}/instances/{instance\}
+     */
+    name?: string | null;
+  }
+  /**
+   * CloudSqlInstanceInitializationConfig contains the configuration for initializing a Cloud SQL instance.
+   */
+  export interface Schema$CloudSqlInstanceInitializationConfig {
+    /**
+     * Required. The edition of the Cloud SQL instance.
+     */
+    edition?: string | null;
+  }
   /**
    * ComputeInstanceBackupProperties represents Compute Engine instance backup properties.
    */
@@ -1224,9 +1317,26 @@ export namespace backupdr_v1 {
     type?: string | null;
   }
   /**
+   * Information of backup configuration on the DataSource.
+   */
+  export interface Schema$DataSourceBackupConfigInfo {
+    /**
+     * Output only. The status of the last backup in this DataSource
+     */
+    lastBackupState?: string | null;
+    /**
+     * Output only. Timestamp of the last successful backup to this DataSource.
+     */
+    lastSuccessfulBackupConsistencyTime?: string | null;
+  }
+  /**
    * DataSourceGcpResource is used for protected resources that are Google Cloud Resources. This name is easeier to understand than GcpResourceDataSource or GcpDataSourceResource
    */
   export interface Schema$DataSourceGcpResource {
+    /**
+     * Output only. CloudSqlInstanceDataSourceProperties has a subset of Cloud SQL Instance properties that are useful at the Datasource level.
+     */
+    cloudSqlInstanceDatasourceProperties?: Schema$CloudSqlInstanceDataSourceProperties;
     /**
      * ComputeInstanceDataSourceProperties has a subset of Compute Instance properties that are useful at the Datasource level.
      */
@@ -1247,6 +1357,60 @@ export namespace backupdr_v1 {
      * The type of the Google Cloud resource. Use the Unified Resource Type, eg. compute.googleapis.com/Instance.
      */
     type?: string | null;
+  }
+  /**
+   * The GCP resource that the DataSource is associated with.
+   */
+  export interface Schema$DataSourceGcpResourceInfo {
+    /**
+     * Output only. The properties of the Cloud SQL instance.
+     */
+    cloudSqlInstanceProperties?: Schema$CloudSqlInstanceDataSourceReferenceProperties;
+    /**
+     * Output only. The resource name of the GCP resource. Ex: projects/{project\}/zones/{zone\}/instances/{instance\}
+     */
+    gcpResourcename?: string | null;
+    /**
+     * Output only. The location of the GCP resource. Ex: //"global"/"unspecified"
+     */
+    location?: string | null;
+    /**
+     * Output only. The type of the GCP resource. Ex: compute.googleapis.com/Instance
+     */
+    type?: string | null;
+  }
+  /**
+   * DataSourceReference is a reference to a DataSource resource.
+   */
+  export interface Schema$DataSourceReference {
+    /**
+     * Output only. The time when the DataSourceReference was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. The resource name of the DataSource. Format: projects/{project\}/locations/{location\}/backupVaults/{backupVault\}/dataSources/{dataSource\}
+     */
+    dataSource?: string | null;
+    /**
+     * Output only. Information of backup configuration on the DataSource.
+     */
+    dataSourceBackupConfigInfo?: Schema$DataSourceBackupConfigInfo;
+    /**
+     * Output only. The backup configuration state of the DataSource.
+     */
+    dataSourceBackupConfigState?: string | null;
+    /**
+     * Output only. Number of backups in the DataSource.
+     */
+    dataSourceBackupCount?: string | null;
+    /**
+     * Output only. The GCP resource that the DataSource is associated with.
+     */
+    dataSourceGcpResourceInfo?: Schema$DataSourceGcpResourceInfo;
+    /**
+     * Identifier. The resource name of the DataSourceReference. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
+     */
+    name?: string | null;
   }
   /**
    * DiskBackupProperties represents the properties of a Disk backup.
@@ -1478,6 +1642,32 @@ export namespace backupdr_v1 {
     writeLocation?: string | null;
   }
   /**
+   * Response for the FetchBackupPlanAssociationsForResourceType method.
+   */
+  export interface Schema$FetchBackupPlanAssociationsForResourceTypeResponse {
+    /**
+     * Output only. The BackupPlanAssociations from the specified parent.
+     */
+    backupPlanAssociations?: Schema$BackupPlanAssociation[];
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response for the FetchDataSourceReferencesForResourceType method.
+   */
+  export interface Schema$FetchDataSourceReferencesForResourceTypeResponse {
+    /**
+     * The DataSourceReferences from the specified parent.
+     */
+    dataSourceReferences?: Schema$DataSourceReference[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for fetching usable BackupVaults.
    */
   export interface Schema$FetchUsableBackupVaultsResponse {
@@ -1620,6 +1810,10 @@ export namespace backupdr_v1 {
    * Request message for initializing the service.
    */
   export interface Schema$InitializeServiceRequest {
+    /**
+     * Optional. The configuration for initializing a Cloud SQL instance.
+     */
+    cloudSqlInstanceInitializationConfig?: Schema$CloudSqlInstanceInitializationConfig;
     /**
      * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and t he request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
@@ -2523,6 +2717,7 @@ export namespace backupdr_v1 {
     backupPlanAssociations: Resource$Projects$Locations$Backupplanassociations;
     backupPlans: Resource$Projects$Locations$Backupplans;
     backupVaults: Resource$Projects$Locations$Backupvaults;
+    dataSourceReferences: Resource$Projects$Locations$Datasourcereferences;
     managementServers: Resource$Projects$Locations$Managementservers;
     operations: Resource$Projects$Locations$Operations;
     resourceBackupConfigs: Resource$Projects$Locations$Resourcebackupconfigs;
@@ -2537,6 +2732,8 @@ export namespace backupdr_v1 {
       this.backupVaults = new Resource$Projects$Locations$Backupvaults(
         this.context
       );
+      this.dataSourceReferences =
+        new Resource$Projects$Locations$Datasourcereferences(this.context);
       this.managementServers =
         new Resource$Projects$Locations$Managementservers(this.context);
       this.operations = new Resource$Projects$Locations$Operations(
@@ -2918,6 +3115,7 @@ export namespace backupdr_v1 {
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
+     *       //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *       //   "createTime": "my_createTime",
      *       //   "dataSource": "my_dataSource",
      *       //   "name": "my_name",
@@ -3179,6 +3377,168 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * List BackupPlanAssociations for a given resource type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.backupPlanAssociations.fetchForResourceType(
+     *       {
+     *         // Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * resource * backup_plan * state * data_source * cloud_sql_instance_backup_plan_association_properties.instance_create_time
+     *         filter: 'placeholder-value',
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of BackupPlanAssociations to return. The service may return fewer than this value. If unspecified, at most 50 BackupPlanAssociations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous call of `FetchBackupPlanAssociationsForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchBackupPlanAssociationsForResourceType` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     *         resourceType: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "backupPlanAssociations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchForResourceType(
+      params?: Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+    >;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>,
+      callback: BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype,
+      callback: BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      callback: BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype
+        | BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/backupPlanAssociations:fetchForResourceType'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchBackupPlanAssociationsForResourceTypeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets details of a single BackupPlanAssociation.
      * @example
      * ```js
@@ -3219,6 +3579,7 @@ export namespace backupdr_v1 {
      *   //   "backupPlan": "my_backupPlan",
      *   //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *   //   "backupPlanRevisionName": "my_backupPlanRevisionName",
+     *   //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *   //   "createTime": "my_createTime",
      *   //   "dataSource": "my_dataSource",
      *   //   "name": "my_name",
@@ -3526,6 +3887,7 @@ export namespace backupdr_v1 {
      *       //   "backupPlan": "my_backupPlan",
      *       //   "backupPlanRevisionId": "my_backupPlanRevisionId",
      *       //   "backupPlanRevisionName": "my_backupPlanRevisionName",
+     *       //   "cloudSqlInstanceBackupPlanAssociationProperties": {},
      *       //   "createTime": "my_createTime",
      *       //   "dataSource": "my_dataSource",
      *       //   "name": "my_name",
@@ -3826,6 +4188,33 @@ export namespace backupdr_v1 {
      */
     requestId?: string;
   }
+  export interface Params$Resource$Projects$Locations$Backupplanassociations$Fetchforresourcetype
+    extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * resource * backup_plan * state * data_source * cloud_sql_instance_backup_plan_association_properties.instance_create_time
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of BackupPlanAssociations to return. The service may return fewer than this value. If unspecified, at most 50 BackupPlanAssociations will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call of `FetchBackupPlanAssociationsForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchBackupPlanAssociationsForResourceType` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     */
+    resourceType?: string;
+  }
   export interface Params$Resource$Projects$Locations$Backupplanassociations$Get
     extends StandardParameters {
     /**
@@ -3944,6 +4333,7 @@ export namespace backupdr_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
+     *       //   "logRetentionDays": "my_logRetentionDays",
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",
@@ -4246,6 +4636,7 @@ export namespace backupdr_v1 {
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
      *   //   "labels": {},
+     *   //   "logRetentionDays": "my_logRetentionDays",
      *   //   "name": "my_name",
      *   //   "resourceType": "my_resourceType",
      *   //   "revisionId": "my_revisionId",
@@ -4546,6 +4937,7 @@ export namespace backupdr_v1 {
      *       //   "description": "my_description",
      *       //   "etag": "my_etag",
      *       //   "labels": {},
+     *       //   "logRetentionDays": "my_logRetentionDays",
      *       //   "name": "my_name",
      *       //   "resourceType": "my_resourceType",
      *       //   "revisionId": "my_revisionId",
@@ -8054,6 +8446,7 @@ export namespace backupdr_v1 {
      *   //   "backupApplianceBackupProperties": {},
      *   //   "backupApplianceLocks": [],
      *   //   "backupType": "my_backupType",
+     *   //   "cloudSqlInstanceBackupProperties": {},
      *   //   "computeInstanceBackupProperties": {},
      *   //   "consistencyTime": "my_consistencyTime",
      *   //   "createTime": "my_createTime",
@@ -8365,6 +8758,7 @@ export namespace backupdr_v1 {
      *         //   "backupApplianceBackupProperties": {},
      *         //   "backupApplianceLocks": [],
      *         //   "backupType": "my_backupType",
+     *         //   "cloudSqlInstanceBackupProperties": {},
      *         //   "computeInstanceBackupProperties": {},
      *         //   "consistencyTime": "my_consistencyTime",
      *         //   "createTime": "my_createTime",
@@ -8727,6 +9121,351 @@ export namespace backupdr_v1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreBackupRequest;
+  }
+
+  export class Resource$Projects$Locations$Datasourcereferences {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Fetch DataSourceReferences for a given project, location and resource type.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.dataSourceReferences.fetchForResourceType(
+     *       {
+     *         // Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename * data_source_backup_config_state * data_source_backup_count * data_source_backup_config_info.last_backup_state * data_source_gcp_resource_info.gcp_resourcename * data_source_gcp_resource_info.type * data_source_gcp_resource_info.location * data_source_gcp_resource_info.cloud_sql_instance_properties.instance_create_time
+     *         filter: 'placeholder-value',
+     *         // Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of DataSourceReferences to return. The service may return fewer than this value. If unspecified, at most 50 DataSourceReferences will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous call of `FetchDataSourceReferencesForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchDataSourceReferencesForResourceType` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     *         resourceType: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "dataSourceReferences": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchForResourceType(
+      params?: Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+    >;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>,
+      callback: BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype,
+      callback: BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      callback: BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+    ): void;
+    fetchForResourceType(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype
+        | BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchDataSourceReferencesForResourceTypeResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/dataSourceReferences:fetchForResourceType'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchDataSourceReferencesForResourceTypeResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchDataSourceReferencesForResourceTypeResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets details of a single DataSourceReference.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await backupdr.projects.locations.dataSourceReferences.get({
+     *     // Required. The name of the DataSourceReference to retrieve. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
+     *     name: 'projects/my-project/locations/my-location/dataSourceReferences/my-dataSourceReference',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "dataSource": "my_dataSource",
+     *   //   "dataSourceBackupConfigInfo": {},
+     *   //   "dataSourceBackupConfigState": "my_dataSourceBackupConfigState",
+     *   //   "dataSourceBackupCount": "my_dataSourceBackupCount",
+     *   //   "dataSourceGcpResourceInfo": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Datasourcereferences$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DataSourceReference>>;
+    get(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DataSourceReference>,
+      callback: BodyResponseCallback<Schema$DataSourceReference>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Datasourcereferences$Get,
+      callback: BodyResponseCallback<Schema$DataSourceReference>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DataSourceReference>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datasourcereferences$Get
+        | BodyResponseCallback<Schema$DataSourceReference>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DataSourceReference>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DataSourceReference>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DataSourceReference>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datasourcereferences$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datasourcereferences$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DataSourceReference>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DataSourceReference>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$Fetchforresourcetype
+    extends StandardParameters {
+    /**
+     * Optional. A filter expression that filters the results fetched in the response. The expression must specify the field name, a comparison operator, and the value that you want to use for filtering. Supported fields: * data_source * data_source_gcp_resource_info.gcp_resourcename * data_source_backup_config_state * data_source_backup_count * data_source_backup_config_info.last_backup_state * data_source_gcp_resource_info.gcp_resourcename * data_source_gcp_resource_info.type * data_source_gcp_resource_info.location * data_source_gcp_resource_info.cloud_sql_instance_properties.instance_create_time
+     */
+    filter?: string;
+    /**
+     * Optional. A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * name
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of DataSourceReferences to return. The service may return fewer than this value. If unspecified, at most 50 DataSourceReferences will be returned. The maximum value is 100; values above 100 will be coerced to 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous call of `FetchDataSourceReferencesForResourceType`. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchDataSourceReferencesForResourceType` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource name. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+    /**
+     * Required. The type of the GCP resource. Ex: sql.googleapis.com/Instance
+     */
+    resourceType?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Datasourcereferences$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the DataSourceReference to retrieve. Format: projects/{project\}/locations/{location\}/dataSourceReferences/{data_source_reference\}
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Managementservers {
@@ -10732,6 +11471,7 @@ export namespace backupdr_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "cloudSqlInstanceInitializationConfig": {},
      *       //   "requestId": "my_requestId",
      *       //   "resourceType": "my_resourceType"
      *       // }
