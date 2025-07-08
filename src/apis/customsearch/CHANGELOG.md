@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v5.0.0...customsearch-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **customsearch:** update the API ([a211364](https://github.com/googleapis/google-api-nodejs-client/commit/a2113649b6f01ff0211d095e6c83b7fb50872074))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/customsearch-v4.0.1...customsearch-v5.0.0) (2025-06-30)
 
 

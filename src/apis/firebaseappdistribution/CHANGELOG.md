@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v7.0.0...firebaseappdistribution-v7.1.0) (2025-07-08)
+
+
+### Features
+
+* **firebaseappdistribution:** update the API ([15b95ee](https://github.com/googleapis/google-api-nodejs-client/commit/15b95eeb36088cdf6ac16db6c20c91b15cb8266d))
+
+
+### Bug Fixes
+
+* **firebaseappdistribution:** update the API ([1f0c6a2](https://github.com/googleapis/google-api-nodejs-client/commit/1f0c6a2271b9a4e9ecc6cd0f257ec91152879514))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappdistribution-v6.0.1...firebaseappdistribution-v7.0.0) (2025-06-30)
 
 

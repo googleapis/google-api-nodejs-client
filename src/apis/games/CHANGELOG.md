@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/games-v10.0.0...games-v10.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **games:** update the API ([0539447](https://github.com/googleapis/google-api-nodejs-client/commit/05394472cb5874a00da35754b32b6b667177fa44))
+* **games:** update the API ([108e6e4](https://github.com/googleapis/google-api-nodejs-client/commit/108e6e415e4f39d3fea0d156d9d81c870c450cb3))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/games-v9.0.1...games-v10.0.0) (2025-06-30)
 
 

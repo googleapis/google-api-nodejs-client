@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v10.0.0...firebase-v10.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **firebase:** update the API ([2eef5a0](https://github.com/googleapis/google-api-nodejs-client/commit/2eef5a0a50250cca438d2acf49b742406da42701))
+* **firebase:** update the API ([24ca831](https://github.com/googleapis/google-api-nodejs-client/commit/24ca8313abd1816ad0dbc724c73ab4f861ba034a))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebase-v9.0.1...firebase-v10.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v17.0.0...identitytoolkit-v17.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **identitytoolkit:** update the API ([25bd5f9](https://github.com/googleapis/google-api-nodejs-client/commit/25bd5f997a24b0bf1b01438569368b9db18e83ea))
+* **identitytoolkit:** update the API ([f2c3a20](https://github.com/googleapis/google-api-nodejs-client/commit/f2c3a201b69d806ac0dcd13756453ae49af3ae00))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/identitytoolkit-v16.0.1...identitytoolkit-v17.0.0) (2025-06-30)
 
 

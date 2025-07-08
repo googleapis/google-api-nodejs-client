@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v4.0.0...gamesconfiguration-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **gamesConfiguration:** update the API ([1d86ce3](https://github.com/googleapis/google-api-nodejs-client/commit/1d86ce33e70f86d398e7ee357801877c7d448c79))
+* **gamesConfiguration:** update the API ([0fba919](https://github.com/googleapis/google-api-nodejs-client/commit/0fba919bac44383ce3796319cc1010c6d31971f6))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gamesconfiguration-v3.0.1...gamesconfiguration-v4.0.0) (2025-06-30)
 
 

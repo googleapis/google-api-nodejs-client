@@ -1,5 +1,13 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v14.0.0...gmail-v14.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **gmail:** update the API ([92bad4c](https://github.com/googleapis/google-api-nodejs-client/commit/92bad4c6866552a5c3b7299c3fb1992194c6664d))
+* **gmail:** update the API ([5ec1bce](https://github.com/googleapis/google-api-nodejs-client/commit/5ec1bce0510c0be290b1bc75145121499cba506d))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmail-v13.0.1...gmail-v14.0.0) (2025-06-30)
 
 

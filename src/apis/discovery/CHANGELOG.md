@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v3.0.0...discovery-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **discovery:** update the API ([eaf8c31](https://github.com/googleapis/google-api-nodejs-client/commit/eaf8c31691b6289f7341ba45a75f186c2ea80e57))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discovery-v2.0.1...discovery-v3.0.0) (2025-06-30)
 
 

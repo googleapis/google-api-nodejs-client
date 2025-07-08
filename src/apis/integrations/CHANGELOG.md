@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/integrations-v3.0.0...integrations-v4.0.0) (2025-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **integrations:** This release has breaking changes.
+
+### Features
+
+* **integrations:** update the API ([9e90f0a](https://github.com/googleapis/google-api-nodejs-client/commit/9e90f0a16520ee83410cf92f5c28c74ec3e20c2b))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/integrations-v2.0.1...integrations-v3.0.0) (2025-06-30)
 
 

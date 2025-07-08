@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v5.0.0...docs-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **docs:** update the API ([b5198a1](https://github.com/googleapis/google-api-nodejs-client/commit/b5198a13e94322dd7f8c5285a5aede3d294ccb86))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/docs-v4.0.1...docs-v5.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v12.0.0...doubleclickbidmanager-v12.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **doubleclickbidmanager:** update the API ([c952d97](https://github.com/googleapis/google-api-nodejs-client/commit/c952d9784db0ebfd69e19e2b49e5215cd677e67e))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/doubleclickbidmanager-v11.0.1...doubleclickbidmanager-v12.0.0) (2025-06-30)
 
 

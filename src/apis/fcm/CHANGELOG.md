@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v7.0.0...fcm-v7.1.0) (2025-07-08)
+
+
+### Features
+
+* **fcm:** update the API ([cd2a06c](https://github.com/googleapis/google-api-nodejs-client/commit/cd2a06c4fdbd61770b28162f1e17ce3e2c055f3b))
+
+
+### Bug Fixes
+
+* **fcm:** update the API ([939ca60](https://github.com/googleapis/google-api-nodejs-client/commit/939ca60fc70fd3d3472ba6090b1a92b18a1e1323))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/fcm-v6.0.1...fcm-v7.0.0) (2025-06-30)
 
 

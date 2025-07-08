@@ -1,5 +1,17 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v9.0.0...gkeonprem-v9.1.0) (2025-07-08)
+
+
+### Features
+
+* **gkeonprem:** update the API ([65948b1](https://github.com/googleapis/google-api-nodejs-client/commit/65948b147b0aec08ad2094e0efe39b135db23178))
+
+
+### Bug Fixes
+
+* **gkeonprem:** update the API ([5028e49](https://github.com/googleapis/google-api-nodejs-client/commit/5028e49d8ed82244a5cbc7d2692832f2a6d9d0ea))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v8.0.1...gkeonprem-v9.0.0) (2025-06-30)
 
 

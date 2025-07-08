@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datapipelines-v3.0.0...datapipelines-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **datapipelines:** update the API ([ad19bb0](https://github.com/googleapis/google-api-nodejs-client/commit/ad19bb0b04bfdb69a5e29d1c54cc68026ce10100))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datapipelines-v2.0.1...datapipelines-v3.0.0) (2025-06-30)
 
 

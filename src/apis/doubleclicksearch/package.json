@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/doubleclicksearch",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "doubleclicksearch",
   "main": "build/index.js",
   "types": "build/index.d.ts",
