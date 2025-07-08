@@ -1,5 +1,12 @@
 # Changelog
 
+## [20.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v20.0.0...aiplatform-v20.1.0) (2025-07-08)
+
+
+### Features
+
+* **aiplatform:** update the API ([13a9e2f](https://github.com/googleapis/google-api-nodejs-client/commit/13a9e2f9be2873450947530717d51742aed48b39))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v19.0.1...aiplatform-v20.0.0) (2025-06-30)
 
 

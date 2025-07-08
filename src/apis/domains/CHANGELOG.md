@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v3.0.0...domains-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **domains:** update the API ([36c3f8b](https://github.com/googleapis/google-api-nodejs-client/commit/36c3f8b0fdda23739240b5b9f726ec09289e4a87))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/domains-v2.0.1...domains-v3.0.0) (2025-06-30)
 
 

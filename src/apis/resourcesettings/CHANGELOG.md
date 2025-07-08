@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/resourcesettings-v3.0.0...resourcesettings-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **resourcesettings:** update the API ([f87a2ee](https://github.com/googleapis/google-api-nodejs-client/commit/f87a2ee9789761daab0694fd401d8d09ba359899))
+* **resourcesettings:** update the API ([a19cc4c](https://github.com/googleapis/google-api-nodejs-client/commit/a19cc4cbcfdce2265fab39937c09f659c0ec2388))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/resourcesettings-v2.0.1...resourcesettings-v3.0.0) (2025-06-30)
 
 

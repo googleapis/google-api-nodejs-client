@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v13.0.0...cloudsupport-v13.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([3cbe991](https://github.com/googleapis/google-api-nodejs-client/commit/3cbe991119c1d4e731fc37c67b14b46c488205a6))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v12.0.1...cloudsupport-v13.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v5.0.0...translate-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **translate:** update the API ([452fa61](https://github.com/googleapis/google-api-nodejs-client/commit/452fa61967b5777b40c25317e8b41bd20127c290))
+* **translate:** update the API ([ca1c63e](https://github.com/googleapis/google-api-nodejs-client/commit/ca1c63ed8367c7a41ddc990a0aa23aa3e439aaaf))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/translate-v4.0.1...translate-v5.0.0) (2025-06-30)
 
 

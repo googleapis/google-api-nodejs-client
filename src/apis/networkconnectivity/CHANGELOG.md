@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v11.0.0...networkconnectivity-v11.1.0) (2025-07-08)
+
+
+### Features
+
+* **networkconnectivity:** update the API ([4518820](https://github.com/googleapis/google-api-nodejs-client/commit/451882021e1f4862f6ecd291816f5265230ca224))
+
+
+### Bug Fixes
+
+* **networkconnectivity:** update the API ([028a390](https://github.com/googleapis/google-api-nodejs-client/commit/028a39001c2b95d4d970a1bf0b24a70fee0b45d3))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v10.0.1...networkconnectivity-v11.0.0) (2025-06-30)
 
 

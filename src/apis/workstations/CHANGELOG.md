@@ -1,5 +1,13 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v13.0.0...workstations-v13.1.0) (2025-07-08)
+
+
+### Features
+
+* **workstations:** update the API ([23b2dd2](https://github.com/googleapis/google-api-nodejs-client/commit/23b2dd23c6e43d3eddb0bcd59057ee5dce6990c6))
+* **workstations:** update the API ([a61f1e5](https://github.com/googleapis/google-api-nodejs-client/commit/a61f1e516c84f2a87155c84aa311f5814abd9b90))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v12.0.1...workstations-v13.0.0) (2025-06-30)
 
 

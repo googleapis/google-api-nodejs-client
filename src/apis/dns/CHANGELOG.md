@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v8.0.0...dns-v8.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dns:** update the API ([6f852b2](https://github.com/googleapis/google-api-nodejs-client/commit/6f852b2ae27f979fb86bf602b685538684d7466d))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dns-v7.0.1...dns-v8.0.0) (2025-06-30)
 
 

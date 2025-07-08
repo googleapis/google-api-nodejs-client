@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v6.0.0...datastore-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **datastore:** update the API ([50e1195](https://github.com/googleapis/google-api-nodejs-client/commit/50e1195a58270fe0fd97f789d5234dd4534cd6be))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastore-v5.0.1...datastore-v6.0.0) (2025-06-30)
 
 

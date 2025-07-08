@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/area120tables-v3.0.0...area120tables-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **area120tables:** update the API ([1355ec0](https://github.com/googleapis/google-api-nodejs-client/commit/1355ec0aea6e24ee31dac49c21dbc011a8889538))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/area120tables-v2.0.1...area120tables-v3.0.0) (2025-06-30)
 
 

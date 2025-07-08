@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v13.0.0...containeranalysis-v13.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([2883ef0](https://github.com/googleapis/google-api-nodejs-client/commit/2883ef0502402ef046498d35348536af561ce2ba))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v12.0.1...containeranalysis-v13.0.0) (2025-06-30)
 
 

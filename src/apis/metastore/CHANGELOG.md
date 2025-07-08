@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v10.0.0...metastore-v10.1.0) (2025-07-08)
+
+
+### Features
+
+* **metastore:** update the API ([aedca40](https://github.com/googleapis/google-api-nodejs-client/commit/aedca40937630ae29cec2e3d48dff06d37da32d9))
+
+
+### Bug Fixes
+
+* **metastore:** update the API ([90559d8](https://github.com/googleapis/google-api-nodejs-client/commit/90559d86b5312fb116796c6b19f91dee9666f03b))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/metastore-v9.0.1...metastore-v10.0.0) (2025-06-30)
 
 

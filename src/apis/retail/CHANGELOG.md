@@ -1,5 +1,13 @@
 # Changelog
 
+## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v16.0.0...retail-v16.1.0) (2025-07-08)
+
+
+### Features
+
+* **retail:** update the API ([2244358](https://github.com/googleapis/google-api-nodejs-client/commit/22443584876bf13020fb9dae3e78083da0a93505))
+* **retail:** update the API ([8a941a3](https://github.com/googleapis/google-api-nodejs-client/commit/8a941a3c390649e96e93ec44ffea4990da24a9f1))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v15.0.1...retail-v16.0.0) (2025-06-30)
 
 
