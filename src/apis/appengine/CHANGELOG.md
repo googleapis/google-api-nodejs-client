@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v9.1.0...appengine-v9.1.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([b74df93](https://github.com/googleapis/google-api-nodejs-client/commit/b74df9358d6a9f75a00e68a485098ac8206f7bd1))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v9.0.1...appengine-v9.1.0) (2025-06-30)
 
 
