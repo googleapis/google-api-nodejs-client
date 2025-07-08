@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v3.0.0...oracledatabase-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **oracledatabase:** update the API ([bfb047c](https://github.com/googleapis/google-api-nodejs-client/commit/bfb047c952ab49b5ddb8f65ff843f3d54e28c815))
+* **oracledatabase:** update the API ([b964d43](https://github.com/googleapis/google-api-nodejs-client/commit/b964d431486e108f8488e70eb319003bdaeeb988))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oracledatabase-v2.0.1...oracledatabase-v3.0.0) (2025-06-30)
 
 

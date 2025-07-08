@@ -1,5 +1,17 @@
 # Changelog
 
+## [5.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v5.0.0...looker-v5.1.0) (2025-07-08)
+
+
+### Features
+
+* **looker:** update the API ([c330623](https://github.com/googleapis/google-api-nodejs-client/commit/c3306231dd30d2b83f0330a2303be9a7b548c738))
+
+
+### Bug Fixes
+
+* **looker:** update the API ([fb0c3f1](https://github.com/googleapis/google-api-nodejs-client/commit/fb0c3f1dc152a2cc661ff7a56fadfe9b9778ce3a))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/looker-v4.0.1...looker-v5.0.0) (2025-06-30)
 
 

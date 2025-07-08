@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v2.0.0...netapp-v2.1.0) (2025-07-08)
+
+
+### Features
+
+* **netapp:** update the API ([d8b6f44](https://github.com/googleapis/google-api-nodejs-client/commit/d8b6f448171970e851222bb426a1639b58a02d88))
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([797d878](https://github.com/googleapis/google-api-nodejs-client/commit/797d8784117908c0f6a5ccc681265e7a5067ee67))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v1.0.1...netapp-v2.0.0) (2025-06-30)
 
 

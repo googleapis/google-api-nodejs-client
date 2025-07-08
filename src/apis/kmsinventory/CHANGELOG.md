@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v6.0.0...kmsinventory-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **kmsinventory:** update the API ([97c38ea](https://github.com/googleapis/google-api-nodejs-client/commit/97c38ead42da2f32643c56074946a565d2ec2a8f))
+* **kmsinventory:** update the API ([8f6030f](https://github.com/googleapis/google-api-nodejs-client/commit/8f6030fc195549318e0318d75b7efd077e8d2612))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/kmsinventory-v5.0.1...kmsinventory-v6.0.0) (2025-06-30)
 
 

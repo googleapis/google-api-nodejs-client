@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v7.0.0...manufacturers-v7.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **manufacturers:** update the API ([e14ae0c](https://github.com/googleapis/google-api-nodejs-client/commit/e14ae0c2b8477b97e0bdee83b23f852f209857d7))
+* **manufacturers:** update the API ([9d3654f](https://github.com/googleapis/google-api-nodejs-client/commit/9d3654f4d147d9dd05cdb7e937cd865a92f4a547))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/manufacturers-v6.0.1...manufacturers-v7.0.0) (2025-06-30)
 
 

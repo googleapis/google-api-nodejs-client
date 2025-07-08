@@ -1,5 +1,17 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v19.0.0...playintegrity-v19.1.0) (2025-07-08)
+
+
+### Features
+
+* **playintegrity:** update the API ([6f08ebd](https://github.com/googleapis/google-api-nodejs-client/commit/6f08ebd73114c1a200e45e526c5ac1ffbc9c576a))
+
+
+### Bug Fixes
+
+* **playintegrity:** update the API ([1ac40ad](https://github.com/googleapis/google-api-nodejs-client/commit/1ac40adc5afca485c56d9161dd59dfe78a202ec4))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playintegrity-v18.0.1...playintegrity-v19.0.0) (2025-06-30)
 
 

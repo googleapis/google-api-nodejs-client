@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/keep-v2.0.0...keep-v2.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **keep:** update the API ([2b027a6](https://github.com/googleapis/google-api-nodejs-client/commit/2b027a6ba1d1c16ee8c9fd36d3b5256f2defde83))
+* **keep:** update the API ([da12f4d](https://github.com/googleapis/google-api-nodejs-client/commit/da12f4da77830649f46159f32d3edb56c48767e7))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/keep-v1.0.1...keep-v2.0.0) (2025-06-30)
 
 

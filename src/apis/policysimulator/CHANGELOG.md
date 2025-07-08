@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v15.0.0...policysimulator-v15.1.0) (2025-07-08)
+
+
+### Features
+
+* **policysimulator:** update the API ([ddd9d5b](https://github.com/googleapis/google-api-nodejs-client/commit/ddd9d5b316f038c4871fe850b416e0dc67208e2a))
+* **policysimulator:** update the API ([b427714](https://github.com/googleapis/google-api-nodejs-client/commit/b4277144253caa3d2a0faaa4e15fc798850ba36a))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v14.0.1...policysimulator-v15.0.0) (2025-06-30)
 
 

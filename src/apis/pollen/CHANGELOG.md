@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/pollen-v2.0.0...pollen-v2.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **pollen:** update the API ([2054115](https://github.com/googleapis/google-api-nodejs-client/commit/205411577f4ad980c5121f33d7ae0669988a7a48))
+* **pollen:** update the API ([17d521e](https://github.com/googleapis/google-api-nodejs-client/commit/17d521efdc176933e76aff397da8c0bd6579975b))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pollen-v1.0.1...pollen-v2.0.0) (2025-06-30)
 
 
