@@ -1261,7 +1261,7 @@
       }
     }
   },
-  "revision": "20250518",
+  "revision": "20250627",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -3465,6 +3465,10 @@
         "datasetTemplate": {
           "$ref": "DatasetTemplate",
           "description": "The dataset template to use for dynamic dataset creation."
+        },
+        "projectId": {
+          "description": "Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.",
+          "type": "string"
         }
       },
       "type": "object"

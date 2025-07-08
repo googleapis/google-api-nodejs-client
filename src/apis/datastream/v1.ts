@@ -1858,6 +1858,10 @@ export namespace datastream_v1 {
      * The dataset template to use for dynamic dataset creation.
      */
     datasetTemplate?: Schema$DatasetTemplate;
+    /**
+     * Optional. The project id of the BigQuery dataset. If not specified, the project will be inferred from the stream resource.
+     */
+    projectId?: string | null;
   }
   /**
    * Represents an identifier of an object in the data source.
