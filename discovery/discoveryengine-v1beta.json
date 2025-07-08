@@ -8004,7 +8004,7 @@
       }
     }
   },
-  "revision": "20250619",
+  "revision": "20250701",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -12126,7 +12126,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRun",
       "properties": {
         "deletedRecordCount": {
-          "description": "The number of documents deleted.",
+          "description": "Optional. The number of documents deleted.",
           "format": "int64",
           "type": "string"
         },
@@ -12135,7 +12135,7 @@
           "type": "string"
         },
         "errorRecordCount": {
-          "description": "The total number of documents failed at sync at any stage (extraction, indexing, etc).",
+          "description": "Optional. The total number of documents failed at sync at indexing stage.",
           "format": "int64",
           "type": "string"
         },
@@ -12147,12 +12147,12 @@
           "type": "array"
         },
         "extractedRecordCount": {
-          "description": "The number of documents extracted from connector source, ready to be ingested to VAIS.",
+          "description": "Optional. The number of documents extracted from connector source, ready to be ingested to VAIS.",
           "format": "int64",
           "type": "string"
         },
         "indexedRecordCount": {
-          "description": "The number of documents indexed.",
+          "description": "Optional. The number of documents indexed.",
           "format": "int64",
           "type": "string"
         },
@@ -12161,12 +12161,12 @@
           "description": "Metadata to generate the progress bar."
         },
         "scheduledRecordCount": {
-          "description": "The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.",
+          "description": "Optional. The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.",
           "format": "int64",
           "type": "string"
         },
         "sourceApiRequestCount": {
-          "description": "The number of requests sent to 3p API.",
+          "description": "Optional. The number of requests sent to 3p API.",
           "format": "int64",
           "type": "string"
         },
@@ -12698,7 +12698,8 @@
             "GOOGLE_DRIVE",
             "NATIVE_CLOUD_IDENTITY",
             "THIRD_PARTY_FEDERATED",
-            "THIRD_PARTY_EUA"
+            "THIRD_PARTY_EUA",
+            "GCNV"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -12711,7 +12712,8 @@
             "Google Drive connector.",
             "Native Cloud Identity connector for people search powered by People API.",
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
-            "Connector utilized for End User Authentication features."
+            "Connector utilized for End User Authentication features.",
+            "Google Cloud NetApp Volumes connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -12928,6 +12930,10 @@
           },
           "description": "Optional. Any authentication parameters specific to EUA connectors.",
           "type": "object"
+        },
+        "tenant": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaTenant",
+          "description": "Optional. The tenant project the connector is connected to."
         }
       },
       "type": "object"
@@ -16541,6 +16547,25 @@
         "totalRequiredQuota": {
           "description": "This number is an estimation on how much total quota this project needs to successfully complete indexing.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaTenant": {
+      "description": "Tenant information for a connector source. This includes some of the same information stored in the Credential message, but is limited to only what is needed to provide a list of accessible tenants to the user.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTenant",
+      "properties": {
+        "displayName": {
+          "description": "Optional display name for the tenant, e.g. \"My Slack Team\".",
+          "type": "string"
+        },
+        "id": {
+          "description": "The tenant's instance ID. Examples: Jira (\"8594f221-9797-5f78-1fa4-485e198d7cd0\"), Slack (\"T123456\").",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the tenant, if applicable. For example, the URI of a Jira instance is https://my-jira-instance.atlassian.net, and a Slack tenant does not have a URI.",
           "type": "string"
         }
       },
