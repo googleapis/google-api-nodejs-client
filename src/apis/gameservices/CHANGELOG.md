@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gameservices-v3.0.0...gameservices-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **gameservices:** update the API ([e038e37](https://github.com/googleapis/google-api-nodejs-client/commit/e038e373b05eecedf6ce001a281c730531f927f3))
+* **gameservices:** update the API ([33a428f](https://github.com/googleapis/google-api-nodejs-client/commit/33a428f62885597ce1f1f9aff87ae93a4b9b845e))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gameservices-v2.0.1...gameservices-v3.0.0) (2025-06-30)
 
 

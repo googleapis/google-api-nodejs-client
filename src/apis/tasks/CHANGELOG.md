@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v9.0.0...tasks-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **tasks:** update the API ([b52ea12](https://github.com/googleapis/google-api-nodejs-client/commit/b52ea12acaed2190436e9367884a051edec32ed1))
+* **tasks:** update the API ([1d8f3fd](https://github.com/googleapis/google-api-nodejs-client/commit/1d8f3fde22de5f4d0ad290e957091dbd2f66d8dc))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tasks-v8.0.1...tasks-v9.0.0) (2025-06-30)
 
 

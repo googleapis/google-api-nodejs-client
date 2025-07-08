@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v3.0.0...workflows-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **workflows:** update the API ([2971c47](https://github.com/googleapis/google-api-nodejs-client/commit/2971c47250ab320d918cb616cdac32f6905d7f54))
+* **workflows:** update the API ([4040a3d](https://github.com/googleapis/google-api-nodejs-client/commit/4040a3d6ebba24825d75addf2418b4440e00d4e0))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workflows-v2.0.1...workflows-v3.0.0) (2025-06-30)
 
 

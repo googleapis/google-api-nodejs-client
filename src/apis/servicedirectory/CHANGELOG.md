@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v5.0.0...servicedirectory-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **servicedirectory:** update the API ([06e5e3a](https://github.com/googleapis/google-api-nodejs-client/commit/06e5e3a1cea7bb4e9e12c7f50515474915bfd356))
+* **servicedirectory:** update the API ([65ccff8](https://github.com/googleapis/google-api-nodejs-client/commit/65ccff83018a538413ce5afbcc28c81389bc8e30))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicedirectory-v4.0.1...servicedirectory-v5.0.0) (2025-06-30)
 
 

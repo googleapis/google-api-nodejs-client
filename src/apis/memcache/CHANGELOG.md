@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v7.0.0...memcache-v7.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **memcache:** update the API ([2374fab](https://github.com/googleapis/google-api-nodejs-client/commit/2374fab2a5c5baa7d4c67d36b0aa308e7deb9328))
+* **memcache:** update the API ([6be5ae6](https://github.com/googleapis/google-api-nodejs-client/commit/6be5ae6778e34e22aa10a88c999e49797f61fca0))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v6.0.1...memcache-v7.0.0) (2025-06-30)
 
 

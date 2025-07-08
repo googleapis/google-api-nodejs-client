@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/baremetalsolution-v3.0.0...baremetalsolution-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **baremetalsolution:** update the API ([9506fea](https://github.com/googleapis/google-api-nodejs-client/commit/9506fead56e70cd5cb835de5d894f3e8ed7391d3))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/baremetalsolution-v2.0.1...baremetalsolution-v3.0.0) (2025-06-30)
 
 

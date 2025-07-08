@@ -1,5 +1,13 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v14.0.0...securitycenter-v14.1.0) (2025-07-08)
+
+
+### Features
+
+* **securitycenter:** update the API ([c2209ae](https://github.com/googleapis/google-api-nodejs-client/commit/c2209aec6dac7ad84cb957c7b2b025db3a7b7802))
+* **securitycenter:** update the API ([87add49](https://github.com/googleapis/google-api-nodejs-client/commit/87add49cb4e2f08188e18a8b696a56d638be5e1e))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v13.0.1...securitycenter-v14.0.0) (2025-06-30)
 
 

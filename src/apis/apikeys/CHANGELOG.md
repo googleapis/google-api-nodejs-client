@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v3.0.0...apikeys-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **apikeys:** update the API ([ec54b77](https://github.com/googleapis/google-api-nodejs-client/commit/ec54b771c090324c1894081ed9f6890baee4d29b))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apikeys-v2.0.1...apikeys-v3.0.0) (2025-06-30)
 
 

@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v3.0.0...secretmanager-v3.1.0) (2025-07-08)
+
+
+### Features
+
+* **secretmanager:** update the API ([1e5ca36](https://github.com/googleapis/google-api-nodejs-client/commit/1e5ca364ab49e3bec56ea0dd290154e3080fca9f))
+
+
+### Bug Fixes
+
+* **secretmanager:** update the API ([77a764e](https://github.com/googleapis/google-api-nodejs-client/commit/77a764ef4376b2daf50c17da6bb654c0434e4354))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v2.0.1...secretmanager-v3.0.0) (2025-06-30)
 
 

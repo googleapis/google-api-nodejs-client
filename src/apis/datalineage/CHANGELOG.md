@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datalineage-v3.0.0...datalineage-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **datalineage:** update the API ([81cf3d0](https://github.com/googleapis/google-api-nodejs-client/commit/81cf3d082fb8d05c86fc396d8ca8bc7ee3115ded))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datalineage-v2.0.1...datalineage-v3.0.0) (2025-06-30)
 
 

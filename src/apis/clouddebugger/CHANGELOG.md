@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddebugger-v3.0.0...clouddebugger-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **clouddebugger:** update the API ([c10ee95](https://github.com/googleapis/google-api-nodejs-client/commit/c10ee9555f5bc14fd7b2ca607322453a43121a41))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddebugger-v2.0.1...clouddebugger-v3.0.0) (2025-06-30)
 
 

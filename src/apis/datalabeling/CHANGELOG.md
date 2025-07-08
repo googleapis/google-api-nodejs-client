@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v4.0.0...datalabeling-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **datalabeling:** update the API ([6c0ef41](https://github.com/googleapis/google-api-nodejs-client/commit/6c0ef4175d442305ef755c00dbb0c5a3714ad05f))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datalabeling-v3.0.1...datalabeling-v4.0.0) (2025-06-30)
 
 

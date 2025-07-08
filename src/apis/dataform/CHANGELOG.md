@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v9.0.0...dataform-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dataform:** update the API ([2a12f7e](https://github.com/googleapis/google-api-nodejs-client/commit/2a12f7e73e12ec37c8659e924a2b1bd4881cee44))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataform-v8.0.1...dataform-v9.0.0) (2025-06-30)
 
 

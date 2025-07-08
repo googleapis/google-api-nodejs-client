@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v3.0.0...cloudresourcemanager-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudresourcemanager:** update the API ([5f4be3d](https://github.com/googleapis/google-api-nodejs-client/commit/5f4be3db60a2d50f99f55df431967729126d306a))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudresourcemanager-v2.0.1...cloudresourcemanager-v3.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v11.0.0...batch-v11.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **batch:** update the API ([6334c26](https://github.com/googleapis/google-api-nodejs-client/commit/6334c263ae242a63b5021b75ebf57184784b3fa3))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/batch-v10.0.1...batch-v11.0.0) (2025-06-30)
 
 
