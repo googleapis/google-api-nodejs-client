@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v8.0.0...backupdr-v8.1.0) (2025-07-08)
+
+
+### Features
+
+* **backupdr:** update the API ([f3d30f9](https://github.com/googleapis/google-api-nodejs-client/commit/f3d30f9a22972e88e8124aa593e0794353493480))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v7.0.1...backupdr-v8.0.0) (2025-06-30)
 
 

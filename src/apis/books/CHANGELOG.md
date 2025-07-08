@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/books-v6.0.0...books-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **books:** update the API ([067ff25](https://github.com/googleapis/google-api-nodejs-client/commit/067ff25f4527d65a2433de11e1be9d9b977e036d))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/books-v5.0.1...books-v6.0.0) (2025-06-30)
 
 

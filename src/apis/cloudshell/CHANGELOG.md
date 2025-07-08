@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v4.0.0...cloudshell-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudshell:** update the API ([f1dcf82](https://github.com/googleapis/google-api-nodejs-client/commit/f1dcf82bd9b88ad8ee83dea6185d696a4cedb432))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudshell-v3.0.1...cloudshell-v4.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v11.0.0...androidenterprise-v11.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **androidenterprise:** update the API ([ef25b1f](https://github.com/googleapis/google-api-nodejs-client/commit/ef25b1f9cc4bdafaf8e2b5aaa789afa5f5367d4f))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidenterprise-v10.0.1...androidenterprise-v11.0.0) (2025-06-30)
 
 

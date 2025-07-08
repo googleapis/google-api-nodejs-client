@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v9.0.0...analytics-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **analytics:** update the API ([b040125](https://github.com/googleapis/google-api-nodejs-client/commit/b040125018d8f841159152f9ef3ec2ef50113ac4))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analytics-v8.0.1...analytics-v9.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsreporting-v3.0.0...analyticsreporting-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **analyticsreporting:** update the API ([899adbb](https://github.com/googleapis/google-api-nodejs-client/commit/899adbb0377b24ee6fec5786fe61518594fdf51a))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsreporting-v2.0.1...analyticsreporting-v3.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v12.0.0...adsense-v12.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **adsense:** update the API ([4d52d5e](https://github.com/googleapis/google-api-nodejs-client/commit/4d52d5ecb0ce9628253cf3bb87a6818d6ca4b44c))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsense-v11.0.1...adsense-v12.0.0) (2025-06-30)
 
 

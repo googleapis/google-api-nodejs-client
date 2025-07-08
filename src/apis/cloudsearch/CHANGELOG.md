@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v17.0.0...cloudsearch-v17.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudsearch:** update the API ([f10f498](https://github.com/googleapis/google-api-nodejs-client/commit/f10f4989d2fc1ffdd91b277914b98e45a6a6bc82))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsearch-v16.0.1...cloudsearch-v17.0.0) (2025-06-30)
 
 

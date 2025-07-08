@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v18.0.0...civicinfo-v18.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **civicinfo:** update the API ([18698b7](https://github.com/googleapis/google-api-nodejs-client/commit/18698b764b61583555e4fd23a9d897e251e0f115))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/civicinfo-v17.0.1...civicinfo-v18.0.0) (2025-06-30)
 
 

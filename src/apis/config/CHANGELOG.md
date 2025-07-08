@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/config-v2.0.0...config-v2.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **config:** update the API ([3c5d3b0](https://github.com/googleapis/google-api-nodejs-client/commit/3c5d3b0bc6cf1f33131362547deea0150e5bff9c))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/config-v1.0.1...config-v2.0.0) (2025-06-30)
 
 
