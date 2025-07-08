@@ -142,7 +142,7 @@ export namespace script_v1 {
     scriptId?: string | null;
   }
   /**
-   * Request to create a script project. Request to create a script project.
+   * Request to create a script project.
    */
   export interface Schema$CreateProjectRequest {
     /**
