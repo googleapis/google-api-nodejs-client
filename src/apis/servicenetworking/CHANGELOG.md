@@ -1,5 +1,17 @@
 # Changelog
 
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v23.0.0...servicenetworking-v23.1.0) (2025-07-08)
+
+
+### Features
+
+* **servicenetworking:** update the API ([4f86898](https://github.com/googleapis/google-api-nodejs-client/commit/4f86898909a5eddf6d43f8230541c192991b56cf))
+
+
+### Bug Fixes
+
+* **servicenetworking:** update the API ([5e3bdcb](https://github.com/googleapis/google-api-nodejs-client/commit/5e3bdcbdf3afdb4527489d26577639416c7a9a97))
+
 ## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v22.0.1...servicenetworking-v23.0.0) (2025-06-30)
 
 

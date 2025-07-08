@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v3.0.0...webmasters-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **webmasters:** update the API ([cc66e19](https://github.com/googleapis/google-api-nodejs-client/commit/cc66e19d00c46652890b5f42c9f7da044351488e))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/webmasters-v2.0.1...webmasters-v3.0.0) (2025-06-30)
 
 

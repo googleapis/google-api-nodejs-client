@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/versionhistory-v3.0.0...versionhistory-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **versionhistory:** update the API ([2dc08a0](https://github.com/googleapis/google-api-nodejs-client/commit/2dc08a0a623b984e3a2b0f277f872038437f9576))
+* **versionhistory:** update the API ([248338b](https://github.com/googleapis/google-api-nodejs-client/commit/248338b90669efbbcd70faab1d31f0606580412a))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/versionhistory-v2.0.1...versionhistory-v3.0.0) (2025-06-30)
 
 

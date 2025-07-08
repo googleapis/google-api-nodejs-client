@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v6.0.0...trafficdirector-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **trafficdirector:** update the API ([c5ea4c9](https://github.com/googleapis/google-api-nodejs-client/commit/c5ea4c9c7757a216ca9d0e0f598f8cbab97156c9))
+* **trafficdirector:** update the API ([20925e8](https://github.com/googleapis/google-api-nodejs-client/commit/20925e87912207365e21c7e3505f128161fce571))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/trafficdirector-v5.0.1...trafficdirector-v6.0.0) (2025-06-30)
 
 

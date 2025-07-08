@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v3.0.0...sql-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **sql:** update the API ([a9559e6](https://github.com/googleapis/google-api-nodejs-client/commit/a9559e6e72862e58082fedb59110e307beba2edf))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sql-v2.0.1...sql-v3.0.0) (2025-06-30)
 
 

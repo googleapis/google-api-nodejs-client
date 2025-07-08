@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v13.0.0...cloudbuild-v13.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudbuild:** update the API ([827d27a](https://github.com/googleapis/google-api-nodejs-client/commit/827d27a2af378a9dfafc3e82e2fc6a88649a01ae))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbuild-v12.0.1...cloudbuild-v13.0.0) (2025-06-30)
 
 

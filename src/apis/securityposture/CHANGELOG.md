@@ -1,5 +1,17 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v2.0.0...securityposture-v2.1.0) (2025-07-08)
+
+
+### Features
+
+* **securityposture:** update the API ([05aff4f](https://github.com/googleapis/google-api-nodejs-client/commit/05aff4ffe2af76bc602dcbe03ef3ef19ee900cf5))
+
+
+### Bug Fixes
+
+* **securityposture:** update the API ([86067d3](https://github.com/googleapis/google-api-nodejs-client/commit/86067d3efd9d387d1d8eeb034b2cac22039882cf))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v1.0.1...securityposture-v2.0.0) (2025-06-30)
 
 

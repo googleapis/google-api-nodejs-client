@@ -1,5 +1,13 @@
 # Changelog
 
+## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v27.0.0...youtube-v27.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **youtube:** update the API ([4bd649b](https://github.com/googleapis/google-api-nodejs-client/commit/4bd649bfaa87bb532a98fc0083b0813b5dcf0f9e))
+* **youtube:** update the API ([7afc1b4](https://github.com/googleapis/google-api-nodejs-client/commit/7afc1b44b5ec77357d0d2856551e1b6bd0ee91b9))
+
 ## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v26.0.1...youtube-v27.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v5.0.0...toolresults-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **toolresults:** update the API ([87faa5c](https://github.com/googleapis/google-api-nodejs-client/commit/87faa5c4b2939361fbc216c9394ca4dbe4e5a578))
+* **toolresults:** update the API ([8b03d7b](https://github.com/googleapis/google-api-nodejs-client/commit/8b03d7bd30ff529cf3d785c2b2ae84c7cfed5406))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/toolresults-v4.0.1...toolresults-v5.0.0) (2025-06-30)
 
 

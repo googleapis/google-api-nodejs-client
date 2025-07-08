@@ -1,5 +1,17 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v11.0.0...sheets-v11.1.0) (2025-07-08)
+
+
+### Features
+
+* **sheets:** update the API ([a670af1](https://github.com/googleapis/google-api-nodejs-client/commit/a670af18570860fae6ef524cb4dbacc006ed8665))
+
+
+### Bug Fixes
+
+* **sheets:** update the API ([d3d560c](https://github.com/googleapis/google-api-nodejs-client/commit/d3d560caa3dcb261e6f59708109ba79aa72c39ec))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sheets-v10.0.1...sheets-v11.0.0) (2025-06-30)
 
 
