@@ -3012,7 +3012,7 @@
       }
     }
   },
-  "revision": "20250527",
+  "revision": "20250617",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -4775,7 +4775,7 @@
           "type": "string"
         },
         "producerInstanceLocation": {
-          "description": "Required. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.",
+          "description": "Optional. ProducerInstanceLocation is used to specify which authorization mechanism to use to determine which projects the Producer instance can be within.",
           "enum": [
             "PRODUCER_INSTANCE_LOCATION_UNSPECIFIED",
             "CUSTOM_RESOURCE_HIERARCHY_LEVELS"
