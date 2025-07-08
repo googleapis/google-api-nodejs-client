@@ -695,7 +695,7 @@
       }
     }
   },
-  "revision": "20250507",
+  "revision": "20250623",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -1085,7 +1085,7 @@
           "description": "Required. Shared dataset i.e. BigQuery dataset source."
         },
         "categories": {
-          "description": "Optional. Categories of the listing. Up to two categories are allowed.",
+          "description": "Optional. Categories of the listing. Up to five categories are allowed.",
           "items": {
             "enum": [
               "CATEGORY_UNSPECIFIED",
@@ -1107,9 +1107,11 @@
               "CATEGORY_SPORTS",
               "CATEGORY_SCIENCE_AND_RESEARCH",
               "CATEGORY_TRANSPORTATION_AND_LOGISTICS",
-              "CATEGORY_TRAVEL_AND_TOURISM"
+              "CATEGORY_TRAVEL_AND_TOURISM",
+              "CATEGORY_GOOGLE_EARTH_ENGINE"
             ],
             "enumDescriptions": [
+              "",
               "",
               "",
               "",
