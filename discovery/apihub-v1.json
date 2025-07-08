@@ -2608,6 +2608,40 @@
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
+                    },
+                    "patch": {
+                      "description": "Updates a plugin instance in the API hub. The following fields in the plugin_instance can be updated currently: * display_name * schedule_cron_expression The update_mask should be used to specify the fields being updated. To update the auth_config and additional_config of the plugin instance, use the ApplyPluginInstanceConfig method.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/plugins/{pluginsId}/instances/{instancesId}",
+                      "httpMethod": "PATCH",
+                      "id": "apihub.projects.locations.plugins.instances.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Identifier. The unique name of the plugin instance resource. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/plugins/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. The list of fields to update.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "request": {
+                        "$ref": "GoogleCloudApihubV1PluginInstance"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApihubV1PluginInstance"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
                     }
                   }
                 },
@@ -2780,7 +2814,7 @@
       }
     }
   },
-  "revision": "20250611",
+  "revision": "20250701",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3941,6 +3975,10 @@
           "$ref": "GoogleCloudApihubV1AttributeValues",
           "description": "Optional. The environment mapping to this deployment. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-environment` attribute. The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. All values should be from the list of allowed values defined for the attribute."
         },
+        "managementUrl": {
+          "$ref": "GoogleCloudApihubV1AttributeValues",
+          "description": "Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API."
+        },
         "name": {
           "description": "Identifier. The name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
           "type": "string"
@@ -3953,6 +3991,10 @@
           "$ref": "GoogleCloudApihubV1AttributeValues",
           "description": "Optional. The SLO for this deployment. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-slo` attribute. The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. All values should be from the list of allowed values defined for the attribute."
         },
+        "sourceEnvironment": {
+          "description": "Optional. The environment at source for the deployment. For example: prod, dev, staging, etc.",
+          "type": "string"
+        },
         "sourceMetadata": {
           "description": "Output only. The list of sources and metadata from the sources of the deployment.",
           "items": {
@@ -3960,6 +4002,14 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "sourceProject": {
+          "description": "Optional. The project to which the deployment belongs. For GCP gateways, this will refer to the project identifier. For others like Edge/OPDK, this will refer to the org identifier.",
+          "type": "string"
+        },
+        "sourceUri": {
+          "$ref": "GoogleCloudApihubV1AttributeValues",
+          "description": "Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API."
         },
         "updateTime": {
           "description": "Output only. The time at which the deployment was last updated.",
@@ -4864,6 +4914,30 @@
           "$ref": "GoogleCloudApihubV1Documentation",
           "description": "Optional. The documentation of the plugin, that explains how to set up and use the plugin."
         },
+        "gatewayType": {
+          "description": "Optional. The type of the gateway.",
+          "enum": [
+            "GATEWAY_TYPE_UNSPECIFIED",
+            "APIGEE_X_AND_HYBRID",
+            "APIGEE_EDGE_PUBLIC_CLOUD",
+            "APIGEE_EDGE_PRIVATE_CLOUD",
+            "CLOUD_API_GATEWAY",
+            "CLOUD_ENDPOINTS",
+            "API_DISCOVERY",
+            "OTHERS"
+          ],
+          "enumDescriptions": [
+            "The gateway type is not specified.",
+            "The gateway type is Apigee X and Hybrid.",
+            "The gateway type is Apigee Edge Public Cloud.",
+            "The gateway type is Apigee Edge Private Cloud.",
+            "The gateway type is Cloud API Gateway.",
+            "The gateway type is Cloud Endpoints.",
+            "The gateway type is API Discovery.",
+            "The gateway type for any other types of gateways."
+          ],
+          "type": "string"
+        },
         "hostingService": {
           "$ref": "GoogleCloudApihubV1HostingService",
           "description": "Optional. This field is optional. It is used to notify the plugin hosting service for any lifecycle changes of the plugin instance and trigger execution of plugin instance actions in case of API hub managed actions. This field should be provided if the plugin instance lifecycle of the developed plugin needs to be managed from API hub. Also, in this case the plugin hosting service interface needs to be implemented. This field should not be provided if the plugin wants to manage plugin instance lifecycle events outside of hub interface and use plugin framework for only registering of plugin and plugin instances to capture the source of data into hub. Note, in this case the plugin hosting service interface is not required to be implemented. Also, the plugin instance lifecycle actions will be disabled from API hub's UI."
@@ -5005,6 +5079,10 @@
           "description": "Identifier. The unique name of the plugin instance resource. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
           "type": "string"
         },
+        "sourceProjectId": {
+          "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This is a required field.",
+          "type": "string"
+        },
         "state": {
           "description": "Output only. The current state of the plugin instance (e.g., enabled, disabled, provisioning).",
           "enum": [
@@ -5053,12 +5131,21 @@
           "$ref": "GoogleCloudApihubV1ExecutionStatus",
           "description": "Optional. The execution information for the plugin instance action done corresponding to an API hub instance."
         },
+        "resourceConfig": {
+          "$ref": "GoogleCloudApihubV1ResourceConfig",
+          "description": "Output only. The configuration of resources created for a given plugin instance action. Note these will be returned only in case of Non-GCP plugins like OPDK.",
+          "readOnly": true
+        },
         "scheduleCronExpression": {
           "description": "Optional. The schedule for this plugin instance action. This can only be set if the plugin supports API_HUB_SCHEDULE_TRIGGER mode for this action.",
           "type": "string"
         },
         "scheduleTimeZone": {
           "description": "Optional. The time zone for the schedule cron expression. If not provided, UTC will be used.",
+          "type": "string"
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account used to publish data. Note, the service account will only be accepted for non GCP plugins like OPDK.",
           "type": "string"
         },
         "state": {
@@ -5147,6 +5234,33 @@
         "start": {
           "$ref": "GoogleCloudApihubV1Point",
           "description": "Required. Start of the issue."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ResourceConfig": {
+      "description": "The configuration of resources created for a given plugin instance action.",
+      "id": "GoogleCloudApihubV1ResourceConfig",
+      "properties": {
+        "actionType": {
+          "description": "Output only. The type of the action.",
+          "enum": [
+            "ACTION_TYPE_UNSPECIFIED",
+            "SYNC_METADATA",
+            "SYNC_RUNTIME_DATA"
+          ],
+          "enumDescriptions": [
+            "Default unspecified action type.",
+            "Action type for sync metadata.",
+            "Action type for sync runtime data."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "pubsubTopic": {
+          "description": "Output only. The pubsub topic to publish the data to. Format is projects/{project}/topics/{topic}",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
