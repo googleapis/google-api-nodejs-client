@@ -212,6 +212,10 @@ import {
 import {VERSIONS as cloudiotVersions, cloudiot} from './cloudiot';
 import {VERSIONS as cloudkmsVersions, cloudkms} from './cloudkms';
 import {
+  VERSIONS as cloudlocationfinderVersions,
+  cloudlocationfinder,
+} from './cloudlocationfinder';
+import {
   VERSIONS as cloudprofilerVersions,
   cloudprofiler,
 } from './cloudprofiler';
@@ -833,6 +837,7 @@ export const APIS: APIList = {
   cloudidentity: cloudidentityVersions,
   cloudiot: cloudiotVersions,
   cloudkms: cloudkmsVersions,
+  cloudlocationfinder: cloudlocationfinderVersions,
   cloudprofiler: cloudprofilerVersions,
   cloudresourcemanager: cloudresourcemanagerVersions,
   cloudscheduler: cloudschedulerVersions,
@@ -1148,6 +1153,7 @@ export class GeneratedAPIs {
   cloudidentity = cloudidentity;
   cloudiot = cloudiot;
   cloudkms = cloudkms;
+  cloudlocationfinder = cloudlocationfinder;
   cloudprofiler = cloudprofiler;
   cloudresourcemanager = cloudresourcemanager;
   cloudscheduler = cloudscheduler;
