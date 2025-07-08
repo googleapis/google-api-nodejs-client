@@ -2079,6 +2079,14 @@ export namespace dataproc_v1 {
      */
     autoDeleteTtl?: string | null;
     /**
+     * Optional. The time when cluster will be auto-stopped (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     */
+    autoStopTime?: string | null;
+    /**
+     * Optional. The lifetime duration of the cluster. The cluster will be auto-stopped at the end of this period, calculated from the time of submission of the create or update cluster request. Minimum value is 10 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     */
+    autoStopTtl?: string | null;
+    /**
      * Optional. The duration to keep the cluster alive while idling (when no jobs are running). Passing this threshold will cause the cluster to be deleted. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     idleDeleteTtl?: string | null;
@@ -2086,6 +2094,10 @@ export namespace dataproc_v1 {
      * Output only. The time when cluster became idle (most recent job finished) and became eligible for deletion due to idleness (see JSON representation of Timestamp (https://developers.google.com/protocol-buffers/docs/proto3#json)).
      */
     idleStartTime?: string | null;
+    /**
+     * Optional. The duration to keep the cluster started while idling (when no jobs are running). Passing this threshold will cause the cluster to be stopped. Minimum value is 5 minutes; maximum value is 14 days (see JSON representation of Duration (https://developers.google.com/protocol-buffers/docs/proto3#json)).
+     */
+    idleStopTtl?: string | null;
   }
   /**
    * A response to a request to list autoscaling policies in a project.
@@ -14389,6 +14401,8 @@ export namespace dataproc_v1 {
      *   // Do the magic
      *   const res =
      *     await dataproc.projects.locations.sessions.sparkApplications.summarizeJobs({
+     *       // Optional. List of Job IDs to filter by if provided.
+     *       jobIds: 'placeholder-value',
      *       // Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      *       name: 'projects/my-project/locations/my-location/sessions/my-session/sparkApplications/my-sparkApplication',
      *       // Required. Parent (Session) resource reference.
@@ -14702,6 +14716,8 @@ export namespace dataproc_v1 {
      *         name: 'projects/my-project/locations/my-location/sessions/my-session/sparkApplications/my-sparkApplication',
      *         // Required. Parent (Session) resource reference.
      *         parent: 'placeholder-value',
+     *         // Optional. List of Stage IDs to filter by if provided.
+     *         stageIds: 'placeholder-value',
      *       },
      *     );
      *   console.log(res.data);
@@ -15335,6 +15351,10 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Summarizejobs
     extends StandardParameters {
     /**
+     * Optional. List of Job IDs to filter by if provided.
+     */
+    jobIds?: string[];
+    /**
      * Required. The fully qualified name of the session to retrieve in the format "projects/PROJECT_ID/locations/DATAPROC_REGION/sessions/SESSION_ID/sparkApplications/APPLICATION_ID"
      */
     name?: string;
@@ -15372,6 +15392,10 @@ export namespace dataproc_v1 {
      * Required. Parent (Session) resource reference.
      */
     parent?: string;
+    /**
+     * Optional. List of Stage IDs to filter by if provided.
+     */
+    stageIds?: string[];
   }
   export interface Params$Resource$Projects$Locations$Sessions$Sparkapplications$Write
     extends StandardParameters {
