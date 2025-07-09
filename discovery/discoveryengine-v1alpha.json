@@ -816,6 +816,34 @@
               "resources": {
                 "dataConnector": {
                   "methods": {
+                    "acquireAccessToken": {
+                      "description": "Uses the per-user refresh token minted with AcquireAndStoreRefreshToken to generate and return a new access token and its details. Takes the access token from cache if available. Rotates the stored refresh token if needed. Uses the end user identity to return the user specific access token. Does *not* return the credentials configured by the administrator. Used by Agentspace action execution and Agentspace UI.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector:acquireAccessToken",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.collections.dataConnector.acquireAccessToken",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name of the connector for which a token is queried.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataConnector$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}:acquireAccessToken",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "getConnectorSecret": {
                       "description": "Get the secret for the associated connector.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataConnector:getConnectorSecret",
@@ -2990,7 +3018,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -3911,6 +3939,11 @@
                           "parameters": {
                             "acceptCache": {
                               "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                              "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -4997,7 +5030,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -5113,6 +5146,11 @@
                           "parameters": {
                             "acceptCache": {
                               "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                              "location": "query",
+                              "type": "boolean"
+                            },
+                            "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                              "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
                               "location": "query",
                               "type": "boolean"
                             },
@@ -7086,7 +7124,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
                           "location": "query",
                           "type": "string"
                         },
@@ -7748,6 +7786,11 @@
                       "parameters": {
                         "acceptCache": {
                           "description": "Optional. Whether it's acceptable to load the widget config from cache. If set to true, recent changes on widget configs may take a few minutes to reflect on the end user's view. It's recommended to set to true for maturely developed widgets, as it improves widget performance. Set to false to see changes reflected in prod right away, if your widget is under development.",
+                          "location": "query",
+                          "type": "boolean"
+                        },
+                        "getWidgetConfigRequestOption.turnOffCollectionComponents": {
+                          "description": "Optional. Whether to turn off collection_components in WidgetConfig to reduce latency and data transmission.",
                           "location": "query",
                           "type": "boolean"
                         },
@@ -9173,7 +9216,7 @@
       }
     }
   },
-  "revision": "20250619",
+  "revision": "20250706",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -12811,6 +12854,27 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenRequest": {
+      "description": "Request message for the DataConnectorService.AcquireAccessToken method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenResponse": {
+      "description": "Response message for the DataConnectorService.AcquireAccessToken method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAcquireAccessTokenResponse",
+      "properties": {
+        "accessToken": {
+          "description": "The created access token.",
+          "type": "string"
+        },
+        "refreshTokenInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo",
+          "description": "Info about the stored refresh token used to create the access token."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaActionConfig": {
       "description": "Informations to support actions on the connector.",
       "id": "GoogleCloudDiscoveryengineV1alphaActionConfig",
@@ -15716,7 +15780,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaConnectorRunEntityRun",
       "properties": {
         "deletedRecordCount": {
-          "description": "The number of documents deleted.",
+          "description": "Optional. The number of documents deleted.",
           "format": "int64",
           "type": "string"
         },
@@ -15725,7 +15789,7 @@
           "type": "string"
         },
         "errorRecordCount": {
-          "description": "The total number of documents failed at sync at any stage (extraction, indexing, etc).",
+          "description": "Optional. The total number of documents failed at sync at indexing stage.",
           "format": "int64",
           "type": "string"
         },
@@ -15737,12 +15801,12 @@
           "type": "array"
         },
         "extractedRecordCount": {
-          "description": "The number of documents extracted from connector source, ready to be ingested to VAIS.",
+          "description": "Optional. The number of documents extracted from connector source, ready to be ingested to VAIS.",
           "format": "int64",
           "type": "string"
         },
         "indexedRecordCount": {
-          "description": "The number of documents indexed.",
+          "description": "Optional. The number of documents indexed.",
           "format": "int64",
           "type": "string"
         },
@@ -15751,12 +15815,12 @@
           "description": "Metadata to generate the progress bar."
         },
         "scheduledRecordCount": {
-          "description": "The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.",
+          "description": "Optional. The number of documents scheduled to be crawled/extracted from connector source. This only applies to third party connectors.",
           "format": "int64",
           "type": "string"
         },
         "sourceApiRequestCount": {
-          "description": "The number of requests sent to 3p API.",
+          "description": "Optional. The number of requests sent to 3p API.",
           "format": "int64",
           "type": "string"
         },
@@ -16550,7 +16614,8 @@
             "GOOGLE_DRIVE",
             "NATIVE_CLOUD_IDENTITY",
             "THIRD_PARTY_FEDERATED",
-            "THIRD_PARTY_EUA"
+            "THIRD_PARTY_EUA",
+            "GCNV"
           ],
           "enumDescriptions": [
             "Default value.",
@@ -16563,7 +16628,8 @@
             "Google Drive connector.",
             "Native Cloud Identity connector for people search powered by People API.",
             "Federated connector, it is a third party connector that doesn't ingestion data, and search is powered by third party application's API.",
-            "Connector utilized for End User Authentication features."
+            "Connector utilized for End User Authentication features.",
+            "Google Cloud NetApp Volumes connector."
           ],
           "readOnly": true,
           "type": "string"
@@ -16780,6 +16846,10 @@
           },
           "description": "Optional. Any authentication parameters specific to EUA connectors.",
           "type": "object"
+        },
+        "tenant": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaTenant",
+          "description": "Optional. The tenant project the connector is connected to."
         }
       },
       "type": "object"
@@ -16792,8 +16862,39 @@
           "description": "Optional. The ID of the Secret Manager secret used for webhook secret.",
           "type": "string"
         },
+        "streamingError": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfigStreamingError",
+          "description": "Optional. Streaming error details."
+        },
         "webhookUri": {
           "description": "Optional. Webhook url for the connector to specify additional params for realtime sync.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfigStreamingError": {
+      "description": "Streaming error details.",
+      "id": "GoogleCloudDiscoveryengineV1alphaDataConnectorRealtimeSyncConfigStreamingError",
+      "properties": {
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Optional. Error details."
+        },
+        "streamingErrorReason": {
+          "description": "Optional. Streaming error.",
+          "enum": [
+            "STREAMING_ERROR_REASON_UNSPECIFIED",
+            "STREAMING_SETUP_ERROR",
+            "STREAMING_SYNC_ERROR",
+            "INGRESS_ENDPOINT_REQUIRED"
+          ],
+          "enumDescriptions": [
+            "Streaming error reason unspecified.",
+            "Some error occurred while setting up resources for realtime sync.",
+            "Some error was encountered while running realtime sync for the connector.",
+            "Ingress endpoint is required when setting up realtime sync in private connectivity."
+          ],
           "type": "string"
         }
       },
@@ -19659,7 +19760,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state. Example: \"user_pseudo_id = some_id\"",
+          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
           "type": "string"
         },
         "orderBy": {
@@ -20691,6 +20792,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo": {
+      "description": "Describes a refresh token.",
+      "id": "GoogleCloudDiscoveryengineV1alphaRefreshTokenInfo",
+      "properties": {
+        "name": {
+          "description": "Required. The connection for which this token applies.",
+          "type": "string"
+        },
+        "scopes": {
+          "description": "The list of scopes for this token.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaRemoveDedicatedCrawlRateMetadata": {
       "description": "Metadata related to the progress of the CrawlRateManagementService.RemoveDedicatedCrawlRate operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1alphaRemoveDedicatedCrawlRateMetadata",
@@ -21355,7 +21474,7 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
+          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
@@ -23469,6 +23588,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaTenant": {
+      "description": "Tenant information for a connector source. This includes some of the same information stored in the Credential message, but is limited to only what is needed to provide a list of accessible tenants to the user.",
+      "id": "GoogleCloudDiscoveryengineV1alphaTenant",
+      "properties": {
+        "displayName": {
+          "description": "Optional display name for the tenant, e.g. \"My Slack Team\".",
+          "type": "string"
+        },
+        "id": {
+          "description": "The tenant's instance ID. Examples: Jira (\"8594f221-9797-5f78-1fa4-485e198d7cd0\"), Slack (\"T123456\").",
+          "type": "string"
+        },
+        "uri": {
+          "description": "The URI of the tenant, if applicable. For example, the URI of a Jira instance is https://my-jira-instance.atlassian.net, and a Slack tenant does not have a URI.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaTextInput": {
       "description": "Defines text input.",
       "id": "GoogleCloudDiscoveryengineV1alphaTextInput",
@@ -24226,6 +24364,11 @@
         },
         "dataSource": {
           "description": "The name of the data source, retrieved from `Collection.data_connector.data_source`.",
+          "type": "string"
+        },
+        "dataSourceDisplayName": {
+          "description": "Output only. The display name of the data source.",
+          "readOnly": true,
           "type": "string"
         },
         "dataStoreComponents": {
@@ -26973,7 +27116,7 @@
           "description": "The query expansion specification that specifies the conditions under which query expansion occurs."
         },
         "rankingExpression": {
-          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
+          "description": "Optional. The ranking expression controls the customized ranking on retrieval documents. This overrides ServingConfig.ranking_expression. The syntax and supported features depend on the `ranking_expression_backend` value. If `ranking_expression_backend` is not provided, it defaults to `RANK_BY_EMBEDDING`. If ranking_expression_backend is not provided or set to `RANK_BY_EMBEDDING`, it should be a single function or multiple functions that are joined by \"+\". * ranking_expression = function, { \" + \", function }; Supported functions: * double * relevance_score * double * dotProduct(embedding_field_path) Function variables: * `relevance_score`: pre-defined keywords, used for measure relevance between query and document. * `embedding_field_path`: the document embedding field used with query embedding vector. * `dotProduct`: embedding function between `embedding_field_path` and query embedding vector. Example ranking expression: If document has an embedding field doc_embedding, the ranking expression could be `0.5 * relevance_score + 0.3 * dotProduct(doc_embedding)`. If ranking_expression_backend is set to `RANK_BY_FORMULA`, the following expression types (and combinations of those chained using + or * operators) are supported: * `double` * `signal` * `log(signal)` * `exp(signal)` * `rr(signal, double > 0)` -- reciprocal rank transformation with second argument being a denominator constant. * `is_nan(signal)` -- returns 0 if signal is NaN, 1 otherwise. * `fill_nan(signal1, signal2 | double)` -- if signal1 is NaN, returns signal2 | double, else returns signal1. Here are a few examples of ranking formulas that use the supported ranking expression types: - `0.2 * semantic_similarity_score + 0.8 * log(keyword_similarity_score)` -- mostly rank by the logarithm of `keyword_similarity_score` with slight `semantic_smilarity_score` adjustment. - `0.2 * exp(fill_nan(semantic_similarity_score, 0)) + 0.3 * is_nan(keyword_similarity_score)` -- rank by the exponent of `semantic_similarity_score` filling the value with 0 if it's NaN, also add constant 0.3 adjustment to the final score if `semantic_similarity_score` is NaN. - `0.2 * rr(semantic_similarity_score, 16) + 0.8 * rr(keyword_similarity_score, 16)` -- mostly rank by the reciprocal rank of `keyword_similarity_score` with slight adjustment of reciprocal rank of `semantic_smilarity_score`. The following signals are supported: * `semantic_similarity_score`: semantic similarity adjustment that is calculated using the embeddings generated by a proprietary Google model. This score determines how semantically similar a search query is to a document. * `keyword_similarity_score`: keyword match adjustment uses the Best Match 25 (BM25) ranking function. This score is calculated using a probabilistic model to estimate the probability that a document is relevant to a given query. * `relevance_score`: semantic relevance adjustment that uses a proprietary Google model to determine the meaning and intent behind a user's query in context with the content in the documents. * `pctr_rank`: predicted conversion rate adjustment as a rank use predicted Click-through rate (pCTR) to gauge the relevance and attractiveness of a search result from a user's perspective. A higher pCTR suggests that the result is more likely to satisfy the user's query and intent, making it a valuable signal for ranking. * `freshness_rank`: freshness adjustment as a rank * `document_age`: The time in hours elapsed since the document was last updated, a floating-point number (e.g., 0.25 means 15 minutes). * `topicality_rank`: topicality adjustment as a rank. Uses proprietary Google model to determine the keyword-based overlap between the query and the document. * `base_rank`: the default rank of the result",
           "type": "string"
         },
         "rankingExpressionBackend": {
