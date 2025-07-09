@@ -639,13 +639,13 @@ export namespace admin_directory_v1 {
     type?: string | null;
   }
   /**
-   * Google Chrome devices run on the [Chrome OS](https://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices).
+   * Google Chrome devices run on the [Chrome OS](https://support.google.com/chromeos). For more information about common API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices).
    */
   export interface Schema$ChromeOsDevice {
     /**
      * A list of active time ranges (Read-only).
      */
-    activeTimeRanges?: Array<{activeTime?: string; date?: string}> | null;
+    activeTimeRanges?: Array<{activeTime?: number; date?: string}> | null;
     /**
      * The asset identifier as noted by an administrator or specified during enrollment.
      */
@@ -807,7 +807,7 @@ export namespace admin_directory_v1 {
      */
     manufactureDate?: string | null;
     /**
-     * The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices.html#export_meid).
+     * The Mobile Equipment Identifier (MEID) or the International Mobile Equipment Identity (IMEI) for the 3G mobile card in a mobile device. A MEID/IMEI is typically used when adding a device to a wireless carrier's post-pay service plan. If the device does not have this information, this property is not included in the response. For more information on how to export a MEID/IMEI list, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-chrome-devices.html#export_meid).
      */
     meid?: string | null;
     /**
@@ -815,7 +815,7 @@ export namespace admin_directory_v1 {
      */
     model?: string | null;
     /**
-     * Notes about this device added by the administrator. This property can be [searched](https://support.google.com/chrome/a/answer/1698333) with the [list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.
+     * Notes about this device added by the administrator. This property can be [searched](https://support.google.com/chrome/a/answer/1698333) with the [list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method's `query` parameter. Maximum length is 500 characters. Empty values are allowed.
      */
     notes?: string | null;
     /**
@@ -823,11 +823,11 @@ export namespace admin_directory_v1 {
      */
     orderNumber?: string | null;
     /**
-     * The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
+     * The unique ID of the organizational unit. orgUnitPath is the human readable version of orgUnitId. While orgUnitPath may change by renaming an organizational unit within the path, orgUnitId is unchangeable for one organizational unit. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitId?: string | null;
     /**
-     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
+     * The full parent path with the organizational unit's name associated with the device. Path names are case insensitive. If the parent organizational unit is the top-level organization, it is represented as a forward slash, `/`. This property can be [updated](/admin-sdk/directory/v1/guides/manage-chrome-devices#move_chrome_devices_to_ou) using the API. For more information about how to create an organizational structure for your device, see the [administration help center](https://support.google.com/a/answer/182433).
      */
     orgUnitPath?: string | null;
     /**
@@ -949,11 +949,11 @@ export namespace admin_directory_v1 {
    */
   export interface Schema$CreatePrintServerRequest {
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     parent?: string | null;
     /**
-     * Required. A print server to create. If you want to place the print server under a specific organizational unit (OU), then populate the `org_unit_id`. Otherwise the print server is created under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/workspace/admin/directory/v1/guides/manage-org-units).
+     * Required. A print server to create. If you want to place the print server under a specific organizational unit (OU), then populate the `org_unit_id`. Otherwise the print server is created under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/admin-sdk/directory/v1/guides/manage-org-units).
      */
     printServer?: Schema$PrintServer;
   }
@@ -983,7 +983,7 @@ export namespace admin_directory_v1 {
      */
     kind?: string | null;
     /**
-     * The customer's ISO 639-2 language code. See the [Language Codes](https://developers.google.com/workspace/admin/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.
+     * The customer's ISO 639-2 language code. See the [Language Codes](/admin-sdk/directory/v1/languages) page for the list of supported codes. Valid language codes outside the supported set will be accepted by the API but may lead to unexpected behavior. The default value is `en`.
      */
     language?: string | null;
     /**
@@ -1281,7 +1281,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/workspace/admin/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.
+   * Google Groups provide your users the ability to send messages to groups of people using the group's email address. For more information about common tasks, see the [Developer's Guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-groups). For information about other types of groups, see the [Cloud Identity Groups API documentation](https://cloud.google.com/identity/docs/groups). Note: The user calling the API (or being impersonated by a service account) must have an assigned [role](https://developers.google.com/admin-sdk/directory/v1/guides/manage-roles) that includes Admin API Groups permissions, such as Super Admin or Groups Admin.
    */
   export interface Schema$Group {
     /**
@@ -1405,7 +1405,7 @@ export namespace admin_directory_v1 {
     printServers?: Schema$PrintServer[];
   }
   /**
-   * A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-group-members).
+   * A Google Groups member can be a user or another group. This member can be inside or outside of your account's domains. For more information about common group member tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-group-members).
    */
   export interface Schema$Member {
     /**
@@ -1469,7 +1469,7 @@ export namespace admin_directory_v1 {
     isMember?: boolean | null;
   }
   /**
-   * Google Workspace Mobile Management includes Android, [Google Sync](https://support.google.com/a/answer/135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices.html).
+   * Google Workspace Mobile Management includes Android, [Google Sync](https://support.google.com/a/answer/135937), and iOS devices. For more information about common group mobile device API tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices.html).
    */
   export interface Schema$MobileDevice {
     /**
@@ -1523,7 +1523,7 @@ export namespace admin_directory_v1 {
      */
     devicePasswordStatus?: string | null;
     /**
-     * The list of the owner's email addresses. If your application needs the current list of user emails, use the [get](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#get_user) method.
+     * The list of the owner's email addresses. If your application needs the current list of user emails, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For additional information, see the [retrieve a user](/admin-sdk/directory/v1/guides/manage-users#get_user) method.
      */
     email?: string[] | null;
     /**
@@ -1575,11 +1575,11 @@ export namespace admin_directory_v1 {
      */
     meid?: string | null;
     /**
-     * The mobile device's model name, for example Nexus S. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile=devices#update_mobile_device).
+     * The mobile device's model name, for example Nexus S. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile=devices#update_mobile_device).
      */
     model?: string | null;
     /**
-     * The list of the owner's user names. If your application needs the current list of device owner names, use the [get](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#get_user).
+     * The list of the owner's user names. If your application needs the current list of device owner names, use the [get](/admin-sdk/directory/v1/reference/mobiledevices/get.html) method. For more information about retrieving mobile device user information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-users#get_user).
      */
     name?: string[] | null;
     /**
@@ -1587,7 +1587,7 @@ export namespace admin_directory_v1 {
      */
     networkOperator?: string | null;
     /**
-     * The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices#update_mobile_device).
+     * The mobile device's operating system, for example IOS 4.3 or Android 2.3.5. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).
      */
     os?: string | null;
     /**
@@ -1631,7 +1631,7 @@ export namespace admin_directory_v1 {
      */
     unknownSourcesStatus?: boolean | null;
     /**
-     * Gives information about the device such as `os` version. This property can be [updated](https://developers.google.com/workspace/admin/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-mobile-devices#update_mobile_device).
+     * Gives information about the device such as `os` version. This property can be [updated](/admin-sdk/directory/v1/reference/mobiledevices/update.html). For more information, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-mobile-devices#update_mobile_device).
      */
     userAgent?: string | null;
     /**
@@ -1664,7 +1664,7 @@ export namespace admin_directory_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-org-units.html). The customer's organizational unit hierarchy is limited to 35 levels of depth.
+   * Managing your account's organizational units allows you to configure your users' access to services and custom settings. For more information about common organizational unit tasks, see the [Developer's Guide](/admin-sdk/directory/v1/guides/manage-org-units.html). The customer's organizational unit hierarchy is limited to 35 levels of depth.
    */
   export interface Schema$OrgUnit {
     /**
@@ -1692,7 +1692,7 @@ export namespace admin_directory_v1 {
      */
     orgUnitId?: string | null;
     /**
-     * The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which Google Workspace services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](https://support.google.com/a/answer/4352075). For more information about moving a user to a different organization, see [Update a user](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#update_user).
+     * The full path to the organizational unit. The `orgUnitPath` is a derived property. When listed, it is derived from `parentOrgunitPath` and organizational unit's `name`. For example, for an organizational unit named 'apps' under parent organization '/engineering', the orgUnitPath is '/engineering/apps'. In order to edit an `orgUnitPath`, either update the name of the organization or the `parentOrgunitPath`. A user's organizational unit determines which Google Workspace services the user has access to. If the user is moved to a new organization, the user's access changes. For more information about organization structures, see the [administration help center](https://support.google.com/a/answer/4352075). For more information about moving a user to a different organization, see [Update a user](/admin-sdk/directory/v1/guides/manage-users.html#update_user).
      */
     orgUnitPath?: string | null;
     /**
@@ -1834,7 +1834,7 @@ export namespace admin_directory_v1 {
      */
     name?: string | null;
     /**
-     * ID of the organization unit (OU) that owns this print server. This value can only be set when the print server is initially created. If it's not populated, the print server is placed under the root OU. The `org_unit_id` can be retrieved using the [Directory API](https://developers.google.com/workspace/admin/directory/reference/rest/v1/orgunits).
+     * ID of the organization unit (OU) that owns this print server. This value can only be set when the print server is initially created. If it's not populated, the print server is placed under the root OU. The `org_unit_id` can be retrieved using the [Directory API](/admin-sdk/directory/reference/rest/v1/orgunits).
      */
     orgUnitId?: string | null;
     /**
@@ -1885,7 +1885,7 @@ export namespace admin_directory_v1 {
      */
     privilegeName?: string | null;
     /**
-     * The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](https://developers.google.com/workspace/admin/directory/v1/reference/privileges/list).
+     * The obfuscated ID of the service this privilege is for. This value is returned with [`Privileges.list()`](/admin-sdk/directory/v1/reference/privileges/list).
      */
     serviceId?: string | null;
     /**
@@ -2042,7 +2042,7 @@ export namespace admin_directory_v1 {
     schemaName?: string | null;
   }
   /**
-   * You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](https://developers.google.com/workspace/admin/directory/v1/guides/manage-schemas).
+   * You can use schemas to add custom fields to user profiles. You can use these fields to store information such as the projects your users work on, their physical locations, their hire dates, or whatever else fits your business needs. For more information, see [Custom User Fields](/admin-sdk/directory/v1/guides/manage-schemas).
    */
   export interface Schema$SchemaFieldSpec {
     /**
@@ -2082,7 +2082,7 @@ export namespace admin_directory_v1 {
      */
     numericIndexingSpec?: {maxValue?: number; minValue?: number} | null;
     /**
-     * Specifies who can view values of this field. See [Retrieve users as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.
+     * Specifies who can view values of this field. See [Retrieve users as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin) for more information. Note: It may take up to 24 hours for changes to this field to be reflected.
      */
     readAccessType?: string | null;
   }
@@ -2175,7 +2175,7 @@ export namespace admin_directory_v1 {
     kind?: string | null;
   }
   /**
-   * The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-user-aliases.html).
+   * The Directory API allows you to create and manage your account's users, user aliases, and user Google profile photos. For more information about common tasks, see the [User Accounts Developer's Guide](/admin-sdk/directory/v1/guides/manage-users.html) and the [User Aliases Developer's Guide](/admin-sdk/directory/v1/guides/manage-user-aliases.html).
    */
   export interface Schema$User {
     /**
@@ -2203,7 +2203,7 @@ export namespace admin_directory_v1 {
      */
     creationTime?: string | null;
     /**
-     * Output only. The customer ID to [retrieve all account users](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](https://developers.google.com/workspace/admin/directory/v1/reference/users/list) request.
+     * Output only. The customer ID to [retrieve all account users](/admin-sdk/directory/v1/guides/manage-users.html#get_all_users). You can use the alias `my_customer` to represent your account's `customerId`. As a reseller administrator, you can use the resold customer account's `customerId`. To get a `customerId`, use the account's primary domain in the `domain` parameter of a [users.list](/admin-sdk/directory/v1/reference/users/list) request.
      */
     customerId?: string | null;
     /**
@@ -2248,7 +2248,7 @@ export namespace admin_directory_v1 {
      */
     ipWhitelisted?: boolean | null;
     /**
-     * Output only. Indicates a user with super administrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](https://developers.google.com/workspace/admin/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](https://developers.google.com/workspace/admin/directory/v1/reference/users/insert.html) or [update](https://developers.google.com/workspace/admin/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.
+     * Output only. Indicates a user with super admininistrator privileges. The `isAdmin` property can only be edited in the [Make a user an administrator](/admin-sdk/directory/v1/guides/manage-users.html#make_admin) operation ( [makeAdmin](/admin-sdk/directory/v1/reference/users/makeAdmin.html) method). If edited in the user [insert](/admin-sdk/directory/v1/reference/users/insert.html) or [update](/admin-sdk/directory/v1/reference/users/update.html) methods, the edit is ignored by the API service.
      */
     isAdmin?: boolean | null;
     /**
@@ -3529,7 +3529,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Use [BatchChangeChromeOsDeviceStatus](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
+     * Use [BatchChangeChromeOsDeviceStatus](/admin-sdk/directory/reference/rest/v1/customer.devices.chromeos/batchChangeStatus) instead. Takes an action that affects a Chrome OS Device. This includes deprovisioning, disabling, and re-enabling devices. *Warning:* * Deprovisioning a device will stop device policy syncing and remove device-level printers. After a device is deprovisioned, it must be wiped before it can be re-enrolled. * Lost or stolen devices should use the disable action. * Re-enabling a disabled device will consume a device license. If you do not have sufficient licenses available when completing the re-enable action, you will receive an error. For more information about deprovisioning and disabling devices, visit the [help center](https://support.google.com/chrome/a/answer/3523633).
      * @example
      * ```js
      * // Before running the sample:
@@ -3559,9 +3559,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.action({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.
+     *     // The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     resourceId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3703,9 +3703,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
      *     // Determines whether the response contains the full list of properties or only a subset.
      *     projection: 'placeholder-value',
@@ -3898,7 +3898,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Return devices from all child orgunits, as well as the specified org unit. If this is set to true, 'orgUnitPath' must be provided.
      *     includeChildOrgunits: 'placeholder-value',
@@ -3912,7 +3912,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Determines whether the response contains the full list of properties or only a subset.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators
+     *     // Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
@@ -4164,7 +4164,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).
+     * Updates a device's updatable properties, such as `annotatedUser`, `annotatedLocation`, `notes`, `orgUnitPath`, or `annotatedAssetId`. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -4194,9 +4194,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.patch({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
      *     // Determines whether the response contains the full list of properties or only a subset.
      *     projection: 'placeholder-value',
@@ -4445,9 +4445,9 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.chromeosdevices.update({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
-     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.
+     *     // The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      *     deviceId: 'placeholder-value',
      *     // Determines whether the response contains the full list of properties or only a subset.
      *     projection: 'placeholder-value',
@@ -4669,11 +4669,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Action
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.
+     * The unique ID of the device. The `resourceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      */
     resourceId?: string;
 
@@ -4685,11 +4685,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/directory/v1/reference/chromeosdevices/list) method.
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/directory/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
@@ -4700,7 +4700,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -4728,7 +4728,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/list-query-operators
+     * Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/list-query-operators
      */
     query?: string;
     /**
@@ -4755,11 +4755,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Patch
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
@@ -4775,11 +4775,11 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Chromeosdevices$Update
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
-     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](https://developers.google.com/workspace/admin/v1/reference/chromeosdevices/list) method.
+     * The unique ID of the device. The `deviceId`s are returned in the response from the [chromeosdevices.list](/admin-sdk/v1/reference/chromeosdevices/list) method.
      */
     deviceId?: string;
     /**
@@ -7242,7 +7242,7 @@ export namespace admin_directory_v1 {
      *   // Do the magic
      *   const res = await admin.customers.chrome.printServers.batchCreatePrintServers(
      *     {
-     *       // Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     *       // Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      *       parent: 'customers/my-customer',
      *
      *       // Request body metadata
@@ -7397,7 +7397,7 @@ export namespace admin_directory_v1 {
      *   // Do the magic
      *   const res = await admin.customers.chrome.printServers.batchDeletePrintServers(
      *     {
-     *       // Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id\}`
+     *       // Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id\}`
      *       parent: 'customers/my-customer',
      *
      *       // Request body metadata
@@ -7551,7 +7551,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await admin.customers.chrome.printServers.create({
-     *     // Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     *     // Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      *     parent: 'customers/my-customer',
      *
      *     // Request body metadata
@@ -7845,7 +7845,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await admin.customers.chrome.printServers.get({
-     *     // Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     *     // Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      *     name: 'customers/my-customer/chrome/printServers/my-printServer',
      *   });
      *   console.log(res.data);
@@ -8001,7 +8001,7 @@ export namespace admin_directory_v1 {
      *     pageSize: 'placeholder-value',
      *     // A generated token to paginate results (the `next_page_token` from a previous call).
      *     pageToken: 'placeholder-value',
-     *     // Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     *     // Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      *     parent: 'customers/my-customer',
      *   });
      *   console.log(res.data);
@@ -8272,7 +8272,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customers$Chrome$Printservers$Batchcreateprintservers
     extends StandardParameters {
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     parent?: string;
 
@@ -8284,7 +8284,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customers$Chrome$Printservers$Batchdeleteprintservers
     extends StandardParameters {
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{customer.id\}`
      */
     parent?: string;
 
@@ -8296,7 +8296,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customers$Chrome$Printservers$Create
     extends StandardParameters {
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     parent?: string;
 
@@ -8315,7 +8315,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Customers$Chrome$Printservers$Get
     extends StandardParameters {
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     name?: string;
   }
@@ -8342,7 +8342,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The [unique ID](https://developers.google.com/workspace/admin/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
+     * Required. The [unique ID](https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers) of the customer's Google Workspace account. Format: `customers/{id\}`
      */
     parent?: string;
   }
@@ -8535,7 +8535,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.get({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of domain alias to be retrieved.
      *     domainAliasName: 'placeholder-value',
@@ -8836,7 +8836,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domainAliases.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of the parent domain for which domain aliases are to be fetched.
      *     parentDomainName: 'placeholder-value',
@@ -8960,7 +8960,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -8983,7 +8983,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Domainaliases$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -9163,7 +9163,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.get({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Name of domain to be retrieved
      *     domainName: 'placeholder-value',
@@ -9465,7 +9465,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.domains.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -9584,7 +9584,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$Get extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -9605,7 +9605,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Domains$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
   }
@@ -10088,7 +10088,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.groups.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // The domain name. Use this field to get groups from only one domain. To return all domains for a customer account, use the `customer` query parameter instead.
      *     domain: 'placeholder-value',
@@ -10211,7 +10211,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a group's properties. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).
+     * Updates a group's properties. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -10555,7 +10555,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Groups$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -11667,7 +11667,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes).
+     * Retrieves a paginated list of all members in a group. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).
      * @example
      * ```js
      * // Before running the sample:
@@ -11818,7 +11818,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates the membership properties of a user in the specified group. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).
+     * Updates the membership properties of a user in the specified group. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
@@ -12279,7 +12279,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.action({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
@@ -12419,7 +12419,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.delete({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The unique ID the API service uses to identify the mobile device.
      *     resourceId: 'placeholder-value',
@@ -12555,7 +12555,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
@@ -12705,7 +12705,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/workspace/admin/directory/v1/guides/troubleshoot-error-codes).
+     * Retrieves a paginated list of all user-owned mobile devices for an account. To retrieve a list that includes company-owned devices, use the Cloud Identity [Devices API](https://cloud.google.com/identity/docs/concepts/overview-devices) instead. This method times out after 60 minutes. For more information, see [Troubleshoot error codes](https://developers.google.com/admin-sdk/directory/v1/guides/troubleshoot-error-codes).
      * @example
      * ```js
      * // Before running the sample:
@@ -12739,7 +12739,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.mobiledevices.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // Maximum number of results to return. Max allowed value is 100.
      *     maxResults: 'placeholder-value',
@@ -12749,7 +12749,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // Restrict information returned to a set of selected fields.
      *     projection: 'placeholder-value',
-     *     // Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/search-operators
+     *     // Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Must be used with the `orderBy` parameter.
      *     sortOrder: 'placeholder-value',
@@ -12864,7 +12864,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Action
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -12880,7 +12880,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Delete
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -12891,7 +12891,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -12906,7 +12906,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Mobiledevices$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -12926,7 +12926,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Search string in the format given at https://developers.google.com/workspace/admin/directory/v1/search-operators
+     * Search string in the format given at https://developers.google.com/admin-sdk/directory/v1/search-operators
      */
     query?: string;
     /**
@@ -12972,7 +12972,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.delete({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
@@ -13106,7 +13106,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.get({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
@@ -13252,7 +13252,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.insert({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13414,7 +13414,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.list({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path to the organizational unit or its unique ID. Returns the children of the specified organizational unit.
      *     orgUnitPath: 'placeholder-value',
@@ -13525,7 +13525,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates an organizational unit. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch)
+     * Updates an organizational unit. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch)
      * @example
      * ```js
      * // Before running the sample:
@@ -13555,7 +13555,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.patch({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
@@ -13717,7 +13717,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.orgunits.update({
-     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     *     // The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      *     customerId: 'placeholder-value',
      *     // The full path of the organizational unit (minus the leading `/`) or its unique ID.
      *     orgUnitPath: '.*',
@@ -13851,7 +13851,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Orgunits$Delete extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -13861,7 +13861,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Get extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -13871,7 +13871,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Insert extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
 
@@ -13882,7 +13882,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -13896,7 +13896,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Patch extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -13911,7 +13911,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Orgunits$Update extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](https://developers.google.com/workspace/admin/directory/v1/reference/users).
+     * The unique ID for the customer's Google Workspace account. As an account administrator, you can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users resource](/admin-sdk/directory/v1/reference/users).
      */
     customerId?: string;
     /**
@@ -13965,7 +13965,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.privileges.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -14075,7 +14075,7 @@ export namespace admin_directory_v1 {
 
   export interface Params$Resource$Privileges$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
   }
@@ -17485,7 +17485,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.get({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role assignment.
      *     roleAssignmentId: 'placeholder-value',
@@ -17796,7 +17796,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roleAssignments.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // When set to `true`, fetches indirect role assignments (i.e. role assignment via a group) as well as direct ones. Defaults to `false`. You must specify `user_key` or the indirect role assignments will not be included.
      *     includeIndirectRoleAssignments: 'placeholder-value',
@@ -17930,7 +17930,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$Get
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -17953,7 +17953,7 @@ export namespace admin_directory_v1 {
   export interface Params$Resource$Roleassignments$List
     extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -18148,7 +18148,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.get({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Immutable ID of the role.
      *     roleId: 'placeholder-value',
@@ -18452,7 +18452,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.roles.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // Maximum number of results to return.
      *     maxResults: 'placeholder-value',
@@ -18894,7 +18894,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$Get extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -18915,7 +18915,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Roles$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -19129,7 +19129,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.get({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customerId: 'placeholder-value',
      *     // Name or immutable ID of the schema.
      *     schemaKey: 'placeholder-value',
@@ -19428,7 +19428,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.schemas.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customerId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -19859,7 +19859,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$Get extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customerId?: string;
     /**
@@ -19880,7 +19880,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Schemas$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all groups for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customerId?: string;
   }
@@ -20684,7 +20684,7 @@ export namespace admin_directory_v1 {
      *     projection: 'placeholder-value',
      *     // Identifies the user in the API request. The value can be the user's primary email address, alias email address, or unique user ID.
      *     userKey: 'placeholder-value',
-     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -21103,7 +21103,7 @@ export namespace admin_directory_v1 {
      *
      *   // Do the magic
      *   const res = await directory.users.list({
-     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     *     // The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      *     customer: 'placeholder-value',
      *     // A comma-separated list of schema names. All fields from these schemas are fetched. This should only be set when `projection=custom`.
      *     customFieldMask: 'placeholder-value',
@@ -21119,13 +21119,13 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // What subset of fields to fetch for this user.
      *     projection: 'placeholder-value',
-     *     // Query string for searching user fields. For more information on constructing user queries, see [Search for Users](https://developers.google.com/workspace/admin/directory/v1/guides/search-users).
+     *     // Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).
      *     query: 'placeholder-value',
      *     // If set to `true`, retrieves the list of deleted users. (Default: `false`)
      *     showDeleted: 'placeholder-value',
      *     // Whether to return results in ascending or descending order, ignoring case.
      *     sortOrder: 'placeholder-value',
-     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -21371,7 +21371,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/workspace/admin/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.
+     * Updates a user using patch semantics. The update method should be used instead, because it also supports patch semantics and has better performance. If you're mapping an external identity to a Google identity, use the [`update`](https://developers.google.com/admin-sdk/directory/v1/reference/users/update) method instead of the `patch` method. This method is unable to clear fields that contain repeated objects (`addresses`, `phones`, etc). Use the update method instead.
      * @example
      * ```js
      * // Before running the sample:
@@ -21869,7 +21869,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#update_user) for more information.
+     * Updates a user. This method supports patch semantics, meaning that you only need to include the fields you wish to update. Fields that are not present in the request will be preserved, and fields set to `null` will be cleared. For repeating fields that contain arrays, individual items in the array can't be patched piecemeal; they must be supplied in the request body with the desired values for all items. See the [user accounts guide](https://developers.google.com/admin-sdk/directory/v1/guides/manage-users#update_user) for more information.
      * @example
      * ```js
      * // Before running the sample:
@@ -22159,7 +22159,7 @@ export namespace admin_directory_v1 {
      *     showDeleted: 'placeholder-value',
      *     // Whether to return results in ascending or descending order.
      *     sortOrder: 'placeholder-value',
-     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     *     // Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      *     viewType: 'placeholder-value',
      *
      *     // Request body metadata
@@ -22311,7 +22311,7 @@ export namespace admin_directory_v1 {
      */
     userKey?: string;
     /**
-     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
   }
@@ -22328,7 +22328,7 @@ export namespace admin_directory_v1 {
   }
   export interface Params$Resource$Users$List extends StandardParameters {
     /**
-     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](https://developers.google.com/workspace/admin/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
+     * The unique ID for the customer's Google Workspace account. In case of a multi-domain account, to fetch all users for a customer, use this field instead of `domain`. You can also use the `my_customer` alias to represent your account's `customerId`. The `customerId` is also returned as part of the [Users](/admin-sdk/directory/v1/reference/users) resource. You must provide either the `customer` or the `domain` parameter.
      */
     customer?: string;
     /**
@@ -22360,7 +22360,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string for searching user fields. For more information on constructing user queries, see [Search for Users](https://developers.google.com/workspace/admin/directory/v1/guides/search-users).
+     * Query string for searching user fields. For more information on constructing user queries, see [Search for Users](/admin-sdk/directory/v1/guides/search-users).
      */
     query?: string;
     /**
@@ -22372,7 +22372,7 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
     /**
-     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
   }
@@ -22472,7 +22472,7 @@ export namespace admin_directory_v1 {
      */
     sortOrder?: string;
     /**
-     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](https://developers.google.com/workspace/admin/directory/v1/guides/manage-users#retrieve_users_non_admin).
+     * Whether to fetch the administrator-only or domain-wide public view of the user. For more information, see [Retrieve a user as a non-administrator](/admin-sdk/directory/v1/guides/manage-users#retrieve_users_non_admin).
      */
     viewType?: string;
 
@@ -23424,7 +23424,7 @@ export namespace admin_directory_v1 {
     }
 
     /**
-     * Adds a photo for the user. This method supports [patch semantics](https://developers.google.com/workspace/admin/directory/v1/guides/performance#patch).
+     * Adds a photo for the user. This method supports [patch semantics](/admin-sdk/directory/v1/guides/performance#patch).
      * @example
      * ```js
      * // Before running the sample:
