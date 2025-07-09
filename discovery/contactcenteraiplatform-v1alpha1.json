@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250703",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -632,6 +632,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "releaseVersion": {
+          "description": "Output only. UJET release version, unique for each new release.",
+          "readOnly": true,
+          "type": "string"
         },
         "samlParams": {
           "$ref": "SAMLParams",
