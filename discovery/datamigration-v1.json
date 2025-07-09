@@ -2132,6 +2132,11 @@
                       "description": "Optional. If set to true, will skip validations.",
                       "location": "query",
                       "type": "boolean"
+                    },
+                    "validateOnly": {
+                      "description": "Optional. For PSC Interface only - get the tenant project before creating the resource.",
+                      "location": "query",
+                      "type": "boolean"
                     }
                   },
                   "path": "v1/{+parent}/privateConnections",
@@ -2340,7 +2345,7 @@
       }
     }
   },
-  "revision": "20250521",
+  "revision": "20250625",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -2368,13 +2373,15 @@
             "DATABASE_VERSION_UNSPECIFIED",
             "POSTGRES_14",
             "POSTGRES_15",
-            "POSTGRES_16"
+            "POSTGRES_16",
+            "POSTGRES_17"
           ],
           "enumDescriptions": [
             "This is an unknown database version.",
             "The database version is Postgres 14.",
             "The database version is Postgres 15.",
-            "The database version is Postgres 16."
+            "The database version is Postgres 16.",
+            "The database version is Postgres 17."
           ],
           "type": "string"
         },
@@ -5807,6 +5814,10 @@
           "description": "The name of the resource.",
           "type": "string"
         },
+        "pscInterfaceConfig": {
+          "$ref": "PscInterfaceConfig",
+          "description": "PSC Interface configuration."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -5882,6 +5893,17 @@
         "objectsFilter": {
           "$ref": "MigrationJobObjectsConfig",
           "description": "Optional. The object filter to apply to the migration job."
+        }
+      },
+      "type": "object"
+    },
+    "PscInterfaceConfig": {
+      "description": "The PSC Interface configuration is used to create PSC Interface between DMS's internal VPC and the consumer's PSC.",
+      "id": "PscInterfaceConfig",
+      "properties": {
+        "networkAttachment": {
+          "description": "Required. Fully qualified name of the Network Attachment that DMS will connect to. Format: `projects/{{project}}/regions/{{region}}/networkAttachments/{{name}}`",
+          "type": "string"
         }
       },
       "type": "object"
