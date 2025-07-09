@@ -2167,6 +2167,10 @@ export namespace retail_v2 {
      */
     example?: Schema$GoogleCloudRetailV2IntentClassificationConfigExample[];
     /**
+     * Optional. Inline source for intent classifications.
+     */
+    inlineSource?: Schema$GoogleCloudRetailV2IntentClassificationConfigInlineSource;
+    /**
      * Optional. Customers can use the preamble to specify any requirements for blocklisting intent classification. This preamble will be added to the blocklisting intent classification model prompt.
      */
     modelPreamble?: string | null;
@@ -2175,6 +2179,10 @@ export namespace retail_v2 {
    * An example for intent classification.
    */
   export interface Schema$GoogleCloudRetailV2IntentClassificationConfigExample {
+    /**
+     * Required. Whether the example is classified positively.
+     */
+    classifiedPositive?: boolean | null;
     /**
      * Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype
      */
@@ -2187,6 +2195,32 @@ export namespace retail_v2 {
      * Optional. The reason for the intent classification. This is used to explain the intent classification decision.
      */
     reason?: string | null;
+  }
+  /**
+   * An inline force intent classification configuration.
+   */
+  export interface Schema$GoogleCloudRetailV2IntentClassificationConfigInlineForceIntent {
+    /**
+     * Optional. The intent_type must match one of the predefined intent types defined at https://cloud.google.com/retail/docs/reference/rpc/google.cloud.retail.v2alpha#querytype
+     */
+    intentType?: string | null;
+    /**
+     * Optional. The operation to perform for the query.
+     */
+    operation?: string | null;
+    /**
+     * Optional. A example query.
+     */
+    query?: string | null;
+  }
+  /**
+   * Inline source for intent classifications.
+   */
+  export interface Schema$GoogleCloudRetailV2IntentClassificationConfigInlineSource {
+    /**
+     * Optional. A list of inline force intent classifications.
+     */
+    inlineForceIntents?: Schema$GoogleCloudRetailV2IntentClassificationConfigInlineForceIntent[];
   }
   /**
    * A floating point interval.
@@ -3339,6 +3373,12 @@ export namespace retail_v2 {
      */
     tileNavigationSpec?: Schema$GoogleCloudRetailV2SearchRequestTileNavigationSpec;
     /**
+     * Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplicate keys are not allowed within a single query. Example: user_attributes: [ { key: "pets" value { values: "dog" values: "cat" \} \}, { key: "state" value { values: "CA" \} \} ]
+     */
+    userAttributes?: {
+      [key: string]: Schema$GoogleCloudRetailV2StringList;
+    } | null;
+    /**
      * User information.
      */
     userInfo?: Schema$GoogleCloudRetailV2UserInfo;
@@ -3871,6 +3911,15 @@ export namespace retail_v2 {
    * Response of the SetInventoryRequest. Currently empty because there is no meaningful response populated from the ProductService.SetInventory method.
    */
   export interface Schema$GoogleCloudRetailV2SetInventoryResponse {}
+  /**
+   * A list of string values.
+   */
+  export interface Schema$GoogleCloudRetailV2StringList {
+    /**
+     * String values.
+     */
+    values?: string[] | null;
+  }
   /**
    * This field specifies the tile information including an attribute key, attribute value. More fields will be added in the future, eg: product id or product counts, etc.
    */
@@ -12941,6 +12990,7 @@ export namespace retail_v2 {
      *       //   "searchMode": "my_searchMode",
      *       //   "spellCorrectionSpec": {},
      *       //   "tileNavigationSpec": {},
+     *       //   "userAttributes": {},
      *       //   "userInfo": {},
      *       //   "variantRollupKeys": [],
      *       //   "visitorId": "my_visitorId"
@@ -14527,6 +14577,7 @@ export namespace retail_v2 {
      *       //   "searchMode": "my_searchMode",
      *       //   "spellCorrectionSpec": {},
      *       //   "tileNavigationSpec": {},
+     *       //   "userAttributes": {},
      *       //   "userInfo": {},
      *       //   "variantRollupKeys": [],
      *       //   "visitorId": "my_visitorId"
