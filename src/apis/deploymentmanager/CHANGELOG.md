@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v16.0.0...deploymentmanager-v16.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **deploymentmanager:** update the API ([a2cc4e5](https://github.com/googleapis/google-api-nodejs-client/commit/a2cc4e525b5d794cbc1218abc2d8816109e13b37))
+
 ## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/deploymentmanager-v15.0.1...deploymentmanager-v16.0.0) (2025-06-30)
 
 

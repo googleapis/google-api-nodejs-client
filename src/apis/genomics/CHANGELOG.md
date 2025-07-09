@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v5.0.0...genomics-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **genomics:** update the API ([aa72f37](https://github.com/googleapis/google-api-nodejs-client/commit/aa72f3761fadc11f6afc8df8858f63509b13aeeb))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/genomics-v4.0.1...genomics-v5.0.0) (2025-06-30)
 
 

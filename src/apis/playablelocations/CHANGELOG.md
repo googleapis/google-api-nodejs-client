@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playablelocations-v3.0.0...playablelocations-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **playablelocations:** update the API ([b9cc68a](https://github.com/googleapis/google-api-nodejs-client/commit/b9cc68a00bbe4a323ec51f699063e33c5acf48b4))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playablelocations-v2.0.1...playablelocations-v3.0.0) (2025-06-30)
 
 

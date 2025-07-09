@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v15.0.0...artifactregistry-v15.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([4da45bc](https://github.com/googleapis/google-api-nodejs-client/commit/4da45bcfc9faf47ae75fd5634f9a1a6494234d25))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v14.0.1...artifactregistry-v15.0.0) (2025-06-30)
 
 

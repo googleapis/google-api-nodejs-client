@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v4.0.0...apphub-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **apphub:** update the API ([2dce32d](https://github.com/googleapis/google-api-nodejs-client/commit/2dce32d93794f0d206857f0a8ac7eaa7113f5573))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v3.0.1...apphub-v4.0.0) (2025-06-30)
 
 

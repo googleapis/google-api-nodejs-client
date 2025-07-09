@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v8.0.0...walletobjects-v8.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **walletobjects:** update the API ([c732702](https://github.com/googleapis/google-api-nodejs-client/commit/c7327028514070c83e1a5c310dc401ce17de8fa3))
+* **walletobjects:** update the API ([6b0c83a](https://github.com/googleapis/google-api-nodejs-client/commit/6b0c83a6e361892efa09b04801787dcbc8f9ce42))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/walletobjects-v7.0.1...walletobjects-v8.0.0) (2025-06-30)
 
 

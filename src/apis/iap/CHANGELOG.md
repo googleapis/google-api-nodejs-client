@@ -1,5 +1,17 @@
 # Changelog
 
+## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v10.0.0...iap-v10.1.0) (2025-07-08)
+
+
+### Features
+
+* **iap:** update the API ([f312cbd](https://github.com/googleapis/google-api-nodejs-client/commit/f312cbd0d1000515b74f2311b460ab96c6d98c6b))
+
+
+### Bug Fixes
+
+* **iap:** update the API ([37af2f6](https://github.com/googleapis/google-api-nodejs-client/commit/37af2f6c220d39ec8cfefb6f4c9825e2dd0c869e))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iap-v9.0.1...iap-v10.0.0) (2025-06-30)
 
 

@@ -1,5 +1,21 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v7.0.0...script-v8.0.0) (2025-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **script:** This release has breaking changes.
+
+### Features
+
+* **script:** update the API ([c62d49e](https://github.com/googleapis/google-api-nodejs-client/commit/c62d49e193f5beb7b3f672c768114a4046d9d6fb))
+
+
+### Bug Fixes
+
+* **script:** update the API ([22fd328](https://github.com/googleapis/google-api-nodejs-client/commit/22fd3288f141bdb8943cc00945ede2ddd06dc717))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/script-v6.0.1...script-v7.0.0) (2025-06-30)
 
 

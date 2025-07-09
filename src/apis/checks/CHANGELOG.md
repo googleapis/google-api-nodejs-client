@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v6.0.0...checks-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **checks:** update the API ([b0ae2d6](https://github.com/googleapis/google-api-nodejs-client/commit/b0ae2d6463e05bd43889fe421e083b256f4c7cb4))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/checks-v5.0.1...checks-v6.0.0) (2025-06-30)
 
 

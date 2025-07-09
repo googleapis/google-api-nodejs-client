@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v6.0.0...realtimebidding-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **realtimebidding:** update the API ([98e69e9](https://github.com/googleapis/google-api-nodejs-client/commit/98e69e900dddf6ca0a9ea214a21ec47aca76e0a0))
+* **realtimebidding:** update the API ([ea6de0c](https://github.com/googleapis/google-api-nodejs-client/commit/ea6de0c9959e00137e3ec8b1e03feee1c02188fe))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/realtimebidding-v5.0.1...realtimebidding-v6.0.0) (2025-06-30)
 
 

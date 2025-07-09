@@ -1,5 +1,17 @@
 # Changelog
 
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v14.0.0...firestore-v14.1.0) (2025-07-08)
+
+
+### Features
+
+* **firestore:** update the API ([4586fb8](https://github.com/googleapis/google-api-nodejs-client/commit/4586fb8c0783aa9a9781f5190e890c0d8e0ea508))
+
+
+### Bug Fixes
+
+* **firestore:** update the API ([5f2cffa](https://github.com/googleapis/google-api-nodejs-client/commit/5f2cffa6cd359ff5e1ff364a38e9c96dd938ea44))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firestore-v13.0.1...firestore-v14.0.0) (2025-06-30)
 
 

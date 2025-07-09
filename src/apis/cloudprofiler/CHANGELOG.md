@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudprofiler-v5.0.2...cloudprofiler-v5.0.3) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudprofiler:** update the API ([854ae76](https://github.com/googleapis/google-api-nodejs-client/commit/854ae76ecd08323a0f662e073fe0a28d14f963ec))
+
 ## [5.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/cloudprofiler-v5.0.1...cloudprofiler-v5.0.2) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/policyanalyzer-v3.0.0...policyanalyzer-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **policyanalyzer:** update the API ([273b3ce](https://github.com/googleapis/google-api-nodejs-client/commit/273b3ce1a9434e042d0898091efb6000f5018f19))
+* **policyanalyzer:** update the API ([84f072d](https://github.com/googleapis/google-api-nodejs-client/commit/84f072d61e116616636480614f349bb2d37a21ac))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policyanalyzer-v2.0.1...policyanalyzer-v3.0.0) (2025-06-30)
 
 

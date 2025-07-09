@@ -1,5 +1,17 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v7.0.0...tpu-v7.1.0) (2025-07-08)
+
+
+### Features
+
+* **tpu:** update the API ([087b4e4](https://github.com/googleapis/google-api-nodejs-client/commit/087b4e42adb6ab8080bf66ba09eb35fa10190196))
+
+
+### Bug Fixes
+
+* **tpu:** update the API ([0b2587b](https://github.com/googleapis/google-api-nodejs-client/commit/0b2587b603f3a9ea25e7956586f7d926ca9fac64))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/tpu-v6.0.1...tpu-v7.0.0) (2025-06-30)
 
 

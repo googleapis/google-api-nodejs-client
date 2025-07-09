@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v9.0.0...clouddeploy-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **clouddeploy:** update the API ([cdc9168](https://github.com/googleapis/google-api-nodejs-client/commit/cdc91688eebee02923da0c9af3f88eb6387034b4))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/clouddeploy-v8.0.1...clouddeploy-v9.0.0) (2025-06-30)
 
 

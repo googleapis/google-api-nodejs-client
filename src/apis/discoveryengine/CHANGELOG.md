@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v21.0.0...discoveryengine-v21.1.0) (2025-07-08)
+
+
+### Features
+
+* **discoveryengine:** update the API ([250a79c](https://github.com/googleapis/google-api-nodejs-client/commit/250a79c67fb3f05a33b6326d429f50892acdade7))
+
 ## [21.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v20.0.1...discoveryengine-v21.0.0) (2025-06-30)
 
 

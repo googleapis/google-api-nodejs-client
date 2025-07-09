@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v4.0.0...driveactivity-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **driveactivity:** update the API ([8e885be](https://github.com/googleapis/google-api-nodejs-client/commit/8e885befbfde863ac32cd9af04698e11ff8b005b))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/driveactivity-v3.0.1...driveactivity-v4.0.0) (2025-06-30)
 
 

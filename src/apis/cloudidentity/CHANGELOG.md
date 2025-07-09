@@ -1,5 +1,12 @@
 # Changelog
 
+## [18.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v18.0.0...cloudidentity-v18.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudidentity:** update the API ([c429827](https://github.com/googleapis/google-api-nodejs-client/commit/c429827fd8fa522f640b2e6f31514bf4f3abeb73))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudidentity-v17.0.1...cloudidentity-v18.0.0) (2025-06-30)
 
 

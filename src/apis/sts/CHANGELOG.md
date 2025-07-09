@@ -1,5 +1,13 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v11.0.0...sts-v11.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **sts:** update the API ([eebd09d](https://github.com/googleapis/google-api-nodejs-client/commit/eebd09d1bf7991f11e4e33e63592e144e540321b))
+* **sts:** update the API ([3ab0938](https://github.com/googleapis/google-api-nodejs-client/commit/3ab093828b82861bae6fb50abef2f86a910b85bc))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/sts-v10.0.1...sts-v11.0.0) (2025-06-30)
 
 

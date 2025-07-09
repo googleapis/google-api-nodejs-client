@@ -1,5 +1,12 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v15.0.0...analyticshub-v15.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([13e6a12](https://github.com/googleapis/google-api-nodejs-client/commit/13e6a12aba1d5739768f62fc6d67b4694336949d))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v14.0.1...analyticshub-v15.0.0) (2025-06-30)
 
 

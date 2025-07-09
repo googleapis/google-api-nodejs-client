@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v4.0.0...apigeeregistry-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **apigeeregistry:** update the API ([665f819](https://github.com/googleapis/google-api-nodejs-client/commit/665f81983ef7160357b11cbede809d6331e61337))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigeeregistry-v3.0.1...apigeeregistry-v4.0.0) (2025-06-30)
 
 

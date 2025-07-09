@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/adexchangebuyer-v3.0.0...adexchangebuyer-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **adexchangebuyer:** update the API ([503ba71](https://github.com/googleapis/google-api-nodejs-client/commit/503ba71cf3314b917da82034f8f2cf812879452b))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adexchangebuyer-v2.0.1...adexchangebuyer-v3.0.0) (2025-06-30)
 
 

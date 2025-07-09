@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v9.0.0...spanner-v9.1.0) (2025-07-08)
+
+
+### Features
+
+* **spanner:** update the API ([5e0e695](https://github.com/googleapis/google-api-nodejs-client/commit/5e0e69559ea31a8c405557698848e27b6dace612))
+* **spanner:** update the API ([e9de6db](https://github.com/googleapis/google-api-nodejs-client/commit/e9de6db7651367d85e25574cab4868aa04112f24))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/spanner-v8.0.1...spanner-v9.0.0) (2025-06-30)
 
 

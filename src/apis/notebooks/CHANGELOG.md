@@ -1,5 +1,13 @@
 # Changelog
 
+## [10.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v10.0.0...notebooks-v10.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **notebooks:** update the API ([6dad463](https://github.com/googleapis/google-api-nodejs-client/commit/6dad463ce8654cc34b42da2442e98ed0f1b9f41a))
+* **notebooks:** update the API ([6c8e2a1](https://github.com/googleapis/google-api-nodejs-client/commit/6c8e2a18d2cbda0f91b1c55eb941265a76f04e9b))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/notebooks-v9.0.1...notebooks-v10.0.0) (2025-06-30)
 
 

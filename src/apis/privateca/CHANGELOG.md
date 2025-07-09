@@ -1,5 +1,17 @@
 # Changelog
 
+## [8.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v8.0.0...privateca-v8.1.0) (2025-07-08)
+
+
+### Features
+
+* **privateca:** update the API ([1d2ec51](https://github.com/googleapis/google-api-nodejs-client/commit/1d2ec519d87fdde81963482e85648230dc62321f))
+
+
+### Bug Fixes
+
+* **privateca:** update the API ([b327b42](https://github.com/googleapis/google-api-nodejs-client/commit/b327b423f04a9ce44623fc82de267714c943312e))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/privateca-v7.0.1...privateca-v8.0.0) (2025-06-30)
 
 

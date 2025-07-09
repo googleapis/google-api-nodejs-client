@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v9.0.0...cloudfunctions-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudfunctions:** update the API ([a4e0236](https://github.com/googleapis/google-api-nodejs-client/commit/a4e0236087c0b2e8b8d1c6dbafa750b7c76f9529))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v8.0.1...cloudfunctions-v9.0.0) (2025-06-30)
 
 

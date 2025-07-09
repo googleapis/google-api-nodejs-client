@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v11.0.0...alertcenter-v11.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **alertcenter:** update the API ([41c4369](https://github.com/googleapis/google-api-nodejs-client/commit/41c4369be770cd1840b49af91bf7493570e27f18))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alertcenter-v10.0.1...alertcenter-v11.0.0) (2025-06-30)
 
 

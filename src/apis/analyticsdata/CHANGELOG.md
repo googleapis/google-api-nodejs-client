@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v3.0.0...analyticsdata-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **analyticsdata:** update the API ([769f574](https://github.com/googleapis/google-api-nodejs-client/commit/769f5744fdc8119cb0d54fdee9aa158c15fc9ff2))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsdata-v2.0.1...analyticsdata-v3.0.0) (2025-06-30)
 
 

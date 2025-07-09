@@ -1,5 +1,17 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v17.0.0...serviceusage-v17.1.0) (2025-07-08)
+
+
+### Features
+
+* **serviceusage:** update the API ([ad8037b](https://github.com/googleapis/google-api-nodejs-client/commit/ad8037b74d10b63c26e9830c20f17b4fb91d87cd))
+
+
+### Bug Fixes
+
+* **serviceusage:** update the API ([72c7277](https://github.com/googleapis/google-api-nodejs-client/commit/72c72771a892f2c29a1dde91407e593083f8e775))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/serviceusage-v16.0.1...serviceusage-v17.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v12.0.0...places-v12.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **places:** update the API ([539dc8d](https://github.com/googleapis/google-api-nodejs-client/commit/539dc8d64cc4dd012d46af588e6f0444ea485233))
+* **places:** update the API ([33dcc07](https://github.com/googleapis/google-api-nodejs-client/commit/33dcc07d5eb94b39359c7a2fa9d7007be8bc5cde))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/places-v11.0.1...places-v12.0.0) (2025-06-30)
 
 

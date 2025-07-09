@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v8.0.0...searchads360-v8.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **searchads360:** update the API ([6e11bcc](https://github.com/googleapis/google-api-nodejs-client/commit/6e11bcc04fce4807531322b7ceb7901ad6d53d31))
+* **searchads360:** update the API ([8e46b01](https://github.com/googleapis/google-api-nodejs-client/commit/8e46b01460a5d34ca2651ff659b7c4c436ad9cdb))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchads360-v7.0.1...searchads360-v8.0.0) (2025-06-30)
 
 

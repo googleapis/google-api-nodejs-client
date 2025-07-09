@@ -1,5 +1,13 @@
 # Changelog
 
+## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v17.0.0...storage-v17.1.0) (2025-07-08)
+
+
+### Features
+
+* **storage:** update the API ([c0c0d79](https://github.com/googleapis/google-api-nodejs-client/commit/c0c0d791aa0099306b9c6b448f9050c34847a28d))
+* **storage:** update the API ([2fc0241](https://github.com/googleapis/google-api-nodejs-client/commit/2fc02412565c648fbcabcc4f52c82f327d8b8528))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v16.0.1...storage-v17.0.0) (2025-06-30)
 
 

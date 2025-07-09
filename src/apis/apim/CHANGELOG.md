@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v2.0.0...apim-v2.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **apim:** update the API ([59ee1c1](https://github.com/googleapis/google-api-nodejs-client/commit/59ee1c17fbf7b0a6f26c79f95f3effc598cdc7f2))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apim-v1.0.1...apim-v2.0.0) (2025-06-30)
 
 

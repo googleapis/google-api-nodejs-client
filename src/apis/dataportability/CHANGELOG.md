@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v5.0.0...dataportability-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dataportability:** update the API ([2fc6e42](https://github.com/googleapis/google-api-nodejs-client/commit/2fc6e42bad313761373ec7bbada88c78f2ceabd6))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataportability-v4.0.1...dataportability-v5.0.0) (2025-06-30)
 
 

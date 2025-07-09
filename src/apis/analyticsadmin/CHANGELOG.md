@@ -1,5 +1,12 @@
 # Changelog
 
+## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v13.0.0...analyticsadmin-v13.1.0) (2025-07-08)
+
+
+### Features
+
+* **analyticsadmin:** update the API ([78c7fef](https://github.com/googleapis/google-api-nodejs-client/commit/78c7feff2568cc5c4e0e06f6e42ea28acbdc2b83))
+
 ## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticsadmin-v12.0.1...analyticsadmin-v13.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [20.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v20.0.0...gkehub-v20.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **gkehub:** update the API ([ffa91f8](https://github.com/googleapis/google-api-nodejs-client/commit/ffa91f84384d9a8a29c374aa9e3433b294b03ba9))
+* **gkehub:** update the API ([3ae7a0d](https://github.com/googleapis/google-api-nodejs-client/commit/3ae7a0d605d9bf690c0bb66a1bf2e463aabb2829))
+
 ## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkehub-v19.0.1...gkehub-v20.0.0) (2025-06-30)
 
 

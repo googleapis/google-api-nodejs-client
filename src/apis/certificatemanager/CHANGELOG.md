@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v6.0.0...certificatemanager-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **certificatemanager:** update the API ([cdb8e50](https://github.com/googleapis/google-api-nodejs-client/commit/cdb8e50587d6dee816d6e854404a89b908c567e7))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/certificatemanager-v5.0.1...certificatemanager-v6.0.0) (2025-06-30)
 
 

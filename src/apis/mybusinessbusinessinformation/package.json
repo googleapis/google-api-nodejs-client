@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/mybusinessbusinessinformation",
-  "version": "6.0.0",
+  "version": "6.0.1",
   "description": "mybusinessbusinessinformation",
   "main": "build/index.js",
   "types": "build/index.d.ts",

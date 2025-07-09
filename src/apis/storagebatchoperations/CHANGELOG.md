@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/storagebatchoperations-v2.0.0...storagebatchoperations-v2.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **storagebatchoperations:** update the API ([a39ddf0](https://github.com/googleapis/google-api-nodejs-client/commit/a39ddf07434abff420fe1ae0d013580c43c854c2))
+* **storagebatchoperations:** update the API ([e9578d6](https://github.com/googleapis/google-api-nodejs-client/commit/e9578d68e1ccb5594fbefdbbc7c47afdc94a2659))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagebatchoperations-v1.0.1...storagebatchoperations-v2.0.0) (2025-06-30)
 
 

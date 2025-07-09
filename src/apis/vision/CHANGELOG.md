@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v3.0.0...vision-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **vision:** update the API ([8cd8bbb](https://github.com/googleapis/google-api-nodejs-client/commit/8cd8bbb50791d5c6dba4f64593ff6c5a41675c67))
+* **vision:** update the API ([825ee06](https://github.com/googleapis/google-api-nodejs-client/commit/825ee06392a8ac4971dd77bfcb940e7c374b6bb8))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v2.0.1...vision-v3.0.0) (2025-06-30)
 
 

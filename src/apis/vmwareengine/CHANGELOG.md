@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v3.0.0...vmwareengine-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **vmwareengine:** update the API ([d01da65](https://github.com/googleapis/google-api-nodejs-client/commit/d01da65894f167e73c36091e36017b1a13c87d77))
+* **vmwareengine:** update the API ([9e83c2e](https://github.com/googleapis/google-api-nodejs-client/commit/9e83c2e33cacf23df0b5e56f6431ee42b150bc0c))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v2.0.1...vmwareengine-v3.0.0) (2025-06-30)
 
 

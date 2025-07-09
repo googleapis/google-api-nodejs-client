@@ -1,5 +1,13 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v8.0.0...servicecontrol-v8.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **servicecontrol:** update the API ([1477ede](https://github.com/googleapis/google-api-nodejs-client/commit/1477edeea9452111ba77291aba99d7e6f33ca426))
+* **servicecontrol:** update the API ([59b3706](https://github.com/googleapis/google-api-nodejs-client/commit/59b3706e5255f3e4c706aef2bc3573f9d2cd0681))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v7.0.1...servicecontrol-v8.0.0) (2025-06-30)
 
 

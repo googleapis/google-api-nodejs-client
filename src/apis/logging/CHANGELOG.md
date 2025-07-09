@@ -1,5 +1,21 @@
 # Changelog
 
+## [13.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v12.0.0...logging-v13.0.0) (2025-07-08)
+
+
+### ⚠ BREAKING CHANGES
+
+* **logging:** This release has breaking changes.
+
+### Features
+
+* **logging:** update the API ([af48ce1](https://github.com/googleapis/google-api-nodejs-client/commit/af48ce1bf7b6d8faa12173da3819203308d00600))
+
+
+### Bug Fixes
+
+* **logging:** update the API ([4a15a8b](https://github.com/googleapis/google-api-nodejs-client/commit/4a15a8b5ce94137431cb389779f2f562bf145d7d))
+
 ## [12.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/logging-v11.0.1...logging-v12.0.0) (2025-06-30)
 
 

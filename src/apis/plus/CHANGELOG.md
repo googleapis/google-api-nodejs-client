@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v3.0.0...plus-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **plus:** update the API ([ddb0593](https://github.com/googleapis/google-api-nodejs-client/commit/ddb059368f9d9c9ff73efc93e1e808f13fb454dc))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/plus-v2.0.1...plus-v3.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v6.0.0...transcoder-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **transcoder:** update the API ([067674c](https://github.com/googleapis/google-api-nodejs-client/commit/067674cb0d5f927ff6577478219ab1c81d58bb89))
+* **transcoder:** update the API ([428e3b1](https://github.com/googleapis/google-api-nodejs-client/commit/428e3b1264448cf7f02709203baf5e5b915ed8a4))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/transcoder-v5.0.1...transcoder-v6.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v3.0.0...publicca-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **publicca:** update the API ([bcb2103](https://github.com/googleapis/google-api-nodejs-client/commit/bcb210322b4ed5d0595969e6e8c85289a2c50e2c))
+* **publicca:** update the API ([e59e47c](https://github.com/googleapis/google-api-nodejs-client/commit/e59e47c57015ef10b0c8502eb791c48add7a7a95))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v2.0.1...publicca-v3.0.0) (2025-06-30)
 
 

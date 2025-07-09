@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/fitness-v4.0.0...fitness-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **fitness:** update the API ([36078ca](https://github.com/googleapis/google-api-nodejs-client/commit/36078caf4df48cbda1e445dbead13aa2d5d4a032))
+* **fitness:** update the API ([7de3c3d](https://github.com/googleapis/google-api-nodejs-client/commit/7de3c3d45eb48ea156464c80b9eba6c05a6e19cd))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/fitness-v3.0.1...fitness-v4.0.0) (2025-06-30)
 
 

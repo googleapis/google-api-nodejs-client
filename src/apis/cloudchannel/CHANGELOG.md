@@ -1,5 +1,12 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v5.0.0...cloudchannel-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **cloudchannel:** update the API ([8396c2b](https://github.com/googleapis/google-api-nodejs-client/commit/8396c2b150cde294656b9645f52d22887bde735e))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudchannel-v4.0.1...cloudchannel-v5.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v4.0.0...siteverification-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **siteVerification:** update the API ([5db7e0a](https://github.com/googleapis/google-api-nodejs-client/commit/5db7e0a2cb2d5f039e925f323cd0d2d0b525106b))
+* **siteVerification:** update the API ([6a6a70f](https://github.com/googleapis/google-api-nodejs-client/commit/6a6a70fb4263d907502f8edb14bc3f71f2f5f866))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/siteverification-v3.0.1...siteverification-v4.0.0) (2025-06-30)
 
 

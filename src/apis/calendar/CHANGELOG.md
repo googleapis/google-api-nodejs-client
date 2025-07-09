@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v11.0.0...calendar-v11.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **calendar:** update the API ([1b7c62f](https://github.com/googleapis/google-api-nodejs-client/commit/1b7c62f3003bdd2fc05b77d8db72c98b2daada3f))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/calendar-v10.0.1...calendar-v11.0.0) (2025-06-30)
 
 

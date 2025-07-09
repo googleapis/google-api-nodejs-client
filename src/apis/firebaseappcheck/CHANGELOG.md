@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v7.0.0...firebaseappcheck-v7.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **firebaseappcheck:** update the API ([cf5b296](https://github.com/googleapis/google-api-nodejs-client/commit/cf5b296be2d0fb54e9596b5ba5521f5256cf98f5))
+* **firebaseappcheck:** update the API ([2223c11](https://github.com/googleapis/google-api-nodejs-client/commit/2223c1103caa2a836851544f31e0305d1ab953f1))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseappcheck-v6.0.1...firebaseappcheck-v7.0.0) (2025-06-30)
 
 

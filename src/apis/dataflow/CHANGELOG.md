@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v17.0.0...dataflow-v17.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([63162f8](https://github.com/googleapis/google-api-nodejs-client/commit/63162f8d2223219705813d84873c70c01379cf0a))
+
 ## [17.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v16.0.1...dataflow-v17.0.0) (2025-06-30)
 
 

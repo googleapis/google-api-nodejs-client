@@ -1,5 +1,13 @@
 # Changelog
 
+## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v9.0.0...firebasestorage-v9.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **firebasestorage:** update the API ([1f2bddb](https://github.com/googleapis/google-api-nodejs-client/commit/1f2bddbd214f40069de50ed6fdd08769e6020073))
+* **firebasestorage:** update the API ([74de434](https://github.com/googleapis/google-api-nodejs-client/commit/74de43445139f82de9d91dd75cfb4fbe3a7b03c8))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebasestorage-v8.0.1...firebasestorage-v9.0.0) (2025-06-30)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v19.0.0...prod_tt_sasportal-v19.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **prod_tt_sasportal:** update the API ([2a7e79f](https://github.com/googleapis/google-api-nodejs-client/commit/2a7e79fa75a6e92c7e3ace77145d9d7a7050364f))
+* **prod_tt_sasportal:** update the API ([79290f9](https://github.com/googleapis/google-api-nodejs-client/commit/79290f9709416c69ea63f0f74b8dc2dd2f741d5a))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/prod_tt_sasportal-v18.0.1...prod_tt_sasportal-v19.0.0) (2025-06-30)
 
 

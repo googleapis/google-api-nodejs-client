@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/indexing-v4.0.0...indexing-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **indexing:** update the API ([3930f18](https://github.com/googleapis/google-api-nodejs-client/commit/3930f18798721f4be68bfd8e5256d5f78656b548))
+* **indexing:** update the API ([79321c7](https://github.com/googleapis/google-api-nodejs-client/commit/79321c705f57b99187372e3f164145a4cd34eb05))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/indexing-v3.0.1...indexing-v4.0.0) (2025-06-30)
 
 

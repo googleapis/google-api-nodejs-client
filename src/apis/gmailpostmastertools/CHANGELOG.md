@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v3.0.0...gmailpostmastertools-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **gmailpostmastertools:** update the API ([7fc985a](https://github.com/googleapis/google-api-nodejs-client/commit/7fc985ab902d0850d10d79c1fcf720e9c2501fbd))
+* **gmailpostmastertools:** update the API ([3534679](https://github.com/googleapis/google-api-nodejs-client/commit/3534679439888ef60e677c616ad6c70fb54967c8))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gmailpostmastertools-v2.0.1...gmailpostmastertools-v3.0.0) (2025-06-30)
 
 

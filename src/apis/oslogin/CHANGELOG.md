@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v5.0.0...oslogin-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **oslogin:** update the API ([25d66af](https://github.com/googleapis/google-api-nodejs-client/commit/25d66af7333850f5ad82fe87cfcccf4b20b66b79))
+* **oslogin:** update the API ([60e326c](https://github.com/googleapis/google-api-nodejs-client/commit/60e326ce60acf0b906358d617c5b77d92ff99e1e))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/oslogin-v4.0.1...oslogin-v5.0.0) (2025-06-30)
 
 

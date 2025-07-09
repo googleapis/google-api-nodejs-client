@@ -1,5 +1,13 @@
 # Changelog
 
+## [4.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v4.0.0...forms-v4.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **forms:** update the API ([fda2bd8](https://github.com/googleapis/google-api-nodejs-client/commit/fda2bd8212725cd71d641ba7beec1e59fff1972c))
+* **forms:** update the API ([cdce8c2](https://github.com/googleapis/google-api-nodejs-client/commit/cdce8c2df39ed1f483284589f7272dcc0ba71622))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/forms-v3.0.1...forms-v4.0.0) (2025-06-30)
 
 

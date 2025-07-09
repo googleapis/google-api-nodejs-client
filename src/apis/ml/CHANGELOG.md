@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v5.0.0...ml-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **ml:** update the API ([c8074f0](https://github.com/googleapis/google-api-nodejs-client/commit/c8074f03835e69aae326fa5d8082a378f8f94c32))
+* **ml:** update the API ([8b31d6b](https://github.com/googleapis/google-api-nodejs-client/commit/8b31d6b6aba189fed091dd857579fd5a63473f91))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/ml-v4.0.1...ml-v5.0.0) (2025-06-30)
 
 

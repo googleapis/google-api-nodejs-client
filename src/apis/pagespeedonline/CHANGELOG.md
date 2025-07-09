@@ -1,5 +1,13 @@
 # Changelog
 
+## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v3.0.0...pagespeedonline-v3.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **pagespeedonline:** update the API ([7ad4e0a](https://github.com/googleapis/google-api-nodejs-client/commit/7ad4e0ace1a4a74dc621a132ab2342292d85dc38))
+* **pagespeedonline:** update the API ([8ed0964](https://github.com/googleapis/google-api-nodejs-client/commit/8ed0964be2ffaa794364e5f3a482a07551396c19))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/pagespeedonline-v2.0.1...pagespeedonline-v3.0.0) (2025-06-30)
 
 

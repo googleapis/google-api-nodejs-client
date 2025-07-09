@@ -1,5 +1,12 @@
 # Changelog
 
+## [37.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/content-v37.0.0...content-v37.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **content:** update the API ([001d178](https://github.com/googleapis/google-api-nodejs-client/commit/001d178eaadbe0d0b089948fbaed817e29a8a6bd))
+
 ## [37.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/content-v36.0.1...content-v37.0.0) (2025-06-30)
 
 

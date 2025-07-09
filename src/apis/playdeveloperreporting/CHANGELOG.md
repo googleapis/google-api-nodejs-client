@@ -1,5 +1,13 @@
 # Changelog
 
+## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v7.0.0...playdeveloperreporting-v7.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **playdeveloperreporting:** update the API ([46b3b01](https://github.com/googleapis/google-api-nodejs-client/commit/46b3b01d226b71acf323f4aabf301c8face27eb1))
+* **playdeveloperreporting:** update the API ([77fe17d](https://github.com/googleapis/google-api-nodejs-client/commit/77fe17d3e2773953f2056f21ca4c11959157316a))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/playdeveloperreporting-v6.0.1...playdeveloperreporting-v7.0.0) (2025-06-30)
 
 

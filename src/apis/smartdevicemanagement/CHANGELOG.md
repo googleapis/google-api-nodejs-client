@@ -1,5 +1,13 @@
 # Changelog
 
+## [5.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v5.0.0...smartdevicemanagement-v5.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **smartdevicemanagement:** update the API ([825bb11](https://github.com/googleapis/google-api-nodejs-client/commit/825bb11d1547d916f25600ba84523fee4feddf0a))
+* **smartdevicemanagement:** update the API ([ce349d9](https://github.com/googleapis/google-api-nodejs-client/commit/ce349d90b4eb7fbd9de0f3b47c96ad08b4513c70))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/smartdevicemanagement-v4.0.1...smartdevicemanagement-v5.0.0) (2025-06-30)
 
 

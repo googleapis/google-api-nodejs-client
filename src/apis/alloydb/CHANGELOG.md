@@ -1,5 +1,12 @@
 # Changelog
 
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v14.0.0...alloydb-v14.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **alloydb:** update the API ([69f2c82](https://github.com/googleapis/google-api-nodejs-client/commit/69f2c82fc2f36c769f83f1ff1dd4fac7a9566934))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v13.0.1...alloydb-v14.0.0) (2025-06-30)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v11.0.0...dataproc-v11.1.0) (2025-07-08)
+
+
+### Features
+
+* **dataproc:** update the API ([c3fcfc7](https://github.com/googleapis/google-api-nodejs-client/commit/c3fcfc70e526326046f23a2503aa1fd98c1d054e))
+
 ## [11.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataproc-v10.0.1...dataproc-v11.0.0) (2025-06-30)
 
 

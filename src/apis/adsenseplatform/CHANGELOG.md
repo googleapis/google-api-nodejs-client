@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v2.0.0...adsenseplatform-v2.1.0) (2025-07-08)
+
+
+### Features
+
+* **adsenseplatform:** update the API ([a468a4b](https://github.com/googleapis/google-api-nodejs-client/commit/a468a4b31be542caed8dfc20f6b33b0b4d33d96a))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v1.0.1...adsenseplatform-v2.0.0) (2025-06-30)
 
 

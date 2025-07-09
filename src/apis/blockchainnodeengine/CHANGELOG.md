@@ -1,5 +1,12 @@
 # Changelog
 
+## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v8.0.0...blockchainnodeengine-v8.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **blockchainnodeengine:** update the API ([2976308](https://github.com/googleapis/google-api-nodejs-client/commit/29763086c72a984a41c4df3a6104cc6fe5840fa1))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/blockchainnodeengine-v7.0.1...blockchainnodeengine-v8.0.0) (2025-06-30)
 
 

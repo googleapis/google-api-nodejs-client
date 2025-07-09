@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v6.0.0...jobs-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **jobs:** update the API ([0cacfd4](https://github.com/googleapis/google-api-nodejs-client/commit/0cacfd4512fe9a5977d074fef479f770aba5fb66))
+* **jobs:** update the API ([cbce126](https://github.com/googleapis/google-api-nodejs-client/commit/cbce126a0d27de7f56aebd92ff36630a2d86cee6))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/jobs-v5.0.1...jobs-v6.0.0) (2025-06-30)
 
 

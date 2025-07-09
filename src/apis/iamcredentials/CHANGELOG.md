@@ -1,5 +1,13 @@
 # Changelog
 
+## [6.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v6.0.0...iamcredentials-v6.0.1) (2025-07-08)
+
+
+### Bug Fixes
+
+* **iamcredentials:** update the API ([cb77c8d](https://github.com/googleapis/google-api-nodejs-client/commit/cb77c8d8623810003c5e8f758a58b49843d9db22))
+* **iamcredentials:** update the API ([26e2dc7](https://github.com/googleapis/google-api-nodejs-client/commit/26e2dc76ed303d0f1ee55f386fba9fc92eba453f))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/iamcredentials-v5.0.1...iamcredentials-v6.0.0) (2025-06-30)
 
 

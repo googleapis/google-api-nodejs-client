@@ -1,5 +1,17 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v3.0.0...videointelligence-v3.1.0) (2025-07-08)
+
+
+### Features
+
+* **videointelligence:** update the API ([a2da6eb](https://github.com/googleapis/google-api-nodejs-client/commit/a2da6eb047f78b637bf791d4bcfe66cb87e3c95d))
+
+
+### Bug Fixes
+
+* **videointelligence:** update the API ([083e632](https://github.com/googleapis/google-api-nodejs-client/commit/083e632d559e2bc9d67aad6659fbf84c26ccbdd2))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v2.0.1...videointelligence-v3.0.0) (2025-06-30)
 
 
