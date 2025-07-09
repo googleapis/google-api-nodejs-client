@@ -365,6 +365,10 @@ export namespace secretmanager_v1beta1 {
      * Required. Immutable. The replication policy of the secret data attached to the Secret. The replication policy cannot be changed after the Secret has been created.
      */
     replication?: Schema$Replication;
+    /**
+     * Optional. Input only. Immutable. Mapping of Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" Tags are used to organize and group resources. Tags can be used to control policy evaluation for the resource.
+     */
+    tags?: {[key: string]: string} | null;
   }
   /**
    * A secret payload resource in the Secret Manager API. This contains the sensitive secret data that is associated with a SecretVersion.
@@ -974,7 +978,8 @@ export namespace secretmanager_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "replication": {}
+     *       //   "replication": {},
+     *       //   "tags": {}
      *       // }
      *     },
      *   });
@@ -985,7 +990,8 @@ export namespace secretmanager_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {}
+     *   //   "replication": {},
+     *   //   "tags": {}
      *   // }
      * }
      *
@@ -1259,7 +1265,8 @@ export namespace secretmanager_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {}
+     *   //   "replication": {},
+     *   //   "tags": {}
      *   // }
      * }
      *
@@ -1686,7 +1693,8 @@ export namespace secretmanager_v1beta1 {
      *       //   "createTime": "my_createTime",
      *       //   "labels": {},
      *       //   "name": "my_name",
-     *       //   "replication": {}
+     *       //   "replication": {},
+     *       //   "tags": {}
      *       // }
      *     },
      *   });
@@ -1697,7 +1705,8 @@ export namespace secretmanager_v1beta1 {
      *   //   "createTime": "my_createTime",
      *   //   "labels": {},
      *   //   "name": "my_name",
-     *   //   "replication": {}
+     *   //   "replication": {},
+     *   //   "tags": {}
      *   // }
      * }
      *
