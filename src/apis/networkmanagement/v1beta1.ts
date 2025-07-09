@@ -1801,7 +1801,7 @@ export namespace networkmanagement_v1beta1 {
      */
     metadataFields?: string[] | null;
     /**
-     * Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string | null;
     /**
@@ -1817,7 +1817,7 @@ export namespace networkmanagement_v1beta1 {
      */
     subnet?: string | null;
     /**
-     * Output only. A diagnostic bit - describes the state of the configured target resource for diagnostic purposes.
+     * Output only. Describes the state of the configured target resource for diagnostic purposes.
      */
     targetResourceState?: string | null;
     /**
@@ -2880,7 +2880,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
      * @example
      * ```js
      * // Before running the sample:
@@ -2911,7 +2911,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.create({
-     *       // Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'organizations/my-organization/locations/my-location',
      *       // Required. ID of the `VpcFlowLogsConfig`.
      *       vpcFlowLogsConfigId: 'placeholder-value',
@@ -3081,7 +3081,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.delete({
-     *       // Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
      *     });
      *   console.log(res.data);
@@ -3222,7 +3222,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.get({
-     *       // Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
      *     });
      *   console.log(res.data);
@@ -3383,7 +3383,7 @@ export namespace networkmanagement_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'organizations/my-organization/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -3500,7 +3500,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
      * @example
      * ```js
      * // Before running the sample:
@@ -3531,9 +3531,9 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.patch({
-     *       // Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       // Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -3670,7 +3670,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
     /**
@@ -3686,14 +3686,14 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
@@ -3716,18 +3716,18 @@ export namespace networkmanagement_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
   }
   export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch
     extends StandardParameters {
     /**
-     * Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field.
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
      */
     updateMask?: string;
 
@@ -6232,7 +6232,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
      * @example
      * ```js
      * // Before running the sample:
@@ -6263,7 +6263,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.create({
-     *       // Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'projects/my-project/locations/my-location',
      *       // Required. ID of the `VpcFlowLogsConfig`.
      *       vpcFlowLogsConfigId: 'placeholder-value',
@@ -6433,7 +6433,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.delete({
-     *       // Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
      *     });
      *   console.log(res.data);
@@ -6574,7 +6574,7 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.vpcFlowLogsConfigs.get(
      *     {
-     *       // Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
      *     },
      *   );
@@ -6736,7 +6736,7 @@ export namespace networkmanagement_v1beta1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
      *       pageToken: 'placeholder-value',
-     *       // Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -6853,7 +6853,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with state=DISABLED will fail 2. The following fields are not considered as `settings` for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
      * @example
      * ```js
      * // Before running the sample:
@@ -6884,9 +6884,9 @@ export namespace networkmanagement_v1beta1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.patch({
-     *       // Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       // Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      *       name: 'projects/my-project/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
-     *       // Required. Mask of fields to update. At least one path must be supplied in this field.
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
      *       updateMask: 'placeholder-value',
      *
      *       // Request body metadata
@@ -7020,7 +7020,7 @@ export namespace networkmanagement_v1beta1 {
     }
 
     /**
-     * QueryOrgVpcFlowLogsConfigs lists Organization resources for a given project.
+     * QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC Flow Logs configurations applicable to the specified project.
      * @example
      * ```js
      * // Before running the sample:
@@ -7058,7 +7058,7 @@ export namespace networkmanagement_v1beta1 {
      *         pageSize: 'placeholder-value',
      *         // Optional. Page token from an earlier query, as returned in `next_page_token`.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global`
+     *         // Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
      *         parent: 'projects/my-project/locations/my-location',
      *       },
      *     );
@@ -7183,7 +7183,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The parent resource of the VPC Flow Logs configuration to create: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
     /**
@@ -7199,14 +7199,14 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Delete
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using one of the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Get
     extends StandardParameters {
     /**
-     * Required. `VpcFlowLogsConfig` resource name using the form: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config\}`
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
   }
@@ -7229,18 +7229,18 @@ export namespace networkmanagement_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global` `organizations/{organization_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
      */
     parent?: string;
   }
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Patch
     extends StandardParameters {
     /**
-     * Identifier. Unique name of the configuration using one of the forms: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
      */
     name?: string;
     /**
-     * Required. Mask of fields to update. At least one path must be supplied in this field.
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
      */
     updateMask?: string;
 
@@ -7264,7 +7264,7 @@ export namespace networkmanagement_v1beta1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource of the VpcFlowLogsConfig: `projects/{project_id\}/locations/global`
+     * Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
      */
     parent?: string;
   }
