@@ -68,6 +68,11 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://composer.asia-southeast3.rep.googleapis.com/",
+      "location": "asia-southeast3"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://composer.australia-southeast1.rep.googleapis.com/",
       "location": "australia-southeast1"
     },
@@ -103,6 +108,21 @@
     },
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://composer.europe-west10.rep.googleapis.com/",
+      "location": "europe-west10"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://composer.europe-west12.rep.googleapis.com/",
+      "location": "europe-west12"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://composer.europe-west15.rep.googleapis.com/",
+      "location": "europe-west15"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://composer.europe-west2.rep.googleapis.com/",
       "location": "europe-west2"
     },
@@ -130,16 +150,6 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://composer.europe-west9.rep.googleapis.com/",
       "location": "europe-west9"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://composer.europe-west10.rep.googleapis.com/",
-      "location": "europe-west10"
-    },
-    {
-      "description": "Regional Endpoint",
-      "endpointUrl": "https://composer.europe-west12.rep.googleapis.com/",
-      "location": "europe-west12"
     },
     {
       "description": "Regional Endpoint",
@@ -1216,7 +1226,7 @@
       }
     }
   },
-  "revision": "20250513",
+  "revision": "20250630",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
