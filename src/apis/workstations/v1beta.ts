@@ -208,6 +208,10 @@ export namespace workstations_v1beta {
      * Optional. The number of boost VMs that the system should keep idle so that workstations can be boosted quickly. Defaults to `0`.
      */
     poolSize?: number | null;
+    /**
+     * Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create boost VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -360,6 +364,10 @@ export namespace workstations_v1beta {
      * Optional. The number of VMs that the system should keep idle so that new workstations can be started quickly for new users. Defaults to `0` in the API.
      */
     poolSize?: number | null;
+    /**
+     * Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create boost VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size.
+     */
+    reservationAffinity?: Schema$ReservationAffinity;
     /**
      * Optional. The email address of the service account for Cloud Workstations VMs created with this configuration. When specified, be sure that the service account has `logging.logEntries.create` and `monitoring.timeSeries.create` permissions on the project so it can write logs out to Cloud Logging. If using a custom container image, the service account must have [Artifact Registry Reader](https://cloud.google.com/artifact-registry/docs/access-control#roles) permission to pull the specified image. If you as the administrator want to be able to `ssh` into the underlying VM, you need to set this value to a service account for which you have the `iam.serviceAccounts.actAs` permission. Conversely, if you don't want anyone to be able to `ssh` into the underlying VM, use a service account where no one has that permission. If not set, VMs run with a service account provided by the Cloud Workstations service, and the image must be publicly accessible.
      */
@@ -753,6 +761,23 @@ export namespace workstations_v1beta {
      * Optional. Port to which the request should be sent.
      */
     port?: number | null;
+  }
+  /**
+   * ReservationAffinity is the configuration of the desired reservation from which instances can consume resources.
+   */
+  export interface Schema$ReservationAffinity {
+    /**
+     * Optional. Corresponds to the type of reservation consumption.
+     */
+    consumeReservationType?: string | null;
+    /**
+     * Optional. Corresponds to the label key of reservation resource.
+     */
+    key?: string | null;
+    /**
+     * Optional. Corresponds to the label values of reservation resources. Valid values are either a name to a reservation in the same project or "projects/{project\}/reservations/{reservation\}" to target a shared reservation in the same zone but in a different project.
+     */
+    values?: string[] | null;
   }
   /**
    * Runtime host for the workstation.
