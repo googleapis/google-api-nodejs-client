@@ -203,7 +203,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250628",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -325,7 +325,6 @@
           "description": "Optional. [Minimum purchase amount](https://support.google.com/merchants/answer/13837705?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion."
         },
         "minimumPurchaseQuantity": {
-          "description": "Optional. [Minimum purchase quantity](https://support.google.com/merchants/answer/13838182?ref_topic=13773355&sjid=17642868584668136159-NC) for the promotion.",
           "format": "int64",
           "type": "string"
         },
