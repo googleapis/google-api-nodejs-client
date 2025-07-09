@@ -352,6 +352,10 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$Cluster {
     /**
+     * Optional. Immutable. Allows customers to specify if they are okay with deploying a multi-zone cluster in less than 3 zones. Once set, if there is a zonal outage during the cluster creation, the cluster will only be deployed in 2 zones, and stay within the 2 zones for its lifecycle.
+     */
+    allowFewerZonesDeployment?: boolean | null;
+    /**
      * Optional. If true, cluster endpoints that are created and registered by customers can be deleted asynchronously. That is, such a cluster endpoint can be de-registered before the forwarding rules in the cluster endpoint are deleted.
      */
     asyncClusterEndpointsDeletionEnabled?: boolean | null;
@@ -3443,6 +3447,7 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
      *       //   "automatedBackupConfig": {},
@@ -3764,6 +3769,7 @@ export namespace redis_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "allowFewerZonesDeployment": false,
      *   //   "asyncClusterEndpointsDeletionEnabled": false,
      *   //   "authorizationMode": "my_authorizationMode",
      *   //   "automatedBackupConfig": {},
@@ -4219,6 +4225,7 @@ export namespace redis_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "allowFewerZonesDeployment": false,
      *       //   "asyncClusterEndpointsDeletionEnabled": false,
      *       //   "authorizationMode": "my_authorizationMode",
      *       //   "automatedBackupConfig": {},
