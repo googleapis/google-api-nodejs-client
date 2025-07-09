@@ -891,7 +891,7 @@ export namespace recaptchaenterprise_v1 {
    */
   export interface Schema$GoogleCloudRecaptchaenterpriseV1RiskAnalysis {
     /**
-     * Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys
+     * Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys
      */
     challenge?: string | null;
     /**
@@ -1270,13 +1270,43 @@ export namespace recaptchaenterprise_v1 {
      */
     allowedDomains?: string[] | null;
     /**
-     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.
+     * Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.
      */
     challengeSecurityPreference?: string | null;
+    /**
+     * Optional. Challenge settings.
+     */
+    challengeSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings;
     /**
      * Required. Describes how this key is integrated with the website.
      */
     integrationType?: string | null;
+  }
+  /**
+   * Per-action challenge settings.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings {
+    /**
+     * Required. A challenge is triggered if the end-user score is below that threshold. Value must be between 0 and 1 (inclusive).
+     */
+    scoreThreshold?: number | null;
+  }
+  /**
+   * Settings for POLICY_BASED_CHALLENGE keys to control when a challenge is triggered.
+   */
+  export interface Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings {
+    /**
+     * Optional. The action to score threshold map. The action name should be the same as the action name passed in the `data-action` attribute (see https://cloud.google.com/recaptcha/docs/actions-website). Action names are case-insensitive. There is a maximum of 100 action settings. An action name has a maximum length of 100.
+     */
+    actionSettings?: {
+      [
+        key: string
+      ]: Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings;
+    } | null;
+    /**
+     * Required. Defines when a challenge is triggered (unless the default threshold is overridden for the given action, see `action_settings`).
+     */
+    defaultSettings?: Schema$GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings;
   }
   /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
