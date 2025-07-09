@@ -141,6 +141,35 @@
                 "https://www.googleapis.com/auth/datastore"
               ]
             },
+            "clone": {
+              "description": "Creates a new database by cloning an existing one. The new database must be in the same cloud region or multi-region location as the existing database. This behaves similar to FirestoreAdmin.CreateDatabase except instead of creating a new empty database, a new database is created with the database type, index configuration, and documents from an existing database. The long-running operation can be used to track the progress of the clone, with the Operation's metadata field type being the CloneDatabaseMetadata. The response type is the Database if the clone was successful. The new database is not readable or writeable until the LRO has completed.",
+              "flatPath": "v1/projects/{projectsId}/databases:clone",
+              "httpMethod": "POST",
+              "id": "firestore.projects.databases.clone",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The project to clone the database in. Format is `projects/{project_id}`.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+parent}/databases:clone",
+              "request": {
+                "$ref": "GoogleFirestoreAdminV1CloneDatabaseRequest"
+              },
+              "response": {
+                "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform",
+                "https://www.googleapis.com/auth/datastore"
+              ]
+            },
             "create": {
               "description": "Create a database.",
               "flatPath": "v1/projects/{projectsId}/databases",
@@ -1920,7 +1949,7 @@
       }
     }
   },
-  "revision": "20250414",
+  "revision": "20250618",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
@@ -2839,6 +2868,85 @@
       },
       "type": "object"
     },
+    "GoogleFirestoreAdminV1CloneDatabaseMetadata": {
+      "description": "Metadata for the long-running operation from the CloneDatabase request.",
+      "id": "GoogleFirestoreAdminV1CloneDatabaseMetadata",
+      "properties": {
+        "database": {
+          "description": "The name of the database being cloned to.",
+          "type": "string"
+        },
+        "endTime": {
+          "description": "The time the clone finished, unset for ongoing clones.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "operationState": {
+          "description": "The operation state of the clone.",
+          "enum": [
+            "OPERATION_STATE_UNSPECIFIED",
+            "INITIALIZING",
+            "PROCESSING",
+            "CANCELLING",
+            "FINALIZING",
+            "SUCCESSFUL",
+            "FAILED",
+            "CANCELLED"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Request is being prepared for processing.",
+            "Request is actively being processed.",
+            "Request is in the process of being cancelled after user called google.longrunning.Operations.CancelOperation on the operation.",
+            "Request has been processed and is in its finalization stage.",
+            "Request has completed successfully.",
+            "Request has finished being processed, but encountered an error.",
+            "Request has finished being cancelled after user called google.longrunning.Operations.CancelOperation."
+          ],
+          "type": "string"
+        },
+        "pitrSnapshot": {
+          "$ref": "GoogleFirestoreAdminV1PitrSnapshot",
+          "description": "The snapshot from which this database was cloned."
+        },
+        "progressPercentage": {
+          "$ref": "GoogleFirestoreAdminV1Progress",
+          "description": "How far along the clone is as an estimated percentage of remaining time."
+        },
+        "startTime": {
+          "description": "The time the clone was started.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1CloneDatabaseRequest": {
+      "description": "The request message for FirestoreAdmin.CloneDatabase.",
+      "id": "GoogleFirestoreAdminV1CloneDatabaseRequest",
+      "properties": {
+        "databaseId": {
+          "description": "Required. The ID to use for the database, which will become the final component of the database's resource name. This database ID must not be associated with an existing database. This value should be 4-63 characters. Valid characters are /a-z-/ with first character a letter and the last a letter or a number. Must not be UUID-like /[0-9a-f]{8}(-[0-9a-f]{4}){3}-[0-9a-f]{12}/. \"(default)\" database ID is also valid.",
+          "type": "string"
+        },
+        "encryptionConfig": {
+          "$ref": "GoogleFirestoreAdminV1EncryptionConfig",
+          "description": "Optional. Encryption configuration for the cloned database. If this field is not specified, the cloned database will use the same encryption configuration as the source database, namely use_source_encryption."
+        },
+        "pitrSnapshot": {
+          "$ref": "GoogleFirestoreAdminV1PitrSnapshot",
+          "description": "Required. Specification of the PITR data to clone from. The source database must exist. The cloned database will be created in the same location as the source database."
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Immutable. Tags to be bound to the cloned database. The tags should be provided in the format of `tagKeys/{tag_key_id} -> tagValues/{tag_value_id}`.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirestoreAdminV1CmekConfig": {
       "description": "The CMEK (Customer Managed Encryption Key) configuration for a Firestore database. If not present, the database is secured by the default Google encryption key.",
       "id": "GoogleFirestoreAdminV1CmekConfig",
@@ -3733,6 +3841,28 @@
       "description": "The metadata message for google.cloud.location.Location.metadata.",
       "id": "GoogleFirestoreAdminV1LocationMetadata",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleFirestoreAdminV1PitrSnapshot": {
+      "description": "A consistent snapshot of a database at a specific point in time. A PITR (Point-in-time recovery) snapshot with previous versions of a database's data is available for every minute up to the associated database's data retention period. If the PITR feature is enabled, the retention period is 7 days; otherwise, it is one hour.",
+      "id": "GoogleFirestoreAdminV1PitrSnapshot",
+      "properties": {
+        "database": {
+          "description": "Required. The name of the database that this was a snapshot of. Format: `projects/{project}/databases/{database}`.",
+          "type": "string"
+        },
+        "databaseUid": {
+          "description": "Output only. Public UUID of the database the snapshot was associated with.",
+          "format": "byte",
+          "readOnly": true,
+          "type": "string"
+        },
+        "snapshotTime": {
+          "description": "Required. Snapshot time of the database.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleFirestoreAdminV1Progress": {
