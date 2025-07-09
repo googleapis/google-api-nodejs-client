@@ -36,8 +36,33 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.europe-west1.rep.googleapis.com/",
+      "location": "europe-west1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.europe-west2.rep.googleapis.com/",
+      "location": "europe-west2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://bigquery.europe-west3.rep.googleapis.com/",
       "location": "europe-west3"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://bigquery.europe-west6.rep.googleapis.com/",
+      "location": "europe-west6"
     },
     {
       "description": "Regional Endpoint",
@@ -276,9 +301,9 @@
               ],
               "enumDescriptions": [
                 "The default value. Default to the FULL view.",
-                "Updates metadata information for the dataset, such as friendlyName, description, labels, etc.",
-                "Updates ACL information for the dataset, which defines dataset access for one or more entities.",
-                "Updates both dataset metadata and ACL information."
+                "View metadata information for the dataset, such as friendlyName, description, labels, etc.",
+                "View ACL information for the dataset, which defines dataset access for one or more entities.",
+                "View both dataset metadata and ACL information."
               ],
               "location": "query",
               "type": "string"
@@ -1377,6 +1402,36 @@
             "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
+        "testIamPermissions": {
+          "description": "Returns permissions that a caller has on the specified resource. If the resource does not exist, this will return an empty set of permissions, not a `NOT_FOUND` error. Note: This operation is designed to be used for building permission-aware UIs and command-line tools, not for authorization checking. This operation may \"fail open\" without warning.",
+          "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines/{routinesId}:testIamPermissions",
+          "httpMethod": "POST",
+          "id": "bigquery.routines.testIamPermissions",
+          "parameterOrder": [
+            "resource"
+          ],
+          "parameters": {
+            "resource": {
+              "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+              "location": "path",
+              "pattern": "^projects/[^/]+/datasets/[^/]+/routines/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "{+resource}:testIamPermissions",
+          "request": {
+            "$ref": "TestIamPermissionsRequest"
+          },
+          "response": {
+            "$ref": "TestIamPermissionsResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/bigquery",
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/cloud-platform.read-only"
+          ]
+        },
         "update": {
           "description": "Updates information in an existing routine. The update method replaces the entire Routine resource.",
           "flatPath": "projects/{projectsId}/datasets/{datasetsId}/routines/{routinesId}",
@@ -2290,7 +2345,7 @@
       }
     }
   },
-  "revision": "20250511",
+  "revision": "20250615",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -4549,6 +4604,35 @@
       },
       "type": "object"
     },
+    "ExternalRuntimeOptions": {
+      "description": "Options for the runtime of the external system.",
+      "id": "ExternalRuntimeOptions",
+      "properties": {
+        "containerCpu": {
+          "description": "Optional. Amount of CPU provisioned for the container instance. If not specified, the default value is 0.33 vCPUs.",
+          "format": "double",
+          "type": "number"
+        },
+        "containerMemory": {
+          "description": "Optional. Amount of memory provisioned for the container instance. Format: {number}{unit} where unit is one of \"M\", \"G\", \"Mi\" and \"Gi\" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi.",
+          "type": "string"
+        },
+        "maxBatchingRows": {
+          "description": "Optional. Maximum number of rows in each batch sent to the external runtime. If absent or if 0, BigQuery dynamically decides the number of rows in a batch.",
+          "format": "int64",
+          "type": "string"
+        },
+        "runtimeConnection": {
+          "description": "Optional. Fully qualified name of the connection whose service account will be used to execute the code in the container. Format: ```\"projects/{project_id}/locations/{location_id}/connections/{connection_id}\"```",
+          "type": "string"
+        },
+        "runtimeVersion": {
+          "description": "Optional. Language runtime version (e.g. python-3.11).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExternalServiceCost": {
       "description": "The external service cost is a portion of the total cost, these costs are not additive with total_bytes_billed. Moreover, this field only track external service costs that will show up as BigQuery costs (e.g. training BigQuery ML job with google cloud CAIP or Automl Tables services), not other costs which may be accrued by running the query (e.g. reading from Bigtable or Cloud Storage). The external service costs with different billing sku (e.g. CAIP job is charged based on VM usage) are converted to BigQuery billed_bytes and slot_ms with equivalent amount of US dollars. Services may not directly correlate to these metrics, but these are the equivalents for billing purposes. Output only.",
       "id": "ExternalServiceCost",
@@ -5024,6 +5108,7 @@
             "BASE_TABLE_TOO_SMALL",
             "BASE_TABLE_TOO_LARGE",
             "ESTIMATED_PERFORMANCE_GAIN_TOO_LOW",
+            "COLUMN_METADATA_INDEX_NOT_USED",
             "NOT_SUPPORTED_IN_STANDARD_EDITION",
             "INDEX_SUPPRESSED_BY_FUNCTION_OPTION",
             "QUERY_CACHE_HIT",
@@ -5047,6 +5132,7 @@
             "Indicates the base table is too small (below a certain threshold). The index does not provide noticeable search performance gains when the base table is too small.",
             "Indicates that the total size of indexed base tables in your organization exceeds your region's limit and the index is not used in the query. To index larger base tables, you can use your own reservation for index-management jobs.",
             "Indicates that the estimated performance gain from using the search index is too low for the given search query.",
+            "Indicates that the column metadata index (which the search index depends on) is not used. User can refer to the [column metadata index usage](https://cloud.google.com/bigquery/docs/metadata-indexing-managed-tables#view_column_metadata_index_usage) for more details on why it was not used.",
             "Indicates that search indexes can not be used for search query with STANDARD edition.",
             "Indicates that an option in the search function that cannot make use of the index has been selected.",
             "Indicates that the query was cached, and thus the search index was not used.",
@@ -5225,7 +5311,7 @@
         },
         "jobCreationReason": {
           "$ref": "JobCreationReason",
-          "description": "Output only. The reason why a Job was created. [Preview](https://cloud.google.com/products/#product-launch-stages)",
+          "description": "Output only. The reason why a Job was created.",
           "readOnly": true
         },
         "jobReference": {
@@ -5834,7 +5920,7 @@
       "type": "object"
     },
     "JobCreationReason": {
-      "description": "Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`. [Preview](https://cloud.google.com/products/#product-launch-stages)",
+      "description": "Reason about why a Job was created from a [`jobs.query`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/query) method when used with `JOB_CREATION_OPTIONAL` Job creation mode. For [`jobs.insert`](https://cloud.google.com/bigquery/docs/reference/rest/v2/jobs/insert) method calls it will always be `REQUESTED`.",
       "id": "JobCreationReason",
       "properties": {
         "code": {
@@ -7440,6 +7526,24 @@
       },
       "type": "object"
     },
+    "PythonOptions": {
+      "description": "Options for a user-defined Python function.",
+      "id": "PythonOptions",
+      "properties": {
+        "entryPoint": {
+          "description": "Required. The entry point function in the user's Python code.",
+          "type": "string"
+        },
+        "packages": {
+          "description": "Optional. A list of package names along with versions to be installed. Follows requirements.txt syntax (e.g. numpy==2.0, permutation, urllib3<2.2.1)",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "QueryInfo": {
       "description": "Query optimization information for a QUERY job.",
       "id": "QueryInfo",
@@ -7581,7 +7685,7 @@
           "description": "Optional. Output format adjustments."
         },
         "jobCreationMode": {
-          "description": "Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode. [Preview](https://cloud.google.com/products/#product-launch-stages)",
+          "description": "Optional. If not set, jobs are always required. If set, the query request will follow the behavior described JobCreationMode.",
           "enum": [
             "JOB_CREATION_MODE_UNSPECIFIED",
             "JOB_CREATION_REQUIRED",
@@ -7713,7 +7817,7 @@
         },
         "jobCreationReason": {
           "$ref": "JobCreationReason",
-          "description": "Optional. The reason why a Job was created. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset. [Preview](https://cloud.google.com/products/#product-launch-stages)"
+          "description": "Optional. The reason why a Job was created. Only relevant when a job_reference is present in the response. If job_reference is not present it will always be unset."
         },
         "jobReference": {
           "$ref": "JobReference",
@@ -7740,7 +7844,7 @@
           "type": "string"
         },
         "queryId": {
-          "description": "Auto-generated ID for the query. [Preview](https://cloud.google.com/products/#product-launch-stages)",
+          "description": "Auto-generated ID for the query.",
           "type": "string"
         },
         "rows": {
@@ -8091,6 +8195,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "externalRuntimeOptions": {
+          "$ref": "ExternalRuntimeOptions",
+          "description": "Optional. Options for the runtime of the external system executing the routine. This field is only applicable for Python UDFs. [Preview](https://cloud.google.com/products/#product-launch-stages)"
+        },
         "importedLibraries": {
           "description": "Optional. If language = \"JAVASCRIPT\", this field stores the path of the imported JAVASCRIPT libraries.",
           "items": {
@@ -8123,6 +8231,10 @@
           "format": "int64",
           "readOnly": true,
           "type": "string"
+        },
+        "pythonOptions": {
+          "$ref": "PythonOptions",
+          "description": "Optional. Options for Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)"
         },
         "remoteFunctionOptions": {
           "$ref": "RemoteFunctionOptions",
@@ -9039,12 +9151,12 @@
           "enum": [
             "MANAGED_TABLE_TYPE_UNSPECIFIED",
             "NATIVE",
-            "ICEBERG"
+            "BIGLAKE"
           ],
           "enumDescriptions": [
             "No managed table type specified.",
             "The managed table is a native BigQuery table.",
-            "The managed table is a BigQuery table for Apache Iceberg."
+            "The managed table is a BigLake table for Apache Iceberg in BigQuery."
           ],
           "type": "string"
         },
