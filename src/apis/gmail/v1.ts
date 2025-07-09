@@ -4669,7 +4669,7 @@ export namespace gmail_v1 {
     }
 
     /**
-     * Lists the messages in the user's mailbox.
+     * Lists the messages in the user's mailbox. For example usage, see [List Gmail messages](https://developers.google.com/workspace/gmail/api/guides/list-messages).
      * @example
      * ```js
      * // Before running the sample:
