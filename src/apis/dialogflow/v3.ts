@@ -2771,6 +2771,10 @@ export namespace dialogflow_v3 {
      */
     documentUri?: string | null;
     /**
+     * Metadata associated with the document.
+     */
+    metadata?: {[key: string]: any} | null;
+    /**
      * Text included in the prompt.
      */
     text?: string | null;
