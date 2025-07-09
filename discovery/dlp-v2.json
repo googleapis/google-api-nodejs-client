@@ -5118,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250615",
+  "revision": "20250629",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -8283,6 +8283,52 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2Domain": {
+      "description": "A domain represents a thematic category that a data profile can fall under.",
+      "id": "GooglePrivacyDlpV2Domain",
+      "properties": {
+        "category": {
+          "description": "A domain category that this profile is related to.",
+          "enum": [
+            "CATEGORY_UNSPECIFIED",
+            "AI",
+            "CODE"
+          ],
+          "enumDescriptions": [
+            "Category unspecified.",
+            "Indicates that the data profile is related to artificial intelligence. When set, all findings stored to Security Command Center will set the corresponding AI domain field of `Finding` objects.",
+            "Indicates that the data profile is related to code."
+          ],
+          "type": "string"
+        },
+        "signals": {
+          "description": "The collection of signals that influenced selection of the category.",
+          "items": {
+            "enum": [
+              "SIGNAL_UNSPECIFIED",
+              "MODEL",
+              "TEXT_EMBEDDING",
+              "VERTEX_PLUGIN",
+              "VECTOR_PLUGIN",
+              "SOURCE_CODE",
+              "SERVICE"
+            ],
+            "enumDescriptions": [
+              "Unused.",
+              "One or more machine learning models are present.",
+              "A table appears to be a text embedding.",
+              "The [Cloud SQL Vertex AI](https://cloud.google.com/sql/docs/postgres/integrate-cloud-sql-with-vertex-ai) plugin is installed on the database.",
+              "Support for [Cloud SQL vector embeddings](https://cloud.google.com/sql/docs/mysql/enable-vector-search) is enabled on the database.",
+              "Source code is present.",
+              "If the service determines the category type. For example, Vertex AI assets would always have a `Category` of `AI`."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2EntityId": {
       "description": "An entity in a dataset is a field or set of fields that correspond to a single person. For example, in medical records the `EntityId` might be a patient identifier, or for financial records it might be an account identifier. This message is used when generalizations or analysis must take into account that multiple rows correspond to the same entity.",
       "id": "GooglePrivacyDlpV2EntityId",
@@ -8620,6 +8666,13 @@
           "description": "For resources that have multiple storage locations, these are those regions. For Cloud Storage this is the list of regions chosen for dual-region storage. `file_store_location` will normally be the corresponding multi-region for the list of individual locations. The first region is always picked as the processing and storage location for the data profile.",
           "items": {
             "type": "string"
+          },
+          "type": "array"
+        },
+        "domains": {
+          "description": "Domains associated with the profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Domain"
           },
           "type": "array"
         },
@@ -11956,6 +12009,13 @@
           "description": "The Google Cloud project ID that owns the resource.",
           "type": "string"
         },
+        "domains": {
+          "description": "Domains associated with the profile.",
+          "items": {
+            "$ref": "GooglePrivacyDlpV2Domain"
+          },
+          "type": "array"
+        },
         "encryptionStatus": {
           "description": "How the table is encrypted.",
           "enum": [
@@ -12069,7 +12129,7 @@
           "description": "The sensitivity score of this table."
         },
         "state": {
-          "description": "State of a profile.",
+          "description": "State of a profile. This will always be set to DONE when the table data profile is written to another service like BigQuery or Pub/Sub.",
           "enum": [
             "STATE_UNSPECIFIED",
             "RUNNING",
