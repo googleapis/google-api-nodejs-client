@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250707",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2824,7 +2824,7 @@
       "type": "object"
     },
     "GcpMetadata": {
-      "description": "GCP metadata associated with the resource, only applicable if the finding's cloud provider is Google Cloud Platform.",
+      "description": "Google Cloud metadata associated with the resource. Only applicable if the finding's cloud provider is Google Cloud.",
       "id": "GcpMetadata",
       "properties": {
         "folders": {
@@ -3042,7 +3042,7 @@
           ],
           "enumDescriptions": [
             "Unspecified cloud provider.",
-            "Google Cloud Platform.",
+            "Google Cloud.",
             "Amazon Web Services.",
             "Microsoft Azure."
           ],
@@ -3255,7 +3255,7 @@
           ],
           "enumDescriptions": [
             "The cloud provider is unspecified.",
-            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Google Cloud.",
             "The cloud provider is Amazon Web Services.",
             "The cloud provider is Microsoft Azure."
           ],
@@ -3348,7 +3348,7 @@
           ],
           "enumDescriptions": [
             "The cloud provider is unspecified.",
-            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Google Cloud.",
             "The cloud provider is Amazon Web Services.",
             "The cloud provider is Microsoft Azure."
           ],
@@ -6630,6 +6630,7 @@
               "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
               "PLUGGABLE_AUTHENTICATION_MODULES",
+              "MULTI_FACTOR_AUTHENTICATION",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
               "INDICATOR_BLOCKING",
@@ -6769,6 +6770,7 @@
               "T1555",
               "T1556",
               "T1556.003",
+              "T1556.006",
               "T1562",
               "T1562.001",
               "T1562.006",
@@ -6953,6 +6955,7 @@
               "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
               "PLUGGABLE_AUTHENTICATION_MODULES",
+              "MULTI_FACTOR_AUTHENTICATION",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
               "INDICATOR_BLOCKING",
@@ -7092,6 +7095,7 @@
               "T1555",
               "T1556",
               "T1556.003",
+              "T1556.006",
               "T1562",
               "T1562.001",
               "T1562.006",
@@ -7592,7 +7596,7 @@
           ],
           "enumDescriptions": [
             "The cloud provider is unspecified.",
-            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Google Cloud.",
             "The cloud provider is Amazon Web Services.",
             "The cloud provider is Microsoft Azure."
           ],
@@ -7704,7 +7708,7 @@
           ],
           "enumDescriptions": [
             "The cloud provider is unspecified.",
-            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Google Cloud.",
             "The cloud provider is Amazon Web Services.",
             "The cloud provider is Microsoft Azure."
           ],
@@ -8901,6 +8905,7 @@
               "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
               "PLUGGABLE_AUTHENTICATION_MODULES",
+              "MULTI_FACTOR_AUTHENTICATION",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
               "INDICATOR_BLOCKING",
@@ -9040,6 +9045,7 @@
               "T1555",
               "T1556",
               "T1556.003",
+              "T1556.006",
               "T1562",
               "T1562.001",
               "T1562.006",
@@ -9224,6 +9230,7 @@
               "CREDENTIALS_FROM_PASSWORD_STORES",
               "MODIFY_AUTHENTICATION_PROCESS",
               "PLUGGABLE_AUTHENTICATION_MODULES",
+              "MULTI_FACTOR_AUTHENTICATION",
               "IMPAIR_DEFENSES",
               "DISABLE_OR_MODIFY_TOOLS",
               "INDICATOR_BLOCKING",
@@ -9363,6 +9370,7 @@
               "T1555",
               "T1556",
               "T1556.003",
+              "T1556.006",
               "T1562",
               "T1562.001",
               "T1562.006",
@@ -10407,7 +10415,7 @@
           ],
           "enumDescriptions": [
             "The cloud provider is unspecified.",
-            "The cloud provider is Google Cloud Platform.",
+            "The cloud provider is Google Cloud.",
             "The cloud provider is Amazon Web Services.",
             "The cloud provider is Microsoft Azure."
           ],
