@@ -4,6 +4,32 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [153.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v152.0.0...googleapis-v153.0.0) (2025-07-10)
+
+
+### ⚠ BREAKING CHANGES
+
+* **adsenseplatform:** This release has breaking changes.
+
+### Features
+
+* **adsenseplatform:** update the API ([02abe6b](https://github.com/googleapis/google-api-nodejs-client/commit/02abe6b46f3f874e27f7e874c554b0102f691d41))
+* **chat:** update the API ([127445a](https://github.com/googleapis/google-api-nodejs-client/commit/127445a8704b97fe8faf47fc8868f47e5d419da2))
+* **compute:** update the API ([2e3c7c3](https://github.com/googleapis/google-api-nodejs-client/commit/2e3c7c36e6e40299fbdef45e1b57b183bdea52b7))
+* **contactcenteraiplatform:** update the API ([366fb11](https://github.com/googleapis/google-api-nodejs-client/commit/366fb11b1d4b98e0514861c52c12b923f3c94dec))
+* **discoveryengine:** update the API ([89752fc](https://github.com/googleapis/google-api-nodejs-client/commit/89752fcbc5379c5b67fd411f4bd57c8d149eea81))
+* **recaptchaenterprise:** update the API ([061f37a](https://github.com/googleapis/google-api-nodejs-client/commit/061f37a2360ab09421594cde155e80c2620be115))
+* regenerate index files ([6071368](https://github.com/googleapis/google-api-nodejs-client/commit/6071368782800efff394bf0a23ee02638ac9ce7c))
+
+
+### Bug Fixes
+
+* **networkconnectivity:** update the API ([c84590a](https://github.com/googleapis/google-api-nodejs-client/commit/c84590ae489757c38f20cf20a3b1487f51a5f2bc))
+* **parametermanager:** update the API ([5154a71](https://github.com/googleapis/google-api-nodejs-client/commit/5154a7103cb51cee108cab264bd5682706943dd8))
+* **retail:** update the API ([9f030b0](https://github.com/googleapis/google-api-nodejs-client/commit/9f030b0301e2a0dfc4132fe033b9dcd2bfdb0690))
+* **run:** update the API ([0b88b86](https://github.com/googleapis/google-api-nodejs-client/commit/0b88b86e614f95cde5007381277143a6365e4a35))
+* **securitycenter:** update the API ([c54ebfe](https://github.com/googleapis/google-api-nodejs-client/commit/c54ebfec0fe70edd352868c5f13183bc5af8c45c))
+
 ## [152.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v151.0.0...googleapis-v152.0.0) (2025-07-08)
 
 
