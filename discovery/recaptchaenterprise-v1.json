@@ -786,7 +786,7 @@
       }
     }
   },
-  "revision": "20250608",
+  "revision": "20250706",
   "rootUrl": "https://recaptchaenterprise.googleapis.com/",
   "schemas": {
     "GoogleCloudRecaptchaenterpriseV1AccountDefenderAssessment": {
@@ -1922,7 +1922,7 @@
       "id": "GoogleCloudRecaptchaenterpriseV1RiskAnalysis",
       "properties": {
         "challenge": {
-          "description": "Output only. Challenge information for SCORE_AND_CHALLENGE and INVISIBLE keys",
+          "description": "Output only. Challenge information for POLICY_BASED_CHALLENGE and INVISIBLE keys",
           "enum": [
             "CHALLENGE_UNSPECIFIED",
             "NOCAPTCHA",
@@ -2544,7 +2544,7 @@
           "type": "array"
         },
         "challengeSecurityPreference": {
-          "description": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for IntegrationTypes CHECKBOX and INVISIBLE and SCORE_AND_CHALLENGE.",
+          "description": "Optional. Settings for the frequency and difficulty at which this key triggers captcha challenges. This should only be specified for `IntegrationType` CHECKBOX, INVISIBLE or POLICY_BASED_CHALLENGE.",
           "enum": [
             "CHALLENGE_SECURITY_PREFERENCE_UNSPECIFIED",
             "USABILITY",
@@ -2559,21 +2559,57 @@
           ],
           "type": "string"
         },
+        "challengeSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings",
+          "description": "Optional. Challenge settings."
+        },
         "integrationType": {
           "description": "Required. Describes how this key is integrated with the website.",
           "enum": [
             "INTEGRATION_TYPE_UNSPECIFIED",
             "SCORE",
             "CHECKBOX",
-            "INVISIBLE"
+            "INVISIBLE",
+            "POLICY_BASED_CHALLENGE"
           ],
           "enumDescriptions": [
             "Default type that indicates this enum hasn't been specified. This is not a valid IntegrationType, one of the other types must be specified instead.",
             "Only used to produce scores. It doesn't display the \"I'm not a robot\" checkbox and never shows captcha challenges.",
             "Displays the \"I'm not a robot\" checkbox and may show captcha challenges after it is checked.",
-            "Doesn't display the \"I'm not a robot\" checkbox, but may show captcha challenges after risk analysis."
+            "Doesn't display the \"I'm not a robot\" checkbox, but may show captcha challenges after risk analysis.",
+            "Displays a visual challenge or not depending on the user risk analysis score."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings": {
+      "description": "Per-action challenge settings.",
+      "id": "GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings",
+      "properties": {
+        "scoreThreshold": {
+          "description": "Required. A challenge is triggered if the end-user score is below that threshold. Value must be between 0 and 1 (inclusive).",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings": {
+      "description": "Settings for POLICY_BASED_CHALLENGE keys to control when a challenge is triggered.",
+      "id": "GoogleCloudRecaptchaenterpriseV1WebKeySettingsChallengeSettings",
+      "properties": {
+        "actionSettings": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings"
+          },
+          "description": "Optional. The action to score threshold map. The action name should be the same as the action name passed in the `data-action` attribute (see https://cloud.google.com/recaptcha/docs/actions-website). Action names are case-insensitive. There is a maximum of 100 action settings. An action name has a maximum length of 100.",
+          "type": "object"
+        },
+        "defaultSettings": {
+          "$ref": "GoogleCloudRecaptchaenterpriseV1WebKeySettingsActionSettings",
+          "description": "Required. Defines when a challenge is triggered (unless the default threshold is overridden for the given action, see `action_settings`)."
         }
       },
       "type": "object"
