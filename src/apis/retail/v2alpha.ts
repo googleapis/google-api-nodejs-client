@@ -3106,7 +3106,7 @@ export namespace retail_v2alpha {
      */
     tileNavigationSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestTileNavigationSpec;
     /**
-     * Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplcate keys are not allowed within a single query. Example: user_attributes: [ { key: "pets" value { values: "dog" values: "cat" \} \}, { key: "state" value { values: "CA" \} \} ]
+     * Optional. The user attributes that could be used for personalization of search results. * Populate at most 100 key-value pairs per query. * Only supports string keys and repeated string values. * Duplicate keys are not allowed within a single query. Example: user_attributes: [ { key: "pets" value { values: "dog" values: "cat" \} \}, { key: "state" value { values: "CA" \} \} ]
      */
     userAttributes?: {
       [key: string]: Schema$GoogleCloudRetailV2alphaStringList;
