@@ -2887,7 +2887,7 @@
       }
     }
   },
-  "revision": "20250606",
+  "revision": "20250704",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -3207,7 +3207,7 @@
         },
         "readinessProbe": {
           "$ref": "Probe",
-          "description": "Readiness probe to be used for health checks. Not supported by Cloud Run."
+          "description": "Readiness probe to be used for health checks."
         },
         "resources": {
           "$ref": "ResourceRequirements",
