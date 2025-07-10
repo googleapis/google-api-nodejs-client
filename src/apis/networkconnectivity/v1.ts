@@ -658,7 +658,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedInterconnectAttachments {
     /**
-     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
     /**
@@ -713,7 +713,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedRouterApplianceInstances {
     /**
-     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
     /**
@@ -763,7 +763,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$LinkedVpnTunnels {
     /**
-     * Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is "ALL_IPV4_RANGES".
+     * Optional. Hub routes fully encompassed by include import ranges are included during import from hub.
      */
     includeImportRanges?: string[] | null;
     /**

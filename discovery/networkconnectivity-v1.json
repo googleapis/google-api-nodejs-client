@@ -3012,7 +3012,7 @@
       }
     }
   },
-  "revision": "20250617",
+  "revision": "20250703",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -3895,7 +3895,7 @@
       "id": "LinkedInterconnectAttachments",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
             "type": "string"
           },
@@ -3979,7 +3979,7 @@
       "id": "LinkedRouterApplianceInstances",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
             "type": "string"
           },
@@ -4058,7 +4058,7 @@
       "id": "LinkedVpnTunnels",
       "properties": {
         "includeImportRanges": {
-          "description": "Optional. IP ranges allowed to be included during import from hub (does not control transit connectivity). The only allowed value for now is \"ALL_IPV4_RANGES\".",
+          "description": "Optional. Hub routes fully encompassed by include import ranges are included during import from hub.",
           "items": {
             "type": "string"
           },
