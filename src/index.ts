@@ -414,6 +414,7 @@ export {oslogin_v1beta} from './apis/oslogin/v1beta';
 export {pagespeedonline_v5} from './apis/pagespeedonline/v5';
 export {parallelstore_v1} from './apis/parallelstore/v1';
 export {parallelstore_v1beta} from './apis/parallelstore/v1beta';
+export {parametermanager_v1} from './apis/parametermanager/v1';
 export {paymentsresellersubscription_v1} from './apis/paymentsresellersubscription/v1';
 export {people_v1} from './apis/people/v1';
 export {places_v1} from './apis/places/v1';

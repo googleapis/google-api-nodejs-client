@@ -526,6 +526,10 @@ import {
   parallelstore,
 } from './parallelstore';
 import {
+  VERSIONS as parametermanagerVersions,
+  parametermanager,
+} from './parametermanager';
+import {
   VERSIONS as paymentsresellersubscriptionVersions,
   paymentsresellersubscription,
 } from './paymentsresellersubscription';
@@ -977,6 +981,7 @@ export const APIS: APIList = {
   oslogin: osloginVersions,
   pagespeedonline: pagespeedonlineVersions,
   parallelstore: parallelstoreVersions,
+  parametermanager: parametermanagerVersions,
   paymentsresellersubscription: paymentsresellersubscriptionVersions,
   people: peopleVersions,
   places: placesVersions,
@@ -1293,6 +1298,7 @@ export class GeneratedAPIs {
   oslogin = oslogin;
   pagespeedonline = pagespeedonline;
   parallelstore = parallelstore;
+  parametermanager = parametermanager;
   paymentsresellersubscription = paymentsresellersubscription;
   people = people;
   places = places;
