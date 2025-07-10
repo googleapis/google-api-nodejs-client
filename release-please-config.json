@@ -314,6 +314,7 @@
     "src/apis/dlp": {},
     "src/apis/apigateway": {},
     "src/apis/saasservicemgmt": {},
-    "src/apis/cloudlocationfinder": {}
+    "src/apis/cloudlocationfinder": {},
+    "src/apis/parametermanager": {}
   }
 }
