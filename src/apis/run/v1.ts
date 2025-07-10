@@ -347,7 +347,7 @@ export namespace run_v1 {
      */
     ports?: Schema$ContainerPort[];
     /**
-     * Readiness probe to be used for health checks. Not supported by Cloud Run.
+     * Readiness probe to be used for health checks.
      */
     readinessProbe?: Schema$Probe;
     /**
