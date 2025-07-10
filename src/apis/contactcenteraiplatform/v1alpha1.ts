@@ -219,6 +219,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     privateComponents?: string[] | null;
     /**
+     * Output only. UJET release version, unique for each new release.
+     */
+    releaseVersion?: string | null;
+    /**
      * Optional. Params that sets up Google as IdP.
      */
     samlParams?: Schema$SAMLParams;
@@ -1163,6 +1167,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "normal": {},
      *         //   "privateAccess": {},
      *         //   "privateComponents": [],
+     *         //   "releaseVersion": "my_releaseVersion",
      *         //   "samlParams": {},
      *         //   "state": "my_state",
      *         //   "updateTime": "my_updateTime",
@@ -1475,6 +1480,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   //   "normal": {},
      *   //   "privateAccess": {},
      *   //   "privateComponents": [],
+     *   //   "releaseVersion": "my_releaseVersion",
      *   //   "samlParams": {},
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime",
@@ -1787,6 +1793,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "normal": {},
      *         //   "privateAccess": {},
      *         //   "privateComponents": [],
+     *         //   "releaseVersion": "my_releaseVersion",
      *         //   "samlParams": {},
      *         //   "state": "my_state",
      *         //   "updateTime": "my_updateTime",
