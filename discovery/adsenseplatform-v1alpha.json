@@ -725,7 +725,7 @@
       }
     }
   },
-  "revision": "20250703",
+  "revision": "20250707",
   "rootUrl": "https://adsenseplatform.googleapis.com/",
   "schemas": {
     "Account": {
@@ -1046,8 +1046,7 @@
       "id": "PlatformGroup",
       "properties": {
         "description": {
-          "description": "Output only. Description of the PlatformGroup.",
-          "readOnly": true,
+          "description": "Required. Description of the PlatformGroup.",
           "type": "string"
         },
         "name": {
@@ -1056,7 +1055,8 @@
         },
         "revshareMillipercent": {
           "$ref": "Decimal",
-          "description": "The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%)."
+          "description": "Output only. The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%).",
+          "readOnly": true
         }
       },
       "type": "object"

@@ -368,7 +368,7 @@ export namespace adsenseplatform_v1alpha {
    */
   export interface Schema$PlatformGroup {
     /**
-     * Output only. Description of the PlatformGroup.
+     * Required. Description of the PlatformGroup.
      */
     description?: string | null;
     /**
@@ -376,7 +376,7 @@ export namespace adsenseplatform_v1alpha {
      */
     name?: string | null;
     /**
-     * The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%).
+     * Output only. The revenue share of the PlatformGroup, in millipercent (e.g. 15000 = 15%).
      */
     revshareMillipercent?: Schema$Decimal;
   }
