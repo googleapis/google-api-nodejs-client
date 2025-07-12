@@ -1777,6 +1777,10 @@ export namespace run_v2 {
      */
     executionEnvironment?: string | null;
     /**
+     * Optional. True if GPU zonal redundancy is disabled on this task template.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
+    /**
      * Number of retries allowed per Task, before marking this Task failed. Defaults to 3.
      */
     maxRetries?: number | null;
