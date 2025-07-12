@@ -180,6 +180,31 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "getDeveloperRegistration": {
+          "description": "Retrieves a developer registration for a merchant.",
+          "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
+          "httpMethod": "GET",
+          "id": "merchantapi.accounts.getDeveloperRegistration",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The `name` (ID) of the developer registration.",
+              "location": "path",
+              "pattern": "^accounts/[^/]+/developerRegistration$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "accounts/v1beta/{+name}",
+          "response": {
+            "$ref": "DeveloperRegistration"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1beta/accounts",
@@ -529,6 +554,66 @@
               },
               "response": {
                 "$ref": "BusinessInfo"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            }
+          }
+        },
+        "developerRegistration": {
+          "methods": {
+            "registerGcp": {
+              "description": "Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an \"API developer\" and add the \"developer_email\" as a contact with \"API notifications\" email preference on.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:registerGcp",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.developerRegistration.registerGcp",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account}/developerRegistration`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/developerRegistration$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}:registerGcp",
+              "request": {
+                "$ref": "RegisterGCPRequest"
+              },
+              "response": {
+                "$ref": "DeveloperRegistration"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "unregisterGcp": {
+              "description": "Unregister the calling GCP from the calling shopping account. Note that the GCP will still be able to access the API for at most 1 day from the unregister succussful call.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:unregisterGcp",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.developerRegistration.unregisterGcp",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the developer registration to be created for the merchant account that the GCP will be registered with. Format: `accounts/{account}/developerRegistration`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/developerRegistration$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}:unregisterGcp",
+              "request": {
+                "$ref": "UnregisterGCPRequest"
+              },
+              "response": {
+                "$ref": "Empty"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
@@ -1194,7 +1279,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Optional. List of fields being updated. The following fields are supported (in both `snake_case` and `lowerCamelCase`): - `accept_defective_only` - `accept_exchange` - `item_conditions` - `policy` - `process_refund_days` - `restocking_fee` - `return_methods` - `return_policy_uri` - `return_shipping_fee`",
+                  "description": "Optional. Only support updating the entire OnlineReturnPolicy message. For update_mask, always use `*`.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -2226,7 +2311,7 @@
       }
     }
   },
-  "revision": "20250628",
+  "revision": "20250710",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -3113,6 +3198,25 @@
             "$ref": "WarehouseBasedDeliveryTime"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DeveloperRegistration": {
+      "description": "Represents a developer registration owned by a Merchant account.",
+      "id": "DeveloperRegistration",
+      "properties": {
+        "gcpIds": {
+          "description": "Output only. The GCP ids attached to this developer registration",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The `name` (ID) of the developer registration. Generated by the Content API upon creation of a new `DeveloperRegistration`. The `account` represents the merchant ID of the merchant that owns the registration.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4107,7 +4211,7 @@
           "type": "array"
         },
         "label": {
-          "description": "Required. Immutable. This field represents the unique user-defined label of the return policy. It is important to note that the same label cannot be used in different return policies for the same country. Unless a product specifies a specific label attribute, policies will be automatically labeled as 'default'. To assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.",
+          "description": "Optional. Immutable. This field represents the unique user-defined label of the return policy for the given country. It is important to note that the same label cannot be used in different return policies for the same country. If not given, policies will be automatically treated as the 'default' for the country. When using label, you are creating an exception policy in that country to assign a custom return policy to certain product groups, follow the instructions provided in the [Return policy label] (https://support.google.com/merchants/answer/9445425). The label can contain up to 50 characters.",
           "type": "string"
         },
         "name": {
@@ -4662,6 +4766,17 @@
       },
       "type": "object"
     },
+    "RegisterGCPRequest": {
+      "description": "Request message for the RegisterGCP method.",
+      "id": "RegisterGCPRequest",
+      "properties": {
+        "developerEmail": {
+          "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RejectAccountServiceRequest": {
       "description": "Request to reject an account service.",
       "id": "RejectAccountServiceRequest",
@@ -5150,6 +5265,12 @@
     "UnclaimHomepageRequest": {
       "description": "Request message for the `UnclaimHomepage` method.",
       "id": "UnclaimHomepageRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "UnregisterGCPRequest": {
+      "description": "Request message for the UnregisterGCP method.",
+      "id": "UnregisterGCPRequest",
       "properties": {},
       "type": "object"
     },
