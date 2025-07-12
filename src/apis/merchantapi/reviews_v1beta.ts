@@ -419,9 +419,17 @@ export namespace merchantapi_reviews_v1beta {
      */
     gtins?: string[] | null;
     /**
+     * Optional. Indicates whether the review is incentivized.
+     */
+    isIncentivizedReview?: boolean | null;
+    /**
      * Optional. Indicates whether the review is marked as spam in the publisher's system.
      */
     isSpam?: boolean | null;
+    /**
+     * Optional. Indicates whether the reviewer's purchase is verified.
+     */
+    isVerifiedPurchase?: boolean | null;
     /**
      * Optional. The maximum possible number for the rating. The value of the max rating must be greater than the value of the min attribute.
      */

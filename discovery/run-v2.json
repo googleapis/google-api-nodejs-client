@@ -1922,7 +1922,7 @@
       }
     }
   },
-  "revision": "20250620",
+  "revision": "20250704",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -4408,6 +4408,10 @@
             "Uses Second Generation environment."
           ],
           "type": "string"
+        },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. True if GPU zonal redundancy is disabled on this task template.",
+          "type": "boolean"
         },
         "maxRetries": {
           "description": "Number of retries allowed per Task, before marking this Task failed. Defaults to 3.",

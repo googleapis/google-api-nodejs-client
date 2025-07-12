@@ -206,6 +206,10 @@ export namespace firebaseapphosting_v1beta {
      */
     reconciling?: boolean | null;
     /**
+     * Optional. A field that, if true, indicates that incoming request logs are disabled for this backend. Incoming request logs are enabled by default.
+     */
+    requestLogsDisabled?: boolean | null;
+    /**
      * Required. The name of the service account used for Cloud Build and Cloud Run. Should have the role roles/firebaseapphosting.computeRunner or equivalent permissions.
      */
     serviceAccount?: string | null;
@@ -1537,6 +1541,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",
@@ -1851,6 +1856,7 @@ export namespace firebaseapphosting_v1beta {
      *   //   "mode": "my_mode",
      *   //   "name": "my_name",
      *   //   "reconciling": false,
+     *   //   "requestLogsDisabled": false,
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "servingLocality": "my_servingLocality",
      *   //   "uid": "my_uid",
@@ -2163,6 +2169,7 @@ export namespace firebaseapphosting_v1beta {
      *       //   "mode": "my_mode",
      *       //   "name": "my_name",
      *       //   "reconciling": false,
+     *       //   "requestLogsDisabled": false,
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "servingLocality": "my_servingLocality",
      *       //   "uid": "my_uid",

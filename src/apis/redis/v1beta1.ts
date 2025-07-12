@@ -549,11 +549,11 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$ClusterWeeklyMaintenanceWindow {
     /**
-     * Allows to define schedule that runs specified day of the week.
+     * Optional. Allows to define schedule that runs specified day of the week.
      */
     day?: string | null;
     /**
-     * Start time of the window in UTC.
+     * Optional. Start time of the window in UTC.
      */
     startTime?: Schema$TimeOfDay;
   }
@@ -569,6 +569,31 @@ export namespace redis_v1beta1 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
+  }
+  /**
+   * Config based signal data. This is used to send signals to Condor which are based on the DB level configurations. These will be used to send signals for self managed databases.
+   */
+  export interface Schema$ConfigBasedSignalData {
+    /**
+     * Required. Full Resource name of the source resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time signal was refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Database resource id.
+     */
+    resourceId?: Schema$DatabaseResourceId;
+    /**
+     * Signal data for boolean signals.
+     */
+    signalBoolValue?: boolean | null;
+    /**
+     * Required. Signal type of the signal
+     */
+    signalType?: string | null;
   }
   /**
    * Detailed information of each PSC connection.
@@ -588,7 +613,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$CrossClusterReplicationConfig {
     /**
-     * The role of the cluster in cross cluster replication.
+     * Output only. The role of the cluster in cross cluster replication.
      */
     clusterRole?: string | null;
     /**
@@ -618,9 +643,13 @@ export namespace redis_v1beta1 {
     internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 8
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9
    */
   export interface Schema$DatabaseResourceFeed {
+    /**
+     * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
+     */
+    configBasedSignalData?: Schema$ConfigBasedSignalData;
     /**
      * Required. Timestamp when feed is generated.
      */
@@ -1593,6 +1622,10 @@ export namespace redis_v1beta1 {
      */
     engine?: string | null;
     /**
+     * Minor version of the underlying database engine. Example values: For MySQL, it could be "8.0.32", "5.7.32" etc.. For Postgres, it could be "14.3", "15.3" etc..
+     */
+    minorVersion?: string | null;
+    /**
      * Type of specific database product. It could be CloudSQL, AlloyDB etc..
      */
     type?: string | null;
@@ -1729,7 +1762,7 @@ export namespace redis_v1beta1 {
    */
   export interface Schema$RemoteCluster {
     /**
-     * The full resource path of the remote cluster in the format: projects//locations//clusters/
+     * Output only. The full resource path of the remote cluster in the format: projects//locations//clusters/
      */
     cluster?: string | null;
     /**

@@ -194,7 +194,7 @@ export namespace paymentsresellersubscription_v1 {
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent {
     /**
-     * Required. The name of the subscription resource that is entitled to the current end user.
+     * Required. The name of the subscription resource that is entitled to the current end user. It is in the format of "partners/{partner_id\}/subscriptions/{subscriptionId\}".
      */
     name?: string | null;
   }
@@ -827,7 +827,7 @@ export namespace paymentsresellersubscription_v1 {
     subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
   }
   /**
-   * A user session contains a short-lived token that includes information required to interact with Google Payments Reseller Platform using the following web endpoints. - A user session token should be generated dynamically for an authenticated user. You should refrain from sharing a token directly with a user in an unauthenticated context, such as SMS, or email. - You can re-generate new session tokens repeatedly for same `generate` request if necessary, regardless of the previous tokens being expired or not. You don't need to worry about multiple sessions resulting in duplicate fulfillments as guaranteed by the same subscription id. Please refer to the [Google Managed Signup](/payments/reseller/subscription/reference/index/User.Signup.Integration/Google.Managed.Signup.\(In.Preview\)) documentation for additional integration details.
+   * A user session contains a short-lived token that includes information required to interact with Google Payments Reseller Platform using the following web endpoints. - A user session token should be generated dynamically for an authenticated user. You should refrain from sharing a token directly with a user in an unauthenticated context, such as SMS, or email. - You can re-generate new session tokens repeatedly for same `generate` request if necessary, regardless of the previous tokens being expired or not. You don't need to worry about multiple sessions resulting in duplicate fulfillments as guaranteed by the same subscription id. Please refer to the [Google Managed Signup](/payments/reseller/subscription/reference/index/User.Signup.Integration/Google.Managed.Signup) documentation for additional integration details.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession {
     /**

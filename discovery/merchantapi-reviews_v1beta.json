@@ -356,7 +356,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250710",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -952,8 +952,16 @@
           },
           "type": "array"
         },
+        "isIncentivizedReview": {
+          "description": "Optional. Indicates whether the review is incentivized.",
+          "type": "boolean"
+        },
         "isSpam": {
           "description": "Optional. Indicates whether the review is marked as spam in the publisher's system.",
+          "type": "boolean"
+        },
+        "isVerifiedPurchase": {
+          "description": "Optional. Indicates whether the reviewer's purchase is verified.",
           "type": "boolean"
         },
         "maxRating": {

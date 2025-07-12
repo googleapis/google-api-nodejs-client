@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250710",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -737,7 +737,7 @@
       "type": "object"
     },
     "LocalInventoryDataSource": {
-      "description": "The local inventory data source.",
+      "description": "The local inventory data source type is only available for file inputs and can't be used to create API local inventory data sources.",
       "id": "LocalInventoryDataSource",
       "properties": {
         "contentLanguage": {
@@ -978,7 +978,6 @@
       "type": "object"
     },
     "RegionalInventoryDataSource": {
-      "description": "The regional inventory data source.",
       "id": "RegionalInventoryDataSource",
       "properties": {
         "contentLanguage": {

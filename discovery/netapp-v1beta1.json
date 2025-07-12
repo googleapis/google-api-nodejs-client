@@ -1592,6 +1592,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "restore": {
+                  "description": "Restore files from a backup to a volume.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:restore",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.volumes.restore",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The volume resource name, in the format `projects/{project_id}/locations/{location}/volumes/{volume_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:restore",
+                  "request": {
+                    "$ref": "RestoreBackupFilesRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "revert": {
                   "description": "Revert an existing volume to a specified snapshot. Warning! This operation will permanently revert all changes made after the snapshot was created.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:revert",
@@ -2270,7 +2298,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250630",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3832,6 +3860,28 @@
           "$ref": "TransferStats",
           "description": "Output only. Replication transfer statistics.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "RestoreBackupFilesRequest": {
+      "description": "RestoreBackupFilesRequest restores files from a backup to a volume.",
+      "id": "RestoreBackupFilesRequest",
+      "properties": {
+        "backup": {
+          "description": "Required. The backup resource name, in the format `projects/{project_id}/locations/{location}/backupVaults/{backup_vault_id}/backups/{backup_id}`",
+          "type": "string"
+        },
+        "fileList": {
+          "description": "Required. List of files to be restored in the form of their absolute path as in source volume.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "restoreDestinationPath": {
+          "description": "Required. Absolute directory path in the destination volume.",
+          "type": "string"
         }
       },
       "type": "object"

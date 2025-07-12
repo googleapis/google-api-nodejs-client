@@ -486,7 +486,7 @@
       }
     }
   },
-  "revision": "20250629",
+  "revision": "20250708",
   "rootUrl": "https://workspaceevents.googleapis.com/",
   "schemas": {
     "ListSubscriptionsResponse": {
@@ -512,7 +512,7 @@
       "id": "NotificationEndpoint",
       "properties": {
         "pubsubTopic": {
-          "description": "Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project}/topics/{topic}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).",
+          "description": "Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project}/topics/{topic}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).",
           "type": "string"
         }
       },
@@ -554,7 +554,7 @@
       "type": "object"
     },
     "PayloadOptions": {
-      "description": "Options about what data to include in the event payload. Only supported for Google Chat events.",
+      "description": "Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.",
       "id": "PayloadOptions",
       "properties": {
         "fieldMask": {
@@ -643,7 +643,7 @@
         },
         "payloadOptions": {
           "$ref": "PayloadOptions",
-          "description": "Optional. Options about what data to include in the event payload. Only supported for Google Chat events."
+          "description": "Optional. Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events."
         },
         "reconciling": {
           "description": "Output only. If `true`, the subscription is in the process of being updated.",

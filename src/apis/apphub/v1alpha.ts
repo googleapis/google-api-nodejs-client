@@ -633,31 +633,6 @@ export namespace apphub_v1alpha {
     verb?: string | null;
   }
   /**
-   * Perimeter is a boundary that describes application management on a `perimeter_node` (currently limited to an app-enabled folder).
-   */
-  export interface Schema$Perimeter {
-    /**
-     * Output only. Create time.
-     */
-    createTime?: string | null;
-    /**
-     * Identifier. Name of the Perimeter resource.
-     */
-    name?: string | null;
-    /**
-     * Immutable. Cloud Resource Manager node that determines the perimeter. Only `folders/{folder_number\}` is currently supported.
-     */
-    perimeterNode?: string | null;
-    /**
-     * Output only. Perimeter state.
-     */
-    state?: string | null;
-    /**
-     * Output only. Update time.
-     */
-    updateTime?: string | null;
-  }
-  /**
    * An Identity and Access Management (IAM) policy, which specifies access controls for Google Cloud resources. A `Policy` is a collection of `bindings`. A `binding` binds one or more `members`, or principals, to a single `role`. Principals can be user accounts, service accounts, Google groups, and domains (such as G Suite). A `role` is a named list of permissions; each `role` can be an IAM predefined role or a user-created custom role. For some types of Google Cloud resources, a `binding` can also specify a `condition`, which is a logical expression that allows access to a resource only if the expression evaluates to `true`. A condition can add constraints based on attributes of the request, the resource, or both. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies). **JSON example:** ``` { "bindings": [ { "role": "roles/resourcemanager.organizationAdmin", "members": [ "user:mike@example.com", "group:admins@example.com", "domain:google.com", "serviceAccount:my-project-id@appspot.gserviceaccount.com" ] \}, { "role": "roles/resourcemanager.organizationViewer", "members": [ "user:eve@example.com" ], "condition": { "title": "expirable access", "description": "Does not grant access after Sep 2020", "expression": "request.time < timestamp('2020-10-01T00:00:00.000Z')", \} \} ], "etag": "BwWWja0YfJA=", "version": 3 \} ``` **YAML example:** ``` bindings: - members: - user:mike@example.com - group:admins@example.com - domain:google.com - serviceAccount:my-project-id@appspot.gserviceaccount.com role: roles/resourcemanager.organizationAdmin - members: - user:eve@example.com role: roles/resourcemanager.organizationViewer condition: title: expirable access description: Does not grant access after Sep 2020 expression: request.time < timestamp('2020-10-01T00:00:00.000Z') etag: BwWWja0YfJA= version: 3 ``` For a description of IAM and its features, see the [IAM documentation](https://cloud.google.com/iam/docs/).
    */
   export interface Schema$Policy {
@@ -1237,144 +1212,6 @@ export namespace apphub_v1alpha {
     }
 
     /**
-     * Gets a perimeter
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/apphub.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const apphub = google.apphub('v1alpha');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await apphub.projects.locations.getPerimeter({
-     *     // Required. Fully qualified name of the Perimeter Expected format: `projects/{project\}/locations/{location\}/perimeter`.
-     *     name: 'projects/my-project/locations/my-location/perimeter',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "createTime": "my_createTime",
-     *   //   "name": "my_name",
-     *   //   "perimeterNode": "my_perimeterNode",
-     *   //   "state": "my_state",
-     *   //   "updateTime": "my_updateTime"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getPerimeter(
-      params: Params$Resource$Projects$Locations$Getperimeter,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getPerimeter(
-      params?: Params$Resource$Projects$Locations$Getperimeter,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Perimeter>>;
-    getPerimeter(
-      params: Params$Resource$Projects$Locations$Getperimeter,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getPerimeter(
-      params: Params$Resource$Projects$Locations$Getperimeter,
-      options: MethodOptions | BodyResponseCallback<Schema$Perimeter>,
-      callback: BodyResponseCallback<Schema$Perimeter>
-    ): void;
-    getPerimeter(
-      params: Params$Resource$Projects$Locations$Getperimeter,
-      callback: BodyResponseCallback<Schema$Perimeter>
-    ): void;
-    getPerimeter(callback: BodyResponseCallback<Schema$Perimeter>): void;
-    getPerimeter(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Getperimeter
-        | BodyResponseCallback<Schema$Perimeter>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Perimeter>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Perimeter>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Perimeter>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Getperimeter;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Locations$Getperimeter;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://apphub.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Perimeter>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Perimeter>(parameters);
-      }
-    }
-
-    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -1686,13 +1523,6 @@ export namespace apphub_v1alpha {
     extends StandardParameters {
     /**
      * Resource name for the location.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Projects$Locations$Getperimeter
-    extends StandardParameters {
-    /**
-     * Required. Fully qualified name of the Perimeter Expected format: `projects/{project\}/locations/{location\}/perimeter`.
      */
     name?: string;
   }
