@@ -468,6 +468,10 @@ export namespace chromemanagement_v1 {
      */
     kioskEnabled?: boolean | null;
     /**
+     * Output only. The version of this extension's manifest.
+     */
+    manifestVersion?: string | null;
+    /**
      * Output only. The minimum number of users using this app.
      */
     minUserCount?: number | null;

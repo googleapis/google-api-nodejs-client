@@ -1280,7 +1280,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250708",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1868,6 +1868,12 @@
           "description": "Output only. Whether this app is enabled for Kiosk mode on ChromeOS devices",
           "readOnly": true,
           "type": "boolean"
+        },
+        "manifestVersion": {
+          "description": "Output only. The version of this extension's manifest.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "minUserCount": {
           "description": "Output only. The minimum number of users using this app.",
