@@ -258,6 +258,10 @@ export namespace container_v1 {
      */
     kubernetesDashboard?: Schema$KubernetesDashboard;
     /**
+     * Configuration for the Lustre CSI driver.
+     */
+    lustreCsiDriverConfig?: Schema$LustreCsiDriverConfig;
+    /**
      * Configuration for NetworkPolicy. This only tracks whether the addon is enabled or not on the Master, it does not track whether network policy is enabled for the nodes.
      */
     networkPolicyConfig?: Schema$NetworkPolicyConfig;
@@ -528,6 +532,27 @@ export namespace container_v1 {
      * Standard policy for the blue-green upgrade.
      */
     standardRolloutPolicy?: Schema$StandardRolloutPolicy;
+  }
+  /**
+   * BootDisk specifies the boot disk configuration for nodepools.
+   */
+  export interface Schema$BootDisk {
+    /**
+     * Disk type of the boot disk. (i.e. Hyperdisk-Balanced, PD-Balanced, etc.)
+     */
+    diskType?: string | null;
+    /**
+     * For Hyperdisk-Balanced only, the provisioned IOPS config value.
+     */
+    provisionedIops?: string | null;
+    /**
+     * For Hyperdisk-Balanced only, the provisioned throughput config value.
+     */
+    provisionedThroughput?: string | null;
+    /**
+     * Disk size in GB. Replaces NodeConfig.disk_size_gb
+     */
+    sizeGb?: string | null;
   }
   /**
    * CancelOperationRequest cancels a single operation.
@@ -1586,6 +1611,93 @@ export namespace container_v1 {
     localSsdCount?: number | null;
   }
   /**
+   * Eviction grace periods are grace periods for each eviction signal.
+   */
+  export interface Schema$EvictionGracePeriod {
+    /**
+     * Optional. Grace period for eviction due to imagefs available signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsAvailable?: string | null;
+    /**
+     * Optional. Grace period for eviction due to imagefs inodes free signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsInodesFree?: string | null;
+    /**
+     * Optional. Grace period for eviction due to memory available signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    memoryAvailable?: string | null;
+    /**
+     * Optional. Grace period for eviction due to nodefs available signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsAvailable?: string | null;
+    /**
+     * Optional. Grace period for eviction due to nodefs inodes free signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsInodesFree?: string | null;
+    /**
+     * Optional. Grace period for eviction due to pid available signal. Sample format: "10s". Must be \>= 0. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    pidAvailable?: string | null;
+  }
+  /**
+   * Eviction minimum reclaims are the resource amounts of minimum reclaims for each eviction signal.
+   */
+  export interface Schema$EvictionMinimumReclaim {
+    /**
+     * Optional. Minimum reclaim for eviction due to imagefs available signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsAvailable?: string | null;
+    /**
+     * Optional. Minimum reclaim for eviction due to imagefs inodes free signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsInodesFree?: string | null;
+    /**
+     * Optional. Minimum reclaim for eviction due to memory available signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    memoryAvailable?: string | null;
+    /**
+     * Optional. Minimum reclaim for eviction due to nodefs available signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsAvailable?: string | null;
+    /**
+     * Optional. Minimum reclaim for eviction due to nodefs inodes free signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsInodesFree?: string | null;
+    /**
+     * Optional. Minimum reclaim for eviction due to pid available signal. Only take percentage value for now. Sample format: "10%". Must be <=10%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    pidAvailable?: string | null;
+  }
+  /**
+   * Eviction signals are the current state of a particular resource at a specific point in time. The kubelet uses eviction signals to make eviction decisions by comparing the signals to eviction thresholds, which are the minimum amount of the resource that should be available on the node.
+   */
+  export interface Schema$EvictionSignals {
+    /**
+     * Optional. Amount of storage available on filesystem that container runtime uses for storing images layers. If the container filesystem and image filesystem are not separate, then imagefs can store both image layers and writeable layers. Defines the amount of "imagefs.available" signal in kubelet. Default is unset, if not specified in the kubelet config. It takses percentage value for now. Sample format: "30%". Must be \>= 15% and <= 50%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsAvailable?: string | null;
+    /**
+     * Optional. Amount of inodes available on filesystem that container runtime uses for storing images layers. Defines the amount of "imagefs.inodesFree" signal in kubelet. Default is unset, if not specified in the kubelet config. Linux only. It takses percentage value for now. Sample format: "30%". Must be \>= 5% and <= 50%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    imagefsInodesFree?: string | null;
+    /**
+     * Optional. Memory available (i.e. capacity - workingSet), in bytes. Defines the amount of "memory.available" signal in kubelet. Default is unset, if not specified in the kubelet config. Format: positive number + unit, e.g. 100Ki, 10Mi, 5Gi. Valid units are Ki, Mi, Gi. Must be \>= 100Mi and <= 50% of the node's memory. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    memoryAvailable?: string | null;
+    /**
+     * Optional. Amount of storage available on filesystem that kubelet uses for volumes, daemon logs, etc. Defines the amount of "nodefs.available" signal in kubelet. Default is unset, if not specified in the kubelet config. It takses percentage value for now. Sample format: "30%". Must be \>= 10% and <= 50%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsAvailable?: string | null;
+    /**
+     * Optional. Amount of inodes available on filesystem that kubelet uses for volumes, daemon logs, etc. Defines the amount of "nodefs.inodesFree" signal in kubelet. Default is unset, if not specified in the kubelet config. Linux only. It takses percentage value for now. Sample format: "30%". Must be \>= 5% and <= 50%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    nodefsInodesFree?: string | null;
+    /**
+     * Optional. Amount of PID available for pod allocation. Defines the amount of "pid.available" signal in kubelet. Default is unset, if not specified in the kubelet config. It takses percentage value for now. Sample format: "30%". Must be \>= 10% and <= 50%. See https://kubernetes.io/docs/concepts/scheduling-eviction/node-pressure-eviction/#eviction-signals
+     */
+    pidAvailable?: string | null;
+  }
+  /**
    * Configuration of Fast Socket feature.
    */
   export interface Schema$FastSocket {
@@ -2055,9 +2167,17 @@ export namespace container_v1 {
      */
     hugepages?: Schema$HugepagesConfig;
     /**
-     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall vm.max_map_count
+     * The Linux kernel parameters to be applied to the nodes and all pods running on the nodes. The following parameters are supported. net.core.busy_poll net.core.busy_read net.core.netdev_max_backlog net.core.rmem_max net.core.rmem_default net.core.wmem_default net.core.wmem_max net.core.optmem_max net.core.somaxconn net.ipv4.tcp_rmem net.ipv4.tcp_wmem net.ipv4.tcp_tw_reuse net.ipv4.tcp_max_orphans net.netfilter.nf_conntrack_max net.netfilter.nf_conntrack_buckets net.netfilter.nf_conntrack_tcp_timeout_close_wait net.netfilter.nf_conntrack_tcp_timeout_time_wait net.netfilter.nf_conntrack_tcp_timeout_established net.netfilter.nf_conntrack_acct kernel.shmmni kernel.shmmax kernel.shmall fs.aio-max-nr fs.file-max fs.inotify.max_user_instances fs.inotify.max_user_watches fs.nr_open vm.dirty_background_ratio vm.dirty_expire_centisecs vm.dirty_ratio vm.dirty_writeback_centisecs vm.max_map_count vm.overcommit_memory vm.overcommit_ratio vm.vfs_cache_pressure vm.swappiness vm.watermark_scale_factor vm.min_free_kbytes
      */
     sysctls?: {[key: string]: string} | null;
+    /**
+     * Optional. Defines the transparent hugepage defrag configuration on the node. VM hugepage allocation can be managed by either limiting defragmentation for delayed allocation or skipping it entirely for immediate allocation only. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
+     */
+    transparentHugepageDefrag?: string | null;
+    /**
+     * Optional. Transparent hugepage support for anonymous memory can be entirely disabled (mostly for debugging purposes) or only enabled inside MADV_HUGEPAGE regions (to avoid the risk of consuming more memory resources) or enabled system wide. See https://docs.kernel.org/admin-guide/mm/transhuge.html for more details.
+     */
+    transparentHugepageEnabled?: string | null;
   }
   /**
    * ListClustersResponse is the result of ListClustersRequest.
@@ -2142,6 +2262,19 @@ export namespace container_v1 {
      * Logging variant deployed on nodes.
      */
     variant?: string | null;
+  }
+  /**
+   * Configuration for the Lustre CSI driver.
+   */
+  export interface Schema$LustreCsiDriverConfig {
+    /**
+     * Whether the Lustre CSI driver is enabled for this cluster.
+     */
+    enabled?: boolean | null;
+    /**
+     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988.
+     */
+    enableLegacyLustrePort?: boolean | null;
   }
   /**
    * Represents the Maintenance exclusion option.
@@ -2462,6 +2595,10 @@ export namespace container_v1 {
      */
     advancedMachineFeatures?: Schema$AdvancedMachineFeatures;
     /**
+     * The boot disk configuration for the node pool.
+     */
+    bootDisk?: Schema$BootDisk;
+    /**
      *  The Customer Managed Encryption Key used to encrypt the boot disk attached to each node in the node pool. This should be of the form projects/[KEY_PROJECT_ID]/locations/[LOCATION]/keyRings/[RING_NAME]/cryptoKeys/[KEY_NAME]. For more information about protecting resources with Cloud KMS Keys please see: https://{$universe.dns_names.final_documentation_domain\}/compute/docs/disks/customer-managed-encryption
      */
     bootDiskKmsKey?: string | null;
@@ -2680,6 +2817,22 @@ export namespace container_v1 {
      */
     cpuManagerPolicy?: string | null;
     /**
+     * Optional. eviction_max_pod_grace_period_seconds is the maximum allowed grace period (in seconds) to use when terminating pods in response to a soft eviction threshold being met. This value effectively caps the Pod's terminationGracePeriodSeconds value during soft evictions. Default: 0. Range: [0, 300].
+     */
+    evictionMaxPodGracePeriodSeconds?: number | null;
+    /**
+     * Optional. eviction_minimum_reclaim is a map of signal names to quantities that defines minimum reclaims, which describe the minimum amount of a given resource the kubelet will reclaim when performing a pod eviction while that resource is under pressure.
+     */
+    evictionMinimumReclaim?: Schema$EvictionMinimumReclaim;
+    /**
+     * Optional. eviction_soft is a map of signal names to quantities that defines soft eviction thresholds. Each signal is compared to its corresponding threshold to determine if a pod eviction should occur.
+     */
+    evictionSoft?: Schema$EvictionSignals;
+    /**
+     * Optional. eviction_soft_grace_period is a map of signal names to quantities that defines grace periods for each soft eviction signal. The grace period is the amount of time that a pod must be under pressure before an eviction occurs.
+     */
+    evictionSoftGracePeriod?: Schema$EvictionGracePeriod;
+    /**
      * Optional. Defines the percent of disk usage after which image garbage collection is always run. The percent is calculated as this field value out of 100. The value must be between 10 and 85, inclusive and greater than image_gc_low_threshold_percent. The default value is 85 if unspecified.
      */
     imageGcHighThresholdPercent?: number | null;
@@ -2699,6 +2852,10 @@ export namespace container_v1 {
      * Enable or disable Kubelet read only port.
      */
     insecureKubeletReadonlyPortEnabled?: boolean | null;
+    /**
+     * Optional. Defines the maximum number of image pulls in parallel. The range is 2 to 5, inclusive. The default value is 2 or 3 depending on the disk type. See https://kubernetes.io/docs/concepts/containers/images/#maximum-parallel-image-pulls for more details.
+     */
+    maxParallelImagePulls?: number | null;
     /**
      * Optional. Controls NUMA-aware Memory Manager configuration on the node. For more information, see: https://kubernetes.io/docs/tasks/administer-cluster/memory-manager/
      */
@@ -4139,6 +4296,10 @@ export namespace container_v1 {
      * A list of hardware accelerators to be attached to each node. See https://{$universe.dns_names.final_documentation_domain\}/compute/docs/gpus for more information about support for GPUs.
      */
     accelerators?: Schema$AcceleratorConfig[];
+    /**
+     * The desired boot disk config for nodes in the node pool. Initiates an upgrade operation that migrates the nodes in the node pool to the specified boot disk config.
+     */
+    bootDisk?: Schema$BootDisk;
     /**
      * Deprecated. The name of the cluster to upgrade. This field has been deprecated and replaced by the name field.
      */
@@ -10075,6 +10236,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "accelerators": [],
+     *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
      *       //   "containerdConfig": {},
@@ -16102,6 +16264,7 @@ export namespace container_v1 {
      *       // request body parameters
      *       // {
      *       //   "accelerators": [],
+     *       //   "bootDisk": {},
      *       //   "clusterId": "my_clusterId",
      *       //   "confidentialNodes": {},
      *       //   "containerdConfig": {},
