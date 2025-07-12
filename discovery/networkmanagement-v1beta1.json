@@ -1181,7 +1181,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250702",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1839,7 +1839,8 @@
             "TRAFFIC_FROM_HYBRID_ENDPOINT_TO_INTERNET_DISALLOWED",
             "NO_MATCHING_NAT64_GATEWAY",
             "LOAD_BALANCER_BACKEND_IP_VERSION_MISMATCH",
-            "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION"
+            "NO_KNOWN_ROUTE_FROM_NCC_NETWORK_TO_DESTINATION",
+            "CLOUD_NAT_PROTOCOL_UNSUPPORTED"
           ],
           "enumDescriptions": [
             "Cause is unspecified.",
@@ -1934,7 +1935,8 @@
             "Packet could be dropped because hybrid endpoint like a VPN gateway or Interconnect is not allowed to send traffic to the Internet.",
             "Packet with destination IP address within the reserved NAT64 range is dropped due to no matching NAT gateway in the subnet.",
             "Packet is dropped due to being sent to a backend of a passthrough load balancer that doesn't use the same IP version as the frontend.",
-            "Packet from the unknown NCC network is dropped due to no known route from the source network to the destination IP address."
+            "Packet from the unknown NCC network is dropped due to no known route from the source network to the destination IP address.",
+            "Packet is dropped by Cloud NAT due to using an unsupported protocol."
           ],
           "type": "string"
         },
