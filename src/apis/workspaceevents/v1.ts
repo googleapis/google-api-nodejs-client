@@ -144,7 +144,7 @@ export namespace workspaceevents_v1 {
    */
   export interface Schema$NotificationEndpoint {
     /**
-     * Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project\}/topics/{topic\}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).
+     * Immutable. The Pub/Sub topic that receives events for the subscription. Format: `projects/{project\}/topics/{topic\}` You must create the topic in the same Google Cloud project where you create this subscription. Note: The Google Workspace Events API uses [ordering keys](https://cloud.google.com/pubsub/docs/ordering) for the benefit of sequential events. If the Cloud Pub/Sub topic has a [message storage policy](https://cloud.google.com/pubsub/docs/resource-location-restriction#exceptions) configured to exclude the nearest Google Cloud region, publishing events with ordering keys will fail. When the topic receives events, the events are encoded as Pub/Sub messages. For details, see the [Google Cloud Pub/Sub Protocol Binding for CloudEvents](https://github.com/googleapis/google-cloudevents/blob/main/docs/spec/pubsub.md).
      */
     pubsubTopic?: string | null;
   }
@@ -174,7 +174,7 @@ export namespace workspaceevents_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * Options about what data to include in the event payload. Only supported for Google Chat events.
+   * Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.
    */
   export interface Schema$PayloadOptions {
     /**
@@ -240,7 +240,7 @@ export namespace workspaceevents_v1 {
      */
     notificationEndpoint?: Schema$NotificationEndpoint;
     /**
-     * Optional. Options about what data to include in the event payload. Only supported for Google Chat events.
+     * Optional. Options about what data to include in the event payload. Only supported for Google Chat and Google Drive events.
      */
     payloadOptions?: Schema$PayloadOptions;
     /**
