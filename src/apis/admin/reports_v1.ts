@@ -213,6 +213,10 @@ export namespace admin_reports_v1 {
      */
     kind?: string | null;
     /**
+     * Network information of the user doing the action.
+     */
+    networkInfo?: Schema$ActivityNetworkInfo;
+    /**
      * This is the domain that is affected by the report's event. For example domain of Admin console or the Drive application's document owner.
      */
     ownerDomain?: string | null;
@@ -220,6 +224,23 @@ export namespace admin_reports_v1 {
      * Details of the resource on which the action was performed.
      */
     resourceDetails?: Schema$ResourceDetails[];
+  }
+  /**
+   * Network information of the user doing the action.
+   */
+  export interface Schema$ActivityNetworkInfo {
+    /**
+     * IP Address of the user doing the action.
+     */
+    ipAsn?: number[] | null;
+    /**
+     * ISO 3166-1 alpha-2 region code of the user doing the action.
+     */
+    regionCode?: string | null;
+    /**
+     * ISO 3166-2 region code (states and provinces) for countries of the user doing the action.
+     */
+    subdivisionCode?: string | null;
   }
   /**
    * Details of the label applied on the resource.
@@ -512,7 +533,7 @@ export namespace admin_reports_v1 {
      */
     kind?: string | null;
     /**
-     * Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](/admin-sdk/reports/v1/reference/usage-ref-appendix-a/entities).
+     * Output only. Parameter value pairs for various applications. For the Entity Usage Report parameters and values, see [the Entity Usage parameters reference](https://developers.google.com/workspace/admin/reports/v1/reference/usage-ref-appendix-a/entities).
      */
     parameters?: Array<{
       boolValue?: boolean;
@@ -767,7 +788,7 @@ export namespace admin_reports_v1 {
      *     // The `filters` query string is a comma-separated list composed of event parameters manipulated by relational operators. Event parameters are in the form `{parameter1 name\}{relational operator\}{parameter1 value\},{parameter2 name\}{relational operator\}{parameter2 value\},...` These event parameters are associated with a specific `eventName`. An empty report is returned if the request's parameter doesn't belong to the `eventName`. For more information about the available `eventName` fields for each application and their associated parameters, go to the [ApplicationName](#applicationname) table, then click through to the Activity Events page in the Appendix for the application you want. In the following Drive activity examples, the returned list consists of all `edit` events where the `doc_id` parameter value matches the conditions defined by the relational operator. In the first example, the request returns all edited documents with a `doc_id` value equal to `12345`. In the second example, the report returns any edited documents where the `doc_id` value is not equal to `98765`. The `<\>` operator is URL-encoded in the request's query string (`%3C%3E`): ``` GET...&eventName=edit&filters=doc_id==12345 GET...&eventName=edit&filters=doc_id%3C%3E98765 ``` A `filters` query supports these relational operators: * `==`—'equal to'. * `<\>`—'not equal to'. Must be URL-encoded (%3C%3E). * `<`—'less than'. Must be URL-encoded (%3C). * `<=`—'less than or equal to'. Must be URL-encoded (%3C=). * `\>`—'greater than'. Must be URL-encoded (%3E). * `\>=`—'greater than or equal to'. Must be URL-encoded (%3E=). **Note:** The API doesn't accept multiple values of the same parameter. If a parameter is supplied more than once in the API request, the API only accepts the last value of that parameter. In addition, if an invalid parameter is supplied in the API request, the API ignores that parameter and returns the response corresponding to the remaining valid parameters. If no parameters are requested, all parameters are returned.
      *     filters:
      *       '(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+,)*(.+[&lt;,&lt;=,==,&gt;=,&gt;,&lt;&gt;].+)',
-     *     // Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
+     *     // `Deprecated`. This field is deprecated and is no longer supported. Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
      *     groupIdFilter: '(id:[a-z0-9]+(,id:[a-z0-9]+)*)',
      *     // Determines how many activity records are shown on each response page. For example, if the request sets `maxResults=1` and the report has two activities, the report has two pages. The response's `nextPageToken` property has the token to the second page. The `maxResults` query string is optional in the request. The default value is 1000.
      *     maxResults: 'placeholder-value',
@@ -986,7 +1007,7 @@ export namespace admin_reports_v1 {
      */
     filters?: string;
     /**
-     * Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
+     * `Deprecated`. This field is deprecated and is no longer supported. Comma separated group ids (obfuscated) on which user activities are filtered, i.e. the response will contain activities for only those users that are a part of at least one of the group ids mentioned here. Format: "id:abc123,id:xyz456" *Important:* To filter by groups, you must explicitly add the groups to your filtering groups allowlist. For more information about adding groups to filtering groups allowlist, see [Filter results by Google Group](https://support.google.com/a/answer/11482175)
      */
     groupIdFilter?: string;
     /**
