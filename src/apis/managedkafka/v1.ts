@@ -347,6 +347,14 @@ export namespace managedkafka_v1 {
      */
     name?: string | null;
     /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
+    /**
      * Output only. The current state of the cluster.
      */
     state?: string | null;
@@ -4814,6 +4822,8 @@ export namespace managedkafka_v1 {
      *       //   "kafkaCluster": "my_kafkaCluster",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -5113,6 +5123,8 @@ export namespace managedkafka_v1 {
      *   //   "kafkaCluster": "my_kafkaCluster",
      *   //   "labels": {},
      *   //   "name": "my_name",
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -5410,6 +5422,8 @@ export namespace managedkafka_v1 {
      *       //   "kafkaCluster": "my_kafkaCluster",
      *       //   "labels": {},
      *       //   "name": "my_name",
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "updateTime": "my_updateTime"
      *       // }
