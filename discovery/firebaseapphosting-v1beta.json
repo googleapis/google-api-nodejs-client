@@ -1098,7 +1098,7 @@
       }
     }
   },
-  "revision": "20250501",
+  "revision": "20250701",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -1199,6 +1199,10 @@
         "reconciling": {
           "description": "Output only. A field that, if true, indicates that the system is working to make adjustments to the backend during a LRO.",
           "readOnly": true,
+          "type": "boolean"
+        },
+        "requestLogsDisabled": {
+          "description": "Optional. A field that, if true, indicates that incoming request logs are disabled for this backend. Incoming request logs are enabled by default.",
           "type": "boolean"
         },
         "serviceAccount": {
