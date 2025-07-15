@@ -777,6 +777,19 @@ export namespace dataform_v1beta1 {
     url?: string | null;
   }
   /**
+   * Contains metadata about the IAM policy override for a given Dataform resource. If is_active is true, this the policy encoded in iam_policy_name is the source of truth for this resource. Will be provided in internal ESV2 views for: Workspaces, Repositories, Folders, TeamFolders.
+   */
+  export interface Schema$IamPolicyOverrideView {
+    /**
+     * The IAM policy name for the resource.
+     */
+    iamPolicyName?: Schema$PolicyName;
+    /**
+     * Whether the IAM policy encoded in this view is active.
+     */
+    isActive?: boolean | null;
+  }
+  /**
    * Load definition for incremental load modes
    */
   export interface Schema$IncrementalLoadMode {
@@ -1197,6 +1210,23 @@ export namespace dataform_v1beta1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * An internal name for an IAM policy, based on the resource to which the policy applies. Not to be confused with a resource's external full resource name. For more information on this distinction, see go/iam-full-resource-names.
+   */
+  export interface Schema$PolicyName {
+    /**
+     * Identifies an instance of the type. ID format varies by type. The ID format is defined in the IAM .service file that defines the type, either in path_mapping or in a comment.
+     */
+    id?: string | null;
+    /**
+     * For Cloud IAM: The location of the Policy. Must be empty or "global" for Policies owned by global IAM. Must name a region from prodspec/cloud-iam-cloudspec for Regional IAM Policies, see go/iam-faq#where-is-iam-currently-deployed. For Local IAM: This field should be set to "local".
+     */
+    region?: string | null;
+    /**
+     * Resource type. Types are defined in IAM's .service files. Valid values for type might be 'storage_buckets', 'compute_instances', 'resourcemanager_customers', 'billing_accounts', etc.
+     */
+    type?: string | null;
   }
   /**
    * `PullGitCommits` request message.
