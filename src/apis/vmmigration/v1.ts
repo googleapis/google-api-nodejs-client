@@ -310,7 +310,7 @@ export namespace vmmigration_v1 {
      */
     committedStorageMb?: string | null;
     /**
-     * The number of cpus the VM has.
+     * The number of CPU cores the VM has.
      */
     cpuCount?: number | null;
     /**
@@ -353,6 +353,10 @@ export namespace vmmigration_v1 {
      * The tags of the VM.
      */
     tags?: {[key: string]: string} | null;
+    /**
+     * The number of vCPUs the VM has. It is calculated as the number of CPU cores * threads per CPU the VM has.
+     */
+    vcpuCount?: number | null;
     /**
      * The virtualization type.
      */
