@@ -327,36 +327,6 @@ export namespace workloadmanager_v1 {
     shellCommand?: Schema$ShellCommand;
   }
   /**
-   * HealthCondition contains the detailed health check of each component.
-   */
-  export interface Schema$ComponentHealth {
-    /**
-     * The component of a workload.
-     */
-    component?: string | null;
-    /**
-     * The detailed health checks of the component.
-     */
-    componentHealthChecks?: Schema$HealthCheck[];
-    /**
-     * Output only. The type of the component health.
-     */
-    componentHealthType?: string | null;
-    /**
-     * Output only. The requirement of the component.
-     */
-    isRequired?: boolean | null;
-    /**
-     * Output only. The health state of the component.
-     */
-    state?: string | null;
-    subComponentHealthes?: Schema$ComponentHealth[];
-    /**
-     * Sub component health.
-     */
-    subComponentsHealth?: Schema$ComponentHealth[];
-  }
-  /**
    * Database Properties.
    */
   export interface Schema$DatabaseProperties {
@@ -549,31 +519,6 @@ export namespace workloadmanager_v1 {
      * Service account of compute engine
      */
     serviceAccounts?: string[] | null;
-  }
-  /**
-   * HealthCheck contains the detailed health check of a component based on asource.
-   */
-  export interface Schema$HealthCheck {
-    /**
-     * Output only. The message of the health check.
-     */
-    message?: string | null;
-    /**
-     * Output only. The health check source metric name.
-     */
-    metric?: string | null;
-    /**
-     * Output only. The resource the check performs on.
-     */
-    resource?: Schema$CloudResource;
-    /**
-     * Output only. The source of the health check.
-     */
-    source?: string | null;
-    /**
-     * Output only. The state of the health check.
-     */
-    state?: string | null;
   }
   /**
    * A presentation of host resource usage where the workload runs.
@@ -1660,24 +1605,6 @@ export namespace workloadmanager_v1 {
     workloadType?: string | null;
   }
   /**
-   * WorkloadProfileHealth contains the detailed health check of workload.
-   */
-  export interface Schema$WorkloadProfileHealth {
-    /**
-     * The time when the health check was performed.
-     */
-    checkTime?: string | null;
-    componentHealthes?: Schema$ComponentHealth[];
-    /**
-     * The detailed condition reports of each component.
-     */
-    componentsHealth?: Schema$ComponentHealth[];
-    /**
-     * Output only. The health state of the workload.
-     */
-    state?: string | null;
-  }
-  /**
    * Request for sending the data insights.
    */
   export interface Schema$WriteInsightRequest {
@@ -2051,153 +1978,8 @@ export namespace workloadmanager_v1 {
 
   export class Resource$Projects$Locations$Discoveredprofiles {
     context: APIRequestContext;
-    healthes: Resource$Projects$Locations$Discoveredprofiles$Healthes;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.healthes =
-        new Resource$Projects$Locations$Discoveredprofiles$Healthes(
-          this.context
-        );
-    }
-
-    /**
-     * Gets details of a discovered workload profile.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const workloadmanager = google.workloadmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await workloadmanager.projects.locations.discoveredprofiles.get({
-     *     // Required. Name of the resource
-     *     name: 'projects/my-project/locations/my-location/discoveredprofiles/my-discoveredprofile',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "labels": {},
-     *   //   "name": "my_name",
-     *   //   "refreshedTime": "my_refreshedTime",
-     *   //   "sapWorkload": {},
-     *   //   "workloadType": "my_workloadType"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfile>>;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$WorkloadProfile>,
-      callback: BodyResponseCallback<Schema$WorkloadProfile>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Get,
-      callback: BodyResponseCallback<Schema$WorkloadProfile>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$WorkloadProfile>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Discoveredprofiles$Get
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$WorkloadProfile>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfile>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Discoveredprofiles$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://workloadmanager.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkloadProfile>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$WorkloadProfile>(parameters);
-      }
     }
 
     /**
@@ -2354,13 +2136,6 @@ export namespace workloadmanager_v1 {
     }
   }
 
-  export interface Params$Resource$Projects$Locations$Discoveredprofiles$Get
-    extends StandardParameters {
-    /**
-     * Required. Name of the resource
-     */
-    name?: string;
-  }
   export interface Params$Resource$Projects$Locations$Discoveredprofiles$List
     extends StandardParameters {
     /**
@@ -2379,163 +2154,6 @@ export namespace workloadmanager_v1 {
      * Required. Parent value for ListDiscoveredProfilesRequest
      */
     parent?: string;
-  }
-
-  export class Resource$Projects$Locations$Discoveredprofiles$Healthes {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Get the health of a discovered workload profile.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/workloadmanager.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const workloadmanager = google.workloadmanager('v1');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res =
-     *     await workloadmanager.projects.locations.discoveredprofiles.healthes.get({
-     *       // Required. The resource name
-     *       name: 'projects/my-project/locations/my-location/discoveredprofiles/my-discoveredprofile/healthes/my-healthe',
-     *     });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "checkTime": "my_checkTime",
-     *   //   "componentHealthes": [],
-     *   //   "componentsHealth": [],
-     *   //   "state": "my_state"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfileHealth>>;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$WorkloadProfileHealth>,
-      callback: BodyResponseCallback<Schema$WorkloadProfileHealth>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get,
-      callback: BodyResponseCallback<Schema$WorkloadProfileHealth>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$WorkloadProfileHealth>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get
-        | BodyResponseCallback<Schema$WorkloadProfileHealth>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$WorkloadProfileHealth>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$WorkloadProfileHealth>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$WorkloadProfileHealth>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params =
-          {} as Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl =
-        options.rootUrl || 'https://workloadmanager.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$WorkloadProfileHealth>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$WorkloadProfileHealth>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Locations$Discoveredprofiles$Healthes$Get
-    extends StandardParameters {
-    /**
-     * Required. The resource name
-     */
-    name?: string;
   }
 
   export class Resource$Projects$Locations$Evaluations {
