@@ -692,6 +692,10 @@
     "package": "@google-apps/meet"
   },
   {
+    "api": "workspaceevents",
+    "package": "@google-cloud/subscriptions"
+  },
+  {
     "api": "fleetengine",
     "package": "@googlemaps/fleetengine-delivery"
   },
@@ -702,6 +706,14 @@
   {
     "api": "fleetengine",
     "package": "@googlemaps/fleetengine"
+  },
+  {
+    "api": "maintenance",
+    "package": "@google-cloud/maintenance-api"
+  },
+  {
+    "api": "lustre",
+    "package": "@google-cloud/lustre"
   },
   {
     "api": "managedkafka",
@@ -729,11 +741,19 @@
   },
   {
     "api": "merchantapi",
+    "package": "@google-shopping/issueresolution"
+  },
+  {
+    "api": "merchantapi",
     "package": "@google-shopping/lfp"
   },
   {
     "api": "merchantapi",
     "package": "@google-shopping/notifications"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/ordertracking"
   },
   {
     "api": "merchantapi",
@@ -806,6 +826,10 @@
   {
     "api": "solar",
     "package": "@googlemaps/solar"
+  },
+  {
+    "api": "storagebatchoperations",
+    "package": "@google-cloud/storagebatchoperations"
   },
   {
     "api": "cloudtrace",
