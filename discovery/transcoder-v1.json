@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20250219",
+  "revision": "20250630",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1199,6 +1199,10 @@
           "$ref": "Status",
           "description": "Output only. An error object that describes the reason for the failure. This property is always present when ProcessingState is `FAILED`.",
           "readOnly": true
+        },
+        "fillContentGaps": {
+          "description": "Optional. Insert silence and duplicate frames when timestamp gaps are detected in a given stream.",
+          "type": "boolean"
         },
         "inputUri": {
           "description": "Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",

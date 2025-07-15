@@ -769,6 +769,10 @@ export namespace transcoder_v1 {
      */
     error?: Schema$Status;
     /**
+     * Optional. Insert silence and duplicate frames when timestamp gaps are detected in a given stream.
+     */
+    fillContentGaps?: boolean | null;
+    /**
      * Input only. Specify the `input_uri` to populate empty `uri` fields in each element of `Job.config.inputs` or `JobTemplate.config.inputs` when using template. URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     inputUri?: string | null;
@@ -1383,6 +1387,7 @@ export namespace transcoder_v1 {
      *       //   "createTime": "my_createTime",
      *       //   "endTime": "my_endTime",
      *       //   "error": {},
+     *       //   "fillContentGaps": false,
      *       //   "inputUri": "my_inputUri",
      *       //   "labels": {},
      *       //   "mode": "my_mode",
@@ -1405,6 +1410,7 @@ export namespace transcoder_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "fillContentGaps": false,
      *   //   "inputUri": "my_inputUri",
      *   //   "labels": {},
      *   //   "mode": "my_mode",
@@ -1687,6 +1693,7 @@ export namespace transcoder_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "endTime": "my_endTime",
      *   //   "error": {},
+     *   //   "fillContentGaps": false,
      *   //   "inputUri": "my_inputUri",
      *   //   "labels": {},
      *   //   "mode": "my_mode",
