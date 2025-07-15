@@ -185,31 +185,6 @@
           "resources": {
             "discoveredprofiles": {
               "methods": {
-                "get": {
-                  "description": "Gets details of a discovered workload profile.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles/{discoveredprofilesId}",
-                  "httpMethod": "GET",
-                  "id": "workloadmanager.projects.locations.discoveredprofiles.get",
-                  "parameterOrder": [
-                    "name"
-                  ],
-                  "parameters": {
-                    "name": {
-                      "description": "Required. Name of the resource",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredprofiles/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+name}",
-                  "response": {
-                    "$ref": "WorkloadProfile"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "list": {
                   "description": "List discovered workload profiles",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles",
@@ -250,37 +225,6 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
-                }
-              },
-              "resources": {
-                "healthes": {
-                  "methods": {
-                    "get": {
-                      "description": "Get the health of a discovered workload profile.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredprofiles/{discoveredprofilesId}/healthes/{healthesId}",
-                      "httpMethod": "GET",
-                      "id": "workloadmanager.projects.locations.discoveredprofiles.healthes.get",
-                      "parameterOrder": [
-                        "name"
-                      ],
-                      "parameters": {
-                        "name": {
-                          "description": "Required. The resource name",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/discoveredprofiles/[^/]+/healthes/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+name}",
-                      "response": {
-                        "$ref": "WorkloadProfileHealth"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    }
-                  }
                 }
               }
             },
@@ -879,12 +823,19 @@
                         "OTHER",
                         "SCC_IAC"
                       ],
+                      "enumDeprecated": [
+                        false,
+                        false,
+                        false,
+                        false,
+                        true
+                      ],
                       "enumDescriptions": [
                         "Not specified",
                         "SAP best practices",
                         "SQL best practices",
                         "Customized best practices",
-                        "SCC IaC (Infra as Code) best practices"
+                        "SCC IaC (Infra as Code) best practices."
                       ],
                       "location": "query",
                       "type": "string"
@@ -928,7 +879,7 @@
       }
     }
   },
-  "revision": "20250609",
+  "revision": "20250630",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -1323,79 +1274,6 @@
       },
       "type": "object"
     },
-    "ComponentHealth": {
-      "description": "HealthCondition contains the detailed health check of each component.",
-      "id": "ComponentHealth",
-      "properties": {
-        "component": {
-          "description": "The component of a workload.",
-          "type": "string"
-        },
-        "componentHealthChecks": {
-          "description": "The detailed health checks of the component.",
-          "items": {
-            "$ref": "HealthCheck"
-          },
-          "type": "array"
-        },
-        "componentHealthType": {
-          "description": "Output only. The type of the component health.",
-          "enum": [
-            "TYPE_UNSPECIFIED",
-            "TYPE_REQUIRED",
-            "TYPE_OPTIONAL",
-            "TYPE_SPECIAL"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "required",
-            "optional",
-            "special"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "isRequired": {
-          "description": "Output only. The requirement of the component.",
-          "readOnly": true,
-          "type": "boolean"
-        },
-        "state": {
-          "description": "Output only. The health state of the component.",
-          "enum": [
-            "HEALTH_STATE_UNSPECIFIED",
-            "HEALTHY",
-            "UNHEALTHY",
-            "CRITICAL",
-            "UNSUPPORTED"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "healthy workload",
-            "unhealthy workload",
-            "has critical issues",
-            "unsupported"
-          ],
-          "readOnly": true,
-          "type": "string"
-        },
-        "subComponentHealthes": {
-          "deprecated": true,
-          "items": {
-            "$ref": "ComponentHealth"
-          },
-          "type": "array"
-        },
-        "subComponentsHealth": {
-          "description": "Sub component health.",
-          "items": {
-            "$ref": "ComponentHealth"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "DatabaseProperties": {
       "description": "Database Properties.",
       "id": "DatabaseProperties",
@@ -1468,12 +1346,19 @@
             "OTHER",
             "SCC_IAC"
           ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            false,
+            true
+          ],
           "enumDescriptions": [
             "Not specified",
             "SAP best practices",
             "SQL best practices",
             "Customized best practices",
-            "SCC IaC (Infra as Code) best practices"
+            "SCC IaC (Infra as Code) best practices."
           ],
           "type": "string"
         },
@@ -1718,54 +1603,6 @@
             "type": "string"
           },
           "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "HealthCheck": {
-      "description": "HealthCheck contains the detailed health check of a component based on asource.",
-      "id": "HealthCheck",
-      "properties": {
-        "message": {
-          "description": "Output only. The message of the health check.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "metric": {
-          "description": "Output only. The health check source metric name.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "resource": {
-          "$ref": "CloudResource",
-          "description": "Output only. The resource the check performs on.",
-          "readOnly": true
-        },
-        "source": {
-          "description": "Output only. The source of the health check.",
-          "readOnly": true,
-          "type": "string"
-        },
-        "state": {
-          "description": "Output only. The state of the health check.",
-          "enum": [
-            "STATE_UNSPECIFIED",
-            "PASSED",
-            "FAILED",
-            "DEGRADED",
-            "SKIPPED",
-            "UNSUPPORTED"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "passed",
-            "failed",
-            "degraded",
-            "skipped",
-            "unsupported"
-          ],
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -3397,51 +3234,6 @@
             "unspecified workload type",
             "running sap workload s4/hana"
           ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "WorkloadProfileHealth": {
-      "description": "WorkloadProfileHealth contains the detailed health check of workload.",
-      "id": "WorkloadProfileHealth",
-      "properties": {
-        "checkTime": {
-          "description": "The time when the health check was performed.",
-          "format": "google-datetime",
-          "type": "string"
-        },
-        "componentHealthes": {
-          "deprecated": true,
-          "items": {
-            "$ref": "ComponentHealth"
-          },
-          "type": "array"
-        },
-        "componentsHealth": {
-          "description": "The detailed condition reports of each component.",
-          "items": {
-            "$ref": "ComponentHealth"
-          },
-          "type": "array"
-        },
-        "state": {
-          "description": "Output only. The health state of the workload.",
-          "enum": [
-            "HEALTH_STATE_UNSPECIFIED",
-            "HEALTHY",
-            "UNHEALTHY",
-            "CRITICAL",
-            "UNSUPPORTED"
-          ],
-          "enumDescriptions": [
-            "Unspecified",
-            "healthy workload",
-            "unhealthy workload",
-            "has critical issues",
-            "unsupported"
-          ],
-          "readOnly": true,
           "type": "string"
         }
       },
