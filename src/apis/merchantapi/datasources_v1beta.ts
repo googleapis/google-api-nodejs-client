@@ -362,7 +362,7 @@ export namespace merchantapi_datasources_v1beta {
     nextPageToken?: string | null;
   }
   /**
-   * The local inventory data source.
+   * The local inventory data source type is only available for file inputs and can't be used to create API local inventory data sources.
    */
   export interface Schema$LocalInventoryDataSource {
     /**
@@ -486,9 +486,6 @@ export namespace merchantapi_datasources_v1beta {
      */
     targetCountry?: string | null;
   }
-  /**
-   * The regional inventory data source.
-   */
   export interface Schema$RegionalInventoryDataSource {
     /**
      * Required. Immutable. The two-letter ISO 639-1 language of the items to which the regional inventory is provided.
