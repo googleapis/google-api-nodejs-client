@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250710",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -454,6 +454,14 @@
           "type": "string"
         },
         "gtin": {
+          "deprecated": true,
+          "description": "Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs. Deprecated: Use `gtins` instead.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "gtins": {
           "description": "Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.",
           "items": {
             "type": "string"
