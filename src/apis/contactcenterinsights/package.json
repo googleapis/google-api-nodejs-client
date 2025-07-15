@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/contactcenterinsights",
-  "version": "15.1.1",
+  "version": "15.2.0",
   "description": "contactcenterinsights",
   "main": "build/index.js",
   "types": "build/index.d.ts",

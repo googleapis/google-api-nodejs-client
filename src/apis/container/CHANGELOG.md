@@ -1,5 +1,12 @@
 # Changelog
 
+## [16.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v16.1.0...container-v16.2.0) (2025-07-15)
+
+
+### Features
+
+* **container:** update the API ([29665e3](https://github.com/googleapis/google-api-nodejs-client/commit/29665e34a77fa6adc0cd78f3220154a32ad98f46))
+
 ## [16.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v16.0.0...container-v16.1.0) (2025-07-08)
 
 

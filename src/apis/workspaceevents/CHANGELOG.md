@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v3.1.0...workspaceevents-v3.1.1) (2025-07-15)
+
+
+### Bug Fixes
+
+* **workspaceevents:** update the API ([42edb13](https://github.com/googleapis/google-api-nodejs-client/commit/42edb13d3b8da4bd362d079b1e965106c86895c8))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v3.0.0...workspaceevents-v3.1.0) (2025-07-08)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.0.1...admin-v25.1.0) (2025-07-15)
+
+
+### Features
+
+* **admin:** update the API ([6e662bd](https://github.com/googleapis/google-api-nodejs-client/commit/6e662bd7b9583060f5f4f61f4b38616f5e6dae19))
+
 ## [25.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.0.0...admin-v25.0.1) (2025-07-08)
 
 

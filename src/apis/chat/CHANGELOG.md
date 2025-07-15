@@ -1,5 +1,12 @@
 # Changelog
 
+## [39.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v39.0.1...chat-v39.1.0) (2025-07-15)
+
+
+### Features
+
+* **chat:** update the API ([127445a](https://github.com/googleapis/google-api-nodejs-client/commit/127445a8704b97fe8faf47fc8868f47e5d419da2))
+
 ## [39.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v39.0.0...chat-v39.0.1) (2025-07-08)
 
 

@@ -1,5 +1,12 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v3.0.1...searchconsole-v3.1.0) (2025-07-15)
+
+
+### Features
+
+* **searchconsole:** update the API ([cc59194](https://github.com/googleapis/google-api-nodejs-client/commit/cc59194f825ed589d1e06632d33560cea2c49de9))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v3.0.0...searchconsole-v3.0.1) (2025-07-08)
 
 
