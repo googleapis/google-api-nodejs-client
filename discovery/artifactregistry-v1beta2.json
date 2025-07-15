@@ -206,11 +206,6 @@
     },
     {
       "description": "Regional Endpoint",
-      "endpointUrl": "https://artifactregistry.us-east7.rep.googleapis.com/",
-      "location": "us-east7"
-    },
-    {
-      "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.us-south1.rep.googleapis.com/",
       "location": "us-south1"
     },
@@ -243,6 +238,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://artifactregistry.me-central2.rep.googleapis.com/",
       "location": "me-central2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://artifactregistry.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
     },
     {
       "description": "Regional Endpoint",
@@ -1450,7 +1450,7 @@
       }
     }
   },
-  "revision": "20250502",
+  "revision": "20250704",
   "rootUrl": "https://artifactregistry.googleapis.com/",
   "schemas": {
     "AptArtifact": {
