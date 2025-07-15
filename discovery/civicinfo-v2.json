@@ -201,7 +201,7 @@
       }
     }
   },
-  "revision": "20250430",
+  "revision": "20250708",
   "rootUrl": "https://civicinfo.googleapis.com/",
   "schemas": {
     "CivicinfoApiprotosV2DivisionByAddressResponse": {
@@ -964,6 +964,12 @@
       "description": "A simple representation of an address.",
       "id": "CivicinfoSchemaV2SimpleAddressType",
       "properties": {
+        "addressLine": {
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "city": {
           "description": "The city or town for the address.",
           "type": "string"
