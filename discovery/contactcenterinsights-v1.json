@@ -5300,7 +5300,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250711",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -6731,6 +6731,10 @@
         },
         "conversationModel": {
           "description": "The name of the model that generates this summary. Format: projects/{project}/locations/{location}/conversationModels/{conversation_model}",
+          "type": "string"
+        },
+        "generatorId": {
+          "description": "Agent Assist generator ID.",
           "type": "string"
         },
         "metadata": {
@@ -8972,8 +8976,26 @@
           "format": "int32",
           "type": "integer"
         },
+        "predefinedQuestionConfig": {
+          "$ref": "GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig",
+          "description": "The configuration of the predefined question. This field will only be set if the Question Type is predefined."
+        },
         "questionBody": {
           "description": "Question text. E.g., \"Did the agent greet the customer?\"",
+          "type": "string"
+        },
+        "questionType": {
+          "description": "The type of question.",
+          "enum": [
+            "QA_QUESTION_TYPE_UNSPECIFIED",
+            "CUSTOMIZABLE",
+            "PREDEFINED"
+          ],
+          "enumDescriptions": [
+            "The type of the question is unspecified.",
+            "The default question type. The question is fully customizable by the user.",
+            "The question type is using a predefined model provided by CCAI teams. Users are not allowed to edit the question_body, answer_choices, upload feedback labels for the question nor fine-tune the question. However, users may edit other fields like question tags, question order, etc."
+          ],
           "type": "string"
         },
         "tags": {
@@ -9038,6 +9060,27 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig": {
+      "description": "Configuration for a predefined question. This field will only be set if the Question Type is predefined.",
+      "id": "GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig",
+      "properties": {
+        "type": {
+          "description": "The type of the predefined question.",
+          "enum": [
+            "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
+            "CONVERSATION_OUTCOME",
+            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE"
+          ],
+          "enumDescriptions": [
+            "The type of the predefined question is unspecified.",
+            "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
+            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -9130,6 +9173,10 @@
         "displayName": {
           "description": "The user-specified display name of the scorecard.",
           "type": "string"
+        },
+        "isDefault": {
+          "description": "Whether the scorecard is the default one for the project. A default scorecard cannot be deleted and will always appear first in scorecard selector.",
+          "type": "boolean"
         },
         "name": {
           "description": "Identifier. The scorecard name. Format: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}",
@@ -11104,6 +11151,10 @@
         },
         "conversationModel": {
           "description": "The name of the model that generates this summary. Format: projects/{project}/locations/{location}/conversationModels/{conversation_model}",
+          "type": "string"
+        },
+        "generatorId": {
+          "description": "Agent Assist generator ID.",
           "type": "string"
         },
         "metadata": {
