@@ -2236,9 +2236,17 @@ export namespace androidpublisher_v3 {
      */
     offerId?: string | null;
     /**
+     * ID of the purchase option. This field is set for both purchase options and variant offers. For purchase options, this ID identifies the purchase option itself. For variant offers, this ID refers to the associated purchase option, and in conjunction with offer_id it identifies the variant offer.
+     */
+    purchaseOptionId?: string | null;
+    /**
      * The number of items purchased (for multi-quantity item purchases).
      */
     quantity?: number | null;
+    /**
+     * The details of a rent purchase. Only set if it is a rent purchase.
+     */
+    rentalDetails?: Schema$RentalDetails;
   }
   /**
    * The Order resource encapsulates comprehensive information about a transaction made on Google Play. It includes a variety of attributes that provide details about the order itself, the products purchased, and the history of events related to the order. The Orders APIs provide real-time access to your order data within the Google Play ecosystem. You can retrieve detailed information and metadata for both one-time and recurring orders, including transaction details like charges, taxes, and refunds, as well as metadata such as pricing phases for subscriptions. The Orders APIs let you automate tasks related to order management, reducing the need for manual checks via the Play Developer Console. The following are some of the use cases for this API: + Real-time order data retrieval - Get order details and metadata immediately after a purchase using an order ID. + Order update synchronization - Periodically sync order updates to maintain an up-to-date record of order information. Note: + The Orders API calls count towards your Play Developer API quota, which defaults to 200K daily, and may be insufficient to sync extensive order histories. + A maximum of 1000 orders can be retrieved per call. Using larger page sizes is recommended to minimize quota usage. Check your quota in the Cloud Console and request more if required.
@@ -2924,6 +2932,10 @@ export namespace androidpublisher_v3 {
      */
     versionCode?: string | null;
   }
+  /**
+   * Details of a rental purchase.
+   */
+  export interface Schema$RentalDetails {}
   /**
    * Offer details information related to a rental line item.
    */
