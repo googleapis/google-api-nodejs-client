@@ -290,7 +290,7 @@ export namespace firebasedataconnect_v1 {
      */
     code?: string | null;
     /**
-     * More detailed error message to assist debugging. In the backend, only include it in admin authenticated API like ExecuteGraphql. In the emulator, always include it to assist debugging.
+     * More detailed error message to assist debugging. It contains application business logic that are inappropriate to leak publicly. In the emulator, Data Connect API always includes it to assist local development and debugging. In the backend, ConnectorService always hides it. GraphqlService without impersonation always include it. GraphqlService with impersonation includes it only if explicitly opted-in with `include_debug_details` in `GraphqlRequestExtensions`.
      */
     debugDetails?: string | null;
     /**
@@ -353,6 +353,10 @@ export namespace firebasedataconnect_v1 {
      * Evaluate the auth policy with a customized JWT auth token. Should follow the Firebase Auth token format. https://firebase.google.com/docs/rules/rules-and-auth For example: a verified user may have auth_claims of {"sub": , "email_verified": true\}
      */
     authClaims?: {[key: string]: any} | null;
+    /**
+     * Optional. If set, include debug details in GraphQL error extensions.
+     */
+    includeDebugDetails?: boolean | null;
     /**
      * Evaluate the auth policy as an unauthenticated request. Can only be set to true.
      */
