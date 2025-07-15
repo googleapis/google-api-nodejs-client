@@ -135,7 +135,7 @@ export namespace admin_datatransfer_v1 {
      */
     etag?: string | null;
     /**
-     * The application's ID. Retrievable by using the [`applications.list()`](/admin-sdk/data-transfer/reference/rest/v1/applications/list) method.
+     * The application's ID. Retrievable by using the [`applications.list()`](https://developers.google.com/workspace/admin/data-transfer/reference/rest/v1/applications/list) method.
      */
     id?: string | null;
     /**
@@ -160,7 +160,7 @@ export namespace admin_datatransfer_v1 {
      */
     applicationId?: string | null;
     /**
-     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference.
+     * The transfer parameters for the application. These parameters are used to select the data which will get transferred in context of this application. For more information about the specific values available for each application, see the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference.
      */
     applicationTransferParams?: Schema$ApplicationTransferParam[];
     /**
@@ -733,7 +733,7 @@ export namespace admin_datatransfer_v1 {
     }
 
     /**
-     * Inserts a data transfer request. See the [Transfer parameters](/admin-sdk/data-transfer/v1/parameters) reference for specific application requirements.
+     * Inserts a data transfer request. See the [Transfer parameters](https://developers.google.com/workspace/admin/data-transfer/v1/parameters) reference for specific application requirements.
      * @example
      * ```js
      * // Before running the sample:
