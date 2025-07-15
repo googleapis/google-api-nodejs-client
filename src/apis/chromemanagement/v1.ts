@@ -468,6 +468,10 @@ export namespace chromemanagement_v1 {
      */
     kioskEnabled?: boolean | null;
     /**
+     * Output only. The version of this extension's manifest.
+     */
+    manifestVersion?: string | null;
+    /**
      * Output only. The minimum number of users using this app.
      */
     minUserCount?: number | null;
@@ -940,6 +944,10 @@ export namespace chromemanagement_v1 {
      */
     displayWidthMm?: number | null;
     /**
+     * Output only. EDID version.
+     */
+    edidVersion?: string | null;
+    /**
      * Output only. Is display internal or not.
      */
     internal?: boolean | null;
@@ -955,6 +963,10 @@ export namespace chromemanagement_v1 {
      * Output only. Manufacturer product code.
      */
     modelId?: number | null;
+    /**
+     * Output only. Serial number.
+     */
+    serialNumber?: number | null;
   }
   /**
    * Information for a display.
@@ -968,6 +980,10 @@ export namespace chromemanagement_v1 {
      * Output only. Display device name.
      */
     displayName?: string | null;
+    /**
+     * Output only. EDID version.
+     */
+    edidVersion?: string | null;
     /**
      * Output only. Indicates if display is internal or not.
      */
@@ -984,6 +1000,10 @@ export namespace chromemanagement_v1 {
      * Output only. Resolution width in pixels.
      */
     resolutionWidth?: number | null;
+    /**
+     * Output only. Serial number.
+     */
+    serialNumber?: number | null;
   }
   /**
    * Response containing a list of print jobs.
@@ -2431,6 +2451,56 @@ export namespace chromemanagement_v1 {
     userId?: string | null;
   }
   /**
+   * A representation of a remote command for a Chrome browser profile.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand {
+    /**
+     * Output only. Result of the remote command.
+     */
+    commandResult?: Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult;
+    /**
+     * Output only. State of the remote command.
+     */
+    commandState?: string | null;
+    /**
+     * Required. Type of the remote command. The only supported command_type is "clearBrowsingData".
+     */
+    commandType?: string | null;
+    /**
+     * Output only. Timestamp of the issurance of the remote command.
+     */
+    issueTime?: string | null;
+    /**
+     * Identifier. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}/commands/{command_id\}
+     */
+    name?: string | null;
+    /**
+     * Required. Payload of the remote command. The payload for "clearBrowsingData" command supports: - fields "clearCache" and "clearCookies" - values of boolean type.
+     */
+    payload?: {[key: string]: any} | null;
+    /**
+     * Output only. Valid duration of the remote command.
+     */
+    validDuration?: string | null;
+  }
+  /**
+   * Result of the execution of a command.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult {
+    /**
+     * Output only. Timestamp of the client execution of the remote command.
+     */
+    clientExecutionTime?: string | null;
+    /**
+     * Output only. Result code that indicates the type of error or success of the command.
+     */
+    resultCode?: string | null;
+    /**
+     * Output only. Result type of the remote command.
+     */
+    resultType?: string | null;
+  }
+  /**
    * Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.
    */
   export interface Schema$GoogleChromeManagementVersionsV1ChromeOsDevice {
@@ -2498,6 +2568,23 @@ export namespace chromemanagement_v1 {
      * Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.
      */
     profileAdapterConfigReference?: string | null;
+  }
+  /**
+   * Response to ListChromeBrowserProfileCommands method.
+   */
+  export interface Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse {
+    /**
+     * The list of commands returned.
+     */
+    chromeBrowserProfileCommands?: Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand[];
+    /**
+     * The pagination token that can be used to list the next page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Total size represents an estimated number of resources returned.
+     */
+    totalSize?: string | null;
   }
   /**
    * Response to ListChromeBrowserProfiles method.
@@ -3823,8 +3910,10 @@ export namespace chromemanagement_v1 {
 
   export class Resource$Customers$Profiles {
     context: APIRequestContext;
+    commands: Resource$Customers$Profiles$Commands;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.commands = new Resource$Customers$Profiles$Commands(this.context);
     }
 
     /**
@@ -4329,6 +4418,527 @@ export namespace chromemanagement_v1 {
     pageToken?: string;
     /**
      * Required. Format: customers/{customer_id\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Customers$Profiles$Commands {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a Chrome browser profile remote command.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/chrome.management.profiles'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.commands.create({
+     *     // Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     *     parent: 'customers/my-customer/profiles/my-profile',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "commandResult": {},
+     *       //   "commandState": "my_commandState",
+     *       //   "commandType": "my_commandType",
+     *       //   "issueTime": "my_issueTime",
+     *       //   "name": "my_name",
+     *       //   "payload": {},
+     *       //   "validDuration": "my_validDuration"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commandResult": {},
+     *   //   "commandState": "my_commandState",
+     *   //   "commandType": "my_commandType",
+     *   //   "issueTime": "my_issueTime",
+     *   //   "name": "my_name",
+     *   //   "payload": {},
+     *   //   "validDuration": "my_validDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Customers$Profiles$Commands$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Customers$Profiles$Commands$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    >;
+    create(
+      params: Params$Resource$Customers$Profiles$Commands$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Profiles$Commands$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    create(
+      params: Params$Resource$Customers$Profiles$Commands$Create,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$Commands$Create
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$Commands$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$Commands$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/commands').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a Chrome browser profile remote command.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.profiles',
+     *       'https://www.googleapis.com/auth/chrome.management.profiles.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.commands.get({
+     *     // Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}/commands/{command_id\}
+     *     name: 'customers/my-customer/profiles/my-profile/commands/my-command',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "commandResult": {},
+     *   //   "commandState": "my_commandState",
+     *   //   "commandType": "my_commandType",
+     *   //   "issueTime": "my_issueTime",
+     *   //   "name": "my_name",
+     *   //   "payload": {},
+     *   //   "validDuration": "my_validDuration"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Customers$Profiles$Commands$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Customers$Profiles$Commands$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    >;
+    get(
+      params: Params$Resource$Customers$Profiles$Commands$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Profiles$Commands$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    get(
+      params: Params$Resource$Customers$Profiles$Commands$Get,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$Commands$Get
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$Commands$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$Commands$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists remote commands of a Chrome browser profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/chromemanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const chromemanagement = google.chromemanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/chrome.management.profiles',
+     *       'https://www.googleapis.com/auth/chrome.management.profiles.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await chromemanagement.customers.profiles.commands.list({
+     *     // Optional. The maximum number of commands to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 100.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. The page token used to retrieve a specific page of the listing request.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     *     parent: 'customers/my-customer/profiles/my-profile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "chromeBrowserProfileCommands": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "totalSize": "my_totalSize"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Customers$Profiles$Commands$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Customers$Profiles$Commands$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+    >;
+    list(
+      params: Params$Resource$Customers$Profiles$Commands$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Profiles$Commands$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Customers$Profiles$Commands$List,
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Customers$Profiles$Commands$List
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Customers$Profiles$Commands$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Customers$Profiles$Commands$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://chromemanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/commands').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Customers$Profiles$Commands$Create
+    extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand;
+  }
+  export interface Params$Resource$Customers$Profiles$Commands$Get
+    extends StandardParameters {
+    /**
+     * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}/commands/{command_id\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Customers$Profiles$Commands$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of commands to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 100.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token used to retrieve a specific page of the listing request.
+     */
+    pageToken?: string;
+    /**
+     * Required. Format: customers/{customer_id\}/profiles/{profile_permanent_id\}
      */
     parent?: string;
   }
