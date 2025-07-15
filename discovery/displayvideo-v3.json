@@ -9268,7 +9268,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250709",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -22490,6 +22490,25 @@
       },
       "type": "object"
     },
+    "VideoAdInventoryControl": {
+      "description": "The video ad inventory control used in certain YouTube line item types.",
+      "id": "VideoAdInventoryControl",
+      "properties": {
+        "allowInFeed": {
+          "description": "Optional. Whether ads can serve as in-feed format.",
+          "type": "boolean"
+        },
+        "allowInStream": {
+          "description": "Optional. Whether ads can serve as in-stream format.",
+          "type": "boolean"
+        },
+        "allowShorts": {
+          "description": "Optional. Whether ads can serve as shorts format.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "VideoAdSequenceSettings": {
       "description": "Settings related to VideoAdSequence.",
       "id": "VideoAdSequenceSettings",
@@ -22945,6 +22964,10 @@
         "thirdPartyMeasurementConfigs": {
           "$ref": "ThirdPartyMeasurementConfigs",
           "description": "Optional. The third-party measurement configs of the line item."
+        },
+        "videoAdInventoryControl": {
+          "$ref": "VideoAdInventoryControl",
+          "description": "Optional. The settings to control which inventory is allowed for this line item."
         },
         "videoAdSequenceSettings": {
           "$ref": "VideoAdSequenceSettings",

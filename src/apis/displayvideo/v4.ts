@@ -6132,6 +6132,23 @@ export namespace displayvideo_v4 {
     userRewardedContent?: string | null;
   }
   /**
+   * The video ad inventory control used in certain YouTube line item types.
+   */
+  export interface Schema$VideoAdInventoryControl {
+    /**
+     * Optional. Whether ads can serve as in-feed format.
+     */
+    allowInFeed?: boolean | null;
+    /**
+     * Optional. Whether ads can serve as in-stream format.
+     */
+    allowInStream?: boolean | null;
+    /**
+     * Optional. Whether ads can serve as shorts format.
+     */
+    allowShorts?: boolean | null;
+  }
+  /**
    * Settings related to VideoAdSequence.
    */
   export interface Schema$VideoAdSequenceSettings {
@@ -6353,6 +6370,10 @@ export namespace displayvideo_v4 {
      * Optional. The third-party measurement configs of the line item.
      */
     thirdPartyMeasurementConfigs?: Schema$ThirdPartyMeasurementConfigs;
+    /**
+     * Optional. The settings to control which inventory is allowed for this line item.
+     */
+    videoAdInventoryControl?: Schema$VideoAdInventoryControl;
     /**
      * Optional. The settings related to VideoAdSequence.
      */
