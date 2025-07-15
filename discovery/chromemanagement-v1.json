@@ -450,6 +450,103 @@
                 "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
               ]
             }
+          },
+          "resources": {
+            "commands": {
+              "methods": {
+                "create": {
+                  "description": "Creates a Chrome browser profile remote command.",
+                  "flatPath": "v1/customers/{customersId}/profiles/{profilesId}/commands",
+                  "httpMethod": "POST",
+                  "id": "chromemanagement.customers.profiles.commands.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Format: customers/{customer_id}/profiles/{profile_permanent_id}",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/profiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/commands",
+                  "request": {
+                    "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand"
+                  },
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.profiles"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a Chrome browser profile remote command.",
+                  "flatPath": "v1/customers/{customersId}/profiles/{profilesId}/commands/{commandsId}",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.profiles.commands.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: customers/{customer_id}/profiles/{profile_permanent_id}/commands/{command_id}",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/profiles/[^/]+/commands/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.profiles",
+                    "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+                  ]
+                },
+                "list": {
+                  "description": "Lists remote commands of a Chrome browser profile.",
+                  "flatPath": "v1/customers/{customersId}/profiles/{profilesId}/commands",
+                  "httpMethod": "GET",
+                  "id": "chromemanagement.customers.profiles.commands.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of commands to return. The default page size is 100 if page_size is unspecified, and the maximum page size allowed is 100.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The page token used to retrieve a specific page of the listing request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Format: customers/{customer_id}/profiles/{profile_permanent_id}",
+                      "location": "path",
+                      "pattern": "^customers/[^/]+/profiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/commands",
+                  "response": {
+                    "$ref": "GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/chrome.management.profiles",
+                    "https://www.googleapis.com/auth/chrome.management.profiles.readonly"
+                  ]
+                }
+              }
+            }
           }
         },
         "reports": {
@@ -1280,7 +1377,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250710",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -1868,6 +1965,12 @@
           "description": "Output only. Whether this app is enabled for Kiosk mode on ChromeOS devices",
           "readOnly": true,
           "type": "boolean"
+        },
+        "manifestVersion": {
+          "description": "Output only. The version of this extension's manifest.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "minUserCount": {
           "description": "Output only. The minimum number of users using this app.",
@@ -2576,6 +2679,11 @@
           "readOnly": true,
           "type": "integer"
         },
+        "edidVersion": {
+          "description": "Output only. EDID version.",
+          "readOnly": true,
+          "type": "string"
+        },
         "internal": {
           "description": "Output only. Is display internal or not.",
           "readOnly": true,
@@ -2594,6 +2702,12 @@
         },
         "modelId": {
           "description": "Output only. Manufacturer product code.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "serialNumber": {
+          "description": "Output only. Serial number.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -2616,6 +2730,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "edidVersion": {
+          "description": "Output only. EDID version.",
+          "readOnly": true,
+          "type": "string"
+        },
         "isInternal": {
           "description": "Output only. Indicates if display is internal or not.",
           "readOnly": true,
@@ -2635,6 +2754,12 @@
         },
         "resolutionWidth": {
           "description": "Output only. Resolution width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "serialNumber": {
+          "description": "Output only. Serial number.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
@@ -5311,6 +5436,98 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand": {
+      "description": "A representation of a remote command for a Chrome browser profile.",
+      "id": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand",
+      "properties": {
+        "commandResult": {
+          "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult",
+          "description": "Output only. Result of the remote command.",
+          "readOnly": true
+        },
+        "commandState": {
+          "description": "Output only. State of the remote command.",
+          "enum": [
+            "COMMAND_STATE_UNSPECIFIED",
+            "PENDING",
+            "EXPIRED",
+            "EXECUTED_BY_CLIENT"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified command state.",
+            "Represents a command in a pending state.",
+            "Represents a command that has expired.",
+            "Represents a command that has been executed by the client."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "commandType": {
+          "description": "Required. Type of the remote command. The only supported command_type is \"clearBrowsingData\".",
+          "type": "string"
+        },
+        "issueTime": {
+          "description": "Output only. Timestamp of the issurance of the remote command.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. Format: customers/{customer_id}/profiles/{profile_permanent_id}/commands/{command_id}",
+          "type": "string"
+        },
+        "payload": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Required. Payload of the remote command. The payload for \"clearBrowsingData\" command supports: - fields \"clearCache\" and \"clearCookies\" - values of boolean type.",
+          "type": "object"
+        },
+        "validDuration": {
+          "description": "Output only. Valid duration of the remote command.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult": {
+      "description": "Result of the execution of a command.",
+      "id": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommandCommandResult",
+      "properties": {
+        "clientExecutionTime": {
+          "description": "Output only. Timestamp of the client execution of the remote command.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resultCode": {
+          "description": "Output only. Result code that indicates the type of error or success of the command.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resultType": {
+          "description": "Output only. Result type of the remote command.",
+          "enum": [
+            "COMMAND_RESULT_TYPE_UNSPECIFIED",
+            "IGNORED",
+            "FAILURE",
+            "SUCCESS"
+          ],
+          "enumDescriptions": [
+            "Represents an unspecified command result.",
+            "Represents a command with an ignored result.",
+            "Represents a failed command.",
+            "Represents a succeeded command."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1ChromeOsDevice": {
       "description": "Describes the ChromeOS device that a `CertificateProvisioningProcess` belongs to.",
       "id": "GoogleChromeManagementVersionsV1ChromeOsDevice",
@@ -5404,6 +5621,29 @@
         "profileAdapterConfigReference": {
           "description": "Output only. A string that references the administrator-provided configuration for the certificate provisioning profile. This field can be missing if no configuration was given.",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse": {
+      "description": "Response to ListChromeBrowserProfileCommands method.",
+      "id": "GoogleChromeManagementVersionsV1ListChromeBrowserProfileCommandsResponse",
+      "properties": {
+        "chromeBrowserProfileCommands": {
+          "description": "The list of commands returned.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1ChromeBrowserProfileCommand"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "The pagination token that can be used to list the next page.",
+          "type": "string"
+        },
+        "totalSize": {
+          "description": "Total size represents an estimated number of resources returned.",
+          "format": "int64",
           "type": "string"
         }
       },
