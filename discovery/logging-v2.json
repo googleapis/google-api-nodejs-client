@@ -107,6 +107,16 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://logging.us-west8.rep.googleapis.com/",
       "location": "us-west8"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.eu.rep.googleapis.com/",
+      "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://logging.us.rep.googleapis.com/",
+      "location": "us"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -8952,7 +8962,7 @@
       }
     }
   },
-  "revision": "20250530",
+  "revision": "20250704",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
