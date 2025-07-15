@@ -799,6 +799,10 @@ export namespace contactcenterinsights_v1 {
      */
     conversationModel?: string | null;
     /**
+     * Agent Assist generator ID.
+     */
+    generatorId?: string | null;
+    /**
      * A map that contains metadata about the summarization and the document from which it originates.
      */
     metadata?: {[key: string]: string} | null;
@@ -3669,6 +3673,10 @@ export namespace contactcenterinsights_v1 {
      */
     conversationModel?: string | null;
     /**
+     * Agent Assist generator ID.
+     */
+    generatorId?: string | null;
+    /**
      * A map that contains metadata about the summarization and the document from which it originates.
      */
     metadata?: {[key: string]: string} | null;
@@ -5274,9 +5282,17 @@ export namespace contactcenterinsights_v1 {
      */
     order?: number | null;
     /**
+     * The configuration of the predefined question. This field will only be set if the Question Type is predefined.
+     */
+    predefinedQuestionConfig?: Schema$GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig;
+    /**
      * Question text. E.g., "Did the agent greet the customer?"
      */
     questionBody?: string | null;
+    /**
+     * The type of question.
+     */
+    questionType?: string | null;
     /**
      * Questions are tagged for categorization and scoring. Tags can either be: - Default Tags: These are predefined categories. They are identified by their string value (e.g., "BUSINESS", "COMPLIANCE", and "CUSTOMER"). - Custom Tags: These are user-defined categories. They are identified by their full resource name (e.g., projects/{project\}/locations/{location\}/qaQuestionTags/{qa_question_tag\}). Both default and custom tags are used to group questions and to influence the scoring of each question.
      */
@@ -5327,6 +5343,15 @@ export namespace contactcenterinsights_v1 {
      * Output only. Accuracy of the model. Measures the percentage of correct answers the model gave on the test set.
      */
     accuracy?: number | null;
+  }
+  /**
+   * Configuration for a predefined question. This field will only be set if the Question Type is predefined.
+   */
+  export interface Schema$GoogleCloudContactcenterinsightsV1QaQuestionPredefinedQuestionConfig {
+    /**
+     * The type of the predefined question.
+     */
+    type?: string | null;
   }
   /**
    * A tag is a resource which aims to categorize a set of questions across multiple scorecards, e.g., "Customer Satisfaction","Billing", etc.
@@ -5386,6 +5411,10 @@ export namespace contactcenterinsights_v1 {
      * The user-specified display name of the scorecard.
      */
     displayName?: string | null;
+    /**
+     * Whether the scorecard is the default one for the project. A default scorecard cannot be deleted and will always appear first in scorecard selector.
+     */
+    isDefault?: boolean | null;
     /**
      * Identifier. The scorecard name. Format: projects/{project\}/locations/{location\}/qaScorecards/{qa_scorecard\}
      */
@@ -30653,6 +30682,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
+     *         //   "isDefault": false,
      *         //   "name": "my_name",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -30665,6 +30695,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -30953,6 +30984,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -31258,6 +31290,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
      *         //   "displayName": "my_displayName",
+     *         //   "isDefault": false,
      *         //   "name": "my_name",
      *         //   "updateTime": "my_updateTime"
      *         // }
@@ -31271,6 +31304,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
+     *   //   "isDefault": false,
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -32704,7 +32738,9 @@ export namespace contactcenterinsights_v1 {
      *           //   "metrics": {},
      *           //   "name": "my_name",
      *           //   "order": 0,
+     *           //   "predefinedQuestionConfig": {},
      *           //   "questionBody": "my_questionBody",
+     *           //   "questionType": "my_questionType",
      *           //   "tags": [],
      *           //   "tuningMetadata": {},
      *           //   "updateTime": "my_updateTime"
@@ -32723,7 +32759,9 @@ export namespace contactcenterinsights_v1 {
      *   //   "metrics": {},
      *   //   "name": "my_name",
      *   //   "order": 0,
+     *   //   "predefinedQuestionConfig": {},
      *   //   "questionBody": "my_questionBody",
+     *   //   "questionType": "my_questionType",
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"
@@ -33022,7 +33060,9 @@ export namespace contactcenterinsights_v1 {
      *   //   "metrics": {},
      *   //   "name": "my_name",
      *   //   "order": 0,
+     *   //   "predefinedQuestionConfig": {},
      *   //   "questionBody": "my_questionBody",
+     *   //   "questionType": "my_questionType",
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"
@@ -33340,7 +33380,9 @@ export namespace contactcenterinsights_v1 {
      *           //   "metrics": {},
      *           //   "name": "my_name",
      *           //   "order": 0,
+     *           //   "predefinedQuestionConfig": {},
      *           //   "questionBody": "my_questionBody",
+     *           //   "questionType": "my_questionType",
      *           //   "tags": [],
      *           //   "tuningMetadata": {},
      *           //   "updateTime": "my_updateTime"
@@ -33359,7 +33401,9 @@ export namespace contactcenterinsights_v1 {
      *   //   "metrics": {},
      *   //   "name": "my_name",
      *   //   "order": 0,
+     *   //   "predefinedQuestionConfig": {},
      *   //   "questionBody": "my_questionBody",
+     *   //   "questionType": "my_questionType",
      *   //   "tags": [],
      *   //   "tuningMetadata": {},
      *   //   "updateTime": "my_updateTime"
