@@ -650,6 +650,7 @@ export namespace civicinfo_v2 {
    * A simple representation of an address.
    */
   export interface Schema$CivicinfoSchemaV2SimpleAddressType {
+    addressLine?: string[] | null;
     /**
      * The city or town for the address.
      */
