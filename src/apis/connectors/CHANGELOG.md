@@ -1,5 +1,12 @@
 # Changelog
 
+## [23.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v23.0.1...connectors-v23.1.0) (2025-07-15)
+
+
+### Features
+
+* **connectors:** update the API ([2c2df84](https://github.com/googleapis/google-api-nodejs-client/commit/2c2df84452974e40556e5e3ac24552d6b7ec52b8))
+
 ## [23.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v23.0.0...connectors-v23.0.1) (2025-07-08)
 
 

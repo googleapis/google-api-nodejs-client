@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v2.1.0...adsenseplatform-v3.0.0) (2025-07-15)
+
+
+### ⚠ BREAKING CHANGES
+
+* **adsenseplatform:** This release has breaking changes.
+
+### Features
+
+* **adsenseplatform:** update the API ([02abe6b](https://github.com/googleapis/google-api-nodejs-client/commit/02abe6b46f3f874e27f7e874c554b0102f691d41))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/adsenseplatform-v2.0.0...adsenseplatform-v2.1.0) (2025-07-08)
 
 

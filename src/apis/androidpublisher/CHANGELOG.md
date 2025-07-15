@@ -1,5 +1,12 @@
 # Changelog
 
+## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.1.0...androidpublisher-v29.2.0) (2025-07-15)
+
+
+### Features
+
+* **androidpublisher:** update the API ([fe3b295](https://github.com/googleapis/google-api-nodejs-client/commit/fe3b2953015bc34db68727f810605da366f47097))
+
 ## [29.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.0.0...androidpublisher-v29.1.0) (2025-07-08)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [27.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v27.1.0...compute-v27.2.0) (2025-07-15)
+
+
+### Features
+
+* **compute:** update the API ([f9f26f4](https://github.com/googleapis/google-api-nodejs-client/commit/f9f26f43ea8ca69d53d1b1c96452618efbce667e))
+* **compute:** update the API ([2e3c7c3](https://github.com/googleapis/google-api-nodejs-client/commit/2e3c7c36e6e40299fbdef45e1b57b183bdea52b7))
+
 ## [27.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v27.0.0...compute-v27.1.0) (2025-07-08)
 
 

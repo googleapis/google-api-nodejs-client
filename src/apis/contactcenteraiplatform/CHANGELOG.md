@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v9.0.1...contactcenteraiplatform-v9.1.0) (2025-07-15)
+
+
+### Features
+
+* **contactcenteraiplatform:** update the API ([366fb11](https://github.com/googleapis/google-api-nodejs-client/commit/366fb11b1d4b98e0514861c52c12b923f3c94dec))
+
 ## [9.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenteraiplatform-v9.0.0...contactcenteraiplatform-v9.0.1) (2025-07-08)
 
 

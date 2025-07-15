@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.1.0...managedkafka-v2.2.0) (2025-07-15)
+
+
+### Features
+
+* **managedkafka:** update the API ([c94055f](https://github.com/googleapis/google-api-nodejs-client/commit/c94055feb848da359ce86ce3fd96d239e74a4701))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.0.0...managedkafka-v2.1.0) (2025-07-08)
 
 

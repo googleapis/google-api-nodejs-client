@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseapphosting-v2.0.1...firebaseapphosting-v2.1.0) (2025-07-15)
+
+
+### Features
+
+* **firebaseapphosting:** update the API ([f02c951](https://github.com/googleapis/google-api-nodejs-client/commit/f02c9511263531f64d77c289154093626e4d746c))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseapphosting-v2.0.0...firebaseapphosting-v2.0.1) (2025-07-08)
 
 

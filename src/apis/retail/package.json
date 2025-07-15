@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/retail",
-  "version": "16.1.0",
+  "version": "16.1.1",
   "description": "retail",
   "main": "build/index.js",
   "types": "build/index.d.ts",
