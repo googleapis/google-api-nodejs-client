@@ -907,6 +907,10 @@ export namespace connectors_v1 {
      * Output only. Updated time.
      */
     updateTime?: string | null;
+    /**
+     * Output only. VPCSC config for the connector.
+     */
+    vpcscConfig?: Schema$VpcscConfig;
   }
   /**
    * This configuration provides infra configs like rate limit threshold which need to be configurable for every connector version
@@ -3875,6 +3879,19 @@ export namespace connectors_v1 {
      * Error message. The spec is valid if the error message is empty.
      */
     errorMessage?: string | null;
+  }
+  /**
+   * This configuration provides VPCSC config for a connector.
+   */
+  export interface Schema$VpcscConfig {
+    /**
+     * The list of allowlisted FQDNs for VPCSC.
+     */
+    defaultAllowlistedHost?: string[] | null;
+    /**
+     * Whether to disable firewall VPCSC flow.
+     */
+    disableFirewallVpcscFlow?: boolean | null;
   }
   /**
    * WebhookData has details of webhook configuration.
@@ -16056,7 +16073,8 @@ export namespace connectors_v1 {
      *   //   "supportedStandardActions": [],
      *   //   "supportedStandardEntities": [],
      *   //   "unsupportedConnectionTypes": [],
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpcscConfig": {}
      *   // }
      * }
      *

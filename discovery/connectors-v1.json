@@ -2752,7 +2752,7 @@
       }
     }
   },
-  "revision": "20250604",
+  "revision": "20250703",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -4001,6 +4001,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "vpcscConfig": {
+          "$ref": "VpcscConfig",
+          "description": "Output only. VPCSC config for the connector.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -8887,6 +8892,24 @@
         "errorMessage": {
           "description": "Error message. The spec is valid if the error message is empty.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "VpcscConfig": {
+      "description": "This configuration provides VPCSC config for a connector.",
+      "id": "VpcscConfig",
+      "properties": {
+        "defaultAllowlistedHost": {
+          "description": "The list of allowlisted FQDNs for VPCSC.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "disableFirewallVpcscFlow": {
+          "description": "Whether to disable firewall VPCSC flow.",
+          "type": "boolean"
         }
       },
       "type": "object"
