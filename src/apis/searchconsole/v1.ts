@@ -327,6 +327,10 @@ export namespace searchconsole_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$Metadata {
+    firstIncompleteDate?: string | null;
+    firstIncompleteHour?: string | null;
+  }
   /**
    * Mobile-friendly issue.
    */
@@ -485,6 +489,7 @@ export namespace searchconsole_v1 {
    * A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter.
    */
   export interface Schema$SearchAnalyticsQueryResponse {
+    metadata?: Schema$Metadata;
     /**
      * How the results were aggregated.
      */
@@ -686,6 +691,7 @@ export namespace searchconsole_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "responseAggregationType": "my_responseAggregationType",
      *   //   "rows": []
      *   // }

@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250713",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -872,6 +872,18 @@
       },
       "type": "object"
     },
+    "Metadata": {
+      "id": "Metadata",
+      "properties": {
+        "firstIncompleteDate": {
+          "type": "string"
+        },
+        "firstIncompleteHour": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "MobileFriendlyIssue": {
       "description": "Mobile-friendly issue.",
       "id": "MobileFriendlyIssue",
@@ -1238,6 +1250,9 @@
       "description": "A list of rows, one per result, grouped by key. Metrics in each row are aggregated for all data grouped by that key either by page or property, as specified by the aggregation type parameter.",
       "id": "SearchAnalyticsQueryResponse",
       "properties": {
+        "metadata": {
+          "$ref": "Metadata"
+        },
         "responseAggregationType": {
           "description": "How the results were aggregated.",
           "enum": [
