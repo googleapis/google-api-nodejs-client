@@ -185,6 +185,34 @@
           "resources": {
             "instances": {
               "methods": {
+                "checkAuthorization": {
+                  "description": "Initiated by Cloud Console for Oauth consent flow for Workbench Instances. Do not use this method directly. Design doc: go/wbi-euc:auth-dd",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:checkAuthorization",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.checkAuthorization",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the Notebook Instance resource. Format: `projects/{project}/locations/{location}/instances/{instance}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:checkAuthorization",
+                  "request": {
+                    "$ref": "CheckAuthorizationRequest"
+                  },
+                  "response": {
+                    "$ref": "CheckAuthorizationResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "checkUpgradability": {
                   "description": "Checks whether a notebook instance is upgradable.",
                   "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:checkUpgradability",
@@ -301,6 +329,34 @@
                   },
                   "response": {
                     "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "generateAccessToken": {
+                  "description": "Called by VM to return an EUC for the instance owner. Do not use this method directly. Design doc: go/wbi-euc:dd",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/instances/{instancesId}:generateAccessToken",
+                  "httpMethod": "POST",
+                  "id": "notebooks.projects.locations.instances.generateAccessToken",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Format: `projects/{project}/locations/{location}/instances/{instance_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/instances/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}:generateAccessToken",
+                  "request": {
+                    "$ref": "GenerateAccessTokenRequest"
+                  },
+                  "response": {
+                    "$ref": "GenerateAccessTokenResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -910,7 +966,7 @@
       }
     }
   },
-  "revision": "20250604",
+  "revision": "20250710",
   "rootUrl": "https://notebooks.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1044,6 +1100,41 @@
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
       "properties": {},
+      "type": "object"
+    },
+    "CheckAuthorizationRequest": {
+      "description": "Request message for checking authorization for the instance owner.",
+      "id": "CheckAuthorizationRequest",
+      "properties": {
+        "authorizationDetails": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. The details of the OAuth authorization response. This may include additional params such as dry_run, version_info, origin, propagate, etc.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "CheckAuthorizationResponse": {
+      "description": "Response message for checking authorization for the instance owner.",
+      "id": "CheckAuthorizationResponse",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this Authorization request was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "oauth_uri": {
+          "description": "If the user has not completed OAuth consent, then the oauth_url is returned. Otherwise, this field is not set.",
+          "type": "string"
+        },
+        "success": {
+          "description": "Success indicates that the user completed OAuth consent and access tokens can be generated.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "CheckInstanceUpgradabilityResponse": {
@@ -1412,6 +1503,41 @@
       },
       "type": "object"
     },
+    "GenerateAccessTokenRequest": {
+      "description": "Request message for generating an EUC for the instance owner.",
+      "id": "GenerateAccessTokenRequest",
+      "properties": {
+        "vmToken": {
+          "description": "Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GenerateAccessTokenResponse": {
+      "description": "Response message for generating an EUC for the instance owner.",
+      "id": "GenerateAccessTokenResponse",
+      "properties": {
+        "access_token": {
+          "description": "Short-lived access token string which may be used to access Google APIs.",
+          "type": "string"
+        },
+        "expires_in": {
+          "description": "The time in seconds when the access token expires. Typically that's 3600.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "scope": {
+          "description": "Space-separated list of scopes contained in the returned token. https://cloud.google.com/docs/authentication/token-types#access-contents",
+          "type": "string"
+        },
+        "token_type": {
+          "description": "Type of the returned access token (e.g. \"Bearer\"). It specifies how the token must be used. Bearer tokens may be used by any entity without proof of identity.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ImageRelease": {
       "description": "ConfigImage represents an image release available to create a WbI",
       "id": "ImageRelease",
@@ -1450,6 +1576,10 @@
         },
         "enableDeletionProtection": {
           "description": "Optional. If true, deletion protection will be enabled for this Workbench Instance. If false, deletion protection will be disabled for this Workbench Instance.",
+          "type": "boolean"
+        },
+        "enableManagedEuc": {
+          "description": "Optional. Flag to enable managed end user credentials for the instance.",
           "type": "boolean"
         },
         "enableThirdPartyIdentity": {
