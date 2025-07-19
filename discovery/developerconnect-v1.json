@@ -1601,7 +1601,7 @@
       }
     }
   },
-  "revision": "20250530",
+  "revision": "20250710",
   "rootUrl": "https://developerconnect.googleapis.com/",
   "schemas": {
     "AccountConnector": {
@@ -1686,7 +1686,7 @@
         },
         "googleArtifactRegistry": {
           "$ref": "GoogleArtifactRegistry",
-          "description": "Optional. Set if the artifact is stored in Artifact regsitry."
+          "description": "Optional. Set if the artifact is stored in Artifact registry."
         },
         "uri": {
           "description": "Required. Immutable. The URI of the artifact that is deployed. e.g. `us-docker.pkg.dev/my-project/my-repo/image`. The URI does not include the tag / digest because it captures a lineage of artifacts.",
