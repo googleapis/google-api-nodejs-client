@@ -881,6 +881,19 @@ export namespace firebaseml_v2beta {
     thinkingBudget?: number | null;
   }
   /**
+   * Tool to retrieve public maps data for grounding, powered by Google.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMaps {
+    /**
+     * The authentication config to access the API. Deprecated. Please use auth_config instead.
+     */
+    apiAuth?: Schema$GoogleCloudAiplatformV1beta1ApiAuth;
+    /**
+     * The authentication config to access the API. Only API key is supported.
+     */
+    authConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfig;
+  }
+  /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GoogleSearchRetrieval {
@@ -894,6 +907,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunk {
     /**
+     * Grounding chunk from Google Maps.
+     */
+    maps?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMaps;
+    /**
      * Grounding chunk from context retrieved by the retrieval tools.
      */
     retrievedContext?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext;
@@ -901,6 +918,27 @@ export namespace firebaseml_v2beta {
      * Grounding chunk from the web.
      */
     web?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkWeb;
+  }
+  /**
+   * Chunk from Google Maps.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMaps {
+    /**
+     * This Place's resource name, in `places/{place_id\}` format. Can be used to look up the Place.
+     */
+    placeId?: string | null;
+    /**
+     * Text of the chunk.
+     */
+    text?: string | null;
+    /**
+     * Title of the chunk.
+     */
+    title?: string | null;
+    /**
+     * URI reference of the chunk.
+     */
+    uri?: string | null;
   }
   /**
    * Chunk from context retrieved by the retrieval tools.
@@ -944,6 +982,10 @@ export namespace firebaseml_v2beta {
    * Metadata returned to client when grounding is enabled.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingMetadata {
+    /**
+     * Optional. Output only. Resource name of the Google Maps widget context token to be used with the PlacesContextElement widget to render contextual data. This is populated only for Google Maps grounding.
+     */
+    googleMapsWidgetContextToken?: string | null;
     /**
      * List of supporting references retrieved from specified grounding source.
      */
@@ -1460,9 +1502,13 @@ export namespace firebaseml_v2beta {
      */
     enterpriseWebSearch?: Schema$GoogleCloudAiplatformV1beta1EnterpriseWebSearch;
     /**
-     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.
+     * Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.
      */
     functionDeclarations?: Schema$GoogleCloudAiplatformV1beta1FunctionDeclaration[];
+    /**
+     * Optional. GoogleMaps tool type. Tool to support Google Maps in Model.
+     */
+    googleMaps?: Schema$GoogleCloudAiplatformV1beta1GoogleMaps;
     /**
      * Optional. GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.
      */
