@@ -1103,7 +1103,7 @@ export namespace backupdr_v1 {
      */
     description?: string | null;
     /**
-     * Optional. Array of disks associated with this instance. Persistent disks must be created before you can assign them.
+     * Optional. Array of disks associated with this instance. Persistent disks must be created before you can assign them. Source regional persistent disks will be restored with default replica zones if not specified.
      */
     disks?: Schema$AttachedDisk[];
     /**
@@ -1147,7 +1147,7 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
     /**
-     * Optional. An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.
+     * Optional. An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance. Required to restore in different project or region.
      */
     networkInterfaces?: Schema$NetworkInterface[];
     /**
@@ -1167,7 +1167,7 @@ export namespace backupdr_v1 {
      */
     reservationAffinity?: Schema$AllocationAffinity;
     /**
-     * Optional. Resource policies applied to this instance.
+     * Optional. Resource policies applied to this instance. By default, no resource policies will be applied.
      */
     resourcePolicies?: string[] | null;
     /**
@@ -1666,6 +1666,24 @@ export namespace backupdr_v1 {
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * Request message for GetMsComplianceMetadata
+   */
+  export interface Schema$FetchMsComplianceMetadataRequest {
+    /**
+     * Required. The project id of the target project
+     */
+    projectId?: string | null;
+  }
+  /**
+   * Response message for GetMsComplianceMetadata
+   */
+  export interface Schema$FetchMsComplianceMetadataResponse {
+    /**
+     * The ms compliance metadata of the target project, if the project is an assured workloads project, values will be true, otherwise false.
+     */
+    isAssuredWorkload?: boolean | null;
   }
   /**
    * Response message for fetching usable BackupVaults.
@@ -10232,6 +10250,163 @@ export namespace backupdr_v1 {
     }
 
     /**
+     * Returns the Assured Workloads compliance metadata for a given project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/backupdr.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const backupdr = google.backupdr('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await backupdr.projects.locations.managementServers.msComplianceMetadata({
+     *       // Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     *       parent: 'projects/my-project/locations/my-location/managementServers',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "projectId": "my_projectId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "isAssuredWorkload": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    msComplianceMetadata(
+      params?: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$FetchMsComplianceMetadataResponse>
+    >;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>,
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      params: Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata,
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      callback: BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+    ): void;
+    msComplianceMetadata(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchMsComplianceMetadataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$FetchMsComplianceMetadataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://backupdr.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}:msComplianceMetadata').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchMsComplianceMetadataResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchMsComplianceMetadataResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.
      * @example
      * ```js
@@ -10606,6 +10781,18 @@ export namespace backupdr_v1 {
      * Required. The project and location for which to retrieve management servers information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**. To retrieve management servers for all locations, use "-" for the '{location\}' value.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Managementservers$Mscompliancemetadata
+    extends StandardParameters {
+    /**
+     * Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id\}/locations/{location\}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$FetchMsComplianceMetadataRequest;
   }
   export interface Params$Resource$Projects$Locations$Managementservers$Setiampolicy
     extends StandardParameters {
