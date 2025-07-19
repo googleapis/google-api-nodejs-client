@@ -523,7 +523,7 @@
       }
     }
   },
-  "revision": "20250709",
+  "revision": "20250713",
   "rootUrl": "https://paymentsresellersubscription.googleapis.com/",
   "schemas": {
     "GoogleCloudPaymentsResellerSubscriptionV1Amount": {
@@ -800,7 +800,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest": {
-      "description": "[Preview only] Request to generate a user session.",
+      "description": "Request to generate a user session.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest",
       "properties": {
         "intentPayload": {
@@ -811,7 +811,7 @@
       "type": "object"
     },
     "GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse": {
-      "description": "[Preview only] Response that contains the details for generated user session.",
+      "description": "Response that contains the details for generated user session.",
       "id": "GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse",
       "properties": {
         "userSession": {

@@ -312,7 +312,7 @@ export namespace paymentsresellersubscription_v1 {
     billingCycleCountLimit?: string | null;
   }
   /**
-   * [Preview only] Request to generate a user session.
+   * Request to generate a user session.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest {
     /**
@@ -321,7 +321,7 @@ export namespace paymentsresellersubscription_v1 {
     intentPayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1IntentPayload;
   }
   /**
-   * [Preview only] Response that contains the details for generated user session.
+   * Response that contains the details for generated user session.
    */
   export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse {
     /**
