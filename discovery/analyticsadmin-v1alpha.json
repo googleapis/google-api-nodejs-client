@@ -683,24 +683,6 @@
             "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
-        "createConnectedSiteTag": {
-          "description": "Creates a connected site tag for a Universal Analytics property. You can create a maximum of 20 connected site tags per property. Note: This API cannot be used on GA4 properties.",
-          "flatPath": "v1alpha/properties:createConnectedSiteTag",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.createConnectedSiteTag",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:createConnectedSiteTag",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest"
-          },
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit"
-          ]
-        },
         "createRollupProperty": {
           "description": "Create a roll-up property and all roll-up property source links.",
           "flatPath": "v1alpha/properties:createRollupProperty",
@@ -742,65 +724,6 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit"
-          ]
-        },
-        "deleteConnectedSiteTag": {
-          "description": "Deletes a connected site tag for a Universal Analytics property. Note: this has no effect on GA4 properties.",
-          "flatPath": "v1alpha/properties:deleteConnectedSiteTag",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.deleteConnectedSiteTag",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:deleteConnectedSiteTag",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest"
-          },
-          "response": {
-            "$ref": "GoogleProtobufEmpty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit"
-          ]
-        },
-        "fetchAutomatedGa4ConfigurationOptOut": {
-          "description": "Fetches the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
-          "flatPath": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.fetchAutomatedGa4ConfigurationOptOut",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:fetchAutomatedGa4ConfigurationOptOut",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest"
-          },
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit",
-            "https://www.googleapis.com/auth/analytics.readonly"
-          ]
-        },
-        "fetchConnectedGa4Property": {
-          "description": "Given a specified UA property, looks up the GA4 property connected to it. Note: this cannot be used with GA4 properties.",
-          "flatPath": "v1alpha/properties:fetchConnectedGa4Property",
-          "httpMethod": "GET",
-          "id": "analyticsadmin.properties.fetchConnectedGa4Property",
-          "parameterOrder": [],
-          "parameters": {
-            "property": {
-              "description": "Required. The UA property for which to look up the connected GA4 property. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internal_web_property_id} Example: properties/1234",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "v1alpha/properties:fetchConnectedGa4Property",
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit",
-            "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
         "get": {
@@ -971,25 +894,6 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
-        "listConnectedSiteTags": {
-          "description": "Lists the connected site tags for a Universal Analytics property. A maximum of 20 connected site tags will be returned. Note: this has no effect on GA4 property.",
-          "flatPath": "v1alpha/properties:listConnectedSiteTags",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.listConnectedSiteTags",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:listConnectedSiteTags",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest"
-          },
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit",
-            "https://www.googleapis.com/auth/analytics.readonly"
-          ]
-        },
         "patch": {
           "description": "Updates a property.",
           "flatPath": "v1alpha/properties/{propertiesId}",
@@ -1069,24 +973,6 @@
           "scopes": [
             "https://www.googleapis.com/auth/analytics.edit",
             "https://www.googleapis.com/auth/analytics.readonly"
-          ]
-        },
-        "setAutomatedGa4ConfigurationOptOut": {
-          "description": "Sets the opt out status for the automated GA4 setup process for a UA property. Note: this has no effect on GA4 property.",
-          "flatPath": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
-          "httpMethod": "POST",
-          "id": "analyticsadmin.properties.setAutomatedGa4ConfigurationOptOut",
-          "parameterOrder": [],
-          "parameters": {},
-          "path": "v1alpha/properties:setAutomatedGa4ConfigurationOptOut",
-          "request": {
-            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest"
-          },
-          "response": {
-            "$ref": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/analytics.edit"
           ]
         },
         "updateAttributionSettings": {
@@ -5172,7 +5058,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250713",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -6765,21 +6651,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaConnectedSiteTag": {
-      "description": "Configuration for a specific Connected Site Tag.",
-      "id": "GoogleAnalyticsAdminV1alphaConnectedSiteTag",
-      "properties": {
-        "displayName": {
-          "description": "Required. User-provided display name for the connected site tag. Must be less than 256 characters.",
-          "type": "string"
-        },
-        "tagId": {
-          "description": "Required. \"Tag ID to forward events to. Also known as the Measurement ID, or the \"G-ID\" (For example: G-12345).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaConversionEvent": {
       "description": "A conversion event in a Google Analytics property.",
       "id": "GoogleAnalyticsAdminV1alphaConversionEvent",
@@ -6902,27 +6773,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest": {
-      "description": "Request message for CreateConnectedSiteTag RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagRequest",
-      "properties": {
-        "connectedSiteTag": {
-          "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag",
-          "description": "Required. The tag to add to the Universal Analytics property"
-        },
-        "property": {
-          "description": "The Universal Analytics property to create connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId} Example: properties/1234",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse": {
-      "description": "Response message for CreateConnectedSiteTag RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaCreateConnectedSiteTagResponse",
-      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaCreateRollupPropertyRequest": {
@@ -7324,21 +7174,6 @@
       },
       "type": "object"
     },
-    "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest": {
-      "description": "Request message for DeleteConnectedSiteTag RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaDeleteConnectedSiteTagRequest",
-      "properties": {
-        "property": {
-          "description": "The Universal Analytics property to delete connected site tags for. This API does not support GA4 properties. Format: properties/{universalAnalyticsPropertyId} Example: properties/1234",
-          "type": "string"
-        },
-        "tagId": {
-          "description": "Tag ID to forward events to. Also known as the Measurement ID, or the \"G-ID\" (For example: G-12345).",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink": {
       "description": "A link between a Google Analytics property and a Display & Video 360 advertiser.",
       "id": "GoogleAnalyticsAdminV1alphaDisplayVideo360AdvertiserLink",
@@ -7704,39 +7539,6 @@
         },
         "value": {
           "description": "Required. The string value to be matched against.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest": {
-      "description": "Request for fetching the opt out status for the automated GA4 setup process.",
-      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutRequest",
-      "properties": {
-        "property": {
-          "description": "Required. The UA property to get the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse": {
-      "description": "Response message for fetching the opt out status for the automated GA4 setup process.",
-      "id": "GoogleAnalyticsAdminV1alphaFetchAutomatedGa4ConfigurationOptOutResponse",
-      "properties": {
-        "optOut": {
-          "description": "The opt out status for the UA property.",
-          "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse": {
-      "description": "Response for looking up GA4 property connected to a UA property.",
-      "id": "GoogleAnalyticsAdminV1alphaFetchConnectedGa4PropertyResponse",
-      "properties": {
-        "property": {
-          "description": "The GA4 property connected to the UA property. An empty string is returned when there is no connected GA4 property. Format: properties/{property_id} Example: properties/1234",
           "type": "string"
         }
       },
@@ -8134,31 +7936,6 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest": {
-      "description": "Request message for ListConnectedSiteTags RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsRequest",
-      "properties": {
-        "property": {
-          "description": "The Universal Analytics property to fetch connected site tags for. This does not work on GA4 properties. A maximum of 20 connected site tags will be returned. Example Format: `properties/1234`",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse": {
-      "description": "Response message for ListConnectedSiteTags RPC.",
-      "id": "GoogleAnalyticsAdminV1alphaListConnectedSiteTagsResponse",
-      "properties": {
-        "connectedSiteTags": {
-          "description": "The site tags for the Universal Analytics property. A maximum of 20 connected site tags will be returned.",
-          "items": {
-            "$ref": "GoogleAnalyticsAdminV1alphaConnectedSiteTag"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -9348,27 +9125,6 @@
           "type": "string"
         }
       },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest": {
-      "description": "Request for setting the opt out status for the automated GA4 setup process.",
-      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutRequest",
-      "properties": {
-        "optOut": {
-          "description": "The status to set.",
-          "type": "boolean"
-        },
-        "property": {
-          "description": "Required. The UA property to set the opt out status. Note this request uses the internal property ID, not the tracking ID of the form UA-XXXXXX-YY. Format: properties/{internalWebPropertyId} Example: properties/1234",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse": {
-      "description": "Response message for setting the opt out status for the automated GA4 setup process.",
-      "id": "GoogleAnalyticsAdminV1alphaSetAutomatedGa4ConfigurationOptOutResponse",
-      "properties": {},
       "type": "object"
     },
     "GoogleAnalyticsAdminV1alphaSubpropertyEventFilter": {
