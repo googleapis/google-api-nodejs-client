@@ -700,6 +700,10 @@
     "package": "@googlemaps/fleetengine-delivery"
   },
   {
+    "api": "licensemanager",
+    "package": "@google-cloud/licensemanager"
+  },
+  {
     "api": "lifesciences",
     "package": "@google-cloud/life-sciences"
   },
@@ -714,6 +718,10 @@
   {
     "api": "lustre",
     "package": "@google-cloud/lustre"
+  },
+  {
+    "api": "managedkafka",
+    "package": "@google-cloud/managedkafka-schemaregistry"
   },
   {
     "api": "managedkafka",

@@ -4,9 +4,6 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
-        },
-        "https://www.googleapis.com/auth/cloud-platform.read-only": {
-          "description": "View your data across Google Cloud services and see the email address of your Google Account"
         }
       }
     }
@@ -98,6 +95,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://datalineage.europe-north2.rep.googleapis.com/",
       "location": "europe-north2"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://datalineage.europe-north3.rep.googleapis.com/",
+      "location": "europe-north3"
     },
     {
       "description": "Regional Endpoint",
@@ -384,8 +386,7 @@
                 "$ref": "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "processOpenLineageRunEvent": {
@@ -422,8 +423,7 @@
                 "$ref": "GoogleCloudDatacatalogLineageV1ProcessOpenLineageRunEventResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
             "searchLinks": {
@@ -451,8 +451,7 @@
                 "$ref": "GoogleCloudDatacatalogLineageV1SearchLinksResponse"
               },
               "scopes": [
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
+                "https://www.googleapis.com/auth/cloud-platform"
               ]
             }
           },
@@ -484,8 +483,7 @@
                     "$ref": "GoogleProtobufEmpty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "delete": {
@@ -510,8 +508,7 @@
                     "$ref": "GoogleProtobufEmpty"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "get": {
@@ -536,8 +533,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "list": {
@@ -578,8 +574,7 @@
                     "$ref": "GoogleLongrunningListOperationsResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               }
@@ -616,8 +611,7 @@
                     "$ref": "GoogleCloudDatacatalogLineageV1Process"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "delete": {
@@ -647,8 +641,7 @@
                     "$ref": "GoogleLongrunningOperation"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "get": {
@@ -673,8 +666,7 @@
                     "$ref": "GoogleCloudDatacatalogLineageV1Process"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "list": {
@@ -710,8 +702,7 @@
                     "$ref": "GoogleCloudDatacatalogLineageV1ListProcessesResponse"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
                 "patch": {
@@ -755,8 +746,7 @@
                     "$ref": "GoogleCloudDatacatalogLineageV1Process"
                   },
                   "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/cloud-platform.read-only"
+                    "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 }
               },
@@ -793,8 +783,7 @@
                         "$ref": "GoogleCloudDatacatalogLineageV1Run"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "delete": {
@@ -824,8 +813,7 @@
                         "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "get": {
@@ -850,8 +838,7 @@
                         "$ref": "GoogleCloudDatacatalogLineageV1Run"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "list": {
@@ -887,8 +874,7 @@
                         "$ref": "GoogleCloudDatacatalogLineageV1ListRunsResponse"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
                     "patch": {
@@ -927,8 +913,7 @@
                         "$ref": "GoogleCloudDatacatalogLineageV1Run"
                       },
                       "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform",
-                        "https://www.googleapis.com/auth/cloud-platform.read-only"
+                        "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     }
                   },
@@ -965,8 +950,7 @@
                             "$ref": "GoogleCloudDatacatalogLineageV1LineageEvent"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                            "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
                         "delete": {
@@ -996,8 +980,7 @@
                             "$ref": "GoogleProtobufEmpty"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                            "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
                         "get": {
@@ -1022,8 +1005,7 @@
                             "$ref": "GoogleCloudDatacatalogLineageV1LineageEvent"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                            "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         },
                         "list": {
@@ -1059,8 +1041,7 @@
                             "$ref": "GoogleCloudDatacatalogLineageV1ListLineageEventsResponse"
                           },
                           "scopes": [
-                            "https://www.googleapis.com/auth/cloud-platform",
-                            "https://www.googleapis.com/auth/cloud-platform.read-only"
+                            "https://www.googleapis.com/auth/cloud-platform"
                           ]
                         }
                       }
@@ -1074,7 +1055,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250711",
   "rootUrl": "https://datalineage.googleapis.com/",
   "schemas": {
     "GoogleCloudDatacatalogLineageV1BatchSearchLinkProcessesRequest": {
