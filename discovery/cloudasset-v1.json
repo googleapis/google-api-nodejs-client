@@ -1095,7 +1095,7 @@
       }
     }
   },
-  "revision": "20250627",
+  "revision": "20250711",
   "rootUrl": "https://cloudasset.googleapis.com/",
   "schemas": {
     "AccessSelector": {
@@ -1323,6 +1323,13 @@
           },
           "type": "array"
         },
+        "assetExceptions": {
+          "description": "The exceptions of a resource.",
+          "items": {
+            "$ref": "AssetException"
+          },
+          "type": "array"
+        },
         "assetType": {
           "description": "The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.",
           "type": "string"
@@ -1378,6 +1385,29 @@
         "resourceOwners": {
           "$ref": "ResourceOwners",
           "description": "The resource owners for a resource. Note that this field only contains the members that have \"roles/owner\" role in the resource's IAM Policy."
+        }
+      },
+      "type": "object"
+    },
+    "AssetException": {
+      "description": "An exception of an asset.",
+      "id": "AssetException",
+      "properties": {
+        "details": {
+          "description": "The details of the exception.",
+          "type": "string"
+        },
+        "exceptionType": {
+          "description": "The type of exception.",
+          "enum": [
+            "EXCEPTION_TYPE_UNSPECIFIED",
+            "TRUNCATION"
+          ],
+          "enumDescriptions": [
+            "exception_type is not applicable for the current asset.",
+            "The asset content is truncated."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
