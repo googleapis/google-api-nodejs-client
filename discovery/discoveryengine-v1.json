@@ -4,6 +4,9 @@
       "scopes": {
         "https://www.googleapis.com/auth/cloud-platform": {
           "description": "See, edit, configure, and delete your Google Cloud data and see the email address for your Google Account."
+        },
+        "https://www.googleapis.com/auth/cloud_search.query": {
+          "description": "Search your organization's data in the Cloud Search index"
         }
       }
     }
@@ -35,6 +38,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://discoveryengine.eu.rep.googleapis.com/",
       "location": "eu"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://discoveryengine.in.rep.googleapis.com/",
+      "location": "in"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1045,6 +1053,39 @@
                               ]
                             }
                           }
+                        }
+                      }
+                    },
+                    "completionConfig": {
+                      "methods": {
+                        "completeQuery": {
+                          "description": "Completes the user input with advanced keyword suggestions.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/dataStores/{dataStoresId}/completionConfig:completeQuery",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.dataStores.completionConfig.completeQuery",
+                          "parameterOrder": [
+                            "completionConfig"
+                          ],
+                          "parameters": {
+                            "completionConfig": {
+                              "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/dataStores/[^/]+/completionConfig$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+completionConfig}:completeQuery",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud_search.query"
+                          ]
                         }
                       }
                     },
@@ -3153,6 +3194,71 @@
                     }
                   },
                   "resources": {
+                    "assistants": {
+                      "methods": {
+                        "streamAssist": {
+                          "description": "Assists the user with a query in a streaming fashion.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}:streamAssist",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.streamAssist",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the Assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:streamAssist",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1StreamAssistResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
+                    "completionConfig": {
+                      "methods": {
+                        "completeQuery": {
+                          "description": "Completes the user input with advanced keyword suggestions.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/completionConfig:completeQuery",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.completionConfig.completeQuery",
+                          "parameterOrder": [
+                            "completionConfig"
+                          ],
+                          "parameters": {
+                            "completionConfig": {
+                              "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/completionConfig$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+completionConfig}:completeQuery",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloud_search.query"
+                          ]
+                        }
+                      }
+                    },
                     "controls": {
                       "methods": {
                         "create": {
@@ -4661,6 +4767,39 @@
                           ]
                         }
                       }
+                    }
+                  }
+                },
+                "completionConfig": {
+                  "methods": {
+                    "completeQuery": {
+                      "description": "Completes the user input with advanced keyword suggestions.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataStores/{dataStoresId}/completionConfig:completeQuery",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.dataStores.completionConfig.completeQuery",
+                      "parameterOrder": [
+                        "completionConfig"
+                      ],
+                      "parameters": {
+                        "completionConfig": {
+                          "description": "Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/*/locations/global/collections/default_collection/dataStores/*/completionConfig` `projects/*/locations/global/collections/default_collection/engines/*/completionConfig`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/dataStores/[^/]+/completionConfig$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+completionConfig}:completeQuery",
+                      "request": {
+                        "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/cloud_search.query"
+                      ]
                     }
                   }
                 },
@@ -7052,7 +7191,7 @@
       }
     }
   },
-  "revision": "20250706",
+  "revision": "20250716",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -7463,6 +7602,318 @@
       "properties": {
         "functionName": {
           "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest": {
+      "description": "Request message for CompletionService.AdvancedCompleteQuery method. .",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest",
+      "properties": {
+        "boostSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpec",
+          "description": "Optional. Specification to boost suggestions matching the condition."
+        },
+        "experimentIds": {
+          "description": "Optional. Experiment ids for this request.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "includeTailSuggestions": {
+          "description": "Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.",
+          "type": "boolean"
+        },
+        "query": {
+          "description": "Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters. The query can not be empty for most of the suggestion types. If it is empty, an `INVALID_ARGUMENT` error is returned. The exception is when the suggestion_types contains only the type `RECENT_SEARCH`, the query can be an empty string. The is called \"zero prefix\" feature, which returns user's recently searched queries given the empty query.",
+          "type": "string"
+        },
+        "queryModel": {
+          "description": "Specifies the autocomplete query model, which only applies to the QUERY SuggestionType. This overrides any model specified in the Configuration > Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.",
+          "type": "string"
+        },
+        "suggestionTypeSpecs": {
+          "description": "Optional. Specification of each suggestion type.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec"
+          },
+          "type": "array"
+        },
+        "suggestionTypes": {
+          "description": "Optional. Suggestion types to return. If empty or unspecified, query suggestions are returned. Only one suggestion type is supported at the moment.",
+          "items": {
+            "enum": [
+              "SUGGESTION_TYPE_UNSPECIFIED",
+              "QUERY",
+              "PEOPLE",
+              "CONTENT",
+              "RECENT_SEARCH",
+              "GOOGLE_WORKSPACE"
+            ],
+            "enumDescriptions": [
+              "Default value.",
+              "Returns query suggestions.",
+              "Returns people suggestions.",
+              "Returns content suggestions.",
+              "Returns recent search suggestions.",
+              "Returns Google Workspace suggestions."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "userInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1UserInfo",
+          "description": "Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info."
+        },
+        "userPseudoId": {
+          "description": "A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpec": {
+      "description": "Specification to boost suggestions based on the condtion of the suggestion.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpec",
+      "properties": {
+        "conditionBoostSpecs": {
+          "description": "Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpecConditionBoostSpec"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpecConditionBoostSpec": {
+      "description": "Boost applies to suggestions which match a condition.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpecConditionBoostSpec",
+      "properties": {
+        "boost": {
+          "description": "Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the suggestions a big promotion. However, it does not necessarily mean that the top result will be a boosted suggestion. Setting to -1.0 gives the suggestions a big demotion. However, other suggestions that are relevant might still be shown. Setting to 0.0 means no boost applied. The boosting condition is ignored.",
+          "format": "float",
+          "type": "number"
+        },
+        "condition": {
+          "description": "An expression which specifies a boost condition. The syntax is the same as [filter expression syntax](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax). Currently, the only supported condition is a list of BCP-47 lang codes. Example: * To boost suggestions in languages `en` or `fr`: `(lang_code: ANY(\"en\", \"fr\"))`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec": {
+      "description": "Specification of each suggestion type.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec",
+      "properties": {
+        "maxSuggestions": {
+          "description": "Optional. Maximum number of suggestions to return for each suggestion type.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "suggestionType": {
+          "description": "Optional. Suggestion type.",
+          "enum": [
+            "SUGGESTION_TYPE_UNSPECIFIED",
+            "QUERY",
+            "PEOPLE",
+            "CONTENT",
+            "RECENT_SEARCH",
+            "GOOGLE_WORKSPACE"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Returns query suggestions.",
+            "Returns people suggestions.",
+            "Returns content suggestions.",
+            "Returns recent search suggestions.",
+            "Returns Google Workspace suggestions."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse": {
+      "description": "Response message for CompletionService.AdvancedCompleteQuery method.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse",
+      "properties": {
+        "contentSuggestions": {
+          "description": "Results of the matched content suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion"
+          },
+          "type": "array"
+        },
+        "peopleSuggestions": {
+          "description": "Results of the matched people suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestion"
+          },
+          "type": "array"
+        },
+        "querySuggestions": {
+          "description": "Results of the matched query suggestions. The result list is ordered and the first result is a top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseQuerySuggestion"
+          },
+          "type": "array"
+        },
+        "recentSearchSuggestions": {
+          "description": "Results of the matched \"recent search\" suggestions. The result list is ordered and the first result is the top suggestion.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseRecentSearchSuggestion"
+          },
+          "type": "array"
+        },
+        "tailMatchTriggered": {
+          "description": "True if the returned suggestions are all tail suggestions. For tail matching to be triggered, include_tail_suggestions in the request must be true and there must be no suggestions that match the full query.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion": {
+      "description": "Suggestions as content.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion",
+      "properties": {
+        "contentType": {
+          "description": "The type of the content suggestion.",
+          "enum": [
+            "CONTENT_TYPE_UNSPECIFIED",
+            "GOOGLE_WORKSPACE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The suggestion is from a Google Workspace source.",
+            "The suggestion is from a third party source."
+          ],
+          "type": "string"
+        },
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "type": "string"
+        },
+        "destinationUri": {
+          "description": "The destination uri of the content suggestion.",
+          "type": "string"
+        },
+        "document": {
+          "$ref": "GoogleCloudDiscoveryengineV1Document",
+          "description": "The document data snippet in the suggestion. Only a subset of fields will be populated."
+        },
+        "iconUri": {
+          "description": "The icon uri of the content suggestion.",
+          "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestion": {
+      "description": "Suggestions as people.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestion",
+      "properties": {
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "type": "string"
+        },
+        "destinationUri": {
+          "description": "The destination uri of the person suggestion.",
+          "type": "string"
+        },
+        "displayPhotoUri": {
+          "description": "The photo uri of the person suggestion.",
+          "type": "string"
+        },
+        "document": {
+          "$ref": "GoogleCloudDiscoveryengineV1Document",
+          "description": "The document data snippet in the suggestion. Only a subset of fields is populated."
+        },
+        "personType": {
+          "description": "The type of the person.",
+          "enum": [
+            "PERSON_TYPE_UNSPECIFIED",
+            "CLOUD_IDENTITY",
+            "THIRD_PARTY_IDENTITY"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The suggestion is from a GOOGLE_IDENTITY source.",
+            "The suggestion is from a THIRD_PARTY_IDENTITY source."
+          ],
+          "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseQuerySuggestion": {
+      "description": "Suggestions as search queries.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseQuerySuggestion",
+      "properties": {
+        "completableFieldPaths": {
+          "description": "The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "dataStore": {
+          "description": "The name of the dataStore that this suggestion belongs to.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseRecentSearchSuggestion": {
+      "description": "Suggestions from recent search history.",
+      "id": "GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseRecentSearchSuggestion",
+      "properties": {
+        "recentSearchTime": {
+          "description": "The time when this recent rearch happened.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "score": {
+          "description": "The score of each suggestion. The score is in the range of [0, 1].",
+          "format": "double",
+          "type": "number"
+        },
+        "suggestion": {
+          "description": "The suggestion for the query.",
           "type": "string"
         }
       },
@@ -8707,6 +9158,297 @@
       "properties": {
         "query": {
           "description": "The query to search.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistAnswer": {
+      "description": "AssistAnswer resource, main part of AssistResponse.",
+      "id": "GoogleCloudDiscoveryengineV1AssistAnswer",
+      "properties": {
+        "assistSkippedReasons": {
+          "description": "Reasons for not answering the assist call.",
+          "items": {
+            "enum": [
+              "ASSIST_SKIPPED_REASON_UNSPECIFIED",
+              "NON_ASSIST_SEEKING_QUERY_IGNORED",
+              "CUSTOMER_POLICY_VIOLATION"
+            ],
+            "enumDescriptions": [
+              "Default value. Skip reason is not specified.",
+              "The assistant ignored the query, because it did not appear to be answer-seeking.",
+              "The assistant ignored the query or refused to answer because of a customer policy violation (e.g., the query or the answer contained a banned phrase)."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "replies": {
+          "description": "Replies of the assistant.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistAnswerReply"
+          },
+          "type": "array"
+        },
+        "state": {
+          "description": "State of the answer generation.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "IN_PROGRESS",
+            "FAILED",
+            "SUCCEEDED",
+            "SKIPPED"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Assist operation is currently in progress.",
+            "Assist operation has failed.",
+            "Assist operation has succeeded.",
+            "Assist operation has been skipped."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistAnswerReply": {
+      "description": "One part of the multi-part response of the assist call.",
+      "id": "GoogleCloudDiscoveryengineV1AssistAnswerReply",
+      "properties": {
+        "groundedContent": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContent",
+          "description": "Possibly grounded response text or media from the assistant."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistUserMetadata": {
+      "description": "User metadata of the request.",
+      "id": "GoogleCloudDiscoveryengineV1AssistUserMetadata",
+      "properties": {
+        "preferredLanguageCode": {
+          "description": "Optional. Preferred language to be used for answering if language detection fails. Also used as the language of error messages created by actions, regardless of language detection results.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantContent": {
+      "description": "Multi-modal content.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantContent",
+      "properties": {
+        "codeExecutionResult": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult",
+          "description": "Result of executing an ExecutableCode."
+        },
+        "executableCode": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantContentExecutableCode",
+          "description": "Code generated by the model that is meant to be executed."
+        },
+        "file": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantContentFile",
+          "description": "A file, e.g., an audio summary."
+        },
+        "inlineData": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantContentBlob",
+          "description": "Inline binary data."
+        },
+        "role": {
+          "description": "The producer of the content. Can be \"model\" or \"user\".",
+          "type": "string"
+        },
+        "text": {
+          "description": "Inline text.",
+          "type": "string"
+        },
+        "thought": {
+          "description": "Optional. Indicates if the part is thought from the model.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantContentBlob": {
+      "description": "Inline blob.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantContentBlob",
+      "properties": {
+        "data": {
+          "description": "Required. Raw bytes.",
+          "format": "byte",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The media type (MIME type) of the generated data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult": {
+      "description": "Result of executing ExecutableCode.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult",
+      "properties": {
+        "outcome": {
+          "description": "Required. Outcome of the code execution.",
+          "enum": [
+            "OUTCOME_UNSPECIFIED",
+            "OUTCOME_OK",
+            "OUTCOME_FAILED",
+            "OUTCOME_DEADLINE_EXCEEDED"
+          ],
+          "enumDescriptions": [
+            "Unspecified status. This value should not be used.",
+            "Code execution completed successfully.",
+            "Code execution finished but with a failure. `stderr` should contain the reason.",
+            "Code execution ran for too long, and was cancelled. There may or may not be a partial output present."
+          ],
+          "type": "string"
+        },
+        "output": {
+          "description": "Optional. Contains stdout when code execution is successful, stderr or other description otherwise.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantContentExecutableCode": {
+      "description": "Code generated by the model that is meant to be executed by the model.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantContentExecutableCode",
+      "properties": {
+        "code": {
+          "description": "Required. The code content. Currently only supports Python.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantContentFile": {
+      "description": "A file, e.g., an audio summary.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantContentFile",
+      "properties": {
+        "fileId": {
+          "description": "Required. The file ID.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "Required. The media type (MIME type) of the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGroundedContent": {
+      "description": "A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like \"Of course, I will gladly search it for you.\" do not need grounding.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContent",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantContent",
+          "description": "The content."
+        },
+        "textGroundingMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadata",
+          "description": "Metadata for grounding based on text sources."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadata": {
+      "description": "Grounding details for text sources.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadata",
+      "properties": {
+        "references": {
+          "description": "References for the grounded text.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference"
+          },
+          "type": "array"
+        },
+        "segments": {
+          "description": "Grounding information for parts of the text.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference": {
+      "description": "Referenced content and related document metadata.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference",
+      "properties": {
+        "content": {
+          "description": "Referenced text content.",
+          "type": "string"
+        },
+        "documentMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata",
+          "description": "Document metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata": {
+      "description": "Document metadata.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata",
+      "properties": {
+        "document": {
+          "description": "Document resource name.",
+          "type": "string"
+        },
+        "domain": {
+          "description": "Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.",
+          "type": "string"
+        },
+        "pageIdentifier": {
+          "description": "Page identifier.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI for the document. It may contain a URL that redirects to the actual website.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment": {
+      "description": "Grounding information for a segment of the text.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment",
+      "properties": {
+        "endIndex": {
+          "description": "End of the segment, exclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "groundingScore": {
+          "description": "Score for the segment.",
+          "format": "float",
+          "type": "number"
+        },
+        "referenceIndices": {
+          "description": "References for the segment.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "startIndex": {
+          "description": "Zero-based index indicating the start of the segment, measured in bytes of a UTF-8 string (i.e. characters encoded on multiple bytes have a length of more than one).",
+          "format": "int64",
+          "type": "string"
+        },
+        "text": {
+          "description": "The text segment itself.",
           "type": "string"
         }
       },
@@ -10817,6 +11559,10 @@
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {
+        "enableGetProcessedDocument": {
+          "description": "Optional. If true, the processed document will be made available for the GetProcessedDocument API.",
+          "type": "boolean"
+        },
         "enableImageAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
@@ -10971,7 +11717,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
           "type": "object"
         },
         "industryVertical": {
@@ -11627,7 +12373,7 @@
           "description": "Cloud Storage location for the input content."
         },
         "idField": {
-          "description": "The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{\"my_id\": \"some_uuid\"}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.",
+          "description": "The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{\"my_id\": \"some_uuid\"}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * BigtableSource.",
           "type": "string"
         },
         "inlineSource": {
@@ -13067,7 +13813,7 @@
           "description": "Search as you type configuration. Only supported for the IndustryVertical.MEDIA vertical."
         },
         "session": {
-          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
+          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
           "type": "string"
         },
         "sessionSpec": {
@@ -14294,6 +15040,148 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequest": {
+      "description": "Request for the AssistantService.StreamAssist method.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequest",
+      "properties": {
+        "generationSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec",
+          "description": "Optional. Specification of the generation configuration for the request."
+        },
+        "query": {
+          "$ref": "GoogleCloudDiscoveryengineV1Query",
+          "description": "Optional. Current user query. Empty query is only supported if `file_ids` are provided. In this case, the answer will be generated based on those context files."
+        },
+        "session": {
+          "description": "Optional. The session to use for the request. If specified, the assistant has access to the session history, and the query and the answer are stored there. If `-` is specified as the session ID, or it is left empty, then a new session is created with an automatically generated ID. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
+          "type": "string"
+        },
+        "toolsSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpec",
+          "description": "Optional. Specification of tools that are used to serve the request."
+        },
+        "userMetadata": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistUserMetadata",
+          "description": "Optional. Information about the user initiating the query."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec": {
+      "description": "Assistant generation specification for the request. This allows to override the default generation configuration at the engine level.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec",
+      "properties": {
+        "modelId": {
+          "description": "Optional. The Vertex AI model_id used for the generative model. If not set, the default Assistant model will be used.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpec": {
+      "description": "Specification of tools that are used to serve the request.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpec",
+      "properties": {
+        "imageGenerationSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec",
+          "description": "Optional. Specification of the image generation tool."
+        },
+        "toolRegistry": {
+          "description": "Optional. The name of the tool registry to use. Format: `projects/{project}/locations/{location}/toolRegistries/{tool_registry}`",
+          "type": "string"
+        },
+        "vertexAiSearchSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec",
+          "description": "Optional. Specification of the Vertex AI Search tool."
+        },
+        "videoGenerationSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVideoGenerationSpec",
+          "description": "Optional. Specification of the video generation tool."
+        },
+        "webGroundingSpec": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec",
+          "description": "Optional. Specification of the web grounding tool. If field is present, enables grounding with web search. Works only if Assistant.web_grounding_type is WEB_GROUNDING_TYPE_GOOGLE_SEARCH or WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec": {
+      "description": "Specification of the image generation tool.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec": {
+      "description": "Specification of the Vertex AI Search tool.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec",
+      "properties": {
+        "dataStoreSpecs": {
+          "description": "Optional. Specs defining DataStores to filter on in a search call and configurations for those data stores. This is only considered for Engines with multiple data stores.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec"
+          },
+          "type": "array"
+        },
+        "disabled": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.",
+          "type": "boolean"
+        },
+        "filter": {
+          "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVideoGenerationSpec": {
+      "description": "Specification of the video generation tool.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVideoGenerationSpec",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec": {
+      "description": "Specification of the web grounding tool.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec",
+      "properties": {
+        "enabled": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistResponse": {
+      "description": "Response for the AssistantService.StreamAssist method.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistResponse",
+      "properties": {
+        "answer": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistAnswer",
+          "description": "Assist answer resource object containing parts of the assistant's final answer for the user's query. Not present if the current response doesn't add anything to previously sent AssistAnswer.replies. Observe AssistAnswer.state to see if more parts are to be expected. While the state is `IN_PROGRESS`, the AssistAnswer.replies field in each response will contain replies (reply fragments) to be appended to the ones received in previous responses. AssistAnswer.name won't be filled. If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response is the last response and AssistAnswer.name will have a value."
+        },
+        "assistToken": {
+          "description": "A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.",
+          "type": "string"
+        },
+        "sessionInfo": {
+          "$ref": "GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo",
+          "description": "Session information."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo": {
+      "description": "Information about the session.",
+      "id": "GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo",
+      "properties": {
+        "session": {
+          "description": "Name of the newly generated or continued session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1SuggestionDenyListEntry": {
       "description": "Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase.",
       "id": "GoogleCloudDiscoveryengineV1SuggestionDenyListEntry",
@@ -14776,14 +15664,16 @@
             "ASSIGNED",
             "UNASSIGNED",
             "NO_LICENSE",
-            "NO_LICENSE_ATTEMPTED_LOGIN"
+            "NO_LICENSE_ATTEMPTED_LOGIN",
+            "BLOCKED"
           ],
           "enumDescriptions": [
             "Default value.",
             "License assigned to the user.",
             "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
             "No license assigned to the user.",
-            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin).",
+            "User is blocked from assigning a license."
           ],
           "readOnly": true,
           "type": "string"
@@ -16710,14 +17600,12 @@
           "enum": [
             "PERIODIC",
             "STREAMING",
-            "UNSPECIFIED",
-            "SCALA_SYNC"
+            "UNSPECIFIED"
           ],
           "enumDescriptions": [
             "The connector will sync data periodically based on the refresh_interval. Use it with auto_run_disabled to pause the periodic sync, or indicate a one-time sync.",
             "The data will be synced in real time.",
-            "Connector that doesn't ingest data will have this value",
-            "The data will be synced with Scala Sync, a data ingestion solution."
+            "Connector that doesn't ingest data will have this value"
           ],
           "type": "string"
         },
@@ -17351,6 +18239,10 @@
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {
+        "enableGetProcessedDocument": {
+          "description": "Optional. If true, the processed document will be made available for the GetProcessedDocument API.",
+          "type": "boolean"
+        },
         "enableImageAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
@@ -17484,7 +18376,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
           "type": "object"
         },
         "industryVertical": {
@@ -19444,7 +20336,7 @@
           "type": "string"
         },
         "session": {
-          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
+          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
           "type": "string"
         },
         "sessionSpec": {
@@ -20615,14 +21507,16 @@
             "ASSIGNED",
             "UNASSIGNED",
             "NO_LICENSE",
-            "NO_LICENSE_ATTEMPTED_LOGIN"
+            "NO_LICENSE_ATTEMPTED_LOGIN",
+            "BLOCKED"
           ],
           "enumDescriptions": [
             "Default value.",
             "License assigned to the user.",
             "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
             "No license assigned to the user.",
-            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin).",
+            "User is blocked from assigning a license."
           ],
           "readOnly": true,
           "type": "string"
@@ -21674,6 +22568,10 @@
       "description": "The layout parsing configurations for documents.",
       "id": "GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig",
       "properties": {
+        "enableGetProcessedDocument": {
+          "description": "Optional. If true, the processed document will be made available for the GetProcessedDocument API.",
+          "type": "boolean"
+        },
         "enableImageAnnotation": {
           "description": "Optional. If true, the LLM based annotation is added to the image during parsing.",
           "type": "boolean"
@@ -21807,7 +22705,7 @@
             ],
             "type": "string"
           },
-          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`",
+          "description": "Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.",
           "type": "object"
         },
         "industryVertical": {
@@ -23057,7 +23955,7 @@
           "type": "string"
         },
         "session": {
-          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
+          "description": "The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is \"How did Alphabet do in 2022?\" and the current query is \"How about 2023?\", the current query will be interpreted as \"How did Alphabet do in 2023?\". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.",
           "type": "string"
         },
         "sessionSpec": {
@@ -24045,14 +24943,16 @@
             "ASSIGNED",
             "UNASSIGNED",
             "NO_LICENSE",
-            "NO_LICENSE_ATTEMPTED_LOGIN"
+            "NO_LICENSE_ATTEMPTED_LOGIN",
+            "BLOCKED"
           ],
           "enumDescriptions": [
             "Default value.",
             "License assigned to the user.",
             "No license assigned to the user. Deprecated, translated to NO_LICENSE.",
             "No license assigned to the user.",
-            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin)."
+            "User attempted to login but no license assigned to the user. This state is only used for no user first time login attempt but cannot get license assigned. Users already logged in but cannot get license assigned will be assigned NO_LICENSE state(License could be unassigned by admin).",
+            "User is blocked from assigning a license."
           ],
           "readOnly": true,
           "type": "string"
