@@ -1029,7 +1029,7 @@
       }
     }
   },
-  "revision": "20250618",
+  "revision": "20250713",
   "rootUrl": "https://servicenetworking.googleapis.com/",
   "schemas": {
     "AddDnsRecordSetMetadata": {
@@ -1237,6 +1237,10 @@
       "description": "Api is a light-weight descriptor for an API Interface. Interfaces are also described as \"protocol buffer services\" in some contexts, such as by the \"service\" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as \"APIs\" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.",
       "id": "Api",
       "properties": {
+        "edition": {
+          "description": "The source edition string, only valid when syntax is SYNTAX_EDITIONS.",
+          "type": "string"
+        },
         "methods": {
           "description": "The methods of this interface, in unspecified order.",
           "items": {
@@ -1460,6 +1464,7 @@
           "type": "object"
         },
         "pathTranslation": {
+          "description": "no-lint",
           "enum": [
             "PATH_TRANSLATION_UNSPECIFIED",
             "CONSTANT_ADDRESS",
@@ -2489,7 +2494,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. publishing: go_settings: renamed_services: Publisher: TopicAdmin",
+          "description": "Map of service names to renamed services. Keys are the package relative service names and values are the name to be used for the service client and call options. Example: publishing: go_settings: renamed_services: Publisher: TopicAdmin",
           "type": "object"
         }
       },
@@ -2876,6 +2881,10 @@
       "description": "Method represents a method of an API interface.",
       "id": "Method",
       "properties": {
+        "edition": {
+          "description": "The source edition string, only valid when syntax is SYNTAX_EDITIONS.",
+          "type": "string"
+        },
         "name": {
           "description": "The simple name of this method.",
           "type": "string"
@@ -4243,7 +4252,7 @@
         },
         "rangeReservation": {
           "$ref": "RangeReservation",
-          "description": "RANGES_EXHAUSTED, RANGES_EXHAUSTED, and RANGES_DELETED_LATER are done when range_reservation is provided."
+          "description": "RANGES_EXHAUSTED, RANGES_NOT_RESERVED, and RANGES_DELETED_LATER are done when range_reservation is provided."
         },
         "validateNetwork": {
           "description": "The validations will be performed in the order listed in the ValidationError enum. The first failure will return. If a validation is not requested, then the next one will be performed. SERVICE_NETWORKING_NOT_ENABLED and NETWORK_NOT_PEERED checks are performed for all requests where validation is requested. NETWORK_NOT_FOUND and NETWORK_DISCONNECTED checks are done for requests that have validate_network set to true.",

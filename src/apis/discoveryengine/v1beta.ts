@@ -2052,6 +2052,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -2139,7 +2143,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -3441,7 +3445,7 @@ export namespace discoveryengine_v1beta {
      */
     servingConfig?: string | null;
     /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
      */
     session?: string | null;
     /**
@@ -5532,6 +5536,215 @@ export namespace discoveryengine_v1beta {
     query?: string | null;
   }
   /**
+   * AssistAnswer resource, main part of AssistResponse.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistAnswer {
+    /**
+     * Reasons for not answering the assist call.
+     */
+    assistSkippedReasons?: string[] | null;
+    /**
+     * Replies of the assistant.
+     */
+    replies?: Schema$GoogleCloudDiscoveryengineV1betaAssistAnswerReply[];
+    /**
+     * State of the answer generation.
+     */
+    state?: string | null;
+  }
+  /**
+   * One part of the multi-part response of the assist call.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistAnswerReply {
+    /**
+     * Possibly grounded response text or media from the assistant.
+     */
+    groundedContent?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContent;
+  }
+  /**
+   * Multi-modal content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantContent {
+    /**
+     * Result of executing an ExecutableCode.
+     */
+    codeExecutionResult?: Schema$GoogleCloudDiscoveryengineV1betaAssistantContentCodeExecutionResult;
+    /**
+     * Code generated by the model that is meant to be executed.
+     */
+    executableCode?: Schema$GoogleCloudDiscoveryengineV1betaAssistantContentExecutableCode;
+    /**
+     * A file, e.g., an audio summary.
+     */
+    file?: Schema$GoogleCloudDiscoveryengineV1betaAssistantContentFile;
+    /**
+     * Inline binary data.
+     */
+    inlineData?: Schema$GoogleCloudDiscoveryengineV1betaAssistantContentBlob;
+    /**
+     * The producer of the content. Can be "model" or "user".
+     */
+    role?: string | null;
+    /**
+     * Inline text.
+     */
+    text?: string | null;
+    /**
+     * Optional. Indicates if the part is thought from the model.
+     */
+    thought?: boolean | null;
+  }
+  /**
+   * Inline blob.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantContentBlob {
+    /**
+     * Required. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Required. The media type (MIME type) of the generated data.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * Result of executing ExecutableCode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantContentCodeExecutionResult {
+    /**
+     * Required. Outcome of the code execution.
+     */
+    outcome?: string | null;
+    /**
+     * Optional. Contains stdout when code execution is successful, stderr or other description otherwise.
+     */
+    output?: string | null;
+  }
+  /**
+   * Code generated by the model that is meant to be executed by the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantContentExecutableCode {
+    /**
+     * Required. The code content. Currently only supports Python.
+     */
+    code?: string | null;
+  }
+  /**
+   * A file, e.g., an audio summary.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantContentFile {
+    /**
+     * Required. The file ID.
+     */
+    fileId?: string | null;
+    /**
+     * Required. The media type (MIME type) of the file.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContent {
+    /**
+     * The content.
+     */
+    content?: Schema$GoogleCloudDiscoveryengineV1betaAssistantContent;
+    /**
+     * Metadata for grounding based on text sources.
+     */
+    textGroundingMetadata?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadata;
+  }
+  /**
+   * Grounding details for text sources.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadata {
+    /**
+     * References for the grounded text.
+     */
+    references?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReference[];
+    /**
+     * Grounding information for parts of the text.
+     */
+    segments?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataSegment[];
+  }
+  /**
+   * Referenced content and related document metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReference {
+    /**
+     * Referenced text content.
+     */
+    content?: string | null;
+    /**
+     * Document metadata.
+     */
+    documentMetadata?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata;
+  }
+  /**
+   * Document metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata {
+    /**
+     * Document resource name.
+     */
+    document?: string | null;
+    /**
+     * Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+     */
+    domain?: string | null;
+    /**
+     * Page identifier.
+     */
+    pageIdentifier?: string | null;
+    /**
+     * Title.
+     */
+    title?: string | null;
+    /**
+     * URI for the document. It may contain a URL that redirects to the actual website.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Grounding information for a segment of the text.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContentTextGroundingMetadataSegment {
+    /**
+     * End of the segment, exclusive.
+     */
+    endIndex?: string | null;
+    /**
+     * Score for the segment.
+     */
+    groundingScore?: number | null;
+    /**
+     * References for the segment.
+     */
+    referenceIndices?: number[] | null;
+    /**
+     * Zero-based index indicating the start of the segment, measured in bytes of a UTF-8 string (i.e. characters encoded on multiple bytes have a length of more than one).
+     */
+    startIndex?: string | null;
+    /**
+     * The text segment itself.
+     */
+    text?: string | null;
+  }
+  /**
+   * User metadata of the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistUserMetadata {
+    /**
+     * Optional. Preferred language to be used for answering if language detection fails. Also used as the language of error messages created by actions, regardless of language detection results.
+     */
+    preferredLanguageCode?: string | null;
+    /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaBatchCreateTargetSiteMetadata {
@@ -7038,6 +7251,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -7147,7 +7364,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -7706,7 +7923,7 @@ export namespace discoveryengine_v1beta {
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1betaGcsSource;
     /**
-     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.
+     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * BigtableSource.
      */
     idField?: string | null;
     /**
@@ -9197,7 +9414,7 @@ export namespace discoveryengine_v1beta {
      */
     servingConfig?: string | null;
     /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
      */
     session?: string | null;
     /**
@@ -10428,6 +10645,125 @@ export namespace discoveryengine_v1beta {
     tableId?: string | null;
   }
   /**
+   * Request for the AssistantService.StreamAssist method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequest {
+    /**
+     * Optional. Specification of the generation configuration for the request.
+     */
+    generationSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestGenerationSpec;
+    /**
+     * Optional. Current user query. Empty query is only supported if `file_ids` are provided. In this case, the answer will be generated based on those context files.
+     */
+    query?: Schema$GoogleCloudDiscoveryengineV1betaQuery;
+    /**
+     * Optional. The session to use for the request. If specified, the assistant has access to the session history, and the query and the answer are stored there. If `-` is specified as the session ID, or it is left empty, then a new session is created with an automatically generated ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     */
+    session?: string | null;
+    /**
+     * Optional. Specification of tools that are used to serve the request.
+     */
+    toolsSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpec;
+    /**
+     * Optional. Information about the user initiating the query.
+     */
+    userMetadata?: Schema$GoogleCloudDiscoveryengineV1betaAssistUserMetadata;
+  }
+  /**
+   * Assistant generation specification for the request. This allows to override the default generation configuration at the engine level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestGenerationSpec {
+    /**
+     * Optional. The Vertex AI model_id used for the generative model. If not set, the default Assistant model will be used.
+     */
+    modelId?: string | null;
+  }
+  /**
+   * Specification of tools that are used to serve the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpec {
+    /**
+     * Optional. Specification of the image generation tool.
+     */
+    imageGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecImageGenerationSpec;
+    /**
+     * Optional. The name of the tool registry to use. Format: `projects/{project\}/locations/{location\}/toolRegistries/{tool_registry\}`
+     */
+    toolRegistry?: string | null;
+    /**
+     * Optional. Specification of the Vertex AI Search tool.
+     */
+    vertexAiSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecVertexAiSearchSpec;
+    /**
+     * Optional. Specification of the video generation tool.
+     */
+    videoGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecVideoGenerationSpec;
+    /**
+     * Optional. Specification of the web grounding tool. If field is present, enables grounding with web search. Works only if Assistant.web_grounding_type is WEB_GROUNDING_TYPE_GOOGLE_SEARCH or WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH.
+     */
+    webGroundingSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecWebGroundingSpec;
+  }
+  /**
+   * Specification of the image generation tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecImageGenerationSpec {}
+  /**
+   * Specification of the Vertex AI Search tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecVertexAiSearchSpec {
+    /**
+     * Optional. Specs defining DataStores to filter on in a search call and configurations for those data stores. This is only considered for Engines with multiple data stores.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
+    /**
+     * Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.
+     */
+    disabled?: boolean | null;
+    /**
+     * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
+  }
+  /**
+   * Specification of the video generation tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecVideoGenerationSpec {}
+  /**
+   * Specification of the web grounding tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecWebGroundingSpec {
+    /**
+     * Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Response for the AssistantService.StreamAssist method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse {
+    /**
+     * Assist answer resource object containing parts of the assistant's final answer for the user's query. Not present if the current response doesn't add anything to previously sent AssistAnswer.replies. Observe AssistAnswer.state to see if more parts are to be expected. While the state is `IN_PROGRESS`, the AssistAnswer.replies field in each response will contain replies (reply fragments) to be appended to the ones received in previous responses. AssistAnswer.name won't be filled. If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response is the last response and AssistAnswer.name will have a value.
+     */
+    answer?: Schema$GoogleCloudDiscoveryengineV1betaAssistAnswer;
+    /**
+     * A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.
+     */
+    assistToken?: string | null;
+    /**
+     * Session information.
+     */
+    sessionInfo?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponseSessionInfo;
+  }
+  /**
+   * Information about the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponseSessionInfo {
+    /**
+     * Name of the newly generated or continued session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`.
+     */
+    session?: string | null;
+  }
+  /**
    * Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSuggestionDenyListEntry {
@@ -11431,6 +11767,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -11518,7 +11858,7 @@ export namespace discoveryengine_v1beta {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -18372,7 +18712,10 @@ export namespace discoveryengine_v1beta {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -29696,6 +30039,7 @@ export namespace discoveryengine_v1beta {
 
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
+    assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
     completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
     conversations: Resource$Projects$Locations$Collections$Engines$Conversations;
@@ -29704,6 +30048,10 @@ export namespace discoveryengine_v1beta {
     sessions: Resource$Projects$Locations$Collections$Engines$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.assistants =
+        new Resource$Projects$Locations$Collections$Engines$Assistants(
+          this.context
+        );
       this.completionConfig =
         new Resource$Projects$Locations$Collections$Engines$Completionconfig(
           this.context
@@ -31144,6 +31492,192 @@ export namespace discoveryengine_v1beta {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaTuneEngineRequest;
   }
 
+  export class Resource$Projects$Locations$Collections$Engines$Assistants {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Assists the user with a query in a streaming fashion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.streamAssist(
+     *       {
+     *         // Required. The resource name of the Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "generationSpec": {},
+     *           //   "query": {},
+     *           //   "session": "my_session",
+     *           //   "toolsSpec": {},
+     *           //   "userMetadata": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "assistToken": "my_assistToken",
+     *   //   "sessionInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    streamAssist(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+    >;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+    ): void;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+    ): void;
+    streamAssist(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+    ): void;
+    streamAssist(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:streamAssist').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaStreamAssistResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequest;
+  }
+
   export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -31172,7 +31706,10 @@ export namespace discoveryengine_v1beta {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls
@@ -40043,7 +40580,10 @@ export namespace discoveryengine_v1beta {
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
      *   });
      *
      *   // Acquire an auth client, and bind it to all future calls

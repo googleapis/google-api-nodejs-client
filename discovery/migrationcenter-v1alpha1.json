@@ -2554,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250529",
+  "revision": "20250710",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -6064,6 +6064,10 @@
         },
         "cpuArchitecture": {
           "description": "CPU architecture, e.g., \"x64-based PC\", \"x86_64\", \"i686\" etc.",
+          "type": "string"
+        },
+        "cpuManufacturer": {
+          "description": "Optional. CPU manufacturer, e.g., \"Intel\", \"AMD\".",
           "type": "string"
         },
         "cpuName": {

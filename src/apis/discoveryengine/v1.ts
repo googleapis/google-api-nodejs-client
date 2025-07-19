@@ -439,6 +439,211 @@ export namespace discoveryengine_v1 {
     functionName?: string | null;
   }
   /**
+   * Request message for CompletionService.AdvancedCompleteQuery method. .
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest {
+    /**
+     * Optional. Specification to boost suggestions matching the condition.
+     */
+    boostSpec?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpec;
+    /**
+     * Optional. Experiment ids for this request.
+     */
+    experimentIds?: string[] | null;
+    /**
+     * Indicates if tail suggestions should be returned if there are no suggestions that match the full query. Even if set to true, if there are suggestions that match the full query, those are returned and no tail suggestions are returned.
+     */
+    includeTailSuggestions?: boolean | null;
+    /**
+     * Required. The typeahead input used to fetch suggestions. Maximum length is 128 characters. The query can not be empty for most of the suggestion types. If it is empty, an `INVALID_ARGUMENT` error is returned. The exception is when the suggestion_types contains only the type `RECENT_SEARCH`, the query can be an empty string. The is called "zero prefix" feature, which returns user's recently searched queries given the empty query.
+     */
+    query?: string | null;
+    /**
+     * Specifies the autocomplete query model, which only applies to the QUERY SuggestionType. This overrides any model specified in the Configuration \> Autocomplete section of the Cloud console. Currently supported values: * `document` - Using suggestions generated from user-imported documents. * `search-history` - Using suggestions generated from the past history of SearchService.Search API calls. Do not use it when there is no traffic for Search API. * `user-event` - Using suggestions generated from user-imported search events. * `document-completable` - Using suggestions taken directly from user-imported document fields marked as completable. Default values: * `document` is the default model for regular dataStores. * `search-history` is the default model for site search dataStores.
+     */
+    queryModel?: string | null;
+    /**
+     * Optional. Suggestion types to return. If empty or unspecified, query suggestions are returned. Only one suggestion type is supported at the moment.
+     */
+    suggestionTypes?: string[] | null;
+    /**
+     * Optional. Specification of each suggestion type.
+     */
+    suggestionTypeSpecs?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec[];
+    /**
+     * Optional. Information about the end user. This should be the same identifier information as UserEvent.user_info and SearchRequest.user_info.
+     */
+    userInfo?: Schema$GoogleCloudDiscoveryengineV1UserInfo;
+    /**
+     * A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This field should NOT have a fixed value such as `unknown_visitor`. This should be the same identifier as UserEvent.user_pseudo_id and SearchRequest.user_pseudo_id. The field must be a UTF-8 encoded string with a length limit of 128
+     */
+    userPseudoId?: string | null;
+  }
+  /**
+   * Specification to boost suggestions based on the condtion of the suggestion.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpec {
+    /**
+     * Condition boost specifications. If a suggestion matches multiple conditions in the specifications, boost values from these specifications are all applied and combined in a non-linear way. Maximum number of specifications is 20. Note: Currently only support language condition boost.
+     */
+    conditionBoostSpecs?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpecConditionBoostSpec[];
+  }
+  /**
+   * Boost applies to suggestions which match a condition.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestBoostSpecConditionBoostSpec {
+    /**
+     * Strength of the boost, which should be in [-1, 1]. Negative boost means demotion. Default is 0.0. Setting to 1.0 gives the suggestions a big promotion. However, it does not necessarily mean that the top result will be a boosted suggestion. Setting to -1.0 gives the suggestions a big demotion. However, other suggestions that are relevant might still be shown. Setting to 0.0 means no boost applied. The boosting condition is ignored.
+     */
+    boost?: number | null;
+    /**
+     * An expression which specifies a boost condition. The syntax is the same as [filter expression syntax](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata#filter-expression-syntax). Currently, the only supported condition is a list of BCP-47 lang codes. Example: * To boost suggestions in languages `en` or `fr`: `(lang_code: ANY("en", "fr"))`
+     */
+    condition?: string | null;
+  }
+  /**
+   * Specification of each suggestion type.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequestSuggestionTypeSpec {
+    /**
+     * Optional. Maximum number of suggestions to return for each suggestion type.
+     */
+    maxSuggestions?: number | null;
+    /**
+     * Optional. Suggestion type.
+     */
+    suggestionType?: string | null;
+  }
+  /**
+   * Response message for CompletionService.AdvancedCompleteQuery method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse {
+    /**
+     * Results of the matched content suggestions. The result list is ordered and the first result is the top suggestion.
+     */
+    contentSuggestions?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion[];
+    /**
+     * Results of the matched people suggestions. The result list is ordered and the first result is the top suggestion.
+     */
+    peopleSuggestions?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestion[];
+    /**
+     * Results of the matched query suggestions. The result list is ordered and the first result is a top suggestion.
+     */
+    querySuggestions?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseQuerySuggestion[];
+    /**
+     * Results of the matched "recent search" suggestions. The result list is ordered and the first result is the top suggestion.
+     */
+    recentSearchSuggestions?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseRecentSearchSuggestion[];
+    /**
+     * True if the returned suggestions are all tail suggestions. For tail matching to be triggered, include_tail_suggestions in the request must be true and there must be no suggestions that match the full query.
+     */
+    tailMatchTriggered?: boolean | null;
+  }
+  /**
+   * Suggestions as content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseContentSuggestion {
+    /**
+     * The type of the content suggestion.
+     */
+    contentType?: string | null;
+    /**
+     * The name of the dataStore that this suggestion belongs to.
+     */
+    dataStore?: string | null;
+    /**
+     * The destination uri of the content suggestion.
+     */
+    destinationUri?: string | null;
+    /**
+     * The document data snippet in the suggestion. Only a subset of fields will be populated.
+     */
+    document?: Schema$GoogleCloudDiscoveryengineV1Document;
+    /**
+     * The icon uri of the content suggestion.
+     */
+    iconUri?: string | null;
+    /**
+     * The score of each suggestion. The score is in the range of [0, 1].
+     */
+    score?: number | null;
+    /**
+     * The suggestion for the query.
+     */
+    suggestion?: string | null;
+  }
+  /**
+   * Suggestions as people.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponsePersonSuggestion {
+    /**
+     * The name of the dataStore that this suggestion belongs to.
+     */
+    dataStore?: string | null;
+    /**
+     * The destination uri of the person suggestion.
+     */
+    destinationUri?: string | null;
+    /**
+     * The photo uri of the person suggestion.
+     */
+    displayPhotoUri?: string | null;
+    /**
+     * The document data snippet in the suggestion. Only a subset of fields is populated.
+     */
+    document?: Schema$GoogleCloudDiscoveryengineV1Document;
+    /**
+     * The type of the person.
+     */
+    personType?: string | null;
+    /**
+     * The score of each suggestion. The score is in the range of [0, 1].
+     */
+    score?: number | null;
+    /**
+     * The suggestion for the query.
+     */
+    suggestion?: string | null;
+  }
+  /**
+   * Suggestions as search queries.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseQuerySuggestion {
+    /**
+     * The unique document field paths that serve as the source of this suggestion if it was generated from completable fields. This field is only populated for the document-completable model.
+     */
+    completableFieldPaths?: string[] | null;
+    /**
+     * The name of the dataStore that this suggestion belongs to.
+     */
+    dataStore?: string[] | null;
+    /**
+     * The score of each suggestion. The score is in the range of [0, 1].
+     */
+    score?: number | null;
+    /**
+     * The suggestion for the query.
+     */
+    suggestion?: string | null;
+  }
+  /**
+   * Suggestions from recent search history.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponseRecentSearchSuggestion {
+    /**
+     * The time when this recent rearch happened.
+     */
+    recentSearchTime?: string | null;
+    /**
+     * The score of each suggestion. The score is in the range of [0, 1].
+     */
+    score?: number | null;
+    /**
+     * The suggestion for the query.
+     */
+    suggestion?: string | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig {
@@ -2081,6 +2286,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -2168,7 +2377,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -3470,7 +3679,7 @@ export namespace discoveryengine_v1 {
      */
     servingConfig?: string | null;
     /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
      */
     session?: string | null;
     /**
@@ -5157,6 +5366,215 @@ export namespace discoveryengine_v1 {
     query?: string | null;
   }
   /**
+   * AssistAnswer resource, main part of AssistResponse.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistAnswer {
+    /**
+     * Reasons for not answering the assist call.
+     */
+    assistSkippedReasons?: string[] | null;
+    /**
+     * Replies of the assistant.
+     */
+    replies?: Schema$GoogleCloudDiscoveryengineV1AssistAnswerReply[];
+    /**
+     * State of the answer generation.
+     */
+    state?: string | null;
+  }
+  /**
+   * One part of the multi-part response of the assist call.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistAnswerReply {
+    /**
+     * Possibly grounded response text or media from the assistant.
+     */
+    groundedContent?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContent;
+  }
+  /**
+   * Multi-modal content.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantContent {
+    /**
+     * Result of executing an ExecutableCode.
+     */
+    codeExecutionResult?: Schema$GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult;
+    /**
+     * Code generated by the model that is meant to be executed.
+     */
+    executableCode?: Schema$GoogleCloudDiscoveryengineV1AssistantContentExecutableCode;
+    /**
+     * A file, e.g., an audio summary.
+     */
+    file?: Schema$GoogleCloudDiscoveryengineV1AssistantContentFile;
+    /**
+     * Inline binary data.
+     */
+    inlineData?: Schema$GoogleCloudDiscoveryengineV1AssistantContentBlob;
+    /**
+     * The producer of the content. Can be "model" or "user".
+     */
+    role?: string | null;
+    /**
+     * Inline text.
+     */
+    text?: string | null;
+    /**
+     * Optional. Indicates if the part is thought from the model.
+     */
+    thought?: boolean | null;
+  }
+  /**
+   * Inline blob.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantContentBlob {
+    /**
+     * Required. Raw bytes.
+     */
+    data?: string | null;
+    /**
+     * Required. The media type (MIME type) of the generated data.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * Result of executing ExecutableCode.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantContentCodeExecutionResult {
+    /**
+     * Required. Outcome of the code execution.
+     */
+    outcome?: string | null;
+    /**
+     * Optional. Contains stdout when code execution is successful, stderr or other description otherwise.
+     */
+    output?: string | null;
+  }
+  /**
+   * Code generated by the model that is meant to be executed by the model.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantContentExecutableCode {
+    /**
+     * Required. The code content. Currently only supports Python.
+     */
+    code?: string | null;
+  }
+  /**
+   * A file, e.g., an audio summary.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantContentFile {
+    /**
+     * Required. The file ID.
+     */
+    fileId?: string | null;
+    /**
+     * Required. The media type (MIME type) of the file.
+     */
+    mimeType?: string | null;
+  }
+  /**
+   * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContent {
+    /**
+     * The content.
+     */
+    content?: Schema$GoogleCloudDiscoveryengineV1AssistantContent;
+    /**
+     * Metadata for grounding based on text sources.
+     */
+    textGroundingMetadata?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadata;
+  }
+  /**
+   * Grounding details for text sources.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadata {
+    /**
+     * References for the grounded text.
+     */
+    references?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference[];
+    /**
+     * Grounding information for parts of the text.
+     */
+    segments?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment[];
+  }
+  /**
+   * Referenced content and related document metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReference {
+    /**
+     * Referenced text content.
+     */
+    content?: string | null;
+    /**
+     * Document metadata.
+     */
+    documentMetadata?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata;
+  }
+  /**
+   * Document metadata.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataReferenceDocumentMetadata {
+    /**
+     * Document resource name.
+     */
+    document?: string | null;
+    /**
+     * Domain name from the document URI. Note that the `uri` field may contain a URL that redirects to the actual website, in which case this will contain the domain name of the target site.
+     */
+    domain?: string | null;
+    /**
+     * Page identifier.
+     */
+    pageIdentifier?: string | null;
+    /**
+     * Title.
+     */
+    title?: string | null;
+    /**
+     * URI for the document. It may contain a URL that redirects to the actual website.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Grounding information for a segment of the text.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContentTextGroundingMetadataSegment {
+    /**
+     * End of the segment, exclusive.
+     */
+    endIndex?: string | null;
+    /**
+     * Score for the segment.
+     */
+    groundingScore?: number | null;
+    /**
+     * References for the segment.
+     */
+    referenceIndices?: number[] | null;
+    /**
+     * Zero-based index indicating the start of the segment, measured in bytes of a UTF-8 string (i.e. characters encoded on multiple bytes have a length of more than one).
+     */
+    startIndex?: string | null;
+    /**
+     * The text segment itself.
+     */
+    text?: string | null;
+  }
+  /**
+   * User metadata of the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistUserMetadata {
+    /**
+     * Optional. Preferred language to be used for answering if language detection fails. Also used as the language of error messages created by actions, regardless of language detection results.
+     */
+    preferredLanguageCode?: string | null;
+    /**
+     * Optional. IANA time zone, e.g. Europe/Budapest.
+     */
+    timeZone?: string | null;
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata {
@@ -5989,6 +6407,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaDocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -6076,7 +6498,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -6971,7 +7393,7 @@ export namespace discoveryengine_v1 {
      */
     servingConfig?: string | null;
     /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
      */
     session?: string | null;
     /**
@@ -9013,6 +9435,10 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1DocumentProcessingConfigParsingConfigLayoutParsingConfig {
     /**
+     * Optional. If true, the processed document will be made available for the GetProcessedDocument API.
+     */
+    enableGetProcessedDocument?: boolean | null;
+    /**
      * Optional. If true, the LLM based annotation is added to the image during parsing.
      */
     enableImageAnnotation?: boolean | null;
@@ -9113,7 +9539,7 @@ export namespace discoveryengine_v1 {
      */
     displayName?: string | null;
     /**
-     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing`
+     * Optional. Feature config for the engine to opt in or opt out of features. Supported keys: * `*`: all features, if it's present, all other feature state settings are ignored. * `agent-gallery` * `no-code-agent-builder` * `prompt-gallery` * `model-selector` * `notebook-lm` * `people-search` * `people-search-org-chart` * `bi-directional-audio` * `feedback` * `session-sharing` * `personalization-memory` - Enables personalization based on user preferences.
      */
     features?: {[key: string]: string} | null;
     /**
@@ -9613,7 +10039,7 @@ export namespace discoveryengine_v1 {
      */
     gcsSource?: Schema$GoogleCloudDiscoveryengineV1GcsSource;
     /**
-     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * FirestoreSource. * BigtableSource.
+     * The field indicates the ID field or column to be used as unique IDs of the documents. For GcsSource it is the key of the JSON field. For instance, `my_id` for JSON `{"my_id": "some_uuid"\}`. For others, it may be the column name of the table where the unique ids are stored. The values of the JSON field or the table column are used as the Document.ids. The JSON field or the table column must be of string type, and the values must be set as valid strings conform to [RFC-1034](https://tools.ietf.org/html/rfc1034) with 1-63 characters. Otherwise, documents without valid IDs fail to be imported. Only set this field when auto_generate_ids is unset or set as `false`. Otherwise, an INVALID_ARGUMENT error is thrown. If it is unset, a default value `_id` is used when importing from the allowed data sources. Supported data sources: * GcsSource. GcsSource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * BigQuerySource. BigQuerySource.data_schema must be `custom` or `csv`. Otherwise, an INVALID_ARGUMENT error is thrown. * SpannerSource. * CloudSqlSource. * BigtableSource.
      */
     idField?: string | null;
     /**
@@ -10668,7 +11094,7 @@ export namespace discoveryengine_v1 {
      */
     searchAsYouTypeSpec?: Schema$GoogleCloudDiscoveryengineV1SearchRequestSearchAsYouTypeSpec;
     /**
-     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): 1. Call /search API with the auto-session mode (see below). 2. Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Auto-session mode: when `projects/.../sessions/-` is used, a new session gets automatically created. Otherwise, users can use the create-session API to create a session manually. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
+     * The session resource name. Optional. Session allows users to do multi-turn /search API calls or coordination between /search API calls and /answer API calls. Example #1 (multi-turn /search API calls): Call /search API with the session ID generated in the first call. Here, the previous search query gets considered in query standing. I.e., if the first query is "How did Alphabet do in 2022?" and the current query is "How about 2023?", the current query will be interpreted as "How did Alphabet do in 2023?". Example #2 (coordination between /search API calls and /answer API calls): Call /answer API with the session ID generated in the first call. Here, the answer generation happens in the context of the search results from the first search call. Multi-turn Search feature is currently at private GA stage. Please use v1alpha or v1beta version instead before we launch this feature to public GA. Or ask for allowlisting through Google Support team.
      */
     session?: string | null;
     /**
@@ -11542,6 +11968,125 @@ export namespace discoveryengine_v1 {
      * Required. The table name of the Spanner database that needs to be imported.
      */
     tableId?: string | null;
+  }
+  /**
+   * Request for the AssistantService.StreamAssist method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequest {
+    /**
+     * Optional. Specification of the generation configuration for the request.
+     */
+    generationSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec;
+    /**
+     * Optional. Current user query. Empty query is only supported if `file_ids` are provided. In this case, the answer will be generated based on those context files.
+     */
+    query?: Schema$GoogleCloudDiscoveryengineV1Query;
+    /**
+     * Optional. The session to use for the request. If specified, the assistant has access to the session history, and the query and the answer are stored there. If `-` is specified as the session ID, or it is left empty, then a new session is created with an automatically generated ID. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     */
+    session?: string | null;
+    /**
+     * Optional. Specification of tools that are used to serve the request.
+     */
+    toolsSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpec;
+    /**
+     * Optional. Information about the user initiating the query.
+     */
+    userMetadata?: Schema$GoogleCloudDiscoveryengineV1AssistUserMetadata;
+  }
+  /**
+   * Assistant generation specification for the request. This allows to override the default generation configuration at the engine level.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestGenerationSpec {
+    /**
+     * Optional. The Vertex AI model_id used for the generative model. If not set, the default Assistant model will be used.
+     */
+    modelId?: string | null;
+  }
+  /**
+   * Specification of tools that are used to serve the request.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpec {
+    /**
+     * Optional. Specification of the image generation tool.
+     */
+    imageGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec;
+    /**
+     * Optional. The name of the tool registry to use. Format: `projects/{project\}/locations/{location\}/toolRegistries/{tool_registry\}`
+     */
+    toolRegistry?: string | null;
+    /**
+     * Optional. Specification of the Vertex AI Search tool.
+     */
+    vertexAiSearchSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec;
+    /**
+     * Optional. Specification of the video generation tool.
+     */
+    videoGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVideoGenerationSpec;
+    /**
+     * Optional. Specification of the web grounding tool. If field is present, enables grounding with web search. Works only if Assistant.web_grounding_type is WEB_GROUNDING_TYPE_GOOGLE_SEARCH or WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH.
+     */
+    webGroundingSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec;
+  }
+  /**
+   * Specification of the image generation tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec {}
+  /**
+   * Specification of the Vertex AI Search tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec {
+    /**
+     * Optional. Specs defining DataStores to filter on in a search call and configurations for those data stores. This is only considered for Engines with multiple data stores.
+     */
+    dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec[];
+    /**
+     * Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.
+     */
+    disabled?: boolean | null;
+    /**
+     * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
+     */
+    filter?: string | null;
+  }
+  /**
+   * Specification of the video generation tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVideoGenerationSpec {}
+  /**
+   * Specification of the web grounding tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec {
+    /**
+     * Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Response for the AssistantService.StreamAssist method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse {
+    /**
+     * Assist answer resource object containing parts of the assistant's final answer for the user's query. Not present if the current response doesn't add anything to previously sent AssistAnswer.replies. Observe AssistAnswer.state to see if more parts are to be expected. While the state is `IN_PROGRESS`, the AssistAnswer.replies field in each response will contain replies (reply fragments) to be appended to the ones received in previous responses. AssistAnswer.name won't be filled. If the state is `SUCCEEDED`, `FAILED` or `SKIPPED`, the response is the last response and AssistAnswer.name will have a value.
+     */
+    answer?: Schema$GoogleCloudDiscoveryengineV1AssistAnswer;
+    /**
+     * A global unique ID that identifies the current pair of request and stream of responses. Used for feedback and support.
+     */
+    assistToken?: string | null;
+    /**
+     * Session information.
+     */
+    sessionInfo?: Schema$GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo;
+  }
+  /**
+   * Information about the session.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistResponseSessionInfo {
+    /**
+     * Name of the newly generated or continued session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`.
+     */
+    session?: string | null;
   }
   /**
    * Suggestion deny list entry identifying the phrase to block from suggestions and the applied operation for the phrase.
@@ -13753,6 +14298,7 @@ export namespace discoveryengine_v1 {
   export class Resource$Projects$Locations$Collections$Datastores {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Collections$Datastores$Branches;
+    completionConfig: Resource$Projects$Locations$Collections$Datastores$Completionconfig;
     completionSuggestions: Resource$Projects$Locations$Collections$Datastores$Completionsuggestions;
     controls: Resource$Projects$Locations$Collections$Datastores$Controls;
     conversations: Resource$Projects$Locations$Collections$Datastores$Conversations;
@@ -13769,6 +14315,10 @@ export namespace discoveryengine_v1 {
       this.context = context;
       this.branches =
         new Resource$Projects$Locations$Collections$Datastores$Branches(
+          this.context
+        );
+      this.completionConfig =
+        new Resource$Projects$Locations$Collections$Datastores$Completionconfig(
           this.context
         );
       this.completionSuggestions =
@@ -17199,6 +17749,202 @@ export namespace discoveryengine_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Datastores$Completionconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.dataStores.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/dataStores/my-dataStore/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeQuery(
+      params?: Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    >;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+completionConfig}:completeQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['completionConfig'],
+        pathParams: ['completionConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Datastores$Completionconfig$Completequery
+    extends StandardParameters {
+    /**
+     * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     */
+    completionConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Datastores$Completionsuggestions {
@@ -27979,6 +28725,8 @@ export namespace discoveryengine_v1 {
 
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
+    assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
+    completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
     conversations: Resource$Projects$Locations$Collections$Engines$Conversations;
     operations: Resource$Projects$Locations$Collections$Engines$Operations;
@@ -27986,6 +28734,14 @@ export namespace discoveryengine_v1 {
     sessions: Resource$Projects$Locations$Collections$Engines$Sessions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.assistants =
+        new Resource$Projects$Locations$Collections$Engines$Assistants(
+          this.context
+        );
+      this.completionConfig =
+        new Resource$Projects$Locations$Collections$Engines$Completionconfig(
+          this.context
+        );
       this.controls =
         new Resource$Projects$Locations$Collections$Engines$Controls(
           this.context
@@ -28891,6 +29647,388 @@ export namespace discoveryengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1Engine;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Assistants {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Assists the user with a query in a streaming fashion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.streamAssist(
+     *       {
+     *         // Required. The resource name of the Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "generationSpec": {},
+     *           //   "query": {},
+     *           //   "session": "my_session",
+     *           //   "toolsSpec": {},
+     *           //   "userMetadata": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "answer": {},
+     *   //   "assistToken": "my_assistToken",
+     *   //   "sessionInfo": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    streamAssist(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+    >;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+    ): void;
+    streamAssist(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+    ): void;
+    streamAssist(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+    ): void;
+    streamAssist(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:streamAssist').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1StreamAssistResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequest;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Completionconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeQuery(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    >;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+completionConfig}:completeQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['completionConfig'],
+        pathParams: ['completionConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Completionconfig$Completequery
+    extends StandardParameters {
+    /**
+     * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     */
+    completionConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Controls {
@@ -33915,6 +35053,7 @@ export namespace discoveryengine_v1 {
   export class Resource$Projects$Locations$Datastores {
     context: APIRequestContext;
     branches: Resource$Projects$Locations$Datastores$Branches;
+    completionConfig: Resource$Projects$Locations$Datastores$Completionconfig;
     completionSuggestions: Resource$Projects$Locations$Datastores$Completionsuggestions;
     controls: Resource$Projects$Locations$Datastores$Controls;
     conversations: Resource$Projects$Locations$Datastores$Conversations;
@@ -33931,6 +35070,10 @@ export namespace discoveryengine_v1 {
       this.branches = new Resource$Projects$Locations$Datastores$Branches(
         this.context
       );
+      this.completionConfig =
+        new Resource$Projects$Locations$Datastores$Completionconfig(
+          this.context
+        );
       this.completionSuggestions =
         new Resource$Projects$Locations$Datastores$Completionsuggestions(
           this.context
@@ -37154,6 +38297,202 @@ export namespace discoveryengine_v1 {
      * The standard list page token.
      */
     pageToken?: string;
+  }
+
+  export class Resource$Projects$Locations$Datastores$Completionconfig {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Completes the user input with advanced keyword suggestions.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/cloud_search.query',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.dataStores.completionConfig.completeQuery(
+     *       {
+     *         // Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     *         completionConfig:
+     *           'projects/my-project/locations/my-location/dataStores/my-dataStore/completionConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "boostSpec": {},
+     *           //   "experimentIds": [],
+     *           //   "includeTailSuggestions": false,
+     *           //   "query": "my_query",
+     *           //   "queryModel": "my_queryModel",
+     *           //   "suggestionTypeSpecs": [],
+     *           //   "suggestionTypes": [],
+     *           //   "userInfo": {},
+     *           //   "userPseudoId": "my_userPseudoId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSuggestions": [],
+     *   //   "peopleSuggestions": [],
+     *   //   "querySuggestions": [],
+     *   //   "recentSearchSuggestions": [],
+     *   //   "tailMatchTriggered": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    completeQuery(
+      params?: Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    >;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      params: Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+    ): void;
+    completeQuery(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+completionConfig}:completeQuery').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['completionConfig'],
+        pathParams: ['completionConfig'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Datastores$Completionconfig$Completequery
+    extends StandardParameters {
+    /**
+     * Required. The completion_config of the parent dataStore or engine resource name for which the completion is performed, such as `projects/x/locations/global/collections/default_collection/dataStores/x/completionConfig` `projects/x/locations/global/collections/default_collection/engines/x/completionConfig`.
+     */
+    completionConfig?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1AdvancedCompleteQueryRequest;
   }
 
   export class Resource$Projects$Locations$Datastores$Completionsuggestions {

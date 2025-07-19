@@ -224,19 +224,6 @@ export namespace videointelligence_v1 {
     timeOffset?: string | null;
   }
   /**
-   * Status of exporting annotation response to user specified `output_uri`.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus {
-    /**
-     * Output only. State of the `output_uri` export.
-     */
-    state?: string | null;
-    /**
-     * Output only. Only set if state is FAILED.
-     */
-    status?: Schema$GoogleRpc_Status;
-  }
-  /**
    * Deprecated. No effect.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_FaceAnnotation {
@@ -582,10 +569,6 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
-     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
-     */
-    exportStatus?: Schema$GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus;
-    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -815,19 +798,6 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
-  }
-  /**
-   * Status of exporting annotation response to user specified `output_uri`.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus {
-    /**
-     * Output only. State of the `output_uri` export.
-     */
-    state?: string | null;
-    /**
-     * Output only. Only set if state is FAILED.
-     */
-    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -1175,10 +1145,6 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
-     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
-     */
-    exportStatus?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus;
-    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -1408,19 +1374,6 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
-  }
-  /**
-   * Status of exporting annotation response to user specified `output_uri`.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus {
-    /**
-     * Output only. State of the `output_uri` export.
-     */
-    state?: string | null;
-    /**
-     * Output only. Only set if state is FAILED.
-     */
-    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -1768,10 +1721,6 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
     /**
-     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
-     */
-    exportStatus?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus;
-    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -2044,19 +1993,6 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
-  }
-  /**
-   * Status of exporting annotation response to user specified `output_uri`.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus {
-    /**
-     * Output only. State of the `output_uri` export.
-     */
-    state?: string | null;
-    /**
-     * Output only. Only set if state is FAILED.
-     */
-    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -2459,10 +2395,6 @@ export namespace videointelligence_v1 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
     /**
-     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
-     */
-    exportStatus?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus;
-    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -2734,19 +2666,6 @@ export namespace videointelligence_v1 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
-  }
-  /**
-   * Status of exporting annotation response to user specified `output_uri`.
-   */
-  export interface Schema$GoogleCloudVideointelligenceV1_ExportToOutputUriStatus {
-    /**
-     * Output only. State of the `output_uri` export.
-     */
-    state?: string | null;
-    /**
-     * Output only. Only set if state is FAILED.
-     */
-    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -3233,10 +3152,6 @@ export namespace videointelligence_v1 {
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
-    /**
-     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
-     */
-    exportStatus?: Schema$GoogleCloudVideointelligenceV1_ExportToOutputUriStatus;
     /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */

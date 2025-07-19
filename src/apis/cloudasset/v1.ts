@@ -311,6 +311,10 @@ export namespace cloudasset_v1 {
      */
     ancestors?: string[] | null;
     /**
+     * The exceptions of a resource.
+     */
+    assetExceptions?: Schema$AssetException[];
+    /**
      * The type of the asset. Example: `compute.googleapis.com/Disk` See [Supported asset types](https://cloud.google.com/asset-inventory/docs/supported-asset-types) for more information.
      */
     assetType?: string | null;
@@ -359,6 +363,19 @@ export namespace cloudasset_v1 {
      * The resource owners for a resource. Note that this field only contains the members that have "roles/owner" role in the resource's IAM Policy.
      */
     resourceOwners?: Schema$ResourceOwners;
+  }
+  /**
+   * An exception of an asset.
+   */
+  export interface Schema$AssetException {
+    /**
+     * The details of the exception.
+     */
+    details?: string | null;
+    /**
+     * The type of exception.
+     */
+    exceptionType?: string | null;
   }
   /**
    * Attached resource representation, which is defined by the corresponding service provider. It represents an attached resource's payload.
