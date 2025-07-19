@@ -262,7 +262,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
@@ -487,7 +486,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
@@ -704,7 +702,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
@@ -915,7 +912,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
@@ -1169,7 +1165,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
@@ -1391,7 +1386,6 @@ export namespace dataportability_v1 {
      *     // Scopes can be specified either as an array or as a single, space-delimited string.
      *     scopes: [
      *       'https://www.googleapis.com/auth/dataportability.alerts.subscriptions',
-     *       'https://www.googleapis.com/auth/dataportability.businessmessaging.conversations',
      *       'https://www.googleapis.com/auth/dataportability.chrome.autofill',
      *       'https://www.googleapis.com/auth/dataportability.chrome.bookmarks',
      *       'https://www.googleapis.com/auth/dataportability.chrome.dictionary',
