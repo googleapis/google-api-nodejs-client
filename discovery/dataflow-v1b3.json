@@ -693,41 +693,6 @@
                     "https://www.googleapis.com/auth/compute"
                   ]
                 },
-                "getWorkerStacktraces": {
-                  "description": "Get worker stacktraces from debug capture.",
-                  "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces",
-                  "httpMethod": "POST",
-                  "id": "dataflow.projects.jobs.debug.getWorkerStacktraces",
-                  "parameterOrder": [
-                    "projectId",
-                    "jobId"
-                  ],
-                  "parameters": {
-                    "jobId": {
-                      "description": "The job for which to get stacktraces.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    },
-                    "projectId": {
-                      "description": "The project id.",
-                      "location": "path",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces",
-                  "request": {
-                    "$ref": "GetWorkerStacktracesRequest"
-                  },
-                  "response": {
-                    "$ref": "GetWorkerStacktracesResponse"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform",
-                    "https://www.googleapis.com/auth/compute"
-                  ]
-                },
                 "sendCapture": {
                   "description": "Send encoded debug capture data for component.",
                   "flatPath": "v1b3/projects/{projectId}/jobs/{jobId}/debug/sendCapture",
@@ -1427,6 +1392,48 @@
                       },
                       "response": {
                         "$ref": "GetDebugConfigResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform",
+                        "https://www.googleapis.com/auth/compute"
+                      ]
+                    },
+                    "getWorkerStacktraces": {
+                      "description": "Get worker stacktraces from debug capture.",
+                      "flatPath": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getWorkerStacktraces",
+                      "httpMethod": "POST",
+                      "id": "dataflow.projects.locations.jobs.debug.getWorkerStacktraces",
+                      "parameterOrder": [
+                        "projectId",
+                        "location",
+                        "jobId"
+                      ],
+                      "parameters": {
+                        "jobId": {
+                          "description": "The job for which to get stacktraces.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "location": {
+                          "description": "The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "projectId": {
+                          "description": "The project id.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getWorkerStacktraces",
+                      "request": {
+                        "$ref": "GetWorkerStacktracesRequest"
+                      },
+                      "response": {
+                        "$ref": "GetWorkerStacktracesResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform",
@@ -2243,7 +2250,7 @@
       }
     }
   },
-  "revision": "20250519",
+  "revision": "20250716",
   "rootUrl": "https://dataflow.googleapis.com/",
   "schemas": {
     "ApproximateProgress": {
