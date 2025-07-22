@@ -718,7 +718,7 @@
       }
     }
   },
-  "revision": "20250415",
+  "revision": "20250715",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {
@@ -1194,6 +1194,19 @@
         "lastConnectionTime": {
           "description": "Output only. For clusters using Connect, the timestamp of the most recent connection established with Google Cloud. This time is updated every several minutes, not continuously. For clusters that do not use GKE Connect, or that have never connected successfully, this field will be unset.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "membershipType": {
+          "description": "Output only. The type of the membership.",
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ],
+          "enumDescriptions": [
+            "The MembershipType is not set.",
+            "The membership supports only lightweight compatible features."
+          ],
           "readOnly": true,
           "type": "string"
         },
