@@ -25262,7 +25262,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250711",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -29898,6 +29898,10 @@
         },
         "enableAccessLogging": {
           "description": "Optional. If true, private endpoint's access logs are sent to Cloud Logging. These logs are like standard server access logs, containing information like timestamp and latency for each MatchRequest. Note that logs may incur a cost, especially if the deployed index receives a high queries per second rate (QPS). Estimate your costs before enabling this option.",
+          "type": "boolean"
+        },
+        "enableDatapointUpsertLogging": {
+          "description": "Optional. If true, logs to Cloud Logging errors relating to datapoint upserts. Under normal operation conditions, these log entries should be very rare. However, if incompatible datapoint updates are being uploaded to an index, a high volume of log entries may be generated in a short period of time. Note that logs may incur a cost, especially if the deployed index receives a high volume of datapoint upserts. Estimate your costs before enabling this option.",
           "type": "boolean"
         },
         "id": {
