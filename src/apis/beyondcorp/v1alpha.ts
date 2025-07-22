@@ -1511,6 +1511,41 @@ export namespace beyondcorp_v1alpha {
      * Output only. Timestamp when the resource was last modified.
      */
     updateTime?: string | null;
+    /**
+     * Optional. Which upstream resources to forward traffic to.
+     */
+    upstreams?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream[];
+  }
+  /**
+   * Which upstream resource to forward traffic to.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream {
+    /**
+     * Optional. Routing policy information.
+     */
+    egressPolicy?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy;
+    /**
+     * Network to forward traffic to.
+     */
+    network?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork;
+  }
+  /**
+   * Network to forward traffic to.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork {
+    /**
+     * Required. Network name is of the format: `projects/{project\}/global/networks/{network\}
+     */
+    name?: string | null;
+  }
+  /**
+   * Routing policy information.
+   */
+  export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy {
+    /**
+     * Required. List of the regions where the application sends traffic.
+     */
+    regions?: string[] | null;
   }
   /**
    * EndpointMatcher contains the information of the endpoint that will match the application.
@@ -1585,6 +1620,10 @@ export namespace beyondcorp_v1alpha {
      * Output only. Timestamp when the resource was created.
      */
     createTime?: string | null;
+    /**
+     * Output only. Service account used for operations that involve resources in consumer projects.
+     */
+    delegatingServiceAccount?: string | null;
     /**
      * Optional. An arbitrary user-provided name for the SecurityGateway. Cannot exceed 64 characters.
      */
@@ -14876,6 +14915,7 @@ export namespace beyondcorp_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "delegatingServiceAccount": "my_delegatingServiceAccount",
      *       //   "displayName": "my_displayName",
      *       //   "externalIps": [],
      *       //   "hubs": {},
@@ -15183,6 +15223,7 @@ export namespace beyondcorp_v1alpha {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "delegatingServiceAccount": "my_delegatingServiceAccount",
      *   //   "displayName": "my_displayName",
      *   //   "externalIps": [],
      *   //   "hubs": {},
@@ -15642,6 +15683,7 @@ export namespace beyondcorp_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "createTime": "my_createTime",
+     *       //   "delegatingServiceAccount": "my_delegatingServiceAccount",
      *       //   "displayName": "my_displayName",
      *       //   "externalIps": [],
      *       //   "hubs": {},
@@ -16249,7 +16291,8 @@ export namespace beyondcorp_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endpointMatchers": [],
      *         //   "name": "my_name",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "upstreams": []
      *         // }
      *       },
      *     });
@@ -16556,7 +16599,8 @@ export namespace beyondcorp_v1alpha {
      *   //   "displayName": "my_displayName",
      *   //   "endpointMatchers": [],
      *   //   "name": "my_name",
-     *   //   "updateTime": "my_updateTime"
+     *   //   "updateTime": "my_updateTime",
+     *   //   "upstreams": []
      *   // }
      * }
      *
@@ -17019,7 +17063,8 @@ export namespace beyondcorp_v1alpha {
      *         //   "displayName": "my_displayName",
      *         //   "endpointMatchers": [],
      *         //   "name": "my_name",
-     *         //   "updateTime": "my_updateTime"
+     *         //   "updateTime": "my_updateTime",
+     *         //   "upstreams": []
      *         // }
      *       },
      *     });

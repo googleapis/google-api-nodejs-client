@@ -1899,7 +1899,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250714",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -3160,6 +3160,53 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "upstreams": {
+          "description": "Optional. Which upstream resources to forward traffic to.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstream"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstream": {
+      "description": "Which upstream resource to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstream",
+      "properties": {
+        "egressPolicy": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1EgressPolicy",
+          "description": "Optional. Routing policy information."
+        },
+        "network": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamNetwork",
+          "description": "Network to forward traffic to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamNetwork": {
+      "description": "Network to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1ApplicationUpstreamNetwork",
+      "properties": {
+        "name": {
+          "description": "Required. Network name is of the format: `projects/{project}/global/networks/{network}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1EgressPolicy": {
+      "description": "Routing policy information.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1EgressPolicy",
+      "properties": {
+        "regions": {
+          "description": "Required. List of the regions where the application sends traffic.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -3266,6 +3313,11 @@
         "createTime": {
           "description": "Output only. Timestamp when the resource was created.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "delegatingServiceAccount": {
+          "description": "Output only. Service account used for operations that involve resources in consumer projects.",
           "readOnly": true,
           "type": "string"
         },
