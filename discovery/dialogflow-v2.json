@@ -8545,6 +8545,163 @@
                 }
               }
             },
+            "sipTrunks": {
+              "methods": {
+                "create": {
+                  "description": "Creates a SipTrunk for a specified location.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sipTrunks",
+                  "httpMethod": "POST",
+                  "id": "dialogflow.projects.locations.sipTrunks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The location to create a SIP trunk for. Format: `projects//locations/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/sipTrunks",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2SipTrunk"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2SipTrunk"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a specified SipTrunk.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sipTrunks/{sipTrunksId}",
+                  "httpMethod": "DELETE",
+                  "id": "dialogflow.projects.locations.sipTrunks.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sipTrunks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "get": {
+                  "description": "Retrieves the specified SipTrunk.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sipTrunks/{sipTrunksId}",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.sipTrunks.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the SIP trunk to delete. Format: `projects//locations//sipTrunks/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sipTrunks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2SipTrunk"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "list": {
+                  "description": "Returns a list of SipTrunks in the specified location.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sipTrunks",
+                  "httpMethod": "GET",
+                  "id": "dialogflow.projects.locations.sipTrunks.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return in a single page. By default 100 and at most 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The next_page_token value returned from a previous list request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The location to list SIP trunks from. Format: `projects//locations/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+parent}/sipTrunks",
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2ListSipTrunksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the specified SipTrunk.",
+                  "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/sipTrunks/{sipTrunksId}",
+                  "httpMethod": "PATCH",
+                  "id": "dialogflow.projects.locations.sipTrunks.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The unique identifier of the SIP trunk. Format: `projects//locations//sipTrunks/`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sipTrunks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The mask to control which fields get updated. If the mask is not present, all fields will be updated.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v2/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudDialogflowV2SipTrunk"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudDialogflowV2SipTrunk"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform",
+                    "https://www.googleapis.com/auth/dialogflow"
+                  ]
+                }
+              }
+            },
             "statelessSuggestion": {
               "methods": {
                 "generate": {
@@ -8805,7 +8962,7 @@
       }
     }
   },
-  "revision": "20250627",
+  "revision": "20250715",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14520,6 +14677,86 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDialogflowV2Connection": {
+      "description": "Represents a connection for SIP Trunk.",
+      "id": "GoogleCloudDialogflowV2Connection",
+      "properties": {
+        "connectionId": {
+          "description": "Output only. The unique identifier of the SIP Trunk connection.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorDetails": {
+          "$ref": "GoogleCloudDialogflowV2ConnectionErrorDetails",
+          "description": "Output only. The error details for the connection. Only populated when authentication errors occur.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. State of the connection.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONNECTED",
+            "DISCONNECTED",
+            "AUTHENTICATION_FAILED",
+            "KEEPALIVE"
+          ],
+          "enumDescriptions": [
+            "SIP Trunk connection state is Not specified.",
+            "SIP Trunk connection is connected.",
+            "SIP Trunk connection is disconnected.",
+            "SIP Trunk connection has authentication error.",
+            "SIP Trunk connection is keepalive."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. When the connection status changed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2ConnectionErrorDetails": {
+      "description": "The error details of Sip Trunk connection authentication.",
+      "id": "GoogleCloudDialogflowV2ConnectionErrorDetails",
+      "properties": {
+        "certificateState": {
+          "description": "Output only. The status of the certificate authentication.",
+          "enum": [
+            "CERTIFICATE_STATE_UNSPECIFIED",
+            "CERTIFICATE_VALID",
+            "CERTIFICATE_INVALID",
+            "CERTIFICATE_EXPIRED",
+            "CERTIFICATE_HOSTNAME_NOT_FOUND",
+            "CERTIFICATE_UNAUTHENTICATED",
+            "CERTIFICATE_TRUST_STORE_NOT_FOUND",
+            "CERTIFICATE_HOSTNAME_INVALID_FORMAT",
+            "CERTIFICATE_QUOTA_EXCEEDED"
+          ],
+          "enumDescriptions": [
+            "Certificate state is not specified.",
+            "Certificate is valid.",
+            "Catch all for any error not specified.",
+            "Certificate leaf node has expired.",
+            "There is no hostname defined to authenticate in SipTrunkingServer.",
+            "No path found from the leaf certificate to any root.",
+            "Trust store does not exist.",
+            "Hostname has invalid format.",
+            "Certificate has exhausted its quota."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "errorMessage": {
+          "description": "The error message provided from SIP trunking auth service",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2Context": {
       "description": "Dialogflow contexts are similar to natural language context. If a person says to you \"they are orange\", you need context in order to understand what \"they\" is referring to. Similarly, for Dialogflow to handle an end-user expression like that, it needs to be provided with context in order to correctly match an intent. Using contexts, you can control the flow of a conversation. You can configure contexts for an intent by setting input and output contexts, which are identified by string names. When an intent is matched, any configured output contexts for that intent become active. While any contexts are active, Dialogflow is more likely to match intents that are configured with input contexts that correspond to the currently active contexts. For more information about context, see the [Contexts guide](https://cloud.google.com/dialogflow/docs/contexts-overview).",
       "id": "GoogleCloudDialogflowV2Context",
@@ -18401,6 +18638,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowV2ListSipTrunksResponse": {
+      "description": "The response message for SipTrunks.ListSipTrunks.",
+      "id": "GoogleCloudDialogflowV2ListSipTrunksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Token to retrieve the next page of results, or empty if there are no more results in the list.",
+          "type": "string"
+        },
+        "sipTrunks": {
+          "description": "The list of SIP trunks.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2SipTrunk"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowV2ListVersionsResponse": {
       "description": "The response message for Versions.ListVersions.",
       "id": "GoogleCloudDialogflowV2ListVersionsResponse",
@@ -19355,6 +19610,36 @@
         "suggestionFeatureConfig": {
           "$ref": "GoogleCloudDialogflowV2HumanAgentAssistantConfigSuggestionFeatureConfig",
           "description": "Required. The suggestion feature config to add or update."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowV2SipTrunk": {
+      "description": "SipTrunk is the resource that represents a SIP trunk to connect to Google Telephony platform SIP trunking service.",
+      "id": "GoogleCloudDialogflowV2SipTrunk",
+      "properties": {
+        "connections": {
+          "description": "Output only. Connections of the SIP trunk.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowV2Connection"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Optional. Human readable alias for this trunk.",
+          "type": "string"
+        },
+        "expectedHostname": {
+          "description": "Required. The expected hostnames in the peer certificate from partner that is used for TLS authentication.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The unique identifier of the SIP trunk. Format: `projects//locations//sipTrunks/`.",
+          "type": "string"
         }
       },
       "type": "object"
