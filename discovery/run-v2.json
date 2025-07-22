@@ -1543,7 +1543,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The location and project in which this worker pool should be created. Format: projects/{project}/locations/{location}, where {project} can be project id or number. Only lowercase characters, digits, and hyphens.",
+                      "description": "Required. The location and project in which this worker pool should be created. Format: `projects/{project}/locations/{location}`, where `{project}` can be project id or number. Only lowercase characters, digits, and hyphens.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1555,7 +1555,7 @@
                       "type": "boolean"
                     },
                     "workerPoolId": {
-                      "description": "Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes {parent}/workerPools/{worker_pool_id}.",
+                      "description": "Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes `{parent}/workerPools/{worker_pool_id}`.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1586,7 +1586,7 @@
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The full name of the WorkerPool. Format: projects/{project}/locations/{location}/workerPools/{worker_pool}, where {project} can be project id or number.",
+                      "description": "Required. The full name of the WorkerPool. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`, where `{project}` can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
                       "required": true,
@@ -1616,7 +1616,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The full name of the WorkerPool. Format: projects/{project}/locations/{location}/workerPools/{worker_pool}, where {project} can be project id or number.",
+                      "description": "Required. The full name of the WorkerPool. Format: `projects/{project}/locations/{location}/workerPools/{worker_pool}`, where `{project}` can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
                       "required": true,
@@ -1683,7 +1683,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the \"-\" wildcard. Format: projects/{project}/locations/{location}, where {project} can be project id or number.",
+                      "description": "Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the \"-\" wildcard. Format: `projects/{project}/locations/{location}`, where `{project}` can be project id or number.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1723,7 +1723,7 @@
                       "type": "boolean"
                     },
                     "name": {
-                      "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project}/locations/{location}/workerPools/{worker_id}",
+                      "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: `projects/{project}/locations/{location}/workerPools/{worker_id}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/workerPools/[^/]+$",
                       "required": true,
@@ -1922,7 +1922,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250712",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -4753,7 +4753,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project}/locations/{location}/workerPools/{worker_id}",
+          "description": "The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: `projects/{project}/locations/{location}/workerPools/{worker_id}`",
           "type": "string"
         },
         "observedGeneration": {
@@ -4839,6 +4839,10 @@
           "description": "Optional. If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.",
           "format": "google-duration",
           "type": "string"
+        },
+        "gpuZonalRedundancyDisabled": {
+          "description": "Optional. True if GPU zonal redundancy is disabled on this worker pool.",
+          "type": "boolean"
         },
         "labels": {
           "additionalProperties": {
