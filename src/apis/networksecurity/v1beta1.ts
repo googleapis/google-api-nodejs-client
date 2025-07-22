@@ -306,9 +306,13 @@ export namespace networksecurity_v1beta1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
     /**
-     * Optional. A list of IPs or CIDRs to match against the source IP of a request. Limited to 5 ip_blocks.
+     * Optional. A list of IP addresses or IP address ranges to match against the source IP address of the request. Limited to 5 ip_blocks.
      */
     ipBlocks?: Schema$AuthzPolicyAuthzRuleIpBlock[];
+    /**
+     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 5 principals.
+     */
+    principals?: Schema$AuthzPolicyAuthzRulePrincipal[];
     /**
      * Optional. A list of resources to match against the resource of the source VM of a request. Limited to 5 resources.
      */
@@ -339,6 +343,19 @@ export namespace networksecurity_v1beta1 {
      * Required. The address prefix.
      */
     prefix?: string | null;
+  }
+  /**
+   * Describes the properties of a principal to be matched against.
+   */
+  export interface Schema$AuthzPolicyAuthzRulePrincipal {
+    /**
+     * Required. A non-empty string whose value is matched against the principal value based on the principal_selector. Only exact match can be applied for CLIENT_CERT_URI_SAN, CLIENT_CERT_DNS_NAME_SAN, CLIENT_CERT_COMMON_NAME selectors.
+     */
+    principal?: Schema$AuthzPolicyAuthzRuleStringMatch;
+    /**
+     * Optional. An enum to decide what principal value the principal rule will match against. If not specified, the PrincipalSelector is CLIENT_CERT_URI_SAN.
+     */
+    principalSelector?: string | null;
   }
   /**
    * Describes the properties of a client VM resource accessing the internal application load balancers.
@@ -470,7 +487,7 @@ export namespace networksecurity_v1beta1 {
     resources?: string[] | null;
   }
   /**
-   * BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.
+   * BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer's BackendService directly determining how that BackendService negotiates TLS.
    */
   export interface Schema$BackendAuthenticationConfig {
     /**
@@ -544,7 +561,7 @@ export namespace networksecurity_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      */
     name?: string | null;
     /**
@@ -13859,7 +13876,7 @@ export namespace networksecurity_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.clientTlsPolicies.patch({
-     *     // Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     *     // Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      *     name: 'projects/my-project/locations/my-location/clientTlsPolicies/my-clientTlsPolicie',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the ClientTlsPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -14361,7 +14378,7 @@ export namespace networksecurity_v1beta1 {
   export interface Params$Resource$Projects$Locations$Clienttlspolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      */
     name?: string;
     /**
