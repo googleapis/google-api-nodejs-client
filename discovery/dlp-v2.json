@@ -5118,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250629",
+  "revision": "20250713",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -8271,6 +8271,21 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2DocumentFallbackLocation": {
+      "description": "Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.",
+      "id": "GooglePrivacyDlpV2DocumentFallbackLocation",
+      "properties": {
+        "globalProcessing": {
+          "$ref": "GooglePrivacyDlpV2GlobalProcessing",
+          "description": "Processing will happen in the global region."
+        },
+        "multiRegionProcessing": {
+          "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
+          "description": "Processing will happen in a multi-region that contains the current region if available."
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2DocumentLocation": {
       "description": "Location of a finding within a document.",
       "id": "GooglePrivacyDlpV2DocumentLocation",
@@ -10878,6 +10893,10 @@
       "description": "Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.",
       "id": "GooglePrivacyDlpV2ProcessingLocation",
       "properties": {
+        "documentFallbackLocation": {
+          "$ref": "GooglePrivacyDlpV2DocumentFallbackLocation",
+          "description": "Document processing will fall back using this configuration."
+        },
         "imageFallbackLocation": {
           "$ref": "GooglePrivacyDlpV2ImageFallbackLocation",
           "description": "Image processing will fall back using this configuration."

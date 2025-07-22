@@ -1114,6 +1114,294 @@
                 }
               }
             },
+            "odbNetworks": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new ODB Network in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks",
+                  "httpMethod": "POST",
+                  "id": "oracledatabase.projects.locations.odbNetworks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "odbNetworkId": {
+                      "description": "Required. The ID of the OdbNetwork to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the OdbNetwork in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/odbNetworks",
+                  "request": {
+                    "$ref": "OdbNetwork"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single ODB Network.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}",
+                  "httpMethod": "DELETE",
+                  "id": "oracledatabase.projects.locations.odbNetworks.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single ODB Network.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.odbNetworks.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the OdbNetwork in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "OdbNetwork"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists the ODB Networks in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks",
+                  "httpMethod": "GET",
+                  "id": "oracledatabase.projects.locations.odbNetworks.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. An expression for filtering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. An expression for ordering the results of the request.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of items to return. If unspecified, at most 50 ODB Networks will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent value for the ODB Network in the following format: projects/{project}/locations/{location}.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/odbNetworks",
+                  "response": {
+                    "$ref": "ListOdbNetworksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "odbSubnets": {
+                  "methods": {
+                    "create": {
+                      "description": "Creates a new ODB Subnet in a given ODB Network.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbSubnets",
+                      "httpMethod": "POST",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbSubnets.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "odbSubnetId": {
+                          "description": "Required. The ID of the OdbSubnet to create. This value is restricted to (^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$) and must be a maximum of 63 characters in length. The value must start with a letter and end with a letter or a number.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for the OdbSubnet in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/odbSubnets",
+                      "request": {
+                        "$ref": "OdbSubnet"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single ODB Subnet.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbSubnets/{odbSubnetsId}",
+                      "httpMethod": "DELETE",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbSubnets.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the resource in the following format: projects/{project}/locations/{region}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbSubnets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. An optional ID to identify the request. This value is used to identify duplicate requests. If you make a request with the same request ID and the original request is still in progress or completed, the server ignores the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single ODB Subnet.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbSubnets/{odbSubnetsId}",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbSubnets.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the OdbSubnet in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+/odbSubnets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "OdbSubnet"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the ODB Subnets in a given ODB Network.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/odbNetworks/{odbNetworksId}/odbSubnets",
+                      "httpMethod": "GET",
+                      "id": "oracledatabase.projects.locations.odbNetworks.odbSubnets.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. An expression for filtering the results of the request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. An expression for ordering the results of the request.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of items to return. If unspecified, at most 50 ODB Networks will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A token identifying a page of results the server should return.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent value for the OdbSubnet in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/odbNetworks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/odbSubnets",
+                      "response": {
+                        "$ref": "ListOdbSubnetsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                }
+              }
+            },
             "operations": {
               "methods": {
                 "cancel": {
@@ -1242,7 +1530,7 @@
       }
     }
   },
-  "revision": "20250509",
+  "revision": "20250717",
   "rootUrl": "https://oracledatabase.googleapis.com/",
   "schemas": {
     "AllConnectionStrings": {
@@ -1319,6 +1607,14 @@
         },
         "network": {
           "description": "Optional. The name of the VPC network used by the Autonomous Database in the following format: projects/{project}/global/networks/{network}",
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. The name of the OdbNetwork associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the OdbSubnet.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Optional. The name of the OdbSubnet associated with the Autonomous Database. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "peerAutonomousDatabases": {
@@ -2575,6 +2871,10 @@
       "description": "Details of the Cloud VM Cluster resource. https://docs.oracle.com/en-us/iaas/api/#/en/database/20160918/CloudVmCluster/",
       "id": "CloudVmCluster",
       "properties": {
+        "backupOdbSubnet": {
+          "description": "Optional. The name of the backup OdbSubnet associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
         "backupSubnetCidr": {
           "description": "Optional. CIDR range of the backup subnet.",
           "type": "string"
@@ -2615,6 +2915,14 @@
         },
         "network": {
           "description": "Optional. The name of the VPC network. Format: projects/{project}/global/networks/{network}",
+          "type": "string"
+        },
+        "odbNetwork": {
+          "description": "Optional. The name of the OdbNetwork associated with the VM Cluster. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network} It is optional but if specified, this should match the parent ODBNetwork of the odb_subnet and backup_odb_subnet.",
+          "type": "string"
+        },
+        "odbSubnet": {
+          "description": "Optional. The name of the OdbSubnet associated with the VM Cluster for IP allocation. Format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
           "type": "string"
         },
         "properties": {
@@ -3015,6 +3323,12 @@
       "description": "Various properties and settings associated with Db node.",
       "id": "DbNodeProperties",
       "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the database node was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "dbNodeStorageSizeGb": {
           "description": "Optional. Local storage per database node.",
           "format": "int32",
@@ -3560,6 +3874,56 @@
       },
       "type": "object"
     },
+    "ListOdbNetworksResponse": {
+      "description": "The response for `OdbNetwork.List`.",
+      "id": "ListOdbNetworksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "odbNetworks": {
+          "description": "The list of ODB Networks.",
+          "items": {
+            "$ref": "OdbNetwork"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListOdbSubnetsResponse": {
+      "description": "The response for `OdbSubnet.List`.",
+      "id": "ListOdbSubnetsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "odbSubnets": {
+          "description": "The list of ODB Subnets.",
+          "items": {
+            "$ref": "OdbSubnet"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unreachable locations when listing resources across all locations using wildcard location '-'.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListOperationsResponse": {
       "description": "The response message for Operations.ListOperations.",
       "id": "ListOperationsResponse",
@@ -3752,6 +4116,119 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "OdbNetwork": {
+      "description": "Represents OdbNetwork resource.",
+      "id": "OdbNetwork",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The date and time that the OdbNetwork was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "entitlementId": {
+          "description": "Output only. The ID of the subscription entitlement associated with the OdbNetwork.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels or tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the OdbNetwork resource in the following format: projects/{project}/locations/{region}/odbNetworks/{odb_network}",
+          "type": "string"
+        },
+        "network": {
+          "description": "Required. The name of the VPC network in the following format: projects/{project}/global/networks/{network}",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the ODB Network.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "TERMINATING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in available state.",
+            "Indicates that the resource is in terminating state.",
+            "Indicates that the resource is in failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OdbSubnet": {
+      "description": "Represents OdbSubnet resource.",
+      "id": "OdbSubnet",
+      "properties": {
+        "cidrRange": {
+          "description": "Required. The CIDR range of the subnet.",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The date and time that the OdbNetwork was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels or tags associated with the resource.",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. The name of the OdbSubnet resource in the following format: projects/{project}/locations/{location}/odbNetworks/{odb_network}/odbSubnets/{odb_subnet}",
+          "type": "string"
+        },
+        "purpose": {
+          "description": "Required. Purpose of the subnet.",
+          "enum": [
+            "PURPOSE_UNSPECIFIED",
+            "CLIENT_SUBNET",
+            "BACKUP_SUBNET"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Subnet to be used for client connections.",
+            "Subnet to be used for backup."
+          ],
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the ODB Subnet.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PROVISIONING",
+            "AVAILABLE",
+            "TERMINATING",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default unspecified value.",
+            "Indicates that the resource is in provisioning state.",
+            "Indicates that the resource is in available state.",
+            "Indicates that the resource is in terminating state.",
+            "Indicates that the resource is in failed state."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

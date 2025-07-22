@@ -2021,7 +2021,7 @@ export namespace run_v2 {
      */
     launchStage?: string | null;
     /**
-     * The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project\}/locations/{location\}/workerPools/{worker_id\}
+     * The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_id\}`
      */
     name?: string | null;
     /**
@@ -2081,6 +2081,10 @@ export namespace run_v2 {
      * Optional. If encryption_key_revocation_action is SHUTDOWN, the duration before shutting down all instances. The minimum increment is 1 hour.
      */
     encryptionKeyShutdownDuration?: string | null;
+    /**
+     * Optional. True if GPU zonal redundancy is disabled on this worker pool.
+     */
+    gpuZonalRedundancyDisabled?: boolean | null;
     /**
      * Optional. Unstructured key value map that can be used to organize and categorize objects. User-provided labels are shared with Google's billing system, so they can be used to filter, or break down billing charges by team, component, environment, state, etc. For more information, visit https://cloud.google.com/resource-manager/docs/creating-managing-labels or https://cloud.google.com/run/docs/configuring/labels. Cloud Run API v2 does not support labels with `run.googleapis.com`, `cloud.googleapis.com`, `serving.knative.dev`, or `autoscaling.knative.dev` namespaces, and they will be rejected. All system labels in v1 now have a corresponding field in v2 WorkerPoolRevisionTemplate.
      */
@@ -9702,11 +9706,11 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.workerPools.create({
-     *     // Required. The location and project in which this worker pool should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number. Only lowercase characters, digits, and hyphens.
+     *     // Required. The location and project in which this worker pool should be created. Format: `projects/{project\}/locations/{location\}`, where `{project\}` can be project id or number. Only lowercase characters, digits, and hyphens.
      *     parent: 'projects/my-project/locations/my-location',
      *     // Optional. Indicates that the request should be validated and default values populated, without persisting the request or creating any resources.
      *     validateOnly: 'placeholder-value',
-     *     // Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes {parent\}/workerPools/{worker_pool_id\}.
+     *     // Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes `{parent\}/workerPools/{worker_pool_id\}`.
      *     workerPoolId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -9889,7 +9893,7 @@ export namespace run_v2 {
      *   const res = await run.projects.locations.workerPools.delete({
      *     // A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      *     etag: 'placeholder-value',
-     *     // Required. The full name of the WorkerPool. Format: projects/{project\}/locations/{location\}/workerPools/{worker_pool\}, where {project\} can be project id or number.
+     *     // Required. The full name of the WorkerPool. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`, where `{project\}` can be project id or number.
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *     // Optional. Indicates that the request should be validated without actually deleting any resources.
      *     validateOnly: 'placeholder-value',
@@ -10033,7 +10037,7 @@ export namespace run_v2 {
      *
      *   // Do the magic
      *   const res = await run.projects.locations.workerPools.get({
-     *     // Required. The full name of the WorkerPool. Format: projects/{project\}/locations/{location\}/workerPools/{worker_pool\}, where {project\} can be project id or number.
+     *     // Required. The full name of the WorkerPool. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`, where `{project\}` can be project id or number.
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *   });
      *   console.log(res.data);
@@ -10349,7 +10353,7 @@ export namespace run_v2 {
      *     pageSize: 'placeholder-value',
      *     // A page token received from a previous call to ListWorkerPools. All other parameters must match.
      *     pageToken: 'placeholder-value',
-     *     // Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     *     // Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: `projects/{project\}/locations/{location\}`, where `{project\}` can be project id or number.
      *     parent: 'projects/my-project/locations/my-location',
      *     // If true, returns deleted (but unexpired) resources along with active ones.
      *     showDeleted: 'placeholder-value',
@@ -10503,7 +10507,7 @@ export namespace run_v2 {
      *     allowMissing: 'placeholder-value',
      *     // Optional. If set to true, a new revision will be created from the template even if the system doesn't detect any changes from the previously deployed revision. This may be useful for cases where the underlying resources need to be recreated or reinitialized. For example if the image is specified by label, but the underlying image digest has changed) or if the container performs deployment initialization work that needs to be performed again.
      *     forceNewRevision: 'placeholder-value',
-     *     // The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project\}/locations/{location\}/workerPools/{worker_id\}
+     *     // The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_id\}`
      *     name: 'projects/my-project/locations/my-location/workerPools/my-workerPool',
      *     // Optional. The list of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -10968,7 +10972,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Workerpools$Create
     extends StandardParameters {
     /**
-     * Required. The location and project in which this worker pool should be created. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number. Only lowercase characters, digits, and hyphens.
+     * Required. The location and project in which this worker pool should be created. Format: `projects/{project\}/locations/{location\}`, where `{project\}` can be project id or number. Only lowercase characters, digits, and hyphens.
      */
     parent?: string;
     /**
@@ -10976,7 +10980,7 @@ export namespace run_v2 {
      */
     validateOnly?: boolean;
     /**
-     * Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes {parent\}/workerPools/{worker_pool_id\}.
+     * Required. The unique identifier for the WorkerPool. It must begin with letter, and cannot end with hyphen; must contain fewer than 50 characters. The name of the worker pool becomes `{parent\}/workerPools/{worker_pool_id\}`.
      */
     workerPoolId?: string;
 
@@ -10992,7 +10996,7 @@ export namespace run_v2 {
      */
     etag?: string;
     /**
-     * Required. The full name of the WorkerPool. Format: projects/{project\}/locations/{location\}/workerPools/{worker_pool\}, where {project\} can be project id or number.
+     * Required. The full name of the WorkerPool. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`, where `{project\}` can be project id or number.
      */
     name?: string;
     /**
@@ -11003,7 +11007,7 @@ export namespace run_v2 {
   export interface Params$Resource$Projects$Locations$Workerpools$Get
     extends StandardParameters {
     /**
-     * Required. The full name of the WorkerPool. Format: projects/{project\}/locations/{location\}/workerPools/{worker_pool\}, where {project\} can be project id or number.
+     * Required. The full name of the WorkerPool. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_pool\}`, where `{project\}` can be project id or number.
      */
     name?: string;
   }
@@ -11029,7 +11033,7 @@ export namespace run_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: projects/{project\}/locations/{location\}, where {project\} can be project id or number.
+     * Required. The location and project to list resources on. Location must be a valid Google Cloud region, and cannot be the "-" wildcard. Format: `projects/{project\}/locations/{location\}`, where `{project\}` can be project id or number.
      */
     parent?: string;
     /**
@@ -11048,7 +11052,7 @@ export namespace run_v2 {
      */
     forceNewRevision?: boolean;
     /**
-     * The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: projects/{project\}/locations/{location\}/workerPools/{worker_id\}
+     * The fully qualified name of this WorkerPool. In CreateWorkerPoolRequest, this field is ignored, and instead composed from CreateWorkerPoolRequest.parent and CreateWorkerPoolRequest.worker_id. Format: `projects/{project\}/locations/{location\}/workerPools/{worker_id\}`
      */
     name?: string;
     /**

@@ -19249,8 +19249,10 @@ export namespace youtube_v3 {
 
   export class Resource$Youtube$V3 {
     context: APIRequestContext;
+    liveChat: Resource$Youtube$V3$Livechat;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.liveChat = new Resource$Youtube$V3$Livechat(this.context);
     }
 
     /**
@@ -19420,5 +19422,214 @@ export namespace youtube_v3 {
      * Request body metadata
      */
     requestBody?: Schema$CommentThread;
+  }
+
+  export class Resource$Youtube$V3$Livechat {
+    context: APIRequestContext;
+    messages: Resource$Youtube$V3$Livechat$Messages;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.messages = new Resource$Youtube$V3$Livechat$Messages(this.context);
+    }
+  }
+
+  export class Resource$Youtube$V3$Livechat$Messages {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Allows a user to load live chat through a server-streamed RPC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/youtube.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const youtube = google.youtube('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/youtube',
+     *       'https://www.googleapis.com/auth/youtube.force-ssl',
+     *       'https://www.googleapis.com/auth/youtube.readonly',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await youtube.youtube.v3.liveChat.messages.stream({
+     *     // Specifies the localization language in which the system messages should be returned.
+     *     hl: 'placeholder-value',
+     *     // The id of the live chat for which comments should be returned.
+     *     liveChatId: 'placeholder-value',
+     *     // The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     *     maxResults: 'placeholder-value',
+     *     // The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     *     pageToken: 'placeholder-value',
+     *     // The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     *     part: 'placeholder-value',
+     *     // Specifies the size of the profile image that should be returned for each user.
+     *     profileImageSize: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "activePollItem": {},
+     *   //   "etag": "my_etag",
+     *   //   "eventId": "my_eventId",
+     *   //   "items": [],
+     *   //   "kind": "my_kind",
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "offlineAt": "my_offlineAt",
+     *   //   "pageInfo": {},
+     *   //   "pollingIntervalMillis": 0,
+     *   //   "tokenPagination": {},
+     *   //   "visitorId": "my_visitorId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    stream(
+      params?: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessageListResponse>>;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      params: Params$Resource$Youtube$V3$Livechat$Messages$Stream,
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      callback: BodyResponseCallback<Schema$LiveChatMessageListResponse>
+    ): void;
+    stream(
+      paramsOrCallback?:
+        | Params$Resource$Youtube$V3$Livechat$Messages$Stream
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$LiveChatMessageListResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$LiveChatMessageListResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Youtube$V3$Livechat$Messages$Stream;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Youtube$V3$Livechat$Messages$Stream;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://youtube.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/youtube/v3/liveChat/messages/stream').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$LiveChatMessageListResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$LiveChatMessageListResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Youtube$V3$Livechat$Messages$Stream
+    extends StandardParameters {
+    /**
+     * Specifies the localization language in which the system messages should be returned.
+     */
+    hl?: string;
+    /**
+     * The id of the live chat for which comments should be returned.
+     */
+    liveChatId?: string;
+    /**
+     * The *maxResults* parameter specifies the maximum number of items that should be returned in the result set. Not used in the streaming RPC.
+     */
+    maxResults?: number;
+    /**
+     * The *pageToken* parameter identifies a specific page in the result set that should be returned. In an API response, the nextPageToken property identify other pages that could be retrieved.
+     */
+    pageToken?: string;
+    /**
+     * The *part* parameter specifies the liveChatComment resource parts that the API response will include. Supported values are id, snippet, and authorDetails.
+     */
+    part?: string[];
+    /**
+     * Specifies the size of the profile image that should be returned for each user.
+     */
+    profileImageSize?: number;
   }
 }

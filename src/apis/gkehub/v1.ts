@@ -2095,6 +2095,10 @@ export namespace gkehub_v1 {
      */
     lastConnectionTime?: string | null;
     /**
+     * Output only. The type of the membership.
+     */
+    membershipType?: string | null;
+    /**
      * Optional. The monitoring config information for this membership.
      */
     monitoringConfig?: Schema$MonitoringConfig;
@@ -5792,6 +5796,7 @@ export namespace gkehub_v1 {
      *       //   "externalId": "my_externalId",
      *       //   "labels": {},
      *       //   "lastConnectionTime": "my_lastConnectionTime",
+     *       //   "membershipType": "my_membershipType",
      *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "state": {},
@@ -6253,6 +6258,7 @@ export namespace gkehub_v1 {
      *   //   "externalId": "my_externalId",
      *   //   "labels": {},
      *   //   "lastConnectionTime": "my_lastConnectionTime",
+     *   //   "membershipType": "my_membershipType",
      *   //   "monitoringConfig": {},
      *   //   "name": "my_name",
      *   //   "state": {},
@@ -6697,6 +6703,7 @@ export namespace gkehub_v1 {
      *       //   "externalId": "my_externalId",
      *       //   "labels": {},
      *       //   "lastConnectionTime": "my_lastConnectionTime",
+     *       //   "membershipType": "my_membershipType",
      *       //   "monitoringConfig": {},
      *       //   "name": "my_name",
      *       //   "state": {},

@@ -6219,162 +6219,6 @@ export namespace dataflow_v1b3 {
     }
 
     /**
-     * Get worker stacktraces from debug capture.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dataflow = google.dataflow('v1b3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/compute',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dataflow.projects.jobs.debug.getWorkerStacktraces({
-     *     // The job for which to get stacktraces.
-     *     jobId: 'placeholder-value',
-     *     // The project id.
-     *     projectId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "workerId": "my_workerId"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "sdks": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getWorkerStacktraces(
-      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getWorkerStacktraces(
-      params?: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$GetWorkerStacktracesResponse>>;
-    getWorkerStacktraces(
-      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getWorkerStacktraces(
-      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>,
-      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-    ): void;
-    getWorkerStacktraces(
-      params: Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces,
-      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-    ): void;
-    getWorkerStacktraces(
-      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-    ): void;
-    getWorkerStacktraces(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces
-        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$GetWorkerStacktracesResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/v1b3/projects/{projectId}/jobs/{jobId}/debug/getWorkerStacktraces'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['projectId', 'jobId'],
-        pathParams: ['jobId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$GetWorkerStacktracesResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$GetWorkerStacktracesResponse>(
-          parameters
-        );
-      }
-    }
-
-    /**
      * Send encoded debug capture data for component.
      * @example
      * ```js
@@ -6546,22 +6390,6 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$GetDebugConfigRequest;
-  }
-  export interface Params$Resource$Projects$Jobs$Debug$Getworkerstacktraces
-    extends StandardParameters {
-    /**
-     * The job for which to get stacktraces.
-     */
-    jobId?: string;
-    /**
-     * The project id.
-     */
-    projectId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$GetWorkerStacktracesRequest;
   }
   export interface Params$Resource$Projects$Jobs$Debug$Sendcapture
     extends StandardParameters {
@@ -9063,6 +8891,167 @@ export namespace dataflow_v1b3 {
     }
 
     /**
+     * Get worker stacktraces from debug capture.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dataflow.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dataflow = google.dataflow('v1b3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/compute',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dataflow.projects.locations.jobs.debug.getWorkerStacktraces(
+     *     {
+     *       // The job for which to get stacktraces.
+     *       jobId: 'placeholder-value',
+     *       // The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
+     *       location: 'placeholder-value',
+     *       // The project id.
+     *       projectId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "workerId": "my_workerId"
+     *         // }
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sdks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getWorkerStacktraces(
+      params?: Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GetWorkerStacktracesResponse>>;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>,
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      params: Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces,
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      callback: BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+    ): void;
+    getWorkerStacktraces(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetWorkerStacktracesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GetWorkerStacktracesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dataflow.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1b3/projects/{projectId}/locations/{location}/jobs/{jobId}/debug/getWorkerStacktraces'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['projectId', 'location', 'jobId'],
+        pathParams: ['jobId', 'location', 'projectId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetWorkerStacktracesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetWorkerStacktracesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Send encoded debug capture data for component.
      * @example
      * ```js
@@ -9241,6 +9230,26 @@ export namespace dataflow_v1b3 {
      * Request body metadata
      */
     requestBody?: Schema$GetDebugConfigRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Jobs$Debug$Getworkerstacktraces
+    extends StandardParameters {
+    /**
+     * The job for which to get stacktraces.
+     */
+    jobId?: string;
+    /**
+     * The [regional endpoint] (https://cloud.google.com/dataflow/docs/concepts/regional-endpoints) that contains the job specified by job_id.
+     */
+    location?: string;
+    /**
+     * The project id.
+     */
+    projectId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GetWorkerStacktracesRequest;
   }
   export interface Params$Resource$Projects$Locations$Jobs$Debug$Sendcapture
     extends StandardParameters {

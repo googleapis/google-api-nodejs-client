@@ -2409,6 +2409,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     cpuArchitecture?: string | null;
     /**
+     * Optional. CPU manufacturer, e.g., "Intel", "AMD".
+     */
+    cpuManufacturer?: string | null;
+    /**
      * CPU name, e.g., "Intel Xeon E5-2690", "AMD EPYC 7571" etc.
      */
     cpuName?: string | null;

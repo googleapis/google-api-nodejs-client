@@ -2859,7 +2859,7 @@
       }
     }
   },
-  "revision": "20250703",
+  "revision": "20250710",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -5972,12 +5972,6 @@
       "properties": {
         "dataSourceId": {
           "description": "AFM data source ID.",
-          "format": "int64",
-          "type": "string"
-        },
-        "primaryFeedId": {
-          "deprecated": true,
-          "description": "Merchant Center primary feed ID. Deprecated: use data_source_id instead.",
           "format": "int64",
           "type": "string"
         },

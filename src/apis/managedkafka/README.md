@@ -8,8 +8,8 @@
 **Note**: Google provides multiple libraries for this service. This library is in
 maintenance mode, and will continue to be made available for users who have
 existing applications. If you're building a new application, or modernizing a
-legacy application, please use [@google-cloud/managedkafka](https://www.npmjs.com/package/@google-cloud/managedkafka) instead.
-The [@google-cloud/managedkafka](https://www.npmjs.com/package/@google-cloud/managedkafka) library is faster, easier to use, and better maintained.
+legacy application, please use [@google-cloud/managedkafka-schemaregistry](https://www.npmjs.com/package/@google-cloud/managedkafka-schemaregistry) instead.
+The [@google-cloud/managedkafka-schemaregistry](https://www.npmjs.com/package/@google-cloud/managedkafka-schemaregistry) library is faster, easier to use, and better maintained.
 
 To learn more, see [Client Libraries Explained](https://cloud.google.com/apis/docs/client-libraries-explained).
 

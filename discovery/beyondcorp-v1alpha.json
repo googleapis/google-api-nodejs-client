@@ -3432,7 +3432,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250714",
   "rootUrl": "https://beyondcorp.googleapis.com/",
   "schemas": {
     "AllocatedConnection": {
@@ -5508,6 +5508,53 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "upstreams": {
+          "description": "Optional. Which upstream resources to forward traffic to.",
+          "items": {
+            "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream": {
+      "description": "Which upstream resource to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstream",
+      "properties": {
+        "egressPolicy": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy",
+          "description": "Optional. Routing policy information."
+        },
+        "network": {
+          "$ref": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork",
+          "description": "Network to forward traffic to."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork": {
+      "description": "Network to forward traffic to.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplicationUpstreamNetwork",
+      "properties": {
+        "name": {
+          "description": "Required. Network name is of the format: `projects/{project}/global/networks/{network}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy": {
+      "description": "Routing policy information.",
+      "id": "GoogleCloudBeyondcorpSecuritygatewaysV1alphaEgressPolicy",
+      "properties": {
+        "regions": {
+          "description": "Required. List of the regions where the application sends traffic.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -5614,6 +5661,11 @@
         "createTime": {
           "description": "Output only. Timestamp when the resource was created.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "delegatingServiceAccount": {
+          "description": "Output only. Service account used for operations that involve resources in consumer projects.",
           "readOnly": true,
           "type": "string"
         },

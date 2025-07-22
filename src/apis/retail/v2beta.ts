@@ -2086,10 +2086,6 @@ export namespace retail_v2beta {
      */
     dataSourceId?: string | null;
     /**
-     * Merchant Center primary feed ID. Deprecated: use data_source_id instead.
-     */
-    primaryFeedId?: string | null;
-    /**
      * Merchant Center primary feed name. The name is used for the display purposes only.
      */
     primaryFeedName?: string | null;

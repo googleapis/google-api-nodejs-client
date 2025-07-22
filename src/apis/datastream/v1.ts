@@ -1417,6 +1417,10 @@ export namespace datastream_v1 {
      * Output only. Indicates whether the ca_certificate field has been set for this Connection-Profile.
      */
     caCertificateSet?: boolean | null;
+    /**
+     * Optional. The distinguished name (DN) mentioned in the server certificate. This corresponds to SSL_SERVER_CERT_DN sqlnet parameter. Refer https://docs.oracle.com/en/database/oracle/oracle-database/19/netrf/local-naming-parameters-in-tns-ora-file.html#GUID-70AB0695-A9AA-4A94-B141-4C605236EEB7 If this field is not provided, the DN matching is not enforced.
+     */
+    serverCertificateDistinguishedName?: string | null;
   }
   /**
    * Oracle table.
@@ -1798,6 +1802,10 @@ export namespace datastream_v1 {
      * Optional. Input only. PEM-encoded private key associated with the client certificate. This value will be used during the SSL/TLS handshake, allowing the PostgreSQL server to authenticate the client's identity, i.e. identity of the Datastream.
      */
     clientKey?: string | null;
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the server certificate. If this field is not provided, the hostname in the server certificate is not validated.
+     */
+    serverCertificateHostname?: string | null;
   }
   /**
    * Message represents the option where Datastream will enforce the encryption and authenticate the server identity. ca_certificate must be set if user selects this option.
@@ -1807,6 +1815,10 @@ export namespace datastream_v1 {
      * Required. Input only. PEM-encoded server root CA certificate.
      */
     caCertificate?: string | null;
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the server certificate. If this field is not provided, the hostname in the server certificate is not validated.
+     */
+    serverCertificateHostname?: string | null;
   }
   /**
    * A single target dataset to which all data will be streamed.

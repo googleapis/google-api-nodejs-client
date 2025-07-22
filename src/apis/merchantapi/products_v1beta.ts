@@ -133,7 +133,7 @@ export namespace merchantapi_products_v1beta {
      */
     additionalImageLinks?: string[] | null;
     /**
-     * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+     * Used to group items in an arbitrary way. Only for CPA, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
      */
     adsGrouping?: string | null;
     /**
@@ -153,7 +153,7 @@ export namespace merchantapi_products_v1beta {
      */
     ageGroup?: string | null;
     /**
-     * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and "Dynamic Promotions" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
+     * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and ["dynamic promotions"](https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
      */
     autoPricingMinPrice?: Schema$Price;
     /**
@@ -273,7 +273,7 @@ export namespace merchantapi_products_v1beta {
      */
     gtin?: string[] | null;
     /**
-     * Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+     * A list of Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
      */
     gtins?: string[] | null;
     /**
@@ -911,7 +911,7 @@ export namespace merchantapi_products_v1beta {
      */
     customAttributes?: Schema$CustomAttribute[];
     /**
-     * Required. Immutable. The label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087).
+     * Required. Immutable. The feed label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087).
      */
     feedLabel?: string | null;
     /**
@@ -1356,7 +1356,7 @@ export namespace merchantapi_products_v1beta {
     }
 
     /**
-     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/overview#upload-product-input). You must have a products data source to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If an input with the same contentLanguage, offerId, and dataSource already exists, this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/overview#upload-product-input). You must have a products [data source](/merchant/api/guides/data-sources/overview) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
      * @example
      * ```js
      * // Before running the sample:
@@ -1915,7 +1915,7 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.products.list({
-     *     // The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.
+     *     // The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size of 25 products will be returned.
      *     pageSize: 'placeholder-value',
      *     // A page token, received from a previous `ListProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListProducts` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
@@ -2039,7 +2039,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$List
     extends StandardParameters {
     /**
-     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the maximum number of products will be returned.
+     * The maximum number of products to return. The service may return fewer than this value. The maximum value is 1000; values above 1000 will be coerced to 1000. If unspecified, the default page size of 25 products will be returned.
      */
     pageSize?: number;
     /**

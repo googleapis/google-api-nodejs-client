@@ -189,6 +189,32 @@ export namespace notebooks_v2 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
+   * Request message for checking authorization for the instance owner.
+   */
+  export interface Schema$CheckAuthorizationRequest {
+    /**
+     * Optional. The details of the OAuth authorization response. This may include additional params such as dry_run, version_info, origin, propagate, etc.
+     */
+    authorizationDetails?: {[key: string]: string} | null;
+  }
+  /**
+   * Response message for checking authorization for the instance owner.
+   */
+  export interface Schema$CheckAuthorizationResponse {
+    /**
+     * Output only. Timestamp when this Authorization request was created.
+     */
+    createTime?: string | null;
+    /**
+     * If the user has not completed OAuth consent, then the oauth_url is returned. Otherwise, this field is not set.
+     */
+    oauth_uri?: string | null;
+    /**
+     * Success indicates that the user completed OAuth consent and access tokens can be generated.
+     */
+    success?: boolean | null;
+  }
+  /**
    * Response for checking if a notebook instance is upgradeable.
    */
   export interface Schema$CheckInstanceUpgradabilityResponse {
@@ -436,6 +462,36 @@ export namespace notebooks_v2 {
     vmImage?: Schema$VmImage;
   }
   /**
+   * Request message for generating an EUC for the instance owner.
+   */
+  export interface Schema$GenerateAccessTokenRequest {
+    /**
+     * Required. The VM identity token (a JWT) for authenticating the VM. https://cloud.google.com/compute/docs/instances/verifying-instance-identity
+     */
+    vmToken?: string | null;
+  }
+  /**
+   * Response message for generating an EUC for the instance owner.
+   */
+  export interface Schema$GenerateAccessTokenResponse {
+    /**
+     * Short-lived access token string which may be used to access Google APIs.
+     */
+    access_token?: string | null;
+    /**
+     * The time in seconds when the access token expires. Typically that's 3600.
+     */
+    expires_in?: number | null;
+    /**
+     * Space-separated list of scopes contained in the returned token. https://cloud.google.com/docs/authentication/token-types#access-contents
+     */
+    scope?: string | null;
+    /**
+     * Type of the returned access token (e.g. "Bearer"). It specifies how the token must be used. Bearer tokens may be used by any entity without proof of identity.
+     */
+    token_type?: string | null;
+  }
+  /**
    * A GPU driver configuration
    */
   export interface Schema$GPUDriverConfig {
@@ -481,6 +537,10 @@ export namespace notebooks_v2 {
      * Optional. If true, deletion protection will be enabled for this Workbench Instance. If false, deletion protection will be disabled for this Workbench Instance.
      */
     enableDeletionProtection?: boolean | null;
+    /**
+     * Optional. Flag to enable managed end user credentials for the instance.
+     */
+    enableManagedEuc?: boolean | null;
     /**
      * Optional. Flag that specifies that a notebook can be accessed with third party identity provider.
      */
@@ -1305,6 +1365,158 @@ export namespace notebooks_v2 {
     }
 
     /**
+     * Initiated by Cloud Console for Oauth consent flow for Workbench Instances. Do not use this method directly. Design doc: go/wbi-euc:auth-dd
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.checkAuthorization({
+     *     // Required. The name of the Notebook Instance resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "authorizationDetails": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "oauth_uri": "my_oauth_uri",
+     *   //   "success": false
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    checkAuthorization(
+      params: Params$Resource$Projects$Locations$Instances$Checkauthorization,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    checkAuthorization(
+      params?: Params$Resource$Projects$Locations$Instances$Checkauthorization,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CheckAuthorizationResponse>>;
+    checkAuthorization(
+      params: Params$Resource$Projects$Locations$Instances$Checkauthorization,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    checkAuthorization(
+      params: Params$Resource$Projects$Locations$Instances$Checkauthorization,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CheckAuthorizationResponse>,
+      callback: BodyResponseCallback<Schema$CheckAuthorizationResponse>
+    ): void;
+    checkAuthorization(
+      params: Params$Resource$Projects$Locations$Instances$Checkauthorization,
+      callback: BodyResponseCallback<Schema$CheckAuthorizationResponse>
+    ): void;
+    checkAuthorization(
+      callback: BodyResponseCallback<Schema$CheckAuthorizationResponse>
+    ): void;
+    checkAuthorization(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Checkauthorization
+        | BodyResponseCallback<Schema$CheckAuthorizationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CheckAuthorizationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CheckAuthorizationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$CheckAuthorizationResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Checkauthorization;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Checkauthorization;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:checkAuthorization').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CheckAuthorizationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CheckAuthorizationResponse>(parameters);
+      }
+    }
+
+    /**
      * Checks whether a notebook instance is upgradable.
      * @example
      * ```js
@@ -1501,6 +1713,7 @@ export namespace notebooks_v2 {
      *       //   "creator": "my_creator",
      *       //   "disableProxyAccess": false,
      *       //   "enableDeletionProtection": false,
+     *       //   "enableManagedEuc": false,
      *       //   "enableThirdPartyIdentity": false,
      *       //   "gceSetup": {},
      *       //   "healthInfo": {},
@@ -1917,6 +2130,159 @@ export namespace notebooks_v2 {
     }
 
     /**
+     * Called by VM to return an EUC for the instance owner. Do not use this method directly. Design doc: go/wbi-euc:dd
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/notebooks.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const notebooks = google.notebooks('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await notebooks.projects.locations.instances.generateAccessToken({
+     *     // Required. Format: `projects/{project\}/locations/{location\}/instances/{instance_id\}`
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "vmToken": "my_vmToken"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "access_token": "my_access_token",
+     *   //   "expires_in": 0,
+     *   //   "scope": "my_scope",
+     *   //   "token_type": "my_token_type"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Instances$Generateaccesstoken,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    generateAccessToken(
+      params?: Params$Resource$Projects$Locations$Instances$Generateaccesstoken,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Instances$Generateaccesstoken,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Instances$Generateaccesstoken,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      params: Params$Resource$Projects$Locations$Instances$Generateaccesstoken,
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      callback: BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+    ): void;
+    generateAccessToken(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Generateaccesstoken
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GenerateAccessTokenResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateAccessTokenResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Generateaccesstoken;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Generateaccesstoken;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://notebooks.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:generateAccessToken').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GenerateAccessTokenResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GenerateAccessTokenResponse>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Instance.
      * @example
      * ```js
@@ -1958,6 +2324,7 @@ export namespace notebooks_v2 {
      *   //   "creator": "my_creator",
      *   //   "disableProxyAccess": false,
      *   //   "enableDeletionProtection": false,
+     *   //   "enableManagedEuc": false,
      *   //   "enableThirdPartyIdentity": false,
      *   //   "gceSetup": {},
      *   //   "healthInfo": {},
@@ -2545,6 +2912,7 @@ export namespace notebooks_v2 {
      *       //   "creator": "my_creator",
      *       //   "disableProxyAccess": false,
      *       //   "enableDeletionProtection": false,
+     *       //   "enableManagedEuc": false,
      *       //   "enableThirdPartyIdentity": false,
      *       //   "gceSetup": {},
      *       //   "healthInfo": {},
@@ -4296,6 +4664,18 @@ export namespace notebooks_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Instances$Checkauthorization
+    extends StandardParameters {
+    /**
+     * Required. The name of the Notebook Instance resource. Format: `projects/{project\}/locations/{location\}/instances/{instance\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CheckAuthorizationRequest;
+  }
   export interface Params$Resource$Projects$Locations$Instances$Checkupgradability
     extends StandardParameters {
     /**
@@ -4345,6 +4725,18 @@ export namespace notebooks_v2 {
      * Request body metadata
      */
     requestBody?: Schema$DiagnoseInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Generateaccesstoken
+    extends StandardParameters {
+    /**
+     * Required. Format: `projects/{project\}/locations/{location\}/instances/{instance_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GenerateAccessTokenRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Get
     extends StandardParameters {
