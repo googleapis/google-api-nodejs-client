@@ -1,5 +1,16 @@
 # Changelog
 
+## [40.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v39.1.0...chat-v40.0.0) (2025-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
 ## [39.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v39.0.1...chat-v39.1.0) (2025-07-15)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/tpu",
-  "version": "7.1.0",
+  "version": "8.0.0",
   "description": "tpu",
   "main": "build/index.js",
   "types": "build/index.d.ts",
