@@ -1764,6 +1764,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "msComplianceMetadata": {
+                  "description": "Returns the Assured Workloads compliance metadata for a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/managementServers:msComplianceMetadata",
+                  "httpMethod": "POST",
+                  "id": "backupdr.projects.locations.managementServers.msComplianceMetadata",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id}/locations/{location}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/managementServers$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:msComplianceMetadata",
+                  "request": {
+                    "$ref": "FetchMsComplianceMetadataRequest"
+                  },
+                  "response": {
+                    "$ref": "FetchMsComplianceMetadataResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/managementServers/{managementServersId}:setIamPolicy",
@@ -2032,7 +2060,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250711",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -3552,7 +3580,7 @@
           "type": "string"
         },
         "disks": {
-          "description": "Optional. Array of disks associated with this instance. Persistent disks must be created before you can assign them.",
+          "description": "Optional. Array of disks associated with this instance. Persistent disks must be created before you can assign them. Source regional persistent disks will be restored with default replica zones if not specified.",
           "items": {
             "$ref": "AttachedDisk"
           },
@@ -3615,7 +3643,7 @@
           "type": "string"
         },
         "networkInterfaces": {
-          "description": "Optional. An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance.",
+          "description": "Optional. An array of network configurations for this instance. These specify how interfaces are configured to interact with other network services, such as connecting to the internet. Multiple interfaces are supported per instance. Required to restore in different project or region.",
           "items": {
             "$ref": "NetworkInterface"
           },
@@ -3650,7 +3678,7 @@
           "description": "Optional. Specifies the reservations that this instance can consume from."
         },
         "resourcePolicies": {
-          "description": "Optional. Resource policies applied to this instance.",
+          "description": "Optional. Resource policies applied to this instance. By default, no resource policies will be applied.",
           "items": {
             "type": "string"
           },
@@ -4348,6 +4376,28 @@
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchMsComplianceMetadataRequest": {
+      "description": "Request message for GetMsComplianceMetadata",
+      "id": "FetchMsComplianceMetadataRequest",
+      "properties": {
+        "projectId": {
+          "description": "Required. The project id of the target project",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchMsComplianceMetadataResponse": {
+      "description": "Response message for GetMsComplianceMetadata",
+      "id": "FetchMsComplianceMetadataResponse",
+      "properties": {
+        "isAssuredWorkload": {
+          "description": "The ms compliance metadata of the target project, if the project is an assured workloads project, values will be true, otherwise false.",
+          "type": "boolean"
         }
       },
       "type": "object"
