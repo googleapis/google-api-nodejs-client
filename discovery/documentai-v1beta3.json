@@ -1290,7 +1290,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250716",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -5986,8 +5986,9 @@
       "id": "GoogleCloudDocumentaiV1beta3Processor",
       "properties": {
         "createTime": {
-          "description": "The time the processor was created.",
+          "description": "Output only. The time the processor was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "defaultProcessorVersion": {
@@ -6139,13 +6140,15 @@
       "id": "GoogleCloudDocumentaiV1beta3ProcessorVersion",
       "properties": {
         "createTime": {
-          "description": "The time the processor version was created.",
+          "description": "Output only. The time the processor version was created.",
           "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         },
         "deprecationInfo": {
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo",
-          "description": "If set, information about the eventual deprecation of this version."
+          "description": "Output only. If set, information about the eventual deprecation of this version.",
+          "readOnly": true
         },
         "displayName": {
           "description": "The display name of the processor version.",
@@ -6153,7 +6156,8 @@
         },
         "documentSchema": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentSchema",
-          "description": "The schema of the processor version. Describes the output."
+          "description": "Output only. The schema of the processor version. Describes the output.",
+          "readOnly": true
         },
         "genAiModelInfo": {
           "$ref": "GoogleCloudDocumentaiV1beta3ProcessorVersionGenAiModelInfo",
@@ -6166,16 +6170,19 @@
           "type": "boolean"
         },
         "kmsKeyName": {
-          "description": "The KMS key name used for encryption.",
+          "description": "Output only. The KMS key name used for encryption.",
+          "readOnly": true,
           "type": "string"
         },
         "kmsKeyVersionName": {
-          "description": "The KMS key version with which data is encrypted.",
+          "description": "Output only. The KMS key version with which data is encrypted.",
+          "readOnly": true,
           "type": "string"
         },
         "latestEvaluation": {
           "$ref": "GoogleCloudDocumentaiV1beta3EvaluationReference",
-          "description": "The most recently invoked evaluation for the processor version."
+          "description": "Output only. The most recently invoked evaluation for the processor version.",
+          "readOnly": true
         },
         "modelType": {
           "description": "Output only. The model type of this processor version.",
