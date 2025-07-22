@@ -2311,7 +2311,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250715",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -5301,14 +5301,16 @@
               "STANDARD",
               "READ_ONLY",
               "ADMIN",
-              "PERFORMANCE_REPORTING"
+              "PERFORMANCE_REPORTING",
+              "API_DEVELOPER"
             ],
             "enumDescriptions": [
               "Default value. This value is unused.",
               "Standard access rights.",
               "Has access to the same read-only methods as STANDARD, but no access to any mutating methods.",
               "Admin access rights.",
-              "Users with this right have access to performance and insights."
+              "Users with this right have access to performance and insights.",
+              "Users with this right have access to Merchant API and its notifications. This role is only accessible to accounts that has a developer registration."
             ],
             "type": "string"
           },

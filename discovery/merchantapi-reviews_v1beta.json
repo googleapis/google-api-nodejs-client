@@ -356,7 +356,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250716",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -427,10 +427,6 @@
       "description": "A review for a merchant. For more information, see [Introduction to Merchant Review Feeds](https://developers.google.com/merchant-review-feeds)",
       "id": "MerchantReview",
       "properties": {
-        "attributes": {
-          "$ref": "MerchantReviewAttributes",
-          "description": "Optional. A list of merchant review attributes."
-        },
         "customAttributes": {
           "description": "Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ \"name\": \"size type\", \"value\": \"regular\" }`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.",
           "items": {
@@ -442,6 +438,10 @@
           "description": "Output only. The primary data source of the merchant review.",
           "readOnly": true,
           "type": "string"
+        },
+        "merchantReviewAttributes": {
+          "$ref": "MerchantReviewAttributes",
+          "description": "Optional. A list of merchant review attributes."
         },
         "merchantReviewId": {
           "description": "Required. The user provided merchant review ID to uniquely identify the merchant review.",
@@ -866,10 +866,6 @@
       "description": "A review for a product. For more information, see [Introduction to Product Review Feeds](https://developers.google.com/product-review-feeds)",
       "id": "ProductReview",
       "properties": {
-        "attributes": {
-          "$ref": "ProductReviewAttributes",
-          "description": "Optional. A list of product review attributes."
-        },
         "customAttributes": {
           "description": "Optional. A list of custom (merchant-provided) attributes.",
           "items": {
@@ -885,6 +881,10 @@
         "name": {
           "description": "Identifier. The name of the product review. Format: `\"{productreview.name=accounts/{account}/productReviews/{productReview}}\"`",
           "type": "string"
+        },
+        "productReviewAttributes": {
+          "$ref": "ProductReviewAttributes",
+          "description": "Optional. A list of product review attributes."
         },
         "productReviewId": {
           "description": "Required. The permanent, unique identifier for the product review in the publisher’s system.",
