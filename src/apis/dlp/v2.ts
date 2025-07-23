@@ -2240,6 +2240,19 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
+   * Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.
+   */
+  export interface Schema$GooglePrivacyDlpV2DocumentFallbackLocation {
+    /**
+     * Processing will happen in the global region.
+     */
+    globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
+    /**
+     * Processing will happen in a multi-region that contains the current region if available.
+     */
+    multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
+  }
+  /**
    * Location of a finding within a document.
    */
   export interface Schema$GooglePrivacyDlpV2DocumentLocation {
@@ -3993,6 +4006,10 @@ export namespace dlp_v2 {
    * Configure processing location for discovery and inspection. For example, image OCR is only provided in limited regions but configuring ProcessingLocation will redirect OCR to a location where OCR is provided.
    */
   export interface Schema$GooglePrivacyDlpV2ProcessingLocation {
+    /**
+     * Document processing will fall back using this configuration.
+     */
+    documentFallbackLocation?: Schema$GooglePrivacyDlpV2DocumentFallbackLocation;
     /**
      * Image processing will fall back using this configuration.
      */
