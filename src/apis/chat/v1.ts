@@ -447,15 +447,15 @@ export namespace chat_v1 {
     red?: number | null;
   }
   /**
-   * Represents information about the user's client, such as locale, host app, and platform. For Chat apps, `CommonEventObject` includes data submitted by users interacting with cards, like data entered in [dialogs](https://developers.google.com/chat/how-tos/dialogs).
+   * The common event object is the portion of the overall event object that carries general, host-independent information to the add-on from the user's client. This information includes details such as the user's locale, host app, and platform. In addition to homepage and contextual triggers, add-ons construct and pass event objects to [action callback functions](https://developers.google.com/workspace/add-ons/concepts/actions#callback_functions) when the user interacts with widgets. Your add-on's callback function can query the common event object to determine the contents of open widgets in the user's client. For example, your add-on can locate the text a user has entered into a [TextInput](https://developers.google.com/apps-script/reference/card-service/text-input) widget in the `eventObject.commentEventObject.formInputs` object. For Chat apps, the name of the function that the user invoked when interacting with a widget.
    */
   export interface Schema$CommonEventObject {
     /**
-     * A map containing the values that a user inputs in a widget from a card or dialog. The map keys are the string IDs assigned to each widget, and the values represent inputs to the widget. For details, see [Process information inputted by users](https://developers.google.com/chat/ui/read-form-data).
+     * A map containing the current values of the widgets in the displayed card. The map keys are the string IDs assigned with each widget. The structure of the map value object is dependent on the widget type: **Note**: The following examples are formatted for Apps Script's V8 runtime. If you're using Rhino runtime, you must add `[""]` after the value. For example, instead of `e.commonEventObject.formInputs.employeeName.stringInputs.value[0]`, format the event object as `e.commonEventObject.formInputs.employeeName[""].stringInputs.value[0]`. To learn more about runtimes in Apps Script, see the [V8 Runtime Overview](https://developers.google.com/apps-script/guides/v8-runtime). * Single-valued widgets (for example, a text box): a list of strings (only one element). **Example**: for a text input widget with `employeeName` as its ID, access the text input value with: `e.commonEventObject.formInputs.employeeName.stringInputs.value[0]`. * Multi-valued widgets (for example, checkbox groups): a list of strings. **Example**: for a multi-value widget with `participants` as its ID, access the value array with: `e.commonEventObject.formInputs.participants.stringInputs.value`. * **A date-time picker**: a [`DateTimeInput object`](https://developers.google.com/workspace/add-ons/concepts/event-objects#date-time-input). **Example**: For a picker with an ID of `myDTPicker`, access the [`DateTimeInput`](https://developers.google.com/workspace/add-ons/concepts/event-objects#date-time-input) object using `e.commonEventObject.formInputs.myDTPicker.dateTimeInput`. * **A date-only picker**: a [`DateInput object`](https://developers.google.com/workspace/add-ons/concepts/event-objects#date-input). **Example**: For a picker with an ID of `myDatePicker`, access the [`DateInput`](https://developers.google.com/workspace/add-ons/concepts/event-objects#date-input) object using `e.commonEventObject.formInputs.myDatePicker.dateInput`. * **A time-only picker**: a [`TimeInput object`](https://developers.google.com/workspace/add-ons/concepts/event-objects#time-input). **Example**: For a picker with an ID of `myTimePicker`, access the [`TimeInput`](https://developers.google.com/workspace/add-ons/concepts/event-objects#time-input) object using `e.commonEventObject.formInputs.myTimePicker.timeInput`.
      */
     formInputs?: {[key: string]: Schema$Inputs} | null;
     /**
-     * The hostApp enum which indicates the app the add-on is invoked from. Always `CHAT` for Chat apps.
+     * Indicates the host app the add-on is active in when the event object is generated. Possible values include the following: * `GMAIL` * `CALENDAR` * `DRIVE` * `DOCS` * `SHEETS` * `SLIDES` * `CHAT`
      */
     hostApp?: string | null;
     /**
@@ -463,7 +463,7 @@ export namespace chat_v1 {
      */
     invokedFunction?: string | null;
     /**
-     * Custom [parameters](/chat/api/reference/rest/v1/cards#ActionParameter) passed to the invoked function. Both keys and values must be strings.
+     * Any additional parameters you supply to an action using [`actionParameters`](https://developers.google.com/workspace/add-ons/reference/rpc/google.apps.card.v1#google.apps.card.v1.Action.ActionParameter) or [`Action.setParameters()`](https://developers.google.com/apps-script/reference/card-service/action#setparametersparameters). **Developer Preview:** For [add-ons that extend Google Chat](https://developers.google.com/workspace/add-ons/chat), to suggest items based on what the users type in multiselect menus, use the value of the `"autocomplete_widget_query"` key (`event.commonEventObject.parameters["autocomplete_widget_query"]`). You can use this value to query a database and suggest selectable items to users as they type. For details, see [Collect and process information from Google Chat users](https://developers.google.com/workspace/add-ons/chat/collect-information).
      */
     parameters?: {[key: string]: string} | null;
     /**
@@ -471,11 +471,11 @@ export namespace chat_v1 {
      */
     platform?: string | null;
     /**
-     * The timezone ID and offset from Coordinated Universal Time (UTC). Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
+     * **Disabled by default.** The timezone ID and offset from Coordinated Universal Time (UTC). To turn on this field, you must set `addOns.common.useLocaleFromApp` to `true` in your add-on's manifest. Your add-on's scope list must also include `https://www.googleapis.com/auth/script.locale`. See [Accessing user locale and timezone](https://developers.google.com/workspace/add-ons/how-tos/access-user-locale) for more details. Only supported for the event types [`CARD_CLICKED`](https://developers.google.com/chat/api/reference/rest/v1/EventType#ENUM_VALUES.CARD_CLICKED) and [`SUBMIT_DIALOG`](https://developers.google.com/chat/api/reference/rest/v1/DialogEventType#ENUM_VALUES.SUBMIT_DIALOG).
      */
     timeZone?: Schema$TimeZone;
     /**
-     * The full `locale.displayName` in the format of [ISO 639 language code]-[ISO 3166 country/region code] such as "en-US".
+     * **Disabled by default.** The user's language and country/region identifier in the format of [ISO 639](https://wikipedia.org/wiki/ISO_639_macrolanguage) language code-[ISO 3166](https://wikipedia.org/wiki/ISO_3166) country/region code. For example, `en-US`. To turn on this field, you must set `addOns.common.useLocaleFromApp` to `true` in your add-on's manifest. Your add-on's scope list must also include `https://www.googleapis.com/auth/script.locale`. See [Accessing user locale and timezone](https://developers.google.com/workspace/add-ons/how-tos/access-user-locale) for more details.
      */
     userLocale?: string | null;
   }
@@ -2392,6 +2392,10 @@ export namespace chat_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer\}`, where `customer` is the `id` from the [Admin SDK customer resource]( https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. For DMs, this field isn't populated. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    customer?: string | null;
+    /**
      * Optional. The space's display name. Required when [creating a space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create) with a `spaceType` of `SPACE`. If you receive the error message `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. For direct messages, this field might be empty. Supports up to 128 characters.
      */
     displayName?: string | null;
@@ -3959,6 +3963,7 @@ export namespace chat_v1 {
      *       //   "accessSettings": {},
      *       //   "adminInstalled": false,
      *       //   "createTime": "my_createTime",
+     *       //   "customer": "my_customer",
      *       //   "displayName": "my_displayName",
      *       //   "externalUserAllowed": false,
      *       //   "importMode": false,
@@ -3986,6 +3991,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4280,6 +4286,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4445,6 +4452,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4748,6 +4756,7 @@ export namespace chat_v1 {
      *       //   "accessSettings": {},
      *       //   "adminInstalled": false,
      *       //   "createTime": "my_createTime",
+     *       //   "customer": "my_customer",
      *       //   "displayName": "my_displayName",
      *       //   "externalUserAllowed": false,
      *       //   "importMode": false,
@@ -4775,6 +4784,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -5085,6 +5095,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -5629,7 +5640,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns details about a membership. For an example, see [Get details about a user's or Google Chat app's membership](https://developers.google.com/workspace/chat/get-members). Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the authorization scope: - `https://www.googleapis.com/auth/chat.bot` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
+     * Returns details about a membership. For an example, see [Get details about a user's or Google Chat app's membership](https://developers.google.com/workspace/chat/get-members). Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.bot` - `https://www.googleapis.com/auth/chat.app.memberships` (requires [administrator approval](https://support.google.com/a?p=chat-app-auth)) - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
      * @example
      * ```js
      * // Before running the sample:
@@ -5778,7 +5789,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists memberships in a space. For an example, see [List users and Google Chat apps in a space](https://developers.google.com/workspace/chat/list-members). Listing memberships with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) lists memberships in spaces that the authenticated user has access to. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the authorization scope: - `https://www.googleapis.com/auth/chat.bot` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - `https://www.googleapis.com/auth/chat.import` (import mode spaces only) - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
+     * Lists memberships in a space. For an example, see [List users and Google Chat apps in a space](https://developers.google.com/workspace/chat/list-members). Listing memberships with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) lists memberships in spaces that the authenticated user has access to. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.bot` - `https://www.googleapis.com/auth/chat.app.memberships` (requires [administrator approval](https://support.google.com/a?p=chat-app-auth)) - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - `https://www.googleapis.com/auth/chat.import` (import mode spaces only) - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
      * @example
      * ```js
      * // Before running the sample:
