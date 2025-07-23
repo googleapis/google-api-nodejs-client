@@ -176,10 +176,6 @@ export namespace merchantapi_reviews_v1beta {
    */
   export interface Schema$MerchantReview {
     /**
-     * Optional. A list of merchant review attributes.
-     */
-    attributes?: Schema$MerchantReviewAttributes;
-    /**
      * Optional. A list of custom (merchant-provided) attributes. It can also be used for submitting any attribute of the data specification in its generic form (for example, `{ "name": "size type", "value": "regular" \}`). This is useful for submitting attributes not explicitly exposed by the API, such as experimental attributes. Maximum allowed number of characters for each custom attribute is 10240 (represents sum of characters for name and value). Maximum 2500 custom attributes can be set per product, with total size of 102.4kB. Underscores in custom attribute names are replaced by spaces upon insertion.
      */
     customAttributes?: Schema$CustomAttribute[];
@@ -187,6 +183,10 @@ export namespace merchantapi_reviews_v1beta {
      * Output only. The primary data source of the merchant review.
      */
     dataSource?: string | null;
+    /**
+     * Optional. A list of merchant review attributes.
+     */
+    merchantReviewAttributes?: Schema$MerchantReviewAttributes;
     /**
      * Required. The user provided merchant review ID to uniquely identify the merchant review.
      */
@@ -362,10 +362,6 @@ export namespace merchantapi_reviews_v1beta {
    */
   export interface Schema$ProductReview {
     /**
-     * Optional. A list of product review attributes.
-     */
-    attributes?: Schema$ProductReviewAttributes;
-    /**
      * Optional. A list of custom (merchant-provided) attributes.
      */
     customAttributes?: Schema$CustomAttribute[];
@@ -377,6 +373,10 @@ export namespace merchantapi_reviews_v1beta {
      * Identifier. The name of the product review. Format: `"{productreview.name=accounts/{account\}/productReviews/{productReview\}\}"`
      */
     name?: string | null;
+    /**
+     * Optional. A list of product review attributes.
+     */
+    productReviewAttributes?: Schema$ProductReviewAttributes;
     /**
      * Required. The permanent, unique identifier for the product review in the publisher’s system.
      */
@@ -829,9 +829,9 @@ export namespace merchantapi_reviews_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
      *   //   "customAttributes": [],
      *   //   "dataSource": "my_dataSource",
+     *   //   "merchantReviewAttributes": {},
      *   //   "merchantReviewId": "my_merchantReviewId",
      *   //   "merchantReviewStatus": {},
      *   //   "name": "my_name"
@@ -973,9 +973,9 @@ export namespace merchantapi_reviews_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "attributes": {},
      *       //   "customAttributes": [],
      *       //   "dataSource": "my_dataSource",
+     *       //   "merchantReviewAttributes": {},
      *       //   "merchantReviewId": "my_merchantReviewId",
      *       //   "merchantReviewStatus": {},
      *       //   "name": "my_name"
@@ -986,9 +986,9 @@ export namespace merchantapi_reviews_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
      *   //   "customAttributes": [],
      *   //   "dataSource": "my_dataSource",
+     *   //   "merchantReviewAttributes": {},
      *   //   "merchantReviewId": "my_merchantReviewId",
      *   //   "merchantReviewStatus": {},
      *   //   "name": "my_name"
@@ -1460,10 +1460,10 @@ export namespace merchantapi_reviews_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
      *   //   "customAttributes": [],
      *   //   "dataSource": "my_dataSource",
      *   //   "name": "my_name",
+     *   //   "productReviewAttributes": {},
      *   //   "productReviewId": "my_productReviewId",
      *   //   "productReviewStatus": {}
      *   // }
@@ -1604,10 +1604,10 @@ export namespace merchantapi_reviews_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "attributes": {},
      *       //   "customAttributes": [],
      *       //   "dataSource": "my_dataSource",
      *       //   "name": "my_name",
+     *       //   "productReviewAttributes": {},
      *       //   "productReviewId": "my_productReviewId",
      *       //   "productReviewStatus": {}
      *       // }
@@ -1617,10 +1617,10 @@ export namespace merchantapi_reviews_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
      *   //   "customAttributes": [],
      *   //   "dataSource": "my_dataSource",
      *   //   "name": "my_name",
+     *   //   "productReviewAttributes": {},
      *   //   "productReviewId": "my_productReviewId",
      *   //   "productReviewStatus": {}
      *   // }

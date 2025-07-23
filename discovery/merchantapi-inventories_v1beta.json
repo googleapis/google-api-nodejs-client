@@ -300,7 +300,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250721",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -399,6 +399,7 @@
           "type": "string"
         },
         "customAttributes": {
+          "deprecated": true,
           "description": "A list of custom (merchant-provided) attributes. You can also use `CustomAttribute` to submit any attribute of the data specification in its generic form.",
           "items": {
             "$ref": "CustomAttribute"
@@ -627,6 +628,7 @@
           "type": "string"
         },
         "customAttributes": {
+          "deprecated": true,
           "description": "A list of custom (merchant-provided) attributes. You can also use `CustomAttribute` to submit any attribute of the data specification in its generic form.",
           "items": {
             "$ref": "CustomAttribute"
