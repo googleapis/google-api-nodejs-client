@@ -400,7 +400,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250714",
   "rootUrl": "https://searchconsole.googleapis.com/",
   "schemas": {
     "AmpInspectionResult": {
@@ -873,12 +873,15 @@
       "type": "object"
     },
     "Metadata": {
+      "description": "An object that may be returned with your query results, providing context about the state of the data. When you request recent data (using `all` or `hourly_all` for `dataState`), some of the rows returned may represent data that is incomplete, which means that the data is still being collected and processed. This metadata object helps you identify exactly when this starts and ends. All dates and times provided in this object are in the `America/Los_Angeles` time zone. The specific field returned within this object depends on how you've grouped your data in the request. See details in inner fields.",
       "id": "Metadata",
       "properties": {
         "firstIncompleteDate": {
+          "description": "The first date for which the data is still being collected and processed, presented in `YYYY-MM-DD` format (ISO-8601 extended local date format). This field is populated only when the request's `dataState` is \"`all`\", data is grouped by \"`DATE`\", and the requested date range contains incomplete data points. All values after the `first_incomplete_date` may still change noticeably.",
           "type": "string"
         },
         "firstIncompleteHour": {
+          "description": "The first hour for which the data is still being collected and processed, presented in `YYYY-MM-DDThh:mm:ss[+|-]hh:mm` format (ISO-8601 extended offset date-time format). This field is populated only when the request's `dataState` is \"`hourly_all`\", data is grouped by \"`HOUR`\" and the requested date range contains incomplete data points. All values after the `first_incomplete_hour` may still change noticeably.",
           "type": "string"
         }
       },
@@ -1251,7 +1254,8 @@
       "id": "SearchAnalyticsQueryResponse",
       "properties": {
         "metadata": {
-          "$ref": "Metadata"
+          "$ref": "Metadata",
+          "description": "An object that may be returned with your query results, providing context about the state of the data. See details in Metadata object documentation."
         },
         "responseAggregationType": {
           "description": "How the results were aggregated.",
