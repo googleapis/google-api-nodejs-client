@@ -187,7 +187,7 @@ export namespace developerconnect_v1 {
      */
     googleArtifactAnalysis?: Schema$GoogleArtifactAnalysis;
     /**
-     * Optional. Set if the artifact is stored in Artifact regsitry.
+     * Optional. Set if the artifact is stored in Artifact registry.
      */
     googleArtifactRegistry?: Schema$GoogleArtifactRegistry;
     /**
