@@ -267,7 +267,21 @@ export namespace storage_v1 {
     /**
      * Encryption configuration for a bucket.
      */
-    encryption?: {defaultKmsKeyName?: string} | null;
+    encryption?: {
+      customerManagedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+      customerSuppliedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+      defaultKmsKeyName?: string;
+      googleManagedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+    } | null;
     /**
      * HTTP 1.1 Entity tag for the bucket.
      */
