@@ -260,7 +260,7 @@
       }
     }
   },
-  "revision": "20250407",
+  "revision": "20250721",
   "rootUrl": "https://searchads360.googleapis.com/",
   "schemas": {
     "GoogleAdsSearchads360V0Common__AdScheduleInfo": {
@@ -447,7 +447,8 @@
             "PROMOTION",
             "AD_IMAGE",
             "LEAD_FORM",
-            "BUSINESS_LOGO"
+            "BUSINESS_LOGO",
+            "DESCRIPTION_PREFIX"
           ],
           "enumDescriptions": [
             "No value has been specified.",
@@ -481,7 +482,8 @@
             "This asset is used as a promotion.",
             "This asset is used as an image.",
             "The asset is used as a lead form.",
-            "The asset is used as a business logo."
+            "The asset is used as a business logo.",
+            "The asset is used as a description prefix."
           ],
           "type": "string"
         }
@@ -2686,6 +2688,38 @@
           ],
           "type": "string"
         },
+        "conversionCustomVariableError": {
+          "description": "The reasons for the conversion custom variable error",
+          "enum": [
+            "UNSPECIFIED",
+            "UNKNOWN",
+            "DUPLICATE_NAME",
+            "DUPLICATE_TAG",
+            "RESERVED_TAG",
+            "NOT_FOUND",
+            "NOT_AVAILABLE",
+            "INCOMPATIBLE_TYPE",
+            "INVALID_METRIC",
+            "EXCEEDS_CARDINALITY_LIMIT",
+            "INVALID_DIMENSION",
+            "INCOMPATIBLE_WITH_SELECTED_RESOURCE"
+          ],
+          "enumDescriptions": [
+            "Enum unspecified.",
+            "The received error code is not known in this version.",
+            "A conversion custom variable with the specified name already exists.",
+            "A conversion custom variable with the specified tag already exists.",
+            "A conversion custom variable with the specified tag is reserved for other uses.",
+            "The conversion custom variable is not found.",
+            "The conversion custom variable is not available for use.",
+            "The conversion custom variable requested is incompatible with the current request.",
+            "The conversion custom variable requested is not of type METRIC.",
+            "The conversion custom variable's cardinality exceeds the segmentation limit.",
+            "The conversion custom variable requested is not of type DIMENSION.",
+            "The conversion custom variable requested is incompatible with the selected resource."
+          ],
+          "type": "string"
+        },
         "customColumnError": {
           "description": "The reasons for the custom column error",
           "enum": [
@@ -3909,7 +3943,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad. The name field is currently only supported for DisplayUploadAd, ImageAd, ShoppingComparisonListingAd and VideoAd.",
+          "description": "Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad.",
           "type": "string"
         },
         "productAd": {

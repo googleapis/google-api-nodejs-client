@@ -1566,6 +1566,10 @@ export namespace searchads360_v0 {
      */
     authorizationError?: string | null;
     /**
+     * The reasons for the conversion custom variable error
+     */
+    conversionCustomVariableError?: string | null;
+    /**
      * The reasons for the custom column error
      */
     customColumnError?: string | null;
@@ -2095,7 +2099,7 @@ export namespace searchads360_v0 {
      */
     id?: string | null;
     /**
-     * Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad. The name field is currently only supported for DisplayUploadAd, ImageAd, ShoppingComparisonListingAd and VideoAd.
+     * Immutable. The name of the ad. This is only used to be able to identify the ad. It does not need to be unique and does not affect the served ad.
      */
     name?: string | null;
     /**
