@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250715",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -626,7 +626,8 @@
             "IN_PROGRESS",
             "SOAKING",
             "FORCED_SOAKING",
-            "COMPLETE"
+            "COMPLETE",
+            "FORCED_COMPLETE"
           ],
           "enumDescriptions": [
             "Required by https://linter.aip.dev/126/unspecified.",
@@ -635,7 +636,8 @@
             "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
             "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
             "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
-            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status.",
+            "The upgrade was forced into soaking and the soaking time has passed. This is the equivalent of COMPLETE status for upgrades that were forced into soaking."
           ],
           "type": "string"
         },

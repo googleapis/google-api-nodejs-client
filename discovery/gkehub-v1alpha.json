@@ -2261,7 +2261,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250715",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -2750,7 +2750,8 @@
             "IN_PROGRESS",
             "SOAKING",
             "FORCED_SOAKING",
-            "COMPLETE"
+            "COMPLETE",
+            "FORCED_COMPLETE"
           ],
           "enumDescriptions": [
             "Required by https://linter.aip.dev/126/unspecified.",
@@ -2759,7 +2760,8 @@
             "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
             "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
             "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
-            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status.",
+            "The upgrade was forced into soaking and the soaking time has passed. This is the equivalent of COMPLETE status for upgrades that were forced into soaking."
           ],
           "type": "string"
         },
@@ -5409,6 +5411,19 @@
         "lastConnectionTime": {
           "description": "Output only. For clusters using Connect, the timestamp of the most recent connection established with Google Cloud. This time is updated every several minutes, not continuously. For clusters that do not use GKE Connect, or that have never connected successfully, this field will be unset.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "membershipType": {
+          "description": "Output only. The type of the membership.",
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ],
+          "enumDescriptions": [
+            "The MembershipType is not set.",
+            "The membership supports only lightweight compatible features."
+          ],
           "readOnly": true,
           "type": "string"
         },
