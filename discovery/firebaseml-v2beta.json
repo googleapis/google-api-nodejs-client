@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250618",
+  "revision": "20250720",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1365,6 +1365,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GoogleMaps": {
+      "description": "Tool to retrieve public maps data for grounding, powered by Google.",
+      "id": "GoogleCloudAiplatformV1beta1GoogleMaps",
+      "properties": {
+        "apiAuth": {
+          "$ref": "GoogleCloudAiplatformV1beta1ApiAuth",
+          "deprecated": true,
+          "description": "The authentication config to access the API. Deprecated. Please use auth_config instead."
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AuthConfig",
+          "description": "The authentication config to access the API. Only API key is supported."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval": {
       "description": "Tool to retrieve public web data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval",
@@ -1380,6 +1396,10 @@
       "description": "Grounding chunk.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunk",
       "properties": {
+        "maps": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
+          "description": "Grounding chunk from Google Maps."
+        },
         "retrievedContext": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
           "description": "Grounding chunk from context retrieved by the retrieval tools."
@@ -1387,6 +1407,97 @@
         "web": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkWeb",
           "description": "Grounding chunk from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMaps": {
+      "description": "Chunk from Google Maps.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
+      "properties": {
+        "placeAnswerSources": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+          "description": "Sources used to generate the place answer. This includes review snippets and photos that were used to generate the answer, as well as uris to flag content."
+        },
+        "placeId": {
+          "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text of the chunk.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the chunk.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources": {
+      "description": "Sources used to generate the place answer.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+      "properties": {
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the generated answer.",
+          "type": "string"
+        },
+        "reviewSnippets": {
+          "description": "Snippets of reviews that are used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution": {
+      "description": "Author attribution for a photo or review.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+      "properties": {
+        "displayName": {
+          "description": "Name of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "photoUri": {
+          "description": "Profile photo URI of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of the author of the Photo or Review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet": {
+      "description": "Encapsulates a review snippet.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet",
+      "properties": {
+        "authorAttribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+          "description": "This review's author."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the review.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the review on Google Maps.",
+          "type": "string"
+        },
+        "relativePublishTimeDescription": {
+          "description": "A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.",
+          "type": "string"
+        },
+        "review": {
+          "description": "A reference representing this place review which may be used to look up this place review again.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1437,6 +1548,11 @@
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GoogleCloudAiplatformV1beta1GroundingMetadata",
       "properties": {
+        "googleMapsWidgetContextToken": {
+          "description": "Optional. Output only. Resource name of the Google Maps widget context token to be used with the PlacesContextElement widget to render contextual data. This is populated only for Google Maps grounding.",
+          "readOnly": true,
+          "type": "string"
+        },
         "groundingChunks": {
           "description": "List of supporting references retrieved from specified grounding source.",
           "items": {
@@ -2264,11 +2380,15 @@
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
         "functionDeclarations": {
-          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1FunctionDeclaration"
           },
           "type": "array"
+        },
+        "googleMaps": {
+          "$ref": "GoogleCloudAiplatformV1beta1GoogleMaps",
+          "description": "Optional. GoogleMaps tool type. Tool to support Google Maps in Model."
         },
         "googleSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1ToolGoogleSearch",
