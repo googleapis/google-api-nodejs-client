@@ -3291,7 +3291,7 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3Processor {
     /**
-     * The time the processor was created.
+     * Output only. The time the processor was created.
      */
     createTime?: string | null;
     /**
@@ -3382,11 +3382,11 @@ export namespace documentai_v1beta3 {
    */
   export interface Schema$GoogleCloudDocumentaiV1beta3ProcessorVersion {
     /**
-     * The time the processor version was created.
+     * Output only. The time the processor version was created.
      */
     createTime?: string | null;
     /**
-     * If set, information about the eventual deprecation of this version.
+     * Output only. If set, information about the eventual deprecation of this version.
      */
     deprecationInfo?: Schema$GoogleCloudDocumentaiV1beta3ProcessorVersionDeprecationInfo;
     /**
@@ -3394,7 +3394,7 @@ export namespace documentai_v1beta3 {
      */
     displayName?: string | null;
     /**
-     * The schema of the processor version. Describes the output.
+     * Output only. The schema of the processor version. Describes the output.
      */
     documentSchema?: Schema$GoogleCloudDocumentaiV1beta3DocumentSchema;
     /**
@@ -3406,15 +3406,15 @@ export namespace documentai_v1beta3 {
      */
     googleManaged?: boolean | null;
     /**
-     * The KMS key name used for encryption.
+     * Output only. The KMS key name used for encryption.
      */
     kmsKeyName?: string | null;
     /**
-     * The KMS key version with which data is encrypted.
+     * Output only. The KMS key version with which data is encrypted.
      */
     kmsKeyVersionName?: string | null;
     /**
-     * The most recently invoked evaluation for the processor version.
+     * Output only. The most recently invoked evaluation for the processor version.
      */
     latestEvaluation?: Schema$GoogleCloudDocumentaiV1beta3EvaluationReference;
     /**
