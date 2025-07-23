@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.2.0...managedkafka-v3.0.0) (2025-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.1.0...managedkafka-v2.2.0) (2025-07-15)
 
 

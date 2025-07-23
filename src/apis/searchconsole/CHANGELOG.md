@@ -1,5 +1,16 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v3.1.0...searchconsole-v4.0.0) (2025-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/searchconsole-v3.0.1...searchconsole-v3.1.0) (2025-07-15)
 
 

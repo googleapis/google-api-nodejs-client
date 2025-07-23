@@ -1,5 +1,16 @@
 # Changelog
 
+## [28.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v27.0.1...youtube-v28.0.0) (2025-07-22)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
 ## [27.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/youtube-v27.0.0...youtube-v27.0.1) (2025-07-08)
 
 

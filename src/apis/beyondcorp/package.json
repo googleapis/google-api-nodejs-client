@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/beyondcorp",
-  "version": "21.0.0",
+  "version": "22.0.0",
   "description": "beyondcorp",
   "main": "build/index.js",
   "types": "build/index.d.ts",
