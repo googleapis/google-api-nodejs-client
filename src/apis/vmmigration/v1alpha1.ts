@@ -783,7 +783,7 @@ export namespace vmmigration_v1alpha1 {
      */
     secureBoot?: boolean | null;
     /**
-     * The service account to associate the VM with.
+     * Optional. The service account to associate the VM with.
      */
     serviceAccount?: string | null;
     /**
