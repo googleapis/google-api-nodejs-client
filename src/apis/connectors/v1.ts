@@ -5012,6 +5012,8 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.delete({
+     *     // Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete
+     *     force: 'placeholder-value',
      *     // Required. Resource name of the form: `projects/x/locations/x/connections/x`
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
      *   });
@@ -6677,6 +6679,10 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Delete
     extends StandardParameters {
+    /**
+     * Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x`
      */
