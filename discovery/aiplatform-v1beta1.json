@@ -1070,6 +1070,31 @@
     },
     "projects": {
       "methods": {
+        "fetchPublisherModelConfig": {
+          "description": "Fetches the configs of publisher models.",
+          "flatPath": "v1beta1/projects/{projectsId}:fetchPublisherModelConfig",
+          "httpMethod": "GET",
+          "id": "aiplatform.projects.fetchPublisherModelConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the publisher model, in the format of `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}:fetchPublisherModelConfig",
+          "response": {
+            "$ref": "GoogleCloudAiplatformV1beta1PublisherModelConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
         "getCacheConfig": {
           "description": "Gets a GenAI cache config.",
           "flatPath": "v1beta1/projects/{projectsId}/cacheConfig",
@@ -1090,6 +1115,34 @@
           "path": "v1beta1/{+name}",
           "response": {
             "$ref": "GoogleCloudAiplatformV1beta1CacheConfig"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform"
+          ]
+        },
+        "setPublisherModelConfig": {
+          "description": "Sets (creates or updates) configs of publisher models. For example, sets the request/response logging config.",
+          "flatPath": "v1beta1/projects/{projectsId}:setPublisherModelConfig",
+          "httpMethod": "POST",
+          "id": "aiplatform.projects.setPublisherModelConfig",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the publisher model, in the format of `projects/{project}/locations/{location}/publishers/{publisher}/models/{model}`.",
+              "location": "path",
+              "pattern": "^projects/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1beta1/{+name}:setPublisherModelConfig",
+          "request": {
+            "$ref": "GoogleCloudAiplatformV1beta1SetPublisherModelConfigRequest"
+          },
+          "response": {
+            "$ref": "GoogleLongrunningOperation"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
@@ -5126,6 +5179,11 @@
                       "location": "query",
                       "type": "string"
                     },
+                    "gdcZone": {
+                      "description": "Optional. Configures the Google Distributed Cloud (GDC) environment for online prediction. Only set this field when the Endpoint is to be deployed in a GDC environment.",
+                      "location": "query",
+                      "type": "string"
+                    },
                     "pageSize": {
                       "description": "Optional. The standard list page size.",
                       "format": "int32",
@@ -5160,7 +5218,7 @@
                   ]
                 },
                 "mutateDeployedModel": {
-                  "description": "Updates an existing deployed model. Updatable fields include `min_replica_count`, `max_replica_count`, `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and `enable_container_logging` (v1beta1 only).",
+                  "description": "Updates an existing deployed model. Updatable fields include `min_replica_count`, `max_replica_count`, `required_replica_count`, `autoscaling_metric_specs`, `disable_container_logging` (v1 only), and `enable_container_logging` (v1beta1 only).",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/endpoints/{endpointsId}:mutateDeployedModel",
                   "httpMethod": "POST",
                   "id": "aiplatform.projects.locations.endpoints.mutateDeployedModel",
@@ -25262,7 +25320,7 @@
       }
     }
   },
-  "revision": "20250711",
+  "revision": "20250715",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -29768,6 +29826,10 @@
       "description": "Request message for ModelGardenService.Deploy.",
       "id": "GoogleCloudAiplatformV1beta1DeployRequest",
       "properties": {
+        "customModel": {
+          "$ref": "GoogleCloudAiplatformV1beta1DeployRequestCustomModel",
+          "description": "The custom model to deploy from a Google Cloud Storage URI."
+        },
         "deployConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1DeployRequestDeployConfig",
           "description": "Optional. The deploy config to use for the deployment. If not specified, the default deploy config will be used."
@@ -29786,6 +29848,22 @@
         },
         "publisherModelName": {
           "description": "The Model Garden model to deploy. Format: `publishers/{publisher}/models/{publisher_model}@{version_id}`, or `publishers/hf-{hugging-face-author}/models/{hugging-face-model-name}@001`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1DeployRequestCustomModel": {
+      "description": "The custom model to deploy from model weights in a Google Cloud Storage URI or Model Registry model.",
+      "id": "GoogleCloudAiplatformV1beta1DeployRequestCustomModel",
+      "properties": {
+        "gcsUri": {
+          "description": "Immutable. The Google Cloud Storage URI of the custom model, storing weights and config files (which can be used to infer the base model).",
+          "type": "string"
+        },
+        "modelId": {
+          "deprecated": true,
+          "description": "Optional. Deprecated. Use ModelConfig.model_user_id instead.",
           "type": "string"
         }
       },
@@ -29850,6 +29928,10 @@
         },
         "modelDisplayName": {
           "description": "Optional. The user-specified display name of the uploaded model. If not set, a default name will be used.",
+          "type": "string"
+        },
+        "modelUserId": {
+          "description": "Optional. The ID to use for the uploaded Model, which will become the final component of the model resource name. When not provided, Vertex AI will generate a value for this ID. When Model Registry model is provided, this field will be ignored. This value may be up to 63 characters, and valid characters are `[a-z0-9_-]`. The first character cannot be a number or hyphen.",
           "type": "string"
         }
       },
@@ -30037,6 +30119,10 @@
         "fasterDeploymentConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1FasterDeploymentConfig",
           "description": "Configuration for faster model deployment."
+        },
+        "gdcConnectedModel": {
+          "description": "GDC pretrained / Gemini model name. The model name is a plain model name, e.g. gemini-1.5-flash-002.",
+          "type": "string"
         },
         "id": {
           "description": "Immutable. The ID of the DeployedModel. If not provided upon deployment, Vertex AI will generate a value for this ID. This value should be 1-10 characters, and valid characters are `/[0-9]/`.",
@@ -30482,6 +30568,10 @@
         "etag": {
           "description": "Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
+        },
+        "gdcConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GdcConfig",
+          "description": "Configures the Google Distributed Cloud (GDC) environment for online prediction. Only set this field when the Endpoint is to be deployed in a GDC environment."
         },
         "genAiAdvancedFeaturesConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1GenAiAdvancedFeaturesConfig",
@@ -34783,6 +34873,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GdcConfig": {
+      "description": "Google Distributed Cloud (GDC) config.",
+      "id": "GoogleCloudAiplatformV1beta1GdcConfig",
+      "properties": {
+        "zone": {
+          "description": "GDC zone. A cluster will be designated for the Vertex AI workload in this zone.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -40896,7 +40997,7 @@
       "properties": {
         "deployedModel": {
           "$ref": "GoogleCloudAiplatformV1beta1DeployedModel",
-          "description": "Required. The DeployedModel to be mutated within the Endpoint. Only the following fields can be mutated: * `min_replica_count` in either DedicatedResources or AutomaticResources * `max_replica_count` in either DedicatedResources or AutomaticResources * autoscaling_metric_specs * `disable_container_logging` (v1 only) * `enable_container_logging` (v1beta1 only)"
+          "description": "Required. The DeployedModel to be mutated within the Endpoint. Only the following fields can be mutated: * `min_replica_count` in either DedicatedResources or AutomaticResources * `max_replica_count` in either DedicatedResources or AutomaticResources * `required_replica_count` in DedicatedResources * autoscaling_metric_specs * `disable_container_logging` (v1 only) * `enable_container_logging` (v1beta1 only)"
         },
         "updateMask": {
           "description": "Required. The update mask applies to the resource. See google.protobuf.FieldMask.",
@@ -52408,6 +52509,11 @@
           "description": "Optional. The display name of the session.",
           "type": "string"
         },
+        "expireTime": {
+          "description": "Optional. Timestamp of when this session is considered expired. This is *always* provided on output, regardless of what was sent on input.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. The resource name of the session. Format: 'projects/{project}/locations/{location}/reasoningEngines/{reasoning_engine}/sessions/{session}'.",
           "type": "string"
@@ -52419,6 +52525,11 @@
           },
           "description": "Optional. Session specific memory which stores key conversation points.",
           "type": "object"
+        },
+        "ttl": {
+          "description": "Optional. Input only. The TTL for this session.",
+          "format": "google-duration",
+          "type": "string"
         },
         "updateTime": {
           "description": "Output only. Timestamp when the session was updated.",
@@ -53946,7 +54057,7 @@
           "type": "string"
         },
         "learningRateMultiplier": {
-          "description": "Optional. Multiplier for adjusting the default learning rate. Mutually exclusive with `learning_rate`.",
+          "description": "Optional. Multiplier for adjusting the default learning rate. Mutually exclusive with `learning_rate`. This feature is only available for 1P models.",
           "format": "double",
           "type": "number"
         }
