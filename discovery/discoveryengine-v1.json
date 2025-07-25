@@ -2175,7 +2175,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -3982,7 +3982,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -5788,7 +5788,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                           "location": "query",
                           "type": "string"
                         },
@@ -7191,7 +7191,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250723",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GoogleApiDistribution": {
@@ -9184,6 +9184,10 @@
           },
           "type": "array"
         },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
         "replies": {
           "description": "Replies of the assistant.",
           "items": {
@@ -9233,6 +9237,17 @@
         },
         "timeZone": {
           "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1Assistant": {
+      "description": "Discovery Engine Assistant resource.",
+      "id": "GoogleCloudDiscoveryengineV1Assistant",
+      "properties": {
+        "name": {
+          "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -10180,11 +10195,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -13089,6 +13105,21 @@
         "dataUseTermsVersion": {
           "description": "Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.",
           "type": "string"
+        },
+        "saasParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1ProvisionProjectRequestSaasParams",
+          "description": "Optional. Parameters for Agentspace."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1ProvisionProjectRequestSaasParams": {
+      "description": "Parameters for Agentspace.",
+      "id": "GoogleCloudDiscoveryengineV1ProvisionProjectRequestSaasParams",
+      "properties": {
+        "acceptBizQos": {
+          "description": "Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -13360,7 +13391,7 @@
           "type": "string"
         },
         "records": {
-          "description": "Required. A list of records to rank. At most 200 records to rank.",
+          "description": "Required. A list of records to rank.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1RankingRecord"
           },
@@ -15086,10 +15117,6 @@
           "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec",
           "description": "Optional. Specification of the image generation tool."
         },
-        "toolRegistry": {
-          "description": "Optional. The name of the tool registry to use. Format: `projects/{project}/locations/{location}/toolRegistries/{tool_registry}`",
-          "type": "string"
-        },
         "vertexAiSearchSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec",
           "description": "Optional. Specification of the Vertex AI Search tool."
@@ -15122,11 +15149,6 @@
           },
           "type": "array"
         },
-        "disabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.",
-          "type": "boolean"
-        },
         "filter": {
           "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
@@ -15143,13 +15165,7 @@
     "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec": {
       "description": "Specification of the web grounding tool.",
       "id": "GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec",
-      "properties": {
-        "enabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.",
-          "type": "boolean"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1StreamAssistResponse": {
@@ -16580,11 +16596,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -19418,7 +19435,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
           "type": "string"
         },
         "orderBy": {
@@ -21691,11 +21708,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {

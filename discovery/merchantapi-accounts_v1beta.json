@@ -180,31 +180,6 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
-        "getDeveloperRegistration": {
-          "description": "Retrieves a developer registration for a merchant.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getDeveloperRegistration",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The `name` (ID) of the developer registration.",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/developerRegistration$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "DeveloperRegistration"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1beta/accounts",
@@ -563,6 +538,31 @@
         },
         "developerRegistration": {
           "methods": {
+            "getDeveloperRegistration": {
+              "description": "Retrieves a developer registration for a merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.developerRegistration.getDeveloperRegistration",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The `name` (ID) of the developer registration.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/developerRegistration$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "DeveloperRegistration"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "registerGcp": {
               "description": "Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an \"API developer\" and add the \"developer_email\" as a contact with \"API notifications\" email preference on.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:registerGcp",
@@ -582,7 +582,7 @@
               },
               "path": "accounts/v1beta/{+name}:registerGcp",
               "request": {
-                "$ref": "RegisterGCPRequest"
+                "$ref": "RegisterGcpRequest"
               },
               "response": {
                 "$ref": "DeveloperRegistration"
@@ -610,7 +610,7 @@
               },
               "path": "accounts/v1beta/{+name}:unregisterGcp",
               "request": {
-                "$ref": "UnregisterGCPRequest"
+                "$ref": "UnregisterGcpRequest"
               },
               "response": {
                 "$ref": "Empty"
@@ -2311,7 +2311,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250721",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -4766,9 +4766,9 @@
       },
       "type": "object"
     },
-    "RegisterGCPRequest": {
+    "RegisterGcpRequest": {
       "description": "Request message for the RegisterGCP method.",
-      "id": "RegisterGCPRequest",
+      "id": "RegisterGcpRequest",
       "properties": {
         "developerEmail": {
           "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference",
@@ -5268,9 +5268,9 @@
       "properties": {},
       "type": "object"
     },
-    "UnregisterGCPRequest": {
+    "UnregisterGcpRequest": {
       "description": "Request message for the UnregisterGCP method.",
-      "id": "UnregisterGCPRequest",
+      "id": "UnregisterGcpRequest",
       "properties": {},
       "type": "object"
     },

@@ -1628,15 +1628,15 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequestGcsSource {
     /**
-     * Optional. The Cloud Storage path to the conversation audio file if already transcribed. Note that: [1] Don't set this field if the audio is not transcribed. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.
+     * Optional. The Cloud Storage path to the conversation audio file. Note that: [1] Audio files will be transcribed if not already. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.
      */
     audioBucketUri?: string | null;
     /**
-     * Optional. Specifies the type of the objects in `bucket_uri`.
+     * Optional. Specifies the type of the objects in `bucket_uri`. Avoid passing this. This is inferred from the `transcript_bucket_uri`, `audio_bucket_uri`.
      */
     bucketObjectType?: string | null;
     /**
-     * Required. The Cloud Storage bucket containing source objects.
+     * Optional. The Cloud Storage bucket containing source objects. Avoid passing this. Pass this through one of `transcript_bucket_uri` or `audio_bucket_uri`.
      */
     bucketUri?: string | null;
     /**
@@ -1647,6 +1647,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
+    /**
+     * Optional. The Cloud Storage path to the conversation transcripts. Note that: [1] Transcript files are expected to be in JSON format. [2] Transcript, audio, metadata files must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
+     */
+    transcriptBucketUri?: string | null;
   }
   /**
    * Configuration for processing transcript objects.
@@ -4519,15 +4523,15 @@ export namespace contactcenterinsights_v1 {
    */
   export interface Schema$GoogleCloudContactcenterinsightsV1IngestConversationsRequestGcsSource {
     /**
-     * Optional. The Cloud Storage path to the conversation audio file if already transcribed. Note that: [1] Don't set this field if the audio is not transcribed. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.
+     * Optional. The Cloud Storage path to the conversation audio file. Note that: [1] Audio files will be transcribed if not already. [2] Audio files and transcript files must be in separate buckets / folders. [3] A source file and its corresponding audio file must share the same name to be properly ingested, E.g. `gs://bucket/transcript/conversation1.json` and `gs://bucket/audio/conversation1.mp3`.
      */
     audioBucketUri?: string | null;
     /**
-     * Optional. Specifies the type of the objects in `bucket_uri`.
+     * Optional. Specifies the type of the objects in `bucket_uri`. Avoid passing this. This is inferred from the `transcript_bucket_uri`, `audio_bucket_uri`.
      */
     bucketObjectType?: string | null;
     /**
-     * Required. The Cloud Storage bucket containing source objects.
+     * Optional. The Cloud Storage bucket containing source objects. Avoid passing this. Pass this through one of `transcript_bucket_uri` or `audio_bucket_uri`.
      */
     bucketUri?: string | null;
     /**
@@ -4538,6 +4542,10 @@ export namespace contactcenterinsights_v1 {
      * Optional. The Cloud Storage path to the conversation metadata. Note that: [1] Metadata files are expected to be in JSON format. [2] Metadata and source files (transcripts or audio) must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
      */
     metadataBucketUri?: string | null;
+    /**
+     * Optional. The Cloud Storage path to the conversation transcripts. Note that: [1] Transcript files are expected to be in JSON format. [2] Transcript, audio, metadata files must be in separate buckets / folders. [3] A source file and its corresponding metadata file must share the same name to be properly ingested, E.g. `gs://bucket/audio/conversation1.mp3` and `gs://bucket/metadata/conversation1.json`.
+     */
+    transcriptBucketUri?: string | null;
   }
   /**
    * Configuration for processing transcript objects.
@@ -18033,6 +18041,8 @@ export namespace contactcenterinsights_v1 {
      *   // Do the magic
      *   const res =
      *     await contactcenterinsights.projects.locations.conversations.patch({
+     *       // Optional. Defaults to false. If set to true, and the conversation is not found, a new conversation will be created. In this situation, `update_mask` is ignored.
+     *       allowMissing: 'placeholder-value',
      *       // Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
      *       name: 'projects/my-project/locations/my-location/conversations/my-conversation',
      *       // The list of fields to be updated. All possible fields can be updated by passing `*`, or a subset of the following updateable fields can be provided: * `agent_id` * `language_code` * `labels` * `metadata` * `quality_metadata` * `call_metadata` * `start_time` * `expire_time` or `ttl` * `data_source.gcs_source.audio_uri` or `data_source.dialogflow_source.audio_uri`
@@ -18473,6 +18483,10 @@ export namespace contactcenterinsights_v1 {
   }
   export interface Params$Resource$Projects$Locations$Conversations$Patch
     extends StandardParameters {
+    /**
+     * Optional. Defaults to false. If set to true, and the conversation is not found, a new conversation will be created. In this situation, `update_mask` is ignored.
+     */
+    allowMissing?: boolean;
     /**
      * Immutable. The resource name of the conversation. Format: projects/{project\}/locations/{location\}/conversations/{conversation\}
      */

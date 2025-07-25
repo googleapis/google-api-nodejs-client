@@ -1021,6 +1021,10 @@ export namespace file_v1beta1 {
      * Output only. Additional information about the replication state, if available.
      */
     stateReasons?: string[] | null;
+    /**
+     * Output only. The time when the replica state was updated.
+     */
+    stateUpdateTime?: string | null;
   }
   /**
    * Replication specifications.

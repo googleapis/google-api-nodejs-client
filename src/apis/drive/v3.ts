@@ -636,7 +636,7 @@ export namespace drive_v3 {
    */
   export interface Schema$DownloadRestrictionsMetadata {
     /**
-     * The effective download restriction applied to this file. This considers all restriction settings and DLP rules.
+     * Output only. The effective download restriction applied to this file. This considers all restriction settings and DLP rules.
      */
     effectiveDownloadRestrictionWithContext?: Schema$DownloadRestriction;
     /**
