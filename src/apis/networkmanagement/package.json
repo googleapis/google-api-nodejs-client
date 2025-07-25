@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/networkmanagement",
-  "version": "13.2.0",
+  "version": "13.3.0",
   "description": "networkmanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
