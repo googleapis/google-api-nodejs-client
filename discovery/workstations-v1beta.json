@@ -1142,7 +1142,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250716",
   "rootUrl": "https://workstations.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -2296,6 +2296,11 @@
           "description": "Output only. Boost configuration ID.",
           "readOnly": true,
           "type": "string"
+        },
+        "running": {
+          "description": "Output only. Whether or not the current workstation is actively boosted with this id.",
+          "readOnly": true,
+          "type": "boolean"
         }
       },
       "type": "object"
