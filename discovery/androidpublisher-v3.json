@@ -2791,6 +2791,696 @@
         }
       },
       "resources": {
+        "onetimeproducts": {
+          "methods": {
+            "batchDelete": {
+              "description": "Deletes one or more one-time products.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete",
+              "httpMethod": "POST",
+              "id": "androidpublisher.monetization.onetimeproducts.batchDelete",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete",
+              "request": {
+                "$ref": "BatchDeleteOneTimeProductsRequest"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "batchGet": {
+              "description": "Reads one or more one-time products.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet",
+              "httpMethod": "GET",
+              "id": "androidpublisher.monetization.onetimeproducts.batchGet",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productIds": {
+                  "description": "Required. A list of up to 100 product IDs to retrieve. All IDs must be different.",
+                  "location": "query",
+                  "repeated": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet",
+              "response": {
+                "$ref": "BatchGetOneTimeProductsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Creates or updates one or more one-time products.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate",
+              "httpMethod": "POST",
+              "id": "androidpublisher.monetization.onetimeproducts.batchUpdate",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate",
+              "request": {
+                "$ref": "BatchUpdateOneTimeProductsRequest"
+              },
+              "response": {
+                "$ref": "BatchUpdateOneTimeProductsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "delete": {
+              "description": "Deletes a one-time product.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}",
+              "httpMethod": "DELETE",
+              "id": "androidpublisher.monetization.onetimeproducts.delete",
+              "parameterOrder": [
+                "packageName",
+                "productId"
+              ],
+              "parameters": {
+                "latencyTolerance": {
+                  "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+                  "enum": [
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+                  ],
+                  "enumDescriptions": [
+                    "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                    "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                    "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Required. The parent app (package name) of the one-time product to delete.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "Required. The one-time product ID of the one-time product to delete.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}",
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "get": {
+              "description": "Reads a single one-time product.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}",
+              "httpMethod": "GET",
+              "id": "androidpublisher.monetization.onetimeproducts.get",
+              "parameterOrder": [
+                "packageName",
+                "productId"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) of the product to retrieve.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "Required. The product ID of the product to retrieve.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}",
+              "response": {
+                "$ref": "OneTimeProduct"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "list": {
+              "description": "Lists all one-time products under a given app.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts",
+              "httpMethod": "GET",
+              "id": "androidpublisher.monetization.onetimeproducts.list",
+              "parameterOrder": [
+                "packageName"
+              ],
+              "parameters": {
+                "packageName": {
+                  "description": "Required. The parent app (package name) for which the one-time product should be read.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "pageSize": {
+                  "description": "Optional. The maximum number of one-time product to return. The service may return fewer than this value. If unspecified, at most 50 one-time products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                  "format": "int32",
+                  "location": "query",
+                  "type": "integer"
+                },
+                "pageToken": {
+                  "description": "Optional. A page token, received from a previous `ListOneTimeProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOneTimeProducts` must match the call that provided the page token.",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts",
+              "response": {
+                "$ref": "ListOneTimeProductsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            },
+            "patch": {
+              "description": "Creates or updates a one-time product.",
+              "flatPath": "androidpublisher/v3/applications/{packageName}/onetimeproducts/{productId}",
+              "httpMethod": "PATCH",
+              "id": "androidpublisher.monetization.onetimeproducts.patch",
+              "parameterOrder": [
+                "packageName",
+                "productId"
+              ],
+              "parameters": {
+                "allowMissing": {
+                  "description": "Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.",
+                  "location": "query",
+                  "type": "boolean"
+                },
+                "latencyTolerance": {
+                  "description": "Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive.",
+                  "enum": [
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+                    "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+                  ],
+                  "enumDescriptions": [
+                    "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+                    "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+                    "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+                  ],
+                  "location": "query",
+                  "type": "string"
+                },
+                "packageName": {
+                  "description": "Required. Immutable. Package name of the parent app.",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "productId": {
+                  "description": "Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.).",
+                  "location": "path",
+                  "required": true,
+                  "type": "string"
+                },
+                "regionsVersion.version": {
+                  "description": "Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.",
+                  "location": "query",
+                  "type": "string"
+                },
+                "updateMask": {
+                  "description": "Required. The list of fields to be updated.",
+                  "format": "google-fieldmask",
+                  "location": "query",
+                  "type": "string"
+                }
+              },
+              "path": "androidpublisher/v3/applications/{packageName}/onetimeproducts/{productId}",
+              "request": {
+                "$ref": "OneTimeProduct"
+              },
+              "response": {
+                "$ref": "OneTimeProduct"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/androidpublisher"
+              ]
+            }
+          },
+          "resources": {
+            "purchaseOptions": {
+              "methods": {
+                "batchDelete": {
+                  "description": "Deletes purchase options across one or multiple one-time products. By default this operation will fail if there are any existing offers under the deleted purchase options. Use the force parameter to override the default behavior.",
+                  "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.batchDelete",
+                  "parameterOrder": [
+                    "packageName",
+                    "productId"
+                  ],
+                  "parameters": {
+                    "packageName": {
+                      "description": "Required. The parent app (package name) of the purchase options to delete.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "productId": {
+                      "description": "Required. The product ID of the parent one-time product, if all purchase options to delete belong to the same one-time product. If this batch delete spans multiple one-time products, set this field to \"-\".",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete",
+                  "request": {
+                    "$ref": "BatchDeletePurchaseOptionsRequest"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/androidpublisher"
+                  ]
+                },
+                "batchUpdateStates": {
+                  "description": "Activates or deactivates purchase options across one or multiple one-time products.",
+                  "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates",
+                  "httpMethod": "POST",
+                  "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.batchUpdateStates",
+                  "parameterOrder": [
+                    "packageName",
+                    "productId"
+                  ],
+                  "parameters": {
+                    "packageName": {
+                      "description": "Required. The parent app (package name) of the updated purchase options.",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "productId": {
+                      "description": "Required. The product ID of the parent one-time product, if all updated purchase options belong to the same one-time product. If this batch update spans multiple one-time products, set this field to \"-\".",
+                      "location": "path",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates",
+                  "request": {
+                    "$ref": "BatchUpdatePurchaseOptionStatesRequest"
+                  },
+                  "response": {
+                    "$ref": "BatchUpdatePurchaseOptionStatesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/androidpublisher"
+                  ]
+                }
+              },
+              "resources": {
+                "offers": {
+                  "methods": {
+                    "activate": {
+                      "description": "Activates a one-time product offer.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:activate",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.activate",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId",
+                        "offerId"
+                      ],
+                      "parameters": {
+                        "offerId": {
+                          "description": "Required. The offer ID of the offer to activate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the offer to activate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The parent one-time product (ID) of the offer to activate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) of the offer to activate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:activate",
+                      "request": {
+                        "$ref": "ActivateOneTimeProductOfferRequest"
+                      },
+                      "response": {
+                        "$ref": "OneTimeProductOffer"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchDelete": {
+                      "description": "Deletes one or more one-time product offers.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchDelete",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId"
+                      ],
+                      "parameters": {
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent one-time product, if all offers to delete belong to the same product. If this request spans multiple one-time products, set this field to \"-\".",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) for which the offers should be deleted. May be specified as '-' to update offers from multiple purchase options.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete",
+                      "request": {
+                        "$ref": "BatchDeleteOneTimeProductOffersRequest"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchGet": {
+                      "description": "Reads one or more one-time product offers.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchGet",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId"
+                      ],
+                      "parameters": {
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to \"-\".",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet",
+                      "request": {
+                        "$ref": "BatchGetOneTimeProductOffersRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchGetOneTimeProductOffersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchUpdate": {
+                      "description": "Creates or updates one or more one-time product offers.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchUpdate",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId"
+                      ],
+                      "parameters": {
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to \"-\".",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate",
+                      "request": {
+                        "$ref": "BatchUpdateOneTimeProductOffersRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchUpdateOneTimeProductOffersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "batchUpdateStates": {
+                      "description": "Updates a batch of one-time product offer states.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchUpdateStates",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId"
+                      ],
+                      "parameters": {
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the updated one-time product offers.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The product ID of the parent one-time product, if all updated offers belong to the same one-time product. If this batch update spans multiple one-time products, set this field to \"-\".",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The purchase option ID of the parent purchase option, if all updated offers belong to the same purchase option. If this batch update spans multiple purchase options, set this field to \"-\".",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates",
+                      "request": {
+                        "$ref": "BatchUpdateOneTimeProductOfferStatesRequest"
+                      },
+                      "response": {
+                        "$ref": "BatchUpdateOneTimeProductOfferStatesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "cancel": {
+                      "description": "Cancels a one-time product offer.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.cancel",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId",
+                        "offerId"
+                      ],
+                      "parameters": {
+                        "offerId": {
+                          "description": "Required. The offer ID of the offer to cancel.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the offer to cancel.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The parent one-time product (ID) of the offer to cancel.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) of the offer to cancel.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:cancel",
+                      "request": {
+                        "$ref": "CancelOneTimeProductOfferRequest"
+                      },
+                      "response": {
+                        "$ref": "OneTimeProductOffer"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "deactivate": {
+                      "description": "Deactivates a one-time product offer.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:deactivate",
+                      "httpMethod": "POST",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.deactivate",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId",
+                        "offerId"
+                      ],
+                      "parameters": {
+                        "offerId": {
+                          "description": "Required. The offer ID of the offer to deactivate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "packageName": {
+                          "description": "Required. The parent app (package name) of the offer to deactivate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The parent one-time product (ID) of the offer to deactivate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) of the offer to deactivate.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:deactivate",
+                      "request": {
+                        "$ref": "DeactivateOneTimeProductOfferRequest"
+                      },
+                      "response": {
+                        "$ref": "OneTimeProductOffer"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all offers under a given app, product, or purchase option.",
+                      "flatPath": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers",
+                      "httpMethod": "GET",
+                      "id": "androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.list",
+                      "parameterOrder": [
+                        "packageName",
+                        "productId",
+                        "purchaseOptionId"
+                      ],
+                      "parameters": {
+                        "packageName": {
+                          "description": "Required. The parent app (package name) for which the offers should be read.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of offers to return. The service may return fewer than this value. If unspecified, at most 50 offers will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListOneTimeProductsOffers` call. Provide this to retrieve the subsequent page. When paginating, product_id, package_name and purchase_option_id provided to `ListOneTimeProductsOffersRequest` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "productId": {
+                          "description": "Required. The parent one-time product (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "purchaseOptionId": {
+                          "description": "Required. The parent purchase option (ID) for which the offers should be read. May be specified as '-' to read all offers under a one-time product or an app. Must be specified as '-' if product_id is specified as '-'.",
+                          "location": "path",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers",
+                      "response": {
+                        "$ref": "ListOneTimeProductOffersResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/androidpublisher"
+                      ]
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
         "subscriptions": {
           "methods": {
             "archive": {
@@ -4831,7 +5521,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250719",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -4923,6 +5613,76 @@
         },
         "productId": {
           "description": "Required. The parent subscription (ID) of the base plan to activate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActivateOneTimeProductOfferRequest": {
+      "description": "Request message for ActivateOneTimeProductOffer.",
+      "id": "ActivateOneTimeProductOfferRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The offer ID of the offer to activate.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to activate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the offer to activate.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The parent purchase option (ID) of the offer to activate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ActivatePurchaseOptionRequest": {
+      "description": "Request message for UpdatePurchaseOptionState.",
+      "id": "ActivatePurchaseOptionRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the purchase option to activate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the purchase option to activate.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The purchase option ID of the purchase option to activate.",
           "type": "string"
         }
       },
@@ -5479,6 +6239,90 @@
       },
       "type": "object"
     },
+    "BatchDeleteOneTimeProductOffersRequest": {
+      "description": "Request message for BatchDeleteOneTimeProductOffers.",
+      "id": "BatchDeleteOneTimeProductOffersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must correspond to different offers.",
+          "items": {
+            "$ref": "DeleteOneTimeProductOfferRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeleteOneTimeProductsRequest": {
+      "description": "Request message for BatchDeleteOneTimeProduct.",
+      "id": "BatchDeleteOneTimeProductsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of delete requests of up to 100 elements. All requests must delete different one-time products.",
+          "items": {
+            "$ref": "DeleteOneTimeProductRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeletePurchaseOptionsRequest": {
+      "description": "Request message for BatchDeletePurchaseOption.",
+      "id": "BatchDeletePurchaseOptionsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of delete requests of up to 100 elements. All requests must delete purchase options from different one-time products.",
+          "items": {
+            "$ref": "DeletePurchaseOptionRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetOneTimeProductOffersRequest": {
+      "description": "Request message for the BatchGetOneTimeProductOffers endpoint.",
+      "id": "BatchGetOneTimeProductOffersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of get requests of up to 100 elements. All requests must retrieve different offers.",
+          "items": {
+            "$ref": "GetOneTimeProductOfferRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetOneTimeProductOffersResponse": {
+      "description": "Response message for the BatchGetOneTimeProductOffers endpoint.",
+      "id": "BatchGetOneTimeProductOffersResponse",
+      "properties": {
+        "oneTimeProductOffers": {
+          "description": "The list of updated one-time product offers, in the same order as the request.",
+          "items": {
+            "$ref": "OneTimeProductOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchGetOneTimeProductsResponse": {
+      "description": "Response message for the BatchGetOneTimeProducts endpoint.",
+      "id": "BatchGetOneTimeProductsResponse",
+      "properties": {
+        "oneTimeProducts": {
+          "description": "The list of requested one-time products, in the same order as the request.",
+          "items": {
+            "$ref": "OneTimeProduct"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BatchGetOrdersResponse": {
       "description": "Response for the orders.batchGet API.",
       "id": "BatchGetOrdersResponse",
@@ -5584,6 +6428,118 @@
           "description": "The list of updated subscriptions. This list will match the requests one to one, in the same order.",
           "items": {
             "$ref": "Subscription"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductOfferStatesRequest": {
+      "description": "Request message for BatchUpdateOneTimeProductOfferStates.",
+      "id": "BatchUpdateOneTimeProductOfferStatesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The update request list of up to 100 elements. All requests must update different offers.",
+          "items": {
+            "$ref": "UpdateOneTimeProductOfferStateRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductOfferStatesResponse": {
+      "description": "Response message for BatchUpdateOneTimeProductOfferStates.",
+      "id": "BatchUpdateOneTimeProductOfferStatesResponse",
+      "properties": {
+        "oneTimeProductOffers": {
+          "description": "The updated one-time product offers list, in the same order as the request.",
+          "items": {
+            "$ref": "OneTimeProductOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductOffersRequest": {
+      "description": "Request message for BatchUpdateOneTimeProductOffers.",
+      "id": "BatchUpdateOneTimeProductOffersRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must update different offers.",
+          "items": {
+            "$ref": "UpdateOneTimeProductOfferRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductOffersResponse": {
+      "description": "Response message for BatchUpdateOneTimeProductOffers.",
+      "id": "BatchUpdateOneTimeProductOffersResponse",
+      "properties": {
+        "oneTimeProductOffers": {
+          "description": "The list of updated one-time product offers, in the same order as the request.",
+          "items": {
+            "$ref": "OneTimeProductOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductsRequest": {
+      "description": "Request message for BatchUpdateOneTimeProduct.",
+      "id": "BatchUpdateOneTimeProductsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. A list of update requests of up to 100 elements. All requests must update different one-time products.",
+          "items": {
+            "$ref": "UpdateOneTimeProductRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateOneTimeProductsResponse": {
+      "description": "Response message for BatchUpdateOneTimeProduct.",
+      "id": "BatchUpdateOneTimeProductsResponse",
+      "properties": {
+        "oneTimeProducts": {
+          "description": "The list of updated one-time products list, in the same order as the request.",
+          "items": {
+            "$ref": "OneTimeProduct"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdatePurchaseOptionStatesRequest": {
+      "description": "Request message for BatchUpdatePurchaseOptionStates.",
+      "id": "BatchUpdatePurchaseOptionStatesRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The update request list of up to 100 elements. All requests must update different purchase options.",
+          "items": {
+            "$ref": "UpdatePurchaseOptionStateRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdatePurchaseOptionStatesResponse": {
+      "description": "Response message for BatchUpdatePurchaseOptionStates.",
+      "id": "BatchUpdatePurchaseOptionStatesResponse",
+      "properties": {
+        "oneTimeProducts": {
+          "description": "The list of updated one-time products. This list will match the requests one to one, in the same order.",
+          "items": {
+            "$ref": "OneTimeProduct"
           },
           "type": "array"
         }
@@ -5741,6 +6697,43 @@
       "description": "Response message for CancelAppRecovery.",
       "id": "CancelAppRecoveryResponse",
       "properties": {},
+      "type": "object"
+    },
+    "CancelOneTimeProductOfferRequest": {
+      "description": "Request message for CancelOneTimeProductOffer.",
+      "id": "CancelOneTimeProductOfferRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The offer ID of the offer to cancel.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to cancel.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the offer to cancel.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The parent purchase option (ID) of the offer to cancel.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "CancelSurveyResult": {
@@ -5957,6 +6950,76 @@
       },
       "type": "object"
     },
+    "DeactivateOneTimeProductOfferRequest": {
+      "description": "Request message for DeactivateOneTimeProductOffer.",
+      "id": "DeactivateOneTimeProductOfferRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The offer ID of the offer to deactivate.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to deactivate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the offer to deactivate.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The parent purchase option (ID) of the offer to deactivate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeactivatePurchaseOptionRequest": {
+      "description": "Request message for UpdatePurchaseOptionState.",
+      "id": "DeactivatePurchaseOptionRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the purchase option to deactivate.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the purchase option to deactivate.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The purchase option ID of the purchase option to deactivate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DeactivateSubscriptionOfferRequest": {
       "description": "Request message for DeactivateSubscriptionOffer.",
       "id": "DeactivateSubscriptionOfferRequest",
@@ -6000,6 +7063,109 @@
       "properties": {
         "productId": {
           "description": "The product_id going to replace the existing product_id.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteOneTimeProductOfferRequest": {
+      "description": "Request message for deleting an one-time product offer.",
+      "id": "DeleteOneTimeProductOfferRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "offerId": {
+          "description": "Required. The unique offer ID of the offer to delete.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to delete.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the offer to delete.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The parent purchase option (ID) of the offer to delete.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteOneTimeProductRequest": {
+      "description": "Request message for deleting a one-time product.",
+      "id": "DeleteOneTimeProductRequest",
+      "properties": {
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the one-time product to delete.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The one-time product ID of the one-time product to delete.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DeletePurchaseOptionRequest": {
+      "description": "Request message for deleting a purchase option.",
+      "id": "DeletePurchaseOptionRequest",
+      "properties": {
+        "force": {
+          "description": "Optional. This field has no effect for purchase options with no offers under them. For purchase options with associated offers: * If `force` is set to false (default), an error will be returned. * If `force` is set to true, any associated offers under the purchase option will be deleted.",
+          "type": "boolean"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the purchase option to delete.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the purchase option to delete.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The purchase option ID of the purchase option to delete.",
           "type": "string"
         }
       },
@@ -6776,6 +7942,29 @@
       },
       "type": "object"
     },
+    "GetOneTimeProductOfferRequest": {
+      "description": "Request message for GetOneTimeProductOffers.",
+      "id": "GetOneTimeProductOfferRequest",
+      "properties": {
+        "offerId": {
+          "description": "Required. The unique offer ID of the offer to get.",
+          "type": "string"
+        },
+        "packageName": {
+          "description": "Required. The parent app (package name) of the offer to get.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. The parent one-time product (ID) of the offer to get.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. The parent purchase option (ID) of the offer to get.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GetSubscriptionOfferRequest": {
       "description": "Request message for GetSubscriptionOffer.",
       "id": "GetSubscriptionOfferRequest",
@@ -7422,6 +8611,42 @@
       },
       "type": "object"
     },
+    "ListOneTimeProductOffersResponse": {
+      "description": "Response message for ListOneTimeProductOffers.",
+      "id": "ListOneTimeProductOffersResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "oneTimeProductOffers": {
+          "description": "The one_time_product offers from the specified request.",
+          "items": {
+            "$ref": "OneTimeProductOffer"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListOneTimeProductsResponse": {
+      "description": "Response message for ListOneTimeProducts.",
+      "id": "ListOneTimeProductsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        },
+        "oneTimeProducts": {
+          "description": "The one-time products from the specified app.",
+          "items": {
+            "$ref": "OneTimeProduct"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ListSubscriptionOffersResponse": {
       "description": "Response message for ListSubscriptionOffers.",
       "id": "ListSubscriptionOffersResponse",
@@ -7792,6 +9017,413 @@
         "externalTransactionToken": {
           "description": "Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProduct": {
+      "description": "A single one-time product for an app.",
+      "id": "OneTimeProduct",
+      "properties": {
+        "listings": {
+          "description": "Required. Set of localized title and description data. Must not have duplicate entries with the same language_code.",
+          "items": {
+            "$ref": "OneTimeProductListing"
+          },
+          "type": "array"
+        },
+        "offerTags": {
+          "description": "Optional. List of up to 20 custom tags specified for this one-time product, and returned to the app through the billing library. Purchase options and offers for this product will also receive these tags in the billing library.",
+          "items": {
+            "$ref": "OfferTag"
+          },
+          "type": "array"
+        },
+        "packageName": {
+          "description": "Required. Immutable. Package name of the parent app.",
+          "type": "string"
+        },
+        "productId": {
+          "description": "Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.).",
+          "type": "string"
+        },
+        "purchaseOptions": {
+          "description": "Required. The set of purchase options for this one-time product.",
+          "items": {
+            "$ref": "OneTimeProductPurchaseOption"
+          },
+          "type": "array"
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Output only. The version of the regions configuration that was used to generate the one-time product.",
+          "readOnly": true
+        },
+        "restrictedPaymentCountries": {
+          "$ref": "RestrictedPaymentCountries",
+          "description": "Optional. Countries where the purchase of this one-time product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed."
+        },
+        "taxAndComplianceSettings": {
+          "$ref": "OneTimeProductTaxAndComplianceSettings",
+          "description": "Details about taxes and legal compliance."
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductBuyPurchaseOption": {
+      "description": "A purchase option that can be bought.",
+      "id": "OneTimeProductBuyPurchaseOption",
+      "properties": {
+        "legacyCompatible": {
+          "description": "Optional. Whether this purchase option will be available in legacy PBL flows that do not support one-time products model. Up to one \"buy\" purchase option can be marked as backwards compatible.",
+          "type": "boolean"
+        },
+        "multiQuantityEnabled": {
+          "description": "Optional. Whether this purchase option allows multi-quantity. Multi-quantity allows buyer to purchase more than one item in a single checkout.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductDiscountedOffer": {
+      "description": "Configuration specific to discounted offers.",
+      "id": "OneTimeProductDiscountedOffer",
+      "properties": {
+        "endTime": {
+          "description": "Time when the offer will stop being available.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "redemptionLimit": {
+          "description": "Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Time when the offer will start being available.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductListing": {
+      "description": "Regional store listing for a one-time product.",
+      "id": "OneTimeProductListing",
+      "properties": {
+        "description": {
+          "description": "Required. The description of this product in the language of this listing. The maximum length is 200 characters.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "Required. The language of this listing, as defined by BCP-47, e.g., \"en-US\".",
+          "type": "string"
+        },
+        "title": {
+          "description": "Required. The title of this product in the language of this listing. The maximum length is 55 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductOffer": {
+      "description": "A single offer for a one-time product.",
+      "id": "OneTimeProductOffer",
+      "properties": {
+        "discountedOffer": {
+          "$ref": "OneTimeProductDiscountedOffer",
+          "description": "A discounted offer."
+        },
+        "offerId": {
+          "description": "Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.",
+          "type": "string"
+        },
+        "offerTags": {
+          "description": "Optional. List of up to 20 custom tags specified for this offer, and returned to the app through the billing library.",
+          "items": {
+            "$ref": "OfferTag"
+          },
+          "type": "array"
+        },
+        "packageName": {
+          "description": "Required. Immutable. The package name of the app the parent product belongs to.",
+          "type": "string"
+        },
+        "preOrderOffer": {
+          "$ref": "OneTimeProductPreOrderOffer",
+          "description": "A pre-order offer."
+        },
+        "productId": {
+          "description": "Required. Immutable. The ID of the parent product this offer belongs to.",
+          "type": "string"
+        },
+        "purchaseOptionId": {
+          "description": "Required. Immutable. The ID of the purchase option to which this offer is an extension.",
+          "type": "string"
+        },
+        "regionalPricingAndAvailabilityConfigs": {
+          "description": "Set of regional pricing and availability information for this offer. Must not have duplicate entries with the same region_code.",
+          "items": {
+            "$ref": "OneTimeProductOfferRegionalPricingAndAvailabilityConfig"
+          },
+          "type": "array"
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Output only. The version of the regions configuration that was used to generate the one-time product offer.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The current state of this offer. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "CANCELLED",
+            "INACTIVE"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be used.",
+            "The offer is not and has never been available to users.",
+            "The offer is available to users, as long as its conditions are met.",
+            "This state is specific to pre-orders. The offer is cancelled and not available to users. All pending orders related to this offer were cancelled.",
+            "This state is specific to discounted offers. The offer is no longer available to users."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductOfferNoPriceOverrideOptions": {
+      "description": "Options for one-time product offers without a regional price override.",
+      "id": "OneTimeProductOfferNoPriceOverrideOptions",
+      "properties": {},
+      "type": "object"
+    },
+    "OneTimeProductOfferRegionalPricingAndAvailabilityConfig": {
+      "description": "Regional pricing and availability configuration for a one-time product offer.",
+      "id": "OneTimeProductOfferRegionalPricingAndAvailabilityConfig",
+      "properties": {
+        "absoluteDiscount": {
+          "$ref": "Money",
+          "description": "The absolute value of the discount that is subtracted from the purchase option price. It should be between 0 and the purchase option price."
+        },
+        "availability": {
+          "description": "Required. The availability for this region.",
+          "enum": [
+            "AVAILABILITY_UNSPECIFIED",
+            "AVAILABLE",
+            "NO_LONGER_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified availability. Must not be used.",
+            "The offer is available to users.",
+            "The offer is no longer available to users. This value can only be used if the availability was previously set as AVAILABLE."
+          ],
+          "type": "string"
+        },
+        "noOverride": {
+          "$ref": "OneTimeProductOfferNoPriceOverrideOptions",
+          "description": "The price defined in the purchase option for this region will be used."
+        },
+        "regionCode": {
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., \"US\".",
+          "type": "string"
+        },
+        "relativeDiscount": {
+          "description": "The fraction of the purchase option price that the user pays for this offer. For example, if the purchase option price for this region is $12, then a 50% discount would correspond to a price of $6. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductPreOrderOffer": {
+      "description": "Configuration specific to pre-order offers.",
+      "id": "OneTimeProductPreOrderOffer",
+      "properties": {
+        "endTime": {
+          "description": "Required. Time when the pre-order will stop being available.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "priceChangeBehavior": {
+          "description": "Required. Immutable. Specifies how price changes affect pre-existing pre-orders.",
+          "enum": [
+            "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_UNSPECIFIED",
+            "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_TWO_POINT_LOWEST",
+            "PRE_ORDER_PRICE_CHANGE_BEHAVIOR_NEW_ORDERS_ONLY"
+          ],
+          "enumDescriptions": [
+            "Unspecified price change behavior. Must not be used.",
+            "The buyer gets charged the minimum between the initial price at the time of pre-order and the final offer price on the release date.",
+            "The buyer gets the same price as the one they pre-ordered, regardless of any price changes that may have happened after the pre-order."
+          ],
+          "type": "string"
+        },
+        "releaseTime": {
+          "description": "Required. Time on which the product associated with the pre-order will be released and the pre-order orders fulfilled.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "startTime": {
+          "description": "Required. Time when the pre-order will start being available.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductPurchaseOption": {
+      "description": "A single purchase option for a one-time product.",
+      "id": "OneTimeProductPurchaseOption",
+      "properties": {
+        "buyOption": {
+          "$ref": "OneTimeProductBuyPurchaseOption",
+          "description": "A purchase option that can be bought."
+        },
+        "newRegionsConfig": {
+          "$ref": "OneTimeProductPurchaseOptionNewRegionsConfig",
+          "description": "Pricing information for any new locations Play may launch in the future. If omitted, the purchase option will not be automatically available in any new locations Play may launch in the future."
+        },
+        "offerTags": {
+          "description": "Optional. List of up to 20 custom tags specified for this purchase option, and returned to the app through the billing library. Offers for this purchase option will also receive these tags in the billing library.",
+          "items": {
+            "$ref": "OfferTag"
+          },
+          "type": "array"
+        },
+        "purchaseOptionId": {
+          "description": "Required. Immutable. The unique identifier of this purchase option. Must be unique within the one-time product. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.",
+          "type": "string"
+        },
+        "regionalPricingAndAvailabilityConfigs": {
+          "description": "Regional pricing and availability information for this purchase option.",
+          "items": {
+            "$ref": "OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig"
+          },
+          "type": "array"
+        },
+        "rentOption": {
+          "$ref": "OneTimeProductRentPurchaseOption",
+          "description": "A purchase option that can be rented."
+        },
+        "state": {
+          "description": "Output only. The state of the purchase option, i.e., whether it's active. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "DRAFT",
+            "ACTIVE",
+            "INACTIVE",
+            "INACTIVE_PUBLISHED"
+          ],
+          "enumDescriptions": [
+            "Default value, should never be used.",
+            "The purchase option is not and has never been available to users.",
+            "The purchase option is available to users.",
+            "The purchase option is not available to users anymore.",
+            "The purchase option is not available for purchase anymore, but we continue to expose its offer via the Play Billing Library for backwards compatibility. Only automatically migrated purchase options can be in this state."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "taxAndComplianceSettings": {
+          "$ref": "PurchaseOptionTaxAndComplianceSettings",
+          "description": "Optional. Details about taxes and legal compliance."
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductPurchaseOptionNewRegionsConfig": {
+      "description": "Pricing information for any new regions Play may launch in the future.",
+      "id": "OneTimeProductPurchaseOptionNewRegionsConfig",
+      "properties": {
+        "availability": {
+          "description": "Required. The regional availability for the new regions config. When set to AVAILABLE, the pricing information will be used for any new regions Play may launch in the future.",
+          "enum": [
+            "AVAILABILITY_UNSPECIFIED",
+            "AVAILABLE",
+            "NO_LONGER_AVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Unspecified availability. Must not be used.",
+            "The config will be used for any new regions Play may launch in the future.",
+            "The config is not available anymore and will not be used for any new regions Play may launch in the future. This value can only be used if the availability was previously set as AVAILABLE."
+          ],
+          "type": "string"
+        },
+        "eurPrice": {
+          "$ref": "Money",
+          "description": "Required. Price in EUR to use for any new regions Play may launch in."
+        },
+        "usdPrice": {
+          "$ref": "Money",
+          "description": "Required. Price in USD to use for any new regions Play may launch in."
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig": {
+      "description": "Regional pricing and availability configuration for a purchase option.",
+      "id": "OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig",
+      "properties": {
+        "availability": {
+          "description": "The availability of the purchase option.",
+          "enum": [
+            "AVAILABILITY_UNSPECIFIED",
+            "AVAILABLE",
+            "NO_LONGER_AVAILABLE",
+            "AVAILABLE_IF_RELEASED"
+          ],
+          "enumDescriptions": [
+            "Unspecified availability. Must not be used.",
+            "The purchase option is available to users.",
+            "The purchase option is no longer available to users. This value can only be used if the availability was previously set as AVAILABLE.",
+            "The purchase option is initially unavailable, but made available via a released pre-order offer."
+          ],
+          "type": "string"
+        },
+        "price": {
+          "$ref": "Money",
+          "description": "The price of the purchase option in the specified region. Must be set in the currency that is linked to the specified region."
+        },
+        "regionCode": {
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., \"US\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductRentPurchaseOption": {
+      "description": "A purchase option that can be rented.",
+      "id": "OneTimeProductRentPurchaseOption",
+      "properties": {
+        "expirationPeriod": {
+          "description": "Optional. The amount of time the user has after starting consuming the entitlement before it is revoked. Specified in ISO 8601 format.",
+          "type": "string"
+        },
+        "rentalPeriod": {
+          "description": "Required. The amount of time a user has the entitlement for. Starts at purchase flow completion. Specified in ISO 8601 format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "OneTimeProductTaxAndComplianceSettings": {
+      "description": "Details about taxation, Google Play policy and legal compliance for one-time products.",
+      "id": "OneTimeProductTaxAndComplianceSettings",
+      "properties": {
+        "isTokenizedDigitalAsset": {
+          "description": "Whether this one-time product is declared as a product representing a tokenized digital asset.",
+          "type": "boolean"
+        },
+        "regionalTaxConfigs": {
+          "description": "Regional tax configuration.",
+          "items": {
+            "$ref": "RegionalTaxConfig"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -8422,6 +10054,27 @@
       },
       "type": "object"
     },
+    "PurchaseOptionTaxAndComplianceSettings": {
+      "description": "Details about taxation, Google Play policy and legal compliance for one-time product purchase options.",
+      "id": "PurchaseOptionTaxAndComplianceSettings",
+      "properties": {
+        "withdrawalRightType": {
+          "description": "Optional. Digital content or service classification for products distributed to users in eligible regions. If unset, it defaults to `WITHDRAWAL_RIGHT_DIGITAL_CONTENT`. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.",
+          "enum": [
+            "WITHDRAWAL_RIGHT_TYPE_UNSPECIFIED",
+            "WITHDRAWAL_RIGHT_DIGITAL_CONTENT",
+            "WITHDRAWAL_RIGHT_SERVICE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PurchaseStateContext": {
       "description": "Context about the purchase state.",
       "id": "PurchaseStateContext",
@@ -8644,6 +10297,63 @@
       "description": "Represents the free price override configuration for a single phase of a subscription offer",
       "id": "RegionalSubscriptionOfferPhaseFreePriceOverride",
       "properties": {},
+      "type": "object"
+    },
+    "RegionalTaxConfig": {
+      "description": "Details about taxation in a given geographical region.",
+      "id": "RegionalTaxConfig",
+      "properties": {
+        "eligibleForStreamingServiceTaxRate": {
+          "description": "You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States.",
+          "type": "boolean"
+        },
+        "regionCode": {
+          "description": "Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. \"US\".",
+          "type": "string"
+        },
+        "streamingTaxType": {
+          "description": "To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).",
+          "enum": [
+            "STREAMING_TAX_TYPE_UNSPECIFIED",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_VIDEO_MULTI_CHANNEL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_RENTAL",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_SALES",
+            "STREAMING_TAX_TYPE_TELCO_AUDIO_MULTI_CHANNEL"
+          ],
+          "enumDescriptions": [
+            "No telecommunications tax collected.",
+            "US-specific telecommunications tax tier for video streaming, on demand, rentals / subscriptions / pay-per-view.",
+            "US-specific telecommunications tax tier for video streaming of pre-recorded content like movies, tv shows.",
+            "US-specific telecommunications tax tier for video streaming of multi-channel programming.",
+            "US-specific telecommunications tax tier for audio streaming, rental / subscription.",
+            "US-specific telecommunications tax tier for audio streaming, sale / permanent download.",
+            "US-specific telecommunications tax tier for multi channel audio streaming like radio."
+          ],
+          "type": "string"
+        },
+        "taxTier": {
+          "description": "Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).",
+          "enum": [
+            "TAX_TIER_UNSPECIFIED",
+            "TAX_TIER_BOOKS_1",
+            "TAX_TIER_NEWS_1",
+            "TAX_TIER_NEWS_2",
+            "TAX_TIER_MUSIC_OR_AUDIO_1",
+            "TAX_TIER_LIVE_OR_BROADCAST_1"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "RegionalTaxRateInfo": {
@@ -10273,6 +11983,116 @@
         "deactivateBasePlanRequest": {
           "$ref": "DeactivateBasePlanRequest",
           "description": "Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateOneTimeProductOfferRequest": {
+      "description": "Request message for UpdateOneTimeProductOffer.",
+      "id": "UpdateOneTimeProductOfferRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true, and the offer with the given package_name, product_id, purchase_option_id and offer_id doesn't exist, an offer will be created. If a new offer is created, the update_mask is ignored.",
+          "type": "boolean"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this offer update. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "oneTimeProductOffer": {
+          "$ref": "OneTimeProductOffer",
+          "description": "Required. The one-time product offer to update."
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Required. The version of the available regions being used for the offer."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdateOneTimeProductOfferStateRequest": {
+      "description": "Request message to update the state of a one-time product offer.",
+      "id": "UpdateOneTimeProductOfferStateRequest",
+      "properties": {
+        "activateOneTimeProductOfferRequest": {
+          "$ref": "ActivateOneTimeProductOfferRequest",
+          "description": "Activates an offer. Once activated, the offer is available to users, as long as its conditions are met."
+        },
+        "cancelOneTimeProductOfferRequest": {
+          "$ref": "CancelOneTimeProductOfferRequest",
+          "description": "Cancels an offer. Once cancelled, the offer is not available to users. Any pending orders related to this offer will be cancelled. This state transition is specific to pre-orders."
+        },
+        "deactivateOneTimeProductOfferRequest": {
+          "$ref": "DeactivateOneTimeProductOfferRequest",
+          "description": "Deactivates an offer. Once deactivated, the offer is no longer available to users. This state transition is specific to discounted offers."
+        }
+      },
+      "type": "object"
+    },
+    "UpdateOneTimeProductRequest": {
+      "description": "Request message for UpdateOneTimeProduct.",
+      "id": "UpdateOneTimeProductRequest",
+      "properties": {
+        "allowMissing": {
+          "description": "Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.",
+          "type": "boolean"
+        },
+        "latencyTolerance": {
+          "description": "Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive.",
+          "enum": [
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_UNSPECIFIED",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE",
+            "PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_TOLERANT"
+          ],
+          "enumDescriptions": [
+            "Defaults to PRODUCT_UPDATE_LATENCY_TOLERANCE_LATENCY_SENSITIVE.",
+            "The update will propagate to clients within several minutes on average and up to a few hours in rare cases. Throughput is limited to 7,200 updates per app per hour.",
+            "The update will propagate to clients within 24 hours. Supports high throughput of up to 720,000 updates per app per hour using batch modification methods."
+          ],
+          "type": "string"
+        },
+        "oneTimeProduct": {
+          "$ref": "OneTimeProduct",
+          "description": "Required. The one-time product to upsert."
+        },
+        "regionsVersion": {
+          "$ref": "RegionsVersion",
+          "description": "Required. The version of the available regions being used for the one-time product."
+        },
+        "updateMask": {
+          "description": "Required. The list of fields to be updated.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "UpdatePurchaseOptionStateRequest": {
+      "description": "Request message to update the state of a one-time product purchase option.",
+      "id": "UpdatePurchaseOptionStateRequest",
+      "properties": {
+        "activatePurchaseOptionRequest": {
+          "$ref": "ActivatePurchaseOptionRequest",
+          "description": "Activates a purchase option. Once activated, the purchase option will be available."
+        },
+        "deactivatePurchaseOptionRequest": {
+          "$ref": "DeactivatePurchaseOptionRequest",
+          "description": "Deactivates a purchase option. Once deactivated, the purchase option will become unavailable."
         }
       },
       "type": "object"
