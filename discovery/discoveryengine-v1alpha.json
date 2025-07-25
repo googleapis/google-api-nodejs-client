@@ -3023,7 +3023,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -5067,7 +5067,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                               "location": "query",
                               "type": "string"
                             },
@@ -5161,6 +5161,51 @@
                               "path": "v1alpha/{+name}",
                               "response": {
                                 "$ref": "GoogleCloudDiscoveryengineV1alphaAnswer"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "files": {
+                          "methods": {
+                            "list": {
+                              "description": "Lists metadata for all files in the current session.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/files",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.files.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * \"file_name = 'file_1'\" * \"file_name = 'file_1' AND mime_type = 'text/plain'\" * \"last_use_time > '2025-06-14T12:00:00Z'\" For a full description of the filter format, please see https://google.aip.dev/160.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token received from a previous `ListFiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFiles` must match the call that provided the page token (except `page_size`, which may differ).",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}` Name of the session resource to which the file belong.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/files",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListFilesResponse"
                               },
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
@@ -7161,7 +7206,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
                           "location": "query",
                           "type": "string"
                         },
@@ -9253,7 +9298,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250723",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -10330,6 +10375,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1Assistant": {
+      "description": "Discovery Engine Assistant resource.",
+      "id": "GoogleCloudDiscoveryengineV1Assistant",
+      "properties": {
+        "name": {
+          "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata",
@@ -10419,11 +10475,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -14667,6 +14724,10 @@
           },
           "type": "array"
         },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
         "replies": {
           "description": "Replies of the assistant.",
           "items": {
@@ -15766,11 +15827,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -18906,6 +18968,169 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaFileCharacteristics": {
+      "description": "Caracteristics of other file types.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileCharacteristics",
+      "properties": {
+        "characteristics": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Generic map of characteristics.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFileMetadata": {
+      "description": "Represents a file attached to a session (context file)",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileMetadata",
+      "properties": {
+        "byteSize": {
+          "description": "Output only. The size of the context file in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "downloadUri": {
+          "description": "Output only. The AssistantService.DownloadSessionFile URL to download the file. This URL will need the same credentials as AssistantService.ListSessionFileMetadata method and will provide the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The ID of the file.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileOriginType": {
+          "description": "Optional. The origin of the file.",
+          "enum": [
+            "FILE_ORIGIN_TYPE_UNSPECIFIED",
+            "USER_PROVIDED",
+            "AI_GENERATED",
+            "INTERNALLY_GENERATED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The file was provided by the user.",
+            "The file was generated by an AI model.",
+            "The file was generated from other files by an internal process."
+          ],
+          "type": "string"
+        },
+        "lastAddTime": {
+          "description": "Output only. The time the file was added to the session. Note that if a file was added, then modified externally, then added again, the add time will be updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Represents metadata related to the file that can suit particular use cases. The prefix \"google.\" is reserved for the key for use by Google, but other prefixes can be freely used.",
+          "type": "object"
+        },
+        "mimeType": {
+          "description": "The content type of the file, see https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The name of the file uploaded.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "originalSourceType": {
+          "description": "Optional. The type of the original source of the file.",
+          "enum": [
+            "FILE_SOURCE_UNSPECIFIED",
+            "FILE_SOURCE_INLINE",
+            "FILE_SOURCE_LOCAL",
+            "FILE_SOURCE_CLOUD_STORAGE",
+            "FILE_SOURCE_CLOUD_DRIVE",
+            "FILE_SOURCE_URL"
+          ],
+          "enumDescriptions": [
+            "Default value. Unknown source.",
+            "The data of the file was provided inline (e.g. pasted from the clipboard).",
+            "The file was uploaded from a local file.",
+            "The file was uploaded from Cloud Storage.",
+            "The file was uploaded from Drive.",
+            "The file was retrieved from a URL (e.g. public web)."
+          ],
+          "type": "string"
+        },
+        "originalUri": {
+          "description": "Optional. The original location of the file. It may be a local file path, or any other URI that allows accessing the file in an external system. There are two scenarios in which this url may be empty: 1. If the file was sent as inline data (e.g. pasted from the clipboard). 2. If the original location is not available. Note that there's no guarantee that the URI will be pointing to a valid or actually existing file. For example, a file might have been uploaded to the session, and then deleted from the original source.",
+          "type": "string"
+        },
+        "uploadTime": {
+          "description": "Output only. The time the file was uploaded (If this is a file generated by an internal process and then made available to the session, this indicates the moment it happened).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "views": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFileView"
+          },
+          "description": "Output only. Alternate views of this file object. Each file view is attached to a specific role. Possible example keys: - \"thumbnail\" - \"mobile_thumbnail\" - \"clip\" - \"summary\" - \"translation\"",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFileView": {
+      "description": "Represents a specific alternate version or \"view\" of a file object, such as a summary, a thumbnail, a translated version, etc.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileView",
+      "properties": {
+        "byteSize": {
+          "description": "Output only. The size of the view in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the view was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFileCharacteristics",
+          "description": "Output only. Characteristics of other file types.",
+          "readOnly": true
+        },
+        "imageCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaImageCharacteristics",
+          "description": "Output only. Characteristics of an image media view.",
+          "readOnly": true
+        },
+        "mimeType": {
+          "description": "Output only. MIME type (e.g., \"image/jpeg\", \"image/png\", \"text/plain\", \"video/mp4\")",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. The URI to access this media view.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "videoCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics",
+          "description": "Output only. Characteristics of a video media view.",
+          "readOnly": true
+        },
+        "viewId": {
+          "description": "Output only. Globally Unique id for this specific view.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFirestoreSource": {
       "description": "Firestore source import data from.",
       "id": "GoogleCloudDiscoveryengineV1alphaFirestoreSource",
@@ -19178,6 +19403,52 @@
         "workforcePoolName": {
           "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImageCharacteristics": {
+      "description": "Standard characteristics of an image media view.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImageCharacteristics",
+      "properties": {
+        "bitDepth": {
+          "description": "Output only. Bit depth of the image (e.g., 8-bit, 16-bit).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "colorSpace": {
+          "description": "Output only. Color space of the image (e.g., \"RGB\", \"CMYK\", \"Grayscale\").",
+          "enum": [
+            "COLOR_SPACE_UNSPECIFIED",
+            "RGB",
+            "CMYK",
+            "GRAYSCALE",
+            "YUV",
+            "OTHER_COLOR_SPACE"
+          ],
+          "enumDescriptions": [
+            "Default value. Unknown color space.",
+            "Red, green, blue colorspace.",
+            "Cyan, magenta, yellow, and black colorspace.",
+            "Grayscale colorspace.",
+            "YUV colorspace.",
+            "Other colorspace."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "height": {
+          "description": "Output only. Image height in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "width": {
+          "description": "Output only. Image width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -19983,6 +20254,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListFilesResponse": {
+      "description": "Response message for SessionService.ListFiles method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListFilesResponse",
+      "properties": {
+        "files": {
+          "description": "The FileMetadatas.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFileMetadata"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in the ListFilesRequest.page_token field in the subsequent call to `ListFiles` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListIdentityMappingStoresResponse": {
       "description": "Response message for IdentityMappingStoreService.ListIdentityMappingStores",
       "id": "GoogleCloudDiscoveryengineV1alphaListIdentityMappingStoresResponse",
@@ -20096,7 +20385,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
           "type": "string"
         },
         "orderBy": {
@@ -20461,6 +20750,21 @@
         "dataUseTermsVersion": {
           "description": "Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.",
           "type": "string"
+        },
+        "saasParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
+          "description": "Optional. Parameters for Agentspace."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams": {
+      "description": "Parameters for Agentspace.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
+      "properties": {
+        "acceptBizQos": {
+          "description": "Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -20825,7 +21129,7 @@
           "type": "string"
         },
         "records": {
-          "description": "Required. A list of records to rank. At most 200 records to rank.",
+          "description": "Required. A list of records to rank.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaRankingRecord"
           },
@@ -23839,10 +24143,6 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecImageGenerationSpec",
           "description": "Optional. Specification of the image generation tool."
         },
-        "toolRegistry": {
-          "description": "Optional. The name of the tool registry to use. Format: `projects/{project}/locations/{location}/toolRegistries/{tool_registry}`",
-          "type": "string"
-        },
         "vertexAiSearchSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecVertexAiSearchSpec",
           "description": "Optional. Specification of the Vertex AI Search tool."
@@ -23875,11 +24175,6 @@
           },
           "type": "array"
         },
-        "disabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.",
-          "type": "boolean"
-        },
         "filter": {
           "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
@@ -23896,13 +24191,7 @@
     "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec": {
       "description": "Specification of the web grounding tool.",
       "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec",
-      "properties": {
-        "enabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.",
-          "type": "boolean"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaStreamAssistResponse": {
@@ -24523,6 +24812,65 @@
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics": {
+      "description": "Standard characteristics of a video media view.",
+      "id": "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics",
+      "properties": {
+        "audioBitrateKbps": {
+          "description": "Output only. Bitrate of the audio in kbps.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "audioCodecs": {
+          "description": "Output only. Audio codecs used in the video.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "duration": {
+          "description": "Output only. Video duration.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frameRate": {
+          "description": "Output only. Frame rate (frames per second).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "height": {
+          "description": "Output only. Video height in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "videoBitrateKbps": {
+          "description": "Output only. Bitrate of the video in kbps.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "videoCodecs": {
+          "description": "Output only. Video codecs used in the video.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "width": {
+          "description": "Output only. Video width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -25403,11 +25751,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {

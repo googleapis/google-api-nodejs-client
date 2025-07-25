@@ -1234,11 +1234,11 @@ export namespace discoveryengine_v1 {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -3048,7 +3048,7 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      */
     filter?: string | null;
     /**
@@ -5374,6 +5374,10 @@ export namespace discoveryengine_v1 {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/assistAnswers/{assist_answer\}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
      * Replies of the assistant.
      */
     replies?: Schema$GoogleCloudDiscoveryengineV1AssistAnswerReply[];
@@ -5390,6 +5394,15 @@ export namespace discoveryengine_v1 {
      * Possibly grounded response text or media from the assistant.
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1AssistantGroundedContent;
+  }
+  /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
   }
   /**
    * Multi-modal content.
@@ -5790,11 +5803,11 @@ export namespace discoveryengine_v1 {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -8457,11 +8470,11 @@ export namespace discoveryengine_v1 {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -10567,6 +10580,19 @@ export namespace discoveryengine_v1 {
      * Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.
      */
     dataUseTermsVersion?: string | null;
+    /**
+     * Optional. Parameters for Agentspace.
+     */
+    saasParams?: Schema$GoogleCloudDiscoveryengineV1ProvisionProjectRequestSaasParams;
+  }
+  /**
+   * Parameters for Agentspace.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1ProvisionProjectRequestSaasParams {
+    /**
+     * Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].
+     */
+    acceptBizQos?: boolean | null;
   }
   /**
    * Metadata related to the progress of the PurgeCompletionSuggestions operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -10799,7 +10825,7 @@ export namespace discoveryengine_v1 {
      */
     query?: string | null;
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      */
     records?: Schema$GoogleCloudDiscoveryengineV1RankingRecord[];
     /**
@@ -12012,10 +12038,6 @@ export namespace discoveryengine_v1 {
      */
     imageGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecImageGenerationSpec;
     /**
-     * Optional. The name of the tool registry to use. Format: `projects/{project\}/locations/{location\}/toolRegistries/{tool_registry\}`
-     */
-    toolRegistry?: string | null;
-    /**
      * Optional. Specification of the Vertex AI Search tool.
      */
     vertexAiSearchSpec?: Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecVertexAiSearchSpec;
@@ -12041,10 +12063,6 @@ export namespace discoveryengine_v1 {
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1SearchRequestDataStoreSpec[];
     /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.
-     */
-    disabled?: boolean | null;
-    /**
      * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
@@ -12056,12 +12074,7 @@ export namespace discoveryengine_v1 {
   /**
    * Specification of the web grounding tool.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec {
-    /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.
-     */
-    enabled?: boolean | null;
-  }
+  export interface Schema$GoogleCloudDiscoveryengineV1StreamAssistRequestToolsSpecWebGroundingSpec {}
   /**
    * Response for the AssistantService.StreamAssist method.
    */
@@ -12763,7 +12776,8 @@ export namespace discoveryengine_v1 {
      *       // request body parameters
      *       // {
      *       //   "acceptDataUseTerms": false,
-     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion"
+     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "saasParams": {}
      *       // }
      *     },
      *   });
@@ -23994,7 +24008,7 @@ export namespace discoveryengine_v1 {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      *         filter: 'placeholder-value',
      *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
@@ -24330,7 +24344,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      */
     filter?: string;
     /**
@@ -34165,7 +34179,7 @@ export namespace discoveryengine_v1 {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -34500,7 +34514,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      */
     filter?: string;
     /**
@@ -43973,7 +43987,7 @@ export namespace discoveryengine_v1 {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -44307,7 +44321,7 @@ export namespace discoveryengine_v1 {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
      */
     filter?: string;
     /**
