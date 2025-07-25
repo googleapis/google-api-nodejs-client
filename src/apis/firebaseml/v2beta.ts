@@ -924,6 +924,10 @@ export namespace firebaseml_v2beta {
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMaps {
     /**
+     * Sources used to generate the place answer. This includes review snippets and photos that were used to generate the answer, as well as uris to flag content.
+     */
+    placeAnswerSources?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources;
+    /**
      * This Place's resource name, in `places/{place_id\}` format. Can be used to look up the Place.
      */
     placeId?: string | null;
@@ -939,6 +943,61 @@ export namespace firebaseml_v2beta {
      * URI reference of the chunk.
      */
     uri?: string | null;
+  }
+  /**
+   * Sources used to generate the place answer.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources {
+    /**
+     * A link where users can flag a problem with the generated answer.
+     */
+    flagContentUri?: string | null;
+    /**
+     * Snippets of reviews that are used to generate the answer.
+     */
+    reviewSnippets?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet[];
+  }
+  /**
+   * Author attribution for a photo or review.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution {
+    /**
+     * Name of the author of the Photo or Review.
+     */
+    displayName?: string | null;
+    /**
+     * Profile photo URI of the author of the Photo or Review.
+     */
+    photoUri?: string | null;
+    /**
+     * URI of the author of the Photo or Review.
+     */
+    uri?: string | null;
+  }
+  /**
+   * Encapsulates a review snippet.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet {
+    /**
+     * This review's author.
+     */
+    authorAttribution?: Schema$GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution;
+    /**
+     * A link where users can flag a problem with the review.
+     */
+    flagContentUri?: string | null;
+    /**
+     * A link to show the review on Google Maps.
+     */
+    googleMapsUri?: string | null;
+    /**
+     * A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.
+     */
+    relativePublishTimeDescription?: string | null;
+    /**
+     * A reference representing this place review which may be used to look up this place review again.
+     */
+    review?: string | null;
   }
   /**
    * Chunk from context retrieved by the retrieval tools.

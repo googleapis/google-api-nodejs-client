@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250720",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1415,6 +1415,10 @@
       "description": "Chunk from Google Maps.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
       "properties": {
+        "placeAnswerSources": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+          "description": "Sources used to generate the place answer. This includes review snippets and photos that were used to generate the answer, as well as uris to flag content."
+        },
         "placeId": {
           "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
           "type": "string"
@@ -1429,6 +1433,70 @@
         },
         "uri": {
           "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources": {
+      "description": "Sources used to generate the place answer.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+      "properties": {
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the generated answer.",
+          "type": "string"
+        },
+        "reviewSnippets": {
+          "description": "Snippets of reviews that are used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution": {
+      "description": "Author attribution for a photo or review.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+      "properties": {
+        "displayName": {
+          "description": "Name of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "photoUri": {
+          "description": "Profile photo URI of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of the author of the Photo or Review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet": {
+      "description": "Encapsulates a review snippet.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet",
+      "properties": {
+        "authorAttribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+          "description": "This review's author."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the review.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the review on Google Maps.",
+          "type": "string"
+        },
+        "relativePublishTimeDescription": {
+          "description": "A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.",
+          "type": "string"
+        },
+        "review": {
+          "description": "A reference representing this place review which may be used to look up this place review again.",
           "type": "string"
         }
       },
