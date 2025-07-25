@@ -129,7 +129,7 @@ export namespace fcm_v1 {
    */
   export interface Schema$AndroidConfig {
     /**
-     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode.
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode. This should only be enabled when the app has been tested to properly handle messages in bandwidth constrained mode.
      */
     bandwidthConstrainedOk?: boolean | null;
     /**
@@ -161,7 +161,7 @@ export namespace fcm_v1 {
      */
     restrictedPackageName?: string | null;
     /**
-     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are allowed to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.
+     * Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are enabled to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.
      */
     restrictedSatelliteOk?: boolean | null;
     /**
