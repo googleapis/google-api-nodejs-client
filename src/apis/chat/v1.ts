@@ -200,7 +200,7 @@ export namespace chat_v1 {
     userFacingMessage?: string | null;
   }
   /**
-   * Output only. Annotations associated with the plain-text body of the message. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/{user\}", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
+   * Annotations can be associated with the plain-text body of the message or with chips that link to Google Workspace resources like Google Docs or Sheets with a `start_index` and `length` of 0. To add basic formatting to a text message, see [Format text messages](https://developers.google.com/workspace/chat/format-messages). Example plain-text message body: ``` Hello @FooBot how are you!" ``` The corresponding annotations metadata: ``` "annotations":[{ "type":"USER_MENTION", "startIndex":6, "length":7, "userMention": { "user": { "name":"users/{user\}", "displayName":"FooBot", "avatarUrl":"https://goo.gl/aeDtrS", "type":"BOT" \}, "type":"MENTION" \} \}] ```
    */
   export interface Schema$Annotation {
     /**
@@ -208,7 +208,7 @@ export namespace chat_v1 {
      */
     customEmojiMetadata?: Schema$CustomEmojiMetadata;
     /**
-     * Length of the substring in the plain-text message body this annotation corresponds to.
+     * Length of the substring in the plain-text message body this annotation corresponds to. If not present, indicates a length of 0.
      */
     length?: number | null;
     /**
@@ -316,6 +316,19 @@ export namespace chat_v1 {
      * A button with text and `onclick` action.
      */
     textButton?: Schema$TextButton;
+  }
+  /**
+   * Data for Calendar event links.
+   */
+  export interface Schema$CalendarEventLinkData {
+    /**
+     * The [Calendar identifier](https://developers.google.com/workspace/calendar/api/v3/reference/calendars) of the linked Calendar.
+     */
+    calendarId?: string | null;
+    /**
+     * The [Event identifier](https://developers.google.com/workspace/calendar/api/v3/reference/events) of the linked Calendar event.
+     */
+    eventId?: string | null;
   }
   /**
    * A card is a UI element that can contain UI widgets such as text and images.
@@ -1864,6 +1877,23 @@ export namespace chat_v1 {
     resourceName?: string | null;
   }
   /**
+   * Data for Meet space links.
+   */
+  export interface Schema$MeetSpaceLinkData {
+    /**
+     * Optional. Output only. If the Meet is a Huddle, indicates the status of the huddle. Otherwise, this is unset.
+     */
+    huddleStatus?: string | null;
+    /**
+     * Meeting code of the linked Meet space.
+     */
+    meetingCode?: string | null;
+    /**
+     * Indicates the type of the Meet space.
+     */
+    type?: string | null;
+  }
+  /**
    * Represents a membership relation in Google Chat, such as whether a user or Chat app is invited to, part of, or absent from a space.
    */
   export interface Schema$Membership {
@@ -1976,7 +2006,7 @@ export namespace chat_v1 {
      */
     actionResponse?: Schema$ActionResponse;
     /**
-     * Output only. Annotations associated with the `text` in this message.
+     * Output only. Annotations can be associated with the plain-text body of the message or with chips that link to Google Workspace resources like Google Docs or Sheets with a `start_index` and `length` of 0.
      */
     annotations?: Schema$Annotation[];
     /**
@@ -2265,9 +2295,13 @@ export namespace chat_v1 {
     reaction?: Schema$Reaction;
   }
   /**
-   * A rich link to a resource.
+   * A rich link to a resource. Rich links can be associated with the plain-text body of the message or represent chips that link to Google Workspace resources like Google Docs or Sheets with a with `start_index` and `length` of 0.
    */
   export interface Schema$RichLinkMetadata {
+    /**
+     * Data for a calendar event link.
+     */
+    calendarEventLinkData?: Schema$CalendarEventLinkData;
     /**
      * Data for a chat space link.
      */
@@ -2276,6 +2310,10 @@ export namespace chat_v1 {
      * Data for a drive link.
      */
     driveLinkData?: Schema$DriveLinkData;
+    /**
+     * Data for a meet space link.
+     */
+    meetSpaceLinkData?: Schema$MeetSpaceLinkData;
     /**
      * The rich link type.
      */
@@ -2391,6 +2429,10 @@ export namespace chat_v1 {
      * Optional. Immutable. For spaces created in Chat, the time the space was created. This field is output only, except when used in import mode spaces. For import mode spaces, set this field to the historical timestamp at which the space was created in the source in order to preserve the original creation time. Only populated in the output when `spaceType` is `GROUP_CHAT` or `SPACE`.
      */
     createTime?: string | null;
+    /**
+     * Optional. Immutable. The customer id of the domain of the space. Required only when creating a space with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) and `SpaceType` is `SPACE`, otherwise should not be set. In the format `customers/{customer\}`, where `customer` is the `id` from the [Admin SDK customer resource]( https://developers.google.com/admin-sdk/directory/reference/rest/v1/customers). Private apps can also use the `customers/my_customer` alias to create the space in the same Google Workspace organization as the app. For DMs, this field isn't populated. [Developer Preview](https://developers.google.com/workspace/preview).
+     */
+    customer?: string | null;
     /**
      * Optional. The space's display name. Required when [creating a space](https://developers.google.com/workspace/chat/api/reference/rest/v1/spaces/create) with a `spaceType` of `SPACE`. If you receive the error message `ALREADY_EXISTS` when creating a space or updating the `displayName`, try a different `displayName`. An existing space within the Google Workspace organization might already use this display name. For direct messages, this field might be empty. Supports up to 128 characters.
      */
@@ -3959,6 +4001,7 @@ export namespace chat_v1 {
      *       //   "accessSettings": {},
      *       //   "adminInstalled": false,
      *       //   "createTime": "my_createTime",
+     *       //   "customer": "my_customer",
      *       //   "displayName": "my_displayName",
      *       //   "externalUserAllowed": false,
      *       //   "importMode": false,
@@ -3986,6 +4029,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4280,6 +4324,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4445,6 +4490,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -4748,6 +4794,7 @@ export namespace chat_v1 {
      *       //   "accessSettings": {},
      *       //   "adminInstalled": false,
      *       //   "createTime": "my_createTime",
+     *       //   "customer": "my_customer",
      *       //   "displayName": "my_displayName",
      *       //   "externalUserAllowed": false,
      *       //   "importMode": false,
@@ -4775,6 +4822,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -5085,6 +5133,7 @@ export namespace chat_v1 {
      *   //   "accessSettings": {},
      *   //   "adminInstalled": false,
      *   //   "createTime": "my_createTime",
+     *   //   "customer": "my_customer",
      *   //   "displayName": "my_displayName",
      *   //   "externalUserAllowed": false,
      *   //   "importMode": false,
@@ -5629,7 +5678,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Returns details about a membership. For an example, see [Get details about a user's or Google Chat app's membership](https://developers.google.com/workspace/chat/get-members). Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the authorization scope: - `https://www.googleapis.com/auth/chat.bot` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
+     * Returns details about a membership. For an example, see [Get details about a user's or Google Chat app's membership](https://developers.google.com/workspace/chat/get-members). Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.bot` - `https://www.googleapis.com/auth/chat.app.memberships` (requires [administrator approval](https://support.google.com/a?p=chat-app-auth)) - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
      * @example
      * ```js
      * // Before running the sample:
@@ -5778,7 +5827,7 @@ export namespace chat_v1 {
     }
 
     /**
-     * Lists memberships in a space. For an example, see [List users and Google Chat apps in a space](https://developers.google.com/workspace/chat/list-members). Listing memberships with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) lists memberships in spaces that the authenticated user has access to. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with the authorization scope: - `https://www.googleapis.com/auth/chat.bot` - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - `https://www.googleapis.com/auth/chat.import` (import mode spaces only) - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
+     * Lists memberships in a space. For an example, see [List users and Google Chat apps in a space](https://developers.google.com/workspace/chat/list-members). Listing memberships with [app authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) lists memberships in spaces that the Chat app has access to, but excludes Chat app memberships, including its own. Listing memberships with [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) lists memberships in spaces that the authenticated user has access to. Supports the following types of [authentication](https://developers.google.com/workspace/chat/authenticate-authorize): - [App authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-app) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.bot` - `https://www.googleapis.com/auth/chat.app.memberships` (requires [administrator approval](https://support.google.com/a?p=chat-app-auth)) - [User authentication](https://developers.google.com/workspace/chat/authenticate-authorize-chat-user) with one of the following authorization scopes: - `https://www.googleapis.com/auth/chat.memberships.readonly` - `https://www.googleapis.com/auth/chat.memberships` - `https://www.googleapis.com/auth/chat.import` (import mode spaces only) - User authentication grants administrator privileges when an administrator account authenticates, `use_admin_access` is `true`, and one of the following authorization scopes is used: - `https://www.googleapis.com/auth/chat.admin.memberships.readonly` - `https://www.googleapis.com/auth/chat.admin.memberships`
      * @example
      * ```js
      * // Before running the sample:
