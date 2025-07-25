@@ -244,19 +244,6 @@ export namespace cloudbuild_v2 {
    */
   export interface Schema$CancelOperationRequest {}
   /**
-   * Capabilities adds and removes POSIX capabilities from running containers.
-   */
-  export interface Schema$Capabilities {
-    /**
-     * Optional. Added capabilities +optional
-     */
-    add?: string[] | null;
-    /**
-     * Optional. Removed capabilities +optional
-     */
-    drop?: string[] | null;
-  }
-  /**
    * ChildStatusReference is used to point to the statuses of individual TaskRuns and Runs within this PipelineRun.
    */
   export interface Schema$ChildStatusReference {
@@ -1309,10 +1296,6 @@ export namespace cloudbuild_v2 {
      * Optional. AllowPrivilegeEscalation controls whether a process can gain more privileges than its parent process. This bool directly controls if the no_new_privs flag will be set on the container process. AllowPrivilegeEscalation is true always when the container is: 1) run as Privileged 2) has CAP_SYS_ADMIN Note that this field cannot be set when spec.os.name is windows. +optional
      */
     allowPrivilegeEscalation?: boolean | null;
-    /**
-     * Optional. Adds and removes POSIX capabilities from running containers.
-     */
-    capabilities?: Schema$Capabilities;
     /**
      * Run container in privileged mode.
      */
