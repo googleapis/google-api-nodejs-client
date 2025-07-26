@@ -2254,7 +2254,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250717",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3333,7 +3333,7 @@
           "type": "boolean"
         },
         "serviceAccount": {
-          "description": "The service account to associate the VM with.",
+          "description": "Optional. The service account to associate the VM with.",
           "type": "string"
         },
         "targetProject": {
