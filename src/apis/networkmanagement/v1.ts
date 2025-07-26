@@ -787,9 +787,9 @@ export namespace networkmanagement_v1 {
      */
     cloudRegion?: string | null;
     /**
-     * Output only. The id of Virtual Private Cloud (VPC) of the host.
+     * Output only. The ids of cloud virtual networks of the host.
      */
-    cloudVpcId?: string | null;
+    cloudVirtualNetworkIds?: string[] | null;
     /**
      * Output only. The cloud zone of the host.
      */
