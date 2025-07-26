@@ -2806,7 +2806,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250717",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -3464,7 +3464,7 @@
       "properties": {
         "effectiveDownloadRestrictionWithContext": {
           "$ref": "DownloadRestriction",
-          "description": "The effective download restriction applied to this file. This considers all restriction settings and DLP rules."
+          "description": "Output only. The effective download restriction applied to this file. This considers all restriction settings and DLP rules."
         },
         "itemDownloadRestriction": {
           "$ref": "DownloadRestriction",
@@ -3721,7 +3721,7 @@
               "type": "boolean"
             },
             "canChangeItemDownloadRestriction": {
-              "description": "Output only. Whether the current user can change the owner-applied download restrictions of the file.",
+              "description": "Output only. Whether the current user can change the owner or organizer-applied download restrictions of the file.",
               "type": "boolean"
             },
             "canChangeSecurityUpdateEnabled": {
