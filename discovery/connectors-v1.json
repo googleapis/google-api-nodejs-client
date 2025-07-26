@@ -311,6 +311,11 @@
                     "name"
                   ],
                   "parameters": {
+                    "force": {
+                      "description": "Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete",
+                      "location": "query",
+                      "type": "boolean"
+                    },
                     "name": {
                       "description": "Required. Resource name of the form: `projects/*/locations/*/connections/*`",
                       "location": "path",
@@ -2752,7 +2757,7 @@
       }
     }
   },
-  "revision": "20250703",
+  "revision": "20250721",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
