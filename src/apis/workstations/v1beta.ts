@@ -967,6 +967,10 @@ export namespace workstations_v1beta {
      * Output only. Boost configuration ID.
      */
     id?: string | null;
+    /**
+     * Output only. Whether or not the current workstation is actively boosted with this id.
+     */
+    running?: boolean | null;
   }
   /**
    * A workstation cluster resource in the Cloud Workstations API. Defines a group of workstations in a particular region and the VPC network they're attached to.
