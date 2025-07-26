@@ -1075,7 +1075,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250716",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2460,6 +2460,12 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "stateUpdateTime": {
+          "description": "Output only. The time when the replica state was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
