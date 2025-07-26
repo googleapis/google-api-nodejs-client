@@ -1181,7 +1181,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event - os_crash_event ",
+                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event - os_crash_event - external_displays_event ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1377,7 +1377,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250721",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4521,7 +4521,9 @@
             "APP_INSTALLED",
             "APP_UNINSTALLED",
             "APP_LAUNCHED",
-            "OS_CRASH"
+            "OS_CRASH",
+            "EXTERNAL_DISPLAY_CONNECTED",
+            "EXTERNAL_DISPLAY_DISCONNECTED"
           ],
           "enumDescriptions": [
             "Event type unknown.",
@@ -4536,7 +4538,9 @@
             "Triggered when an app is installed.",
             "Triggered when an app is uninstalled.",
             "Triggered when an app is launched.",
-            "Triggered when a crash occurs."
+            "Triggered when a crash occurs.",
+            "Triggered when an external display is connected.",
+            "Triggered when an external display is disconnected."
           ],
           "type": "string"
         },
@@ -4608,7 +4612,9 @@
               "APP_INSTALLED",
               "APP_UNINSTALLED",
               "APP_LAUNCHED",
-              "OS_CRASH"
+              "OS_CRASH",
+              "EXTERNAL_DISPLAY_CONNECTED",
+              "EXTERNAL_DISPLAY_DISCONNECTED"
             ],
             "enumDescriptions": [
               "Event type unknown.",
@@ -4623,7 +4629,9 @@
               "Triggered when an app is installed.",
               "Triggered when an app is uninstalled.",
               "Triggered when an app is launched.",
-              "Triggered when a crash occurs."
+              "Triggered when a crash occurs.",
+              "Triggered when an external display is connected.",
+              "Triggered when an external display is disconnected."
             ],
             "type": "string"
           },
