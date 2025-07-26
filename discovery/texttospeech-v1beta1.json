@@ -261,7 +261,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250716",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -293,7 +293,7 @@
             "M4A"
           ],
           "enumDescriptions": [
-            "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
+            "Not specified. Only used by GenerateVoiceCloningKey. Otherwise, will return result google.rpc.Code.INVALID_ARGUMENT.",
             "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
             "MP3 audio at 32kbps.",
             "MP3 at 64kbps.",

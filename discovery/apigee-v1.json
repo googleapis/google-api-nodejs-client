@@ -5321,7 +5321,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Required. The name of the debug session to retrieve. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                              "description": "Required. The name of the debug session to retrieve. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{debug_session}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                               "location": "path",
                               "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+$",
                               "required": true,
@@ -5346,13 +5346,13 @@
                           ],
                           "parameters": {
                             "pageSize": {
-                              "description": "Maximum number of debug sessions to return. The page size defaults to 25.",
+                              "description": "Optional. Maximum number of debug sessions to return. The page size defaults to 25.",
                               "format": "int32",
                               "location": "query",
                               "type": "integer"
                             },
                             "pageToken": {
-                              "description": "Page token, returned from a previous ListDebugSessions call, that you can use to retrieve the next page.",
+                              "description": "Optional. Page token, returned from a previous ListDebugSessions call, that you can use to retrieve the next page.",
                               "location": "query",
                               "type": "string"
                             },
@@ -5386,7 +5386,7 @@
                               ],
                               "parameters": {
                                 "name": {
-                                  "description": "Required. The name of the debug session transaction. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{session}/data/{transaction}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
+                                  "description": "Required. The name of the debug session transaction. Must be of the form: `organizations/{organization}/environments/{environment}/apis/{api}/revisions/{revision}/debugsessions/{debug_session}/data/{transaction}`. If the API proxy resource has the `space` attribute set, IAM permissions are checked differently . To learn more, read the [Apigee Spaces Overview](https://cloud.google.com/apigee/docs/api-platform/system-administration/spaces/apigee-spaces-overview).",
                                   "location": "path",
                                   "pattern": "^organizations/[^/]+/environments/[^/]+/apis/[^/]+/revisions/[^/]+/debugsessions/[^/]+/data/[^/]+$",
                                   "required": true,
@@ -9735,7 +9735,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Optional. The list of fields to update. Valid fields to update are `profile`, `scope`, `include_all_resources`, `include`, and `exclude`.",
+                  "description": "Optional. The list of fields to update. Valid fields to update are `include_all_resources` and `include`.",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -11127,7 +11127,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250722",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {

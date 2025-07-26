@@ -318,7 +318,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250716",
   "rootUrl": "https://texttospeech.googleapis.com/",
   "schemas": {
     "AdvancedVoiceOptions": {
@@ -349,7 +349,7 @@
             "M4A"
           ],
           "enumDescriptions": [
-            "Not specified. Will return result google.rpc.Code.INVALID_ARGUMENT.",
+            "Not specified. Only used by GenerateVoiceCloningKey. Otherwise, will return result google.rpc.Code.INVALID_ARGUMENT.",
             "Uncompressed 16-bit signed little-endian samples (Linear PCM). Audio content returned as LINEAR16 also contains a WAV header.",
             "MP3 audio at 32kbps.",
             "Opus encoded audio wrapped in an ogg container. The result is a file which can be played natively on Android, and in browsers (at least Chrome and Firefox). The quality of the encoding is considerably higher than MP3 while using approximately the same bitrate.",
