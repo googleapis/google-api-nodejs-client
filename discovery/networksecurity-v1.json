@@ -2338,7 +2338,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/*/locations/{location}/clientTlsPolicies/{client_tls_policy}`",
+                      "description": "Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/clientTlsPolicies/[^/]+$",
                       "required": true,
@@ -5070,7 +5070,7 @@
       }
     }
   },
-  "revision": "20250604",
+  "revision": "20250714",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5387,9 +5387,16 @@
       "id": "AuthzPolicyAuthzRuleFromRequestSource",
       "properties": {
         "ipBlocks": {
-          "description": "Optional. A list of IPs or CIDRs to match against the source IP of a request. Limited to 5 ip_blocks.",
+          "description": "Optional. A list of IP addresses or IP address ranges to match against the source IP address of the request. Limited to 5 ip_blocks.",
           "items": {
             "$ref": "AuthzPolicyAuthzRuleIpBlock"
+          },
+          "type": "array"
+        },
+        "principals": {
+          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 5 principals.",
+          "items": {
+            "$ref": "AuthzPolicyAuthzRulePrincipal"
           },
           "type": "array"
         },
@@ -5429,6 +5436,33 @@
         },
         "prefix": {
           "description": "Required. The address prefix.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AuthzPolicyAuthzRulePrincipal": {
+      "description": "Describes the properties of a principal to be matched against.",
+      "id": "AuthzPolicyAuthzRulePrincipal",
+      "properties": {
+        "principal": {
+          "$ref": "AuthzPolicyAuthzRuleStringMatch",
+          "description": "Required. A non-empty string whose value is matched against the principal value based on the principal_selector. Only exact match can be applied for CLIENT_CERT_URI_SAN, CLIENT_CERT_DNS_NAME_SAN, CLIENT_CERT_COMMON_NAME selectors."
+        },
+        "principalSelector": {
+          "description": "Optional. An enum to decide what principal value the principal rule will match against. If not specified, the PrincipalSelector is CLIENT_CERT_URI_SAN.",
+          "enum": [
+            "PRINCIPAL_SELECTOR_UNSPECIFIED",
+            "CLIENT_CERT_URI_SAN",
+            "CLIENT_CERT_DNS_NAME_SAN",
+            "CLIENT_CERT_COMMON_NAME"
+          ],
+          "enumDescriptions": [
+            "Unspecified principal selector. It will be treated as CLIENT_CERT_URI_SAN by default.",
+            "The principal rule is matched against a list of URI SANs in the validated client’s certificate. A match happens when there is any exact URI SAN value match. This is the default principal selector.",
+            "The principal rule is matched against a list of DNS Name SANs in the validated client’s certificate. A match happens when there is any exact DNS Name SAN value match.",
+            "The principal rule is matched against the common name in the client’s certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
+          ],
           "type": "string"
         }
       },
@@ -5624,7 +5658,7 @@
       "type": "object"
     },
     "BackendAuthenticationConfig": {
-      "description": "BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.",
+      "description": "BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer's BackendService directly determining how that BackendService negotiates TLS.",
       "id": "BackendAuthenticationConfig",
       "properties": {
         "clientCertificate": {
@@ -5727,7 +5761,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/*/locations/{location}/clientTlsPolicies/{client_tls_policy}`",
+          "description": "Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project}/locations/{location}/clientTlsPolicies/{client_tls_policy}`",
           "type": "string"
         },
         "serverValidationCa": {
