@@ -597,6 +597,10 @@ export namespace mybusinessbusinessinformation_v1 {
      */
     hasVoiceOfMerchant?: boolean | null;
     /**
+     * Output only.
+     */
+    isParticularlyPersonalPlace?: boolean | null;
+    /**
      * Output only. A link to the location on Maps.
      */
     mapsUri?: string | null;

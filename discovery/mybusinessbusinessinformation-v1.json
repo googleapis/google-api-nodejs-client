@@ -612,7 +612,7 @@
       }
     }
   },
-  "revision": "20250618",
+  "revision": "20250723",
   "rootUrl": "https://mybusinessbusinessinformation.googleapis.com/",
   "schemas": {
     "AdWordsLocationExtensions": {
@@ -1225,6 +1225,11 @@
         },
         "hasVoiceOfMerchant": {
           "description": "Output only. Indicates if the listing has Voice of Merchant. If this boolean is false, you should call the locations.getVoiceOfMerchantState API to get details as to why they do not have Voice of Merchant.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "isParticularlyPersonalPlace": {
+          "description": "Output only.",
           "readOnly": true,
           "type": "boolean"
         },
