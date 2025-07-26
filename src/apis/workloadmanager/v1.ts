@@ -170,6 +170,10 @@ export namespace workloadmanager_v1 {
      */
     installedVersion?: string | null;
     /**
+     * Output only. The URI of the instance. Format: projects//zones//instances/
+     */
+    instanceUri?: string | null;
+    /**
      * Output only. The kernel version of the system.
      */
     kernelVersion?: Schema$SapDiscoveryResourceInstancePropertiesKernelVersion;
