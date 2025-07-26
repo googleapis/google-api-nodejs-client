@@ -2127,6 +2127,10 @@ export namespace serviceusage_v1beta1 {
      * Some settings.
      */
     common?: Schema$CommonLanguageSettings;
+    /**
+     * The package name to use in Php. Clobbers the php_namespace option set in the protobuf. This should be used **only** by APIs who have already set the language_settings.php.package_name" field in gapic.yaml. API teams should use the protobuf php_namespace option where possible. Example of a YAML configuration:: publishing: library_settings: php_settings: library_package: Google\Cloud\PubSub\V1
+     */
+    libraryPackage?: string | null;
   }
   /**
    * Quota policy created by service producer.
