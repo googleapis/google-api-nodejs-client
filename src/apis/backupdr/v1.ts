@@ -578,10 +578,6 @@ export namespace backupdr_v1 {
      * Output only. If the last backup were successful, this field has the consistency date.
      */
     lastSuccessfulBackupConsistencyTime?: string | null;
-    /**
-     * Output only. If the last log backup were successful, this field has the consistency date.
-     */
-    lastSuccessfulLogBackupConsistencyTime?: string | null;
   }
   /**
    * BackupDrPlanConfig has additional information about Backup and DR's Plan backup configuration.
@@ -653,7 +649,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupPlan {
     /**
-     * Required. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message.
+     * Optional. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message if on_demand_retention_limit_days is not set.
      */
     backupRules?: Schema$BackupRule[];
     /**
