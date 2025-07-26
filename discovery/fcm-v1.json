@@ -146,7 +146,7 @@
       }
     }
   },
-  "revision": "20250610",
+  "revision": "20250722",
   "rootUrl": "https://fcm.googleapis.com/",
   "schemas": {
     "AndroidConfig": {
@@ -154,7 +154,7 @@
       "id": "AndroidConfig",
       "properties": {
         "bandwidthConstrainedOk": {
-          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode.",
+          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is in bandwidth constrained mode. This should only be enabled when the app has been tested to properly handle messages in bandwidth constrained mode.",
           "type": "boolean"
         },
         "collapseKey": {
@@ -197,7 +197,7 @@
           "type": "string"
         },
         "restrictedSatelliteOk": {
-          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are allowed to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.",
+          "description": "Optional. If set to true, messages will be allowed to be delivered to the app while the device is connected over a restricted satellite network. This should only be enabled for messages that can be handled over a restricted satellite network and only for apps that are enabled to work over a restricted satellite network. Note that the ability of the app to connect to a restricted satellite network is dependent on the carrier's settings and the device model.",
           "type": "boolean"
         },
         "ttl": {
