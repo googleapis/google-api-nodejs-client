@@ -5118,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250720",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -8272,16 +8272,16 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2DocumentFallbackLocation": {
-      "description": "Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.",
+      "description": "Configure document processing to fall back to any of the following processing options if document processing is unavailable in the original request location.",
       "id": "GooglePrivacyDlpV2DocumentFallbackLocation",
       "properties": {
         "globalProcessing": {
           "$ref": "GooglePrivacyDlpV2GlobalProcessing",
-          "description": "Processing will happen in the global region."
+          "description": "Processing occurs in the global region."
         },
         "multiRegionProcessing": {
           "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
-          "description": "Processing will happen in a multi-region that contains the current region if available."
+          "description": "Processing occurs in a multi-region that contains the current region if available."
         }
       },
       "type": "object"
@@ -8987,7 +8987,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2GlobalProcessing": {
-      "description": "Processing will happen in the global region.",
+      "description": "Processing occurs in the global region.",
       "id": "GooglePrivacyDlpV2GlobalProcessing",
       "properties": {},
       "type": "object"
@@ -9138,16 +9138,16 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ImageFallbackLocation": {
-      "description": "Configure image processing to fall back to the configured processing option below if unavailable in the request location.",
+      "description": "Configure image processing to fall back to any of the following processing options if image processing is unavailable in the original request location.",
       "id": "GooglePrivacyDlpV2ImageFallbackLocation",
       "properties": {
         "globalProcessing": {
           "$ref": "GooglePrivacyDlpV2GlobalProcessing",
-          "description": "Processing will happen in the global region."
+          "description": "Processing occurs in the global region."
         },
         "multiRegionProcessing": {
           "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
-          "description": "Processing will happen in a multi-region that contains the current region if available."
+          "description": "Processing occurs in a multi-region that contains the current region if available."
         }
       },
       "type": "object"
@@ -9269,6 +9269,7 @@
             "ARGENTINA",
             "ARMENIA",
             "AUSTRALIA",
+            "AUSTRIA",
             "AZERBAIJAN",
             "BELARUS",
             "BELGIUM",
@@ -9323,6 +9324,7 @@
             "The infoType is typically used in Argentina.",
             "The infoType is typically used in Armenia.",
             "The infoType is typically used in Australia.",
+            "The infoType is typically used in Austria.",
             "The infoType is typically used in Azerbaijan.",
             "The infoType is typically used in Belarus.",
             "The infoType is typically used in Belgium.",
@@ -10562,7 +10564,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2MultiRegionProcessing": {
-      "description": "Processing will happen in a multi-region that contains the current region if available.",
+      "description": "Processing occurs in a multi-region that contains the current region if available.",
       "id": "GooglePrivacyDlpV2MultiRegionProcessing",
       "properties": {},
       "type": "object"
@@ -10895,11 +10897,11 @@
       "properties": {
         "documentFallbackLocation": {
           "$ref": "GooglePrivacyDlpV2DocumentFallbackLocation",
-          "description": "Document processing will fall back using this configuration."
+          "description": "Document processing falls back using this configuration."
         },
         "imageFallbackLocation": {
           "$ref": "GooglePrivacyDlpV2ImageFallbackLocation",
-          "description": "Image processing will fall back using this configuration."
+          "description": "Image processing falls back using this configuration."
         }
       },
       "type": "object"
@@ -11148,7 +11150,7 @@
       "id": "GooglePrivacyDlpV2QuasiId",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
@@ -11186,7 +11188,7 @@
       "id": "GooglePrivacyDlpV2QuasiIdentifierField",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
@@ -11534,7 +11536,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Result": {
-      "description": "All result fields mentioned below are updated while the job is processing.",
+      "description": "All Result fields are updated while the job is processing.",
       "id": "GooglePrivacyDlpV2Result",
       "properties": {
         "hybridStats": {
@@ -12310,7 +12312,7 @@
       "id": "GooglePrivacyDlpV2TaggedField",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
