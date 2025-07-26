@@ -321,7 +321,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250721",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DataSource": {
@@ -592,7 +592,7 @@
             "File input type unspecified.",
             "The file is uploaded through SFTP, Google Cloud Storage or manually in the Merchant Center.",
             "The file is fetched from the configured fetch_uri.",
-            "The file is fetched from Google Sheets specified in the fetch_uri."
+            "The file is fetched from Google Sheets specified in the fetch_uri. However, you can't set up `GOOGLE_SHEETS` as a data source through the API. To add `GOOGLE_SHEETS` as a data source through the Merchant Center, see [Add products to Merchant Center](https://support.google.com/merchants/answer/12158053)."
           ],
           "readOnly": true,
           "type": "string"
