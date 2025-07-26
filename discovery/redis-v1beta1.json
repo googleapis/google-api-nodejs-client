@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250718",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1367,6 +1367,17 @@
       },
       "type": "object"
     },
+    "BackupDRConfiguration": {
+      "description": "BackupDRConfiguration to capture the backup and disaster recovery details of database resource.",
+      "id": "BackupDRConfiguration",
+      "properties": {
+        "backupdrManaged": {
+          "description": "Indicates if the resource is managed by BackupDR.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "BackupFile": {
       "description": "Backup is consisted of multiple backup files.",
       "id": "BackupFile",
@@ -1614,6 +1625,16 @@
           "description": "Optional. The number of replica nodes per shard.",
           "format": "int32",
           "type": "integer"
+        },
+        "satisfiesPzi": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "shardCount": {
           "description": "Optional. Number of shards for the Redis cluster.",
@@ -2203,7 +2224,9 @@
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
             "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION"
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS"
           ],
           "enumDeprecated": [
             false,
@@ -2212,6 +2235,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -2401,7 +2426,9 @@
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
             "Location org policy not satisfied.",
-            "Outdated DB minor version."
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections."
           ],
           "type": "string"
         },
@@ -2465,7 +2492,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 25",
+      "description": "Common model for database resource instance metadata. Next ID: 26",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2479,6 +2506,10 @@
         "backupRun": {
           "$ref": "BackupRun",
           "description": "Latest backup run information for this instance"
+        },
+        "backupdrConfiguration": {
+          "$ref": "BackupDRConfiguration",
+          "description": "Optional. BackupDR Configuration for the resource."
         },
         "creationTime": {
           "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
@@ -2552,6 +2583,7 @@
         },
         "gcbdrConfiguration": {
           "$ref": "GCBDRConfiguration",
+          "deprecated": true,
           "description": "GCBDR configuration for the resource."
         },
         "id": {
@@ -2819,7 +2851,9 @@
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
             "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION"
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS"
           ],
           "enumDeprecated": [
             false,
@@ -2828,6 +2862,8 @@
             true,
             true,
             true,
+            false,
+            false,
             false,
             false,
             false,
@@ -3017,7 +3053,9 @@
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
             "Location org policy not satisfied.",
-            "Outdated DB minor version."
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections."
           ],
           "type": "string"
         }
@@ -4237,6 +4275,7 @@
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
             "ENGINE_EXADATA_ORACLE",
             "ENGINE_ADB_SERVERLESS_ORACLE"
           ],
@@ -4250,6 +4289,7 @@
             true,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4277,6 +4317,7 @@
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
+            "Firestore with MongoDB compatibility mode.",
             "Oracle Exadata engine.",
             "Oracle Autonomous DB Serverless engine."
           ],

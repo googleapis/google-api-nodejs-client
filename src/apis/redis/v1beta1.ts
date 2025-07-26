@@ -294,6 +294,15 @@ export namespace redis_v1beta1 {
     pointInTimeRecoveryEnabled?: boolean | null;
   }
   /**
+   * BackupDRConfiguration to capture the backup and disaster recovery details of database resource.
+   */
+  export interface Schema$BackupDRConfiguration {
+    /**
+     * Indicates if the resource is managed by BackupDR.
+     */
+    backupdrManaged?: boolean | null;
+  }
+  /**
    * Backup is consisted of multiple backup files.
    */
   export interface Schema$BackupFile {
@@ -455,6 +464,14 @@ export namespace redis_v1beta1 {
      * Optional. The number of replica nodes per shard.
      */
     replicaCount?: number | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional. Number of shards for the Redis cluster.
      */
@@ -751,7 +768,7 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 25
+   * Common model for database resource instance metadata. Next ID: 26
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -762,6 +779,10 @@ export namespace redis_v1beta1 {
      * Backup configuration for this instance
      */
     backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * Optional. BackupDR Configuration for the resource.
+     */
+    backupdrConfiguration?: Schema$BackupDRConfiguration;
     /**
      * Latest backup run information for this instance
      */
@@ -3506,6 +3527,8 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,
@@ -3828,6 +3851,8 @@ export namespace redis_v1beta1 {
      *   //   "pscServiceAttachments": [],
      *   //   "redisConfigs": {},
      *   //   "replicaCount": 0,
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
      *   //   "shardCount": 0,
      *   //   "simulateMaintenanceEvent": false,
      *   //   "sizeGb": 0,
@@ -4284,6 +4309,8 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,
