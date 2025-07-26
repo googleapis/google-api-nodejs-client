@@ -13623,7 +13623,7 @@ export namespace content_v2_1 {
      *     conversionSourceId: 'placeholder-value',
      *     // Required. The ID of the account that owns the new conversion source.
      *     merchantId: 'placeholder-value',
-     *     // Optional. List of fields being updated.
+     *     // Optional. List of fields being updated. The following fields can be updated: `attribution_settings`, `display_name`, `currency_code`.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -13950,7 +13950,7 @@ export namespace content_v2_1 {
      */
     merchantId?: string;
     /**
-     * Optional. List of fields being updated.
+     * Optional. List of fields being updated. The following fields can be updated: `attribution_settings`, `display_name`, `currency_code`.
      */
     updateMask?: string;
 

@@ -1457,7 +1457,7 @@
               "type": "string"
             },
             "updateMask": {
-              "description": "Optional. List of fields being updated.",
+              "description": "Optional. List of fields being updated. The following fields can be updated: `attribution_settings`, `display_name`, `currency_code`.",
               "format": "google-fieldmask",
               "location": "query",
               "type": "string"
@@ -4570,7 +4570,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250723",
   "rootUrl": "https://shoppingcontent.googleapis.com/",
   "schemas": {
     "Account": {
