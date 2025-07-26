@@ -975,6 +975,34 @@
             "https://www.googleapis.com/auth/analytics.readonly"
           ]
         },
+        "submitUserDeletion": {
+          "description": "Submits a request for user deletion for a property.",
+          "flatPath": "v1alpha/properties/{propertiesId}:submitUserDeletion",
+          "httpMethod": "POST",
+          "id": "analyticsadmin.properties.submitUserDeletion",
+          "parameterOrder": [
+            "name"
+          ],
+          "parameters": {
+            "name": {
+              "description": "Required. The name of the property to submit user deletion for.",
+              "location": "path",
+              "pattern": "^properties/[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1alpha/{+name}:submitUserDeletion",
+          "request": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest"
+          },
+          "response": {
+            "$ref": "GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/analytics.edit"
+          ]
+        },
         "updateAttributionSettings": {
           "description": "Updates attribution settings on a property.",
           "flatPath": "v1alpha/properties/{propertiesId}/attributionSettings",
@@ -5058,7 +5086,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250723",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {
@@ -9122,6 +9150,41 @@
         },
         "nextPageToken": {
           "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest": {
+      "description": "Request message for SubmitUserDeletion RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest",
+      "properties": {
+        "appInstanceId": {
+          "description": "Firebase [application instance ID](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.html#getAppInstanceId).",
+          "type": "string"
+        },
+        "clientId": {
+          "description": "Google Analytics [client ID](https://support.google.com/analytics/answer/11593727).",
+          "type": "string"
+        },
+        "userId": {
+          "description": "Google Analytics [user ID](https://firebase.google.com/docs/analytics/userid).",
+          "type": "string"
+        },
+        "userProvidedData": {
+          "description": "[User-provided data](https://support.google.com/analytics/answer/14077171). May contain either one email address or one phone number. Email addresses should be normalized as such: * lowercase * remove periods before @ for gmail.com/googlemail.com addresses * remove all spaces Phone numbers should be normalized as such: * remove all non digit characters * add + prefix",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse": {
+      "description": "Response message for SubmitUserDeletion RPC.",
+      "id": "GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse",
+      "properties": {
+        "deletionRequestTime": {
+          "description": "Marks the moment for which all visitor data before this point should be deleted. This is set to the time at which the deletion request was received.",
+          "format": "google-datetime",
           "type": "string"
         }
       },
