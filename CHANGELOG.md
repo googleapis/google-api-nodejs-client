@@ -4,6 +4,42 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [155.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v154.1.0...googleapis-v155.0.0) (2025-07-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **run:** This release has breaking changes.
+* **firebaseml:** This release has breaking changes.
+* **drive:** This release has breaking changes.
+* **discoveryengine:** This release has breaking changes.
+* **datacatalog:** This release has breaking changes.
+* **backupdr:** This release has breaking changes.
+
+### Features
+
+* **alloydb:** update the API ([ce5e547](https://github.com/googleapis/google-api-nodejs-client/commit/ce5e547be081e85bf086ed77c6270c11d39788f2))
+* **analyticsadmin:** update the API ([4ab8d20](https://github.com/googleapis/google-api-nodejs-client/commit/4ab8d208429f3dd1f1371ac1ad0103139e19a404))
+* **backupdr:** update the API ([9b1735c](https://github.com/googleapis/google-api-nodejs-client/commit/9b1735cb7ffa53444ae4e2d90737d8711f584103))
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+* **discoveryengine:** update the API ([1e43ed3](https://github.com/googleapis/google-api-nodejs-client/commit/1e43ed3872176ebe569fb9c441e2008f277a78bf))
+* **drive:** update the API ([d015972](https://github.com/googleapis/google-api-nodejs-client/commit/d0159723f38c148ecbf07e074570d8a59e4716ba))
+* **firebaseml:** update the API ([4f9d063](https://github.com/googleapis/google-api-nodejs-client/commit/4f9d06357d22706d282dba4e57ffc1f01c1bacd8))
+* **looker:** update the API ([ba365ce](https://github.com/googleapis/google-api-nodejs-client/commit/ba365ce76c75bfbeb77b4a5bdadc403ab7756c02))
+* **redis:** update the API ([4ad9a75](https://github.com/googleapis/google-api-nodejs-client/commit/4ad9a75e653de0e12e75ae9458a6015dd8e5648a))
+* regenerate index files ([9318fa2](https://github.com/googleapis/google-api-nodejs-client/commit/9318fa22a2307163ad493c01a6a6af18bdd3965f))
+* **run:** update the API ([bbcd7aa](https://github.com/googleapis/google-api-nodejs-client/commit/bbcd7aa901dd2bc73ded2258ea9a4d57d9627483))
+* **videointelligence:** update the API ([935c39a](https://github.com/googleapis/google-api-nodejs-client/commit/935c39a17f4e336b7eb2431d518385e185d9dfe9))
+* **workloadmanager:** update the API ([23a2f26](https://github.com/googleapis/google-api-nodejs-client/commit/23a2f2679e9cfa3c2659c4f4a7340572075eed02))
+
+
+### Bug Fixes
+
+* **accesscontextmanager:** update the API ([05c0be5](https://github.com/googleapis/google-api-nodejs-client/commit/05c0be5994743f46815628a450560d01f5133d92))
+* **dlp:** update the API ([004d70e](https://github.com/googleapis/google-api-nodejs-client/commit/004d70ea5c17dcf2819003ca8b27201340005007))
+* **merchantapi:** update the API ([117a719](https://github.com/googleapis/google-api-nodejs-client/commit/117a719096e9a5f77a46681c8d9216beb3580bfa))
+* **migrationcenter:** update the API ([15998f7](https://github.com/googleapis/google-api-nodejs-client/commit/15998f71d2f35d8fefe5211be73137b6fd8cc263))
+
 ## [154.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v154.0.0...googleapis-v154.1.0) (2025-07-25)
 
 
