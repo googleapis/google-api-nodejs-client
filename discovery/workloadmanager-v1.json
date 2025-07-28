@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250714",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -960,6 +960,11 @@
         },
         "installedVersion": {
           "description": "Output only. The installed version of the agent on the host.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceUri": {
+          "description": "Output only. The URI of the instance. Format: projects//zones//instances/",
           "readOnly": true,
           "type": "string"
         },
