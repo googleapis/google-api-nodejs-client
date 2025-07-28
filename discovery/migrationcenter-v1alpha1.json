@@ -2554,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250724",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -6874,9 +6874,9 @@
         },
         "fileSizeBytes": {
           "description": "Output only. File size in bytes.",
-          "format": "int32",
+          "format": "int64",
           "readOnly": true,
-          "type": "integer"
+          "type": "string"
         },
         "xlsxOutputFile": {
           "$ref": "XlsxOutputFile",
