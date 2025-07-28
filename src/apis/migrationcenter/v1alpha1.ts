@@ -2978,7 +2978,7 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Output only. File size in bytes.
      */
-    fileSizeBytes?: number | null;
+    fileSizeBytes?: string | null;
     /**
      * Output only. XLSX output file.
      */
