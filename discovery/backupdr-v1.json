@@ -2060,7 +2060,7 @@
       }
     }
   },
-  "revision": "20250711",
+  "revision": "20250720",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2791,12 +2791,6 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
-        },
-        "lastSuccessfulLogBackupConsistencyTime": {
-          "description": "Output only. If the last log backup were successful, this field has the consistency date.",
-          "format": "google-datetime",
-          "readOnly": true,
-          "type": "string"
         }
       },
       "type": "object"
@@ -2905,7 +2899,7 @@
       "id": "BackupPlan",
       "properties": {
         "backupRules": {
-          "description": "Required. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message.",
+          "description": "Optional. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message if on_demand_retention_limit_days is not set.",
           "items": {
             "$ref": "BackupRule"
           },
