@@ -2129,6 +2129,15 @@ export namespace discoveryengine_v1alpha {
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent;
   }
   /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistant {
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Multi-modal content.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantContent {
@@ -9007,6 +9016,32 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Request for the AssistantService.UploadSessionFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest {
+    /**
+     * Information about the file being uploaded.
+     */
+    blob?: Schema$GdataMedia;
+    /**
+     * Media upload request metadata.
+     */
+    mediaRequestInfo?: Schema$ApiservingMediaRequestInfo;
+  }
+  /**
+   * Response for the AssistantService.UploadSessionFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse {
+    /**
+     * The ID of the uploaded file.
+     */
+    fileId?: string | null;
+    /**
+     * Media upload response metadata.
+     */
+    mediaResponseInfo?: Schema$ApiservingMediaResponseInfo;
+  }
+  /**
    * UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserEvent {
@@ -13900,6 +13935,117 @@ export namespace discoveryengine_v1alpha {
     type?: string | null;
   }
   /**
+   * Metadata about an agentspace source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata {
+    /**
+     * Output only. The full document name in Agentspace.
+     */
+    documentName?: string | null;
+    /**
+     * Output only. The title of the document.
+     */
+    documentTitle?: string | null;
+  }
+  /**
+   * Request for SourceService.BatchCreateSources method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest {
+    /**
+     * Required. The UserContents to be uploaded.
+     */
+    userContents?: Schema$GoogleCloudNotebooklmV1alphaUserContent[];
+  }
+  /**
+   * Response for SourceService.BatchCreateSources method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse {
+    /**
+     * The Sources.
+     */
+    sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
+  }
+  /**
+   * Response for NotebookService.ListRecentlyViewedNotebooks method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse {
+    /**
+     * The page token, provide this to retrieve the subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of recently viewed notebooks.
+     */
+    notebooks?: Schema$GoogleCloudNotebooklmV1alphaNotebook[];
+  }
+  /**
+   * Notebook is a resource where users can store their content (as sources) and interacts with the content.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaNotebook {
+    /**
+     * Output only. The emoji of the notebook.
+     */
+    emoji?: string | null;
+    /**
+     * The metadata of the notebook.
+     */
+    metadata?: Schema$GoogleCloudNotebooklmV1alphaNotebookMetadata;
+    /**
+     * Identifier. The identifier of the notebook. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`. This field must be a UTF-8 encoded string.
+     */
+    name?: string | null;
+    /**
+     * Optional. Notebook id, which is the last segment of the notebook's resource name. This is to make it similar with notebooklm API.
+     */
+    notebookId?: string | null;
+    /**
+     * Optional. The title of the notebook.
+     */
+    title?: string | null;
+  }
+  /**
+   * Metadata for a notebook.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaNotebookMetadata {
+    /**
+     * The time at which this project was created.
+     */
+    createTime?: string | null;
+    /**
+     * True if the project is shareable.
+     */
+    isShareable?: boolean | null;
+    /**
+     * True if this project is currently shared with other people, false otherwise.
+     */
+    isShared?: boolean | null;
+    /**
+     * A timestamp indicating the time that the current in session user has last viewed the project.
+     */
+    lastViewed?: string | null;
+  }
+  /**
+   * Source represents a single source of content.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaSource {
+    /**
+     * Metadata about the source.
+     */
+    metadata?: Schema$GoogleCloudNotebooklmV1alphaSourceMetadata;
+    /**
+     * Identifier. The full resource name of the source. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. Source id, which is the last segment of the source's resource name. This is to make it similar with notebooklm API.
+     */
+    sourceId?: Schema$GoogleCloudNotebooklmV1alphaSourceId;
+    /**
+     * Optional. Title of the source.
+     */
+    title?: string | null;
+  }
+  /**
    * SourceId is the last segment of the source's resource name.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaSourceId {
@@ -13907,6 +14053,27 @@ export namespace discoveryengine_v1alpha {
      * The id of the source.
      */
     id?: string | null;
+  }
+  /**
+   * Represents the metadata of a source and some additional information.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaSourceMetadata {
+    /**
+     * Metadata for an agentspace source.
+     */
+    agentspaceMetadata?: Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata;
+    /**
+     * The timestamp the source was added.
+     */
+    sourceAddedTimestamp?: string | null;
+    /**
+     * The number of tokens in the source.
+     */
+    tokenCount?: number | null;
+    /**
+     * The word count of the source.
+     */
+    wordCount?: number | null;
   }
   /**
    * Request for the SourceService.UploadSourceFile method.
@@ -13937,6 +14104,32 @@ export namespace discoveryengine_v1alpha {
      * The source id of the uploaded source.
      */
     sourceId?: Schema$GoogleCloudNotebooklmV1alphaSourceId;
+  }
+  /**
+   * The "Content" messages refer to data the user wants to upload.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContent {
+    /**
+     * Agentspace content uploaded as source.
+     */
+    agentspaceContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent;
+  }
+  /**
+   * Agentspace content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent {
+    /**
+     * Optional. The full document name in Agentspace.
+     */
+    documentName?: string | null;
+    /**
+     * Optional. Engine to verify the permission of the document.
+     */
+    engineName?: string | null;
+    /**
+     * Optional. The full idea name for IdeaForge.
+     */
+    ideaforgeIdeaName?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -14189,7 +14382,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Uploads a file for Notebook LM to use. Creates a Source.
+     * Downloads a file from the session.
      * @example
      * ```js
      * // Before running the sample:
@@ -14218,30 +14411,48 @@ export namespace discoveryengine_v1alpha {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await discoveryengine.media.upload({
-     *     // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
-     *     parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "blob": {},
-     *       //   "mediaRequestInfo": {},
-     *       //   "sourceId": "my_sourceId"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
+     *   const res = await discoveryengine.media.download({
+     *     // Required. The ID of the file to be downloaded.
+     *     fileId: 'placeholder-value',
+     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *     // Optional. The ID of the view to be downloaded.
+     *     viewId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "mediaResponseInfo": {},
-     *   //   "sourceId": {}
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
      *   // }
      * }
      *
@@ -14257,60 +14468,52 @@ export namespace discoveryengine_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    upload(
-      params: Params$Resource$Media$Upload,
+    download(
+      params: Params$Resource$Media$Download,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    upload(
-      params?: Params$Resource$Media$Upload,
+    download(
+      params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-    >;
-    upload(
-      params: Params$Resource$Media$Upload,
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
+    download(
+      params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    upload(
-      params: Params$Resource$Media$Upload,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    download(
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
+      callback: BodyResponseCallback<Schema$GdataMedia>
     ): void;
-    upload(
-      params: Params$Resource$Media$Upload,
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$GdataMedia>
     ): void;
-    upload(
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-    ): void;
-    upload(
+    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(
       paramsOrCallback?:
-        | Params$Resource$Media$Upload
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Media$Upload;
+        params = {} as Params$Resource$Media$Download;
         options = {};
       }
 
@@ -14324,61 +14527,44 @@ export namespace discoveryengine_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/sources:uploadFile').replace(
+            url: (rootUrl + '/v1alpha/{+name}:downloadFile').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'POST',
+            method: 'GET',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/v1alpha/{+parent}/sources:uploadFile'
-        ).replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
+        createAPIRequest<Schema$GdataMedia>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GdataMedia>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Media$Upload extends StandardParameters {
+  export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     * Required. The ID of the file to be downloaded.
      */
-    parent?: string;
-
+    fileId?: string;
     /**
-     * Request body metadata
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
      */
-    requestBody?: Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileRequest;
-
+    name?: string;
     /**
-     * Media metadata
+     * Optional. The ID of the view to be downloaded.
      */
-    media?: {
-      /**
-       * Media mime-type
-       */
-      mimeType?: string;
-
-      /**
-       * Media body contents
-       */
-      body?: any;
-    };
+    viewId?: string;
   }
 
   export class Resource$Projects {
@@ -36985,6 +37171,314 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
+     * Gets an Assistant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.get(
+     *       {
+     *         // Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Assistant
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.patch(
+     *       {
+     *         // Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *         // The list of fields to update.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "name": "my_name"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Assists the user with a query in a streaming fashion.
      * @example
      * ```js
@@ -37151,6 +37645,29 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAssistant;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
     extends StandardParameters {
     /**
@@ -59862,12 +60379,340 @@ export namespace discoveryengine_v1alpha {
         this.context
       );
     }
+
+    /**
+     * Lists the recently viewed notebooks. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.listRecentlyViewed({
+     *       // Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The page token, provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notebooks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listRecentlyViewed(
+      params?: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    >;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/notebooks:listRecentlyViewed'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Notebooks$Sources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a list of Sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.sources.batchCreate({
+     *       // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "userContents": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    >;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sources:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -60033,6 +60878,18 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
     extends StandardParameters {
     /**
