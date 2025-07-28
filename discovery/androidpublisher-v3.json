@@ -5521,7 +5521,7 @@
       }
     }
   },
-  "revision": "20250719",
+  "revision": "20250724",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -9374,13 +9374,15 @@
             "AVAILABILITY_UNSPECIFIED",
             "AVAILABLE",
             "NO_LONGER_AVAILABLE",
-            "AVAILABLE_IF_RELEASED"
+            "AVAILABLE_IF_RELEASED",
+            "AVAILABLE_FOR_OFFERS_ONLY"
           ],
           "enumDescriptions": [
             "Unspecified availability. Must not be used.",
             "The purchase option is available to users.",
             "The purchase option is no longer available to users. This value can only be used if the availability was previously set as AVAILABLE.",
-            "The purchase option is initially unavailable, but made available via a released pre-order offer."
+            "The purchase option is initially unavailable, but made available via a released pre-order offer.",
+            "The purchase option is unavailable but offers linked to it (i.e. Play Points offer) are available."
           ],
           "type": "string"
         },

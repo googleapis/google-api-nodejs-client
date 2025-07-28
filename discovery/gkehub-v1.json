@@ -2117,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250720",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6420,7 +6420,8 @@
             "ACTIVE",
             "STALLED",
             "NEEDS_ATTENTION",
-            "DEGRADED"
+            "DEGRADED",
+            "DEPROVISIONING"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -6430,7 +6431,8 @@
             "ACTIVE means that the component is ready for use.",
             "STALLED means that provisioning could not be done.",
             "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
-            "DEGRADED means that the component is ready, but operating in a degraded state."
+            "DEGRADED means that the component is ready, but operating in a degraded state.",
+            "DEPROVISIONING means that deprovisioning is in progress."
           ],
           "type": "string"
         }
@@ -6458,7 +6460,8 @@
             "ACTIVE",
             "STALLED",
             "NEEDS_ATTENTION",
-            "DEGRADED"
+            "DEGRADED",
+            "DEPROVISIONING"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -6468,7 +6471,8 @@
             "ACTIVE means that the component is ready for use.",
             "STALLED means that provisioning could not be done.",
             "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
-            "DEGRADED means that the component is ready, but operating in a degraded state."
+            "DEGRADED means that the component is ready, but operating in a degraded state.",
+            "DEPROVISIONING means that deprovisioning is in progress."
           ],
           "type": "string"
         }
@@ -6513,12 +6517,14 @@
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
-            "MANAGEMENT_MANUAL"
+            "MANAGEMENT_MANUAL",
+            "MANAGEMENT_NOT_INSTALLED"
           ],
           "enumDescriptions": [
             "Unspecified",
             "Google should manage my Service Mesh for the cluster.",
-            "User will manually configure their service mesh components."
+            "User will manually configure their service mesh components.",
+            "Google should remove any managed Service Mesh components from this cluster and deprovision any resources."
           ],
           "type": "string"
         }
