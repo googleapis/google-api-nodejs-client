@@ -1922,7 +1922,7 @@
       }
     }
   },
-  "revision": "20250712",
+  "revision": "20250718",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -2958,8 +2958,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
-          "readOnly": true,
+          "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
         },
         "executionCount": {
@@ -3844,8 +3843,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
-          "readOnly": true,
+          "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
         },
         "expireTime": {
@@ -4675,8 +4673,7 @@
           "type": "string"
         },
         "etag": {
-          "description": "Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
-          "readOnly": true,
+          "description": "Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.",
           "type": "string"
         },
         "expireTime": {
