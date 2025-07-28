@@ -1622,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250723",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -3888,6 +3888,33 @@
       },
       "type": "object"
     },
+    "StageSchedule": {
+      "description": "Timing information for the stage execution.",
+      "id": "StageSchedule",
+      "properties": {
+        "actualEndTime": {
+          "description": "Actual end time of the stage. Set only if the stage has completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "actualStartTime": {
+          "description": "Actual start time of the stage. Set only if the stage has started.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "estimatedEndTime": {
+          "description": "When the stage is expected to end. Set only if the stage has not completed yet.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "estimatedStartTime": {
+          "description": "When the stage is expected to start. Set only if the stage has not started yet.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StageStatus": {
       "description": "Status of an upgrade stage.",
       "id": "StageStatus",
@@ -3895,6 +3922,11 @@
         "readPoolInstancesUpgrade": {
           "$ref": "ReadPoolInstancesUpgradeStageStatus",
           "description": "Read pool instances upgrade metadata."
+        },
+        "schedule": {
+          "$ref": "StageSchedule",
+          "description": "Output only. Timing information for the stage execution.",
+          "readOnly": true
         },
         "stage": {
           "description": "Upgrade stage.",
@@ -4059,6 +4091,17 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration": {
+      "description": "BackupDRConfiguration to capture the backup and disaster recovery details of database resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
+      "properties": {
+        "backupdrManaged": {
+          "description": "Indicates if the resource is managed by BackupDR.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainBackupRun": {
       "description": "A backup run.",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupRun",
@@ -4109,6 +4152,50 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData": {
+      "description": "Config based signal data. This is used to send signals to Condor which are based on the DB level configurations. These will be used to send signals for self managed databases.",
+      "id": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
+      "properties": {
+        "fullResourceName": {
+          "description": "Required. Full Resource name of the source resource.",
+          "type": "string"
+        },
+        "lastRefreshTime": {
+          "description": "Required. Last time signal was refreshed",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
+          "description": "Database resource id."
+        },
+        "signalBoolValue": {
+          "description": "Signal data for boolean signals.",
+          "type": "boolean"
+        },
+        "signalType": {
+          "description": "Required. Signal type of the signal",
+          "enum": [
+            "SIGNAL_TYPE_UNSPECIFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_DATABASE_AUDITING_DISABLED",
+            "SIGNAL_TYPE_NO_ROOT_PASSWORD",
+            "SIGNAL_TYPE_EXPOSED_TO_PUBLIC_ACCESS",
+            "SIGNAL_TYPE_UNENCRYPTED_CONNECTIONS"
+          ],
+          "enumDescriptions": [
+            "Unspecified signal type.",
+            "Outdated Minor Version",
+            "Represents database auditing is disabled.",
+            "Represents if a database has a password configured for the root account or not.",
+            "Represents if a resource is exposed to public access.",
+            "Represents if a resources requires all incoming connections to use SSL or not."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainCustomMetadataData": {
       "description": "Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data",
       "id": "StorageDatabasecenterPartnerapiV1mainCustomMetadataData",
@@ -4124,9 +4211,13 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 8",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
+        "configBasedSignalData": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
+          "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
+        },
         "feedTimestamp": {
           "description": "Required. Timestamp when feed is generated.",
           "format": "google-datetime",
@@ -4139,14 +4230,16 @@
             "RESOURCE_METADATA",
             "OBSERVABILITY_DATA",
             "SECURITY_FINDING_DATA",
-            "RECOMMENDATION_SIGNAL_DATA"
+            "RECOMMENDATION_SIGNAL_DATA",
+            "CONFIG_BASED_SIGNAL_DATA"
           ],
           "enumDescriptions": [
             "",
             "Database resource metadata feed from control plane",
             "Database resource monitoring data",
             "Database resource security health signal data",
-            "Database resource recommendation signal data"
+            "Database resource recommendation signal data",
+            "Database config based signal data"
           ],
           "type": "string"
         },
@@ -4380,7 +4473,12 @@
             "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_VERSION"
           ],
           "enumDeprecated": [
             false,
@@ -4389,6 +4487,11 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -4576,7 +4679,12 @@
             "Heavy write pressure on the database rows.",
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
-            "Location org policy not satisfied."
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections.",
+            "Replication delay.",
+            "Outdated version."
           ],
           "type": "string"
         },
@@ -4640,7 +4748,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 25",
+      "description": "Common model for database resource instance metadata. Next ID: 26",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -4654,6 +4762,10 @@
         "backupRun": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
           "description": "Latest backup run information for this instance"
+        },
+        "backupdrConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
+          "description": "Optional. BackupDR Configuration for the resource."
         },
         "creationTime": {
           "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
@@ -4727,6 +4839,7 @@
         },
         "gcbdrConfiguration": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainGCBDRConfiguration",
+          "deprecated": true,
           "description": "GCBDR configuration for the resource."
         },
         "id": {
@@ -4993,7 +5106,12 @@
             "SIGNAL_TYPE_HIGH_WRITE_PRESSURE",
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED"
+            "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_VERSION"
           ],
           "enumDeprecated": [
             false,
@@ -5002,6 +5120,11 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -5189,7 +5312,12 @@
             "Heavy write pressure on the database rows.",
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
-            "Location org policy not satisfied."
+            "Location org policy not satisfied.",
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections.",
+            "Replication delay.",
+            "Outdated version."
           ],
           "type": "string"
         }
@@ -5500,6 +5628,7 @@
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
             "ENGINE_EXADATA_ORACLE",
             "ENGINE_ADB_SERVERLESS_ORACLE"
           ],
@@ -5513,6 +5642,7 @@
             true,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -5540,9 +5670,14 @@
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
+            "Firestore with MongoDB compatibility mode.",
             "Oracle Exadata engine.",
             "Oracle Autonomous DB Serverless engine."
           ],
+          "type": "string"
+        },
+        "minorVersion": {
+          "description": "Minor version of the underlying database engine. Example values: For MySQL, it could be \"8.0.32\", \"5.7.32\" etc.. For Postgres, it could be \"14.3\", \"15.3\" etc..",
           "type": "string"
         },
         "type": {
