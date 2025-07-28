@@ -2240,15 +2240,15 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
-   * Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.
+   * Configure document processing to fall back to any of the following processing options if document processing is unavailable in the original request location.
    */
   export interface Schema$GooglePrivacyDlpV2DocumentFallbackLocation {
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      */
     globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
     /**
-     * Processing will happen in a multi-region that contains the current region if available.
+     * Processing occurs in a multi-region that contains the current region if available.
      */
     multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
@@ -2716,7 +2716,7 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
-   * Processing will happen in the global region.
+   * Processing occurs in the global region.
    */
   export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
   /**
@@ -2835,15 +2835,15 @@ export namespace dlp_v2 {
     tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
   }
   /**
-   * Configure image processing to fall back to the configured processing option below if unavailable in the request location.
+   * Configure image processing to fall back to any of the following processing options if image processing is unavailable in the original request location.
    */
   export interface Schema$GooglePrivacyDlpV2ImageFallbackLocation {
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      */
     globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
     /**
-     * Processing will happen in a multi-region that contains the current region if available.
+     * Processing occurs in a multi-region that contains the current region if available.
      */
     multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
@@ -3735,7 +3735,7 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
-   * Processing will happen in a multi-region that contains the current region if available.
+   * Processing occurs in a multi-region that contains the current region if available.
    */
   export interface Schema$GooglePrivacyDlpV2MultiRegionProcessing {}
   /**
@@ -4007,11 +4007,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ProcessingLocation {
     /**
-     * Document processing will fall back using this configuration.
+     * Document processing falls back using this configuration.
      */
     documentFallbackLocation?: Schema$GooglePrivacyDlpV2DocumentFallbackLocation;
     /**
-     * Image processing will fall back using this configuration.
+     * Image processing falls back using this configuration.
      */
     imageFallbackLocation?: Schema$GooglePrivacyDlpV2ImageFallbackLocation;
   }
@@ -4168,7 +4168,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2QuasiId {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
@@ -4189,7 +4189,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdentifierField {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
@@ -4486,7 +4486,7 @@ export namespace dlp_v2 {
     jobConfig?: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
   }
   /**
-   * All result fields mentioned below are updated while the job is processing.
+   * All Result fields are updated while the job is processing.
    */
   export interface Schema$GooglePrivacyDlpV2Result {
     /**
@@ -4993,7 +4993,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TaggedField {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
