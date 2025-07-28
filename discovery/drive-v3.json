@@ -1816,54 +1816,6 @@
     },
     "operations": {
       "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-          "flatPath": "operations/{name}:cancel",
-          "httpMethod": "POST",
-          "id": "drive.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "operations/{name}:cancel",
-          "scopes": [
-            "https://www.googleapis.com/auth/drive",
-            "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/drive.meet.readonly",
-            "https://www.googleapis.com/auth/drive.readonly"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "operations/{name}",
-          "httpMethod": "DELETE",
-          "id": "drive.operations.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be deleted.",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "operations/{name}",
-          "scopes": [
-            "https://www.googleapis.com/auth/drive",
-            "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/drive.meet.readonly",
-            "https://www.googleapis.com/auth/drive.readonly"
-          ]
-        },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
           "flatPath": "operations/{name}",
@@ -1883,46 +1835,6 @@
           "path": "operations/{name}",
           "response": {
             "$ref": "Operation"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/drive",
-            "https://www.googleapis.com/auth/drive.file",
-            "https://www.googleapis.com/auth/drive.meet.readonly",
-            "https://www.googleapis.com/auth/drive.readonly"
-          ]
-        },
-        "list": {
-          "description": "Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.",
-          "flatPath": "operations",
-          "httpMethod": "GET",
-          "id": "drive.operations.list",
-          "parameterOrder": [],
-          "parameters": {
-            "filter": {
-              "description": "The standard list filter.",
-              "location": "query",
-              "type": "string"
-            },
-            "name": {
-              "description": "The name of the operation's parent resource.",
-              "location": "query",
-              "type": "string"
-            },
-            "pageSize": {
-              "description": "The standard list page size.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "The standard list page token.",
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "operations",
-          "response": {
-            "$ref": "ListOperationsResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/drive",
@@ -2806,7 +2718,7 @@
       }
     }
   },
-  "revision": "20250717",
+  "revision": "20250723",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -4616,24 +4528,6 @@
         "nextPageToken": {
           "description": "The continuation token for the next page of results. This will be absent if the end of the results list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ListOperationsResponse": {
-      "description": "The response message for Operations.ListOperations.",
-      "id": "ListOperationsResponse",
-      "properties": {
-        "nextPageToken": {
-          "description": "The standard List next-page token.",
-          "type": "string"
-        },
-        "operations": {
-          "description": "A list of operations that matches the specified filter in the request.",
-          "items": {
-            "$ref": "Operation"
-          },
-          "type": "array"
         }
       },
       "type": "object"
