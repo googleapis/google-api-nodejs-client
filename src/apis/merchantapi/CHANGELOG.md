@@ -1,5 +1,12 @@
 # Changelog
 
+## [10.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v10.1.0...merchantapi-v10.1.1) (2025-07-28)
+
+
+### Bug Fixes
+
+* **merchantapi:** update the API ([117a719](https://github.com/googleapis/google-api-nodejs-client/commit/117a719096e9a5f77a46681c8d9216beb3580bfa))
+
 ## [10.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/merchantapi-v10.0.0...merchantapi-v10.1.0) (2025-07-25)
 
 

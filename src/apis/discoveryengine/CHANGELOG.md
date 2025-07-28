@@ -1,5 +1,16 @@
 # Changelog
 
+## [23.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v22.1.0...discoveryengine-v23.0.0) (2025-07-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **discoveryengine:** This release has breaking changes.
+
+### Features
+
+* **discoveryengine:** update the API ([1e43ed3](https://github.com/googleapis/google-api-nodejs-client/commit/1e43ed3872176ebe569fb9c441e2008f277a78bf))
+
 ## [22.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/discoveryengine-v22.0.0...discoveryengine-v22.1.0) (2025-07-25)
 
 
