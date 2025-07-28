@@ -137,45 +137,42 @@
   "resources": {
     "media": {
       "methods": {
-        "upload": {
-          "description": "Uploads a file for Notebook LM to use. Creates a Source.",
-          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:uploadFile",
-          "httpMethod": "POST",
-          "id": "discoveryengine.media.upload",
-          "mediaUpload": {
-            "accept": [
-              "*/*"
-            ],
-            "protocols": {
-              "simple": {
-                "multipart": true,
-                "path": "/upload/v1alpha/{+parent}/sources:uploadFile"
-              }
-            }
-          },
+        "download": {
+          "description": "Downloads a file from the session.",
+          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}:downloadFile",
+          "httpMethod": "GET",
+          "id": "discoveryengine.media.download",
           "parameterOrder": [
-            "parent"
+            "name"
           ],
           "parameters": {
-            "parent": {
-              "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+            "fileId": {
+              "description": "Required. The ID of the file to be downloaded.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
               "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "viewId": {
+              "description": "Optional. The ID of the view to be downloaded.",
+              "location": "query",
               "type": "string"
             }
           },
-          "path": "v1alpha/{+parent}/sources:uploadFile",
-          "request": {
-            "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileRequest"
-          },
+          "path": "v1alpha/{+name}:downloadFile",
           "response": {
-            "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileResponse"
+            "$ref": "GdataMedia"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ],
-          "supportsMediaUpload": true
+          "supportsMediaDownload": true,
+          "useMediaDownloadService": true
         }
       }
     },
@@ -4220,6 +4217,65 @@
                   "resources": {
                     "assistants": {
                       "methods": {
+                        "get": {
+                          "description": "Gets an Assistant.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Resource name of Assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates an Assistant",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "The list of fields to update.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "streamAssist": {
                           "description": "Assists the user with a query in a streaming fashion.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}:streamAssist",
@@ -8386,9 +8442,75 @@
               }
             },
             "notebooks": {
+              "methods": {
+                "listRecentlyViewed": {
+                  "description": "Lists the recently viewed notebooks. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:listRecentlyViewed",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.notebooks.listRecentlyViewed",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of Notebooks to return. If unspecified, defaults to \"200\". The maximum allowed value is \"500\". If this field is negative, will use the default value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The page token, provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/notebooks:listRecentlyViewed",
+                  "response": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "sources": {
                   "methods": {
+                    "batchCreate": {
+                      "description": "Creates a list of Sources.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:batchCreate",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.notebooks.sources.batchCreate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/sources:batchCreate",
+                      "request": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "uploadFile": {
                       "description": "Uploads a file for Notebook LM to use. Creates a Source.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources/{sourceId}:uploadFile",
@@ -9298,7 +9420,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250724",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -14777,6 +14899,17 @@
         },
         "timeZone": {
           "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistant": {
+      "description": "Discovery Engine Assistant resource.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistant",
+      "properties": {
+        "name": {
+          "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -24628,6 +24761,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest": {
+      "description": "Request for the AssistantService.UploadSessionFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest",
+      "properties": {
+        "blob": {
+          "$ref": "GdataMedia",
+          "description": "Information about the file being uploaded."
+        },
+        "mediaRequestInfo": {
+          "$ref": "ApiservingMediaRequestInfo",
+          "description": "Media upload request metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse": {
+      "description": "Response for the AssistantService.UploadSessionFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse",
+      "properties": {
+        "fileId": {
+          "description": "The ID of the uploaded file.",
+          "type": "string"
+        },
+        "mediaResponseInfo": {
+          "$ref": "ApiservingMediaResponseInfo",
+          "description": "Media upload response metadata."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUserEvent": {
       "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserEvent",
@@ -29084,6 +29247,145 @@
       },
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaAgentspaceMetadata": {
+      "description": "Metadata about an agentspace source.",
+      "id": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
+      "properties": {
+        "documentName": {
+          "description": "Output only. The full document name in Agentspace.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentTitle": {
+          "description": "Output only. The title of the document.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest": {
+      "description": "Request for SourceService.BatchCreateSources method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest",
+      "properties": {
+        "userContents": {
+          "description": "Required. The UserContents to be uploaded.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaUserContent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse": {
+      "description": "Response for SourceService.BatchCreateSources method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse",
+      "properties": {
+        "sources": {
+          "description": "The Sources.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse": {
+      "description": "Response for NotebookService.ListRecentlyViewedNotebooks method.",
+      "id": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token, provide this to retrieve the subsequent page.",
+          "type": "string"
+        },
+        "notebooks": {
+          "description": "The list of recently viewed notebooks.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaNotebook": {
+      "description": "Notebook is a resource where users can store their content (as sources) and interacts with the content.",
+      "id": "GoogleCloudNotebooklmV1alphaNotebook",
+      "properties": {
+        "emoji": {
+          "description": "Output only. The emoji of the notebook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
+          "description": "The metadata of the notebook."
+        },
+        "name": {
+          "description": "Identifier. The identifier of the notebook. Format: `projects/{project}/locations/{location}/notebooks/{notebook_id}`. This field must be a UTF-8 encoded string.",
+          "type": "string"
+        },
+        "notebookId": {
+          "description": "Optional. Notebook id, which is the last segment of the notebook's resource name. This is to make it similar with notebooklm API.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. The title of the notebook.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaNotebookMetadata": {
+      "description": "Metadata for a notebook.",
+      "id": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time at which this project was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "isShareable": {
+          "description": "True if the project is shareable.",
+          "type": "boolean"
+        },
+        "isShared": {
+          "description": "True if this project is currently shared with other people, false otherwise.",
+          "type": "boolean"
+        },
+        "lastViewed": {
+          "description": "A timestamp indicating the time that the current in session user has last viewed the project.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaSource": {
+      "description": "Source represents a single source of content.",
+      "id": "GoogleCloudNotebooklmV1alphaSource",
+      "properties": {
+        "metadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaSourceMetadata",
+          "description": "Metadata about the source."
+        },
+        "name": {
+          "description": "Identifier. The full resource name of the source. Format: `projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "sourceId": {
+          "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
+          "description": "Optional. Source id, which is the last segment of the source's resource name. This is to make it similar with notebooklm API."
+        },
+        "title": {
+          "description": "Optional. Title of the source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaSourceId": {
       "description": "SourceId is the last segment of the source's resource name.",
       "id": "GoogleCloudNotebooklmV1alphaSourceId",
@@ -29091,6 +29393,32 @@
         "id": {
           "description": "The id of the source.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaSourceMetadata": {
+      "description": "Represents the metadata of a source and some additional information.",
+      "id": "GoogleCloudNotebooklmV1alphaSourceMetadata",
+      "properties": {
+        "agentspaceMetadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
+          "description": "Metadata for an agentspace source."
+        },
+        "sourceAddedTimestamp": {
+          "description": "The timestamp the source was added.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "tokenCount": {
+          "description": "The number of tokens in the source.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "wordCount": {
+          "description": "The word count of the source.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -29125,6 +29453,36 @@
         "sourceId": {
           "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
           "description": "The source id of the uploaded source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContent": {
+      "description": "The \"Content\" messages refer to data the user wants to upload.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContent",
+      "properties": {
+        "agentspaceContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
+          "description": "Agentspace content uploaded as source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent": {
+      "description": "Agentspace content uploaded as source.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
+      "properties": {
+        "documentName": {
+          "description": "Optional. The full document name in Agentspace.",
+          "type": "string"
+        },
+        "engineName": {
+          "description": "Optional. Engine to verify the permission of the document.",
+          "type": "string"
+        },
+        "ideaforgeIdeaName": {
+          "description": "Optional. The full idea name for IdeaForge.",
+          "type": "string"
         }
       },
       "type": "object"
