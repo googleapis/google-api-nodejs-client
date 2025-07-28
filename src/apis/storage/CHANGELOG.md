@@ -1,5 +1,12 @@
 # Changelog
 
+## [17.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v17.1.0...storage-v17.2.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [17.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storage-v17.0.0...storage-v17.1.0) (2025-07-08)
 
 

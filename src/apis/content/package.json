@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/content",
-  "version": "37.0.1",
+  "version": "37.1.0",
   "description": "content",
   "main": "build/index.js",
   "types": "build/index.d.ts",
