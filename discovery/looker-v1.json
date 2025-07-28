@@ -710,7 +710,7 @@
       }
     }
   },
-  "revision": "20250615",
+  "revision": "20250721",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -951,6 +951,20 @@
         "adminSettings": {
           "$ref": "AdminSettings",
           "description": "Looker Instance Admin settings."
+        },
+        "classType": {
+          "description": "Optional. Storage class of the instance.",
+          "enum": [
+            "CLASS_TYPE_UNSPECIFIED",
+            "R1",
+            "P1"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage class.",
+            "Filestore.",
+            "PD SSD."
+          ],
+          "type": "string"
         },
         "consumerNetwork": {
           "description": "Network name in the consumer project. Format: `projects/{project}/global/networks/{network}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.",
