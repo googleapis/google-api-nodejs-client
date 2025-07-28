@@ -779,7 +779,7 @@ export namespace run_v2 {
      */
     deleteTime?: string | null;
     /**
-     * Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
     /**
@@ -1405,7 +1405,7 @@ export namespace run_v2 {
      */
     description?: string | null;
     /**
-     * Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
     /**
@@ -1981,7 +1981,7 @@ export namespace run_v2 {
      */
     description?: string | null;
     /**
-     * Output only. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
+     * Optional. A system-generated fingerprint for this version of the resource. May be used to detect modification conflict during updates.
      */
     etag?: string | null;
     /**
