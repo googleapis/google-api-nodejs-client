@@ -649,7 +649,7 @@ export namespace backupdr_v1 {
    */
   export interface Schema$BackupPlan {
     /**
-     * Optional. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message if on_demand_retention_limit_days is not set.
+     * Optional. The backup rules for this `BackupPlan`.
      */
     backupRules?: Schema$BackupRule[];
     /**
@@ -677,7 +677,7 @@ export namespace backupdr_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Required for CloudSQL resource_type Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
+     * Optional. Applicable only for CloudSQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.
      */
     logRetentionDays?: string | null;
     /**
@@ -685,7 +685,7 @@ export namespace backupdr_v1 {
      */
     name?: string | null;
     /**
-     * Required.
+     * Required. The resource type to which the `BackupPlan` will be applied. Examples include, "compute.googleapis.com/Instance", "sqladmin.googleapis.com/Instance", "alloydb.googleapis.com/Cluster", "compute.googleapis.com/Disk".
      */
     resourceType?: string | null;
     /**
@@ -746,7 +746,7 @@ export namespace backupdr_v1 {
      */
     resource?: string | null;
     /**
-     * Required. Immutable.
+     * Required. Immutable. Resource type of workload on which backupplan is applied
      */
     resourceType?: string | null;
     /**
@@ -917,7 +917,7 @@ export namespace backupdr_v1 {
     instanceCreateTime?: string | null;
   }
   /**
-   * CloudSqlInstanceBackupProperties represents Cloud SQL Instance Backup properties. .
+   * CloudSqlInstanceBackupProperties represents Cloud SQL Instance Backup properties.
    */
   export interface Schema$CloudSqlInstanceBackupProperties {
     /**
@@ -938,7 +938,7 @@ export namespace backupdr_v1 {
     sourceInstance?: string | null;
   }
   /**
-   * CloudSqlInstanceDataSourceProperties represents the properties of a Cloud SQL resource that are stored in the DataSource. .
+   * CloudSqlInstanceDataSourceProperties represents the properties of a Cloud SQL resource that are stored in the DataSource.
    */
   export interface Schema$CloudSqlInstanceDataSourceProperties {
     /**
@@ -959,7 +959,7 @@ export namespace backupdr_v1 {
     name?: string | null;
   }
   /**
-   * CloudSqlInstanceDataSourceReferenceProperties represents the properties of a Cloud SQL resource that are stored in the DataSourceReference. .
+   * CloudSqlInstanceDataSourceReferenceProperties represents the properties of a Cloud SQL resource that are stored in the DataSourceReference.
    */
   export interface Schema$CloudSqlInstanceDataSourceReferenceProperties {
     /**
@@ -1511,7 +1511,7 @@ export namespace backupdr_v1 {
      */
     licenses?: string[] | null;
     /**
-     * Required. Name of the disk..
+     * Required. Name of the disk.
      */
     name?: string | null;
     /**
@@ -2673,7 +2673,7 @@ export namespace backupdr_v1 {
      */
     requestId?: string | null;
     /**
-     * Required. backup rule_id for which a backup needs to be triggered.
+     * Optional. backup rule_id for which a backup needs to be triggered. If not specified, on-demand backup with custom retention will be triggered.
      */
     ruleId?: string | null;
   }
@@ -3857,7 +3857,7 @@ export namespace backupdr_v1 {
     }
 
     /**
-     * Update a BackupPlanAssociation
+     * Update a BackupPlanAssociation.
      * @example
      * ```js
      * // Before running the sample:
@@ -4903,7 +4903,7 @@ export namespace backupdr_v1 {
     }
 
     /**
-     * Update a BackupPlan
+     * Update a BackupPlan.
      * @example
      * ```js
      * // Before running the sample:

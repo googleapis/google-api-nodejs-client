@@ -371,7 +371,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a BackupPlanAssociation",
+                  "description": "Update a BackupPlanAssociation.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlanAssociations/{backupPlanAssociationsId}",
                   "httpMethod": "PATCH",
                   "id": "backupdr.projects.locations.backupPlanAssociations.patch",
@@ -581,7 +581,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Update a BackupPlan",
+                  "description": "Update a BackupPlan.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupPlans/{backupPlansId}",
                   "httpMethod": "PATCH",
                   "id": "backupdr.projects.locations.backupPlans.patch",
@@ -2060,7 +2060,7 @@
       }
     }
   },
-  "revision": "20250720",
+  "revision": "20250723",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -2899,7 +2899,7 @@
       "id": "BackupPlan",
       "properties": {
         "backupRules": {
-          "description": "Optional. The backup rules for this `BackupPlan`. There must be at least one `BackupRule` message if on_demand_retention_limit_days is not set.",
+          "description": "Optional. The backup rules for this `BackupPlan`.",
           "items": {
             "$ref": "BackupRule"
           },
@@ -2936,7 +2936,7 @@
           "type": "object"
         },
         "logRetentionDays": {
-          "description": "Optional. Required for CloudSQL resource_type Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.",
+          "description": "Optional. Applicable only for CloudSQL resource_type. Configures how long logs will be stored. It is defined in “days”. This value should be greater than or equal to minimum enforced log retention duration of the backup vault.",
           "format": "int64",
           "type": "string"
         },
@@ -2946,7 +2946,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. ",
+          "description": "Required. The resource type to which the `BackupPlan` will be applied. Examples include, \"compute.googleapis.com/Instance\", \"sqladmin.googleapis.com/Instance\", \"alloydb.googleapis.com/Cluster\", \"compute.googleapis.com/Disk\".",
           "type": "string"
         },
         "revisionId": {
@@ -3041,7 +3041,7 @@
           "type": "string"
         },
         "resourceType": {
-          "description": "Required. Immutable. ",
+          "description": "Required. Immutable. Resource type of workload on which backupplan is applied",
           "type": "string"
         },
         "rulesConfigInfo": {
@@ -3329,7 +3329,7 @@
       "type": "object"
     },
     "CloudSqlInstanceBackupProperties": {
-      "description": "CloudSqlInstanceBackupProperties represents Cloud SQL Instance Backup properties. .",
+      "description": "CloudSqlInstanceBackupProperties represents Cloud SQL Instance Backup properties.",
       "id": "CloudSqlInstanceBackupProperties",
       "properties": {
         "databaseInstalledVersion": {
@@ -3356,7 +3356,7 @@
       "type": "object"
     },
     "CloudSqlInstanceDataSourceProperties": {
-      "description": "CloudSqlInstanceDataSourceProperties represents the properties of a Cloud SQL resource that are stored in the DataSource. .",
+      "description": "CloudSqlInstanceDataSourceProperties represents the properties of a Cloud SQL resource that are stored in the DataSource.",
       "id": "CloudSqlInstanceDataSourceProperties",
       "properties": {
         "databaseInstalledVersion": {
@@ -3384,7 +3384,7 @@
       "type": "object"
     },
     "CloudSqlInstanceDataSourceReferenceProperties": {
-      "description": "CloudSqlInstanceDataSourceReferenceProperties represents the properties of a Cloud SQL resource that are stored in the DataSourceReference. .",
+      "description": "CloudSqlInstanceDataSourceReferenceProperties represents the properties of a Cloud SQL resource that are stored in the DataSourceReference.",
       "id": "CloudSqlInstanceDataSourceReferenceProperties",
       "properties": {
         "databaseInstalledVersion": {
@@ -4182,7 +4182,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Required. Name of the disk..",
+          "description": "Required. Name of the disk.",
           "type": "string"
         },
         "physicalBlockSizeBytes": {
@@ -5955,7 +5955,7 @@
           "type": "string"
         },
         "ruleId": {
-          "description": "Required. backup rule_id for which a backup needs to be triggered.",
+          "description": "Optional. backup rule_id for which a backup needs to be triggered. If not specified, on-demand backup with custom retention will be triggered.",
           "type": "string"
         }
       },
