@@ -732,6 +732,10 @@ export namespace transcoder_v1 {
    */
   export interface Schema$Input {
     /**
+     * Optional. Input Attributes.
+     */
+    attributes?: Schema$InputAttributes;
+    /**
      * A unique key for this input. Must be specified when using advanced mapping and edit lists.
      */
     key?: string | null;
@@ -743,6 +747,15 @@ export namespace transcoder_v1 {
      * URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).
      */
     uri?: string | null;
+  }
+  /**
+   * Input attributes that provide additional information about the input asset.
+   */
+  export interface Schema$InputAttributes {
+    /**
+     * Optional. A list of track definitions for the input asset.
+     */
+    trackDefinitions?: Schema$TrackDefinition[];
   }
   /**
    * Transcoding job resource.
@@ -1207,6 +1220,27 @@ export namespace transcoder_v1 {
      * The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.
      */
     mapping?: Schema$TextMapping[];
+  }
+  /**
+   * Track definition for the input asset.
+   */
+  export interface Schema$TrackDefinition {
+    /**
+     * Output only. A list of languages detected in the input asset, represented by a BCP 47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. This field is only populated if the detect_languages field is set to true.
+     */
+    detectedLanguages?: string[] | null;
+    /**
+     * Optional. Whether to automatically detect the languages present in the track. If true, the system will attempt to identify all the languages present in the track and populate the languages field.
+     */
+    detectLanguages?: boolean | null;
+    /**
+     * The input track.
+     */
+    inputTrack?: number | null;
+    /**
+     * Optional. A list of languages spoken in the input asset, represented by a BCP 47 language code, such as "en-US" or "sr-Latn". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languages?: string[] | null;
   }
   /**
    * Video stream resource.

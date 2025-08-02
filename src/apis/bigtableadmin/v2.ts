@@ -995,6 +995,19 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeDate {}
   /**
+   * A protobuf enum type. Values of type `Enum` are stored in `Value.int_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeEnum {
+    /**
+     * The fully qualified name of the protobuf enum message, including package. In the format of "foo.bar.EnumMessage".
+     */
+    enumName?: string | null;
+    /**
+     * The ID of the schema bundle that this enum is defined in.
+     */
+    schemaBundleId?: string | null;
+  }
+  /**
    * Float32 Values of type `Float32` are stored in `Value.float_value`.
    */
   export interface Schema$GoogleBigtableAdminV2TypeFloat32 {}
@@ -1049,6 +1062,19 @@ export namespace bigtableadmin_v2 {
      * The type of the values in a map.
      */
     valueType?: Schema$Type;
+  }
+  /**
+   * A protobuf message type. Values of type `Proto` are stored in `Value.bytes_value`.
+   */
+  export interface Schema$GoogleBigtableAdminV2TypeProto {
+    /**
+     * The fully qualified name of the protobuf message, including package. In the format of "foo.bar.Message".
+     */
+    messageName?: string | null;
+    /**
+     * The ID of the schema bundle that this proto is defined in.
+     */
+    schemaBundleId?: string | null;
   }
   /**
    * String Values of type `String` are stored in `Value.string_value`.
@@ -1935,6 +1961,10 @@ export namespace bigtableadmin_v2 {
      */
     dateType?: Schema$GoogleBigtableAdminV2TypeDate;
     /**
+     * Enum
+     */
+    enumType?: Schema$GoogleBigtableAdminV2TypeEnum;
+    /**
      * Float32
      */
     float32Type?: Schema$GoogleBigtableAdminV2TypeFloat32;
@@ -1950,6 +1980,10 @@ export namespace bigtableadmin_v2 {
      * Map
      */
     mapType?: Schema$GoogleBigtableAdminV2TypeMap;
+    /**
+     * Proto
+     */
+    protoType?: Schema$GoogleBigtableAdminV2TypeProto;
     /**
      * String
      */
@@ -15047,6 +15081,8 @@ export namespace bigtableadmin_v2 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent, which owns this collection of schema bundles. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      *     parent: 'projects/my-project/instances/my-instance/tables/my-table',
+     *     // Optional. The resource_view to be applied to the returned SchemaBundles' fields. Defaults to NAME_ONLY.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -15701,6 +15737,10 @@ export namespace bigtableadmin_v2 {
      * Required. The parent, which owns this collection of schema bundles. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}`.
      */
     parent?: string;
+    /**
+     * Optional. The resource_view to be applied to the returned SchemaBundles' fields. Defaults to NAME_ONLY.
+     */
+    view?: string;
   }
   export interface Params$Resource$Projects$Instances$Tables$Schemabundles$Patch
     extends StandardParameters {

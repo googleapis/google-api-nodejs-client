@@ -1083,7 +1083,7 @@
       }
     }
   },
-  "revision": "20250511",
+  "revision": "20250727",
   "rootUrl": "https://osconfig.googleapis.com/",
   "schemas": {
     "AptSettings": {
@@ -3665,6 +3665,29 @@
       "description": "This API resource represents the vulnerability report for a specified Compute Engine virtual machine (VM) instance at a given point in time. For more information, see [Vulnerability reports](https://cloud.google.com/compute/docs/instances/os-inventory-management#vulnerability-reports).",
       "id": "VulnerabilityReport",
       "properties": {
+        "highestUpgradableCveSeverity": {
+          "description": "Output only. Highest level of severity among all the upgradable vulnerabilities with CVEs attached.",
+          "enum": [
+            "VULNERABILITY_SEVERITY_LEVEL_UNSPECIFIED",
+            "NONE",
+            "MINIMAL",
+            "LOW",
+            "MEDIUM",
+            "HIGH",
+            "CRITICAL"
+          ],
+          "enumDescriptions": [
+            "Default SeverityLevel. This value is unused.",
+            "Vulnerability has no severity level.",
+            "Vulnerability severity level is minimal. This is level below the low severity level.",
+            "Vulnerability severity level is low. This is level below the medium severity level.",
+            "Vulnerability severity level is medium. This is level below the high severity level.",
+            "Vulnerability severity level is high. This is level below the critical severity level.",
+            "Vulnerability severity level is critical. This is the highest severity level."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Output only. The `vulnerabilityReport` API resource name. Format: `projects/{project_number}/locations/{location}/instances/{instance_id}/vulnerabilityReport`",
           "readOnly": true,

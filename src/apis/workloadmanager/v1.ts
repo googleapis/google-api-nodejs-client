@@ -138,6 +138,19 @@ export namespace workloadmanager_v1 {
     parameters?: {[key: string]: string} | null;
   }
   /**
+   * Agent status.
+   */
+  export interface Schema$AgentStates {
+    /**
+     * Optional. The available version of the agent in artifact registry.
+     */
+    availableVersion?: string | null;
+    /**
+     * Optional. The installed version of the agent on the host.
+     */
+    installedVersion?: string | null;
+  }
+  /**
    * The schema of agent status data.
    */
   export interface Schema$AgentStatus {
@@ -371,6 +384,10 @@ export namespace workloadmanager_v1 {
      * Evaluation type
      */
     evaluationType?: string | null;
+    /**
+     * Optional. Immutable. Customer-managed encryption key name, in the format projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     */
+    kmsKey?: string | null;
     /**
      * Labels as key value pairs
      */
@@ -1346,6 +1363,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapInstanceProperties {
     /**
+     * Optional. Sap Instance Agent status.
+     */
+    agentStates?: Schema$AgentStates;
+    /**
      * Optional. SAP Instance numbers. They are from '00' to '99'.
      */
     numbers?: string[] | null;
@@ -2217,6 +2238,7 @@ export namespace workloadmanager_v1 {
      *       //   "customRulesBucket": "my_customRulesBucket",
      *       //   "description": "my_description",
      *       //   "evaluationType": "my_evaluationType",
+     *       //   "kmsKey": "my_kmsKey",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "resourceFilter": {},
@@ -2522,6 +2544,7 @@ export namespace workloadmanager_v1 {
      *   //   "customRulesBucket": "my_customRulesBucket",
      *   //   "description": "my_description",
      *   //   "evaluationType": "my_evaluationType",
+     *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "resourceFilter": {},

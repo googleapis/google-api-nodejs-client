@@ -9268,7 +9268,7 @@
       }
     }
   },
-  "revision": "20250709",
+  "revision": "20250729",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -13523,7 +13523,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -21389,7 +21389,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,
@@ -21475,7 +21475,7 @@
             true,
             true,
             true,
-            false,
+            true,
             false,
             false,
             false,

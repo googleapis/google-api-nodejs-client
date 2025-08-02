@@ -454,7 +454,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250725",
   "rootUrl": "https://testing.googleapis.com/",
   "schemas": {
     "Account": {
@@ -670,13 +670,21 @@
             "DEVICE_FORM_FACTOR_UNSPECIFIED",
             "PHONE",
             "TABLET",
-            "WEARABLE"
+            "WEARABLE",
+            "TV",
+            "AUTOMOTIVE",
+            "DESKTOP",
+            "XR"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
             "This device has the shape of a phone.",
             "This device has the shape of a tablet.",
-            "This device has the shape of a watch or other wearable."
+            "This device has the shape of a watch or other wearable.",
+            "This device has a television form factor.",
+            "This device has an automotive form factor.",
+            "This device has a desktop form factor.",
+            "This device has an Extended Reality form factor."
           ],
           "type": "string"
         },
@@ -1540,13 +1548,21 @@
             "DEVICE_FORM_FACTOR_UNSPECIFIED",
             "PHONE",
             "TABLET",
-            "WEARABLE"
+            "WEARABLE",
+            "TV",
+            "AUTOMOTIVE",
+            "DESKTOP",
+            "XR"
           ],
           "enumDescriptions": [
             "Do not use. For proto versioning only.",
             "This device has the shape of a phone.",
             "This device has the shape of a tablet.",
-            "This device has the shape of a watch or other wearable."
+            "This device has the shape of a watch or other wearable.",
+            "This device has a television form factor.",
+            "This device has an automotive form factor.",
+            "This device has a desktop form factor.",
+            "This device has an Extended Reality form factor."
           ],
           "type": "string"
         },

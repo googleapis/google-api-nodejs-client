@@ -738,7 +738,7 @@ export namespace monitoring_v3 {
     scale?: number | null;
   }
   /**
-   * A single field of a message type.
+   * A single field of a message type.New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Field {
     /**
@@ -1737,7 +1737,7 @@ export namespace monitoring_v3 {
     updateTime?: string | null;
   }
   /**
-   * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
+   * A protocol buffer option, which can be attached to a message, field, enumeration, etc.New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged.
    */
   export interface Schema$Option {
     /**
@@ -2309,7 +2309,7 @@ export namespace monitoring_v3 {
     percent?: number | null;
   }
   /**
-   * A protocol buffer message type.
+   * A protocol buffer message type.New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Type {
     /**

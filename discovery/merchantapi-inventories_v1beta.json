@@ -300,7 +300,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20250727",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CustomAttribute": {
@@ -425,7 +425,7 @@
         },
         "price": {
           "$ref": "Price",
-          "description": "Price of the product at this store."
+          "description": "Optional. Price of the product at this store."
         },
         "quantity": {
           "description": "Quantity of the product available at this store. Must be greater than or equal to zero.",
@@ -434,11 +434,11 @@
         },
         "salePrice": {
           "$ref": "Price",
-          "description": "Sale price of the product at this store. Mandatory if `salePriceEffectiveDate` is defined."
+          "description": "Optional. Sale price of the product at this store. Mandatory if `salePriceEffectiveDate` is defined."
         },
         "salePriceEffectiveDate": {
           "$ref": "Interval",
-          "description": "The `TimePeriod` of the sale at this store."
+          "description": "Optional. The `TimePeriod` of the sale at this store."
         },
         "storeCode": {
           "description": "Required. Immutable. Store code (the store ID from your Business Profile) of the physical store the product is sold in. See the [Local product inventory data specification](https://support.google.com/merchants/answer/3061342) for more information.",
@@ -642,7 +642,7 @@
         },
         "price": {
           "$ref": "Price",
-          "description": "Price of the product in this region."
+          "description": "Optional. Price of the product in this region."
         },
         "region": {
           "description": "Required. Immutable. ID of the region for this `RegionalInventory` resource. See the [Regional availability and pricing](https://support.google.com/merchants/answer/9698880) for more details.",
@@ -650,11 +650,11 @@
         },
         "salePrice": {
           "$ref": "Price",
-          "description": "Sale price of the product in this region. Mandatory if `salePriceEffectiveDate` is defined."
+          "description": "Optional. Sale price of the product in this region. Mandatory if `salePriceEffectiveDate` is defined."
         },
         "salePriceEffectiveDate": {
           "$ref": "Interval",
-          "description": "The `TimePeriod` of the sale price in this region."
+          "description": "Optional. The `TimePeriod` of the sale price in this region."
         }
       },
       "type": "object"
