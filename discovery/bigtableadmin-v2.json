@@ -2933,6 +2933,23 @@
                           "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The resource_view to be applied to the returned SchemaBundles' fields. Defaults to NAME_ONLY.",
+                          "enum": [
+                            "SCHEMA_BUNDLE_VIEW_UNSPECIFIED",
+                            "NAME_ONLY",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Uses the default view for each method as documented in the request.",
+                            "Only populates `name`.",
+                            "Only populates the SchemaBundle's basic metadata. This includes: name, etag, create_time, update_time.",
+                            "Populates every field."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+parent}/schemaBundles",
@@ -3151,7 +3168,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250724",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4343,6 +4360,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleBigtableAdminV2TypeEnum": {
+      "description": "A protobuf enum type. Values of type `Enum` are stored in `Value.int_value`.",
+      "id": "GoogleBigtableAdminV2TypeEnum",
+      "properties": {
+        "enumName": {
+          "description": "The fully qualified name of the protobuf enum message, including package. In the format of \"foo.bar.EnumMessage\".",
+          "type": "string"
+        },
+        "schemaBundleId": {
+          "description": "The ID of the schema bundle that this enum is defined in.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleBigtableAdminV2TypeFloat32": {
       "description": "Float32 Values of type `Float32` are stored in `Value.float_value`.",
       "id": "GoogleBigtableAdminV2TypeFloat32",
@@ -4410,6 +4442,21 @@
         "valueType": {
           "$ref": "Type",
           "description": "The type of the values in a map."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeProto": {
+      "description": "A protobuf message type. Values of type `Proto` are stored in `Value.bytes_value`.",
+      "id": "GoogleBigtableAdminV2TypeProto",
+      "properties": {
+        "messageName": {
+          "description": "The fully qualified name of the protobuf message, including package. In the format of \"foo.bar.Message\".",
+          "type": "string"
+        },
+        "schemaBundleId": {
+          "description": "The ID of the schema bundle that this proto is defined in.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5628,6 +5675,10 @@
           "$ref": "GoogleBigtableAdminV2TypeDate",
           "description": "Date"
         },
+        "enumType": {
+          "$ref": "GoogleBigtableAdminV2TypeEnum",
+          "description": "Enum"
+        },
         "float32Type": {
           "$ref": "GoogleBigtableAdminV2TypeFloat32",
           "description": "Float32"
@@ -5643,6 +5694,10 @@
         "mapType": {
           "$ref": "GoogleBigtableAdminV2TypeMap",
           "description": "Map"
+        },
+        "protoType": {
+          "$ref": "GoogleBigtableAdminV2TypeProto",
+          "description": "Proto"
         },
         "stringType": {
           "$ref": "GoogleBigtableAdminV2TypeString",
