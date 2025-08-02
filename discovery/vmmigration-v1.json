@@ -2254,7 +2254,7 @@
       }
     }
   },
-  "revision": "20250717",
+  "revision": "20250724",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -5151,7 +5151,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The network to connect the NIC to.",
+          "description": "Optional. The network to connect the NIC to.",
           "type": "string"
         },
         "networkTier": {
