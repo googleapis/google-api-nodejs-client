@@ -6118,6 +6118,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "directWrite": {
+                      "description": "Bidirectional streaming RPC to directly write to feature values in a feature view. Requests may not have a one-to-one mapping to responses and responses may be returned out-of-order to reduce latency.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:directWrite",
+                      "httpMethod": "POST",
+                      "id": "aiplatform.projects.locations.featureOnlineStores.featureViews.directWrite",
+                      "parameterOrder": [
+                        "featureView"
+                      ],
+                      "parameters": {
+                        "featureView": {
+                          "description": "FeatureView resource format `projects/{project}/locations/{location}/featureOnlineStores/{featureOnlineStore}/featureViews/{featureView}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/featureOnlineStores/[^/]+/featureViews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+featureView}:directWrite",
+                      "request": {
+                        "$ref": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudAiplatformV1FeatureViewDirectWriteResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "fetchFeatureValues": {
                       "description": "Fetch feature values under a FeatureView.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/featureOnlineStores/{featureOnlineStoresId}/featureViews/{featureViewsId}:fetchFeatureValues",
@@ -20258,7 +20286,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250728",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -23193,6 +23221,33 @@
       "description": "Runtime operation information for EndpointService.CreateEndpoint.",
       "id": "GoogleCloudAiplatformV1CreateEndpointOperationMetadata",
       "properties": {
+        "deploymentStage": {
+          "description": "Output only. The deployment stage of the model. Only populated if this CreateEndpoint request deploys a model at the same time.",
+          "enum": [
+            "DEPLOYMENT_STAGE_UNSPECIFIED",
+            "STARTING_DEPLOYMENT",
+            "PREPARING_MODEL",
+            "CREATING_SERVING_CLUSTER",
+            "ADDING_NODES_TO_CLUSTER",
+            "GETTING_CONTAINER_IMAGE",
+            "STARTING_MODEL_SERVER",
+            "FINISHING_UP",
+            "DEPLOYMENT_TERMINATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The deployment is initializing and setting up the environment.",
+            "The deployment is preparing the model assets.",
+            "The deployment is creating the underlying serving cluster.",
+            "The deployment is adding nodes to the serving cluster.",
+            "The deployment is getting the container image for the model server.",
+            "The deployment is starting the model server.",
+            "The deployment is performing finalization steps.",
+            "The deployment has terminated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
           "description": "The operation generic information."
@@ -24259,6 +24314,33 @@
       "description": "Runtime operation information for EndpointService.DeployModel.",
       "id": "GoogleCloudAiplatformV1DeployModelOperationMetadata",
       "properties": {
+        "deploymentStage": {
+          "description": "Output only. The deployment stage of the model.",
+          "enum": [
+            "DEPLOYMENT_STAGE_UNSPECIFIED",
+            "STARTING_DEPLOYMENT",
+            "PREPARING_MODEL",
+            "CREATING_SERVING_CLUSTER",
+            "ADDING_NODES_TO_CLUSTER",
+            "GETTING_CONTAINER_IMAGE",
+            "STARTING_MODEL_SERVER",
+            "FINISHING_UP",
+            "DEPLOYMENT_TERMINATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The deployment is initializing and setting up the environment.",
+            "The deployment is preparing the model assets.",
+            "The deployment is creating the underlying serving cluster.",
+            "The deployment is adding nodes to the serving cluster.",
+            "The deployment is getting the container image for the model server.",
+            "The deployment is starting the model server.",
+            "The deployment is performing finalization steps.",
+            "The deployment has terminated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1GenericOperationMetadata",
           "description": "The operation generic information."
@@ -27422,6 +27504,87 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1FeatureViewDirectWriteRequest": {
+      "description": "Request message for FeatureOnlineStoreService.FeatureViewDirectWrite.",
+      "id": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequest",
+      "properties": {
+        "dataKeyAndFeatureValues": {
+          "description": "Required. The data keys and associated feature values.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValues"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValues": {
+      "description": "A data key and associated feature values to write to the feature view.",
+      "id": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValues",
+      "properties": {
+        "dataKey": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewDataKey",
+          "description": "The data key."
+        },
+        "features": {
+          "description": "List of features to write.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValuesFeature"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValuesFeature": {
+      "description": "Feature name & value pair.",
+      "id": "GoogleCloudAiplatformV1FeatureViewDirectWriteRequestDataKeyAndFeatureValuesFeature",
+      "properties": {
+        "name": {
+          "description": "Feature short name.",
+          "type": "string"
+        },
+        "value": {
+          "$ref": "GoogleCloudAiplatformV1FeatureValue",
+          "description": "Feature value. A user provided timestamp may be set in the `FeatureValue.metadata.generate_time` field."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDirectWriteResponse": {
+      "description": "Response message for FeatureOnlineStoreService.FeatureViewDirectWrite.",
+      "id": "GoogleCloudAiplatformV1FeatureViewDirectWriteResponse",
+      "properties": {
+        "status": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Response status for the keys listed in FeatureViewDirectWriteResponse.write_responses. The error only applies to the listed data keys - the stream will remain open for further FeatureOnlineStoreService.FeatureViewDirectWriteRequest requests. Partial failures (e.g. if the first 10 keys of a request fail, but the rest succeed) from a single request may result in multiple responses - there will be one response for the successful request keys and one response for the failing request keys."
+        },
+        "writeResponses": {
+          "description": "Details about write for each key. If status is not OK, WriteResponse.data_key will have the key with error, but WriteResponse.online_store_write_time will not be present.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1FeatureViewDirectWriteResponseWriteResponse"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1FeatureViewDirectWriteResponseWriteResponse": {
+      "description": "Details about the write for each key.",
+      "id": "GoogleCloudAiplatformV1FeatureViewDirectWriteResponseWriteResponse",
+      "properties": {
+        "dataKey": {
+          "$ref": "GoogleCloudAiplatformV1FeatureViewDataKey",
+          "description": "What key is this write response associated with."
+        },
+        "onlineStoreWriteTime": {
+          "description": "When the feature values were written to the online store. If FeatureViewDirectWriteResponse.status is not OK, this field is not populated.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1FeatureViewFeatureRegistrySource": {
       "description": "A Feature Registry source for features that need to be synced to Online Store.",
       "id": "GoogleCloudAiplatformV1FeatureViewFeatureRegistrySource",
@@ -28968,6 +29131,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1GoogleMaps": {
+      "description": "Tool to retrieve public maps data for grounding, powered by Google.",
+      "id": "GoogleCloudAiplatformV1GoogleMaps",
+      "properties": {
+        "apiAuth": {
+          "$ref": "GoogleCloudAiplatformV1ApiAuth",
+          "deprecated": true,
+          "description": "The authentication config to access the API. Deprecated. Please use auth_config instead."
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudAiplatformV1AuthConfig",
+          "description": "The authentication config to access the API. Only API key is supported."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1GoogleSearchRetrieval": {
       "description": "Tool to retrieve public web data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1GoogleSearchRetrieval",
@@ -29049,6 +29228,10 @@
       "description": "Grounding chunk.",
       "id": "GoogleCloudAiplatformV1GroundingChunk",
       "properties": {
+        "maps": {
+          "$ref": "GoogleCloudAiplatformV1GroundingChunkMaps",
+          "description": "Grounding chunk from Google Maps."
+        },
         "retrievedContext": {
           "$ref": "GoogleCloudAiplatformV1GroundingChunkRetrievedContext",
           "description": "Grounding chunk from context retrieved by the retrieval tools."
@@ -29056,6 +29239,97 @@
         "web": {
           "$ref": "GoogleCloudAiplatformV1GroundingChunkWeb",
           "description": "Grounding chunk from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkMaps": {
+      "description": "Chunk from Google Maps.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkMaps",
+      "properties": {
+        "placeAnswerSources": {
+          "$ref": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSources",
+          "description": "Sources used to generate the place answer. This includes review snippets and photos that were used to generate the answer, as well as uris to flag content."
+        },
+        "placeId": {
+          "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text of the chunk.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the chunk.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSources": {
+      "description": "Sources used to generate the place answer.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSources",
+      "properties": {
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the generated answer.",
+          "type": "string"
+        },
+        "reviewSnippets": {
+          "description": "Snippets of reviews that are used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution": {
+      "description": "Author attribution for a photo or review.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+      "properties": {
+        "displayName": {
+          "description": "Name of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "photoUri": {
+          "description": "Profile photo URI of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of the author of the Photo or Review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet": {
+      "description": "Encapsulates a review snippet.",
+      "id": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet",
+      "properties": {
+        "authorAttribution": {
+          "$ref": "GoogleCloudAiplatformV1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+          "description": "This review's author."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the review.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the review on Google Maps.",
+          "type": "string"
+        },
+        "relativePublishTimeDescription": {
+          "description": "A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.",
+          "type": "string"
+        },
+        "review": {
+          "description": "A reference representing this place review which may be used to look up this place review again.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -29106,6 +29380,11 @@
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GoogleCloudAiplatformV1GroundingMetadata",
       "properties": {
+        "googleMapsWidgetContextToken": {
+          "description": "Optional. Output only. Resource name of the Google Maps widget context token to be used with the PlacesContextElement widget to render contextual data. This is populated only for Google Maps grounding.",
+          "readOnly": true,
+          "type": "string"
+        },
         "groundingChunks": {
           "description": "List of supporting references retrieved from specified grounding source.",
           "items": {
@@ -29694,6 +29973,14 @@
         "datapointId": {
           "description": "Required. Unique identifier of the datapoint.",
           "type": "string"
+        },
+        "embeddingMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The key-value map of additional metadata for the datapoint.",
+          "type": "object"
         },
         "featureVector": {
           "description": "Required. Feature embedding vector for dense index. An array of numbers with the length of [NearestNeighborSearchConfig.dimensions].",
@@ -36197,6 +36484,10 @@
       "description": "The regional resource name or the URI. Key is region, e.g., us-central1, europe-west2, global, etc..",
       "id": "GoogleCloudAiplatformV1PublisherModelCallToActionRegionalResourceReferences",
       "properties": {
+        "colabNotebookDisabled": {
+          "description": "Optional. For notebook resource. When set to true, the Colab Enterprise link will be disabled in the \"open notebook\" dialog in UI.",
+          "type": "boolean"
+        },
         "references": {
           "additionalProperties": {
             "$ref": "GoogleCloudAiplatformV1PublisherModelResourceReference"
@@ -37685,6 +37976,10 @@
           "description": "Required. The display name of the ReasoningEngine.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1EncryptionSpec",
+          "description": "Customer-managed encryption key spec for a ReasoningEngine. If set, this ReasoningEngine and all sub-resources of this ReasoningEngine will be secured by this key."
+        },
         "etag": {
           "description": "Optional. Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
@@ -37732,6 +38027,10 @@
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1ReasoningEngineSpecPackageSpec",
           "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account that the Reasoning Engine artifact runs as. It should have \"roles/storage.objectViewer\" for reading the user project's Cloud Storage and \"roles/aiplatform.user\" for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -45470,11 +45769,15 @@
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
         "functionDeclarations": {
-          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1FunctionDeclaration"
           },
           "type": "array"
+        },
+        "googleMaps": {
+          "$ref": "GoogleCloudAiplatformV1GoogleMaps",
+          "description": "Optional. GoogleMaps tool type. Tool to support Google Maps in Model."
         },
         "googleSearch": {
           "$ref": "GoogleCloudAiplatformV1ToolGoogleSearch",
