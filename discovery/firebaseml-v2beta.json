@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250727",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -704,7 +704,15 @@
     "GoogleCloudAiplatformV1beta1EnterpriseWebSearch": {
       "description": "Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.",
       "id": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ExecutableCode": {
@@ -2429,7 +2437,15 @@
     "GoogleCloudAiplatformV1beta1ToolGoogleSearch": {
       "description": "GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: [\"amazon.com\", \"facebook.com\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1UrlContext": {
