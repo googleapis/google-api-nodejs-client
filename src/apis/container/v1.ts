@@ -337,7 +337,12 @@ export namespace container_v1 {
   /**
    * AutoIpamConfig contains all information related to Auto IPAM
    */
-  export interface Schema$AutoIpamConfig {}
+  export interface Schema$AutoIpamConfig {
+    /**
+     * The flag that enables Auto IPAM on this cluster
+     */
+    enabled?: boolean | null;
+  }
   /**
    * AutoMonitoringConfig defines the configuration for GKE Workload Auto-Monitoring.
    */
@@ -355,6 +360,10 @@ export namespace container_v1 {
      * Enable Autopilot
      */
     enabled?: boolean | null;
+    /**
+     * PrivilegedAdmissionConfig is the configuration related to privileged admission control.
+     */
+    privilegedAdmissionConfig?: Schema$PrivilegedAdmissionConfig;
     /**
      * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
@@ -974,6 +983,10 @@ export namespace container_v1 {
      */
     autoscalingProfile?: string | null;
     /**
+     * Default compute class is a configuration for default compute class.
+     */
+    defaultComputeClassConfig?: Schema$DefaultComputeClassConfig;
+    /**
      * Enables automatic node pool creation and deletion.
      */
     enableNodeAutoprovisioning?: boolean | null;
@@ -1511,6 +1524,15 @@ export namespace container_v1 {
     state?: string | null;
   }
   /**
+   * DefaultComputeClassConfig defines default compute class configuration.
+   */
+  export interface Schema$DefaultComputeClassConfig {
+    /**
+     * Enables default compute class.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.
    */
   export interface Schema$DefaultSnatStatus {
@@ -1723,6 +1745,10 @@ export namespace container_v1 {
      * Output only. The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/x/locations/x/memberships/x`.
      */
     membership?: string | null;
+    /**
+     * The type of the cluster's fleet membership.
+     */
+    membershipType?: string | null;
     /**
      * Output only. Whether the cluster has been registered through the fleet API.
      */
@@ -3395,6 +3421,15 @@ export namespace container_v1 {
      * Private registry access is enabled.
      */
     enabled?: boolean | null;
+  }
+  /**
+   * PrivilegedAdmissionConfig stores the list of authorized allowlist paths for the cluster.
+   */
+  export interface Schema$PrivilegedAdmissionConfig {
+    /**
+     * The customer allowlist Cloud Storage paths for the cluster. These paths are used with the `--autopilot-privileged-admission` flag to authorize privileged workloads in Autopilot clusters. Paths can be GKE-owned, in the format `gke:////`, or customer-owned, in the format `gs:///`. Wildcards (`*`) are supported to authorize all allowlists under specific paths or directories. Example: `gs://my-bucket/x` will authorize all allowlists under the `my-bucket` bucket.
+     */
+    allowlistPaths?: string[] | null;
   }
   /**
    * Pub/Sub specific notification config.
