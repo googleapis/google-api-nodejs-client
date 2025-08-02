@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250714",
+  "revision": "20250727",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -896,6 +896,21 @@
           },
           "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStates": {
+      "description": "Agent status.",
+      "id": "AgentStates",
+      "properties": {
+        "availableVersion": {
+          "description": "Optional. The available version of the agent in artifact registry.",
+          "type": "string"
+        },
+        "installedVersion": {
+          "description": "Optional. The installed version of the agent on the host.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -1365,6 +1380,10 @@
             "Customized best practices",
             "SCC IaC (Infra as Code) best practices."
           ],
+          "type": "string"
+        },
+        "kmsKey": {
+          "description": "Optional. Immutable. Customer-managed encryption key name, in the format projects/*/locations/*/keyRings/*/cryptoKeys/*.",
           "type": "string"
         },
         "labels": {
@@ -2807,6 +2826,10 @@
       "description": "SAP instance properties.",
       "id": "SapInstanceProperties",
       "properties": {
+        "agentStates": {
+          "$ref": "AgentStates",
+          "description": "Optional. Sap Instance Agent status."
+        },
         "numbers": {
           "description": "Optional. SAP Instance numbers. They are from '00' to '99'.",
           "items": {
