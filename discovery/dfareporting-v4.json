@@ -4630,6 +4630,120 @@
         }
       }
     },
+    "dynamicFeeds": {
+      "methods": {
+        "get": {
+          "description": "Gets a dynamic feed by ID.",
+          "flatPath": "studio/dynamicFeeds/{dynamicFeedsId}",
+          "httpMethod": "GET",
+          "id": "dfareporting.dynamicFeeds.get",
+          "parameterOrder": [
+            "dynamicFeedId"
+          ],
+          "parameters": {
+            "dynamicFeedId": {
+              "description": "Required. Dynamic feed ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/dynamicFeeds/{+dynamicFeedId}",
+          "response": {
+            "$ref": "DynamicFeed"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "insert": {
+          "description": "Inserts a new dynamic feed.",
+          "flatPath": "studio/dynamicFeeds",
+          "httpMethod": "POST",
+          "id": "dfareporting.dynamicFeeds.insert",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/dynamicFeeds",
+          "request": {
+            "$ref": "DynamicFeedsInsertRequest"
+          },
+          "response": {
+            "$ref": "DynamicFeed"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        }
+      }
+    },
+    "dynamicProfiles": {
+      "methods": {
+        "get": {
+          "description": "Gets a dynamic profile by ID.",
+          "flatPath": "studio/dynamicProfiles/{dynamicProfilesId}",
+          "httpMethod": "GET",
+          "id": "dfareporting.dynamicProfiles.get",
+          "parameterOrder": [
+            "dynamicProfileId"
+          ],
+          "parameters": {
+            "dynamicProfileId": {
+              "description": "Required. Dynamic profile ID.",
+              "format": "int64",
+              "location": "path",
+              "pattern": "^[^/]+$",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "studio/dynamicProfiles/{+dynamicProfileId}",
+          "response": {
+            "$ref": "DynamicProfile"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "insert": {
+          "description": "Inserts a new dynamic profile.",
+          "flatPath": "studio/dynamicProfiles",
+          "httpMethod": "POST",
+          "id": "dfareporting.dynamicProfiles.insert",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/dynamicProfiles",
+          "request": {
+            "$ref": "DynamicProfile"
+          },
+          "response": {
+            "$ref": "DynamicProfile"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        },
+        "update": {
+          "description": "Updates an existing dynamic profile.",
+          "flatPath": "studio/dynamicProfiles",
+          "httpMethod": "PUT",
+          "id": "dfareporting.dynamicProfiles.update",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "studio/dynamicProfiles",
+          "request": {
+            "$ref": "DynamicProfile"
+          },
+          "response": {
+            "$ref": "DynamicProfile"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/dfatrafficking"
+          ]
+        }
+      }
+    },
     "dynamicTargetingKeys": {
       "methods": {
         "delete": {
@@ -10152,7 +10266,7 @@
       }
     }
   },
-  "revision": "20250602",
+  "revision": "20250722",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -12166,6 +12280,81 @@
         },
         "name": {
           "description": "Name of this content category. This is a required field and must be less than 256 characters long and unique among content categories of the same account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentSource": {
+      "description": "Contains the content source of the dynamic feed.",
+      "id": "ContentSource",
+      "properties": {
+        "contentSourceName": {
+          "description": "Optional. The name of the content source. It is defaulted to content source file name if not provided.",
+          "type": "string"
+        },
+        "createInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The creation timestamp of the content source. This is a read-only field.",
+          "readOnly": true
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The last modified timestamp of the content source. This is a read-only field.",
+          "readOnly": true
+        },
+        "metaData": {
+          "$ref": "ContentSourceMetaData",
+          "description": "Output only. Metadata of the content source. It contains the number of rows and the column names from resource link. This is a read-only field.",
+          "readOnly": true
+        },
+        "resourceLink": {
+          "description": "Required. The link to the file of the content source.",
+          "type": "string"
+        },
+        "resourceType": {
+          "description": "Required. The resource type of the content source.",
+          "enum": [
+            "RESOURCE_TYPE_UNSPECIFIED",
+            "RESOURCE_TYPE_GOOGLE_SPREADSHEET",
+            "RESOURCE_TYPE_REMOTE_FILE"
+          ],
+          "enumDescriptions": [
+            "The resource type is unspecified.",
+            "The resource type is google spreadsheet.",
+            "The resource type is remote file."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ContentSourceMetaData": {
+      "description": "Contains the meta data of the content source. This is a read-only field.",
+      "id": "ContentSourceMetaData",
+      "properties": {
+        "charset": {
+          "description": "Output only. The charset of the content source.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldNames": {
+          "description": "Output only. The list of column names in the content source.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "rowNumber": {
+          "description": "Output only. The number of rows in the content source.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "separator": {
+          "description": "Output only. The separator of the content source.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -14667,6 +14856,45 @@
       },
       "type": "object"
     },
+    "CustomRule": {
+      "description": "Contains custom rule information.",
+      "id": "CustomRule",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of this custom rule.",
+          "type": "string"
+        },
+        "priority": {
+          "description": "Optional. Priority of the custom rule.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "ruleBlocks": {
+          "description": "Optional. A list of field filter, the custom rule will apply.",
+          "items": {
+            "$ref": "RuleBlock"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CustomValueField": {
+      "description": "Contains custom value field information.",
+      "id": "CustomValueField",
+      "properties": {
+        "fieldId": {
+          "description": "Optional. Field ID in the element.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "requestKey": {
+          "description": "Optional. Custom key used to match for auto filtering.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomViewabilityMetric": {
       "description": "Custom Viewability Metric",
       "id": "CustomViewabilityMetric",
@@ -14921,6 +15149,23 @@
             ""
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DependentFieldValue": {
+      "description": "Contains dependent field value information.",
+      "id": "DependentFieldValue",
+      "properties": {
+        "elementId": {
+          "description": "Optional. The ID of the element that value's field will match against.",
+          "format": "int64",
+          "type": "string"
+        },
+        "fieldId": {
+          "description": "Optional. The field id of the dependent field.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -15204,6 +15449,292 @@
       },
       "type": "object"
     },
+    "DynamicFeed": {
+      "description": "Contains dynamic feed information.",
+      "id": "DynamicFeed",
+      "properties": {
+        "contentSource": {
+          "$ref": "ContentSource",
+          "description": "Required. The content source of the dynamic feed. This is a required field."
+        },
+        "createInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The creation timestamp of the dynamic feed. This is a read-only field.",
+          "readOnly": true
+        },
+        "dynamicFeedId": {
+          "description": "Output only. Unique ID of this dynamic feed. This is a read-only, auto-generated field.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dynamicFeedName": {
+          "description": "Optional. Name of this dynamic feed. It is defaulted to content source file name if not provided.",
+          "type": "string"
+        },
+        "element": {
+          "$ref": "Element",
+          "description": "Required. The element of the dynamic feed that is to specify the schema of the feed. This is a required field."
+        },
+        "feedIngestionStatus": {
+          "$ref": "FeedIngestionStatus",
+          "description": "Output only. The ingestion status of the dynamic feed. This is a read-only field.",
+          "readOnly": true
+        },
+        "feedSchedule": {
+          "$ref": "FeedSchedule",
+          "description": "Optional. The schedule of the dynamic feed. It can be set if the feed is published."
+        },
+        "hasPublished": {
+          "description": "Output only. Indicates whether the dynamic feed has a published version. This is a read-only field.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The last modified timestamp of the dynamic feed. This is a read-only field.",
+          "readOnly": true
+        },
+        "status": {
+          "description": "Output only. The status of the feed. It is a read-only field that depends on the the feed ingestion status. The default value is INACTIVE, and it will be updated to ACTIVE once the feed is ingested successfully.",
+          "enum": [
+            "STATUS_UNKNOWN",
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "The status is unknown.",
+            "The feedstatus is active.",
+            "The feed status is inactive.",
+            "The feed status is deleted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "studioAdvertiserId": {
+          "description": "Required. Advertiser ID of this dynamic feed. This is a required field.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicFeedsInsertRequest": {
+      "description": "Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See go/cm3-dco-display-api-interface",
+      "id": "DynamicFeedsInsertRequest",
+      "properties": {
+        "dynamicFeed": {
+          "$ref": "DynamicFeed",
+          "description": "Required. Dynamic feed to insert."
+        },
+        "dynamicProfileId": {
+          "description": "Required. Dynamic profile ID of the inserted dynamic feed.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicProfile": {
+      "description": "Contains dynamic profile information.",
+      "id": "DynamicProfile",
+      "properties": {
+        "active": {
+          "$ref": "DynamicProfileVersion",
+          "description": "Optional. Active version of the dynamic profile."
+        },
+        "archiveStatus": {
+          "description": "Optional. Archive status of this dynamic profile.",
+          "enum": [
+            "ARCHIVE_STATUS_UNKNOWN",
+            "UNARCHIVED",
+            "ARCHIVED"
+          ],
+          "enumDescriptions": [
+            "The dynamic profile archive status is unknown. This value is unused.",
+            "The dynamic profile archive status is unarchived.",
+            "The dynamic profile archive status is archived."
+          ],
+          "type": "string"
+        },
+        "createInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The creation timestamp of the dynamic profile. This is a read-only field.",
+          "readOnly": true
+        },
+        "description": {
+          "description": "Optional. Description of this dynamic profile.",
+          "type": "string"
+        },
+        "draft": {
+          "$ref": "DynamicProfileVersion",
+          "description": "Optional. Draft version of the dynamic profile."
+        },
+        "dynamicProfileId": {
+          "description": "Output only. Unique ID of this dynamic profile. This is a read-only, auto-generated field.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "kind": {
+          "description": "Output only. Identifies what kind of resource this is. Value: the fixed string \"dfareporting#dynamicProfile\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The last modified timestamp of the dynamic profile. This is a read-only field.",
+          "readOnly": true
+        },
+        "name": {
+          "description": "Required. Identifier. Name of this dynamic profile. This is a required field and must be less than 256 characters long.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Optional. Status of this dynamic profile.",
+          "enum": [
+            "STATUS_UNKNOWN",
+            "ACTIVE",
+            "INACTIVE",
+            "DELETED"
+          ],
+          "enumDescriptions": [
+            "The dynamic profile status is unknown. This value is unused.",
+            "The dynamic profile is active.",
+            "The dynamic profile is inactive.",
+            "The dynamic profile is deleted."
+          ],
+          "type": "string"
+        },
+        "studioAdvertiserId": {
+          "description": "Required. Advertiser ID of this dynamic profile. This is a required field on insertion.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicProfileFeedSettings": {
+      "description": "Contains dynamic profile specific settings for an associated dynamic feed.",
+      "id": "DynamicProfileFeedSettings",
+      "properties": {
+        "dynamicFeedId": {
+          "description": "Optional. Dynamic feed ID associated with dynamic profile version.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dynamicRules": {
+          "$ref": "DynamicRules",
+          "description": "Optional. Dynamic rules for row selection for the given dynamic feed in the given dynamic profile."
+        },
+        "quantity": {
+          "description": "Optional. The number of this dynamic feed rows needed by the dynamic profile, default value is 1. Acceptable values are between 1 to 99, inclusive.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicProfileVersion": {
+      "description": "Contains dynamic profile version information.",
+      "id": "DynamicProfileVersion",
+      "properties": {
+        "dynamicProfileFeedSettings": {
+          "description": "Optional. Associated dynamic feeds and their settings (including dynamic rules) for this dynamic profile version.",
+          "items": {
+            "$ref": "DynamicProfileFeedSettings"
+          },
+          "type": "array"
+        },
+        "versionId": {
+          "description": "Output only. Version ID of this dynamic profile version. This is a read-only, auto-generated field. -1 for draft version, 0+ for published versions.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DynamicRules": {
+      "description": "Contains dynamic rules information.",
+      "id": "DynamicRules",
+      "properties": {
+        "autoTargetedFieldIds": {
+          "description": "Optional. List of field IDs in this element that should be auto-targeted. Applicable when rule type is AUTO.",
+          "items": {
+            "format": "int32",
+            "type": "integer"
+          },
+          "type": "array"
+        },
+        "customRules": {
+          "description": "Optional. The custom rules of the dynamic feed, only applicable when rule type is CUSTOM.",
+          "items": {
+            "$ref": "CustomRule"
+          },
+          "type": "array"
+        },
+        "customValueFields": {
+          "description": "Optional. Mapping between field ID and custom key that are used to match for auto filtering.",
+          "items": {
+            "$ref": "CustomValueField"
+          },
+          "type": "array"
+        },
+        "proximityFilter": {
+          "$ref": "ProximityFilter",
+          "description": "Optional. The proximity targeting rules of the dynamic feed, only applicable when rule type is PROXIMITY_TARGETING."
+        },
+        "remarketingValueAttributes": {
+          "description": "Optional. The link between an element field ID and a list of user attribute IDs.",
+          "items": {
+            "$ref": "RemarketingValueAttribute"
+          },
+          "type": "array"
+        },
+        "rotationType": {
+          "description": "Optional. The rotation type to select from eligible rows. Rotation type only apply when the filtering rule results in more than one eligible rows.",
+          "enum": [
+            "ROTATION_TYPE_UNKNOWN",
+            "RANDOM",
+            "OPTIMIZED",
+            "WEIGHTED"
+          ],
+          "enumDescriptions": [
+            "The rotation type is unknown. This value is unused.",
+            "The rotation type is random. It is the default value.",
+            "The rotation type is optimized.",
+            "The rotation type is weighted."
+          ],
+          "type": "string"
+        },
+        "ruleType": {
+          "description": "Optional. The type of the rule, the default value is OPEN.",
+          "enum": [
+            "RULE_SET_TYPE_UNKNOWN",
+            "OPEN",
+            "AUTO",
+            "CUSTOM",
+            "PROXIMITY_TARGETING"
+          ],
+          "enumDescriptions": [
+            "The rule type is unknown. This value is unused.",
+            "The rule type is open, all feed rows are eligible for selection. This is the default value.",
+            "The rule type is auto, the feed rows are eligible for selection based on the automatic rules.",
+            "The rule type is custom, the feed rows are eligible for selection based on the custom rules.",
+            "The rule type is proximity targeting, the feed rows are eligible for selection based on the proximity targeting rules."
+          ],
+          "type": "string"
+        },
+        "weightFieldId": {
+          "description": "Optional. The field ID for the feed that will be used for weighted rotation, only applicable when rotation type is WEIGHTED.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "DynamicTargetingKey": {
       "description": "Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.",
       "id": "DynamicTargetingKey",
@@ -15254,6 +15785,73 @@
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#dynamicTargetingKeysListResponse\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Element": {
+      "description": "Contains the element of the dynamic feed.",
+      "id": "Element",
+      "properties": {
+        "activeFieldId": {
+          "description": "Optional. The field ID to specify the active field in the feed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "createInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The creation timestamp of the element. This is a read-only field.",
+          "readOnly": true
+        },
+        "defaultFieldId": {
+          "description": "Optional. The field ID to specify the field that represents the default field in the feed.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "elementName": {
+          "description": "Optional. The name of the element. It is defaulted to resource file name if not provided.",
+          "type": "string"
+        },
+        "endTimestampFieldId": {
+          "description": "Optional. The field ID to specify the field that represents the end timestamp. Only applicable if you're planning to use scheduling in your dynamic creative.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "externalIdFieldId": {
+          "description": "Required. The field ID to specify the field used for uniquely identifying the feed row. This is a required field.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "feedFields": {
+          "description": "Required. The list of fields of the element. The field order and name should match the meta data in the content source source.",
+          "items": {
+            "$ref": "FeedField"
+          },
+          "type": "array"
+        },
+        "isLocalTimestamp": {
+          "description": "Optional. Whether the start and end timestamp is local timestamp. The default value is false which means start and end timestamp is in UTC.",
+          "type": "boolean"
+        },
+        "lastModifiedInfo": {
+          "$ref": "LastModifiedInfo",
+          "description": "Output only. The last modified timestamp of the element. This is a read-only field.",
+          "readOnly": true
+        },
+        "proximityTargetingFieldId": {
+          "description": "Optional. The field ID that specify field used for proximity targeting.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "reportingLabelFieldId": {
+          "description": "Required. The field ID to specify the field used for dynamic reporting in Campaign Manager 360.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "startTimestampFieldId": {
+          "description": "Optional. The field ID to specify the field that represents the start timestamp. Only applicable if you're planning to use scheduling in your dynamic creative.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -15454,6 +16052,379 @@
         },
         "kind": {
           "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#eventTagsListResponse\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeedField": {
+      "description": "Each field of the element. This is a required field.",
+      "id": "FeedField",
+      "properties": {
+        "defaultValue": {
+          "description": "Optional. The default value of the field.",
+          "type": "string"
+        },
+        "filterable": {
+          "description": "Optional. Whether the field is filterable. Could be set as true when the field type is any of the following and is not renderable: - STRING - BOOL - COUNTRY_CODE_ISO - CM360_SITE_ID - CM360_KEYWORD - CM360_CREATIVE_ID - CM360_PLACEMENT_ID - CM360_AD_ID - CM360_ADVERTISER_ID - CM360_CAMPAIGN_ID - CITY - REGION - POSTAL_CODE - METRO - CUSTOM_VALUE - REMARKETING_VALUE - GEO_CANONICAL - STRING_LIST - CREATIVE_DIMENSION - USERLIST_ID - CM360_DYNAMIC_TARGETING_KEY - DV360_LINE_ITEM_ID ",
+          "type": "boolean"
+        },
+        "id": {
+          "description": "Required. The ID of the field. The ID is based on the column index starting from 0, and it should match the column index in the resource link.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "name": {
+          "description": "Required. The name of the field.",
+          "type": "string"
+        },
+        "renderable": {
+          "description": "Optional. Whether the field is able to display. Could be set as true when the field type is not in any of the following and the field is not filterable: - COUNTRY_CODE_ISO - CITY - REGION - POSTAL_CODE - METRO - GEO_CANONICAL - USERLIST_ID - CONTEXTUAL_KEYWORD - CM360_DYNAMIC_TARGETING_KEY - WEIGHT ",
+          "type": "boolean"
+        },
+        "required": {
+          "description": "Optional. Whether the field is required and should not be empty in the feed. Could be set as true when the field type is any of the following: - GPA_SERVED_IMAGE_URL - GPA_SERVED_ASSET_URL - ASSET_LIBRARY_HANDLE - ASSET_LIBRARY_VIDEO_HANDLE - ASSET_LIBRARY_DIRECTORY_HANDLE ",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "Required. The type of the field.",
+          "enum": [
+            "TYPE_UNKNOWN",
+            "STRING",
+            "LONG",
+            "GPA_SERVED_IMAGE_URL",
+            "GPA_SERVED_ASSET_URL",
+            "COUNTRY_CODE_ISO",
+            "FLOAT",
+            "CM360_KEYWORD",
+            "CM360_SITE_ID",
+            "BOOL",
+            "EXIT_URL",
+            "DATETIME",
+            "CM360_CREATIVE_ID",
+            "CM360_PLACEMENT_ID",
+            "CM360_AD_ID",
+            "CM360_ADVERTISER_ID",
+            "CM360_CAMPAIGN_ID",
+            "CITY",
+            "REGION",
+            "POSTAL_CODE",
+            "METRO",
+            "CUSTOM_VALUE",
+            "REMARKETING_VALUE",
+            "GEO_CANONICAL",
+            "WEIGHT",
+            "STRING_LIST",
+            "CREATIVE_DIMENSION",
+            "USERLIST_ID",
+            "ASSET_LIBRARY_DIRECTORY_HANDLE",
+            "ASSET_LIBRARY_VIDEO_HANDLE",
+            "ASSET_LIBRARY_HANDLE",
+            "THIRD_PARTY_SERVED_URL",
+            "CM360_DYNAMIC_TARGETING_KEY",
+            "DV360_LINE_ITEM_ID"
+          ],
+          "enumDescriptions": [
+            "The type is unspecified. This is an unused value.",
+            "The field type is text.",
+            "The field type is whole number.",
+            "The field type is image url",
+            "The field type is asset url.",
+            "The field type is the ISO 3166-2 alpha-2 codes. It is two-letter country codes defined in ISO 3166-1 published by the International Organization for Standardization.",
+            "The field type is decimal.",
+            "The field type is custom CM360 ad tag parameter.",
+            "The field type is CM360 site ID.",
+            "The field type is boolean.",
+            "The field type is exit url.",
+            "The field type is datetime.",
+            "The field type is CM360 creative ID.",
+            "The field type is CM360 placement ID.",
+            "The field type is CM360 ad ID.",
+            "The field type is CM360 advertiser ID.",
+            "The field type is CM360 campaign ID.",
+            "The field type is cities.",
+            "The field type is region.",
+            "The field type is postal code.",
+            "The field type is metro code.",
+            "The field type is custom value.",
+            "The field type is remarketing value.",
+            "The field type is accurate geographic type.",
+            "The field type is weight.",
+            "The field type is a list of values.",
+            "The field type is creative dimension.",
+            "The field type is CM/DV360 Audience ID.",
+            "The field type is AssetLibrary directory path.",
+            "The field type is AssetLibrary video file path.",
+            "The field type is AssetLibrary path.",
+            "The field type is third party served url.",
+            "The field type is CM dynamic targeting key.",
+            "The field type is DV360 line item ID."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeedIngestionStatus": {
+      "description": "Contains the ingestion status of the dynamic feed. Feed ingestion is an asynchronous process. If the feed create request is successful, feed ingestion will be processed in the background, including validation, assets retrieval, and saving the data from the resource link. The processing time is dependent on the data size in the resource link. This read-only status field contains the current stage of that processing and its ingestion state.",
+      "id": "FeedIngestionStatus",
+      "properties": {
+        "ingestionErrorRecords": {
+          "description": "Output only. The ingestion error records of the feed.",
+          "items": {
+            "$ref": "IngestionErrorRecord"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ingestionStatus": {
+          "$ref": "IngestionStatus",
+          "description": "Output only. The ingestion status of the feed.",
+          "readOnly": true
+        },
+        "state": {
+          "description": "Output only. The processing state of the feed.",
+          "enum": [
+            "FEED_PROCESSING_STATE_UNKNOWN",
+            "CANCELLED",
+            "INGESTING_QUEUED",
+            "INGESTING",
+            "INGESTED_SUCCESS",
+            "INGESTED_FAILURE",
+            "REQUEST_TO_PUBLISH",
+            "PUBLISHING",
+            "PUBLISHED_SUCCESS",
+            "PUBLISHED_FAILURE"
+          ],
+          "enumDescriptions": [
+            "The feed processing state is unknown.",
+            "The feed processing state is cancelled.",
+            "The feed processing state is ingesting queued.",
+            "The feed processing state is ingesting.",
+            "The feed processing state is ingested successfully.",
+            "The feed processing state is ingested with failure.",
+            "The feed processing state is request to publish.",
+            "The feed processing state is publishing.",
+            "The feed processing state is published successfully.",
+            "The feed processing state is published with failure."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FeedSchedule": {
+      "description": "Contains the schedule of the dynamic feed.",
+      "id": "FeedSchedule",
+      "properties": {
+        "repeatValue": {
+          "description": "Optional. The number of times the feed retransforms within one day. This is a required field if the schedule is enabled. Acceptable values are between 1 to 6, inclusive.",
+          "format": "int64",
+          "type": "string"
+        },
+        "scheduleEnabled": {
+          "description": "Optional. Whether the schedule is enabled.",
+          "type": "boolean"
+        },
+        "startHour": {
+          "description": "Optional. The hour of the day to start the feed. It is applicable if the repeat value is equal to 1. Default value is 0.",
+          "type": "string"
+        },
+        "startMinute": {
+          "description": "Optional. The minute of the hour to start the feed. It is applicable if the repeat value is equal to 1. Default value is 0.",
+          "type": "string"
+        },
+        "timeZone": {
+          "description": "Optional. The time zone to schedule the feed. It is applicable if the repeat value is equal to 1. Default value is \"America/Los_Angeles\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FieldError": {
+      "description": "Contains the field error of the dynamic feed.",
+      "id": "FieldError",
+      "properties": {
+        "fieldId": {
+          "description": "Output only. The ID of the field.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "fieldName": {
+          "description": "Output only. The name of the field.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fieldValues": {
+          "description": "Output only. The list of values of the field.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "ingestionError": {
+          "description": "Output only. The ingestion error of the field.",
+          "enum": [
+            "UNKNOWN_PARSING_ERROR",
+            "MISSING_ID",
+            "MISSING_REPORTING_LABEL",
+            "EMPTY_VALUE",
+            "ASSET_DOWNLOAD_ERROR",
+            "ID_TOO_LONG",
+            "DUPLICATE_ID",
+            "PARSING_ERROR",
+            "COUNTRY_PARSING_ERROR",
+            "LONG_PARSING_ERROR",
+            "BOOL_PARSING_ERROR",
+            "EXPANDED_URL_PARSING_ERROR",
+            "FLOAT_PARSING_ERROR",
+            "DATETIME_PARSING_ERROR",
+            "INVALID_PREFERENCE_VALUE",
+            "GEO_NOT_FOUND_ERROR",
+            "GEO_PARSING_ERROR",
+            "GEO_PROXIMITY_TARGETING_MULTIPLE_LOCATION_ERROR",
+            "POSTAL_CODE_PARSING_ERROR",
+            "METRO_CODE_PARSING_ERROR",
+            "DATETIME_WITHOUT_TIMEZONE_PARSING_ERROR",
+            "WEIGHT_PARSING_ERROR",
+            "CREATIVE_DIMENSION_PARSING_ERROR",
+            "MULTIVALUE_ID",
+            "ENDTIME_BEFORE_STARTTIME",
+            "INVALID_ASSET_LIBRARY_HANDLE",
+            "INVALID_ASSET_LIBRARY_VIDEO_HANDLE",
+            "INVALID_ASSET_LIBRARY_DIRECTORY_HANDLE",
+            "DYNAMIC_TARGETING_KEY_NOT_DEFINED_FOR_ADVERTISER",
+            "USERLIST_ID_NOT_ACCESSIBLE_FOR_ADVERTISER",
+            "ENDTIME_PASSED",
+            "ENDTIME_TOO_SOON",
+            "TEXT_ASSET_REFERENCE",
+            "IMAGE_ASSET_SCS_REFERENCE",
+            "AIRPORT_GEO_TARGET",
+            "CANONICAL_NAME_QUERY_MISMATCH",
+            "NO_DEFAULT_ROW",
+            "NO_ACTIVE_DEFAULT_ROW",
+            "NO_DEFAULT_ROW_IN_DATE_RANGE",
+            "NO_ACTIVE_DEFAULT_ROW_IN_DATE_RANGE",
+            "PAYLOAD_LIMIT_EXCEEDED",
+            "SSL_NOT_COMPLIANT"
+          ],
+          "enumDescriptions": [
+            "The ingestion error is unknown.",
+            "The ingestion error when the ID value is missing.",
+            "The ingestion error when the element value name used for reporting is missing.",
+            "The ingestion error when a required value is empty",
+            "The ingestion error when asset retrieval fails for a particular image or asset.",
+            "The ingestion error when the ID value exceeds the string length limit.",
+            "The ingestion error when the ID value is duplicate.",
+            "The ingestion error when parsing the field fails.",
+            "The ingestion error when parsing the country code fails.",
+            "The ingestion error when parsing the long value fails.",
+            "The ingestion error when parsing the boolean value fails.",
+            "The ingestion error when parsing the expanded url fails.",
+            "The ingestion error when parsing the float value fails.",
+            "The ingestion error when parsing the datetime value fails.",
+            "The ingestion error when the preference value is not a positive float.",
+            "The ingestion error when a geo location is not found.",
+            "The ingestion error when parsing the geo field fails.",
+            "The ingestion error when a feed row has multiple geotargets with proximity targeting enabled.",
+            "The ingestion error when parsing the postal code value fails.",
+            "The ingestion error when parsing the metro code value fails.",
+            "The ingestion error when parsing the datetime value fails.",
+            "The ingestion error when parsing the weight value fails.",
+            "The ingestion error when parsing the creative dimension value fails.",
+            "The ingestion error when a STRING_LIST type ID has multiple values.",
+            "The ingestion error when the end time is before the start time.",
+            "The ingestion error when the asset library handle is invalid.",
+            "The ingestion error when the asset library video handle is invalid.",
+            "The ingestion error when the asset library directory handle is invalid.",
+            "The ingestion error when a targeting key used but not defined for the CM360 Advertiser.",
+            "The ingestion error when the userlist ID is not accessible for the CM360 Advertiser.",
+            "The ingestion error when the end time is passed.",
+            "The ingestion error when the end time is in the near future (i.e., <7 days).",
+            "The ingestion error when a text field specifies a reference to an asset.",
+            "The ingestion error when Image field specifies a reference to an asset hosted on SCS (s0.2mdn.net/s0qa.2mdn.net).",
+            "The ingestion error when a geo target is an airport.",
+            "The ingestion error when the geo target's canonical name does not match the query string used to obtain it.",
+            "The ingestion error or warning when the default row is not set.",
+            "The ingestion error or warning when the default row is not active.",
+            "The ingestion error or warning when the default row is not in the date range.",
+            "The ingestion error or warning when the default row is not in the date range.",
+            "The ingestion error when when the payload of the record is above a threshold.",
+            "The ingestion error or warning when the field is not SSL compliant."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "isError": {
+          "description": "Output only. Incidcates whether the field has error or warning.",
+          "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "FieldFilter": {
+      "description": "Contains field filter information.",
+      "id": "FieldFilter",
+      "properties": {
+        "boolValue": {
+          "description": "Optional. The boolean values, only applicable when rhs_value_type is BOOL.",
+          "type": "boolean"
+        },
+        "dependentFieldValue": {
+          "$ref": "DependentFieldValue",
+          "description": "Optional. The dependent values, only applicable when rhs_value_type is DEPENDENT."
+        },
+        "fieldId": {
+          "description": "Optional. The field ID on the left hand side of the expression.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "matchType": {
+          "description": "Optional. Left hand side of the expression match type.",
+          "enum": [
+            "LHS_MATCH_TYPE_UNKNOWN",
+            "EQUALS_OR_UNRESTRICTED",
+            "EQUALS",
+            "UNRESTRICTED",
+            "NOT_EQUALS"
+          ],
+          "enumDescriptions": [
+            "The left hand side of the expression is unknown. This value is unused.",
+            "The left hand side of the expression is equals or unrestricted. It is the default value.",
+            "The left hand side of the expression is equals.",
+            "The left hand side of the expression is unrestricted. Unrestricted is used to target fields with no restrictions. For example, country targeting fields hold a list of countries. If the list is empty, we consider the element value to have no restrictions.",
+            "Left hand side of the expression is not equals. Not equals specifies which fields should not be targeted."
+          ],
+          "type": "string"
+        },
+        "requestValue": {
+          "$ref": "RequestValue",
+          "description": "Optional. The request value, only applicable when rhs_value_type is REQUEST."
+        },
+        "stringValue": {
+          "description": "Optional. The string value, only applicable when rhs_value_type is STRING.",
+          "type": "string"
+        },
+        "valueType": {
+          "description": "Optional. Right hand side of the expression.",
+          "enum": [
+            "RHS_VALUE_TYPE_UNKNOWN",
+            "STRING",
+            "REQUEST",
+            "BOOL",
+            "DEPENDENT"
+          ],
+          "enumDescriptions": [
+            "The right hand side of the expression is unknown. This value is unused.",
+            "The right hand side of the expression is a string.",
+            "The right hand side of the expression is a request value.",
+            "The right hand side of the expression is a boolean.",
+            "The right hand side of the expression is a dependent field value."
+          ],
           "type": "string"
         }
       },
@@ -16438,6 +17409,63 @@
             "$ref": "Region"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IngestionErrorRecord": {
+      "description": "Contains the ingestion error record of the dynamic feed. limited to 100 records.",
+      "id": "IngestionErrorRecord",
+      "properties": {
+        "errors": {
+          "description": "Output only. The list of field errors of the ingestion error record.",
+          "items": {
+            "$ref": "FieldError"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "recordId": {
+          "description": "Output only. The record ID of the ingestion error record.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IngestionStatus": {
+      "description": "Contains the ingestion status of the dynamic feed.",
+      "id": "IngestionStatus",
+      "properties": {
+        "numActiveRows": {
+          "description": "Output only. The number of active rows in the feed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numRowsProcessed": {
+          "description": "Output only. The number of rows processed in the feed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numRowsTotal": {
+          "description": "Output only. The total number of rows in the feed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numRowsWithErrors": {
+          "description": "Output only. The number of rows with errors in the feed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "numWarningsTotal": {
+          "description": "Output only. The total number of warnings in the feed.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -18868,6 +19896,57 @@
       },
       "type": "object"
     },
+    "ProximityFilter": {
+      "description": "Contains proximity filter information.",
+      "id": "ProximityFilter",
+      "properties": {
+        "fieldId": {
+          "description": "Optional. Field ID in the element.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "radiusBucketType": {
+          "description": "Optional. The radius bucket type of the proximity filter",
+          "enum": [
+            "RADIUS_BUCKET_TYPE_UNKNOWN",
+            "SMALL",
+            "MEDIUM",
+            "LARGE",
+            "MULTI_REGIONAL",
+            "NATIONAL"
+          ],
+          "enumDescriptions": [
+            "The radius bucket type is unknown.",
+            "The radius bucket type is small.",
+            "The radius bucket type is medium.",
+            "The radius bucket type is large.",
+            "The radius bucket type is multi-regional.",
+            "The radius bucket type is national."
+          ],
+          "type": "string"
+        },
+        "radiusUnitType": {
+          "description": "Optional. The units of the radius value",
+          "enum": [
+            "RADIUS_UNIT_TYPE_UNKNOWN",
+            "KILOMETERS",
+            "MILES"
+          ],
+          "enumDescriptions": [
+            "The units of the radius value are unknown. This value is unused.",
+            "The units of the radius value are kilometers.",
+            "The units of the radius value are miles."
+          ],
+          "type": "string"
+        },
+        "radiusValue": {
+          "description": "Optional. Radius length in units defined by radius_units.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "ReachReportCompatibleFields": {
       "description": "Represents fields that are compatible to be selected for a report of type \"REACH\".",
       "id": "ReachReportCompatibleFields",
@@ -19131,6 +20210,26 @@
           "description": "Remarketing list collection.",
           "items": {
             "$ref": "RemarketingList"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "RemarketingValueAttribute": {
+      "description": "Contains remarketing value attribute information.",
+      "id": "RemarketingValueAttribute",
+      "properties": {
+        "fieldId": {
+          "description": "Optional. Field ID in the element.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "userAttributeIds": {
+          "description": "Optional. Remarketing user attribute IDs for auto filtering.",
+          "items": {
+            "format": "int64",
+            "type": "string"
           },
           "type": "array"
         }
@@ -19744,6 +20843,33 @@
       },
       "type": "object"
     },
+    "RequestValue": {
+      "description": "Contains request value information.",
+      "id": "RequestValue",
+      "properties": {
+        "excludeFromUserAttributeIds": {
+          "description": "Optional. User attribute IDs in the request that should be excluded. Used only when the field type is REMARKETING_VALUE or USER_ATTRIBUTE_ID.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "key": {
+          "description": "Optional. Custom key in the request. Used only when the field type is CUSTOM_VALUE.",
+          "type": "string"
+        },
+        "userAttributeIds": {
+          "description": "Optional. User attribute IDs in the request. Used only when the field type is REMARKETING_VALUE or USER_ATTRIBUTE_ID.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "RichMediaExitOverride": {
       "description": "Rich Media Exit Override.",
       "id": "RichMediaExitOverride",
@@ -19781,6 +20907,20 @@
           "description": "A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RuleBlock": {
+      "description": "Contains a list of field filters that the given custom rule will apply.",
+      "id": "RuleBlock",
+      "properties": {
+        "fieldFilter": {
+          "description": "Optional. A list of non-auto field filters",
+          "items": {
+            "$ref": "FieldFilter"
+          },
+          "type": "array"
         }
       },
       "type": "object"
