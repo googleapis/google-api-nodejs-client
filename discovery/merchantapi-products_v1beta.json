@@ -124,7 +124,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Required. The name of the product input resource to delete. Format: `accounts/{account}/productInputs/{product}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/online~en~US~sku123`.",
+                  "description": "Required. The name of the product input resource to delete. Format: `accounts/{account}/productInputs/{product}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/productInputs/[^/]+$",
                   "required": true,
@@ -187,7 +187,7 @@
                   "type": "string"
                 },
                 "name": {
-                  "description": "Identifier. The name of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`",
+                  "description": "Identifier. The name of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/productInputs/[^/]+$",
                   "required": true,
@@ -225,7 +225,7 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`",
+                  "description": "Required. The name of the product to retrieve. Format: `accounts/{account}/products/{product}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.",
                   "location": "path",
                   "pattern": "^accounts/[^/]+/products/[^/]+$",
                   "required": true,
@@ -281,7 +281,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20250727",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "Attributes": {
@@ -1283,7 +1283,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the product. Format: `accounts/{account}/products/{product}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`",
+          "description": "The name of the product. Format: `accounts/{account}/products/{product}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.",
           "type": "string"
         },
         "offerId": {
@@ -1464,7 +1464,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The name of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`",
+          "description": "Identifier. The name of the product input. Format: `accounts/{account}/productInputs/{productinput}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.",
           "type": "string"
         },
         "offerId": {
