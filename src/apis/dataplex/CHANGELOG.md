@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v19.0.0...dataplex-v19.1.0) (2025-08-04)
+
+
+### Features
+
+* **dataplex:** update the API ([cc899e9](https://github.com/googleapis/google-api-nodejs-client/commit/cc899e97fa110bbfab7c2a06df4d7cefbca75af7))
+
 ## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v18.0.0...dataplex-v19.0.0) (2025-07-22)
 
 

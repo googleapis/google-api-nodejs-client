@@ -1,5 +1,12 @@
 # Changelog
 
+## [32.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v32.2.0...displayvideo-v32.3.0) (2025-08-04)
+
+
+### Features
+
+* **displayvideo:** update the API ([643f177](https://github.com/googleapis/google-api-nodejs-client/commit/643f177592ad9656240a57cf31bbd9b47b65b343))
+
 ## [32.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/displayvideo-v32.1.0...displayvideo-v32.2.0) (2025-07-15)
 
 

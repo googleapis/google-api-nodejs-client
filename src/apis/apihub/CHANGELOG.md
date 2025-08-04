@@ -1,5 +1,12 @@
 # Changelog
 
+## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v2.1.0...apihub-v2.2.0) (2025-08-04)
+
+
+### Features
+
+* **apihub:** update the API ([7b0a738](https://github.com/googleapis/google-api-nodejs-client/commit/7b0a7380f11448f7b48a8103f8d7b67d50072c46))
+
 ## [2.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/apihub-v2.0.0...apihub-v2.1.0) (2025-07-08)
 
 

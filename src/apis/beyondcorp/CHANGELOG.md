@@ -1,5 +1,12 @@
 # Changelog
 
+## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v22.0.0...beyondcorp-v22.0.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v21.0.0...beyondcorp-v22.0.0) (2025-07-22)
 
 

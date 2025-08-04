@@ -1,5 +1,16 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v14.2.0...drive-v15.0.0) (2025-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **drive:** This release has breaking changes.
+
+### Features
+
+* **drive:** update the API ([d015972](https://github.com/googleapis/google-api-nodejs-client/commit/d0159723f38c148ecbf07e074570d8a59e4716ba))
+
 ## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v14.1.0...drive-v14.2.0) (2025-07-25)
 
 

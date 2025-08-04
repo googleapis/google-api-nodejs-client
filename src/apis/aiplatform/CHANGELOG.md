@@ -1,5 +1,12 @@
 # Changelog
 
+## [21.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v21.1.0...aiplatform-v21.2.0) (2025-08-04)
+
+
+### Features
+
+* **aiplatform:** update the API ([2f24162](https://github.com/googleapis/google-api-nodejs-client/commit/2f24162b08806a0adf91e8668e4fc7ef89386f49))
+
 ## [21.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v21.0.0...aiplatform-v21.1.0) (2025-07-25)
 
 
