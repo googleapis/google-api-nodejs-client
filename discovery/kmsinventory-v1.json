@@ -242,7 +242,7 @@
       }
     }
   },
-  "revision": "20250525",
+  "revision": "20250727",
   "rootUrl": "https://kmsinventory.googleapis.com/",
   "schemas": {
     "GoogleCloudKmsInventoryV1ListCryptoKeysResponse": {
@@ -438,7 +438,8 @@
             "ASYMMETRIC_SIGN",
             "ASYMMETRIC_DECRYPT",
             "RAW_ENCRYPT_DECRYPT",
-            "MAC"
+            "MAC",
+            "KEY_ENCAPSULATION"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -446,7 +447,8 @@
             "CryptoKeys with this purpose may be used with AsymmetricSign and GetPublicKey.",
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
             "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
-            "CryptoKeys with this purpose may be used with MacSign."
+            "CryptoKeys with this purpose may be used with MacSign.",
+            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate."
           ],
           "type": "string"
         },
@@ -505,6 +507,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -546,6 +551,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
@@ -717,6 +725,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -758,6 +769,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."

@@ -6007,6 +6007,21 @@
       "version": "v1"
     },
     {
+      "description": "Regionally deployed, single-tenant managed source code repository hosted on Google Cloud.",
+      "discoveryRestUrl": "https://securesourcemanager.googleapis.com/$discovery/rest?version=v1",
+      "documentationLink": "https://cloud.google.com/secure-source-manager",
+      "icons": {
+        "x16": "https://www.gstatic.com/images/branding/product/1x/googleg_16dp.png",
+        "x32": "https://www.gstatic.com/images/branding/product/1x/googleg_32dp.png"
+      },
+      "id": "securesourcemanager:v1",
+      "kind": "discovery#directoryItem",
+      "name": "securesourcemanager",
+      "preferred": true,
+      "title": "Secure Source Manager API",
+      "version": "v1"
+    },
+    {
       "description": "Security Command Center API provides access to temporal views of assets and findings within an organization.",
       "discoveryRestUrl": "https://securitycenter.googleapis.com/$discovery/rest?version=v1beta1",
       "documentationLink": "https://cloud.google.com/security-command-center",
