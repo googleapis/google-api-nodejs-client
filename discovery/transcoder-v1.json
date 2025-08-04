@@ -385,7 +385,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250723",
   "rootUrl": "https://transcoder.googleapis.com/",
   "schemas": {
     "AdBreak": {
@@ -1155,6 +1155,10 @@
       "description": "Input asset.",
       "id": "Input",
       "properties": {
+        "attributes": {
+          "$ref": "InputAttributes",
+          "description": "Optional. Input Attributes."
+        },
         "key": {
           "description": "A unique key for this input. Must be specified when using advanced mapping and edit lists.",
           "type": "string"
@@ -1166,6 +1170,20 @@
         "uri": {
           "description": "URI of the media. Input files must be at least 5 seconds in duration and stored in Cloud Storage (for example, `gs://bucket/inputs/file.mp4`). If empty, the value is populated from Job.input_uri. See [Supported input and output formats](https://cloud.google.com/transcoder/docs/concepts/supported-input-and-output-formats).",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InputAttributes": {
+      "description": "Input attributes that provide additional information about the input asset.",
+      "id": "InputAttributes",
+      "properties": {
+        "trackDefinitions": {
+          "description": "Optional. A list of track definitions for the input asset.",
+          "items": {
+            "$ref": "TrackDefinition"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1808,6 +1826,37 @@
           "description": "The mapping for the JobConfig.edit_list atoms with text EditAtom.inputs.",
           "items": {
             "$ref": "TextMapping"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "TrackDefinition": {
+      "description": "Track definition for the input asset.",
+      "id": "TrackDefinition",
+      "properties": {
+        "detectLanguages": {
+          "description": "Optional. Whether to automatically detect the languages present in the track. If true, the system will attempt to identify all the languages present in the track and populate the languages field.",
+          "type": "boolean"
+        },
+        "detectedLanguages": {
+          "description": "Output only. A list of languages detected in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier. This field is only populated if the detect_languages field is set to true.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "inputTrack": {
+          "description": "The input track.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "languages": {
+          "description": "Optional. A list of languages spoken in the input asset, represented by a BCP 47 language code, such as \"en-US\" or \"sr-Latn\". For more information, see https://www.unicode.org/reports/tr35/#Unicode_locale_identifier.",
+          "items": {
+            "type": "string"
           },
           "type": "array"
         }
