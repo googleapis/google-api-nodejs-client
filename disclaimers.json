@@ -620,6 +620,10 @@
     "package": "@google-cloud/chronicle"
   },
   {
+    "api": "configdelivery",
+    "package": "@google-cloud/configdelivery"
+  },
+  {
     "api": "css",
     "package": "@google-shopping/css"
   },
