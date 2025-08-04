@@ -2420,6 +2420,163 @@
                 }
               }
             },
+            "dnsThreatDetectors": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new DnsThreatDetector in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors",
+                  "httpMethod": "POST",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "dnsThreatDetectorId": {
+                      "description": "Optional. Id of the requesting DnsThreatDetector object. If this field is not supplied, the service will generate an identifier.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Value for parent of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dnsThreatDetectors",
+                  "request": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single DnsThreatDetector.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single DnsThreatDetector.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the DnsThreatDetector resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists DnsThreatDetectors in a given project and location.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors",
+                  "httpMethod": "GET",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListDnsThreatDetectorsRequest` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListDnsThreatDetectorsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/dnsThreatDetectors",
+                  "response": {
+                    "$ref": "ListDnsThreatDetectorsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single DnsThreatDetector.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/dnsThreatDetectors/{dnsThreatDetectorsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networksecurity.projects.locations.dnsThreatDetectors.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Name of the DnsThreatDetector resource.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/dnsThreatDetectors/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the DnsThreatDetector resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the mask is not provided then all fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "response": {
+                    "$ref": "DnsThreatDetector"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
             "firewallEndpointAssociations": {
               "methods": {
                 "create": {
@@ -5356,7 +5513,7 @@
       }
     }
   },
-  "revision": "20250714",
+  "revision": "20250721",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -6136,6 +6293,55 @@
             "type": "integer"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "DnsThreatDetector": {
+      "description": "Message describing DnsThreatDetector object",
+      "id": "DnsThreatDetector",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "excludedNetworks": {
+          "description": "Optional. A list of Network resource names which are exempt from the configuration in this DnsThreatDetector. Example: `projects/PROJECT_ID/global/networks/NETWORK_NAME`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Immutable. Identifier. Name of the DnsThreatDetector resource.",
+          "type": "string"
+        },
+        "provider": {
+          "description": "Required. The provider used for DNS threat analysis.",
+          "enum": [
+            "PROVIDER_UNSPECIFIED",
+            "INFOBLOX"
+          ],
+          "enumDescriptions": [
+            "An unspecified provider.",
+            "The Infoblox DNS threat detecter."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -7245,6 +7451,31 @@
         "nextPageToken": {
           "description": "If there might be more results than those appearing in this response, then `next_page_token` is included. To get the next set of results, call this method again using the value of `next_page_token` as `page_token`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ListDnsThreatDetectorsResponse": {
+      "description": "Message for response to listing DnsThreatDetectors",
+      "id": "ListDnsThreatDetectorsResponse",
+      "properties": {
+        "dnsThreatDetectors": {
+          "description": "The list of DnsThreatDetector resources.",
+          "items": {
+            "$ref": "DnsThreatDetector"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page.",
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Unordered list. Unreachable `DnsThreatDetector` resources.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
