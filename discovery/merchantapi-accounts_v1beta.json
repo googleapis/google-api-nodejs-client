@@ -2311,7 +2311,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20250729",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2356,7 +2356,7 @@
       "type": "object"
     },
     "Accepted": {
-      "description": "Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).",
+      "description": "Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).",
       "id": "Accepted",
       "properties": {
         "acceptedBy": {
@@ -2926,7 +2926,7 @@
           "readOnly": true
         },
         "eligibleDestinations": {
-          "description": "Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
+          "description": "Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
           "items": {
             "enum": [
               "DESTINATION_ENUM_UNSPECIFIED",
@@ -5406,7 +5406,7 @@
           "type": "string"
         },
         "warehouse": {
-          "description": "Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)",
+          "description": "Required. Warehouse name. This should match warehouse.",
           "type": "string"
         }
       },
