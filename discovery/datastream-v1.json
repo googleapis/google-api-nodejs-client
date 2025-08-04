@@ -1261,7 +1261,7 @@
       }
     }
   },
-  "revision": "20250714",
+  "revision": "20250722",
   "rootUrl": "https://datastream.googleapis.com/",
   "schemas": {
     "AppendOnly": {
@@ -1376,6 +1376,12 @@
     "BackfillNoneStrategy": {
       "description": "Backfill strategy to disable automatic backfill for the Stream's objects.",
       "id": "BackfillNoneStrategy",
+      "properties": {},
+      "type": "object"
+    },
+    "BasicEncryption": {
+      "description": "Message to represent the option where Datastream will enforce encryption without authenticating server identity. Server certificates will be trusted by default.",
+      "id": "BasicEncryption",
       "properties": {},
       "type": "object"
     },
@@ -1721,6 +1727,27 @@
     "Empty": {
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
+      "properties": {},
+      "type": "object"
+    },
+    "EncryptionAndServerValidation": {
+      "description": "Message to represent the option where Datastream will enforce encryption and authenticate server identity. ca_certificate must be set if user selects this option.",
+      "id": "EncryptionAndServerValidation",
+      "properties": {
+        "caCertificate": {
+          "description": "Optional. Input only. PEM-encoded certificate of the CA that signed the source database server's certificate.",
+          "type": "string"
+        },
+        "serverCertificateHostname": {
+          "description": "Optional. The hostname mentioned in the Subject or SAN extension of the server certificate. This field is used for bypassing the hostname validation while verifying server certificate. This is required for scenarios where the host name that datastream connects to is different from the certificate's subject. This specifically happens for private connectivity. It could also happen when the customer provides a public IP in connection profile but the same is not present in the server certificate.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EncryptionNotEnforced": {
+      "description": "Message to represent the option where encryption is not enforced. An empty message right now to allow future extensibility.",
+      "id": "EncryptionNotEnforced",
       "properties": {},
       "type": "object"
     },
@@ -3639,6 +3666,10 @@
           "description": "Optional. A reference to a Secret Manager resource name storing the SQLServer connection password. Mutually exclusive with the `password` field.",
           "type": "string"
         },
+        "sslConfig": {
+          "$ref": "SqlServerSslConfig",
+          "description": "Optional. SSL configuration for the SQLServer connection."
+        },
         "username": {
           "description": "Required. Username for the SQLServer connection.",
           "type": "string"
@@ -3707,6 +3738,25 @@
         "transactionLogs": {
           "$ref": "SqlServerTransactionLogs",
           "description": "CDC reader reads from transaction logs."
+        }
+      },
+      "type": "object"
+    },
+    "SqlServerSslConfig": {
+      "description": "SQL Server SSL configuration information.",
+      "id": "SqlServerSslConfig",
+      "properties": {
+        "basicEncryption": {
+          "$ref": "BasicEncryption",
+          "description": "If set, Datastream will enforce encryption without authenticating server identity. Server certificates will be trusted by default."
+        },
+        "encryptionAndServerValidation": {
+          "$ref": "EncryptionAndServerValidation",
+          "description": "If set, Datastream will enforce encryption and authenticate server identity."
+        },
+        "encryptionNotEnforced": {
+          "$ref": "EncryptionNotEnforced",
+          "description": "If set, Datastream will not enforce encryption. If the DB server mandates encryption, then connection will be encrypted but server identity will not be authenticated."
         }
       },
       "type": "object"
