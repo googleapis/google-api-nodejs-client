@@ -899,7 +899,7 @@ export namespace apihub_v1 {
      */
     environment?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
-     * Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API.
+     * Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URL.
      */
     managementUrl?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
@@ -907,7 +907,7 @@ export namespace apihub_v1 {
      */
     name?: string | null;
     /**
-     * Required. A uri that uniquely identfies the deployment within a particular gateway. For example, if the runtime resource is of type APIGEE_PROXY, then this field will be a combination of org, proxy name and environment.
+     * Required. The resource URI identifies the deployment within its gateway. For Apigee gateways, its recommended to use the format: organizations/{org\}/environments/{env\}/apis/{api\}. For ex: if a proxy with name `orders` is deployed in `staging` environment of `cymbal` organization, the resource URI would be: `organizations/cymbal/environments/staging/apis/orders`.
      */
     resourceUri?: string | null;
     /**
@@ -927,7 +927,7 @@ export namespace apihub_v1 {
      */
     sourceProject?: string | null;
     /**
-     * Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API.
+     * Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project\}/locations/{location\}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory.
      */
     sourceUri?: Schema$GoogleCloudApihubV1AttributeValues;
     /**
@@ -969,6 +969,112 @@ export namespace apihub_v1 {
    * The DisablePlugin method's request.
    */
   export interface Schema$GoogleCloudApihubV1DisablePluginRequest {}
+  /**
+   * Respresents an API Observation observed in one of the sources.
+   */
+  export interface Schema$GoogleCloudApihubV1DiscoveredApiObservation {
+    /**
+     * Optional. The number of observed API Operations.
+     */
+    apiOperationCount?: string | null;
+    /**
+     * Output only. Create time stamp of the observation in API Hub.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. The hostname of requests processed for this Observation.
+     */
+    hostname?: string | null;
+    /**
+     * Output only. The number of known API Operations.
+     */
+    knownOperationsCount?: string | null;
+    /**
+     * Optional. Last event detected time stamp
+     */
+    lastEventDetectedTime?: string | null;
+    /**
+     * Identifier. The name of the discovered API Observation. Format: `projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}`
+     */
+    name?: string | null;
+    /**
+     * Optional. For an observation pushed from a gcp resource, this would be the gcp project id.
+     */
+    origin?: string | null;
+    /**
+     * Optional. The IP address (IPv4 or IPv6) of the origin server that the request was sent to. This field can include port information. Examples: `"192.168.1.1"`, `"10.0.0.1:80"`, `"FE80::0202:B3FF:FE1E:8329"`.
+     */
+    serverIps?: string[] | null;
+    /**
+     * Optional. The location of the observation source.
+     */
+    sourceLocations?: string[] | null;
+    /**
+     * Output only. The metadata of the source from which the observation was collected.
+     */
+    sourceMetadata?: Schema$GoogleCloudApihubV1SourceMetadata;
+    /**
+     * Optional. The type of the source from which the observation was collected.
+     */
+    sourceTypes?: string[] | null;
+    /**
+     * Optional. Style of ApiObservation
+     */
+    style?: string | null;
+    /**
+     * Output only. The number of unknown API Operations.
+     */
+    unknownOperationsCount?: string | null;
+    /**
+     * Output only. Update time stamp of the observation in API Hub.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * DiscoveredApiOperation represents an API Operation observed in one of the sources.
+   */
+  export interface Schema$GoogleCloudApihubV1DiscoveredApiOperation {
+    /**
+     * Output only. The classification of the discovered API operation.
+     */
+    classification?: string | null;
+    /**
+     * Optional. The number of occurrences of this API Operation.
+     */
+    count?: string | null;
+    /**
+     * Output only. Create time stamp of the discovered API operation in API Hub.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. First seen time stamp
+     */
+    firstSeenTime?: string | null;
+    /**
+     * Optional. An HTTP Operation.
+     */
+    httpOperation?: Schema$GoogleCloudApihubV1HttpOperationDetails;
+    /**
+     * Optional. Last seen time stamp
+     */
+    lastSeenTime?: string | null;
+    /**
+     * Output only. The list of matched results for the discovered API operation. This will be populated only if the classification is known. The current usecase is for a single match. Keeping it repeated to support multiple matches in future.
+     */
+    matchResults?: Schema$GoogleCloudApihubV1MatchResult[];
+    /**
+     * Identifier. The name of the discovered API Operation. Format: `projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}/discoveredApiOperations/{discovered_api_operation\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The metadata of the source from which the api operation was collected.
+     */
+    sourceMetadata?: Schema$GoogleCloudApihubV1SourceMetadata;
+    /**
+     * Output only. Update time stamp of the discovered API operation in API Hub.
+     */
+    updateTime?: string | null;
+  }
   /**
    * Documentation details.
    */
@@ -1084,6 +1190,23 @@ export namespace apihub_v1 {
     serviceAccount?: string | null;
   }
   /**
+   * An aggregation of HTTP header occurrences.
+   */
+  export interface Schema$GoogleCloudApihubV1Header {
+    /**
+     * The number of occurrences of this Header across transactions.
+     */
+    count?: string | null;
+    /**
+     * Data type of header
+     */
+    dataType?: string | null;
+    /**
+     * Header name.
+     */
+    name?: string | null;
+  }
+  /**
    * The information related to the service implemented by the plugin developer, used to invoke the plugin's functionality.
    */
   export interface Schema$GoogleCloudApihubV1HostingService {
@@ -1121,6 +1244,53 @@ export namespace apihub_v1 {
      * Optional. The path details for the Operation. Note: Even though this field is optional, it is required for CreateApiOperation API and we will fail the request if not provided.
      */
     path?: Schema$GoogleCloudApihubV1Path;
+  }
+  /**
+   * An HTTP-based API Operation, sometimes called a "REST" Operation.
+   */
+  export interface Schema$GoogleCloudApihubV1HttpOperationDetails {
+    /**
+     * Required. An HTTP Operation.
+     */
+    httpOperation?: Schema$GoogleCloudApihubV1HttpOperation;
+    /**
+     * Optional. Path params of HttpOperation
+     */
+    pathParams?: Schema$GoogleCloudApihubV1PathParam[];
+    /**
+     * Optional. Query params of HttpOperation
+     */
+    queryParams?: {[key: string]: Schema$GoogleCloudApihubV1QueryParam} | null;
+    /**
+     * Optional. Request metadata.
+     */
+    request?: Schema$GoogleCloudApihubV1HttpRequest;
+    /**
+     * Optional. Response metadata.
+     */
+    response?: Schema$GoogleCloudApihubV1HttpResponse;
+  }
+  /**
+   * An aggregation of HTTP requests.
+   */
+  export interface Schema$GoogleCloudApihubV1HttpRequest {
+    /**
+     * Optional. Unordered map from header name to header metadata
+     */
+    headers?: {[key: string]: Schema$GoogleCloudApihubV1Header} | null;
+  }
+  /**
+   * An aggregation of HTTP responses.
+   */
+  export interface Schema$GoogleCloudApihubV1HttpResponse {
+    /**
+     * Optional. Unordered map from header name to header metadata
+     */
+    headers?: {[key: string]: Schema$GoogleCloudApihubV1Header} | null;
+    /**
+     * Optional. Map of status code to observed count
+     */
+    responseCodes?: {[key: string]: string} | null;
   }
   /**
    * Issue contains the details of a single issue found by the linter.
@@ -1280,6 +1450,32 @@ export namespace apihub_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to listing DiscoveredApiObservations
+   */
+  export interface Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse {
+    /**
+     * The DiscoveredApiObservation from the specified project and location.
+     */
+    discoveredApiObservations?: Schema$GoogleCloudApihubV1DiscoveredApiObservation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Message for response to listing DiscoveredApiOperations
+   */
+  export interface Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse {
+    /**
+     * The DiscoveredApiOperations from the specified project, location and DiscoveredApiObservation.
+     */
+    discoveredApiOperations?: Schema$GoogleCloudApihubV1DiscoveredApiOperation[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * The ListExternalApis method's response.
    */
   export interface Schema$GoogleCloudApihubV1ListExternalApisResponse {
@@ -1387,6 +1583,15 @@ export namespace apihub_v1 {
      * Runtime project attachment for a project if exists, empty otherwise.
      */
     runtimeProjectAttachment?: Schema$GoogleCloudApihubV1RuntimeProjectAttachment;
+  }
+  /**
+   * MatchResult represents the result of matching a discovered API operation with a catalog API operation.
+   */
+  export interface Schema$GoogleCloudApihubV1MatchResult {
+    /**
+     * Output only. The name of the matched API Operation. Format: `projects/{project\}/locations/{location\}/apis/{api\}/versions/{version\}/operations/{operation\}`
+     */
+    name?: string | null;
   }
   /**
    * The config variable value of data type multi int.
@@ -1526,11 +1731,24 @@ export namespace apihub_v1 {
     path?: string | null;
   }
   /**
+   * HTTP Path parameter.
+   */
+  export interface Schema$GoogleCloudApihubV1PathParam {
+    /**
+     * Optional. Data type of path param
+     */
+    dataType?: string | null;
+    /**
+     * Optional. Segment location in the path, 1-indexed
+     */
+    position?: number | null;
+  }
+  /**
    * A plugin resource in the API Hub.
    */
   export interface Schema$GoogleCloudApihubV1Plugin {
     /**
-     * Optional. The configuration of actions supported by the plugin.
+     * Required. The configuration of actions supported by the plugin.
      */
     actionsConfig?: Schema$GoogleCloudApihubV1PluginActionConfig[];
     /**
@@ -1642,7 +1860,7 @@ export namespace apihub_v1 {
      */
     name?: string | null;
     /**
-     * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This is a required field.
+     * Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.
      */
     sourceProjectId?: string | null;
     /**
@@ -1729,6 +1947,23 @@ export namespace apihub_v1 {
      * Required. Line number (zero-indexed).
      */
     line?: number | null;
+  }
+  /**
+   * An aggregation of HTTP query parameter occurrences.
+   */
+  export interface Schema$GoogleCloudApihubV1QueryParam {
+    /**
+     * Optional. The number of occurrences of this query parameter across transactions.
+     */
+    count?: string | null;
+    /**
+     * Optional. Data type of path param
+     */
+    dataType?: string | null;
+    /**
+     * Required. Name of query param
+     */
+    name?: string | null;
   }
   /**
    * Object describing where in the file the issue was found.
@@ -2282,6 +2517,7 @@ export namespace apihub_v1 {
     curations: Resource$Projects$Locations$Curations;
     dependencies: Resource$Projects$Locations$Dependencies;
     deployments: Resource$Projects$Locations$Deployments;
+    discoveredApiObservations: Resource$Projects$Locations$Discoveredapiobservations;
     externalApis: Resource$Projects$Locations$Externalapis;
     hostProjectRegistrations: Resource$Projects$Locations$Hostprojectregistrations;
     operations: Resource$Projects$Locations$Operations;
@@ -2303,6 +2539,8 @@ export namespace apihub_v1 {
       this.deployments = new Resource$Projects$Locations$Deployments(
         this.context
       );
+      this.discoveredApiObservations =
+        new Resource$Projects$Locations$Discoveredapiobservations(this.context);
       this.externalApis = new Resource$Projects$Locations$Externalapis(
         this.context
       );
@@ -10781,7 +11019,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.deployments.list({
-     *     // Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"deployment-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/deployments/deployment-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \"Staging Deployment\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \"99.99%\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.
+     *     // Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `source_project` - The project/organization at source for the deployment. Allowed comparison operators: `=`. * `source_environment` - The environment at source for the deployment. Allowed comparison operators: `=`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"deployment-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/deployments/deployment-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \"Staging Deployment\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \"99.99%\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.
      *     filter: 'placeholder-value',
      *     // Optional. The maximum number of deployment resources to return. The service may return fewer than this value. If unspecified, at most 50 deployments will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
      *     pageSize: 'placeholder-value',
@@ -11122,7 +11360,7 @@ export namespace apihub_v1 {
   export interface Params$Resource$Projects$Locations$Deployments$List
     extends StandardParameters {
     /**
-     * Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"deployment-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/deployments/deployment-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \"Staging Deployment\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \"99.99%\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.
+     * Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `\>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `\>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `source_project` - The project/organization at source for the deployment. Allowed comparison operators: `=`. * `source_environment` - The environment at source for the deployment. Allowed comparison operators: `=`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \"deployment-1\"` is equivalent to `name = \"projects/test-project-id/locations/test-location-id/deployments/deployment-1\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \"Staging Deployment\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \"2021-08-15T14:50:00Z\" AND create_time \> \"2021-08-10T12:00:00Z\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \"99.99%\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.
      */
     filter?: string;
     /**
@@ -11153,6 +11391,696 @@ export namespace apihub_v1 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudApihubV1Deployment;
+  }
+
+  export class Resource$Projects$Locations$Discoveredapiobservations {
+    context: APIRequestContext;
+    discoveredApiOperations: Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.discoveredApiOperations =
+        new Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations(
+          this.context
+        );
+    }
+
+    /**
+     * Gets a DiscoveredAPIObservation in a given project, location and ApiObservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.discoveredApiObservations.get({
+     *     // Required. The name of the DiscoveredApiObservation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}
+     *     name: 'projects/my-project/locations/my-location/discoveredApiObservations/my-discoveredApiObservation',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiOperationCount": "my_apiOperationCount",
+     *   //   "createTime": "my_createTime",
+     *   //   "hostname": "my_hostname",
+     *   //   "knownOperationsCount": "my_knownOperationsCount",
+     *   //   "lastEventDetectedTime": "my_lastEventDetectedTime",
+     *   //   "name": "my_name",
+     *   //   "origin": "my_origin",
+     *   //   "serverIps": [],
+     *   //   "sourceLocations": [],
+     *   //   "sourceMetadata": {},
+     *   //   "sourceTypes": [],
+     *   //   "style": "my_style",
+     *   //   "unknownOperationsCount": "my_unknownOperationsCount",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredapiobservations$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredapiobservations$Get
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1DiscoveredApiObservation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredapiobservations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredapiobservations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1DiscoveredApiObservation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1DiscoveredApiObservation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all the DiscoveredAPIObservations in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apihub.projects.locations.discoveredApiObservations.list({
+     *     // Optional. The maximum number of ApiObservations to return. The service may return fewer than this value. If unspecified, at most 10 ApiObservations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListApiObservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiObservations` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent, which owns this collection of ApiObservations. Format: projects/{project\}/locations/{location\}
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discoveredApiObservations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveredapiobservations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredapiobservations$List
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredapiobservations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredapiobservations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveredApiObservations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1ListDiscoveredApiObservationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiscoveredApiObservation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of ApiObservations to return. The service may return fewer than this value. If unspecified, at most 10 ApiObservations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListApiObservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiObservations` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of ApiObservations. Format: projects/{project\}/locations/{location\}
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a DiscoveredAPIOperation in a given project, location, ApiObservation and ApiOperation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await apihub.projects.locations.discoveredApiObservations.discoveredApiOperations.get(
+     *       {
+     *         // Required. The name of the DiscoveredApiOperation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}/discoveredApiOperations/{discovered_api_operation\}
+     *         name: 'projects/my-project/locations/my-location/discoveredApiObservations/my-discoveredApiObservation/discoveredApiOperations/my-discoveredApiOperation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "classification": "my_classification",
+     *   //   "count": "my_count",
+     *   //   "createTime": "my_createTime",
+     *   //   "firstSeenTime": "my_firstSeenTime",
+     *   //   "httpOperation": {},
+     *   //   "lastSeenTime": "my_lastSeenTime",
+     *   //   "matchResults": [],
+     *   //   "name": "my_name",
+     *   //   "sourceMetadata": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1DiscoveredApiOperation>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1DiscoveredApiOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1DiscoveredApiOperation>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all the DiscoveredAPIOperations in a given project, location and ApiObservation.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await apihub.projects.locations.discoveredApiObservations.discoveredApiOperations.list(
+     *       {
+     *         // Optional. DiscoveredApiOperations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListDiscoveredApiApiOperations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveredApiApiOperations` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent, which owns this collection of DiscoveredApiOperations. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}
+     *         parent:
+     *           'projects/my-project/locations/my-location/discoveredApiObservations/my-discoveredApiObservation',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discoveredApiOperations": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/discoveredApiOperations').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1ListDiscoveredApiOperationsResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiscoveredApiOperation to retrieve. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}/discoveredApiOperations/{discovered_api_operation\}
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Discoveredapiobservations$Discoveredapioperations$List
+    extends StandardParameters {
+    /**
+     * Optional. DiscoveredApiOperations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDiscoveredApiApiOperations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveredApiApiOperations` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of DiscoveredApiOperations. Format: projects/{project\}/locations/{location\}/discoveredApiObservations/{discovered_api_observation\}
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Externalapis {
