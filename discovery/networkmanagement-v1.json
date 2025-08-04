@@ -1289,7 +1289,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250723",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2573,6 +2573,11 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "cloudVpcId": {
+          "description": "Output only. The id of Virtual Private Cloud (VPC) of the host.",
+          "readOnly": true,
+          "type": "string"
         },
         "cloudZone": {
           "description": "Output only. The cloud zone of the host.",
