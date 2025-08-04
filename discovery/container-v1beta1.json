@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250725",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2984,7 +2984,12 @@
     "AutoIpamConfig": {
       "description": "AutoIpamConfig contains all information related to Auto IPAM",
       "id": "AutoIpamConfig",
-      "properties": {},
+      "properties": {
+        "enabled": {
+          "description": "The flag that enables Auto IPAM on this cluster",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "AutoMonitoringConfig": {
@@ -3037,6 +3042,10 @@
         "enabled": {
           "description": "Enable Autopilot",
           "type": "boolean"
+        },
+        "privilegedAdmissionConfig": {
+          "$ref": "PrivilegedAdmissionConfig",
+          "description": "PrivilegedAdmissionConfig is the configuration related to privileged admission control."
         },
         "workloadPolicyConfig": {
           "$ref": "WorkloadPolicyConfig",
@@ -3179,12 +3188,6 @@
       },
       "type": "object"
     },
-    "AutoscaledRolloutPolicy": {
-      "description": "Autoscaled rollout policy uses cluster autoscaler during blue-green upgrades to scale both the green and blue pools.",
-      "id": "AutoscaledRolloutPolicy",
-      "properties": {},
-      "type": "object"
-    },
     "AvailableVersion": {
       "deprecated": true,
       "description": "Deprecated.",
@@ -3324,10 +3327,6 @@
       "description": "Settings for blue-green upgrade.",
       "id": "BlueGreenSettings",
       "properties": {
-        "autoscaledRolloutPolicy": {
-          "$ref": "AutoscaledRolloutPolicy",
-          "description": "Autoscaled policy for cluster autoscaler enabled blue-green upgrade."
-        },
         "nodePoolSoakDuration": {
           "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
           "format": "google-duration",
@@ -3937,6 +3936,10 @@
             "Use default (balanced) autoscaling configuration."
           ],
           "type": "string"
+        },
+        "defaultComputeClassConfig": {
+          "$ref": "DefaultComputeClassConfig",
+          "description": "Default compute class is a configuration for default compute class."
         },
         "enableNodeAutoprovisioning": {
           "description": "Enables automatic node pool creation and deletion.",
@@ -4826,6 +4829,17 @@
       },
       "type": "object"
     },
+    "DefaultComputeClassConfig": {
+      "description": "DefaultComputeClassConfig defines default compute class configuration.",
+      "id": "DefaultComputeClassConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enables default compute class.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DefaultSnatStatus": {
       "description": "DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.",
       "id": "DefaultSnatStatus",
@@ -5093,6 +5107,18 @@
         "membership": {
           "description": "Output only. The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/*/locations/*/memberships/*`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "membershipType": {
+          "description": "The type of the cluster's fleet membership.",
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ],
+          "enumDescriptions": [
+            "The MembershipType is not set.",
+            "The membership supports only lightweight compatible features."
+          ],
           "type": "string"
         },
         "preRegistered": {
@@ -7790,6 +7816,20 @@
         "enabled": {
           "description": "Private registry access is enabled.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "PrivilegedAdmissionConfig": {
+      "description": "PrivilegedAdmissionConfig stores the list of authorized allowlist paths for the cluster.",
+      "id": "PrivilegedAdmissionConfig",
+      "properties": {
+        "allowlistPaths": {
+          "description": "The customer allowlist Cloud Storage paths for the cluster. These paths are used with the `--autopilot-privileged-admission` flag to authorize privileged workloads in Autopilot clusters. Paths can be GKE-owned, in the format `gke:////`, or customer-owned, in the format `gs:///`. Wildcards (`*`) are supported to authorize all allowlists under specific paths or directories. Example: `gs://my-bucket/*` will authorize all allowlists under the `my-bucket` bucket.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
