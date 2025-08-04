@@ -1490,6 +1490,10 @@ export namespace osconfig_v1alpha {
    */
   export interface Schema$VulnerabilityReport {
     /**
+     * Output only. Highest level of severity among all the upgradable vulnerabilities with CVEs attached.
+     */
+    highestUpgradableCveSeverity?: string | null;
+    /**
      * Output only. The `vulnerabilityReport` API resource name. Format: `projects/{project_number\}/locations/{location\}/instances/{instance_id\}/vulnerabilityReport`
      */
     name?: string | null;
@@ -2706,6 +2710,7 @@ export namespace osconfig_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "highestUpgradableCveSeverity": "my_highestUpgradableCveSeverity",
      *   //   "name": "my_name",
      *   //   "updateTime": "my_updateTime",
      *   //   "vulnerabilities": []
