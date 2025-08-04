@@ -25320,7 +25320,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250728",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -28495,6 +28495,33 @@
       "description": "Runtime operation information for EndpointService.CreateEndpoint.",
       "id": "GoogleCloudAiplatformV1beta1CreateEndpointOperationMetadata",
       "properties": {
+        "deploymentStage": {
+          "description": "Output only. The deployment stage of the model. Only populated if this CreateEndpoint request deploys a model at the same time.",
+          "enum": [
+            "DEPLOYMENT_STAGE_UNSPECIFIED",
+            "STARTING_DEPLOYMENT",
+            "PREPARING_MODEL",
+            "CREATING_SERVING_CLUSTER",
+            "ADDING_NODES_TO_CLUSTER",
+            "GETTING_CONTAINER_IMAGE",
+            "STARTING_MODEL_SERVER",
+            "FINISHING_UP",
+            "DEPLOYMENT_TERMINATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The deployment is initializing and setting up the environment.",
+            "The deployment is preparing the model assets.",
+            "The deployment is creating the underlying serving cluster.",
+            "The deployment is adding nodes to the serving cluster.",
+            "The deployment is getting the container image for the model server.",
+            "The deployment is starting the model server.",
+            "The deployment is performing finalization steps.",
+            "The deployment has terminated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "The operation generic information."
@@ -29753,6 +29780,33 @@
       "description": "Runtime operation information for EndpointService.DeployModel.",
       "id": "GoogleCloudAiplatformV1beta1DeployModelOperationMetadata",
       "properties": {
+        "deploymentStage": {
+          "description": "Output only. The deployment stage of the model.",
+          "enum": [
+            "DEPLOYMENT_STAGE_UNSPECIFIED",
+            "STARTING_DEPLOYMENT",
+            "PREPARING_MODEL",
+            "CREATING_SERVING_CLUSTER",
+            "ADDING_NODES_TO_CLUSTER",
+            "GETTING_CONTAINER_IMAGE",
+            "STARTING_MODEL_SERVER",
+            "FINISHING_UP",
+            "DEPLOYMENT_TERMINATED"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The deployment is initializing and setting up the environment.",
+            "The deployment is preparing the model assets.",
+            "The deployment is creating the underlying serving cluster.",
+            "The deployment is adding nodes to the serving cluster.",
+            "The deployment is getting the container image for the model server.",
+            "The deployment is starting the model server.",
+            "The deployment is performing finalization steps.",
+            "The deployment has terminated."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
         "genericMetadata": {
           "$ref": "GoogleCloudAiplatformV1beta1GenericOperationMetadata",
           "description": "The operation generic information."
@@ -33692,6 +33746,10 @@
           "description": "Feature short name.",
           "type": "string"
         },
+        "value": {
+          "$ref": "GoogleCloudAiplatformV1beta1FeatureValue",
+          "description": "Feature value. A user provided timestamp may be set in the `FeatureValue.metadata.generate_time` field."
+        },
         "valueAndTimestamp": {
           "$ref": "GoogleCloudAiplatformV1beta1FeatureViewDirectWriteRequestDataKeyAndFeatureValuesFeatureFeatureValueAndTimestamp",
           "description": "Feature value and timestamp."
@@ -35676,6 +35734,22 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GoogleMaps": {
+      "description": "Tool to retrieve public maps data for grounding, powered by Google.",
+      "id": "GoogleCloudAiplatformV1beta1GoogleMaps",
+      "properties": {
+        "apiAuth": {
+          "$ref": "GoogleCloudAiplatformV1beta1ApiAuth",
+          "deprecated": true,
+          "description": "The authentication config to access the API. Deprecated. Please use auth_config instead."
+        },
+        "authConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AuthConfig",
+          "description": "The authentication config to access the API. Only API key is supported."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval": {
       "description": "Tool to retrieve public web data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval",
@@ -35757,6 +35831,10 @@
       "description": "Grounding chunk.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunk",
       "properties": {
+        "maps": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
+          "description": "Grounding chunk from Google Maps."
+        },
         "retrievedContext": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
           "description": "Grounding chunk from context retrieved by the retrieval tools."
@@ -35764,6 +35842,97 @@
         "web": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkWeb",
           "description": "Grounding chunk from the web."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMaps": {
+      "description": "Chunk from Google Maps.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMaps",
+      "properties": {
+        "placeAnswerSources": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+          "description": "Sources used to generate the place answer. This includes review snippets and photos that were used to generate the answer, as well as uris to flag content."
+        },
+        "placeId": {
+          "description": "This Place's resource name, in `places/{place_id}` format. Can be used to look up the Place.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text of the chunk.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Title of the chunk.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI reference of the chunk.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources": {
+      "description": "Sources used to generate the place answer.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSources",
+      "properties": {
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the generated answer.",
+          "type": "string"
+        },
+        "reviewSnippets": {
+          "description": "Snippets of reviews that are used to generate the answer.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution": {
+      "description": "Author attribution for a photo or review.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+      "properties": {
+        "displayName": {
+          "description": "Name of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "photoUri": {
+          "description": "Profile photo URI of the author of the Photo or Review.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of the author of the Photo or Review.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet": {
+      "description": "Encapsulates a review snippet.",
+      "id": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesReviewSnippet",
+      "properties": {
+        "authorAttribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1GroundingChunkMapsPlaceAnswerSourcesAuthorAttribution",
+          "description": "This review's author."
+        },
+        "flagContentUri": {
+          "description": "A link where users can flag a problem with the review.",
+          "type": "string"
+        },
+        "googleMapsUri": {
+          "description": "A link to show the review on Google Maps.",
+          "type": "string"
+        },
+        "relativePublishTimeDescription": {
+          "description": "A string of formatted recent time, expressing the review time relative to the current time in a form appropriate for the language and country.",
+          "type": "string"
+        },
+        "review": {
+          "description": "A reference representing this place review which may be used to look up this place review again.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -35814,6 +35983,11 @@
       "description": "Metadata returned to client when grounding is enabled.",
       "id": "GoogleCloudAiplatformV1beta1GroundingMetadata",
       "properties": {
+        "googleMapsWidgetContextToken": {
+          "description": "Optional. Output only. Resource name of the Google Maps widget context token to be used with the PlacesContextElement widget to render contextual data. This is populated only for Google Maps grounding.",
+          "readOnly": true,
+          "type": "string"
+        },
         "groundingChunks": {
           "description": "List of supporting references retrieved from specified grounding source.",
           "items": {
@@ -36567,6 +36741,14 @@
         "datapointId": {
           "description": "Required. Unique identifier of the datapoint.",
           "type": "string"
+        },
+        "embeddingMetadata": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The key-value map of additional metadata for the datapoint.",
+          "type": "object"
         },
         "featureVector": {
           "description": "Required. Feature embedding vector for dense index. An array of numbers with the length of [NearestNeighborSearchConfig.dimensions].",
@@ -44307,6 +44489,10 @@
       "description": "The regional resource name or the URI. Key is region, e.g., us-central1, europe-west2, global, etc..",
       "id": "GoogleCloudAiplatformV1beta1PublisherModelCallToActionRegionalResourceReferences",
       "properties": {
+        "colabNotebookDisabled": {
+          "description": "Optional. For notebook resource. When set to true, the Colab Enterprise link will be disabled in the \"open notebook\" dialog in UI.",
+          "type": "boolean"
+        },
         "references": {
           "additionalProperties": {
             "$ref": "GoogleCloudAiplatformV1beta1PublisherModelResourceReference"
@@ -46178,6 +46364,10 @@
           "description": "Required. The display name of the ReasoningEngine.",
           "type": "string"
         },
+        "encryptionSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EncryptionSpec",
+          "description": "Customer-managed encryption key spec for a ReasoningEngine. If set, this ReasoningEngine and all sub-resources of this ReasoningEngine will be secured by this key."
+        },
         "etag": {
           "description": "Optional. Used to perform consistent read-modify-write updates. If not set, a blind \"overwrite\" update happens.",
           "type": "string"
@@ -46273,6 +46463,10 @@
         "packageSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1ReasoningEngineSpecPackageSpec",
           "description": "Optional. User provided package spec of the ReasoningEngine. Ignored when users directly specify a deployment image through `deployment_spec.first_party_image_override`, but keeping the field_behavior to avoid introducing breaking changes."
+        },
+        "serviceAccount": {
+          "description": "Optional. The service account that the Reasoning Engine artifact runs as. It should have \"roles/storage.objectViewer\" for reading the user project's Cloud Storage and \"roles/aiplatform.user\" for using Vertex extensions. If not specified, the Vertex AI Reasoning Engine Service Agent in the project will be used.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -54051,10 +54245,20 @@
           ],
           "type": "string"
         },
+        "batchSize": {
+          "description": "Optional. Batch size for tuning. This feature is only available for open source models.",
+          "format": "int64",
+          "type": "string"
+        },
         "epochCount": {
           "description": "Optional. Number of complete passes the model makes over the entire training dataset during training.",
           "format": "int64",
           "type": "string"
+        },
+        "learningRate": {
+          "description": "Optional. Learning rate for tuning. Mutually exclusive with `learning_rate_multiplier`. This feature is only available for open source models.",
+          "format": "double",
+          "type": "number"
         },
         "learningRateMultiplier": {
           "description": "Optional. Multiplier for adjusting the default learning rate. Mutually exclusive with `learning_rate`. This feature is only available for 1P models.",
@@ -54250,6 +54454,20 @@
         },
         "trainingDatasetUri": {
           "description": "Required. Training dataset used for tuning. The dataset can be specified as either a Cloud Storage path to a JSONL file or as the resource name of a Vertex Multimodal Dataset.",
+          "type": "string"
+        },
+        "tuningMode": {
+          "description": "Tuning mode.",
+          "enum": [
+            "TUNING_MODE_UNSPECIFIED",
+            "TUNING_MODE_FULL",
+            "TUNING_MODE_PEFT_ADAPTER"
+          ],
+          "enumDescriptions": [
+            "Tuning mode is unspecified.",
+            "Full fine-tuning mode.",
+            "PEFT adapter tuning mode."
+          ],
           "type": "string"
         },
         "validationDatasetUri": {
@@ -54871,11 +55089,15 @@
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
         },
         "functionDeclarations": {
-          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 128 function declarations can be provided.",
+          "description": "Optional. Function tool type. One or more function declarations to be passed to the model along with the current user query. Model may decide to call a subset of these functions by populating FunctionCall in the response. User should provide a FunctionResponse for each function call in the next turn. Based on the function responses, Model will generate the final response back to the user. Maximum 512 function declarations can be provided.",
           "items": {
             "$ref": "GoogleCloudAiplatformV1beta1FunctionDeclaration"
           },
           "type": "array"
+        },
+        "googleMaps": {
+          "$ref": "GoogleCloudAiplatformV1beta1GoogleMaps",
+          "description": "Optional. GoogleMaps tool type. Tool to support Google Maps in Model."
         },
         "googleSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1ToolGoogleSearch",
@@ -56056,6 +56278,10 @@
           "readOnly": true,
           "type": "string"
         },
+        "customBaseModel": {
+          "description": "Optional. The user-provided path to custom model weights. Set this field to tune a custom model. The path must be a Cloud Storage directory that contains the model weights in .safetensors format along with associated model metadata files. If this field is set, the base_model field must still be set to indicate which base model the custom model is derived from. This feature is only available for open source models.",
+          "type": "string"
+        },
         "description": {
           "description": "Optional. The description of the TuningJob.",
           "type": "string"
@@ -56094,6 +56320,10 @@
         "name": {
           "description": "Output only. Identifier. Resource name of a TuningJob. Format: `projects/{project}/locations/{location}/tuningJobs/{tuning_job}`",
           "readOnly": true,
+          "type": "string"
+        },
+        "outputUri": {
+          "description": "Optional. Cloud Storage path to the directory where tuning job outputs are written to. This field is only available and required for open source models.",
           "type": "string"
         },
         "partnerModelTuningSpec": {
