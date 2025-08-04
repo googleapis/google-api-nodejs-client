@@ -1985,7 +1985,7 @@ export namespace vmmigration_v1 {
      */
     internalIp?: string | null;
     /**
-     * The network to connect the NIC to.
+     * Optional. The network to connect the NIC to.
      */
     network?: string | null;
     /**
