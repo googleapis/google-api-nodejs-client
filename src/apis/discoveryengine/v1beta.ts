@@ -112,6 +112,7 @@ export namespace discoveryengine_v1beta {
    */
   export class Discoveryengine {
     context: APIRequestContext;
+    media: Resource$Media;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,10 +121,342 @@ export namespace discoveryengine_v1beta {
         google,
       };
 
+      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
+  /**
+   * Information to read/write to blobstore2.
+   */
+  export interface Schema$GdataBlobstore2Info {
+    /**
+     * The blob generation id.
+     */
+    blobGeneration?: string | null;
+    /**
+     * The blob id, e.g., /blobstore/prod/playground/scotty
+     */
+    blobId?: string | null;
+    /**
+     * Read handle passed from Bigstore -\> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.
+     */
+    downloadReadHandle?: string | null;
+    /**
+     * The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.
+     */
+    readToken?: string | null;
+    /**
+     * Metadata passed from Blobstore -\> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
+     */
+    uploadMetadataContainer?: string | null;
+  }
+  /**
+   * A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites.
+   */
+  export interface Schema$GdataCompositeMedia {
+    /**
+     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
+     */
+    blobRef?: string | null;
+    /**
+     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
+     */
+    blobstore2Info?: Schema$GdataBlobstore2Info;
+    /**
+     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
+     */
+    cosmoBinaryReference?: string | null;
+    /**
+     * crc32.c hash for the payload.
+     */
+    crc32cHash?: number | null;
+    /**
+     * Media data, set if reference_type is INLINE
+     */
+    inline?: string | null;
+    /**
+     * Size of the data, in bytes
+     */
+    length?: string | null;
+    /**
+     * MD5 hash for the payload.
+     */
+    md5Hash?: string | null;
+    /**
+     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
+     */
+    objectId?: Schema$GdataObjectId;
+    /**
+     * Path to the data, set if reference_type is PATH
+     */
+    path?: string | null;
+    /**
+     * Describes what the field reference contains.
+     */
+    referenceType?: string | null;
+    /**
+     * SHA-1 hash for the payload.
+     */
+    sha1Hash?: string | null;
+  }
+  /**
+   * Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty.
+   */
+  export interface Schema$GdataContentTypeInfo {
+    /**
+     * Scotty's best guess of what the content type of the file is.
+     */
+    bestGuess?: string | null;
+    /**
+     * The content type of the file derived by looking at specific bytes (i.e. "magic bytes") of the actual file.
+     */
+    fromBytes?: string | null;
+    /**
+     * The content type of the file derived from the file extension of the original file name used by the client.
+     */
+    fromFileName?: string | null;
+    /**
+     * The content type of the file as specified in the request headers, multipart headers, or RUPIO start request.
+     */
+    fromHeader?: string | null;
+    /**
+     * The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API).
+     */
+    fromUrlPath?: string | null;
+  }
+  /**
+   * Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffChecksumsResponse {
+    /**
+     * Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol.
+     */
+    checksumsLocation?: Schema$GdataCompositeMedia;
+    /**
+     * The chunk size of checksums. Must be a multiple of 256KB.
+     */
+    chunkSizeBytes?: string | null;
+    /**
+     * If set, calculate the checksums based on the contents and return them to the caller.
+     */
+    objectLocation?: Schema$GdataCompositeMedia;
+    /**
+     * The total size of the server object.
+     */
+    objectSizeBytes?: string | null;
+    /**
+     * The object version of the object the checksums are being returned for.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffDownloadResponse {
+    /**
+     * The original object location.
+     */
+    objectLocation?: Schema$GdataCompositeMedia;
+  }
+  /**
+   * A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffUploadRequest {
+    /**
+     * The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol.
+     */
+    checksumsInfo?: Schema$GdataCompositeMedia;
+    /**
+     * The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received.
+     */
+    objectInfo?: Schema$GdataCompositeMedia;
+    /**
+     * The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffUploadResponse {
+    /**
+     * The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload.
+     */
+    objectVersion?: string | null;
+    /**
+     * The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification.
+     */
+    originalObject?: Schema$GdataCompositeMedia;
+  }
+  /**
+   * Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffVersionResponse {
+    /**
+     * The total size of the server object.
+     */
+    objectSizeBytes?: string | null;
+    /**
+     * The version of the object stored at the server.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Parameters specific to media downloads.
+   */
+  export interface Schema$GdataDownloadParameters {
+    /**
+     * A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client.
+     */
+    allowGzipCompression?: boolean | null;
+    /**
+     * Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty.
+     */
+    ignoreRange?: boolean | null;
+  }
+  /**
+   * A reference to data stored on the filesystem, on GFS or in blobstore.
+   */
+  export interface Schema$GdataMedia {
+    /**
+     * Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, "MD5" is the only possible value for this field. New values may be added at any time.
+     */
+    algorithm?: string | null;
+    /**
+     * Use object_id instead.
+     */
+    bigstoreObjectRef?: string | null;
+    /**
+     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
+     */
+    blobRef?: string | null;
+    /**
+     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
+     */
+    blobstore2Info?: Schema$GdataBlobstore2Info;
+    /**
+     * A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified.
+     */
+    compositeMedia?: Schema$GdataCompositeMedia[];
+    /**
+     * MIME type of the data
+     */
+    contentType?: string | null;
+    /**
+     * Extended content type information provided for Scotty uploads.
+     */
+    contentTypeInfo?: Schema$GdataContentTypeInfo;
+    /**
+     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
+     */
+    cosmoBinaryReference?: string | null;
+    /**
+     * For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported.
+     */
+    crc32cHash?: number | null;
+    /**
+     * Set if reference_type is DIFF_CHECKSUMS_RESPONSE.
+     */
+    diffChecksumsResponse?: Schema$GdataDiffChecksumsResponse;
+    /**
+     * Set if reference_type is DIFF_DOWNLOAD_RESPONSE.
+     */
+    diffDownloadResponse?: Schema$GdataDiffDownloadResponse;
+    /**
+     * Set if reference_type is DIFF_UPLOAD_REQUEST.
+     */
+    diffUploadRequest?: Schema$GdataDiffUploadRequest;
+    /**
+     * Set if reference_type is DIFF_UPLOAD_RESPONSE.
+     */
+    diffUploadResponse?: Schema$GdataDiffUploadResponse;
+    /**
+     * Set if reference_type is DIFF_VERSION_RESPONSE.
+     */
+    diffVersionResponse?: Schema$GdataDiffVersionResponse;
+    /**
+     * Parameters for a media download.
+     */
+    downloadParameters?: Schema$GdataDownloadParameters;
+    /**
+     * Original file name
+     */
+    filename?: string | null;
+    /**
+     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
+     */
+    hash?: string | null;
+    /**
+     * For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification.
+     */
+    hashVerified?: boolean | null;
+    /**
+     * Media data, set if reference_type is INLINE
+     */
+    inline?: string | null;
+    /**
+     * |is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence.
+     */
+    isPotentialRetry?: boolean | null;
+    /**
+     * Size of the data, in bytes
+     */
+    length?: string | null;
+    /**
+     * Scotty-provided MD5 hash for an upload.
+     */
+    md5Hash?: string | null;
+    /**
+     * Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA.
+     */
+    mediaId?: string | null;
+    /**
+     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
+     */
+    objectId?: Schema$GdataObjectId;
+    /**
+     * Path to the data, set if reference_type is PATH
+     */
+    path?: string | null;
+    /**
+     * Describes what the field reference contains.
+     */
+    referenceType?: string | null;
+    /**
+     * Scotty-provided SHA1 hash for an upload.
+     */
+    sha1Hash?: string | null;
+    /**
+     * Scotty-provided SHA256 hash for an upload.
+     */
+    sha256Hash?: string | null;
+    /**
+     * Time at which the media data was last updated, in milliseconds since UNIX epoch
+     */
+    timestamp?: string | null;
+    /**
+     * A unique fingerprint/version id for the media data
+     */
+    token?: string | null;
+  }
+  /**
+   * This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763.
+   */
+  export interface Schema$GdataObjectId {
+    /**
+     * The name of the bucket to which this object belongs.
+     */
+    bucketName?: string | null;
+    /**
+     * Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions
+     */
+    generation?: string | null;
+    /**
+     * The name of the object.
+     */
+    objectName?: string | null;
+  }
   /**
    * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
    */
@@ -2428,6 +2761,23 @@ export namespace discoveryengine_v1beta {
     sampleQuerySet?: string | null;
   }
   /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsResponse {}
+  /**
    * Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFieldConfig {
@@ -2814,7 +3164,7 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string | null;
     /**
@@ -3373,7 +3723,7 @@ export namespace discoveryengine_v1beta {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -3808,6 +4158,10 @@ export namespace discoveryengine_v1beta {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -9377,7 +9731,7 @@ export namespace discoveryengine_v1beta {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -9808,6 +10162,10 @@ export namespace discoveryengine_v1beta {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -13142,6 +13500,198 @@ export namespace discoveryengine_v1beta {
      * Optional. IANA Time Zone Database version number. For example "2019a".
      */
     version?: string | null;
+  }
+
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Downloads a file from the session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.media.download({
+     *     // Required. The ID of the file to be downloaded.
+     *     fileId: 'placeholder-value',
+     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *     // Optional. The ID of the view to be downloaded.
+     *     viewId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    download(
+      params?: Params$Resource$Media$Download,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
+    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:downloadFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GdataMedia>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GdataMedia>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Download extends StandardParameters {
+    /**
+     * Required. The ID of the file to be downloaded.
+     */
+    fileId?: string;
+    /**
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     */
+    name?: string;
+    /**
+     * Optional. The ID of the view to be downloaded.
+     */
+    viewId?: string;
   }
 
   export class Resource$Projects {
@@ -25330,7 +25880,7 @@ export namespace discoveryengine_v1beta {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
      *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
@@ -25666,7 +26216,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
@@ -36761,7 +37311,7 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -37096,7 +37646,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
@@ -46956,7 +47506,7 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -47290,7 +47840,7 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**

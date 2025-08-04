@@ -3020,7 +3020,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -4215,6 +4215,38 @@
                     }
                   },
                   "resources": {
+                    "analytics": {
+                      "methods": {
+                        "exportMetrics": {
+                          "description": "Exports metrics.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/analytics:exportMetrics",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.analytics.exportMetrics",
+                          "parameterOrder": [
+                            "analytics"
+                          ],
+                          "parameters": {
+                            "analytics": {
+                              "description": "Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/analytics`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/analytics$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+analytics}:exportMetrics",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "assistants": {
                       "methods": {
                         "get": {
@@ -5123,7 +5155,7 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                               "location": "query",
                               "type": "string"
                             },
@@ -7262,7 +7294,7 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                           "location": "query",
                           "type": "string"
                         },
@@ -9420,7 +9452,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20250728",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -15355,6 +15387,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaBigQueryDestination": {
+      "description": "The BigQuery output destination configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBigQueryDestination",
+      "properties": {
+        "datasetId": {
+          "description": "Required. The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The table_id of exported BigQuery table.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaBigQuerySource": {
       "description": "BigQuery source import data from.",
       "id": "GoogleCloudDiscoveryengineV1alphaBigQuerySource",
@@ -18831,6 +18878,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata": {
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest": {
+      "description": "Request message for the `ExportMetrics` method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest",
+      "properties": {
+        "outputConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputConfig",
+          "description": "Required. The output location of the data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsResponse": {
+      "description": "Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFactChunk": {
       "description": "Fact Chunk.",
       "id": "GoogleCloudDiscoveryengineV1alphaFactChunk",
@@ -20518,7 +20599,7 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: \"user_pseudo_id = some_id\" \"display_name = \\\"some_name\\\"\" \"starred = true\" \"is_pinned=true AND (NOT labels:hidden)\" \"create_time > \\\"1970-01-01T12:00:00Z\\\"\"",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
           "type": "string"
         },
         "orderBy": {
@@ -20694,6 +20775,17 @@
         "vertexAiOrganicCrawlRate": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
           "description": "Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOutputConfig": {
+      "description": "The output configuration setting.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaBigQueryDestination",
+          "description": "The BigQuery location where the output is to be written to."
         }
       },
       "type": "object"
@@ -22202,7 +22294,7 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -22811,6 +22903,20 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "extractedFilterBehavior": {
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "enum": [
+            "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
+            "HARD_FILTER",
+            "SOFT_BOOST"
+          ],
+          "enumDescriptions": [
+            "`EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED` will use the default behavior for extracted filters. For single datastore search, the default is to apply as hard filters. For multi-datastore search, the default is to apply as soft boosts.",
+            "Applies all extracted filters as hard filters on the results. Results that do not pass the extracted filters will not be returned in the result set.",
+            "Applies all extracted filters as soft boosts. Results that pass the filters will be boosted up to higher ranks in the result set."
+          ],
+          "type": "string"
+        },
         "filterExtractionCondition": {
           "description": "The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.",
           "enum": [
@@ -28067,7 +28173,7 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -28672,6 +28778,20 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "extractedFilterBehavior": {
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "enum": [
+            "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
+            "HARD_FILTER",
+            "SOFT_BOOST"
+          ],
+          "enumDescriptions": [
+            "`EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED` will use the default behavior for extracted filters. For single datastore search, the default is to apply as hard filters. For multi-datastore search, the default is to apply as soft boosts.",
+            "Applies all extracted filters as hard filters on the results. Results that do not pass the extracted filters will not be returned in the result set.",
+            "Applies all extracted filters as soft boosts. Results that pass the filters will be boosted up to higher ranks in the result set."
+          ],
+          "type": "string"
+        },
         "filterExtractionCondition": {
           "description": "The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.",
           "enum": [
