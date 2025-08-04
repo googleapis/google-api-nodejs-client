@@ -217,7 +217,7 @@ export namespace merchantapi_inventories_v1beta {
      */
     pickupSla?: string | null;
     /**
-     * Price of the product at this store.
+     * Optional. Price of the product at this store.
      */
     price?: Schema$Price;
     /**
@@ -225,11 +225,11 @@ export namespace merchantapi_inventories_v1beta {
      */
     quantity?: string | null;
     /**
-     * Sale price of the product at this store. Mandatory if `salePriceEffectiveDate` is defined.
+     * Optional. Sale price of the product at this store. Mandatory if `salePriceEffectiveDate` is defined.
      */
     salePrice?: Schema$Price;
     /**
-     * The `TimePeriod` of the sale at this store.
+     * Optional. The `TimePeriod` of the sale at this store.
      */
     salePriceEffectiveDate?: Schema$Interval;
     /**
@@ -333,7 +333,7 @@ export namespace merchantapi_inventories_v1beta {
      */
     name?: string | null;
     /**
-     * Price of the product in this region.
+     * Optional. Price of the product in this region.
      */
     price?: Schema$Price;
     /**
@@ -341,11 +341,11 @@ export namespace merchantapi_inventories_v1beta {
      */
     region?: string | null;
     /**
-     * Sale price of the product in this region. Mandatory if `salePriceEffectiveDate` is defined.
+     * Optional. Sale price of the product in this region. Mandatory if `salePriceEffectiveDate` is defined.
      */
     salePrice?: Schema$Price;
     /**
-     * The `TimePeriod` of the sale price in this region.
+     * Optional. The `TimePeriod` of the sale price in this region.
      */
     salePriceEffectiveDate?: Schema$Interval;
   }

@@ -107,13 +107,13 @@
   "resources": {
     "accounts": {
       "resources": {
-        "ordertrackingsignals": {
+        "orderTrackingSignals": {
           "methods": {
             "create": {
               "description": "Creates new order tracking signal.",
-              "flatPath": "ordertracking/v1beta/accounts/{accountsId}/ordertrackingsignals",
+              "flatPath": "ordertracking/v1beta/accounts/{accountsId}/orderTrackingSignals",
               "httpMethod": "POST",
-              "id": "merchantapi.accounts.ordertrackingsignals.create",
+              "id": "merchantapi.accounts.orderTrackingSignals.create",
               "parameterOrder": [
                 "parent"
               ],
@@ -131,7 +131,7 @@
                   "type": "string"
                 }
               },
-              "path": "ordertracking/v1beta/{+parent}/ordertrackingsignals",
+              "path": "ordertracking/v1beta/{+parent}/orderTrackingSignals",
               "request": {
                 "$ref": "OrderTrackingSignal"
               },
@@ -147,7 +147,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250727",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "DateTime": {
