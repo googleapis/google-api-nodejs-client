@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/osconfig",
-  "version": "7.0.1",
+  "version": "7.1.0",
   "description": "osconfig",
   "main": "build/index.js",
   "types": "build/index.d.ts",

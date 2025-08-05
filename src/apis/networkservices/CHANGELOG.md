@@ -1,5 +1,12 @@
 # Changelog
 
+## [29.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v29.0.0...networkservices-v29.0.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([b142210](https://github.com/googleapis/google-api-nodejs-client/commit/b142210dff7a1fd7eb6c81d4d3b0f109085a6210))
+
 ## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v28.1.0...networkservices-v29.0.0) (2025-07-22)
 
 

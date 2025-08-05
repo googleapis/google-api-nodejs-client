@@ -1,5 +1,16 @@
 # Changelog
 
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v8.0.1...datacatalog-v9.0.0) (2025-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v8.0.0...datacatalog-v8.0.1) (2025-07-08)
 
 

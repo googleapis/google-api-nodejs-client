@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v9.0.0...datastream-v9.1.0) (2025-08-04)
+
+
+### Features
+
+* **datastream:** update the API ([a0ce139](https://github.com/googleapis/google-api-nodejs-client/commit/a0ce13998a49a1eb31239c824a8e2d431ff0e422))
+
 ## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datastream-v8.1.0...datastream-v9.0.0) (2025-07-22)
 
 

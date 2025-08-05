@@ -1,5 +1,13 @@
 # Changelog
 
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v15.0.0...dlp-v15.0.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **dlp:** update the API ([ffccfbf](https://github.com/googleapis/google-api-nodejs-client/commit/ffccfbf2abfc272d9ca64218533e2e84d77350e2))
+* **dlp:** update the API ([004d70e](https://github.com/googleapis/google-api-nodejs-client/commit/004d70ea5c17dcf2819003ca8b27201340005007))
+
 ## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dlp-v14.2.0...dlp-v15.0.0) (2025-07-22)
 
 

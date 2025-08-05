@@ -1,5 +1,12 @@
 # Changelog
 
+## [11.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v11.1.0...networksecurity-v11.2.0) (2025-08-04)
+
+
+### Features
+
+* **networksecurity:** update the API ([203e45d](https://github.com/googleapis/google-api-nodejs-client/commit/203e45d58fa14d1773ec4ef0ccb8d40959a9ffb9))
+
 ## [11.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/networksecurity-v11.0.0...networksecurity-v11.1.0) (2025-07-25)
 
 

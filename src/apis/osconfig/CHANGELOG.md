@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v7.0.1...osconfig-v7.1.0) (2025-08-04)
+
+
+### Features
+
+* **osconfig:** update the API ([718e046](https://github.com/googleapis/google-api-nodejs-client/commit/718e046370a2f031f12693a533bf0bb42df65a4a))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v7.0.0...osconfig-v7.0.1) (2025-07-08)
 
 
