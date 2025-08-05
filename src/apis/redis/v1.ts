@@ -303,6 +303,35 @@ export namespace redis_v1 {
     backupdrManaged?: boolean | null;
   }
   /**
+   * BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.
+   */
+  export interface Schema$BackupDRMetadata {
+    /**
+     * Backup configuration for this instance.
+     */
+    backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * BackupDR configuration for this instance.
+     */
+    backupdrConfiguration?: Schema$BackupDRConfiguration;
+    /**
+     * Latest backup run information for this instance.
+     */
+    backupRun?: Schema$BackupRun;
+    /**
+     * Required. Full resource name of this instance.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time backup configuration was refreshed.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Database resource id.
+     */
+    resourceId?: Schema$DatabaseResourceId;
+  }
+  /**
    * Backup is consisted of multiple backup files.
    */
   export interface Schema$BackupFile {
@@ -660,9 +689,13 @@ export namespace redis_v1 {
     internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10
    */
   export interface Schema$DatabaseResourceFeed {
+    /**
+     * BackupDR metadata is used to ingest metadata from BackupDR.
+     */
+    backupdrMetadata?: Schema$BackupDRMetadata;
     /**
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */
