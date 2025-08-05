@@ -479,6 +479,7 @@ export {searchconsole_v1} from './apis/searchconsole/v1';
 export {secretmanager_v1} from './apis/secretmanager/v1';
 export {secretmanager_v1beta1} from './apis/secretmanager/v1beta1';
 export {secretmanager_v1beta2} from './apis/secretmanager/v1beta2';
+export {securesourcemanager_v1} from './apis/securesourcemanager/v1';
 export {securitycenter_v1} from './apis/securitycenter/v1';
 export {securitycenter_v1beta1} from './apis/securitycenter/v1beta1';
 export {securitycenter_v1beta2} from './apis/securitycenter/v1beta2';
