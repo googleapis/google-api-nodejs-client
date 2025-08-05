@@ -140,7 +140,7 @@ export namespace merchantapi_accounts_v1beta {
     uri?: string | null;
   }
   /**
-   * Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
+   * Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
    */
   export interface Schema$Accepted {
     /**
@@ -566,7 +566,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     effectiveUriSettings?: Schema$UriSettings;
     /**
-     * Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`
+     * Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`
      */
     eligibleDestinations?: string[] | null;
     /**
@@ -2130,7 +2130,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     carrierService?: string | null;
     /**
-     * Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)
+     * Required. Warehouse name. This should match warehouse.
      */
     warehouse?: string | null;
   }
