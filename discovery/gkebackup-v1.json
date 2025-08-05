@@ -2227,7 +2227,7 @@
       }
     }
   },
-  "revision": "20250528",
+  "revision": "20250723",
   "rootUrl": "https://gkebackup.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2446,6 +2446,11 @@
           "description": "Output only. Human-readable description of why the backup is in the current `state`. This field is only meant for human readability and should not be used programmatically as this field is not guaranteed to be consistent.",
           "readOnly": true,
           "type": "string"
+        },
+        "troubleshootingInfo": {
+          "$ref": "TroubleshootingInfo",
+          "description": "Output only. Information about the troubleshooting steps which will provide debugging information to the end users.",
+          "readOnly": true
         },
         "uid": {
           "description": "Output only. Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)",
@@ -3779,6 +3784,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "troubleshootingInfo": {
+          "$ref": "TroubleshootingInfo",
+          "description": "Output only. Information about the troubleshooting steps which will provide debugging information to the end users.",
+          "readOnly": true
+        },
         "uid": {
           "description": "Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.",
           "readOnly": true,
@@ -4352,6 +4362,23 @@
         },
         "value": {
           "description": "Optional. A string that specifies the desired value in string format to use for transformation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TroubleshootingInfo": {
+      "description": "Stores information about troubleshooting doc for debugging a particular state of an operation (eg - backup/restore). This will be used by the end user to debug their operation failure scenario easily.",
+      "id": "TroubleshootingInfo",
+      "properties": {
+        "stateReasonCode": {
+          "description": "Output only. Unique code for each backup/restore operation failure message which helps user identify the failure.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "stateReasonUri": {
+          "description": "Output only. URL for the troubleshooting doc which will help the user fix the failing backup/restore operation.",
+          "readOnly": true,
           "type": "string"
         }
       },

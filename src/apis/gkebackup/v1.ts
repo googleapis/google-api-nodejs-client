@@ -267,6 +267,10 @@ export namespace gkebackup_v1 {
      */
     stateReason?: string | null;
     /**
+     * Output only. Information about the troubleshooting steps which will provide debugging information to the end users.
+     */
+    troubleshootingInfo?: Schema$TroubleshootingInfo;
+    /**
      * Output only. Server generated global unique identifier of [UUID4](https://en.wikipedia.org/wiki/Universally_unique_identifier)
      */
     uid?: string | null;
@@ -1206,6 +1210,10 @@ export namespace gkebackup_v1 {
      */
     stateReason?: string | null;
     /**
+     * Output only. Information about the troubleshooting steps which will provide debugging information to the end users.
+     */
+    troubleshootingInfo?: Schema$TroubleshootingInfo;
+    /**
      * Output only. Server generated global unique identifier of [UUID](https://en.wikipedia.org/wiki/Universally_unique_identifier) format.
      */
     uid?: string | null;
@@ -1597,6 +1605,19 @@ export namespace gkebackup_v1 {
      * Optional. A string that specifies the desired value in string format to use for transformation.
      */
     value?: string | null;
+  }
+  /**
+   * Stores information about troubleshooting doc for debugging a particular state of an operation (eg - backup/restore). This will be used by the end user to debug their operation failure scenario easily.
+   */
+  export interface Schema$TroubleshootingInfo {
+    /**
+     * Output only. Unique code for each backup/restore operation failure message which helps user identify the failure.
+     */
+    stateReasonCode?: string | null;
+    /**
+     * Output only. URL for the troubleshooting doc which will help the user fix the failing backup/restore operation.
+     */
+    stateReasonUri?: string | null;
   }
   /**
    * Represents the backup of a specific persistent volume as a component of a Backup - both the record of the operation and a pointer to the underlying storage-specific artifacts.
@@ -4721,6 +4742,7 @@ export namespace gkebackup_v1 {
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "state": "my_state",
      *       //   "stateReason": "my_stateReason",
+     *       //   "troubleshootingInfo": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "volumeCount": 0
@@ -5052,6 +5074,7 @@ export namespace gkebackup_v1 {
      *   //   "sizeBytes": "my_sizeBytes",
      *   //   "state": "my_state",
      *   //   "stateReason": "my_stateReason",
+     *   //   "troubleshootingInfo": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumeCount": 0
@@ -5667,6 +5690,7 @@ export namespace gkebackup_v1 {
      *       //   "sizeBytes": "my_sizeBytes",
      *       //   "state": "my_state",
      *       //   "stateReason": "my_stateReason",
+     *       //   "troubleshootingInfo": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "volumeCount": 0
@@ -10257,6 +10281,7 @@ export namespace gkebackup_v1 {
      *       //   "restoreConfig": {},
      *       //   "state": "my_state",
      *       //   "stateReason": "my_stateReason",
+     *       //   "troubleshootingInfo": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "volumeDataRestorePolicyOverrides": [],
@@ -10576,6 +10601,7 @@ export namespace gkebackup_v1 {
      *   //   "restoreConfig": {},
      *   //   "state": "my_state",
      *   //   "stateReason": "my_stateReason",
+     *   //   "troubleshootingInfo": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime",
      *   //   "volumeDataRestorePolicyOverrides": [],
@@ -11027,6 +11053,7 @@ export namespace gkebackup_v1 {
      *       //   "restoreConfig": {},
      *       //   "state": "my_state",
      *       //   "stateReason": "my_stateReason",
+     *       //   "troubleshootingInfo": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime",
      *       //   "volumeDataRestorePolicyOverrides": [],
