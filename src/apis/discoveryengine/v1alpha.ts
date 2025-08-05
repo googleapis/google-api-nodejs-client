@@ -2468,6 +2468,19 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest {}
   /**
+   * The BigQuery output destination configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBigQueryDestination {
+    /**
+     * Required. The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The table_id of exported BigQuery table.
+     */
+    tableId?: string | null;
+  }
+  /**
    * BigQuery source import data from.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBigQuerySource {
@@ -4784,6 +4797,32 @@ export namespace discoveryengine_v1alpha {
     sampleQuerySet?: string | null;
   }
   /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for the `ExportMetrics` method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsRequest {
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOutputConfig;
+  }
+  /**
+   * Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsResponse {}
+  /**
    * Fact Chunk.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFactChunk {
@@ -5968,7 +6007,7 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string | null;
     /**
@@ -6095,6 +6134,15 @@ export namespace discoveryengine_v1alpha {
      * Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot.
      */
     vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
+  }
+  /**
+   * The output configuration setting.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputConfig {
+    /**
+     * The BigQuery location where the output is to be written to.
+     */
+    bigqueryDestination?: Schema$GoogleCloudDiscoveryengineV1alphaBigQueryDestination;
   }
   /**
    * Detailed page information.
@@ -7218,7 +7266,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -7653,6 +7701,10 @@ export namespace discoveryengine_v1alpha {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -11427,7 +11479,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -11858,6 +11910,10 @@ export namespace discoveryengine_v1alpha {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -30420,7 +30476,7 @@ export namespace discoveryengine_v1alpha {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
      *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
@@ -30756,7 +30812,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
@@ -35694,6 +35750,7 @@ export namespace discoveryengine_v1alpha {
 
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
+    analytics: Resource$Projects$Locations$Collections$Engines$Analytics;
     assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
     completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
@@ -35704,6 +35761,10 @@ export namespace discoveryengine_v1alpha {
     widgetConfigs: Resource$Projects$Locations$Collections$Engines$Widgetconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.analytics =
+        new Resource$Projects$Locations$Collections$Engines$Analytics(
+          this.context
+        );
       this.assistants =
         new Resource$Projects$Locations$Collections$Engines$Assistants(
           this.context
@@ -37162,6 +37223,185 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaTuneEngineRequest;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Analytics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Exports metrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.analytics.exportMetrics(
+     *       {
+     *         // Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/analytics`.
+     *         analytics:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/analytics',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "outputConfig": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportMetrics(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+analytics}:exportMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['analytics'],
+        pathParams: ['analytics'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics
+    extends StandardParameters {
+    /**
+     * Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/analytics`.
+     */
+    analytics?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsRequest;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
@@ -42425,7 +42665,7 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -42760,7 +43000,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
@@ -53909,7 +54149,7 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
      *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
@@ -54243,7 +54483,7 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: "user_pseudo_id = some_id" "display_name = \"some_name\"" "starred = true" "is_pinned=true AND (NOT labels:hidden)" "create_time \> \"1970-01-01T12:00:00Z\""
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
