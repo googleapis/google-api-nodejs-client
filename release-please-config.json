@@ -315,6 +315,7 @@
     "src/apis/apigateway": {},
     "src/apis/saasservicemgmt": {},
     "src/apis/cloudlocationfinder": {},
-    "src/apis/parametermanager": {}
+    "src/apis/parametermanager": {},
+    "src/apis/securesourcemanager": {}
   }
 }
