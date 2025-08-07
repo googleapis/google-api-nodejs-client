@@ -1,5 +1,26 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([374063c](https://github.com/googleapis/google-api-nodejs-client/commit/374063cd477a55436184b1f5808b47c795a24ac5))
+* **compute:** update the API ([f9f26f4](https://github.com/googleapis/google-api-nodejs-client/commit/f9f26f43ea8ca69d53d1b1c96452618efbce667e))
+* **compute:** update the API ([2e3c7c3](https://github.com/googleapis/google-api-nodejs-client/commit/2e3c7c36e6e40299fbdef45e1b57b183bdea52b7))
+* **compute:** update the API ([744cef8](https://github.com/googleapis/google-api-nodejs-client/commit/744cef860257c434d2fc770fedf50553529a3339))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [29.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v28.0.0...compute-v29.0.0) (2025-08-04)
 
 

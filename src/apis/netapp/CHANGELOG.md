@@ -1,5 +1,18 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **netapp:** update the API ([c7b5bb9](https://github.com/googleapis/google-api-nodejs-client/commit/c7b5bb9ec219ee74ae956bae7232a1fd16154df6))
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([797d878](https://github.com/googleapis/google-api-nodejs-client/commit/797d8784117908c0f6a5ccc681265e7a5067ee67))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v2.1.0...netapp-v2.2.0) (2025-07-15)
 
 

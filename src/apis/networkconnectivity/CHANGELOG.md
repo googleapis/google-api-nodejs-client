@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **networkconnectivity:** update the API ([c84590a](https://github.com/googleapis/google-api-nodejs-client/commit/c84590ae489757c38f20cf20a3b1487f51a5f2bc))
+* **networkconnectivity:** update the API ([028a390](https://github.com/googleapis/google-api-nodejs-client/commit/028a39001c2b95d4d970a1bf0b24a70fee0b45d3))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [11.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkconnectivity-v11.1.0...networkconnectivity-v11.1.1) (2025-07-15)
 
 
