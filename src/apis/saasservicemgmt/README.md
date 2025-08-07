@@ -2,7 +2,7 @@
 
 # saasservicemgmt
 
-> 
+> Model, deploy, and operate your SaaS at scale.
 
 ## Installation
 
