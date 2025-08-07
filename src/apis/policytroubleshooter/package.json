@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/policytroubleshooter",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "policytroubleshooter",
   "main": "build/index.js",
   "types": "build/index.d.ts",
