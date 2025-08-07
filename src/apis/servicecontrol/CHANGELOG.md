@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **servicecontrol:** update the API ([1477ede](https://github.com/googleapis/google-api-nodejs-client/commit/1477edeea9452111ba77291aba99d7e6f33ca426))
+* **servicecontrol:** update the API ([59b3706](https://github.com/googleapis/google-api-nodejs-client/commit/59b3706e5255f3e4c706aef2bc3573f9d2cd0681))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicecontrol-v8.0.0...servicecontrol-v8.0.1) (2025-07-08)
 
 

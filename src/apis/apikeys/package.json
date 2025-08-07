@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/apikeys",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "apikeys",
   "main": "build/index.js",
   "types": "build/index.d.ts",

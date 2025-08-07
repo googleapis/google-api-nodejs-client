@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **vision:** update the API ([8cd8bbb](https://github.com/googleapis/google-api-nodejs-client/commit/8cd8bbb50791d5c6dba4f64593ff6c5a41675c67))
+* **vision:** update the API ([825ee06](https://github.com/googleapis/google-api-nodejs-client/commit/825ee06392a8ac4971dd77bfcb940e7c374b6bb8))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/vision-v3.0.0...vision-v3.0.1) (2025-07-08)
 
 
