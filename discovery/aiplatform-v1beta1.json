@@ -24187,6 +24187,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "optimizePrompt": {
+                  "description": "Optimizes a prompt.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tuningJobs:optimizePrompt",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.tuningJobs.optimizePrompt",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to optimize the prompt in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/tuningJobs:optimizePrompt",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1OptimizePromptRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1OptimizePromptResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "rebaseTunedModel": {
                   "description": "Rebase a TunedModel.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/tuningJobs:rebaseTunedModel",
@@ -25320,7 +25348,7 @@
       }
     }
   },
-  "revision": "20250728",
+  "revision": "20250731",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -26095,14 +26123,6 @@
         "geminiRequestReadConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1GeminiRequestReadConfig",
           "description": "Optional. The read config for the dataset."
-        },
-        "geminiTemplateConfig": {
-          "$ref": "GoogleCloudAiplatformV1beta1GeminiTemplateConfig",
-          "description": "Optional. Config for assembling templates with a Gemini API structure."
-        },
-        "requestColumnName": {
-          "description": "Optional. The column name in the underlying table that contains already fully assembled requests. If this field is set, the original request will be copied to the output table.",
-          "type": "string"
         }
       },
       "type": "object"
@@ -26122,14 +26142,6 @@
         "geminiRequestReadConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1GeminiRequestReadConfig",
           "description": "Optional. The Gemini request read config for the dataset."
-        },
-        "geminiTemplateConfig": {
-          "$ref": "GoogleCloudAiplatformV1beta1GeminiTemplateConfig",
-          "description": "Optional. Config for assembling templates with a Gemini API structure to assess assembled data."
-        },
-        "requestColumnName": {
-          "description": "Optional. The column name in the underlying table that contains already fully assembled requests.",
-          "type": "string"
         },
         "tuningResourceUsageAssessmentConfig": {
           "$ref": "GoogleCloudAiplatformV1beta1AssessDataRequestTuningResourceUsageAssessmentConfig",
@@ -26523,7 +26535,7 @@
       "id": "GoogleCloudAiplatformV1beta1AutoscalingMetricSpec",
       "properties": {
         "metricName": {
-          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization`",
+          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count`",
           "type": "string"
         },
         "target": {
@@ -26672,6 +26684,10 @@
       "description": "A description of resources that are used for performing batch operations, are dedicated to a Model, and need manual configuration.",
       "id": "GoogleCloudAiplatformV1beta1BatchDedicatedResources",
       "properties": {
+        "flexStart": {
+          "$ref": "GoogleCloudAiplatformV1beta1FlexStart",
+          "description": "Optional. Immutable. If set, use DWS resource to schedule the deployment workload. reference: (https://cloud.google.com/blog/products/compute/introducing-dynamic-workload-scheduler)"
+        },
         "machineSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1MachineSpec",
           "description": "Required. Immutable. The specification of a single machine."
@@ -26680,6 +26696,10 @@
           "description": "Immutable. The maximum number of machine replicas the batch operation may be scaled to. The default value is 10.",
           "format": "int32",
           "type": "integer"
+        },
+        "spot": {
+          "description": "Optional. If true, schedule the deployment workload on [spot VMs](https://cloud.google.com/kubernetes-engine/docs/concepts/spot-vms).",
+          "type": "boolean"
         },
         "startingReplicaCount": {
           "description": "Immutable. The number of machine replicas used at the start of the batch operation. If not set, Vertex AI decides starting number, not greater than max_replica_count",
@@ -30028,6 +30048,18 @@
           "description": "Optional. The deployment group can be no longer than 64 characters (eg: 'test', 'prod'). If not set, we will use the 'default' deployment group. Creating `deployment_groups` with `reserved_ip_ranges` is a recommended practice when the peered network has multiple peering ranges. This creates your deployments from predictable IP spaces for easier traffic administration. Also, one deployment_group (except 'default') can only be used with the same reserved_ip_ranges which means if the deployment_group has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or [d, e] is disallowed. Note: we only support up to 5 deployment groups(not including 'default').",
           "type": "string"
         },
+        "deploymentTier": {
+          "description": "Optional. The deployment tier that the index is deployed to. DEPLOYMENT_TIER_UNSPECIFIED defaults to PERFORMANCE.",
+          "enum": [
+            "DEPLOYMENT_TIER_UNSPECIFIED",
+            "STORAGE"
+          ],
+          "enumDescriptions": [
+            "Default deployment tier.",
+            "Optimized for costs."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "The display name of the DeployedIndex. If not provided upon creation, the Index's display_name is used.",
           "type": "string"
@@ -30690,7 +30722,15 @@
     "GoogleCloudAiplatformV1beta1EnterpriseWebSearch": {
       "description": "Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.",
       "id": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1EntityIdSelector": {
@@ -35001,6 +35041,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1GeminiPreferenceExample": {
+      "description": "Input example for preference optimization.",
+      "id": "GoogleCloudAiplatformV1beta1GeminiPreferenceExample",
+      "properties": {
+        "completions": {
+          "description": "List of completions for a given prompt.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GeminiPreferenceExampleCompletion"
+          },
+          "type": "array"
+        },
+        "contents": {
+          "description": "Multi-turn contents that represents the Prompt.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GeminiPreferenceExampleCompletion": {
+      "description": "Completion and its preference score.",
+      "id": "GoogleCloudAiplatformV1beta1GeminiPreferenceExampleCompletion",
+      "properties": {
+        "completion": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Single turn completion for the given prompt."
+        },
+        "score": {
+          "description": "The score for the given completion.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1GeminiRequestReadConfig": {
       "description": "Configuration for how to read Gemini requests from a multimodal dataset.",
       "id": "GoogleCloudAiplatformV1beta1GeminiRequestReadConfig",
@@ -35318,6 +35395,10 @@
           "$ref": "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectContentsSource",
           "description": "Defines a direct source of content as the source content from which to generate memories."
         },
+        "directMemoriesSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSource",
+          "description": "Defines a direct source of memories that should be uploaded to Memory Bank. This is similar to `CreateMemory`, but it allows for consolidation between these new memories and existing memories for the same scope."
+        },
         "disableConsolidation": {
           "description": "Optional. If true, generated memories will not be consolidated with existing memories; all generated memories will be added as new memories regardless of whether they are duplicates of or contradictory to existing memories. By default, memory consolidation is enabled.",
           "type": "boolean"
@@ -35357,6 +35438,31 @@
         "content": {
           "$ref": "GoogleCloudAiplatformV1beta1Content",
           "description": "Required. A single piece of content from which to generate memories."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSource": {
+      "description": "Defines a direct source of memories that should be uploaded to Memory Bank with consolidation.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSource",
+      "properties": {
+        "directMemories": {
+          "description": "Required. The direct memories to upload to Memory Bank. At most 5 direct memories are allowed per request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory": {
+      "description": "A direct memory to upload to Memory Bank.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateMemoriesRequestDirectMemoriesSourceDirectMemory",
+      "properties": {
+        "fact": {
+          "description": "Required. The fact to consolidate with existing memories.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -38479,6 +38585,7 @@
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
             "NVIDIA_B200",
+            "NVIDIA_GB200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -38487,6 +38594,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -38517,6 +38625,7 @@
             "Nvidia H100 Mega 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
             "Nvidia B200 GPU.",
+            "Nvidia GB200 GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -42503,6 +42612,29 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1OptimizePromptRequest": {
+      "description": "Request message for GenAiTuningService.OptimizePrompt.",
+      "id": "GoogleCloudAiplatformV1beta1OptimizePromptRequest",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Required. The content to optimize."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1OptimizePromptResponse": {
+      "description": "Response message for GenAiTuningService.OptimizePrompt",
+      "id": "GoogleCloudAiplatformV1beta1OptimizePromptResponse",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1beta1Content",
+          "description": "Output only. The optimized prompt content.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1OutputConfig": {
       "description": "Config for evaluation output.",
       "id": "GoogleCloudAiplatformV1beta1OutputConfig",
@@ -43770,6 +43902,26 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1PreTunedModel": {
+      "description": "A pre-tuned model for continuous tuning.",
+      "id": "GoogleCloudAiplatformV1beta1PreTunedModel",
+      "properties": {
+        "baseModel": {
+          "description": "Output only. The name of the base model this PreTunedModel was tuned from.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "checkpointId": {
+          "description": "Optional. The source checkpoint id. If not specified, the default checkpoint will be used.",
+          "type": "string"
+        },
+        "tunedModelName": {
+          "description": "The resource name of the Model. E.g., a model resource name with a specified version id or alias: `projects/{project}/locations/{location}/models/{model}@{version_id}` `projects/{project}/locations/{location}/models/{model}@{alias}` Or, omit the version id to use the default version: `projects/{project}/locations/{location}/models/{model}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig": {
       "description": "The configuration for the prebuilt speaker to use.",
       "id": "GoogleCloudAiplatformV1beta1PrebuiltVoiceConfig",
@@ -43926,6 +44078,122 @@
         },
         "predictionSchemaUri": {
           "description": "Immutable. Points to a YAML file stored on Google Cloud Storage describing the format of a single prediction produced by this Model, which are returned via PredictResponse.predictions, ExplainResponse.explanations, and BatchPredictionJob.output_config. The schema is defined as an OpenAPI 3.0.2 [Schema Object](https://github.com/OAI/OpenAPI-Specification/blob/main/versions/3.0.2.md#schemaObject). AutoML Models always have this field populated by Vertex AI. Note: The URI given on output will be immutable and probably different, including the URI scheme, than the one given on input. The output URI will point to a location where the user only has a read access.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PreferenceOptimizationDataStats": {
+      "description": "Statistics computed for datasets used for preference optimization.",
+      "id": "GoogleCloudAiplatformV1beta1PreferenceOptimizationDataStats",
+      "properties": {
+        "scoreVariancePerExampleDistribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1DatasetDistribution",
+          "description": "Output only. Dataset distributions for scores variance per example.",
+          "readOnly": true
+        },
+        "scoresDistribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1DatasetDistribution",
+          "description": "Output only. Dataset distributions for scores.",
+          "readOnly": true
+        },
+        "totalBillableTokenCount": {
+          "description": "Output only. Number of billable tokens in the tuning dataset.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tuningDatasetExampleCount": {
+          "description": "Output only. Number of examples in the tuning dataset.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tuningStepCount": {
+          "description": "Output only. Number of tuning steps for this Tuning Job.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "userDatasetExamples": {
+          "description": "Output only. Sample user examples in the training dataset.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1GeminiPreferenceExample"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "userInputTokenDistribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1DatasetDistribution",
+          "description": "Output only. Dataset distributions for the user input tokens.",
+          "readOnly": true
+        },
+        "userOutputTokenDistribution": {
+          "$ref": "GoogleCloudAiplatformV1beta1DatasetDistribution",
+          "description": "Output only. Dataset distributions for the user output tokens.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PreferenceOptimizationHyperParameters": {
+      "description": "Hyperparameters for Preference Optimization.",
+      "id": "GoogleCloudAiplatformV1beta1PreferenceOptimizationHyperParameters",
+      "properties": {
+        "adapterSize": {
+          "description": "Optional. Adapter size for preference optimization.",
+          "enum": [
+            "ADAPTER_SIZE_UNSPECIFIED",
+            "ADAPTER_SIZE_ONE",
+            "ADAPTER_SIZE_TWO",
+            "ADAPTER_SIZE_FOUR",
+            "ADAPTER_SIZE_EIGHT",
+            "ADAPTER_SIZE_SIXTEEN",
+            "ADAPTER_SIZE_THIRTY_TWO"
+          ],
+          "enumDescriptions": [
+            "Adapter size is unspecified.",
+            "Adapter size 1.",
+            "Adapter size 2.",
+            "Adapter size 4.",
+            "Adapter size 8.",
+            "Adapter size 16.",
+            "Adapter size 32."
+          ],
+          "type": "string"
+        },
+        "beta": {
+          "description": "Optional. Weight for KL Divergence regularization.",
+          "format": "double",
+          "type": "number"
+        },
+        "epochCount": {
+          "description": "Optional. Number of complete passes the model makes over the entire training dataset during training.",
+          "format": "int64",
+          "type": "string"
+        },
+        "learningRateMultiplier": {
+          "description": "Optional. Multiplier for adjusting the default learning rate.",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PreferenceOptimizationSpec": {
+      "description": "Tuning Spec for Preference Optimization.",
+      "id": "GoogleCloudAiplatformV1beta1PreferenceOptimizationSpec",
+      "properties": {
+        "hyperParameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1PreferenceOptimizationHyperParameters",
+          "description": "Optional. Hyperparameters for Preference Optimization."
+        },
+        "trainingDatasetUri": {
+          "description": "Required. Cloud Storage path to file containing training dataset for preference optimization tuning. The dataset must be formatted as a JSONL file.",
+          "type": "string"
+        },
+        "validationDatasetUri": {
+          "description": "Optional. Cloud Storage path to file containing validation dataset for preference optimization tuning. The dataset must be formatted as a JSONL file.",
           "type": "string"
         }
       },
@@ -55080,10 +55348,6 @@
           "$ref": "GoogleCloudAiplatformV1beta1ToolCodeExecution",
           "description": "Optional. CodeExecution tool type. Enables the model to execute code as part of generation."
         },
-        "computerUse": {
-          "$ref": "GoogleCloudAiplatformV1beta1ToolComputerUse",
-          "description": "Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations."
-        },
         "enterpriseWebSearch": {
           "$ref": "GoogleCloudAiplatformV1beta1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
@@ -55206,25 +55470,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudAiplatformV1beta1ToolComputerUse": {
-      "description": "Tool to support computer use.",
-      "id": "GoogleCloudAiplatformV1beta1ToolComputerUse",
-      "properties": {
-        "environment": {
-          "description": "Required. The environment being operated.",
-          "enum": [
-            "ENVIRONMENT_UNSPECIFIED",
-            "ENVIRONMENT_BROWSER"
-          ],
-          "enumDescriptions": [
-            "Defaults to browser.",
-            "Operates in a web browser."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1beta1ToolConfig": {
       "description": "Tool config. This config is shared for all tools provided in the request.",
       "id": "GoogleCloudAiplatformV1beta1ToolConfig",
@@ -55243,7 +55488,15 @@
     "GoogleCloudAiplatformV1beta1ToolGoogleSearch": {
       "description": "GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1ToolGoogleSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: [\"amazon.com\", \"facebook.com\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1ToolNameMatchInput": {
@@ -56257,6 +56510,11 @@
           "description": "Output only. Statistics for distillation.",
           "readOnly": true
         },
+        "preferenceOptimizationDataStats": {
+          "$ref": "GoogleCloudAiplatformV1beta1PreferenceOptimizationDataStats",
+          "description": "Output only. Statistics for preference optimization.",
+          "readOnly": true
+        },
         "supervisedTuningDataStats": {
           "$ref": "GoogleCloudAiplatformV1beta1SupervisedTuningDataStats",
           "description": "The SFT Tuning data stats."
@@ -56336,6 +56594,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "preTunedModel": {
+          "$ref": "GoogleCloudAiplatformV1beta1PreTunedModel",
+          "description": "The pre-tuned model for continuous tuning."
+        },
+        "preferenceOptimizationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1PreferenceOptimizationSpec",
+          "description": "Tuning Spec for Preference Optimization."
+        },
         "satisfiesPzi": {
           "description": "Output only. Reserved for future use.",
           "readOnly": true,
@@ -56412,6 +56678,10 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "veoTuningSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1VeoTuningSpec",
+          "description": "Tuning Spec for Veo Tuning."
         }
       },
       "type": "object"
@@ -56977,6 +57247,56 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1VeoHyperParameters": {
+      "description": "Hyperparameters for Veo.",
+      "id": "GoogleCloudAiplatformV1beta1VeoHyperParameters",
+      "properties": {
+        "epochCount": {
+          "description": "Optional. Number of complete passes the model makes over the entire training dataset during training.",
+          "format": "int64",
+          "type": "string"
+        },
+        "learningRateMultiplier": {
+          "description": "Optional. Multiplier for adjusting the default learning rate.",
+          "format": "double",
+          "type": "number"
+        },
+        "tuningTask": {
+          "description": "Optional. The tuning task. Either I2V or T2V.",
+          "enum": [
+            "TUNING_TASK_UNSPECIFIED",
+            "TUNING_TASK_I2V",
+            "TUNING_TASK_T2V"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "Tuning task for image to video.",
+            "Tuning task for text to video."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1VeoTuningSpec": {
+      "description": "Tuning Spec for Veo Model Tuning.",
+      "id": "GoogleCloudAiplatformV1beta1VeoTuningSpec",
+      "properties": {
+        "hyperParameters": {
+          "$ref": "GoogleCloudAiplatformV1beta1VeoHyperParameters",
+          "description": "Optional. Hyperparameters for Veo."
+        },
+        "trainingDatasetUri": {
+          "description": "Required. Training dataset used for tuning. The dataset can be specified as either a Cloud Storage path to a JSONL file or as the resource name of a Vertex Multimodal Dataset.",
+          "type": "string"
+        },
+        "validationDatasetUri": {
+          "description": "Optional. Validation dataset used for tuning. The dataset can be specified as either a Cloud Storage path to a JSONL file or as the resource name of a Vertex Multimodal Dataset.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1VertexAISearch": {
       "description": "Retrieve from Vertex AI Search datastore or engine for grounding. datastore and engine are mutually exclusive. See https://cloud.google.com/products/agent-builder",
       "id": "GoogleCloudAiplatformV1beta1VertexAISearch",
@@ -57102,6 +57422,11 @@
           "description": "Optional. The end offset of the video.",
           "format": "google-duration",
           "type": "string"
+        },
+        "fps": {
+          "description": "Optional. The frame rate of the video sent to the model. If not specified, the default value will be 1.0. The fps range is (0.0, 24.0].",
+          "format": "double",
+          "type": "number"
         },
         "startOffset": {
           "description": "Optional. The start offset of the video.",

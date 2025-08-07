@@ -20286,7 +20286,7 @@
       }
     }
   },
-  "revision": "20250728",
+  "revision": "20250731",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -21336,7 +21336,7 @@
       "id": "GoogleCloudAiplatformV1AutoscalingMetricSpec",
       "properties": {
         "metricName": {
-          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization`",
+          "description": "Required. The resource metric name. Supported metrics: * For Online Prediction: * `aiplatform.googleapis.com/prediction/online/accelerator/duty_cycle` * `aiplatform.googleapis.com/prediction/online/cpu/utilization` * `aiplatform.googleapis.com/prediction/online/request_count`",
           "type": "string"
         },
         "target": {
@@ -24553,6 +24553,18 @@
           "description": "Optional. The deployment group can be no longer than 64 characters (eg: 'test', 'prod'). If not set, we will use the 'default' deployment group. Creating `deployment_groups` with `reserved_ip_ranges` is a recommended practice when the peered network has multiple peering ranges. This creates your deployments from predictable IP spaces for easier traffic administration. Also, one deployment_group (except 'default') can only be used with the same reserved_ip_ranges which means if the deployment_group has been used with reserved_ip_ranges: [a, b, c], using it with [a, b] or [d, e] is disallowed. Note: we only support up to 5 deployment groups(not including 'default').",
           "type": "string"
         },
+        "deploymentTier": {
+          "description": "Optional. The deployment tier that the index is deployed to. DEPLOYMENT_TIER_UNSPECIFIED defaults to PERFORMANCE.",
+          "enum": [
+            "DEPLOYMENT_TIER_UNSPECIFIED",
+            "STORAGE"
+          ],
+          "enumDescriptions": [
+            "Default deployment tier.",
+            "Optimized for costs."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "The display name of the DeployedIndex. If not provided upon creation, the Index's display_name is used.",
           "type": "string"
@@ -25122,7 +25134,15 @@
     "GoogleCloudAiplatformV1EnterpriseWebSearch": {
       "description": "Tool to search public web data, powered by Vertex AI Search and Sec4 compliance.",
       "id": "GoogleCloudAiplatformV1EnterpriseWebSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1EntityIdSelector": {
@@ -31478,6 +31498,7 @@
             "NVIDIA_H100_MEGA_80GB",
             "NVIDIA_H200_141GB",
             "NVIDIA_B200",
+            "NVIDIA_GB200",
             "TPU_V2",
             "TPU_V3",
             "TPU_V4_POD",
@@ -31486,6 +31507,7 @@
           "enumDeprecated": [
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -31516,6 +31538,7 @@
             "Nvidia H100 Mega 80Gb GPU.",
             "Nvidia H200 141Gb GPU.",
             "Nvidia B200 GPU.",
+            "Nvidia GB200 GPU.",
             "TPU v2.",
             "TPU v3.",
             "TPU v4.",
@@ -45760,10 +45783,6 @@
           "$ref": "GoogleCloudAiplatformV1ToolCodeExecution",
           "description": "Optional. CodeExecution tool type. Enables the model to execute code as part of generation."
         },
-        "computerUse": {
-          "$ref": "GoogleCloudAiplatformV1ToolComputerUse",
-          "description": "Optional. Tool to support the model interacting directly with the computer. If enabled, it automatically populates computer-use specific Function Declarations."
-        },
         "enterpriseWebSearch": {
           "$ref": "GoogleCloudAiplatformV1EnterpriseWebSearch",
           "description": "Optional. Tool to support searching public web data, powered by Vertex AI Search and Sec4 compliance."
@@ -45886,25 +45905,6 @@
       "properties": {},
       "type": "object"
     },
-    "GoogleCloudAiplatformV1ToolComputerUse": {
-      "description": "Tool to support computer use.",
-      "id": "GoogleCloudAiplatformV1ToolComputerUse",
-      "properties": {
-        "environment": {
-          "description": "Required. The environment being operated.",
-          "enum": [
-            "ENVIRONMENT_UNSPECIFIED",
-            "ENVIRONMENT_BROWSER"
-          ],
-          "enumDescriptions": [
-            "Defaults to browser.",
-            "Operates in a web browser."
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "GoogleCloudAiplatformV1ToolConfig": {
       "description": "Tool config. This config is shared for all tools provided in the request.",
       "id": "GoogleCloudAiplatformV1ToolConfig",
@@ -45923,7 +45923,15 @@
     "GoogleCloudAiplatformV1ToolGoogleSearch": {
       "description": "GoogleSearch tool type. Tool to support Google Search in Model. Powered by Google.",
       "id": "GoogleCloudAiplatformV1ToolGoogleSearch",
-      "properties": {},
+      "properties": {
+        "excludeDomains": {
+          "description": "Optional. List of domains to be excluded from the search results. The default limit is 2000 domains. Example: [\"amazon.com\", \"facebook.com\"].",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudAiplatformV1ToolNameMatchInput": {
@@ -47593,6 +47601,11 @@
           "description": "Optional. The end offset of the video.",
           "format": "google-duration",
           "type": "string"
+        },
+        "fps": {
+          "description": "Optional. The frame rate of the video sent to the model. If not specified, the default value will be 1.0. The fps range is (0.0, 24.0].",
+          "format": "double",
+          "type": "number"
         },
         "startOffset": {
           "description": "Optional. The start offset of the video.",
