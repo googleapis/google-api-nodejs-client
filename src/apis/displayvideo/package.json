@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/displayvideo",
-  "version": "32.3.0",
+  "version": "32.3.1",
   "description": "displayvideo",
   "main": "build/index.js",
   "types": "build/index.d.ts",
