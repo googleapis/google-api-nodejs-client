@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **connectors:** update the API ([2c2df84](https://github.com/googleapis/google-api-nodejs-client/commit/2c2df84452974e40556e5e3ac24552d6b7ec52b8))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **connectors:** update the API ([5ff79a0](https://github.com/googleapis/google-api-nodejs-client/commit/5ff79a0a52b1d545be1e087d0bf2dd9ca36e302a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [23.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/connectors-v23.1.0...connectors-v23.2.0) (2025-07-25)
 
 

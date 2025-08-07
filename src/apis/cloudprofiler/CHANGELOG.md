@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **cloudprofiler:** update the API ([854ae76](https://github.com/googleapis/google-api-nodejs-client/commit/854ae76ecd08323a0f662e073fe0a28d14f963ec))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [5.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/cloudprofiler-v5.0.2...cloudprofiler-v5.0.3) (2025-07-08)
 
 

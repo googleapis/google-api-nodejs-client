@@ -4,6 +4,13 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [155.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v155.0.0...googleapis-v155.0.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [155.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v154.1.0...googleapis-v155.0.0) (2025-08-04)
 
 

@@ -1,5 +1,19 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **workspaceevents:** update the API ([1835511](https://github.com/googleapis/google-api-nodejs-client/commit/1835511f5f6790b89b18e016772495061c7f284b))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **workspaceevents:** update the API ([42edb13](https://github.com/googleapis/google-api-nodejs-client/commit/42edb13d3b8da4bd362d079b1e965106c86895c8))
+* **workspaceevents:** update the API ([0bc596a](https://github.com/googleapis/google-api-nodejs-client/commit/0bc596aac99b917236c1f46cc9bb8671976529da))
+
 ## [3.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/workspaceevents-v3.1.0...workspaceevents-v3.1.1) (2025-07-15)
 
 

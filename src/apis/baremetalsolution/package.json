@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/baremetalsolution",
-  "version": "3.0.1",
+  "version": "1.0.0",
   "description": "baremetalsolution",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **essentialcontacts:** update the API ([935feea](https://github.com/googleapis/google-api-nodejs-client/commit/935feeab770ff25eba88521e534701fde2238d1d))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/essentialcontacts-v3.0.0...essentialcontacts-v3.1.0) (2025-07-08)
 
 

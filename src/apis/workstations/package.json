@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/workstations",
-  "version": "13.2.1",
+  "version": "1.0.0",
   "description": "workstations",
   "main": "build/index.js",
   "types": "build/index.d.ts",

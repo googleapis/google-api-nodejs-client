@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **webrisk:** update the API ([f022c9e](https://github.com/googleapis/google-api-nodejs-client/commit/f022c9e545772d205bbd4046a1e3ca29a7ca9f70))
+* **webrisk:** update the API ([046820b](https://github.com/googleapis/google-api-nodejs-client/commit/046820b57818909bcb77bb298eb8b3cdcfb6d235))
+
 ## [3.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/webrisk-v3.0.0...webrisk-v3.0.1) (2025-07-08)
 
 

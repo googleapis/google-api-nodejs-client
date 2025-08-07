@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **places:** update the API ([539dc8d](https://github.com/googleapis/google-api-nodejs-client/commit/539dc8d64cc4dd012d46af588e6f0444ea485233))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [12.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/places-v12.0.0...places-v12.0.1) (2025-07-08)
 
 

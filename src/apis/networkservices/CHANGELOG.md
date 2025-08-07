@@ -1,5 +1,23 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **networkservices:** update the API ([b142210](https://github.com/googleapis/google-api-nodejs-client/commit/b142210dff7a1fd7eb6c81d4d3b0f109085a6210))
+* **networkservices:** update the API ([6486d32](https://github.com/googleapis/google-api-nodejs-client/commit/6486d324825f67db7216b7537f6ec3cbd1b2a83b))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [29.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/networkservices-v29.0.0...networkservices-v29.0.1) (2025-08-04)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **eventarc:** update the API ([b9e3204](https://github.com/googleapis/google-api-nodejs-client/commit/b9e3204391fc6bfd460b169bbd72a218be16b011))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [7.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/eventarc-v7.1.0...eventarc-v7.1.1) (2025-07-08)
 
 

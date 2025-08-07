@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **config:** update the API ([3c5d3b0](https://github.com/googleapis/google-api-nodejs-client/commit/3c5d3b0bc6cf1f33131362547deea0150e5bff9c))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/config-v2.0.0...config-v2.0.1) (2025-07-08)
 
 

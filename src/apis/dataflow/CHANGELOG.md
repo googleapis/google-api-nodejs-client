@@ -1,5 +1,22 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **dataflow:** update the API ([63162f8](https://github.com/googleapis/google-api-nodejs-client/commit/63162f8d2223219705813d84873c70c01379cf0a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataflow-v17.0.1...dataflow-v18.0.0) (2025-07-22)
 
 

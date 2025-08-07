@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/lifesciences",
-  "version": "4.0.1",
+  "version": "1.0.0",
   "description": "lifesciences",
   "main": "build/index.js",
   "types": "build/index.d.ts",
