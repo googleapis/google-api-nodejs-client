@@ -454,6 +454,10 @@ export namespace texttospeech_v1 {
      */
     languageCode?: string | null;
     /**
+     * Optional. The name of the model. If set, the service will choose the model matching the specified configuration.
+     */
+    modelName?: string | null;
+    /**
      * The name of the voice. If both the name and the gender are not set, the service will choose a voice based on the other parameters such as language_code.
      */
     name?: string | null;
