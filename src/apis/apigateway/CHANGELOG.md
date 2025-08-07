@@ -1,5 +1,13 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **apigateway:** update the API ([d4024ee](https://github.com/googleapis/google-api-nodejs-client/commit/d4024eeb58ec43df1c85f445658582ae192cd45a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v2.0.2...apigateway-v2.0.3) (2025-07-08)
 
 

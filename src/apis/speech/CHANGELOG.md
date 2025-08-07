@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **speech:** update the API ([7c291b6](https://github.com/googleapis/google-api-nodejs-client/commit/7c291b6c872dbbc297c66f50c1b26f8be871e8da))
+* **speech:** update the API ([a6f8d40](https://github.com/googleapis/google-api-nodejs-client/commit/a6f8d408d62b7ef00fc2fcbd14ed4d4c66e4e0f1))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/speech-v2.0.2...speech-v2.0.3) (2025-07-08)
 
 
