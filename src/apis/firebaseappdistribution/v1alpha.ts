@@ -774,6 +774,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Output only. Other test cases that depend on this test cse as a prerequisite.
+     */
+    dependentTestCases?: string[] | null;
+    /**
      * Required. Display name of the test case.
      */
     displayName?: string | null;
@@ -781,6 +785,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. Test case that must be run before this test case.
+     */
+    prerequisiteTestCase?: string | null;
   }
   /**
    * Configuration for automated tests
@@ -3535,8 +3543,10 @@ export namespace firebaseappdistribution_v1alpha {
      *       // {
      *       //   "aiInstructions": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dependentTestCases": [],
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *       // }
      *     },
      *   });
@@ -3546,8 +3556,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *
@@ -3830,8 +3842,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *
@@ -4131,8 +4145,10 @@ export namespace firebaseappdistribution_v1alpha {
      *       // {
      *       //   "aiInstructions": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dependentTestCases": [],
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *       // }
      *     },
      *   });
@@ -4142,8 +4158,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *
