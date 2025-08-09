@@ -137,9 +137,17 @@ export namespace dialogflow_v3 {
      */
     flowInvocation?: Schema$GoogleCloudDialogflowCxV3FlowInvocation;
     /**
+     * Optional. Action performed on behalf of the agent by transitioning to a target CX flow.
+     */
+    flowTransition?: Schema$GoogleCloudDialogflowCxV3FlowTransition;
+    /**
      * Optional. Action performed on behalf of the agent by invoking a child playbook.
      */
     playbookInvocation?: Schema$GoogleCloudDialogflowCxV3PlaybookInvocation;
+    /**
+     * Optional. Action performed on behalf of the agent by transitioning to a target playbook.
+     */
+    playbookTransition?: Schema$GoogleCloudDialogflowCxV3PlaybookTransition;
     /**
      * Optional. Action performed on behalf of the agent by calling a plugin tool.
      */
@@ -3521,6 +3529,10 @@ export namespace dialogflow_v3 {
      */
     eventHandlers?: Schema$GoogleCloudDialogflowCxV3EventHandler[];
     /**
+     * Optional. Defined structured input parameters for this flow.
+     */
+    inputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3ParameterDefinition[];
+    /**
      * Optional. Knowledge connector configuration.
      */
     knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3KnowledgeConnectorSettings;
@@ -3540,6 +3552,10 @@ export namespace dialogflow_v3 {
      * NLU related settings of the flow.
      */
     nluSettings?: Schema$GoogleCloudDialogflowCxV3NluSettings;
+    /**
+     * Optional. Defined structured output parameters for this flow.
+     */
+    outputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3ParameterDefinition[];
     /**
      * A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
@@ -3587,6 +3603,19 @@ export namespace dialogflow_v3 {
      * Optional. Agent will respond in the detected language if the detected language code is in the supported resolved languages for this flow. This will be used only if multi-language training is enabled in the agent and multi-language detection is enabled in the flow. The supported languages must be a subset of the languages supported by the agent.
      */
     supportedResponseLanguageCodes?: string[] | null;
+  }
+  /**
+   * Stores metadata of the transition to a target CX flow. Flow transition actions exit the caller playbook and enter the child flow.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3FlowTransition {
+    /**
+     * Output only. The display name of the flow.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the flow. Format: `projects//locations//agents/`.
+     */
+    flow?: string | null;
   }
   /**
    * The response message for Flows.GetFlowValidationResult.
@@ -4199,6 +4228,19 @@ export namespace dialogflow_v3 {
      * Output only. The uncompressed byte content for the objects. Only populated in responses.
      */
     content?: string | null;
+  }
+  /**
+   * A type schema object that's specified inline.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3InlineSchema {
+    /**
+     * Schema of the elements if this is an ARRAY type.
+     */
+    items?: Schema$GoogleCloudDialogflowCxV3TypeSchema;
+    /**
+     * Data type of the schema.
+     */
+    type?: string | null;
   }
   /**
    * Inline source for a Dialogflow operation that reads or imports objects (e.g. intents) into Dialogflow.
@@ -4955,6 +4997,27 @@ export namespace dialogflow_v3 {
     value?: any | null;
   }
   /**
+   * Defines the properties of a parameter. Used to define parameters used in the agent and the input / output parameters for each fulfillment.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3ParameterDefinition {
+    /**
+     * Human-readable description of the parameter. Limited to 300 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. Name of parameter.
+     */
+    name?: string | null;
+    /**
+     * Type of parameter.
+     */
+    type?: string | null;
+    /**
+     * Optional. Type schema of parameter.
+     */
+    typeSchema?: Schema$GoogleCloudDialogflowCxV3TypeSchema;
+  }
+  /**
    * Text input which can be used for prompt or banned phrases.
    */
   export interface Schema$GoogleCloudDialogflowCxV3Phrase {
@@ -4984,6 +5047,10 @@ export namespace dialogflow_v3 {
      */
     handlers?: Schema$GoogleCloudDialogflowCxV3Handler[];
     /**
+     * Optional. Defined structured input parameters for this playbook.
+     */
+    inputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3ParameterDefinition[];
+    /**
      * Instruction to accomplish target goal.
      */
     instruction?: Schema$GoogleCloudDialogflowCxV3PlaybookInstruction;
@@ -4995,6 +5062,14 @@ export namespace dialogflow_v3 {
      * The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
      */
     name?: string | null;
+    /**
+     * Optional. Defined structured output parameters for this playbook.
+     */
+    outputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3ParameterDefinition[];
+    /**
+     * Optional. Type of the playbook.
+     */
+    playbookType?: string | null;
     /**
      * Output only. The resource name of flows referenced by the current playbook in the instructions.
      */
@@ -5101,6 +5176,19 @@ export namespace dialogflow_v3 {
      * Step instruction in text format.
      */
     text?: string | null;
+  }
+  /**
+   * Stores metadata of the transition to another target playbook. Playbook transition actions exit the caller playbook and enter the target playbook.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3PlaybookTransition {
+    /**
+     * Output only. The display name of the playbook.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.
+     */
+    playbook?: string | null;
   }
   /**
    * Playbook version is a snapshot of the playbook at certain timestamp.
@@ -6523,6 +6611,32 @@ export namespace dialogflow_v3 {
      * Human-readable statuses of the webhooks triggered during this turn.
      */
     webhookStatuses?: string[] | null;
+  }
+  /**
+   * Encapsulates different type schema variations: either a reference to an a schema that's already defined by a tool, or an inline definition.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3TypeSchema {
+    /**
+     * Set if this is an inline schema definition.
+     */
+    inlineSchema?: Schema$GoogleCloudDialogflowCxV3InlineSchema;
+    /**
+     * Set if this is a schema reference.
+     */
+    schemaReference?: Schema$GoogleCloudDialogflowCxV3TypeSchemaSchemaReference;
+  }
+  /**
+   * A reference to the schema of an existing tool.
+   */
+  export interface Schema$GoogleCloudDialogflowCxV3TypeSchemaSchemaReference {
+    /**
+     * The name of the schema.
+     */
+    schema?: string | null;
+    /**
+     * The tool that contains this schema definition. Format: `projects//locations//agents//tools/`.
+     */
+    tool?: string | null;
   }
   /**
    * UserUtterance represents one message sent by the customer.
@@ -19760,11 +19874,13 @@ export namespace dialogflow_v3 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "eventHandlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "knowledgeConnectorSettings": {},
      *       //   "locked": false,
      *       //   "multiLanguageSettings": {},
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "outputParameterDefinitions": [],
      *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
@@ -19778,11 +19894,13 @@ export namespace dialogflow_v3 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
@@ -20227,11 +20345,13 @@ export namespace dialogflow_v3 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
@@ -20853,11 +20973,13 @@ export namespace dialogflow_v3 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "eventHandlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "knowledgeConnectorSettings": {},
      *       //   "locked": false,
      *       //   "multiLanguageSettings": {},
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "outputParameterDefinitions": [],
      *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
@@ -20871,11 +20993,13 @@ export namespace dialogflow_v3 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
@@ -26522,9 +26646,12 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "goal": "my_goal",
      *       //   "handlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "instruction": {},
      *       //   "llmModelSettings": {},
      *       //   "name": "my_name",
+     *       //   "outputParameterDefinitions": [],
+     *       //   "playbookType": "my_playbookType",
      *       //   "referencedFlows": [],
      *       //   "referencedPlaybooks": [],
      *       //   "referencedTools": [],
@@ -26541,9 +26668,12 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},
      *   //   "name": "my_name",
+     *   //   "outputParameterDefinitions": [],
+     *   //   "playbookType": "my_playbookType",
      *   //   "referencedFlows": [],
      *   //   "referencedPlaybooks": [],
      *   //   "referencedTools": [],
@@ -26994,9 +27124,12 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},
      *   //   "name": "my_name",
+     *   //   "outputParameterDefinitions": [],
+     *   //   "playbookType": "my_playbookType",
      *   //   "referencedFlows": [],
      *   //   "referencedPlaybooks": [],
      *   //   "referencedTools": [],
@@ -27468,9 +27601,12 @@ export namespace dialogflow_v3 {
      *       //   "displayName": "my_displayName",
      *       //   "goal": "my_goal",
      *       //   "handlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "instruction": {},
      *       //   "llmModelSettings": {},
      *       //   "name": "my_name",
+     *       //   "outputParameterDefinitions": [],
+     *       //   "playbookType": "my_playbookType",
      *       //   "referencedFlows": [],
      *       //   "referencedPlaybooks": [],
      *       //   "referencedTools": [],
@@ -27487,9 +27623,12 @@ export namespace dialogflow_v3 {
      *   //   "displayName": "my_displayName",
      *   //   "goal": "my_goal",
      *   //   "handlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "instruction": {},
      *   //   "llmModelSettings": {},
      *   //   "name": "my_name",
+     *   //   "outputParameterDefinitions": [],
+     *   //   "playbookType": "my_playbookType",
      *   //   "referencedFlows": [],
      *   //   "referencedPlaybooks": [],
      *   //   "referencedTools": [],

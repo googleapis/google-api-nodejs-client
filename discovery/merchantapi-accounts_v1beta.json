@@ -2311,11 +2311,11 @@
       }
     }
   },
-  "revision": "20250729",
+  "revision": "20250803",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
-      "description": "Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).",
+      "description": "Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?ref_topic=15145634&sjid=6892280366904591178-NC)).",
       "id": "About",
       "properties": {
         "state": {
@@ -3635,7 +3635,7 @@
       "type": "object"
     },
     "InventoryVerification": {
-      "description": "Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).",
+      "description": "Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?ref_topic=15145634&sjid=6892280366904591178-NC).",
       "id": "InventoryVerification",
       "properties": {
         "contact": {
@@ -4145,7 +4145,7 @@
       "type": "object"
     },
     "OnDisplayToOrder": {
-      "description": "Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).",
+      "description": "Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?ref_topic=15145747&sjid=6892280366904591178-NC)).",
       "id": "OnDisplayToOrder",
       "properties": {
         "state": {

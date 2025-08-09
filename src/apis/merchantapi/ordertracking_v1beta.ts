@@ -178,6 +178,10 @@ export namespace merchantapi_ordertracking_v1beta {
      */
     gtin?: string | null;
     /**
+     * Optional. The Global Trade Item Numbers.
+     */
+    gtins?: string[] | null;
+    /**
      * Required. The ID for this line item.
      */
     lineItemId?: string | null;

@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250807",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1927,12 +1927,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "dependentTestCases": {
+          "description": "Output only. Other test cases that depend on this test cse as a prerequisite.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Required. Display name of the test case.",
           "type": "string"
         },
         "name": {
           "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "type": "string"
+        },
+        "prerequisiteTestCase": {
+          "description": "Optional. Test case that must be run before this test case.",
           "type": "string"
         }
       },

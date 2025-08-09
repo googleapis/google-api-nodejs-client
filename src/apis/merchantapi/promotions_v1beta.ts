@@ -844,9 +844,9 @@ export namespace merchantapi_promotions_v1beta {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.promotions.list({
-     *     // Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
+     *     // Optional. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
      *     pageSize: 'placeholder-value',
-     *     // Output only. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     *     // Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The account to list processed promotions for. Format: `accounts/{account\}`
      *     parent: 'accounts/my-account',
@@ -980,11 +980,11 @@ export namespace merchantapi_promotions_v1beta {
   export interface Params$Resource$Accounts$Promotions$List
     extends StandardParameters {
     /**
-     * Output only. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
+     * Optional. The maximum number of promotions to return. The service may return fewer than this value. The maximum value is 250; values above 250 will be coerced to 250. If unspecified, the maximum number of promotions will be returned.
      */
     pageSize?: number;
     /**
-     * Output only. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `ListPromotions` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListPromotions` must match the call that provided the page token.
      */
     pageToken?: string;
     /**

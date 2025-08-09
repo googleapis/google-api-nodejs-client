@@ -127,7 +127,7 @@ export namespace merchantapi_accounts_v1beta {
   }
 
   /**
-   * Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).
+   * Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?ref_topic=15145634&sjid=6892280366904591178-NC)).
    */
   export interface Schema$About {
     /**
@@ -953,7 +953,7 @@ export namespace merchantapi_accounts_v1beta {
     uri?: string | null;
   }
   /**
-   * Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).
+   * Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?ref_topic=15145634&sjid=6892280366904591178-NC).
    */
   export interface Schema$InventoryVerification {
     /**
@@ -1306,7 +1306,7 @@ export namespace merchantapi_accounts_v1beta {
     regionCode?: string | null;
   }
   /**
-   * Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).
+   * Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?ref_topic=15145747&sjid=6892280366904591178-NC)).
    */
   export interface Schema$OnDisplayToOrder {
     /**

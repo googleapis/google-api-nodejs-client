@@ -505,6 +505,10 @@ export namespace file_v1beta1 {
    */
   export interface Schema$Instance {
     /**
+     * Optional. Immutable. Designates the backend type of this instance. Intended to be used by internal tests and allowed customers.
+     */
+    backendType?: string | null;
+    /**
      * The storage capacity of the instance in gigabytes (GB = 1024^3 bytes). This capacity can be increased up to `max_capacity_gb` GB in multipliers of `capacity_step_size_gb` GB.
      */
     capacityGb?: string | null;
@@ -2456,6 +2460,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backendType": "my_backendType",
      *       //   "capacityGb": "my_capacityGb",
      *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
@@ -2772,6 +2777,7 @@ export namespace file_v1beta1 {
      *
      *   // Example response
      *   // {
+     *   //   "backendType": "my_backendType",
      *   //   "capacityGb": "my_capacityGb",
      *   //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *   //   "createTime": "my_createTime",
@@ -3084,6 +3090,7 @@ export namespace file_v1beta1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "backendType": "my_backendType",
      *       //   "capacityGb": "my_capacityGb",
      *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",

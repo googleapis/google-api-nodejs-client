@@ -2161,7 +2161,11 @@ export namespace walletobjects_v1 {
      */
     kind?: string | null;
     /**
-     * The URI for the image.
+     * An ID for an already uploaded private image. Either this or source_uri should be set. Requests setting both or neither will be rejected. Please contact support to use private images.
+     */
+    privateImageId?: string | null;
+    /**
+     * A URI for the image. Either this or private_image_id should be set. Requests setting both or neither will be rejected.
      */
     sourceUri?: Schema$ImageUri;
   }
@@ -4277,6 +4281,19 @@ export namespace walletobjects_v1 {
      * Indicates if the object needs to have upcoming notification enabled.
      */
     enableNotification?: boolean | null;
+  }
+  /**
+   * Request to upload a private image to use in a pass.
+   */
+  export interface Schema$UploadPrivateImageRequest {}
+  /**
+   * Response for uploading the private image.
+   */
+  export interface Schema$UploadPrivateImageResponse {
+    /**
+     * Unique ID of the uploaded image to be referenced later in Image.private_image_id.
+     */
+    privateImageId?: string | null;
   }
   export interface Schema$Uri {
     /**

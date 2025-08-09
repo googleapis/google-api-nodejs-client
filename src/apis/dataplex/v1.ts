@@ -102,7 +102,7 @@ export namespace dataplex_v1 {
   /**
    * Cloud Dataplex API
    *
-   * Dataplex API is used to manage the lifecycle of data lakes.
+   * A unified, intelligent governance solution for data and AI assets.
    *
    * @example
    * ```js
@@ -375,7 +375,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1AspectTypeAuthorization {
     /**
-     * Immutable. The IAM permission grantable on the EntryGroup to allow access to instantiate Aspects of Dataplex owned AspectTypes, only settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the EntryGroup to allow access to instantiate Aspects of Dataplex Universal Catalog owned AspectTypes, only settable for Dataplex Universal Catalog owned Types.
      */
     alternateUsePermission?: string | null;
   }
@@ -1166,7 +1166,7 @@ export namespace dataplex_v1 {
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo;
     /**
-     * The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
+     * The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Universal Catalog Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      */
     type?: string | null;
   }
@@ -1387,7 +1387,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityResult {
     /**
-     * Output only. The status of publishing the data scan to Catalog.
+     * Output only. The status of publishing the data scan as Dataplex Universal Catalog metadata.
      */
     catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
@@ -1712,7 +1712,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualitySpec {
     /**
-     * Optional. If set, the latest DataScan job result will be published to Dataplex Catalog.
+     * Optional. If set, the latest DataScan job result will be published as Dataplex Universal Catalog metadata.
      */
     catalogPublishingEnabled?: boolean | null;
     /**
@@ -1879,7 +1879,7 @@ export namespace dataplex_v1 {
     updateTime?: string | null;
   }
   /**
-   * The status of publishing the data scan result to Catalog.
+   * The status of publishing the data scan result as Dataplex Universal Catalog metadata.
    */
   export interface Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus {
     /**
@@ -1892,7 +1892,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataScanEvent {
     /**
-     * The status of publishing the data scan to Catalog.
+     * The status of publishing the data scan as Dataplex Universal Catalog metadata.
      */
     catalogPublishingStatus?: Schema$GoogleCloudDataplexV1DataScanCatalogPublishingStatus;
     /**
@@ -2146,7 +2146,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataSource {
     /**
-     * Immutable. The Dataplex entity that represents the data source (e.g. BigQuery table) for DataScan, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
+     * Immutable. The Dataplex Universal Catalog entity that represents the data source (e.g. BigQuery table) for DataScan, of the form: projects/{project_number\}/locations/{location_id\}/lakes/{lake_id\}/zones/{zone_id\}/entities/{entity_id\}.
      */
     entity?: string | null;
     /**
@@ -2479,7 +2479,7 @@ export namespace dataplex_v1 {
      */
     aspects?: {[key: string]: Schema$GoogleCloudDataplexV1Aspect} | null;
     /**
-     * Output only. The time when the entry was created in Dataplex.
+     * Output only. The time when the entry was created in Dataplex Universal Catalog.
      */
     createTime?: string | null;
     /**
@@ -2503,7 +2503,7 @@ export namespace dataplex_v1 {
      */
     parentEntry?: string | null;
     /**
-     * Output only. The time when the entry was last updated in Dataplex.
+     * Output only. The time when the entry was last updated in Dataplex Universal Catalog.
      */
     updateTime?: string | null;
   }
@@ -2733,7 +2733,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1EntryTypeAuthorization {
     /**
-     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Entries of Dataplex owned Entry Types, only settable for Dataplex owned Types.
+     * Immutable. The IAM permission grantable on the Entry Group to allow access to instantiate Entries of Dataplex Universal Catalog owned Entry Types, only settable for Dataplex Universal Catalog owned Types.
      */
     alternateUsePermission?: string | null;
   }
@@ -2838,7 +2838,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1EnvironmentInfrastructureSpecOsImageRuntime {
     /**
-     * Required. Dataplex Image version.
+     * Required. Dataplex Universal Catalog Image version.
      */
     imageVersion?: string | null;
     /**
@@ -2885,7 +2885,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1GenerateDataQualityRulesResponse {
     /**
-     * The data quality rules that Dataplex generates based on the results of a data profiling scan.
+     * The data quality rules that Dataplex Universal Catalog generates based on the results of a data profiling scan.
      */
     rule?: Schema$GoogleCloudDataplexV1DataQualityRule[];
   }
@@ -3043,7 +3043,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ImportItem {
     /**
-     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.In FULL entry sync mode, if you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry. Dataplex implicitly adds the keys for all of the required aspects of an entry.
+     * The aspects to modify. Supports the following syntaxes: {aspect_type_reference\}: matches aspects that belong to the specified aspect type and are attached directly to the entry. {aspect_type_reference\}@{path\}: matches aspects that belong to the specified aspect type and path. {aspect_type_reference\}@* : matches aspects of the given type for all paths. *@path : matches aspects of all types on the given path.Replace {aspect_type_reference\} with a reference to the aspect type, in the format {project_id_or_number\}.{location_id\}.{aspect_type_id\}.In FULL entry sync mode, if you leave this field empty, it is treated as specifying exactly those aspects that are present within the specified entry. Dataplex Universal Catalog implicitly adds the keys for all of the required aspects of an entry.
      */
     aspectKeys?: string[] | null;
     /**
@@ -3055,7 +3055,7 @@ export namespace dataplex_v1 {
      */
     entryLink?: Schema$GoogleCloudDataplexV1EntryLink;
     /**
-     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
+     * The fields to update, in paths that are relative to the Entry resource. Separate each field with a comma.In FULL entry sync mode, Dataplex Universal Catalog includes the paths of all of the fields for an entry that can be modified, including aspects. This means that Dataplex Universal Catalog replaces the existing entry with the entry in the metadata import file. All modifiable fields are updated, regardless of the fields that are listed in the update mask, and regardless of whether a field is present in the entry object.The update_mask field is ignored when an entry is created or re-created.In an aspect-only metadata job (when entry sync mode is NONE), set this value to aspects.Dataplex Universal Catalog also determines which entries and aspects to modify by comparing the values and timestamps that you provide in the metadata import file with the values and timestamps that exist in your project. For more information, see Comparison logic (https://cloud.google.com/dataplex/docs/import-metadata#data-modification-logic).
      */
     updateMask?: string | null;
   }
@@ -3688,7 +3688,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1MetadataJobExportJobSpec {
     /**
-     * Required. The root path of the Cloud Storage bucket to export the metadata to, in the format gs://{bucket\}/. You can optionally specify a custom prefix after the bucket name, in the format gs://{bucket\}/{prefix\}/. The maximum length of the custom prefix is 128 characters. Dataplex constructs the object path for the exported files by using the bucket name and prefix that you provide, followed by a system-generated path.The bucket must be in the same VPC Service Controls perimeter as the job.
+     * Required. The root path of the Cloud Storage bucket to export the metadata to, in the format gs://{bucket\}/. You can optionally specify a custom prefix after the bucket name, in the format gs://{bucket\}/{prefix\}/. The maximum length of the custom prefix is 128 characters. Dataplex Universal Catalog constructs the object path for the exported files by using the bucket name and prefix that you provide, followed by a system-generated path.The bucket must be in the same VPC Service Controls perimeter as the job.
      */
     outputPath?: string | null;
     /**
@@ -3984,7 +3984,7 @@ export namespace dataplex_v1 {
      */
     partitionStyle?: string | null;
     /**
-     * Required. Set to true if user-managed or false if managed by Dataplex. The default is false (managed by Dataplex). Set to falseto enable Dataplex discovery to update the schema. including new data discovery, schema inference, and schema evolution. Users retain the ability to input and edit the schema. Dataplex treats schema input by the user as though produced by a previous Dataplex discovery operation, and it will evolve the schema and take action based on that treatment. Set to true to fully manage the entity schema. This setting guarantees that Dataplex will not change schema fields.
+     * Required. Set to true if user-managed or false if managed by Dataplex Universal Catalog. The default is false (managed by Dataplex Universal Catalog). Set to falseto enable Dataplex Universal Catalog discovery to update the schema. including new data discovery, schema inference, and schema evolution. Users retain the ability to input and edit the schema. Dataplex Universal Catalog treats schema input by the user as though produced by a previous Dataplex Universal Catalog discovery operation, and it will evolve the schema and take action based on that treatment. Set to true to fully manage the entity schema. This setting guarantees that Dataplex Universal Catalog will not change schema fields.
      */
     userManaged?: boolean | null;
   }
@@ -7393,7 +7393,7 @@ export namespace dataplex_v1 {
      *     pageSize: 'placeholder-value',
      *     // Optional. Page token received from a previous SearchEntries call. Provide this to retrieve the subsequent page.
      *     pageToken: 'placeholder-value',
-     *     // Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
+     *     // Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
      *     query: 'placeholder-value',
      *     // Optional. The scope under which the search should be operating. It must either be organizations/ or projects/. If it is unspecified, it defaults to the organization where the project provided in name is located.
      *     scope: 'placeholder-value',
@@ -7589,7 +7589,7 @@ export namespace dataplex_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
+     * Required. The query against which entries in scope should be matched. The query syntax is defined in Search syntax for Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/search-syntax).
      */
     query?: string;
     /**
@@ -38149,7 +38149,7 @@ export namespace dataplex_v1 {
     }
 
     /**
-     * Creates a metadata job. For example, use a metadata job to import Dataplex Catalog entries and aspects from a third-party system into Dataplex.
+     * Creates a metadata job. For example, use a metadata job to import metadata from a third-party system into Dataplex Universal Catalog.
      * @example
      * ```js
      * // Before running the sample:
