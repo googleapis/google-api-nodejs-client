@@ -154,7 +154,7 @@
                 "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
                 "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
                 "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
-                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel. **Note:** This enum is only available if `experiments=EXPANDED_COVERAGE` is set in the request. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
               "type": "string"
@@ -236,7 +236,7 @@
                 "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
                 "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
                 "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
-                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel. **Note:** This enum is only available if `experiments=EXPANDED_COVERAGE` is set in the request. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+                "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
               ],
               "location": "query",
               "type": "string"
@@ -299,7 +299,7 @@
       }
     }
   },
-  "revision": "20250427",
+  "revision": "20250804",
   "rootUrl": "https://solar.googleapis.com/",
   "schemas": {
     "BuildingInsights": {
@@ -340,7 +340,7 @@
             "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
             "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
             "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
-            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel. **Note:** This enum is only available if `experiments=EXPANDED_COVERAGE` is set in the request. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
         },
@@ -436,7 +436,7 @@
             "Solar data is derived from aerial imagery captured at low-altitude and processed at 0.1 m/pixel.",
             "Solar data is derived from enhanced aerial imagery captured at high-altitude and processed at 0.25 m/pixel.",
             "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel.",
-            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel. **Note:** This enum is only available if `experiments=EXPANDED_COVERAGE` is set in the request. For more information, see [Expanded Coverage](https://developers.google.com/maps/documentation/solar/expanded-coverage)."
+            "Solar data is derived from enhanced satellite imagery processed at 0.25 m/pixel."
           ],
           "type": "string"
         },
