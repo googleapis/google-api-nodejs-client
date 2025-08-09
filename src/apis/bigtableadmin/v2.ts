@@ -1255,6 +1255,10 @@ export namespace bigtableadmin_v2 {
      */
     state?: string | null;
     /**
+     * Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: "123/environment": "production", "123/costCenter": "marketing" Tags and Labels (above) are both used to bind metadata to resources, with different use-cases. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for an in-depth overview on the difference between tags and labels.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
      * The type of the instance. Defaults to `PRODUCTION`.
      */
     type?: string | null;
@@ -3198,6 +3202,7 @@ export namespace bigtableadmin_v2 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "type": "my_type"
      *   // }
      * }
@@ -3657,6 +3662,7 @@ export namespace bigtableadmin_v2 {
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
+     *       //   "tags": {},
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -4134,6 +4140,7 @@ export namespace bigtableadmin_v2 {
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
+     *       //   "tags": {},
      *       //   "type": "my_type"
      *       // }
      *     },
@@ -4149,6 +4156,7 @@ export namespace bigtableadmin_v2 {
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
+     *   //   "tags": {},
      *   //   "type": "my_type"
      *   // }
      * }
