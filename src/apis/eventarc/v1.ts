@@ -180,7 +180,7 @@ export namespace eventarc_v1 {
      */
     createTime?: string | null;
     /**
-     * Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     * Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
      */
     cryptoKeyName?: string | null;
     /**
