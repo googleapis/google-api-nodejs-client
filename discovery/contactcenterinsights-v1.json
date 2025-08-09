@@ -5305,7 +5305,7 @@
       }
     }
   },
-  "revision": "20250729",
+  "revision": "20250804",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -6655,6 +6655,13 @@
           "description": "An arbitrary integer value indicating the customer's satisfaction rating.",
           "format": "int32",
           "type": "integer"
+        },
+        "feedbackLabels": {
+          "description": "Input only. The feedback labels associated with the conversation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1FeedbackLabel"
+          },
+          "type": "array"
         },
         "menuPath": {
           "description": "An arbitrary string value specifying the menu path the customer took.",
@@ -11079,6 +11086,13 @@
           "description": "An arbitrary integer value indicating the customer's satisfaction rating.",
           "format": "int32",
           "type": "integer"
+        },
+        "feedbackLabels": {
+          "description": "Input only. The feedback labels associated with the conversation.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1alpha1FeedbackLabel"
+          },
+          "type": "array"
         },
         "menuPath": {
           "description": "An arbitrary string value specifying the menu path the customer took.",
