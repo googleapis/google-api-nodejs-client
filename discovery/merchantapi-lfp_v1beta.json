@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20250621",
+  "revision": "20250803",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -617,7 +617,7 @@
       "id": "LfpStore",
       "properties": {
         "gcidCategory": {
-          "description": "Optional. [Google My Business category id](https://gcid-explorer.corp.google.com/static/gcid.html).",
+          "description": "Optional. [Google My Business category id](https://support.google.com/business/answer/7249669).",
           "items": {
             "type": "string"
           },

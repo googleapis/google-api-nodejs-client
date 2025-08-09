@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "merchantapi:ordertracking_v1beta",
+  "id": "merchantapi:ordertracking_v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://merchantapi.mtls.googleapis.com/",
   "name": "merchantapi",
@@ -111,7 +111,7 @@
           "methods": {
             "create": {
               "description": "Creates new order tracking signal.",
-              "flatPath": "ordertracking/v1beta/accounts/{accountsId}/orderTrackingSignals",
+              "flatPath": "ordertracking/v1/accounts/{accountsId}/orderTrackingSignals",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.orderTrackingSignals.create",
               "parameterOrder": [
@@ -131,7 +131,7 @@
                   "type": "string"
                 }
               },
-              "path": "ordertracking/v1beta/{+parent}/orderTrackingSignals",
+              "path": "ordertracking/v1/{+parent}/orderTrackingSignals",
               "request": {
                 "$ref": "OrderTrackingSignal"
               },
@@ -207,11 +207,6 @@
       "properties": {
         "brand": {
           "description": "Optional. Brand of the product.",
-          "type": "string"
-        },
-        "gtin": {
-          "deprecated": true,
-          "description": "Optional. The Global Trade Item Number.",
           "type": "string"
         },
         "gtins": {
@@ -569,6 +564,6 @@
   },
   "servicePath": "",
   "title": "Merchant API",
-  "version": "ordertracking_v1beta",
+  "version": "ordertracking_v1",
   "version_module": true
 }

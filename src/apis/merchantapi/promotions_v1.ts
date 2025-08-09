@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_promotions_v1beta {
+export namespace merchantapi_promotions_v1 {
   export interface Options extends GlobalOptions {
-    version: 'promotions_v1beta';
+    version: 'promotions_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_promotions_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('promotions_v1beta');
+   * const merchantapi = google.merchantapi('promotions_v1');
    * ```
    */
   export class Merchantapi {
@@ -530,7 +530,7 @@ export namespace merchantapi_promotions_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('promotions_v1beta');
+     * const merchantapi = google.merchantapi('promotions_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -635,7 +635,7 @@ export namespace merchantapi_promotions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/promotions/v1beta/{+name}').replace(
+            url: (rootUrl + '/promotions/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -676,7 +676,7 @@ export namespace merchantapi_promotions_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('promotions_v1beta');
+     * const merchantapi = google.merchantapi('promotions_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -791,7 +791,7 @@ export namespace merchantapi_promotions_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/promotions/v1beta/{+parent}/promotions:insert'
+              rootUrl + '/promotions/v1/{+parent}/promotions:insert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -830,7 +830,7 @@ export namespace merchantapi_promotions_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('promotions_v1beta');
+     * const merchantapi = google.merchantapi('promotions_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -933,7 +933,7 @@ export namespace merchantapi_promotions_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/promotions/v1beta/{+parent}/promotions').replace(
+            url: (rootUrl + '/promotions/v1/{+parent}/promotions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

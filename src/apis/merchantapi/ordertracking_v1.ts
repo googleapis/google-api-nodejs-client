@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_ordertracking_v1beta {
+export namespace merchantapi_ordertracking_v1 {
   export interface Options extends GlobalOptions {
-    version: 'ordertracking_v1beta';
+    version: 'ordertracking_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_ordertracking_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('ordertracking_v1beta');
+   * const merchantapi = google.merchantapi('ordertracking_v1');
    * ```
    */
   export class Merchantapi {
@@ -173,10 +173,6 @@ export namespace merchantapi_ordertracking_v1beta {
      * Optional. Brand of the product.
      */
     brand?: string | null;
-    /**
-     * Optional. The Global Trade Item Number.
-     */
-    gtin?: string | null;
     /**
      * Optional. The Global Trade Item Numbers.
      */
@@ -436,7 +432,7 @@ export namespace merchantapi_ordertracking_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('ordertracking_v1beta');
+     * const merchantapi = google.merchantapi('ordertracking_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -561,7 +557,7 @@ export namespace merchantapi_ordertracking_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/ordertracking/v1beta/{+parent}/orderTrackingSignals'
+              rootUrl + '/ordertracking/v1/{+parent}/orderTrackingSignals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
