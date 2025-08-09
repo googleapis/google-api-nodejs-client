@@ -210,7 +210,7 @@
       }
     }
   },
-  "revision": "20250405",
+  "revision": "20250802",
   "rootUrl": "https://digitalassetlinks.googleapis.com/",
   "schemas": {
     "AndroidAppAsset": {
@@ -337,7 +337,7 @@
           "type": "string"
         },
         "errorCode": {
-          "description": "Error codes that describe the result of the Check operation.",
+          "description": "Error codes that describe the result of the Check operation. NOTE: Error codes may be populated even when `linked` is true. The error codes do not necessarily imply that the request failed, but rather, specify any errors encountered in the statements file(s) which may or may not impact whether the server determines the requested source and target to be linked.",
           "items": {
             "enum": [
               "ERROR_CODE_UNSPECIFIED",
