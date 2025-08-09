@@ -1413,6 +1413,10 @@ export namespace backupdr_v1 {
    */
   export interface Schema$DiskBackupProperties {
     /**
+     * The access mode of the source disk.
+     */
+    accessMode?: string | null;
+    /**
      * The architecture of the source disk. Valid values are ARM64 or X86_64.
      */
     architecture?: string | null;
@@ -1421,13 +1425,33 @@ export namespace backupdr_v1 {
      */
     description?: string | null;
     /**
+     * Indicates whether the source disk is using confidential compute mode.
+     */
+    enableConfidentialCompute?: boolean | null;
+    /**
      * A list of guest OS features that are applicable to this backup.
      */
     guestOsFeature?: Schema$GuestOsFeature[];
     /**
+     * The labels of the source disk.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
      * A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image.
      */
     licenses?: string[] | null;
+    /**
+     * The physical block size of the source disk.
+     */
+    physicalBlockSizeBytes?: string | null;
+    /**
+     * The number of IOPS provisioned for the source disk.
+     */
+    provisionedIops?: string | null;
+    /**
+     * The number of throughput provisioned for the source disk.
+     */
+    provisionedThroughput?: string | null;
     /**
      * Region and zone are mutually exclusive fields. The URL of the region of the source disk.
      */
@@ -1444,6 +1468,10 @@ export namespace backupdr_v1 {
      * The source disk used to create this backup.
      */
     sourceDisk?: string | null;
+    /**
+     * The storage pool of the source disk.
+     */
+    storagePool?: string | null;
     /**
      * The URL of the type of the disk.
      */
@@ -2058,6 +2086,9 @@ export namespace backupdr_v1 {
      * Resource name for the location, which may vary between implementations. For example: `"projects/example-project/locations/us-east1"`
      */
     name?: string | null;
+  }
+  export interface Schema$LocationMetadata {
+    unsupportedFeatures?: string[] | null;
   }
   /**
    * ManagementServer describes a single BackupDR ManagementServer instance.
