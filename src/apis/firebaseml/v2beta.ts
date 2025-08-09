@@ -628,6 +628,10 @@ export namespace firebaseml_v2beta {
      */
     labels?: {[key: string]: string} | null;
     /**
+     * Optional. Settings for prompt and response sanitization using the Model Armor service. If supplied, safety_settings must not be supplied.
+     */
+    modelArmorConfig?: Schema$GoogleCloudAiplatformV1beta1ModelArmorConfig;
+    /**
      * Optional. Per request settings for blocking unsafe content. Enforced on GenerateContentResponse.candidates.
      */
     safetySettings?: Schema$GoogleCloudAiplatformV1beta1SafetySetting[];
@@ -1143,6 +1147,19 @@ export namespace firebaseml_v2beta {
      * Number of tokens.
      */
     tokenCount?: number | null;
+  }
+  /**
+   * Configuration for Model Armor integrations of prompt and responses.
+   */
+  export interface Schema$GoogleCloudAiplatformV1beta1ModelArmorConfig {
+    /**
+     * Optional. The name of the Model Armor template to use for prompt sanitization.
+     */
+    promptTemplateName?: string | null;
+    /**
+     * Optional. The name of the Model Armor template to use for response sanitization.
+     */
+    responseTemplateName?: string | null;
   }
   /**
    * A datatype containing media that is part of a multi-part `Content` message. A `Part` consists of data which has an associated datatype. A `Part` can only contain one of the accepted types in `Part.data`. A `Part` must have a fixed IANA MIME type identifying the type and subtype of the media if `inline_data` or `file_data` field is filled with raw bytes.
@@ -2015,6 +2032,7 @@ export namespace firebaseml_v2beta {
      *         //   "contents": [],
      *         //   "generationConfig": {},
      *         //   "labels": {},
+     *         //   "modelArmorConfig": {},
      *         //   "safetySettings": [],
      *         //   "systemInstruction": {},
      *         //   "toolConfig": {},
@@ -2186,6 +2204,7 @@ export namespace firebaseml_v2beta {
      *           //   "contents": [],
      *           //   "generationConfig": {},
      *           //   "labels": {},
+     *           //   "modelArmorConfig": {},
      *           //   "safetySettings": [],
      *           //   "systemInstruction": {},
      *           //   "toolConfig": {},
