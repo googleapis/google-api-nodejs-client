@@ -8123,6 +8123,8 @@ export namespace managedkafka_v1 {
      *   const res = await managedkafka.projects.locations.schemaRegistries.list({
      *     // Required. The parent whose schema registry instances are to be listed. Structured like: `projects/{project\}/locations/{location\}`
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. Specifies the view to return for the schema registry instances. If not specified, the default view is SCHEMA_REGISTRY_VIEW_BASIC.
+     *     view: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -8266,6 +8268,10 @@ export namespace managedkafka_v1 {
      * Required. The parent whose schema registry instances are to be listed. Structured like: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
+    /**
+     * Optional. Specifies the view to return for the schema registry instances. If not specified, the default view is SCHEMA_REGISTRY_VIEW_BASIC.
+     */
+    view?: string;
   }
 
   export class Resource$Projects$Locations$Schemaregistries$Compatibility {
