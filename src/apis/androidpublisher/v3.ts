@@ -1211,6 +1211,10 @@ export namespace androidpublisher_v3 {
   /**
    * Information related to deferred item replacement.
    */
+  export interface Schema$DeferredItemRemoval {}
+  /**
+   * Information related to deferred item replacement.
+   */
   export interface Schema$DeferredItemReplacement {
     /**
      * The product_id going to replace the existing product_id.
@@ -4213,6 +4217,10 @@ export namespace androidpublisher_v3 {
      * The item is auto renewing.
      */
     autoRenewingPlan?: Schema$AutoRenewingPlan;
+    /**
+     * Information for deferred item removal.
+     */
+    deferredItemRemoval?: Schema$DeferredItemRemoval;
     /**
      * Information for deferred item replacement.
      */
