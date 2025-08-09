@@ -5436,7 +5436,7 @@
       }
     }
   },
-  "revision": "20250627",
+  "revision": "20250804",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -10664,6 +10664,13 @@
           },
           "type": "array"
         },
+        "inputParameterDefinitions": {
+          "description": "Optional. Defined structured input parameters for this flow.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ParameterDefinition"
+          },
+          "type": "array"
+        },
         "knowledgeConnectorSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings",
           "description": "Optional. Knowledge connector configuration."
@@ -10683,6 +10690,13 @@
         "nluSettings": {
           "$ref": "GoogleCloudDialogflowCxV3beta1NluSettings",
           "description": "NLU related settings of the flow."
+        },
+        "outputParameterDefinitions": {
+          "description": "Optional. Defined structured output parameters for this flow.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3beta1ParameterDefinition"
+          },
+          "type": "array"
         },
         "transitionRouteGroups": {
           "description": "A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
