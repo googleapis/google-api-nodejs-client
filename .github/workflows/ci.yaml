@@ -33,7 +33,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - run: npm install
       - run: npm test
         env:
@@ -44,7 +44,7 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - run: npm install
       - run: npm run lint
   docs:
@@ -53,6 +53,6 @@ jobs:
       - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4
       - uses: actions/setup-node@v4
         with:
-          node-version: 18
+          node-version: 22
       - run: npm install
       - run: npm run docs-test
