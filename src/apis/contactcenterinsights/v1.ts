@@ -741,6 +741,10 @@ export namespace contactcenterinsights_v1 {
      */
     customerSatisfactionRating?: number | null;
     /**
+     * Input only. The feedback labels associated with the conversation.
+     */
+    feedbackLabels?: Schema$GoogleCloudContactcenterinsightsV1alpha1FeedbackLabel[];
+    /**
      * An arbitrary string value specifying the menu path the customer took.
      */
     menuPath?: string | null;
@@ -3618,6 +3622,10 @@ export namespace contactcenterinsights_v1 {
      * An arbitrary integer value indicating the customer's satisfaction rating.
      */
     customerSatisfactionRating?: number | null;
+    /**
+     * Input only. The feedback labels associated with the conversation.
+     */
+    feedbackLabels?: Schema$GoogleCloudContactcenterinsightsV1FeedbackLabel[];
     /**
      * An arbitrary string value specifying the menu path the customer took.
      */
