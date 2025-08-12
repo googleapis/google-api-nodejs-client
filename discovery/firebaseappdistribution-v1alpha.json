@@ -156,7 +156,7 @@
           ],
           "parameters": {
             "mobilesdkAppId": {
-              "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+              "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
               "location": "path",
               "required": true,
               "type": "string"
@@ -185,13 +185,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "uploadHash": {
-                  "description": "The hash for the upload",
+                  "description": "Required. The hash for the upload",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -220,13 +220,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "releaseId": {
-                  "description": "Release identifier",
+                  "description": "Required. Release identifier",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -258,13 +258,13 @@
                   ],
                   "parameters": {
                     "mobilesdkAppId": {
-                      "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                      "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "releaseId": {
-                      "description": "Release identifier",
+                      "description": "Required. Release identifier",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -331,13 +331,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "uploadToken": {
-                  "description": "The token for the upload",
+                  "description": "Required. The token for the upload",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250808",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1927,12 +1927,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "dependentTestCases": {
+          "description": "Output only. Other test cases that depend on this test cse as a prerequisite.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Required. Display name of the test case.",
           "type": "string"
         },
         "name": {
           "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "type": "string"
+        },
+        "prerequisiteTestCase": {
+          "description": "Optional. Test case that must be run before this test case.",
           "type": "string"
         }
       },
