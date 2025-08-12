@@ -2117,7 +2117,7 @@
       }
     }
   },
-  "revision": "20250720",
+  "revision": "20250731",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceFeatureSpec": {
@@ -6433,7 +6433,18 @@
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
             "MODERNIZATION_ABORTED",
-            "MODERNIZATION_WILL_BE_SCHEDULED"
+            "MODERNIZATION_PREPARING",
+            "MODERNIZATION_STALLED",
+            "MODERNIZATION_PREPARED",
+            "MODERNIZATION_MIGRATING_WORKLOADS",
+            "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_WILL_BE_SCHEDULED",
+            "MODERNIZATION_MANUAL",
+            "MODERNIZATION_ELIGIBLE",
+            "MODERNIZATION_MODERNIZING",
+            "MODERNIZATION_MODERNIZED_SOAKING",
+            "MODERNIZATION_FINALIZED",
+            "MODERNIZATION_ROLLING_BACK_FLEET"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -6477,7 +6488,18 @@
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
             "Modernization is aborted for a cluster.",
-            "Modernization will be scheduled for a fleet."
+            "Preparing cluster so that its workloads can be migrated.",
+            "Modernization is stalled for a cluster.",
+            "Cluster has been prepared for its workloads to be migrated.",
+            "Migrating the cluster's workloads to the new implementation.",
+            "Rollback is in progress for modernization of a cluster.",
+            "Modernization will be scheduled for a fleet.",
+            "Fleet is opted out from automated modernization.",
+            "Fleet is eligible for modernization.",
+            "Modernization of one or more clusters in a fleet is in progress.",
+            "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
+            "Rollback is in progress for modernization of all clusters in a fleet."
           ],
           "type": "string"
         },
