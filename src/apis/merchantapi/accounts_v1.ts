@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_accounts_v1beta {
+export namespace merchantapi_accounts_v1 {
   export interface Options extends GlobalOptions {
-    version: 'accounts_v1beta';
+    version: 'accounts_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_accounts_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('accounts_v1beta');
+   * const merchantapi = google.merchantapi('accounts_v1');
    * ```
    */
   export class Merchantapi {
@@ -611,27 +611,6 @@ export namespace merchantapi_accounts_v1beta {
      * Optional. Users to be added to the account.
      */
     user?: Schema$AddUser[];
-    /**
-     * Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.
-     */
-    users?: Schema$CreateUserRequest[];
-  }
-  /**
-   * Request message for the `CreateUser` method.
-   */
-  export interface Schema$CreateUserRequest {
-    /**
-     * Required. The resource name of the account for which a user will be created. Format: `accounts/{account\}`
-     */
-    parent?: string | null;
-    /**
-     * Optional. The user to create.
-     */
-    user?: Schema$User;
-    /**
-     * Required. The email address of the user (for example, `john.doe@gmail.com`).
-     */
-    userId?: string | null;
   }
   /**
    * Customer service information.
@@ -2237,7 +2216,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2257,8 +2236,7 @@ export namespace merchantapi_accounts_v1beta {
      *       // {
      *       //   "account": {},
      *       //   "service": [],
-     *       //   "user": [],
-     *       //   "users": []
+     *       //   "user": []
      *       // }
      *     },
      *   });
@@ -2347,9 +2325,10 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/accounts/v1beta/accounts:createAndConfigure'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/accounts/v1/accounts:createAndConfigure').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
             apiVersion: '',
           },
@@ -2387,7 +2366,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2482,7 +2461,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2523,7 +2502,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2624,7 +2603,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2665,7 +2644,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2767,7 +2746,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/accounts').replace(
+            url: (rootUrl + '/accounts/v1/accounts').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -2808,7 +2787,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2913,9 +2892,10 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/accounts/v1beta/{+provider}:listSubaccounts'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/accounts/v1/{+provider}:listSubaccounts').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
             apiVersion: '',
           },
@@ -2953,7 +2933,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3070,7 +3050,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3186,7 +3166,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3287,7 +3267,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3328,7 +3308,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3442,7 +3422,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3514,7 +3494,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3619,7 +3599,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3660,7 +3640,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3780,7 +3760,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3852,7 +3832,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -3957,7 +3937,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -3998,7 +3978,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4120,7 +4100,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4192,7 +4172,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4293,7 +4273,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4334,7 +4314,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4452,7 +4432,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4524,7 +4504,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4627,7 +4607,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4668,7 +4648,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4778,7 +4758,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:registerGcp').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:registerGcp').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -4819,7 +4799,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -4920,7 +4900,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:unregisterGcp').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:unregisterGcp').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5000,7 +4980,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5100,7 +5080,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5141,7 +5121,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5253,7 +5233,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5325,7 +5305,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5434,7 +5414,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/gbpAccounts:linkGbpAccount'
+              rootUrl + '/accounts/v1/{+parent}/gbpAccounts:linkGbpAccount'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -5473,7 +5453,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5576,7 +5556,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/gbpAccounts').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/gbpAccounts').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5652,7 +5632,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5758,7 +5738,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:claim').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:claim').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5799,7 +5779,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -5897,7 +5877,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -5938,7 +5918,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6042,7 +6022,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:unclaim').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:unclaim').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6083,7 +6063,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6193,7 +6173,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6289,7 +6269,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6398,7 +6378,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/issues').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/issues').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6473,7 +6453,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6594,7 +6574,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/omnichannelSettings'
+              rootUrl + '/accounts/v1/{+parent}/omnichannelSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -6633,7 +6613,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6737,7 +6717,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -6778,7 +6758,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -6884,7 +6864,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/omnichannelSettings'
+              rootUrl + '/accounts/v1/{+parent}/omnichannelSettings'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -6925,7 +6905,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7047,7 +7027,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7088,7 +7068,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7203,7 +7183,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+name}:requestInventoryVerification'
+              rootUrl + '/accounts/v1/{+name}:requestInventoryVerification'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -7314,7 +7294,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7418,9 +7398,10 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/accounts/v1beta/{+parent}/lfpProviders:find'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/accounts/v1/{+parent}/lfpProviders:find').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'GET',
             apiVersion: '',
           },
@@ -7458,7 +7439,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7570,7 +7551,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:linkLfpProvider').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:linkLfpProvider').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7646,7 +7627,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7779,7 +7760,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/onlineReturnPolicies'
+              rootUrl + '/accounts/v1/{+parent}/onlineReturnPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -7818,7 +7799,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7912,7 +7893,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -7953,7 +7934,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8063,7 +8044,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8104,7 +8085,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8214,7 +8195,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/onlineReturnPolicies'
+              rootUrl + '/accounts/v1/{+parent}/onlineReturnPolicies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8235,181 +8216,6 @@ export namespace merchantapi_accounts_v1beta {
         return createAPIRequest<Schema$ListOnlineReturnPoliciesResponse>(
           parameters
         );
-      }
-    }
-
-    /**
-     * Updates an existing return policy for a given business.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await merchantapi.accounts.onlineReturnPolicies.patch({
-     *     // Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
-     *     name: 'accounts/my-account/onlineReturnPolicies/my-onlineReturnPolicie',
-     *     // Optional. Only support updating the entire OnlineReturnPolicy message. For update_mask, always use `*`.
-     *     updateMask: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "acceptDefectiveOnly": false,
-     *       //   "acceptExchange": false,
-     *       //   "countries": [],
-     *       //   "itemConditions": [],
-     *       //   "label": "my_label",
-     *       //   "name": "my_name",
-     *       //   "policy": {},
-     *       //   "processRefundDays": 0,
-     *       //   "restockingFee": {},
-     *       //   "returnLabelSource": "my_returnLabelSource",
-     *       //   "returnMethods": [],
-     *       //   "returnPolicyId": "my_returnPolicyId",
-     *       //   "returnPolicyUri": "my_returnPolicyUri",
-     *       //   "returnShippingFee": {},
-     *       //   "seasonalOverrides": []
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "acceptDefectiveOnly": false,
-     *   //   "acceptExchange": false,
-     *   //   "countries": [],
-     *   //   "itemConditions": [],
-     *   //   "label": "my_label",
-     *   //   "name": "my_name",
-     *   //   "policy": {},
-     *   //   "processRefundDays": 0,
-     *   //   "restockingFee": {},
-     *   //   "returnLabelSource": "my_returnLabelSource",
-     *   //   "returnMethods": [],
-     *   //   "returnPolicyId": "my_returnPolicyId",
-     *   //   "returnPolicyUri": "my_returnPolicyUri",
-     *   //   "returnShippingFee": {},
-     *   //   "seasonalOverrides": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>;
-    patch(
-      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$OnlineReturnPolicy>,
-      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
-    ): void;
-    patch(
-      params: Params$Resource$Accounts$Onlinereturnpolicies$Patch,
-      callback: BodyResponseCallback<Schema$OnlineReturnPolicy>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$OnlineReturnPolicy>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Onlinereturnpolicies$Patch
-        | BodyResponseCallback<Schema$OnlineReturnPolicy>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OnlineReturnPolicy>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OnlineReturnPolicy>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$OnlineReturnPolicy>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Onlinereturnpolicies$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Onlinereturnpolicies$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OnlineReturnPolicy>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OnlineReturnPolicy>(parameters);
       }
     }
   }
@@ -8455,22 +8261,6 @@ export namespace merchantapi_accounts_v1beta {
      */
     parent?: string;
   }
-  export interface Params$Resource$Accounts$Onlinereturnpolicies$Patch
-    extends StandardParameters {
-    /**
-     * Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account\}/onlineReturnPolicies/{return_policy\}`
-     */
-    name?: string;
-    /**
-     * Optional. Only support updating the entire OnlineReturnPolicy message. For update_mask, always use `*`.
-     */
-    updateMask?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$OnlineReturnPolicy;
-  }
 
   export class Resource$Accounts$Programs {
     context: APIRequestContext;
@@ -8499,7 +8289,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8605,7 +8395,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:disable').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:disable').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8646,7 +8436,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8752,7 +8542,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:enable').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:enable').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8793,7 +8583,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8893,7 +8683,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -8934,7 +8724,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9037,7 +8827,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/programs').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/programs').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9132,7 +8922,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9251,9 +9041,10 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/accounts/v1beta/{+parent}/checkoutSettings'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/accounts/v1/{+parent}/checkoutSettings').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
             apiVersion: '',
           },
@@ -9291,7 +9082,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9389,7 +9180,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9430,7 +9221,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9537,7 +9328,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9578,7 +9369,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9704,7 +9495,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9795,7 +9586,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9911,7 +9702,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/regions').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/regions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -9952,7 +9743,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10046,7 +9837,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10087,7 +9878,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10188,7 +9979,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10229,7 +10020,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10330,7 +10121,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/regions').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/regions').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10371,7 +10162,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10487,7 +10278,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10597,7 +10388,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10696,7 +10487,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10737,7 +10528,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10846,7 +10637,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/relationships').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/relationships').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -10889,7 +10680,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11001,7 +10792,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -11088,7 +10879,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11200,7 +10991,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:approve').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:approve').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -11241,7 +11032,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11347,7 +11138,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -11388,7 +11179,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11493,7 +11284,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/services').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/services').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -11534,7 +11325,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11649,9 +11440,10 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/accounts/v1beta/{+parent}/services:propose'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/accounts/v1/{+parent}/services:propose').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
             apiVersion: '',
           },
@@ -11689,7 +11481,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11789,7 +11581,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:reject').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:reject').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -11896,7 +11688,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11998,7 +11790,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12039,7 +11831,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12150,7 +11942,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/{+parent}/shippingSettings:insert'
+              rootUrl + '/accounts/v1/{+parent}/shippingSettings:insert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -12216,7 +12008,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12321,7 +12113,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12364,7 +12156,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12474,7 +12266,7 @@ export namespace merchantapi_accounts_v1beta {
           {
             url: (
               rootUrl +
-              '/accounts/v1beta/{+parent}/termsOfServiceAgreementStates:retrieveForApplication'
+              '/accounts/v1/{+parent}/termsOfServiceAgreementStates:retrieveForApplication'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -12537,7 +12329,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12647,7 +12439,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/users').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/users').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12688,7 +12480,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12782,7 +12574,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12823,7 +12615,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12921,7 +12713,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -12962,7 +12754,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13063,7 +12855,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+parent}/users').replace(
+            url: (rootUrl + '/accounts/v1/{+parent}/users').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -13104,7 +12896,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13214,7 +13006,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -13324,7 +13116,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13428,7 +13220,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}:accept').replace(
+            url: (rootUrl + '/accounts/v1/{+name}:accept').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -13471,7 +13263,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13571,7 +13363,7 @@ export namespace merchantapi_accounts_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+            url: (rootUrl + '/accounts/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -13612,7 +13404,7 @@ export namespace merchantapi_accounts_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
+     * const merchantapi = google.merchantapi('accounts_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13715,7 +13507,7 @@ export namespace merchantapi_accounts_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/accounts/v1beta/termsOfService:retrieveLatest'
+              rootUrl + '/accounts/v1/termsOfService:retrieveLatest'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',

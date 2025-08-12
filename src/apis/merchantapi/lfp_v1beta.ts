@@ -326,7 +326,7 @@ export namespace merchantapi_lfp_v1beta {
    */
   export interface Schema$LfpStore {
     /**
-     * Optional. [Google My Business category id](https://gcid-explorer.corp.google.com/static/gcid.html).
+     * Optional. [Google My Business category id](https://support.google.com/business/answer/7249669).
      */
     gcidCategory?: string[] | null;
     /**

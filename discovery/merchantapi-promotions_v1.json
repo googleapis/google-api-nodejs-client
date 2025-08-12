@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "merchantapi:promotions_v1beta",
+  "id": "merchantapi:promotions_v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://merchantapi.mtls.googleapis.com/",
   "name": "merchantapi",
@@ -111,7 +111,7 @@
           "methods": {
             "get": {
               "description": "Retrieves the promotion from your Merchant Center account. After inserting or updating a promotion input, it may take several minutes before the updated promotion can be retrieved.",
-              "flatPath": "promotions/v1beta/accounts/{accountsId}/promotions/{promotionsId}",
+              "flatPath": "promotions/v1/accounts/{accountsId}/promotions/{promotionsId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.promotions.get",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "promotions/v1beta/{+name}",
+              "path": "promotions/v1/{+name}",
               "response": {
                 "$ref": "Promotion"
               },
@@ -136,7 +136,7 @@
             },
             "insert": {
               "description": "Inserts a promotion for your Merchant Center account. If the promotion already exists, then it updates the promotion instead.",
-              "flatPath": "promotions/v1beta/accounts/{accountsId}/promotions:insert",
+              "flatPath": "promotions/v1/accounts/{accountsId}/promotions:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.promotions.insert",
               "parameterOrder": [
@@ -151,7 +151,7 @@
                   "type": "string"
                 }
               },
-              "path": "promotions/v1beta/{+parent}/promotions:insert",
+              "path": "promotions/v1/{+parent}/promotions:insert",
               "request": {
                 "$ref": "InsertPromotionRequest"
               },
@@ -164,7 +164,7 @@
             },
             "list": {
               "description": "Lists the promotions in your Merchant Center account. The response might contain fewer items than specified by `pageSize`. Rely on `pageToken` to determine if there are more items to be requested. After inserting or updating a promotion, it may take several minutes before the updated processed promotion can be retrieved.",
-              "flatPath": "promotions/v1beta/accounts/{accountsId}/promotions",
+              "flatPath": "promotions/v1/accounts/{accountsId}/promotions",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.promotions.list",
               "parameterOrder": [
@@ -190,7 +190,7 @@
                   "type": "string"
                 }
               },
-              "path": "promotions/v1beta/{+parent}/promotions",
+              "path": "promotions/v1/{+parent}/promotions",
               "response": {
                 "$ref": "ListPromotionsResponse"
               },
@@ -1029,6 +1029,6 @@
   },
   "servicePath": "",
   "title": "Merchant API",
-  "version": "promotions_v1beta",
+  "version": "promotions_v1",
   "version_module": true
 }
