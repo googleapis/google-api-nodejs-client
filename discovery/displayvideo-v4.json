@@ -9302,7 +9302,7 @@
       }
     }
   },
-  "revision": "20250729",
+  "revision": "20250803",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -14079,6 +14079,20 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "thirdPartyOptimizationPartner": {
+          "description": "Optional. Immutable. Designates the third party optimization partner that manages this algorithm.",
+          "enum": [
+            "UNKNOWN",
+            "SCIBIDS",
+            "ADELAIDE"
+          ],
+          "enumDescriptions": [
+            "Type value is not specified or is unknown in this version.",
+            "Third party data science service provider that DV3 partners/advertisers can partner with.",
+            "Third party attention measurement service provider that DV3 partners/advertisers can partner with."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
