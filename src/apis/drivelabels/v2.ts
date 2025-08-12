@@ -159,7 +159,7 @@ export namespace drivelabels_v2 {
     priorityOverride?: string | null;
   }
   /**
-   * Deletes one of more Label Permissions.
+   * Deletes one or more label permissions.
    */
   export interface Schema$GoogleAppsDriveLabelsV2BatchDeleteLabelPermissionsRequest {
     /**
@@ -167,12 +167,12 @@ export namespace drivelabels_v2 {
      */
     requests?: Schema$GoogleAppsDriveLabelsV2DeleteLabelPermissionRequest[];
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access. If this is set, the use_admin_access field in the DeleteLabelPermissionRequest messages must either be empty or match this field.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `DeleteLabelPermissionRequest` messages must either be empty or match this field.
      */
     useAdminAccess?: boolean | null;
   }
   /**
-   * Updates one or more Label Permissions.
+   * Updates one or more label permissions.
    */
   export interface Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsRequest {
     /**
@@ -180,12 +180,12 @@ export namespace drivelabels_v2 {
      */
     requests?: Schema$GoogleAppsDriveLabelsV2UpdateLabelPermissionRequest[];
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access. If this is set, the use_admin_access field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
     useAdminAccess?: boolean | null;
   }
   /**
-   * Response for updating one or more Label Permissions.
+   * Response for updating one or more label permissions.
    */
   export interface Schema$GoogleAppsDriveLabelsV2BatchUpdateLabelPermissionsResponse {
     /**
@@ -194,45 +194,45 @@ export namespace drivelabels_v2 {
     permissions?: Schema$GoogleAppsDriveLabelsV2LabelPermission[];
   }
   /**
-   * Limits for date Field type.
+   * Limits for date field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DateLimits {
     /**
-     * Maximum value for the date Field type.
+     * Maximum value for the date field type.
      */
     maxValue?: Schema$GoogleTypeDate;
     /**
-     * Minimum value for the date Field type.
+     * Minimum value for the date field type.
      */
     minValue?: Schema$GoogleTypeDate;
   }
   /**
-   * Deletes a Label Permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+   * Deletes a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeleteLabelPermissionRequest {
     /**
-     * Required. Label Permission resource name.
+     * Required. Label permission resource name.
      */
     name?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
   }
   /**
-   * The set of requests for updating aspects of a Label. If any request is not valid, no requests will be applied.
+   * The set of requests for updating aspects of a label. If any request isn't valid, no requests will be applied.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequest {
     /**
-     * The BCP-47 language code to use for evaluating localized Field labels when `include_label_in_response` is `true`.
+     * The BCP-47 language code to use for evaluating localized field labels when `include_label_in_response` is `true`.
      */
     languageCode?: string | null;
     /**
-     * A list of updates to apply to the Label. Requests will be applied in the order they are specified.
+     * A list of updates to apply to the label. Requests will be applied in the order they are specified.
      */
     requests?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequest[];
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
@@ -245,7 +245,7 @@ export namespace drivelabels_v2 {
     writeControl?: Schema$GoogleAppsDriveLabelsV2WriteControl;
   }
   /**
-   * Request to create a Field within a Label.
+   * Request to create a field within a label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateFieldRequest {
     /**
@@ -254,33 +254,33 @@ export namespace drivelabels_v2 {
     field?: Schema$GoogleAppsDriveLabelsV2Field;
   }
   /**
-   * Request to create a Selection Choice.
+   * Request to create a selection choice.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateSelectionChoiceRequest {
     /**
-     * Required. The Choice to create.
+     * Required. The choice to create.
      */
     choice?: Schema$GoogleAppsDriveLabelsV2FieldSelectionOptionsChoice;
     /**
-     * Required. The Selection Field in which a Choice will be created.
+     * Required. The selection field in which a choice will be created.
      */
     fieldId?: string | null;
   }
   /**
-   * Request to delete the Field.
+   * Request to delete the field.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteFieldRequest {
     /**
-     * Required. ID of the Field to delete.
+     * Required. ID of the field to delete.
      */
     id?: string | null;
   }
   /**
-   * Request to delete a Choice.
+   * Request to delete a choice.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteSelectionChoiceRequest {
     /**
-     * Required. The Selection Field from which a Choice will be deleted.
+     * Required. The selection field from which a choice will be deleted.
      */
     fieldId?: string | null;
     /**
@@ -289,24 +289,24 @@ export namespace drivelabels_v2 {
     id?: string | null;
   }
   /**
-   * Request to disable the Field.
+   * Request to disable the field.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableFieldRequest {
     /**
-     * Required. Field Disabled Policy.
+     * Required. Field disabled policy.
      */
     disabledPolicy?: Schema$GoogleAppsDriveLabelsV2LifecycleDisabledPolicy;
     /**
-     * Required. Key of the Field to disable.
+     * Required. Key of the field to disable.
      */
     id?: string | null;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
   }
   /**
-   * Request to disable a Choice.
+   * Request to disable a choice.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableSelectionChoiceRequest {
     /**
@@ -314,7 +314,7 @@ export namespace drivelabels_v2 {
      */
     disabledPolicy?: Schema$GoogleAppsDriveLabelsV2LifecycleDisabledPolicy;
     /**
-     * Required. The Selection Field in which a Choice will be disabled.
+     * Required. The selection field in which a choice will be disabled.
      */
     fieldId?: string | null;
     /**
@@ -322,25 +322,25 @@ export namespace drivelabels_v2 {
      */
     id?: string | null;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
   }
   /**
-   * Request to enable the Field.
+   * Request to enable the field.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableFieldRequest {
     /**
-     * Required. ID of the Field to enable.
+     * Required. ID of the field to enable.
      */
     id?: string | null;
   }
   /**
-   * Request to enable a Choice.
+   * Request to enable a choice.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableSelectionChoiceRequest {
     /**
-     * Required. The Selection Field in which a Choice will be enabled.
+     * Required. The selection field in which a choice will be enabled.
      */
     fieldId?: string | null;
     /**
@@ -349,77 +349,77 @@ export namespace drivelabels_v2 {
     id?: string | null;
   }
   /**
-   * A single kind of update to apply to a Label.
+   * A single kind of update to apply to a label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestRequest {
     /**
-     * Creates a new Field.
+     * Creates a field.
      */
     createField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateFieldRequest;
     /**
-     * Creates Choice within a Selection field.
+     * Create a choice within a selection field.
      */
     createSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestCreateSelectionChoiceRequest;
     /**
-     * Deletes a Field from the label.
+     * Deletes a field from the label.
      */
     deleteField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteFieldRequest;
     /**
-     * Delete a Choice within a Selection Field.
+     * Delete a choice within a selection field.
      */
     deleteSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDeleteSelectionChoiceRequest;
     /**
-     * Disables the Field.
+     * Disables the field.
      */
     disableField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableFieldRequest;
     /**
-     * Disable a Choice within a Selection Field.
+     * Disable a choice within a selection field.
      */
     disableSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestDisableSelectionChoiceRequest;
     /**
-     * Enables the Field.
+     * Enables the field.
      */
     enableField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableFieldRequest;
     /**
-     * Enable a Choice within a Selection Field.
+     * Enable a choice within a selection field.
      */
     enableSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestEnableSelectionChoiceRequest;
     /**
-     * Updates basic properties of a Field.
+     * Updates basic properties of a field.
      */
     updateField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldPropertiesRequest;
     /**
-     * Update Field type and/or type options.
+     * Update field type and/or type options.
      */
     updateFieldType?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldTypeRequest;
     /**
-     * Updates the Label properties.
+     * Updates the label properties.
      */
     updateLabel?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateLabelPropertiesRequest;
     /**
-     * Update a Choice properties within a Selection Field.
+     * Update a choice property within a selection field.
      */
     updateSelectionChoiceProperties?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest;
   }
   /**
-   * Request to update Field properties.
+   * Request to update field properties.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldPropertiesRequest {
     /**
-     * Required. The Field to update.
+     * Required. The field to update.
      */
     id?: string | null;
     /**
-     * Required. Basic Field properties.
+     * Required. Basic field properties.
      */
     properties?: Schema$GoogleAppsDriveLabelsV2FieldProperties;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
   }
   /**
-   * Request to change the type of a Field.
+   * Request to change the type of a field.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateFieldTypeRequest {
     /**
@@ -427,7 +427,7 @@ export namespace drivelabels_v2 {
      */
     dateOptions?: Schema$GoogleAppsDriveLabelsV2FieldDateOptions;
     /**
-     * Required. The Field to update.
+     * Required. The field to update.
      */
     id?: string | null;
     /**
@@ -443,7 +443,7 @@ export namespace drivelabels_v2 {
      */
     textOptions?: Schema$GoogleAppsDriveLabelsV2FieldTextOptions;
     /**
-     * The fields that should be updated. At least one field must be specified. The root of `type_options` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root of `type_options` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
     /**
@@ -452,7 +452,7 @@ export namespace drivelabels_v2 {
     userOptions?: Schema$GoogleAppsDriveLabelsV2FieldUserOptions;
   }
   /**
-   * Updates basic properties of a Label.
+   * Updates basic properties of a label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateLabelPropertiesRequest {
     /**
@@ -460,33 +460,33 @@ export namespace drivelabels_v2 {
      */
     properties?: Schema$GoogleAppsDriveLabelsV2LabelProperties;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `label_properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `label_properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
   }
   /**
-   * Request to update a Choice properties.
+   * Request to update a choice property.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest {
     /**
-     * Required. The Selection Field to update.
+     * Required. The selection field to update.
      */
     fieldId?: string | null;
     /**
-     * Required. The Choice to update.
+     * Required. The choice to update.
      */
     id?: string | null;
     /**
-     * Required. The Choice properties to update.
+     * Required. The choice properties to update.
      */
     properties?: Schema$GoogleAppsDriveLabelsV2FieldSelectionOptionsChoiceProperties;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
   }
   /**
-   * Response for Label update.
+   * Response for label update.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponse {
     /**
@@ -494,12 +494,12 @@ export namespace drivelabels_v2 {
      */
     responses?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponse[];
     /**
-     * The label after updates were applied. This is only set if [BatchUpdateLabelResponse2.include_label_in_response] is `true` and there were no errors.
+     * The label after updates were applied. This is only set if `include_label_in_response` is `true` and there were no errors.
      */
     updatedLabel?: Schema$GoogleAppsDriveLabelsV2Label;
   }
   /**
-   * Response following Field create.
+   * Response following field create.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateFieldResponse {
     /**
@@ -512,40 +512,40 @@ export namespace drivelabels_v2 {
     priority?: number | null;
   }
   /**
-   * Response following Selection Choice create.
+   * Response following selection choice create.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateSelectionChoiceResponse {
     /**
-     * The server-generated id of the field.
+     * The server-generated ID of the field.
      */
     fieldId?: string | null;
     /**
-     * The server-generated ID of the created choice within the Field
+     * The server-generated ID of the created choice within the field.
      */
     id?: string | null;
   }
   /**
-   * Response following Field delete.
+   * Response following field delete.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteFieldResponse {}
   /**
-   * Response following Choice delete.
+   * Response following choice delete.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteSelectionChoiceResponse {}
   /**
-   * Response following Field disable.
+   * Response following field disable.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableFieldResponse {}
   /**
-   * Response following Choice disable.
+   * Response following choice disable.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableSelectionChoiceResponse {}
   /**
-   * Response following Field enable.
+   * Response following field enable.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableFieldResponse {}
   /**
-   * Response following Choice enable.
+   * Response following choice enable.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableSelectionChoiceResponse {}
   /**
@@ -553,56 +553,56 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseResponse {
     /**
-     * Creates a new Field.
+     * Creates a field.
      */
     createField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateFieldResponse;
     /**
-     * Creates a new selection list option to add to a Selection Field.
+     * Creates a selection list option to add to a selection field.
      */
     createSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseCreateSelectionChoiceResponse;
     /**
-     * Deletes a Field from the label.
+     * Deletes a field from the label.
      */
     deleteField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteFieldResponse;
     /**
-     * Deletes a Choice from a Selection Field.
+     * Deletes a choice from a selection field.
      */
     deleteSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDeleteSelectionChoiceResponse;
     /**
-     * Disables Field.
+     * Disables field.
      */
     disableField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableFieldResponse;
     /**
-     * Disables a Choice within a Selection Field.
+     * Disables a choice within a selection field.
      */
     disableSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseDisableSelectionChoiceResponse;
     /**
-     * Enables Field.
+     * Enables field.
      */
     enableField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableFieldResponse;
     /**
-     * Enables a Choice within a Selection Field.
+     * Enables a choice within a selection field.
      */
     enableSelectionChoice?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseEnableSelectionChoiceResponse;
     /**
-     * Updates basic properties of a Field.
+     * Updates basic properties of a field.
      */
     updateField?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldPropertiesResponse;
     /**
-     * Update Field type and/or type options.
+     * Updates field type and/or type options.
      */
     updateFieldType?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldTypeResponse;
     /**
-     * Updated basic properties of a Label.
+     * Updates basic properties of a label.
      */
     updateLabel?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateLabelPropertiesResponse;
     /**
-     * Updates a Choice within a Selection Field.
+     * Updates a choice within a selection field.
      */
     updateSelectionChoiceProperties?: Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse;
   }
   /**
-   * Response following update to Field properties.
+   * Response following update to field properties.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldPropertiesResponse {
     /**
@@ -611,15 +611,15 @@ export namespace drivelabels_v2 {
     priority?: number | null;
   }
   /**
-   * Response following update to Field type.
+   * Response following update to field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateFieldTypeResponse {}
   /**
-   * Response following update to Label properties.
+   * Response following update to label properties.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateLabelPropertiesResponse {}
   /**
-   * Response following update to Selection Choice properties.
+   * Response following update to selection choice properties.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse {
     /**
@@ -628,7 +628,7 @@ export namespace drivelabels_v2 {
     priority?: number | null;
   }
   /**
-   * Request to deprecate a published Label.
+   * Request to deprecate a published label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2DisableLabelRequest {
     /**
@@ -640,15 +640,15 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string | null;
     /**
-     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.
+     * The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.
      */
     updateMask?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
-     * Provides control over how write requests are executed. Defaults to unset, which means last write wins.
+     * Provides control over how write requests are executed. Defaults to unset, which means the last write wins.
      */
     writeControl?: Schema$GoogleAppsDriveLabelsV2WriteControl;
   }
@@ -661,11 +661,11 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
-     * Provides control over how write requests are executed. Defaults to unset, which means last write wins.
+     * Provides control over how write requests are executed. Defaults to unset, which means the last write wins.
      */
     writeControl?: Schema$GoogleAppsDriveLabelsV2WriteControl;
   }
@@ -702,7 +702,7 @@ export namespace drivelabels_v2 {
      */
     displayHints?: Schema$GoogleAppsDriveLabelsV2FieldDisplayHints;
     /**
-     * Output only. The key of a field, unique within a label or library. This value is autogenerated. Matches the regex: `([a-zA-Z0-9])+`
+     * Output only. The key of a field, unique within a label or library. This value is autogenerated. Matches the regex: `([a-zA-Z0-9])+`.
      */
     id?: string | null;
     /**
@@ -714,7 +714,7 @@ export namespace drivelabels_v2 {
      */
     lifecycle?: Schema$GoogleAppsDriveLabelsV2Lifecycle;
     /**
-     * Output only. The LockStatus of this field.
+     * Output only. The `LockStatus` of this field.
      */
     lockStatus?: Schema$GoogleAppsDriveLabelsV2LockStatus;
     /**
@@ -827,43 +827,43 @@ export namespace drivelabels_v2 {
     minValue?: string | null;
   }
   /**
-   * Field constants governing the structure of a Field; such as, the maximum title length, minimum and maximum field values or length, etc.
+   * Field constants governing the structure of a field; such as, the maximum title length, minimum and maximum field values or length, etc.
    */
   export interface Schema$GoogleAppsDriveLabelsV2FieldLimits {
     /**
-     * Date Field limits.
+     * Date field limits.
      */
     dateLimits?: Schema$GoogleAppsDriveLabelsV2DateLimits;
     /**
-     * Integer Field limits.
+     * Integer field limits.
      */
     integerLimits?: Schema$GoogleAppsDriveLabelsV2IntegerLimits;
     /**
-     * Long text Field limits.
+     * Long text field limits.
      */
     longTextLimits?: Schema$GoogleAppsDriveLabelsV2LongTextLimits;
     /**
-     * Limits for Field description, also called help text.
+     * Limits for field description, also called help text.
      */
     maxDescriptionLength?: number | null;
     /**
-     * Limits for Field title.
+     * Limits for field title.
      */
     maxDisplayNameLength?: number | null;
     /**
-     * Max length for the id.
+     * Maximum length for the id.
      */
     maxIdLength?: number | null;
     /**
-     * Selection Field limits.
+     * Selection field limits.
      */
     selectionLimits?: Schema$GoogleAppsDriveLabelsV2SelectionLimits;
     /**
-     * The relevant limits for the specified Field.Type. Text Field limits.
+     * The relevant limits for the specified Field.Type. Text field limits.
      */
     textLimits?: Schema$GoogleAppsDriveLabelsV2TextLimits;
     /**
-     * User Field limits.
+     * User field limits.
      */
     userLimits?: Schema$GoogleAppsDriveLabelsV2UserLimits;
   }
@@ -964,7 +964,7 @@ export namespace drivelabels_v2 {
      */
     lifecycle?: Schema$GoogleAppsDriveLabelsV2Lifecycle;
     /**
-     * Output only. The LockStatus of this choice.
+     * Output only. The `LockStatus` of this choice.
      */
     lockStatus?: Schema$GoogleAppsDriveLabelsV2LockStatus;
     /**
@@ -1103,15 +1103,15 @@ export namespace drivelabels_v2 {
     listOptions?: Schema$GoogleAppsDriveLabelsV2FieldListOptions;
   }
   /**
-   * Limits for integer Field type.
+   * Limits for integer field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2IntegerLimits {
     /**
-     * Maximum value for an integer Field type.
+     * Maximum value for an integer field type.
      */
     maxValue?: string | null;
     /**
-     * Minimum value for an integer Field type.
+     * Minimum value for an integer field type.
      */
     minValue?: string | null;
   }
@@ -1136,15 +1136,15 @@ export namespace drivelabels_v2 {
      */
     creator?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
-     * Output only. The customer this label belongs to. For example: "customers/123abc789."
+     * Output only. The customer this label belongs to. For example: `customers/123abc789`.
      */
     customer?: string | null;
     /**
-     * Output only. The user who disabled this label. This value has no meaning when the label is not disabled.
+     * Output only. The user who disabled this label. This value has no meaning when the label isn't disabled.
      */
     disabler?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
-     * Output only. The time this label was disabled. This value has no meaning when the label is not disabled.
+     * Output only. The time this label was disabled. This value has no meaning when the label isn't disabled.
      */
     disableTime?: string | null;
     /**
@@ -1152,7 +1152,7 @@ export namespace drivelabels_v2 {
      */
     displayHints?: Schema$GoogleAppsDriveLabelsV2LabelDisplayHints;
     /**
-     * Optional. The EnabledAppSettings for this Label.
+     * Optional. The `EnabledAppSettings` for this Label.
      */
     enabledAppSettings?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings;
     /**
@@ -1160,7 +1160,7 @@ export namespace drivelabels_v2 {
      */
     fields?: Schema$GoogleAppsDriveLabelsV2Field[];
     /**
-     * Output only. Globally unique identifier of this label. ID makes up part of the label `name`, but unlike `name`, ID is consistent between revisions. Matches the regex: `([a-zA-Z0-9])+`
+     * Output only. Globally unique identifier of this label. ID makes up part of the label `name`, but unlike `name`, ID is consistent between revisions. Matches the regex: `([a-zA-Z0-9])+`.
      */
     id?: string | null;
     /**
@@ -1176,7 +1176,7 @@ export namespace drivelabels_v2 {
      */
     lifecycle?: Schema$GoogleAppsDriveLabelsV2Lifecycle;
     /**
-     * Output only. The LockStatus of this label.
+     * Output only. The `LockStatus` of this label.
      */
     lockStatus?: Schema$GoogleAppsDriveLabelsV2LockStatus;
     /**
@@ -1188,11 +1188,11 @@ export namespace drivelabels_v2 {
      */
     properties?: Schema$GoogleAppsDriveLabelsV2LabelProperties;
     /**
-     * Output only. The user who published this label. This value has no meaning when the label is not published.
+     * Output only. The user who published this label. This value has no meaning when the label isn't published.\>\>
      */
     publisher?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
-     * Output only. The time this label was published. This value has no meaning when the label is not published.
+     * Output only. The time this label was published. This value has no meaning when the label isn't published.
      */
     publishTime?: string | null;
     /**
@@ -1204,7 +1204,7 @@ export namespace drivelabels_v2 {
      */
     revisionCreator?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
-     * Output only. Revision ID of the label. Revision ID might be part of the label `name` depending on the request issued. A new revision is created whenever revisioned properties of a label are changed. Matches the regex: `([a-zA-Z0-9])+`
+     * Output only. Revision ID of the label. Revision ID might be part of the label `name` depending on the request issued. A new revision is created whenever revisioned properties of a label are changed. Matches the regex: `([a-zA-Z0-9])+`.
      */
     revisionId?: string | null;
     /**
@@ -1239,7 +1239,7 @@ export namespace drivelabels_v2 {
     copyMode?: string | null;
   }
   /**
-   * UI display hints for rendering the label.
+   * The UI display hints for rendering the label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelDisplayHints {
     /**
@@ -1251,7 +1251,7 @@ export namespace drivelabels_v2 {
      */
     hiddenInSearch?: boolean | null;
     /**
-     * Order to display label in a list.
+     * The order to display labels in a list.
      */
     priority?: string | null;
     /**
@@ -1260,33 +1260,33 @@ export namespace drivelabels_v2 {
     shownInApply?: boolean | null;
   }
   /**
-   * Describes the Workspace apps in which the Label can be used.
+   * Describes the Google Workspace apps in which the label can be used.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings {
     /**
-     * Optional. The list of Apps where the Label can be used.
+     * Optional. The list of apps where the label can be used.
      */
     enabledApps?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp[];
   }
   /**
-   * An App where the Label can be used.
+   * An app where the label can be used.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettingsEnabledApp {
     /**
-     * Optional. The name of the App.
+     * Optional. The name of the app.
      */
     app?: string | null;
   }
   /**
-   * Label constraints governing the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.
+   * Label constraints governing the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelLimits {
     /**
-     * The limits for Fields.
+     * The limits for fields.
      */
     fieldLimits?: Schema$GoogleAppsDriveLabelsV2FieldLimits;
     /**
-     * The maximum number of published Fields that can be deleted.
+     * The maximum number of published fields that can be deleted.
      */
     maxDeletedFields?: number | null;
     /**
@@ -1298,7 +1298,7 @@ export namespace drivelabels_v2 {
      */
     maxDraftRevisions?: number | null;
     /**
-     * The maximum number of Fields allowed within the label.
+     * The maximum number of fields allowed within the label.
      */
     maxFields?: number | null;
     /**
@@ -1311,44 +1311,44 @@ export namespace drivelabels_v2 {
     name?: string | null;
   }
   /**
-   * A Lock that can be applied to a Label, Field, or Choice.
+   * A lock that can be applied to a label, field, or choice.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelLock {
     /**
-     * Output only. The user's capabilities on this LabelLock.
+     * Output only. The user's capabilities on this label lock.
      */
     capabilities?: Schema$GoogleAppsDriveLabelsV2LabelLockCapabilities;
     /**
-     * The ID of the Selection Field Choice that should be locked. If present, `field_id` must also be present.
+     * The ID of the selection field choice that should be locked. If present, `field_id` must also be present.
      */
     choiceId?: string | null;
     /**
-     * Output only. The time this LabelLock was created.
+     * Output only. The time this label lock was created.
      */
     createTime?: string | null;
     /**
-     * Output only. The user whose credentials were used to create the LabelLock. This will not be present if no user was responsible for creating the LabelLock.
+     * Output only. The user whose credentials were used to create the label lock. Not present if no user was responsible for creating the label lock.
      */
     creator?: Schema$GoogleAppsDriveLabelsV2UserInfo;
     /**
-     * Output only. A timestamp indicating when this LabelLock was scheduled for deletion. This will be present only if this LabelLock is in the DELETING state.
+     * Output only. A timestamp indicating when this label lock was scheduled for deletion. Present only if this label lock is in the `DELETING` state.
      */
     deleteTime?: string | null;
     /**
-     * The ID of the Field that should be locked. Empty if the whole Label should be locked.
+     * The ID of the field that should be locked. Empty if the whole label should be locked.
      */
     fieldId?: string | null;
     /**
-     * Output only. Resource name of this LabelLock.
+     * Output only. Resource name of this label lock.
      */
     name?: string | null;
     /**
-     * Output only. This LabelLock's state.
+     * Output only. This label lock's state.
      */
     state?: string | null;
   }
   /**
-   * A description of a user's capabilities on a LabelLock.
+   * A description of a user's capabilities on a label lock.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelLockCapabilities {
     /**
@@ -1361,11 +1361,11 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2LabelPermission {
     /**
-     * Audience to grant a role to. The magic value of `audiences/default` may be used to apply the role to the default audience in the context of the organization that owns the Label.
+     * Audience to grant a role to. The magic value of `audiences/default` may be used to apply the role to the default audience in the context of the organization that owns the label.
      */
     audience?: string | null;
     /**
-     * Specifies the email address for a user or group pricinpal. Not populated for audience principals. User and Group permissions may only be inserted using email address. On update requests, if email address is specified, no principal should be specified.
+     * Specifies the email address for a user or group principal. Not populated for audience principals. User and group permissions may only be inserted using an email address. On update requests, if email address is specified, no principal should be specified.
      */
     email?: string | null;
     /**
@@ -1420,7 +1420,7 @@ export namespace drivelabels_v2 {
     canUpdate?: boolean | null;
   }
   /**
-   * The lifecycle state of an object, such as label, field, or choice. The lifecycle enforces the following transitions: * `UNPUBLISHED_DRAFT` (starting state) * `UNPUBLISHED_DRAFT` -\> `PUBLISHED` * `UNPUBLISHED_DRAFT` -\> (Deleted) * `PUBLISHED` -\> `DISABLED` * `DISABLED` -\> `PUBLISHED` * `DISABLED` -\> (Deleted) The published and disabled states have some distinct characteristics: * Published—Some kinds of changes might be made to an object in this state, in which case `has_unpublished_changes` will be true. Also, some kinds of changes are not permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label are rejected. * Disabled—When disabled, the configured `DisabledPolicy` takes effect.
+   * The lifecycle state of an object, such as label, field, or choice. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). The lifecycle enforces the following transitions: * `UNPUBLISHED_DRAFT` (starting state) * `UNPUBLISHED_DRAFT` -\> `PUBLISHED` * `UNPUBLISHED_DRAFT` -\> (Deleted) * `PUBLISHED` -\> `DISABLED` * `DISABLED` -\> `PUBLISHED` * `DISABLED` -\> (Deleted) The published and disabled states have some distinct characteristics: * `Published`: Some kinds of changes might be made to an object in this state, in which case `has_unpublished_changes` will be true. Also, some kinds of changes aren't permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label are rejected. * `Disabled`: When disabled, the configured `DisabledPolicy` takes effect.
    */
   export interface Schema$GoogleAppsDriveLabelsV2Lifecycle {
     /**
@@ -1450,11 +1450,11 @@ export namespace drivelabels_v2 {
     showInApply?: boolean | null;
   }
   /**
-   * The response to a ListLabelLocksRequest.
+   * The response to a `ListLabelLocksRequest`.
    */
   export interface Schema$GoogleAppsDriveLabelsV2ListLabelLocksResponse {
     /**
-     * LabelLocks.
+     * Label locks.
      */
     labelLocks?: Schema$GoogleAppsDriveLabelsV2LabelLock[];
     /**
@@ -1463,7 +1463,7 @@ export namespace drivelabels_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Response for listing the permissions on a Label.
+   * Response for listing the permissions on a label.
    */
   export interface Schema$GoogleAppsDriveLabelsV2ListLabelPermissionsResponse {
     /**
@@ -1476,7 +1476,7 @@ export namespace drivelabels_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Response for listing Labels.
+   * Response for listing labels.
    */
   export interface Schema$GoogleAppsDriveLabelsV2ListLabelsResponse {
     /**
@@ -1489,11 +1489,11 @@ export namespace drivelabels_v2 {
     nextPageToken?: string | null;
   }
   /**
-   * Limits for list-variant of a Field type.
+   * Limits for list-variant of a field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2ListLimits {
     /**
-     * Maximum number of values allowed for the Field type.
+     * Maximum number of values allowed for the field type.
      */
     maxEntries?: number | null;
   }
@@ -1502,20 +1502,20 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2LockStatus {
     /**
-     * Output only. Indicates whether this label component is the (direct) target of a LabelLock. A label component can be implicitly locked even if it's not the direct target of a LabelLock, in which case this field is set to false.
+     * Output only. Indicates whether this label component is the (direct) target of a label lock. A label component can be implicitly locked even if it's not the direct target of a label lock, in which case this field is set to false.
      */
     locked?: boolean | null;
   }
   /**
-   * Limits for long text Field type.
+   * Limits for long text field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2LongTextLimits {
     /**
-     * Maximum length allowed for a long text Field type.
+     * Maximum length allowed for a long text field type.
      */
     maxLength?: number | null;
     /**
-     * Minimum length allowed for a long text Field type.
+     * Minimum length allowed for a long text field type.
      */
     minLength?: number | null;
   }
@@ -1528,24 +1528,24 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
-     * Provides control over how write requests are executed. Defaults to unset, which means last write wins.
+     * Provides control over how write requests are executed. Defaults to unset, which means the last write wins.
      */
     writeControl?: Schema$GoogleAppsDriveLabelsV2WriteControl;
   }
   /**
-   * Limits for selection Field type.
+   * Limits for selection field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2SelectionLimits {
     /**
-     * Limits for list-variant of a Field type.
+     * Limits for list-variant of a field type.
      */
     listLimits?: Schema$GoogleAppsDriveLabelsV2ListLimits;
     /**
-     * The max number of choices.
+     * Maximum number of choices.
      */
     maxChoices?: number | null;
     /**
@@ -1557,29 +1557,29 @@ export namespace drivelabels_v2 {
      */
     maxDisplayNameLength?: number | null;
     /**
-     * Maximum ID length for a selection options.
+     * Maximum ID length for a selection option.
      */
     maxIdLength?: number | null;
   }
   /**
-   * Limits for text Field type.
+   * Limits for text field type.
    */
   export interface Schema$GoogleAppsDriveLabelsV2TextLimits {
     /**
-     * Maximum length allowed for a text Field type.
+     * Maximum length allowed for a text field type.
      */
     maxLength?: number | null;
     /**
-     * Minimum length allowed for a text Field type.
+     * Minimum length allowed for a text field type.
      */
     minLength?: number | null;
   }
   /**
-   * Request to update the `CopyMode` of the given Label. Changes to this policy are not revisioned, do not require publishing, and take effect immediately. \
+   * Request to update the `CopyMode` of the given label. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately. \
    */
   export interface Schema$GoogleAppsDriveLabelsV2UpdateLabelCopyModeRequest {
     /**
-     * Required. Indicates how the applied Label, and Field values should be copied when a Drive item is copied.
+     * Required. Indicates how the applied label and field values should be copied when a Drive item is copied.
      */
     copyMode?: string | null;
     /**
@@ -1587,7 +1587,7 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
@@ -1596,11 +1596,11 @@ export namespace drivelabels_v2 {
     view?: string | null;
   }
   /**
-   * Request to update the `EnabledAppSettings` of the given Label. This change is not revisioned, does not require publishing, and takes effect immediately. \
+   * Request to update the `EnabledAppSettings` of the given label. This change is not revisioned, doesn't require publishing, and takes effect immediately. \
    */
   export interface Schema$GoogleAppsDriveLabelsV2UpdateLabelEnabledAppSettingsRequest {
     /**
-     * Required. The new `EnabledAppSettings` value for the Label.
+     * Required. The new `EnabledAppSettings` value for the label.
      */
     enabledAppSettings?: Schema$GoogleAppsDriveLabelsV2LabelEnabledAppSettings;
     /**
@@ -1608,7 +1608,7 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string | null;
     /**
-     * Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
     /**
@@ -1617,19 +1617,19 @@ export namespace drivelabels_v2 {
     view?: string | null;
   }
   /**
-   * Updates a Label Permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+   * Updates a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
    */
   export interface Schema$GoogleAppsDriveLabelsV2UpdateLabelPermissionRequest {
     /**
-     * Required. The permission to create or update on the Label.
+     * Required. The permission to create or update on the label.
      */
     labelPermission?: Schema$GoogleAppsDriveLabelsV2LabelPermission;
     /**
-     * Required. The parent Label resource name.
+     * Required. The parent label resource name.
      */
     parent?: string | null;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean | null;
   }
@@ -1646,11 +1646,11 @@ export namespace drivelabels_v2 {
      */
     canAdministrateLabels?: boolean | null;
     /**
-     * Output only. Whether the user is allowed to create new admin labels.
+     * Output only. Whether the user is allowed to create admin labels.
      */
     canCreateAdminLabels?: boolean | null;
     /**
-     * Output only. Whether the user is allowed to create new shared labels.
+     * Output only. Whether the user is allowed to create shared labels.
      */
     canCreateSharedLabels?: boolean | null;
     /**
@@ -1663,7 +1663,7 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2UserInfo {
     /**
-     * The identifier for this user that can be used with the People API to get more information. For example, people/12345678.
+     * The identifier for this user that can be used with the [People API](https://developers.google.com/people) to get more information. For example, `people/12345678`.
      */
     person?: string | null;
   }
@@ -1672,7 +1672,7 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2UserLimits {
     /**
-     * Limits for list-variant of a Field type.
+     * Limits for list-variant of a field type.
      */
     listLimits?: Schema$GoogleAppsDriveLabelsV2ListLimits;
   }
@@ -1681,7 +1681,7 @@ export namespace drivelabels_v2 {
    */
   export interface Schema$GoogleAppsDriveLabelsV2WriteControl {
     /**
-     * The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
+     * The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
      */
     requiredRevisionId?: string | null;
   }
@@ -1741,7 +1741,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Creates a new Label.
+     * Creates a label. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label).
      * @example
      * ```js
      * // Before running the sample:
@@ -1774,7 +1774,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.create({
-     *     // The BCP-47 language code to use for evaluating localized Field labels in response. When not specified, values in the default configured language will be used.
+     *     // The BCP-47 language code to use for evaluating localized field labels in response. When not specified, values in the default configured language will be used.
      *     languageCode: 'placeholder-value',
      *     // Set to `true` in order to use the user's admin privileges. The server will verify the user is an admin before allowing access.
      *     useAdminAccess: 'placeholder-value',
@@ -1937,7 +1937,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Permanently deletes a Label and related metadata on Drive Items. Once deleted, the Label and related Drive item metadata will be deleted. Only draft Labels, and disabled Labels may be deleted.
+     * Permanently deletes a label and related metadata on Drive items. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Once deleted, the label and related Drive item metadata will be deleted. Only draft labels and disabled labels may be deleted.
      * @example
      * ```js
      * // Before running the sample:
@@ -1972,9 +1972,9 @@ export namespace drivelabels_v2 {
      *   const res = await drivelabels.labels.delete({
      *     // Required. Label resource name.
      *     name: 'labels/my-label',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
-     *     // The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
+     *     // The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
      *     'writeControl.requiredRevisionId': 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2075,7 +2075,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a single Label by applying a set of update requests resulting in a new draft revision. The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive Items.
+     * Updates a single label by applying a set of update requests resulting in a new draft revision. For more information, see [Update a label](https://developers.google.com/workspace/drive/labels/guides/update-label). The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive items.
      * @example
      * ```js
      * // Before running the sample:
@@ -2108,7 +2108,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.delta({
-     *     // Required. The resource name of the Label to update.
+     *     // Required. The resource name of the label to update.
      *     name: 'labels/my-label',
      *
      *     // Request body metadata
@@ -2234,7 +2234,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Disable a published Label. Disabling a Label will result in a new disabled published revision based on the current published revision. If there is a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`.
+     * Disable a published label. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Disabling a label will result in a new disabled published revision based on the current published revision. If there's a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`.
      * @example
      * ```js
      * // Before running the sample:
@@ -2413,7 +2413,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Enable a disabled Label and restore it to its published state. This will result in a new published revision based on the current disabled published revision. If there is an existing disabled draft revision, a new revision will be created based on that draft and will be enabled.
+     * Enable a disabled label and restore it to its published state. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). This will result in a new published revision based on the current disabled published revision. If there's an existing disabled draft revision, a new revision will be created based on that draft and will be enabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -2587,7 +2587,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Get a label by its resource name. Resource name may be any of: * `labels/{id\}` - See `labels/{id\}@latest` * `labels/{id\}@latest` - Gets the latest revision of the label. * `labels/{id\}@published` - Gets the current published revision of the label. * `labels/{id\}@{revision_id\}` - Gets the label at the specified revision ID.
+     * Get a label by its resource name. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label). Resource name may be any of: * `labels/{id\}` - See `labels/{id\}@latest` * `labels/{id\}@latest` - Gets the latest revision of the label. * `labels/{id\}@published` - Gets the current published revision of the label. * `labels/{id\}@{revision_id\}` - Gets the label at the specified revision ID.
      * @example
      * ```js
      * // Before running the sample:
@@ -2759,7 +2759,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * List labels.
+     * List labels. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label).
      * @example
      * ```js
      * // Before running the sample:
@@ -2794,11 +2794,11 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.list({
-     *     // The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     *     // The customer to scope this list request to. For example: `customers/abcd1234`. If unset, will return all labels within the current customer.
      *     customer: 'placeholder-value',
      *     // The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language are used.
      *     languageCode: 'placeholder-value',
-     *     // Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.
+     *     // Specifies the level of access the user must have on the returned labels. The minimum role a user must have on a label. Defaults to `READER`.
      *     minimumRole: 'placeholder-value',
      *     // Maximum number of labels to return per page. Default: 50. Max: 200.
      *     pageSize: 'placeholder-value',
@@ -2806,7 +2806,7 @@ export namespace drivelabels_v2 {
      *     pageToken: 'placeholder-value',
      *     // Whether to include only published labels in the results. * When `true`, only the current published label revisions are returned. Disabled labels are included. Returned label resource names reference the published revision (`labels/{id\}/{revision_id\}`). * When `false`, the current label revisions are returned, which might not be published. Returned label resource names don't reference a specific revision (`labels/{id\}`).
      *     publishedOnly: 'placeholder-value',
-     *     // Set to `true` in order to use the user's admin credentials. This will return all Labels within the customer.
+     *     // Set to `true` in order to use the user's admin credentials. This will return all labels within the customer.
      *     useAdminAccess: 'placeholder-value',
      *     // When specified, only certain fields belonging to the indicated view are returned.
      *     view: 'placeholder-value',
@@ -2922,7 +2922,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Publish all draft changes to the Label. Once published, the Label may not return to its draft state. See `google.apps.drive.labels.v2.Lifecycle` for more information. Publishing a Label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the Label will be rejected. For example, the following changes to a Label will be rejected after the Label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * Field.FieldType cannot be changed. * Changes to Field validation options cannot reject something that was previously accepted. * Reducing the max entries.
+     * Publish all draft changes to the label. Once published, the label may not return to its draft state. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label). Publishing a label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label will be rejected. For example, the following changes to a label will be rejected after the label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * `Field.FieldType` cannot be changed. * Changes to field validation options cannot reject something that was previously accepted. * Reducing the maximum entries.
      * @example
      * ```js
      * // Before running the sample:
@@ -3099,7 +3099,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do not require publishing, and take effect immediately.
+     * Updates a label's `CopyMode`. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately.
      * @example
      * ```js
      * // Before running the sample:
@@ -3132,7 +3132,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.updateLabelCopyMode({
-     *     // Required. The resource name of the Label to update.
+     *     // Required. The resource name of the label to update.
      *     name: 'labels/my-label',
      *
      *     // Request body metadata
@@ -3278,7 +3278,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's EabledAppSettings. Enabling a Label in a Workspace Application allows it to be used in that application. This change is not revisioned, does not require publishing, and takes effect immediately.
+     * Updates a label's `EnabledAppSettings`. Enabling a label in a Google Workspace app allows it to be used in that app. This change isn't revisioned, doesn't require publishing, and takes effect immediately.
      * @example
      * ```js
      * // Before running the sample:
@@ -3308,7 +3308,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.updateLabelEnabledAppSettings({
-     *     // Required. The resource name of the Label to update. The resource name of the Label to update.
+     *     // Required. The resource name of the label to update. The resource name of the label to update.
      *     name: 'labels/my-label',
      *
      *     // Request body metadata
@@ -3453,7 +3453,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -3486,9 +3486,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.updatePermissions({
-     *     // Required. The parent Label resource name.
+     *     // Required. The parent label resource name.
      *     parent: 'labels/my-label',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -3625,7 +3625,7 @@ export namespace drivelabels_v2 {
 
   export interface Params$Resource$Labels$Create extends StandardParameters {
     /**
-     * The BCP-47 language code to use for evaluating localized Field labels in response. When not specified, values in the default configured language will be used.
+     * The BCP-47 language code to use for evaluating localized field labels in response. When not specified, values in the default configured language will be used.
      */
     languageCode?: string;
     /**
@@ -3644,17 +3644,17 @@ export namespace drivelabels_v2 {
      */
     name?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
     /**
-     * The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
+     * The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.
      */
     'writeControl.requiredRevisionId'?: string;
   }
   export interface Params$Resource$Labels$Delta extends StandardParameters {
     /**
-     * Required. The resource name of the Label to update.
+     * Required. The resource name of the label to update.
      */
     name?: string;
 
@@ -3705,7 +3705,7 @@ export namespace drivelabels_v2 {
   }
   export interface Params$Resource$Labels$List extends StandardParameters {
     /**
-     * The customer to scope this list request to. For example: "customers/abcd1234". If unset, will return all labels within the current customer.
+     * The customer to scope this list request to. For example: `customers/abcd1234`. If unset, will return all labels within the current customer.
      */
     customer?: string;
     /**
@@ -3713,7 +3713,7 @@ export namespace drivelabels_v2 {
      */
     languageCode?: string;
     /**
-     * Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.
+     * Specifies the level of access the user must have on the returned labels. The minimum role a user must have on a label. Defaults to `READER`.
      */
     minimumRole?: string;
     /**
@@ -3729,7 +3729,7 @@ export namespace drivelabels_v2 {
      */
     publishedOnly?: boolean;
     /**
-     * Set to `true` in order to use the user's admin credentials. This will return all Labels within the customer.
+     * Set to `true` in order to use the user's admin credentials. This will return all labels within the customer.
      */
     useAdminAccess?: boolean;
     /**
@@ -3751,7 +3751,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Updatelabelcopymode
     extends StandardParameters {
     /**
-     * Required. The resource name of the Label to update.
+     * Required. The resource name of the label to update.
      */
     name?: string;
 
@@ -3763,7 +3763,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Updatelabelenabledappsettings
     extends StandardParameters {
     /**
-     * Required. The resource name of the Label to update. The resource name of the Label to update.
+     * Required. The resource name of the label to update. The resource name of the label to update.
      */
     name?: string;
 
@@ -3775,11 +3775,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Updatepermissions
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name.
+     * Required. The parent label resource name.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
 
@@ -3796,7 +3796,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Lists the LabelLocks on a Label.
+     * Lists the label locks on a label.
      * @example
      * ```js
      * // Before running the sample:
@@ -3831,11 +3831,11 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.locks.list({
-     *     // Maximum number of Locks to return per page. Default: 100. Max: 200.
+     *     // Maximum number of locks to return per page. Default: 100. Max: 200.
      *     pageSize: 'placeholder-value',
      *     // The token of the page to return.
      *     pageToken: 'placeholder-value',
-     *     // Required. Label on which Locks are applied. Format: labels/{label\}
+     *     // Required. Label on which locks are applied. Format: `labels/{label\}`.
      *     parent: 'labels/my-label',
      *   });
      *   console.log(res.data);
@@ -3956,7 +3956,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Locks$List
     extends StandardParameters {
     /**
-     * Maximum number of Locks to return per page. Default: 100. Max: 200.
+     * Maximum number of locks to return per page. Default: 100. Max: 200.
      */
     pageSize?: number;
     /**
@@ -3964,7 +3964,7 @@ export namespace drivelabels_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Label on which Locks are applied. Format: labels/{label\}
+     * Required. Label on which locks are applied. Format: `labels/{label\}`.
      */
     parent?: string;
   }
@@ -3976,7 +3976,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -4009,7 +4009,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.batchDelete({
-     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     // Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      *     parent: 'labels/my-label',
      *
      *     // Request body metadata
@@ -4125,7 +4125,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -4158,7 +4158,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.batchUpdate({
-     *     // Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     // Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      *     parent: 'labels/my-label',
      *
      *     // Request body metadata
@@ -4284,7 +4284,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -4317,9 +4317,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.create({
-     *     // Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     *     // Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      *     parent: 'labels/my-label',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4454,7 +4454,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -4487,9 +4487,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.permissions.delete({
-     *     // Required. Label Permission resource name.
+     *     // Required. Label permission resource name.
      *     name: 'labels/my-label/permissions/my-permission',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4591,7 +4591,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Lists a Label's permissions.
+     * Lists a label's permissions.
      * @example
      * ```js
      * // Before running the sample:
@@ -4630,9 +4630,9 @@ export namespace drivelabels_v2 {
      *     pageSize: 'placeholder-value',
      *     // The token of the page to return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     *     // Required. The parent label resource name on which label permissions are listed. Format: `labels/{label\}`.
      *     parent: 'labels/my-label',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -4753,7 +4753,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Permissions$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     * Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
     parent?: string;
 
@@ -4765,7 +4765,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Permissions$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     * Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
     parent?: string;
 
@@ -4777,11 +4777,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Permissions$Create
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     * Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
 
@@ -4793,11 +4793,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Permissions$Delete
     extends StandardParameters {
     /**
-     * Required. Label Permission resource name.
+     * Required. Label permission resource name.
      */
     name?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
   }
@@ -4812,11 +4812,11 @@ export namespace drivelabels_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     * Required. The parent label resource name on which label permissions are listed. Format: `labels/{label\}`.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
   }
@@ -4834,7 +4834,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -4867,9 +4867,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.updatePermissions({
-     *     // Required. The parent Label resource name.
+     *     // Required. The parent label resource name.
      *     parent: 'labels/my-label/revisions/my-revision',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5007,11 +5007,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Updatepermissions
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name.
+     * Required. The parent label resource name.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
 
@@ -5028,7 +5028,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Lists the LabelLocks on a Label.
+     * Lists the label locks on a label.
      * @example
      * ```js
      * // Before running the sample:
@@ -5063,11 +5063,11 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.locks.list({
-     *     // Maximum number of Locks to return per page. Default: 100. Max: 200.
+     *     // Maximum number of locks to return per page. Default: 100. Max: 200.
      *     pageSize: 'placeholder-value',
      *     // The token of the page to return.
      *     pageToken: 'placeholder-value',
-     *     // Required. Label on which Locks are applied. Format: labels/{label\}
+     *     // Required. Label on which locks are applied. Format: `labels/{label\}`.
      *     parent: 'labels/my-label/revisions/my-revision',
      *   });
      *   console.log(res.data);
@@ -5188,7 +5188,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Locks$List
     extends StandardParameters {
     /**
-     * Maximum number of Locks to return per page. Default: 100. Max: 200.
+     * Maximum number of locks to return per page. Default: 100. Max: 200.
      */
     pageSize?: number;
     /**
@@ -5196,7 +5196,7 @@ export namespace drivelabels_v2 {
      */
     pageToken?: string;
     /**
-     * Required. Label on which Locks are applied. Format: labels/{label\}
+     * Required. Label on which locks are applied. Format: `labels/{label\}`.
      */
     parent?: string;
   }
@@ -5208,7 +5208,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -5241,7 +5241,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.batchDelete({
-     *     // Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     // Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      *     parent: 'labels/my-label/revisions/my-revision',
      *
      *     // Request body metadata
@@ -5357,7 +5357,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -5390,7 +5390,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.batchUpdate({
-     *     // Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     *     // Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      *     parent: 'labels/my-label/revisions/my-revision',
      *
      *     // Request body metadata
@@ -5516,7 +5516,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -5549,9 +5549,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.create({
-     *     // Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     *     // Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      *     parent: 'labels/my-label/revisions/my-revision',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5686,7 +5686,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.
+     * Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.
      * @example
      * ```js
      * // Before running the sample:
@@ -5719,9 +5719,9 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.labels.revisions.permissions.delete({
-     *     // Required. Label Permission resource name.
+     *     // Required. Label permission resource name.
      *     name: 'labels/my-label/revisions/my-revision/permissions/my-permission',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5823,7 +5823,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Lists a Label's permissions.
+     * Lists a label's permissions.
      * @example
      * ```js
      * // Before running the sample:
@@ -5862,9 +5862,9 @@ export namespace drivelabels_v2 {
      *     pageSize: 'placeholder-value',
      *     // The token of the page to return.
      *     pageToken: 'placeholder-value',
-     *     // Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     *     // Required. The parent label resource name on which label permissions are listed. Format: `labels/{label\}`.
      *     parent: 'labels/my-label/revisions/my-revision',
-     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     *     // Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      *     useAdminAccess: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -5985,7 +5985,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Permissions$Batchdelete
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     * Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
     parent?: string;
 
@@ -5997,7 +5997,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Permissions$Batchupdate
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label\} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.
+     * Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label\}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.
      */
     parent?: string;
 
@@ -6009,11 +6009,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Permissions$Create
     extends StandardParameters {
     /**
-     * Required. The parent Label resource name on the Label Permission is created. Format: labels/{label\}
+     * Required. The parent label resource name on the label permission is created. Format: `labels/{label\}`.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
 
@@ -6025,11 +6025,11 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Labels$Revisions$Permissions$Delete
     extends StandardParameters {
     /**
-     * Required. Label Permission resource name.
+     * Required. Label permission resource name.
      */
     name?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
   }
@@ -6044,11 +6044,11 @@ export namespace drivelabels_v2 {
      */
     pageToken?: string;
     /**
-     * Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label\}
+     * Required. The parent label resource name on which label permissions are listed. Format: `labels/{label\}`.
      */
     parent?: string;
     /**
-     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.
+     * Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.
      */
     useAdminAccess?: boolean;
   }
@@ -6060,7 +6060,7 @@ export namespace drivelabels_v2 {
     }
 
     /**
-     * Get the constraints on the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.
+     * Get the constraints on the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title.
      * @example
      * ```js
      * // Before running the sample:
@@ -6095,7 +6095,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.limits.getLabel({
-     *     // Required. Label revision resource name Must be: "limits/label"
+     *     // Required. Label revision resource name must be: "limits/label".
      *     name: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -6216,7 +6216,7 @@ export namespace drivelabels_v2 {
 
   export interface Params$Resource$Limits$Getlabel extends StandardParameters {
     /**
-     * Required. Label revision resource name Must be: "limits/label"
+     * Required. Label revision resource name must be: "limits/label".
      */
     name?: string;
   }
@@ -6263,7 +6263,7 @@ export namespace drivelabels_v2 {
      *
      *   // Do the magic
      *   const res = await drivelabels.users.getCapabilities({
-     *     // The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     *     // The customer to scope this request to. For example: `customers/abcd1234`. If unset, it will return settings within the current customer.
      *     customer: 'placeholder-value',
      *     // Required. The resource name of the user. Only "users/me/capabilities" is supported.
      *     name: 'users/my-user/capabilities',
@@ -6386,7 +6386,7 @@ export namespace drivelabels_v2 {
   export interface Params$Resource$Users$Getcapabilities
     extends StandardParameters {
     /**
-     * The customer to scope this request to. For example: "customers/abcd1234". If unset, will return settings within the current customer.
+     * The customer to scope this request to. For example: `customers/abcd1234`. If unset, it will return settings within the current customer.
      */
     customer?: string;
     /**
