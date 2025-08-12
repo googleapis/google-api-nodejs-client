@@ -839,6 +839,10 @@ export namespace admin_directory_v1 {
      */
     osVersion?: string | null;
     /**
+     * Output only. Compliance status of the OS version.
+     */
+    osVersionCompliance?: string | null;
+    /**
      * The Chrome device's platform version.
      */
     platformVersion?: string | null;
@@ -3756,6 +3760,7 @@ export namespace admin_directory_v1 {
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
+     *   //   "osVersionCompliance": "my_osVersionCompliance",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
      *   //   "screenshotFiles": [],
@@ -4247,6 +4252,7 @@ export namespace admin_directory_v1 {
      *       //   "orgUnitPath": "my_orgUnitPath",
      *       //   "osUpdateStatus": {},
      *       //   "osVersion": "my_osVersion",
+     *       //   "osVersionCompliance": "my_osVersionCompliance",
      *       //   "platformVersion": "my_platformVersion",
      *       //   "recentUsers": [],
      *       //   "screenshotFiles": [],
@@ -4306,6 +4312,7 @@ export namespace admin_directory_v1 {
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
+     *   //   "osVersionCompliance": "my_osVersionCompliance",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
      *   //   "screenshotFiles": [],
@@ -4498,6 +4505,7 @@ export namespace admin_directory_v1 {
      *       //   "orgUnitPath": "my_orgUnitPath",
      *       //   "osUpdateStatus": {},
      *       //   "osVersion": "my_osVersion",
+     *       //   "osVersionCompliance": "my_osVersionCompliance",
      *       //   "platformVersion": "my_platformVersion",
      *       //   "recentUsers": [],
      *       //   "screenshotFiles": [],
@@ -4557,6 +4565,7 @@ export namespace admin_directory_v1 {
      *   //   "orgUnitPath": "my_orgUnitPath",
      *   //   "osUpdateStatus": {},
      *   //   "osVersion": "my_osVersion",
+     *   //   "osVersionCompliance": "my_osVersionCompliance",
      *   //   "platformVersion": "my_platformVersion",
      *   //   "recentUsers": [],
      *   //   "screenshotFiles": [],
