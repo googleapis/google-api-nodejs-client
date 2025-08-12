@@ -1075,7 +1075,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250731",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1635,6 +1635,20 @@
       "description": "A Filestore instance.",
       "id": "Instance",
       "properties": {
+        "backendType": {
+          "description": "Optional. Immutable. Designates the backend type of this instance. Intended to be used by internal tests and allowed customers.",
+          "enum": [
+            "BACKEND_TYPE_UNSPECIFIED",
+            "COMPUTE_BASED_BACKEND",
+            "FILESTORE_BACKEND"
+          ],
+          "enumDescriptions": [
+            "Backend type not set.",
+            "Instance is backed by Compute.",
+            "Instance is backed by Filestore."
+          ],
+          "type": "string"
+        },
         "capacityGb": {
           "description": "The storage capacity of the instance in gigabytes (GB = 1024^3 bytes). This capacity can be increased up to `max_capacity_gb` GB in multipliers of `capacity_step_size_gb` GB.",
           "format": "int64",
@@ -2433,14 +2447,16 @@
             "CREATING",
             "READY",
             "REMOVING",
-            "FAILED"
+            "FAILED",
+            "PROMOTING"
           ],
           "enumDescriptions": [
             "State not set.",
             "The replica is being created.",
             "The replica is ready.",
             "The replica is being removed.",
-            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object."
+            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object.",
+            "The replica is being promoted."
           ],
           "type": "string"
         },
