@@ -4695,9 +4695,97 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
     /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -5933,9 +6021,27 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAssistant {
     /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1betaAssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfig;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
   }
   /**
    * Multi-modal content.
@@ -6017,6 +6123,54 @@ export namespace discoveryengine_v1beta {
      * Required. The media type (MIME type) of the file.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
   }
   /**
    * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
@@ -6106,6 +6260,28 @@ export namespace discoveryengine_v1beta {
      * The text segment itself.
      */
     text?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1betaAssistantToolInfo[];
   }
   /**
    * User metadata of the request.
@@ -6539,6 +6715,10 @@ export namespace discoveryengine_v1beta {
    * Document metadata contains the information of the document of the current chunk.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata {
+    /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
     /**
      * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
@@ -32112,7 +32292,11 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -32262,7 +32446,11 @@ export namespace discoveryengine_v1beta {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "name": "my_name"
+     *           //   "customerPolicy": {},
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
      *           // }
      *         },
      *       },
@@ -32271,7 +32459,11 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -51544,9 +51736,9 @@ export namespace discoveryengine_v1beta {
      *
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.evaluations.list({
-     *     // Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list Evaluations under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
      *     parent: 'projects/my-project/locations/my-location',
@@ -51700,9 +51892,9 @@ export namespace discoveryengine_v1beta {
      *     // Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
      *     evaluation:
      *       'projects/my-project/locations/my-location/evaluations/my-evaluation',
-     *     // Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -51844,11 +52036,11 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
     /**
@@ -51863,11 +52055,11 @@ export namespace discoveryengine_v1beta {
      */
     evaluation?: string;
     /**
-     * Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
   }
