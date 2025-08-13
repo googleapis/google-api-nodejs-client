@@ -280,7 +280,7 @@
       }
     }
   },
-  "revision": "20250629",
+  "revision": "20250810",
   "rootUrl": "https://places.googleapis.com/",
   "schemas": {
     "GoogleGeoTypeViewport": {
@@ -1464,7 +1464,7 @@
         },
         "store": {
           "$ref": "GoogleMapsPlacesV1ContentBlock",
-          "description": "A summary of the nearby gas stations."
+          "description": "A summary of the nearby stores."
         }
       },
       "type": "object"
