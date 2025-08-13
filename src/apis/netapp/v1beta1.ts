@@ -1295,6 +1295,10 @@ export namespace netapp_v1beta1 {
      */
     allowAutoTiering?: boolean | null;
     /**
+     * Output only. Available throughput of the storage pool (in MiB/s).
+     */
+    availableThroughputMibps?: number | null;
+    /**
      * Required. Capacity in GIB of the pool
      */
     capacityGib?: string | null;
@@ -1350,6 +1354,10 @@ export namespace netapp_v1beta1 {
      * Optional. This field is not implemented. The values provided in this field are ignored.
      */
     psaRange?: string | null;
+    /**
+     * Optional. QoS (Quality of Service) Type of the storage pool
+     */
+    qosType?: string | null;
     /**
      * Optional. Specifies the replica zone for regional storagePool.
      */
@@ -1636,6 +1644,10 @@ export namespace netapp_v1beta1 {
      * Required. StoragePool name of the volume
      */
     storagePool?: string | null;
+    /**
+     * Optional. Throughput of the volume (in MiB/s)
+     */
+    throughputMibps?: number | null;
     /**
      * Tiering policy for the volume.
      */
@@ -7201,6 +7213,7 @@ export namespace netapp_v1beta1 {
      *       // {
      *       //   "activeDirectory": "my_activeDirectory",
      *       //   "allowAutoTiering": false,
+     *       //   "availableThroughputMibps": {},
      *       //   "capacityGib": "my_capacityGib",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceEnabled": false,
@@ -7215,6 +7228,7 @@ export namespace netapp_v1beta1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "psaRange": "my_psaRange",
+     *       //   "qosType": "my_qosType",
      *       //   "replicaZone": "my_replicaZone",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -7514,6 +7528,7 @@ export namespace netapp_v1beta1 {
      *   // {
      *   //   "activeDirectory": "my_activeDirectory",
      *   //   "allowAutoTiering": false,
+     *   //   "availableThroughputMibps": {},
      *   //   "capacityGib": "my_capacityGib",
      *   //   "createTime": "my_createTime",
      *   //   "customPerformanceEnabled": false,
@@ -7528,6 +7543,7 @@ export namespace netapp_v1beta1 {
      *   //   "name": "my_name",
      *   //   "network": "my_network",
      *   //   "psaRange": "my_psaRange",
+     *   //   "qosType": "my_qosType",
      *   //   "replicaZone": "my_replicaZone",
      *   //   "satisfiesPzi": false,
      *   //   "satisfiesPzs": false,
@@ -7825,6 +7841,7 @@ export namespace netapp_v1beta1 {
      *       // {
      *       //   "activeDirectory": "my_activeDirectory",
      *       //   "allowAutoTiering": false,
+     *       //   "availableThroughputMibps": {},
      *       //   "capacityGib": "my_capacityGib",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceEnabled": false,
@@ -7839,6 +7856,7 @@ export namespace netapp_v1beta1 {
      *       //   "name": "my_name",
      *       //   "network": "my_network",
      *       //   "psaRange": "my_psaRange",
+     *       //   "qosType": "my_qosType",
      *       //   "replicaZone": "my_replicaZone",
      *       //   "satisfiesPzi": false,
      *       //   "satisfiesPzs": false,
@@ -8443,6 +8461,7 @@ export namespace netapp_v1beta1 {
      *       //   "state": "my_state",
      *       //   "stateDetails": "my_stateDetails",
      *       //   "storagePool": "my_storagePool",
+     *       //   "throughputMibps": {},
      *       //   "tieringPolicy": {},
      *       //   "unixPermissions": "my_unixPermissions",
      *       //   "usedGib": "my_usedGib",
@@ -8769,6 +8788,7 @@ export namespace netapp_v1beta1 {
      *   //   "state": "my_state",
      *   //   "stateDetails": "my_stateDetails",
      *   //   "storagePool": "my_storagePool",
+     *   //   "throughputMibps": {},
      *   //   "tieringPolicy": {},
      *   //   "unixPermissions": "my_unixPermissions",
      *   //   "usedGib": "my_usedGib",
@@ -9089,6 +9109,7 @@ export namespace netapp_v1beta1 {
      *       //   "state": "my_state",
      *       //   "stateDetails": "my_stateDetails",
      *       //   "storagePool": "my_storagePool",
+     *       //   "throughputMibps": {},
      *       //   "tieringPolicy": {},
      *       //   "unixPermissions": "my_unixPermissions",
      *       //   "usedGib": "my_usedGib",
