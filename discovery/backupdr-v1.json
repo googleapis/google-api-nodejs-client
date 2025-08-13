@@ -2060,7 +2060,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250730",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
     "AbandonBackupRequest": {
@@ -4029,6 +4029,10 @@
       "description": "DiskBackupProperties represents the properties of a Disk backup.",
       "id": "DiskBackupProperties",
       "properties": {
+        "accessMode": {
+          "description": "The access mode of the source disk.",
+          "type": "string"
+        },
         "architecture": {
           "description": "The architecture of the source disk. Valid values are ARM64 or X86_64.",
           "enum": [
@@ -4047,6 +4051,10 @@
           "description": "A description of the source disk.",
           "type": "string"
         },
+        "enableConfidentialCompute": {
+          "description": "Indicates whether the source disk is using confidential compute mode.",
+          "type": "boolean"
+        },
         "guestOsFeature": {
           "description": "A list of guest OS features that are applicable to this backup.",
           "items": {
@@ -4054,12 +4062,34 @@
           },
           "type": "array"
         },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "The labels of the source disk.",
+          "type": "object"
+        },
         "licenses": {
           "description": "A list of publicly available licenses that are applicable to this backup. This is applicable if the original image had licenses attached, e.g. Windows image.",
           "items": {
             "type": "string"
           },
           "type": "array"
+        },
+        "physicalBlockSizeBytes": {
+          "description": "The physical block size of the source disk.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedIops": {
+          "description": "The number of IOPS provisioned for the source disk.",
+          "format": "int64",
+          "type": "string"
+        },
+        "provisionedThroughput": {
+          "description": "The number of throughput provisioned for the source disk.",
+          "format": "int64",
+          "type": "string"
         },
         "region": {
           "description": "Region and zone are mutually exclusive fields. The URL of the region of the source disk.",
@@ -4079,6 +4109,10 @@
         },
         "sourceDisk": {
           "description": "The source disk used to create this backup.",
+          "type": "string"
+        },
+        "storagePool": {
+          "description": "The storage pool of the source disk.",
           "type": "string"
         },
         "type": {
@@ -4927,6 +4961,28 @@
         "name": {
           "description": "Resource name for the location, which may vary between implementations. For example: `\"projects/example-project/locations/us-east1\"`",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "LocationMetadata": {
+      "id": "LocationMetadata",
+      "properties": {
+        "unsupportedFeatures": {
+          "items": {
+            "enum": [
+              "FEATURE_UNSPECIFIED",
+              "MANAGEMENT_SERVER",
+              "COMPUTE_INSTANCE"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
