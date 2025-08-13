@@ -439,6 +439,31 @@
       "resources": {
         "attachments": {
           "methods": {
+            "get": {
+              "description": "Retrieve an attachment associated with a support case. EXAMPLES: cURL: ```shell attachment=\"projects/some-project/cases/23598314/attachments/0684M00000P3h1fQAB\" curl \\ --header \"Authorization: Bearer $(gcloud auth print-access-token)\" \\ \"https://cloudsupport.googleapis.com/v2/$attachment\" ``` Python: ```python import googleapiclient.discovery api_version = \"v2beta\" supportApiService = googleapiclient.discovery.build( serviceName=\"cloudsupport\", version=api_version, discoveryServiceUrl=f\"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}\", ) request = ( supportApiService.cases() .attachments() .get(name=\"projects/some-project/cases/43595344/attachments/0684M00000P3h1fQAB\") ) print(request.execute()) ```",
+              "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments/{attachmentsId}",
+              "httpMethod": "GET",
+              "id": "cloudsupport.cases.attachments.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the attachment to get.",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/cases/[^/]+/attachments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta/{+name}",
+              "response": {
+                "$ref": "Attachment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "List all the attachments associated with a support case. EXAMPLES: cURL: ```shell case=\"projects/some-project/cases/23598314\" curl \\ --header \"Authorization: Bearer $(gcloud auth print-access-token)\" \\ \"https://cloudsupport.googleapis.com/v2/$case/attachments\" ``` Python: ```python import googleapiclient.discovery api_version = \"v2\" supportApiService = googleapiclient.discovery.build( serviceName=\"cloudsupport\", version=api_version, discoveryServiceUrl=f\"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}\", ) request = ( supportApiService.cases() .attachments() .list(parent=\"projects/some-project/cases/43595344\") ) print(request.execute()) ```",
               "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/attachments",
@@ -500,6 +525,31 @@
               "request": {
                 "$ref": "Comment"
               },
+              "response": {
+                "$ref": "Comment"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "get": {
+              "description": "Retrieve a comment. EXAMPLES: cURL: ```shell comment=\"projects/some-project/cases/43595344/comments/234567890\" curl \\ --header \"Authorization: Bearer $(gcloud auth print-access-token)\" \\ \"https://cloudsupport.googleapis.com/v2/$comment\" ``` Python: ```python import googleapiclient.discovery api_version = \"v2beta\" supportApiService = googleapiclient.discovery.build( serviceName=\"cloudsupport\", version=api_version, discoveryServiceUrl=f\"https://cloudsupport.googleapis.com/$discovery/rest?version={api_version}\", ) request = supportApiService.cases().comments().get( name=\"projects/some-project/cases/43595344/comments/234567890\", ) print(request.execute()) ```",
+              "flatPath": "v2beta/{v2betaId}/{v2betaId1}/cases/{casesId}/comments/{commentsId}",
+              "httpMethod": "GET",
+              "id": "cloudsupport.cases.comments.get",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The name of the comment to retrieve.",
+                  "location": "path",
+                  "pattern": "^[^/]+/[^/]+/cases/[^/]+/comments/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v2beta/{+name}",
               "response": {
                 "$ref": "Comment"
               },
@@ -619,7 +669,7 @@
       }
     }
   },
-  "revision": "20250609",
+  "revision": "20250806",
   "rootUrl": "https://cloudsupport.googleapis.com/",
   "schemas": {
     "Actor": {
