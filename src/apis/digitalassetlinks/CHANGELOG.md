@@ -1,5 +1,12 @@
 # Changelog
 
+## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v7.0.2...digitalassetlinks-v7.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* **digitalassetlinks:** update the API ([edabc2a](https://github.com/googleapis/google-api-nodejs-client/commit/edabc2a99697d170edf96cb105111f1daae96438))
+
 ## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v7.0.1...digitalassetlinks-v7.0.2) (2025-08-07)
 
 

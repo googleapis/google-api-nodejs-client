@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/advisorynotifications-v1.0.0...advisorynotifications-v1.0.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **advisorynotifications:** update the API ([89d6e75](https://github.com/googleapis/google-api-nodejs-client/commit/89d6e75df375e4f1ad3854ab8c9ae1e01531c28e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

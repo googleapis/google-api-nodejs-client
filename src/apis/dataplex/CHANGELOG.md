@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/dataplex-v1.0.0...dataplex-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **dataplex:** This release has breaking changes.
+
+### Features
+
+* **dataplex:** update the API ([cc899e9](https://github.com/googleapis/google-api-nodejs-client/commit/cc899e97fa110bbfab7c2a06df4d7cefbca75af7))
+* **dataplex:** update the API ([d039cc6](https://github.com/googleapis/google-api-nodejs-client/commit/d039cc647edcfef51cdcac4bf6c70fd3bfc35e16))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **dataplex:** update the API ([849e2c8](https://github.com/googleapis/google-api-nodejs-client/commit/849e2c8bd139a98c247fc9258c5806ef1f4a7607))
+* **dataplex:** update the API ([6d7e11f](https://github.com/googleapis/google-api-nodejs-client/commit/6d7e11f642de41c375dc40f046f42f0ebc382796))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

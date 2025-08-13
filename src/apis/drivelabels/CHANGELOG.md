@@ -1,5 +1,12 @@
 # Changelog
 
+## [9.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v9.1.1...drivelabels-v9.1.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* **drivelabels:** update the API ([8199840](https://github.com/googleapis/google-api-nodejs-client/commit/819984062679f4bcd5cb19cb4c51af75ca6885ec))
+
 ## [9.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/drivelabels-v9.1.0...drivelabels-v9.1.1) (2025-08-07)
 
 
