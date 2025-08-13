@@ -21,6 +21,16 @@
   "endpoints": [
     {
       "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.asia-south1.rep.googleapis.com/",
+      "location": "asia-south1"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://pubsub.asia-south2.rep.googleapis.com/",
+      "location": "asia-south2"
+    },
+    {
+      "description": "Regional Endpoint",
       "endpointUrl": "https://pubsub.me-central2.rep.googleapis.com/",
       "location": "me-central2"
     },
@@ -529,7 +539,7 @@
       }
     }
   },
-  "revision": "20240730",
+  "revision": "20250807",
   "rootUrl": "https://pubsub.googleapis.com/",
   "schemas": {
     "AcknowledgeRequest": {
