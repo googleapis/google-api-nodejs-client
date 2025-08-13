@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/meet-v1.0.0...meet-v1.0.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **meet:** update the API ([18fdfe4](https://github.com/googleapis/google-api-nodejs-client/commit/18fdfe4a8ffb0dd76204146c1a5052c13d6515c6))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

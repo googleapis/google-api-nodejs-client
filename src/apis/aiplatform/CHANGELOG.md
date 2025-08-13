@@ -1,5 +1,26 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/aiplatform-v1.0.0...aiplatform-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **aiplatform:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **aiplatform:** update the API ([51055e2](https://github.com/googleapis/google-api-nodejs-client/commit/51055e22b179476554207cee5f48674ac63ea5af))
+* **aiplatform:** update the API ([2f24162](https://github.com/googleapis/google-api-nodejs-client/commit/2f24162b08806a0adf91e8668e4fc7ef89386f49))
+* **aiplatform:** update the API ([13a9e2f](https://github.com/googleapis/google-api-nodejs-client/commit/13a9e2f9be2873450947530717d51742aed48b39))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

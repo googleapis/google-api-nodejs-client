@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/chat-v1.0.0...chat-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **chat:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **chat:** update the API ([091a4e1](https://github.com/googleapis/google-api-nodejs-client/commit/091a4e125c2d1168ad03ca26f6bb16d03a3da881))
+* **chat:** update the API ([127445a](https://github.com/googleapis/google-api-nodejs-client/commit/127445a8704b97fe8faf47fc8868f47e5d419da2))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **chat:** update the API ([e1d9e89](https://github.com/googleapis/google-api-nodejs-client/commit/e1d9e89202d08deb28e04475ec98a7579cca4359))
+* **chat:** update the API ([e97389d](https://github.com/googleapis/google-api-nodejs-client/commit/e97389d3736eecd1f53901993cbd8b0c9be1bee9))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 
