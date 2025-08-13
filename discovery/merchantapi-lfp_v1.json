@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "merchantapi:lfp_v1beta",
+  "id": "merchantapi:lfp_v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://merchantapi.mtls.googleapis.com/",
   "name": "merchantapi",
@@ -111,7 +111,7 @@
           "methods": {
             "insert": {
               "description": "Inserts a `LfpInventory` resource for the given target merchant account. If the resource already exists, it will be replaced. The inventory automatically expires after 30 days.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpInventories:insert",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpInventories:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.lfpInventories.insert",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+parent}/lfpInventories:insert",
+              "path": "lfp/v1/{+parent}/lfpInventories:insert",
               "request": {
                 "$ref": "LfpInventory"
               },
@@ -143,7 +143,7 @@
           "methods": {
             "get": {
               "description": "Gets the LFP state of a merchant",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpMerchantStates/{lfpMerchantStatesId}",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpMerchantStates/{lfpMerchantStatesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.lfpMerchantStates.get",
               "parameterOrder": [
@@ -158,7 +158,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+name}",
+              "path": "lfp/v1/{+name}",
               "response": {
                 "$ref": "LfpMerchantState"
               },
@@ -172,7 +172,7 @@
           "methods": {
             "insert": {
               "description": "Inserts a `LfpSale` for the given merchant.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpSales:insert",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpSales:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.lfpSales.insert",
               "parameterOrder": [
@@ -187,7 +187,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+parent}/lfpSales:insert",
+              "path": "lfp/v1/{+parent}/lfpSales:insert",
               "request": {
                 "$ref": "LfpSale"
               },
@@ -204,7 +204,7 @@
           "methods": {
             "delete": {
               "description": "Deletes a store for a target merchant.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpStores/{lfpStoresId}",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpStores/{lfpStoresId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.lfpStores.delete",
               "parameterOrder": [
@@ -219,7 +219,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+name}",
+              "path": "lfp/v1/{+name}",
               "response": {
                 "$ref": "Empty"
               },
@@ -229,7 +229,7 @@
             },
             "get": {
               "description": "Retrieves information about a store.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpStores/{lfpStoresId}",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpStores/{lfpStoresId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.lfpStores.get",
               "parameterOrder": [
@@ -244,7 +244,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+name}",
+              "path": "lfp/v1/{+name}",
               "response": {
                 "$ref": "LfpStore"
               },
@@ -254,7 +254,7 @@
             },
             "insert": {
               "description": "Inserts a store for the target merchant. If the store with the same store code already exists, it will be replaced.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpStores:insert",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpStores:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.lfpStores.insert",
               "parameterOrder": [
@@ -269,7 +269,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+parent}/lfpStores:insert",
+              "path": "lfp/v1/{+parent}/lfpStores:insert",
               "request": {
                 "$ref": "LfpStore"
               },
@@ -282,7 +282,7 @@
             },
             "list": {
               "description": "Lists the stores of the target merchant, specified by the filter in `ListLfpStoresRequest`.",
-              "flatPath": "lfp/v1beta/accounts/{accountsId}/lfpStores",
+              "flatPath": "lfp/v1/accounts/{accountsId}/lfpStores",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.lfpStores.list",
               "parameterOrder": [
@@ -314,7 +314,7 @@
                   "type": "string"
                 }
               },
-              "path": "lfp/v1beta/{+parent}/lfpStores",
+              "path": "lfp/v1/{+parent}/lfpStores",
               "response": {
                 "$ref": "ListLfpStoresResponse"
               },
@@ -327,7 +327,7 @@
       }
     }
   },
-  "revision": "20250803",
+  "revision": "20250808",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "CountrySettings": {
@@ -897,6 +897,6 @@
   },
   "servicePath": "",
   "title": "Merchant API",
-  "version": "lfp_v1beta",
+  "version": "lfp_v1",
   "version_module": true
 }

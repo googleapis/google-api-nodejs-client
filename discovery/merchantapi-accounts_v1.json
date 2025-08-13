@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "merchantapi:accounts_v1beta",
+  "id": "merchantapi:accounts_v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://merchantapi.mtls.googleapis.com/",
   "name": "merchantapi",
@@ -109,12 +109,12 @@
       "methods": {
         "createAndConfigure": {
           "description": "Creates a Merchant Center account with additional configuration. Adds the user that makes the request as an admin for the new account.",
-          "flatPath": "accounts/v1beta/accounts:createAndConfigure",
+          "flatPath": "accounts/v1/accounts:createAndConfigure",
           "httpMethod": "POST",
           "id": "merchantapi.accounts.createAndConfigure",
           "parameterOrder": [],
           "parameters": {},
-          "path": "accounts/v1beta/accounts:createAndConfigure",
+          "path": "accounts/v1/accounts:createAndConfigure",
           "request": {
             "$ref": "CreateAndConfigureAccountRequest"
           },
@@ -127,7 +127,7 @@
         },
         "delete": {
           "description": "Deletes the specified account regardless of its type: standalone, advanced account or sub-account. Deleting an advanced account leads to the deletion of all of its sub-accounts. Executing this method requires admin access. The deletion succeeds only if the account does not provide services to any other account and has no processed offers. You can use the `force` parameter to override this.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}",
+          "flatPath": "accounts/v1/accounts/{accountsId}",
           "httpMethod": "DELETE",
           "id": "merchantapi.accounts.delete",
           "parameterOrder": [
@@ -147,7 +147,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+name}",
+          "path": "accounts/v1/{+name}",
           "response": {
             "$ref": "Empty"
           },
@@ -157,7 +157,7 @@
         },
         "get": {
           "description": "Retrieves an account from your Merchant Center account. After inserting, updating, or deleting an account, it may take several minutes before changes take effect.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}",
+          "flatPath": "accounts/v1/accounts/{accountsId}",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.get",
           "parameterOrder": [
@@ -172,7 +172,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+name}",
+          "path": "accounts/v1/{+name}",
           "response": {
             "$ref": "Account"
           },
@@ -182,7 +182,7 @@
         },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
-          "flatPath": "accounts/v1beta/accounts",
+          "flatPath": "accounts/v1/accounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.list",
           "parameterOrder": [],
@@ -204,7 +204,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/accounts",
+          "path": "accounts/v1/accounts",
           "response": {
             "$ref": "ListAccountsResponse"
           },
@@ -214,7 +214,7 @@
         },
         "listSubaccounts": {
           "description": "List all sub-accounts for a given advanced account. This is a convenience wrapper for the more powerful `accounts.list` method. This method will produce the same results as calling `ListsAccounts` with the following filter: `relationship(providerId={parent} AND service(type=\"ACCOUNT_AGGREGATION\"))`",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}:listSubaccounts",
+          "flatPath": "accounts/v1/accounts/{accountsId}:listSubaccounts",
           "httpMethod": "GET",
           "id": "merchantapi.accounts.listSubaccounts",
           "parameterOrder": [
@@ -240,7 +240,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+provider}:listSubaccounts",
+          "path": "accounts/v1/{+provider}:listSubaccounts",
           "response": {
             "$ref": "ListSubAccountsResponse"
           },
@@ -250,7 +250,7 @@
         },
         "patch": {
           "description": "Updates an account regardless of its type: standalone, advanced account or sub-account. Executing this method requires admin access.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}",
+          "flatPath": "accounts/v1/accounts/{accountsId}",
           "httpMethod": "PATCH",
           "id": "merchantapi.accounts.patch",
           "parameterOrder": [
@@ -271,7 +271,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+name}",
+          "path": "accounts/v1/{+name}",
           "request": {
             "$ref": "Account"
           },
@@ -288,7 +288,7 @@
           "methods": {
             "getAutofeedSettings": {
               "description": "Retrieves the autofeed settings of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/autofeedSettings",
+              "flatPath": "accounts/v1/accounts/{accountsId}/autofeedSettings",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.autofeedSettings.getAutofeedSettings",
               "parameterOrder": [
@@ -303,7 +303,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "AutofeedSettings"
               },
@@ -313,7 +313,7 @@
             },
             "updateAutofeedSettings": {
               "description": "Updates the autofeed settings of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/autofeedSettings",
+              "flatPath": "accounts/v1/accounts/{accountsId}/autofeedSettings",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.autofeedSettings.updateAutofeedSettings",
               "parameterOrder": [
@@ -334,7 +334,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "AutofeedSettings"
               },
@@ -351,7 +351,7 @@
           "methods": {
             "getAutomaticImprovements": {
               "description": "Retrieves the automatic improvements of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+              "flatPath": "accounts/v1/accounts/{accountsId}/automaticImprovements",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.automaticImprovements.getAutomaticImprovements",
               "parameterOrder": [
@@ -366,7 +366,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "AutomaticImprovements"
               },
@@ -376,7 +376,7 @@
             },
             "updateAutomaticImprovements": {
               "description": "Updates the automatic improvements of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/automaticImprovements",
+              "flatPath": "accounts/v1/accounts/{accountsId}/automaticImprovements",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.automaticImprovements.updateAutomaticImprovements",
               "parameterOrder": [
@@ -397,7 +397,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "AutomaticImprovements"
               },
@@ -414,7 +414,7 @@
           "methods": {
             "getBusinessIdentity": {
               "description": "Retrieves the business identity of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
+              "flatPath": "accounts/v1/accounts/{accountsId}/businessIdentity",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.businessIdentity.getBusinessIdentity",
               "parameterOrder": [
@@ -429,7 +429,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "BusinessIdentity"
               },
@@ -439,7 +439,7 @@
             },
             "updateBusinessIdentity": {
               "description": "Updates the business identity of an account. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessIdentity",
+              "flatPath": "accounts/v1/accounts/{accountsId}/businessIdentity",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.businessIdentity.updateBusinessIdentity",
               "parameterOrder": [
@@ -460,7 +460,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "BusinessIdentity"
               },
@@ -477,7 +477,7 @@
           "methods": {
             "getBusinessInfo": {
               "description": "Retrieves the business info of an account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "flatPath": "accounts/v1/accounts/{accountsId}/businessInfo",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.businessInfo.getBusinessInfo",
               "parameterOrder": [
@@ -492,7 +492,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "BusinessInfo"
               },
@@ -502,7 +502,7 @@
             },
             "updateBusinessInfo": {
               "description": "Updates the business info of an account. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/businessInfo",
+              "flatPath": "accounts/v1/accounts/{accountsId}/businessInfo",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.businessInfo.updateBusinessInfo",
               "parameterOrder": [
@@ -523,7 +523,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "BusinessInfo"
               },
@@ -540,7 +540,7 @@
           "methods": {
             "getDeveloperRegistration": {
               "description": "Retrieves a developer registration for a merchant.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
+              "flatPath": "accounts/v1/accounts/{accountsId}/developerRegistration",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.developerRegistration.getDeveloperRegistration",
               "parameterOrder": [
@@ -555,7 +555,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "DeveloperRegistration"
               },
@@ -565,7 +565,7 @@
             },
             "registerGcp": {
               "description": "Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an \"API developer\" and add the \"developer_email\" as a contact with \"API notifications\" email preference on.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:registerGcp",
+              "flatPath": "accounts/v1/accounts/{accountsId}/developerRegistration:registerGcp",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.developerRegistration.registerGcp",
               "parameterOrder": [
@@ -580,7 +580,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:registerGcp",
+              "path": "accounts/v1/{+name}:registerGcp",
               "request": {
                 "$ref": "RegisterGcpRequest"
               },
@@ -593,7 +593,7 @@
             },
             "unregisterGcp": {
               "description": "Unregister the calling GCP from the calling shopping account. Note that the GCP will still be able to access the API for at most 1 day from the unregister succussful call.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:unregisterGcp",
+              "flatPath": "accounts/v1/accounts/{accountsId}/developerRegistration:unregisterGcp",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.developerRegistration.unregisterGcp",
               "parameterOrder": [
@@ -608,7 +608,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:unregisterGcp",
+              "path": "accounts/v1/{+name}:unregisterGcp",
               "request": {
                 "$ref": "UnregisterGcpRequest"
               },
@@ -625,7 +625,7 @@
           "methods": {
             "getEmailPreferences": {
               "description": "Returns the email preferences for a Merchant Center account user. This service only permits retrieving and updating email preferences for the authenticated user. Use the name=accounts/*/users/me/emailPreferences alias to get preferences for the authenticated user.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.emailPreferences.getEmailPreferences",
               "parameterOrder": [
@@ -640,7 +640,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "EmailPreferences"
               },
@@ -650,7 +650,7 @@
             },
             "updateEmailPreferences": {
               "description": "Updates the email preferences for a Merchant Center account user. Advanced account users should specify the advanced account rather than a sub-account of the advanced account. Preferences which are not explicitly selected in the update mask will not be updated. It is invalid for updates to specify an UNCONFIRMED opt-in status value. Use the name=accounts/*/users/me/emailPreferences alias to update preferences for the authenticated user.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}/emailPreferences",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users/{usersId}/emailPreferences",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.emailPreferences.updateEmailPreferences",
               "parameterOrder": [
@@ -671,7 +671,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "EmailPreferences"
               },
@@ -688,7 +688,7 @@
           "methods": {
             "linkGbpAccount": {
               "description": "Link the specified merchant to a GBP account for all countries. To run this method, you must have admin access to the Merchant Center account. If you don't have admin access, the request fails with the error message `User is not an administrator of account {ACCOUNT_ID}`.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/gbpAccounts:linkGbpAccount",
+              "flatPath": "accounts/v1/accounts/{accountsId}/gbpAccounts:linkGbpAccount",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.gbpAccounts.linkGbpAccount",
               "parameterOrder": [
@@ -703,7 +703,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/gbpAccounts:linkGbpAccount",
+              "path": "accounts/v1/{+parent}/gbpAccounts:linkGbpAccount",
               "request": {
                 "$ref": "LinkGbpAccountRequest"
               },
@@ -716,7 +716,7 @@
             },
             "list": {
               "description": "List the GBP accounts for a given merchant.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/gbpAccounts",
+              "flatPath": "accounts/v1/accounts/{accountsId}/gbpAccounts",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.gbpAccounts.list",
               "parameterOrder": [
@@ -742,7 +742,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/gbpAccounts",
+              "path": "accounts/v1/{+parent}/gbpAccounts",
               "response": {
                 "$ref": "ListGbpAccountsResponse"
               },
@@ -756,7 +756,7 @@
           "methods": {
             "claim": {
               "description": "Claims a store's homepage. Executing this method requires admin access. If the homepage is already claimed, this will recheck the verification (unless the business is exempted from claiming, which also exempts from verification) and return a successful response. If ownership can no longer be verified, it will return an error, but it won't clear the claim. In case of failure, a canonical error message is returned: * PERMISSION_DENIED: User doesn't have the necessary permissions on this Merchant Center account. * FAILED_PRECONDITION: - The account is not a Merchant Center account. - Merchant Center account doesn't have a homepage. - Claiming failed (in this case the error message contains more details).",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage:claim",
+              "flatPath": "accounts/v1/accounts/{accountsId}/homepage:claim",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.homepage.claim",
               "parameterOrder": [
@@ -771,7 +771,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:claim",
+              "path": "accounts/v1/{+name}:claim",
               "request": {
                 "$ref": "ClaimHomepageRequest"
               },
@@ -784,7 +784,7 @@
             },
             "getHomepage": {
               "description": "Retrieves a store's homepage.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
+              "flatPath": "accounts/v1/accounts/{accountsId}/homepage",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.homepage.getHomepage",
               "parameterOrder": [
@@ -799,7 +799,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Homepage"
               },
@@ -809,7 +809,7 @@
             },
             "unclaim": {
               "description": "Unclaims a store's homepage. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage:unclaim",
+              "flatPath": "accounts/v1/accounts/{accountsId}/homepage:unclaim",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.homepage.unclaim",
               "parameterOrder": [
@@ -824,7 +824,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:unclaim",
+              "path": "accounts/v1/{+name}:unclaim",
               "request": {
                 "$ref": "UnclaimHomepageRequest"
               },
@@ -837,7 +837,7 @@
             },
             "updateHomepage": {
               "description": "Updates a store's homepage. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/homepage",
+              "flatPath": "accounts/v1/accounts/{accountsId}/homepage",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.homepage.updateHomepage",
               "parameterOrder": [
@@ -858,7 +858,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "Homepage"
               },
@@ -875,7 +875,7 @@
           "methods": {
             "list": {
               "description": "Lists all account issues of a Merchant Center account. When called on a multi-client account, this method only returns issues belonging to that account, not its sub-accounts. To retrieve issues for sub-accounts, you must first call the accounts.listSubaccounts method to obtain a list of sub-accounts, and then call `accounts.issues.list` for each sub-account individually.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/issues",
+              "flatPath": "accounts/v1/accounts/{accountsId}/issues",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.issues.list",
               "parameterOrder": [
@@ -911,7 +911,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/issues",
+              "path": "accounts/v1/{+parent}/issues",
               "response": {
                 "$ref": "ListAccountIssuesResponse"
               },
@@ -925,7 +925,7 @@
           "methods": {
             "create": {
               "description": "Create the omnichannel settings for a given merchant.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings",
+              "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.omnichannelSettings.create",
               "parameterOrder": [
@@ -940,7 +940,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/omnichannelSettings",
+              "path": "accounts/v1/{+parent}/omnichannelSettings",
               "request": {
                 "$ref": "OmnichannelSetting"
               },
@@ -953,7 +953,7 @@
             },
             "get": {
               "description": "Get the omnichannel settings for a given merchant.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.omnichannelSettings.get",
               "parameterOrder": [
@@ -968,7 +968,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "OmnichannelSetting"
               },
@@ -978,7 +978,7 @@
             },
             "list": {
               "description": "List all the omnichannel settings for a given merchant.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings",
+              "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.omnichannelSettings.list",
               "parameterOrder": [
@@ -1004,7 +1004,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/omnichannelSettings",
+              "path": "accounts/v1/{+parent}/omnichannelSettings",
               "response": {
                 "$ref": "ListOmnichannelSettingsResponse"
               },
@@ -1014,7 +1014,7 @@
             },
             "patch": {
               "description": "Update the omnichannel setting for a given merchant in a given country.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.omnichannelSettings.patch",
               "parameterOrder": [
@@ -1035,7 +1035,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "OmnichannelSetting"
               },
@@ -1048,7 +1048,7 @@
             },
             "requestInventoryVerification": {
               "description": "Requests inventory verification for a given merchant in a given country.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}:requestInventoryVerification",
+              "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}:requestInventoryVerification",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.omnichannelSettings.requestInventoryVerification",
               "parameterOrder": [
@@ -1063,7 +1063,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:requestInventoryVerification",
+              "path": "accounts/v1/{+name}:requestInventoryVerification",
               "request": {
                 "$ref": "RequestInventoryVerificationRequest"
               },
@@ -1080,7 +1080,7 @@
               "methods": {
                 "find": {
                   "description": "Find the LFP provider candidates in a given country.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders:find",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders:find",
                   "httpMethod": "GET",
                   "id": "merchantapi.accounts.omnichannelSettings.lfpProviders.find",
                   "parameterOrder": [
@@ -1106,7 +1106,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+parent}/lfpProviders:find",
+                  "path": "accounts/v1/{+parent}/lfpProviders:find",
                   "response": {
                     "$ref": "FindLfpProvidersResponse"
                   },
@@ -1116,7 +1116,7 @@
                 },
                 "linkLfpProvider": {
                   "description": "Link the specified merchant to a LFP provider for the specified country.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders/{lfpProvidersId}:linkLfpProvider",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/omnichannelSettings/{omnichannelSettingsId}/lfpProviders/{lfpProvidersId}:linkLfpProvider",
                   "httpMethod": "POST",
                   "id": "merchantapi.accounts.omnichannelSettings.lfpProviders.linkLfpProvider",
                   "parameterOrder": [
@@ -1131,7 +1131,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+name}:linkLfpProvider",
+                  "path": "accounts/v1/{+name}:linkLfpProvider",
                   "request": {
                     "$ref": "LinkLfpProviderRequest"
                   },
@@ -1150,7 +1150,7 @@
           "methods": {
             "create": {
               "description": "Creates a new return policy for a given business.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies",
+              "flatPath": "accounts/v1/accounts/{accountsId}/onlineReturnPolicies",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.onlineReturnPolicies.create",
               "parameterOrder": [
@@ -1165,7 +1165,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/onlineReturnPolicies",
+              "path": "accounts/v1/{+parent}/onlineReturnPolicies",
               "request": {
                 "$ref": "OnlineReturnPolicy"
               },
@@ -1178,7 +1178,7 @@
             },
             "delete": {
               "description": "Deletes an existing return policy.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.onlineReturnPolicies.delete",
               "parameterOrder": [
@@ -1193,7 +1193,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Empty"
               },
@@ -1203,7 +1203,7 @@
             },
             "get": {
               "description": "Gets an existing return policy for a given business.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.get",
               "parameterOrder": [
@@ -1218,7 +1218,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "OnlineReturnPolicy"
               },
@@ -1228,7 +1228,7 @@
             },
             "list": {
               "description": "Lists all existing return policies for a given business.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies",
+              "flatPath": "accounts/v1/accounts/{accountsId}/onlineReturnPolicies",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.onlineReturnPolicies.list",
               "parameterOrder": [
@@ -1254,43 +1254,9 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/onlineReturnPolicies",
+              "path": "accounts/v1/{+parent}/onlineReturnPolicies",
               "response": {
                 "$ref": "ListOnlineReturnPoliciesResponse"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/content"
-              ]
-            },
-            "patch": {
-              "description": "Updates an existing return policy for a given business.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/onlineReturnPolicies/{onlineReturnPoliciesId}",
-              "httpMethod": "PATCH",
-              "id": "merchantapi.accounts.onlineReturnPolicies.patch",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Identifier. The name of the `OnlineReturnPolicy` resource. Format: `accounts/{account}/onlineReturnPolicies/{return_policy}`",
-                  "location": "path",
-                  "pattern": "^accounts/[^/]+/onlineReturnPolicies/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                },
-                "updateMask": {
-                  "description": "Optional. Only support updating the entire OnlineReturnPolicy message. For update_mask, always use `*`.",
-                  "format": "google-fieldmask",
-                  "location": "query",
-                  "type": "string"
-                }
-              },
-              "path": "accounts/v1beta/{+name}",
-              "request": {
-                "$ref": "OnlineReturnPolicy"
-              },
-              "response": {
-                "$ref": "OnlineReturnPolicy"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/content"
@@ -1302,7 +1268,7 @@
           "methods": {
             "disable": {
               "description": "Disable participation in the specified program for the account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}:disable",
+              "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}:disable",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.programs.disable",
               "parameterOrder": [
@@ -1317,7 +1283,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:disable",
+              "path": "accounts/v1/{+name}:disable",
               "request": {
                 "$ref": "DisableProgramRequest"
               },
@@ -1330,7 +1296,7 @@
             },
             "enable": {
               "description": "Enable participation in the specified program for the account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}:enable",
+              "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}:enable",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.programs.enable",
               "parameterOrder": [
@@ -1345,7 +1311,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:enable",
+              "path": "accounts/v1/{+name}:enable",
               "request": {
                 "$ref": "EnableProgramRequest"
               },
@@ -1358,7 +1324,7 @@
             },
             "get": {
               "description": "Retrieves the specified program for the account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.programs.get",
               "parameterOrder": [
@@ -1373,7 +1339,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Program"
               },
@@ -1383,7 +1349,7 @@
             },
             "list": {
               "description": "Retrieves all programs for the account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/programs",
+              "flatPath": "accounts/v1/accounts/{accountsId}/programs",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.programs.list",
               "parameterOrder": [
@@ -1409,7 +1375,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/programs",
+              "path": "accounts/v1/{+parent}/programs",
               "response": {
                 "$ref": "ListProgramsResponse"
               },
@@ -1423,7 +1389,7 @@
               "methods": {
                 "create": {
                   "description": "Creates `CheckoutSettings` for the given merchant.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
                   "httpMethod": "POST",
                   "id": "merchantapi.accounts.programs.checkoutSettings.create",
                   "parameterOrder": [
@@ -1438,7 +1404,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+parent}/checkoutSettings",
+                  "path": "accounts/v1/{+parent}/checkoutSettings",
                   "request": {
                     "$ref": "CheckoutSettings"
                   },
@@ -1451,7 +1417,7 @@
                 },
                 "deleteCheckoutSettings": {
                   "description": "Deletes `CheckoutSettings` and unenrolls merchant from `Checkout` program.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
                   "httpMethod": "DELETE",
                   "id": "merchantapi.accounts.programs.checkoutSettings.deleteCheckoutSettings",
                   "parameterOrder": [
@@ -1466,7 +1432,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+name}",
+                  "path": "accounts/v1/{+name}",
                   "response": {
                     "$ref": "Empty"
                   },
@@ -1476,7 +1442,7 @@
                 },
                 "getCheckoutSettings": {
                   "description": "Gets `CheckoutSettings` for the given merchant. This includes information about review state, enrollment state and URL settings.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
                   "httpMethod": "GET",
                   "id": "merchantapi.accounts.programs.checkoutSettings.getCheckoutSettings",
                   "parameterOrder": [
@@ -1491,7 +1457,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+name}",
+                  "path": "accounts/v1/{+name}",
                   "response": {
                     "$ref": "CheckoutSettings"
                   },
@@ -1501,7 +1467,7 @@
                 },
                 "updateCheckoutSettings": {
                   "description": "Updates `CheckoutSettings` for the given merchant.",
-                  "flatPath": "accounts/v1beta/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
+                  "flatPath": "accounts/v1/accounts/{accountsId}/programs/{programsId}/checkoutSettings",
                   "httpMethod": "PATCH",
                   "id": "merchantapi.accounts.programs.checkoutSettings.updateCheckoutSettings",
                   "parameterOrder": [
@@ -1522,7 +1488,7 @@
                       "type": "string"
                     }
                   },
-                  "path": "accounts/v1beta/{+name}",
+                  "path": "accounts/v1/{+name}",
                   "request": {
                     "$ref": "CheckoutSettings"
                   },
@@ -1541,7 +1507,7 @@
           "methods": {
             "create": {
               "description": "Creates a region definition in your Merchant Center account. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/regions",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.regions.create",
               "parameterOrder": [
@@ -1561,7 +1527,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/regions",
+              "path": "accounts/v1/{+parent}/regions",
               "request": {
                 "$ref": "Region"
               },
@@ -1574,7 +1540,7 @@
             },
             "delete": {
               "description": "Deletes a region definition from your Merchant Center account. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/regions/{regionsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions/{regionsId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.regions.delete",
               "parameterOrder": [
@@ -1589,7 +1555,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Empty"
               },
@@ -1599,7 +1565,7 @@
             },
             "get": {
               "description": "Retrieves a region defined in your Merchant Center account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/regions/{regionsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions/{regionsId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.regions.get",
               "parameterOrder": [
@@ -1614,7 +1580,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Region"
               },
@@ -1624,7 +1590,7 @@
             },
             "list": {
               "description": "Lists the regions in your Merchant Center account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/regions",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.regions.list",
               "parameterOrder": [
@@ -1650,7 +1616,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/regions",
+              "path": "accounts/v1/{+parent}/regions",
               "response": {
                 "$ref": "ListRegionsResponse"
               },
@@ -1660,7 +1626,7 @@
             },
             "patch": {
               "description": "Updates a region definition in your Merchant Center account. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/regions/{regionsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions/{regionsId}",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.regions.patch",
               "parameterOrder": [
@@ -1681,7 +1647,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "Region"
               },
@@ -1698,7 +1664,7 @@
           "methods": {
             "get": {
               "description": "Retrieve an account relationship.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships/{relationshipsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/relationships/{relationshipsId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.relationships.get",
               "parameterOrder": [
@@ -1713,7 +1679,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "AccountRelationship"
               },
@@ -1723,7 +1689,7 @@
             },
             "list": {
               "description": "List account relationships for the specified account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships",
+              "flatPath": "accounts/v1/accounts/{accountsId}/relationships",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.relationships.list",
               "parameterOrder": [
@@ -1749,7 +1715,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/relationships",
+              "path": "accounts/v1/{+parent}/relationships",
               "response": {
                 "$ref": "ListAccountRelationshipsResponse"
               },
@@ -1759,7 +1725,7 @@
             },
             "patch": {
               "description": "Updates the account relationship. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/relationships/{relationshipsId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/relationships/{relationshipsId}",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.relationships.patch",
               "parameterOrder": [
@@ -1780,7 +1746,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "AccountRelationship"
               },
@@ -1797,7 +1763,7 @@
           "methods": {
             "approve": {
               "description": "Approve an account service proposal.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}:approve",
+              "flatPath": "accounts/v1/accounts/{accountsId}/services/{servicesId}:approve",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.services.approve",
               "parameterOrder": [
@@ -1812,7 +1778,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:approve",
+              "path": "accounts/v1/{+name}:approve",
               "request": {
                 "$ref": "ApproveAccountServiceRequest"
               },
@@ -1825,7 +1791,7 @@
             },
             "get": {
               "description": "Retrieve an account service.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/services/{servicesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.services.get",
               "parameterOrder": [
@@ -1840,7 +1806,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "AccountService"
               },
@@ -1850,7 +1816,7 @@
             },
             "list": {
               "description": "List account services for the specified accounts. Supports filtering.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/services",
+              "flatPath": "accounts/v1/accounts/{accountsId}/services",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.services.list",
               "parameterOrder": [
@@ -1876,7 +1842,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/services",
+              "path": "accounts/v1/{+parent}/services",
               "response": {
                 "$ref": "ListAccountServicesResponse"
               },
@@ -1886,7 +1852,7 @@
             },
             "propose": {
               "description": "Propose an account service.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/services:propose",
+              "flatPath": "accounts/v1/accounts/{accountsId}/services:propose",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.services.propose",
               "parameterOrder": [
@@ -1901,7 +1867,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/services:propose",
+              "path": "accounts/v1/{+parent}/services:propose",
               "request": {
                 "$ref": "ProposeAccountServiceRequest"
               },
@@ -1914,7 +1880,7 @@
             },
             "reject": {
               "description": "Reject an account service (both proposed and approve services can be rejected).",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/services/{servicesId}:reject",
+              "flatPath": "accounts/v1/accounts/{accountsId}/services/{servicesId}:reject",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.services.reject",
               "parameterOrder": [
@@ -1929,7 +1895,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}:reject",
+              "path": "accounts/v1/{+name}:reject",
               "request": {
                 "$ref": "RejectAccountServiceRequest"
               },
@@ -1946,7 +1912,7 @@
           "methods": {
             "getShippingSettings": {
               "description": "Retrieve shipping setting information.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings",
+              "flatPath": "accounts/v1/accounts/{accountsId}/shippingSettings",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.shippingSettings.getShippingSettings",
               "parameterOrder": [
@@ -1961,7 +1927,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "ShippingSettings"
               },
@@ -1971,7 +1937,7 @@
             },
             "insert": {
               "description": "Replace the shipping setting of a business with the request shipping setting. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/shippingSettings:insert",
+              "flatPath": "accounts/v1/accounts/{accountsId}/shippingSettings:insert",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.shippingSettings.insert",
               "parameterOrder": [
@@ -1986,7 +1952,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/shippingSettings:insert",
+              "path": "accounts/v1/{+parent}/shippingSettings:insert",
               "request": {
                 "$ref": "ShippingSettings"
               },
@@ -2003,7 +1969,7 @@
           "methods": {
             "get": {
               "description": "Returns the state of a terms of service agreement.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/termsOfServiceAgreementStates/{termsOfServiceAgreementStatesId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/termsOfServiceAgreementStates/{termsOfServiceAgreementStatesId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.termsOfServiceAgreementStates.get",
               "parameterOrder": [
@@ -2018,7 +1984,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "TermsOfServiceAgreementState"
               },
@@ -2028,7 +1994,7 @@
             },
             "retrieveForApplication": {
               "description": "Retrieves the state of the agreement for the application terms of service. Application terms of service covers permissions related to the usage of data provided through Merchant Center, CSS Center, Manufacturer Center, and more.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/termsOfServiceAgreementStates:retrieveForApplication",
+              "flatPath": "accounts/v1/accounts/{accountsId}/termsOfServiceAgreementStates:retrieveForApplication",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.termsOfServiceAgreementStates.retrieveForApplication",
               "parameterOrder": [
@@ -2043,7 +2009,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/termsOfServiceAgreementStates:retrieveForApplication",
+              "path": "accounts/v1/{+parent}/termsOfServiceAgreementStates:retrieveForApplication",
               "response": {
                 "$ref": "TermsOfServiceAgreementState"
               },
@@ -2057,7 +2023,7 @@
           "methods": {
             "create": {
               "description": "Creates a Merchant Center account user. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.users.create",
               "parameterOrder": [
@@ -2077,7 +2043,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/users",
+              "path": "accounts/v1/{+parent}/users",
               "request": {
                 "$ref": "User"
               },
@@ -2090,7 +2056,7 @@
             },
             "delete": {
               "description": "Deletes a Merchant Center account user. Executing this method requires admin access. The user to be deleted can't be the last admin user of that account. Also a user is protected from deletion if it is managed by Business Manager\"",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "DELETE",
               "id": "merchantapi.accounts.users.delete",
               "parameterOrder": [
@@ -2105,7 +2071,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "Empty"
               },
@@ -2115,7 +2081,7 @@
             },
             "get": {
               "description": "Retrieves a Merchant Center account user.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.users.get",
               "parameterOrder": [
@@ -2130,7 +2096,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "response": {
                 "$ref": "User"
               },
@@ -2140,7 +2106,7 @@
             },
             "list": {
               "description": "Lists all users of a Merchant Center account.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users",
               "httpMethod": "GET",
               "id": "merchantapi.accounts.users.list",
               "parameterOrder": [
@@ -2166,7 +2132,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+parent}/users",
+              "path": "accounts/v1/{+parent}/users",
               "response": {
                 "$ref": "ListUsersResponse"
               },
@@ -2176,7 +2142,7 @@
             },
             "patch": {
               "description": "Updates a Merchant Center account user. Executing this method requires admin access.",
-              "flatPath": "accounts/v1beta/accounts/{accountsId}/users/{usersId}",
+              "flatPath": "accounts/v1/accounts/{accountsId}/users/{usersId}",
               "httpMethod": "PATCH",
               "id": "merchantapi.accounts.users.patch",
               "parameterOrder": [
@@ -2197,7 +2163,7 @@
                   "type": "string"
                 }
               },
-              "path": "accounts/v1beta/{+name}",
+              "path": "accounts/v1/{+name}",
               "request": {
                 "$ref": "User"
               },
@@ -2216,7 +2182,7 @@
       "methods": {
         "accept": {
           "description": "Accepts a `TermsOfService`. Executing this method requires admin access.",
-          "flatPath": "accounts/v1beta/termsOfService/{termsOfServiceId}:accept",
+          "flatPath": "accounts/v1/termsOfService/{termsOfServiceId}:accept",
           "httpMethod": "POST",
           "id": "merchantapi.termsOfService.accept",
           "parameterOrder": [
@@ -2241,7 +2207,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+name}:accept",
+          "path": "accounts/v1/{+name}:accept",
           "response": {
             "$ref": "AcceptTermsOfServiceResponse"
           },
@@ -2251,7 +2217,7 @@
         },
         "get": {
           "description": "Retrieves the `TermsOfService` associated with the provided version.",
-          "flatPath": "accounts/v1beta/termsOfService/{termsOfServiceId}",
+          "flatPath": "accounts/v1/termsOfService/{termsOfServiceId}",
           "httpMethod": "GET",
           "id": "merchantapi.termsOfService.get",
           "parameterOrder": [
@@ -2266,7 +2232,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/{+name}",
+          "path": "accounts/v1/{+name}",
           "response": {
             "$ref": "TermsOfService"
           },
@@ -2276,7 +2242,7 @@
         },
         "retrieveLatest": {
           "description": "Retrieves the latest version of the `TermsOfService` for a given `kind` and `region_code`.",
-          "flatPath": "accounts/v1beta/termsOfService:retrieveLatest",
+          "flatPath": "accounts/v1/termsOfService:retrieveLatest",
           "httpMethod": "GET",
           "id": "merchantapi.termsOfService.retrieveLatest",
           "parameterOrder": [],
@@ -2300,7 +2266,7 @@
               "type": "string"
             }
           },
-          "path": "accounts/v1beta/termsOfService:retrieveLatest",
+          "path": "accounts/v1/termsOfService:retrieveLatest",
           "response": {
             "$ref": "TermsOfService"
           },
@@ -3039,33 +3005,6 @@
             "$ref": "AddUser"
           },
           "type": "array"
-        },
-        "users": {
-          "deprecated": true,
-          "description": "Optional. Users to be added to the account. This field is deprecated and will not exist after the API evolves out of beta. Use the `user` field instead.",
-          "items": {
-            "$ref": "CreateUserRequest"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "CreateUserRequest": {
-      "description": "Request message for the `CreateUser` method.",
-      "id": "CreateUserRequest",
-      "properties": {
-        "parent": {
-          "description": "Required. The resource name of the account for which a user will be created. Format: `accounts/{account}`",
-          "type": "string"
-        },
-        "user": {
-          "$ref": "User",
-          "description": "Optional. The user to create."
-        },
-        "userId": {
-          "description": "Required. The email address of the user (for example, `john.doe@gmail.com`).",
-          "type": "string"
         }
       },
       "type": "object"
@@ -5458,6 +5397,6 @@
   },
   "servicePath": "",
   "title": "Merchant API",
-  "version": "accounts_v1beta",
+  "version": "accounts_v1",
   "version_module": true
 }

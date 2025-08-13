@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_lfp_v1beta {
+export namespace merchantapi_lfp_v1 {
   export interface Options extends GlobalOptions {
-    version: 'lfp_v1beta';
+    version: 'lfp_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_lfp_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('lfp_v1beta');
+   * const merchantapi = google.merchantapi('lfp_v1');
    * ```
    */
   export class Merchantapi {
@@ -516,7 +516,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -646,9 +646,10 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (
-              rootUrl + '/lfp/v1beta/{+parent}/lfpInventories:insert'
-            ).replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/lfp/v1/{+parent}/lfpInventories:insert').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
             method: 'POST',
             apiVersion: '',
           },
@@ -706,7 +707,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -806,10 +807,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/lfp/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -862,7 +860,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -988,7 +986,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+parent}/lfpSales:insert').replace(
+            url: (rootUrl + '/lfp/v1/{+parent}/lfpSales:insert').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1049,7 +1047,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1143,10 +1141,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/lfp/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
           },
@@ -1184,7 +1179,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1290,10 +1285,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
+            url: (rootUrl + '/lfp/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -1331,7 +1323,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1455,7 +1447,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+parent}/lfpStores:insert').replace(
+            url: (rootUrl + '/lfp/v1/{+parent}/lfpStores:insert').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1496,7 +1488,7 @@ export namespace merchantapi_lfp_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('lfp_v1beta');
+     * const merchantapi = google.merchantapi('lfp_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1601,7 +1593,7 @@ export namespace merchantapi_lfp_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/lfp/v1beta/{+parent}/lfpStores').replace(
+            url: (rootUrl + '/lfp/v1/{+parent}/lfpStores').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

@@ -20,7 +20,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "merchantapi:reports_v1beta",
+  "id": "merchantapi:reports_v1",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://merchantapi.mtls.googleapis.com/",
   "name": "merchantapi",
@@ -111,7 +111,7 @@
           "methods": {
             "search": {
               "description": "Retrieves a report defined by a search query. The response might contain fewer rows than specified by `page_size`. Rely on `next_page_token` to determine if there are more rows to be requested.",
-              "flatPath": "reports/v1beta/accounts/{accountsId}/reports:search",
+              "flatPath": "reports/v1/accounts/{accountsId}/reports:search",
               "httpMethod": "POST",
               "id": "merchantapi.accounts.reports.search",
               "parameterOrder": [
@@ -126,7 +126,7 @@
                   "type": "string"
                 }
               },
-              "path": "reports/v1beta/{+parent}/reports:search",
+              "path": "reports/v1/{+parent}/reports:search",
               "request": {
                 "$ref": "SearchRequest"
               },
@@ -1545,6 +1545,6 @@
   },
   "servicePath": "",
   "title": "Merchant API",
-  "version": "reports_v1beta",
+  "version": "reports_v1",
   "version_module": true
 }
