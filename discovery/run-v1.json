@@ -2887,7 +2887,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250801",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -5317,11 +5317,11 @@
       "id": "InstanceSplit",
       "properties": {
         "latestRevision": {
-          "description": "Uses the \"status.latestReadyRevisionName\" to determine the traffic target. When it changes, traffic will automatically migrate from the prior \"latest ready\" revision to the new one.",
+          "description": "Uses the \"status.latestReadyRevisionName\" to determine the instance split target. When it changes, workloads will automatically migrate from the prior \"latest ready\" revision to the new one.",
           "type": "boolean"
         },
         "percent": {
-          "description": "Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.",
+          "description": "Optional. Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.",
           "format": "int32",
           "type": "integer"
         },
@@ -6942,7 +6942,7 @@
           "type": "array"
         },
         "instanceSplits": {
-          "description": "Holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.",
+          "description": "Holds the configured workload distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.",
           "items": {
             "$ref": "InstanceSplit"
           },
