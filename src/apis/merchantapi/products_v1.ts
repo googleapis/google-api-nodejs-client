@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_products_v1beta {
+export namespace merchantapi_products_v1 {
   export interface Options extends GlobalOptions {
-    version: 'products_v1beta';
+    version: 'products_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_products_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('products_v1beta');
+   * const merchantapi = google.merchantapi('products_v1');
    * ```
    */
   export class Merchantapi {
@@ -125,391 +125,6 @@ export namespace merchantapi_products_v1beta {
   }
 
   /**
-   * Attributes.
-   */
-  export interface Schema$Attributes {
-    /**
-     * Additional URLs of images of the item.
-     */
-    additionalImageLinks?: string[] | null;
-    /**
-     * Used to group items in an arbitrary way. Only for CPA, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
-     */
-    adsGrouping?: string | null;
-    /**
-     * Similar to ads_grouping, but only works on CPC.
-     */
-    adsLabels?: string[] | null;
-    /**
-     * Allows advertisers to override the item URL when the product is shown within the context of Product ads.
-     */
-    adsRedirect?: string | null;
-    /**
-     * Set to true if the item is targeted towards adults.
-     */
-    adult?: boolean | null;
-    /**
-     * Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
-     */
-    ageGroup?: string | null;
-    /**
-     * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and ["dynamic promotions"](https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
-     */
-    autoPricingMinPrice?: Schema$Price;
-    /**
-     * [Availability](https://support.google.com/merchants/answer/6324448) status of the item. For example, "in_stock" or "out_of_stock".
-     */
-    availability?: string | null;
-    /**
-     * The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
-     */
-    availabilityDate?: string | null;
-    /**
-     * [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, "Google".
-     */
-    brand?: string | null;
-    /**
-     * URL for the canonical version of your item's landing page.
-     */
-    canonicalLink?: string | null;
-    /**
-     * Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.
-     */
-    certifications?: Schema$Certification[];
-    /**
-     * Extra fields to export to the Cloud Retail program.
-     */
-    cloudExportAdditionalProperties?: Schema$CloudExportAdditionalProperties[];
-    /**
-     * [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, "red".
-     */
-    color?: string | null;
-    /**
-     * [Condition](https://support.google.com/merchants/answer/6324469) or state of the item. For example, "new" or "used".
-     */
-    condition?: string | null;
-    /**
-     * Cost of goods sold. Used for gross profit reporting.
-     */
-    costOfGoodsSold?: Schema$Price;
-    /**
-     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
-     */
-    customLabel0?: string | null;
-    /**
-     * [Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
-     */
-    customLabel1?: string | null;
-    /**
-     * [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
-     */
-    customLabel2?: string | null;
-    /**
-     * [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
-     */
-    customLabel3?: string | null;
-    /**
-     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
-     */
-    customLabel4?: string | null;
-    /**
-     * Description of the item.
-     */
-    description?: string | null;
-    /**
-     * The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
-     */
-    disclosureDate?: string | null;
-    /**
-     * An identifier for an item for dynamic remarketing campaigns.
-     */
-    displayAdsId?: string | null;
-    /**
-     * URL directly to your item's landing page for dynamic remarketing campaigns.
-     */
-    displayAdsLink?: string | null;
-    /**
-     * Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
-     */
-    displayAdsSimilarIds?: string[] | null;
-    /**
-     * Title of an item for dynamic remarketing campaigns.
-     */
-    displayAdsTitle?: string | null;
-    /**
-     * Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
-     */
-    displayAdsValue?: number | null;
-    /**
-     * The energy efficiency class as defined in EU directive 2010/30/EU.
-     */
-    energyEfficiencyClass?: string | null;
-    /**
-     * Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
-     */
-    excludedDestinations?: string[] | null;
-    /**
-     * Date on which the item should expire, as specified upon insertion, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. The actual expiration date is exposed in `productstatuses` as [googleExpirationDate](https://support.google.com/merchants/answer/6324499) and might be earlier if `expirationDate` is too far in the future.
-     */
-    expirationDate?: string | null;
-    /**
-     * Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.
-     */
-    externalSellerId?: string | null;
-    /**
-     * Conditions to be met for a product to have free shipping.
-     */
-    freeShippingThreshold?: Schema$FreeShippingThreshold[];
-    /**
-     * Target [gender](https://support.google.com/merchants/answer/6324479) of the item. For example, "male" or "female".
-     */
-    gender?: string | null;
-    /**
-     * Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
-     */
-    googleProductCategory?: string | null;
-    /**
-     * Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs. Deprecated: Use `gtins` instead.
-     */
-    gtin?: string[] | null;
-    /**
-     * A list of Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
-     */
-    gtins?: string[] | null;
-    /**
-     * Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided.
-     */
-    identifierExists?: boolean | null;
-    /**
-     * URL of an image of the item.
-     */
-    imageLink?: string | null;
-    /**
-     * Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
-     */
-    includedDestinations?: string[] | null;
-    /**
-     * Number and amount of installments to pay for an item.
-     */
-    installment?: Schema$Installment;
-    /**
-     * Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
-     */
-    isBundle?: boolean | null;
-    /**
-     * Shared identifier for all variants of the same product.
-     */
-    itemGroupId?: string | null;
-    /**
-     * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
-     */
-    lifestyleImageLinks?: string[] | null;
-    /**
-     * URL directly linking to your item's page on your online store.
-     */
-    link?: string | null;
-    /**
-     * [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
-     */
-    linkTemplate?: string | null;
-    /**
-     * Loyalty points that users receive after purchasing the item. Japan only.
-     */
-    loyaltyPoints?: Schema$LoyaltyPoints;
-    /**
-     * A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item.
-     */
-    loyaltyPrograms?: Schema$LoyaltyProgram[];
-    /**
-     * The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, "Leather" or "Cotton".
-     */
-    material?: string | null;
-    /**
-     * The energy efficiency class as defined in EU directive 2010/30/EU.
-     */
-    maxEnergyEfficiencyClass?: string | null;
-    /**
-     * Maximal product handling time (in business days).
-     */
-    maxHandlingTime?: string | null;
-    /**
-     * Maximum retail price (MRP) of the item. Applicable to India only.
-     */
-    maximumRetailPrice?: Schema$Price;
-    /**
-     * The energy efficiency class as defined in EU directive 2010/30/EU.
-     */
-    minEnergyEfficiencyClass?: string | null;
-    /**
-     * Minimal product handling time (in business days).
-     */
-    minHandlingTime?: string | null;
-    /**
-     * URL for the mobile-optimized version of your item's landing page.
-     */
-    mobileLink?: string | null;
-    /**
-     * [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
-     */
-    mobileLinkTemplate?: string | null;
-    /**
-     * Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
-     */
-    mpn?: string | null;
-    /**
-     * The number of identical products in a business-defined multipack.
-     */
-    multipack?: string | null;
-    /**
-     * The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
-     */
-    pattern?: string | null;
-    /**
-     * Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
-     */
-    pause?: string | null;
-    /**
-     * The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
-     */
-    pickupMethod?: string | null;
-    /**
-     * Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
-     */
-    pickupSla?: string | null;
-    /**
-     * Price of the item.
-     */
-    price?: Schema$Price;
-    /**
-     * Technical specification or additional product details.
-     */
-    productDetails?: Schema$ProductDetail[];
-    /**
-     * The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
-     */
-    productHeight?: Schema$ProductDimension;
-    /**
-     * Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100).
-     */
-    productHighlights?: string[] | null;
-    /**
-     * The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
-     */
-    productLength?: Schema$ProductDimension;
-    /**
-     * Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category)).
-     */
-    productTypes?: string[] | null;
-    /**
-     * The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive).
-     */
-    productWeight?: Schema$ProductWeight;
-    /**
-     * The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
-     */
-    productWidth?: Schema$ProductDimension;
-    /**
-     * The unique ID of a promotion.
-     */
-    promotionIds?: string[] | null;
-    /**
-     * Advertised sale price of the item.
-     */
-    salePrice?: Schema$Price;
-    /**
-     * Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
-     */
-    salePriceEffectiveDate?: Schema$Interval;
-    /**
-     * The quantity of the product that is available for selling on Google. Supported only for online products.
-     */
-    sellOnGoogleQuantity?: string | null;
-    /**
-     * Shipping rules.
-     */
-    shipping?: Schema$Shipping[];
-    /**
-     * Height of the item for shipping.
-     */
-    shippingHeight?: Schema$ShippingDimension;
-    /**
-     * The shipping label of the product, used to group product in account-level shipping rules.
-     */
-    shippingLabel?: string | null;
-    /**
-     * Length of the item for shipping.
-     */
-    shippingLength?: Schema$ShippingDimension;
-    /**
-     * Weight of the item for shipping.
-     */
-    shippingWeight?: Schema$ShippingWeight;
-    /**
-     * Width of the item for shipping.
-     */
-    shippingWidth?: Schema$ShippingDimension;
-    /**
-     * List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
-     */
-    shoppingAdsExcludedCountries?: string[] | null;
-    /**
-     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
-     */
-    size?: string | null;
-    /**
-     * System in which the size is specified. Recommended for apparel items. For example, "US", "UK", "DE". For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
-     */
-    sizeSystem?: string | null;
-    /**
-     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497). For example, "petite", "plus size".
-     */
-    sizeTypes?: string[] | null;
-    /**
-     * Structured description, for algorithmically (AI)-generated descriptions.
-     */
-    structuredDescription?: Schema$ProductStructuredDescription;
-    /**
-     * Structured title, for algorithmically (AI)-generated titles.
-     */
-    structuredTitle?: Schema$ProductStructuredTitle;
-    /**
-     * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
-     */
-    subscriptionCost?: Schema$SubscriptionCost;
-    /**
-     * The list of sustainability incentive programs.
-     */
-    sustainabilityIncentives?: Schema$ProductSustainabilityIncentive[];
-    /**
-     * The [tax category](https://support.google.com/merchants/answer/7569847) of the product.
-     */
-    taxCategory?: string | null;
-    /**
-     * Tax information.
-     */
-    taxes?: Schema$Tax[];
-    /**
-     * Title of the item.
-     */
-    title?: string | null;
-    /**
-     * The transit time label of the product, used to group product in account-level transit time tables.
-     */
-    transitTimeLabel?: string | null;
-    /**
-     * The preference of the denominator of the unit price.
-     */
-    unitPricingBaseMeasure?: Schema$UnitPricingBaseMeasure;
-    /**
-     * The measure and dimension of an item.
-     */
-    unitPricingMeasure?: Schema$UnitPricingMeasure;
-    /**
-     * URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
-     */
-    virtualModelLink?: string | null;
-  }
-  /**
    * Information regarding Automated Discounts.
    */
   export interface Schema$AutomatedDiscounts {
@@ -525,27 +140,6 @@ export namespace merchantapi_products_v1beta {
      * The price prior to the application of consecutive price reductions. Absent if the information about the prior price of the product is not available.
      */
     priorPriceProgressive?: Schema$Price;
-  }
-  /**
-   * Product [certification](https://support.google.com/merchants/answer/13528839), initially introduced for EU energy efficiency labeling compliance using the EU EPREL database.
-   */
-  export interface Schema$Certification {
-    /**
-     * The certification authority, for example "European_Commission". Maximum length is 2000 characters.
-     */
-    certificationAuthority?: string | null;
-    /**
-     * The certification code. Maximum length is 2000 characters.
-     */
-    certificationCode?: string | null;
-    /**
-     * The name of the certification, for example "EPREL". Maximum length is 2000 characters.
-     */
-    certificationName?: string | null;
-    /**
-     * The certification value (also known as class, level or grade), for example "A+", "C", "gold". Maximum length is 2000 characters.
-     */
-    certificationValue?: string | null;
   }
   /**
    * Product property for the Cloud Retail API. For example, properties for a TV product could be "Screen-Resolution" or "Screen-Size".
@@ -638,27 +232,6 @@ export namespace merchantapi_products_v1beta {
      * The minimum product price for the shipping cost to become free. Represented as a number.
      */
     priceThreshold?: Schema$Price;
-  }
-  /**
-   * A message that represents installment.
-   */
-  export interface Schema$Installment {
-    /**
-     * The amount the buyer has to pay per month.
-     */
-    amount?: Schema$Price;
-    /**
-     * Type of installment payments. Supported values are: * "`finance`" * "`lease`"
-     */
-    creditType?: string | null;
-    /**
-     * The up-front down payment amount the buyer has to pay.
-     */
-    downpayment?: Schema$Price;
-    /**
-     * The number of installments the buyer has to pay.
-     */
-    months?: string | null;
   }
   /**
    * Represents a time interval, encoded as a Timestamp start (inclusive) and a Timestamp end (exclusive). The start must be less than or equal to the end. When the start equals the end, the interval is empty (matches no time). When both start and end are unspecified, the interval matches any time.
@@ -795,17 +368,9 @@ export namespace merchantapi_products_v1beta {
    */
   export interface Schema$Product {
     /**
-     * Output only. A list of product attributes.
-     */
-    attributes?: Schema$Attributes;
-    /**
      * Output only. The automated discounts information for the product.
      */
     automatedDiscounts?: Schema$AutomatedDiscounts;
-    /**
-     * Output only. The [channel](https://support.google.com/merchants/answer/7361332) of the product.
-     */
-    channel?: string | null;
     /**
      * Output only. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product.
      */
@@ -823,6 +388,10 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
+     * Output only. Determines whether the product is **only** targeting local destinations and whether the product name should be distinguished with a `local~` prefix. For example, `accounts/123/products/local~en~US~sku123`.
+     */
+    legacyLocal?: boolean | null;
+    /**
      * The name of the product. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      */
     name?: string | null;
@@ -831,6 +400,10 @@ export namespace merchantapi_products_v1beta {
      */
     offerId?: string | null;
     /**
+     * Output only. A list of strongly-typed product attributes.
+     */
+    productAttributes?: Schema$ProductAttributes;
+    /**
      * Output only. The status of a product, data validation issues, that is, information about a product computed asynchronously.
      */
     productStatus?: Schema$ProductStatus;
@@ -838,6 +411,400 @@ export namespace merchantapi_products_v1beta {
      * Output only. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. If the operation is prevented, the aborted exception will be thrown.
      */
     versionNumber?: string | null;
+  }
+  /**
+   * Product attributes.
+   */
+  export interface Schema$ProductAttributes {
+    /**
+     * Additional URLs of images of the item.
+     */
+    additionalImageLinks?: string[] | null;
+    /**
+     * Used to group items in an arbitrary way. Only for CPA%, discouraged otherwise. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+     */
+    adsGrouping?: string | null;
+    /**
+     * Similar to ads_grouping, but only works on CPC.
+     */
+    adsLabels?: string[] | null;
+    /**
+     * Allows advertisers to override the item URL when the product is shown within the context of Product ads.
+     */
+    adsRedirect?: string | null;
+    /**
+     * Set to true if the item is targeted towards adults.
+     */
+    adult?: boolean | null;
+    /**
+     * Target [age group](https://support.google.com/merchants/answer/6324463) of the item.
+     */
+    ageGroup?: string | null;
+    /**
+     * A safeguard in the [automated discounts] (https://support.google.com/merchants/answer/10295759) and "Dynamic Promotions" (https://support.google.com/merchants/answer/13949249) projects, ensuring that discounts on business offers do not fall below this value, thereby preserving the offer's value and profitability.
+     */
+    autoPricingMinPrice?: Schema$Price;
+    /**
+     * [Availability](https://support.google.com/merchants/answer/6324448) status of the item.
+     */
+    availability?: string | null;
+    /**
+     * The day a pre-ordered product becomes available for delivery, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format.
+     */
+    availabilityDate?: string | null;
+    /**
+     * [Brand](https://support.google.com/merchants/answer/6324351) of the item. For example, "Google".
+     */
+    brand?: string | null;
+    /**
+     * URL for the canonical version of your item's landing page.
+     */
+    canonicalLink?: string | null;
+    /**
+     * Product Certifications, for example for energy efficiency labeling of products recorded in the [EU EPREL](https://eprel.ec.europa.eu/screen/home) database. See the [Help Center](https://support.google.com/merchants/answer/13528839) article for more information.
+     */
+    certifications?: Schema$ProductCertification[];
+    /**
+     * Extra fields to export to the Cloud Retail program.
+     */
+    cloudExportAdditionalProperties?: Schema$CloudExportAdditionalProperties[];
+    /**
+     * [Color](https://support.google.com/merchants/answer/6324487) of the item. For example, "red".
+     */
+    color?: string | null;
+    /**
+     * [Condition](https://support.google.com/merchants/answer/6324469) or state of the item.
+     */
+    condition?: string | null;
+    /**
+     * Cost of goods sold. Used for gross profit reporting.
+     */
+    costOfGoodsSold?: Schema$Price;
+    /**
+     * [Custom label 0](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+     */
+    customLabel0?: string | null;
+    /**
+     * [Custom label 1](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+     */
+    customLabel1?: string | null;
+    /**
+     * [Custom label 2](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+     */
+    customLabel2?: string | null;
+    /**
+     * [Custom label 3](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+     */
+    customLabel3?: string | null;
+    /**
+     * [Custom label 4](https://support.google.com/merchants/answer/6324473) for custom grouping of items in a Shopping campaign.
+     */
+    customLabel4?: string | null;
+    /**
+     * Description of the item.
+     */
+    description?: string | null;
+    /**
+     * The date time when an offer becomes visible in search results across Google’s YouTube surfaces, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. See [Disclosure date](https://support.google.com/merchants/answer/13034208) for more information.
+     */
+    disclosureDate?: string | null;
+    /**
+     * An identifier for an item for dynamic remarketing campaigns.
+     */
+    displayAdsId?: string | null;
+    /**
+     * URL directly to your item's landing page for dynamic remarketing campaigns.
+     */
+    displayAdsLink?: string | null;
+    /**
+     * Advertiser-specified recommendations. For more information, see [Display ads attribute specification](https://support.google.com/merchants/answer/6069387).
+     */
+    displayAdsSimilarIds?: string[] | null;
+    /**
+     * Title of an item for dynamic remarketing campaigns.
+     */
+    displayAdsTitle?: string | null;
+    /**
+     * Offer margin for dynamic remarketing campaigns. For more information, see [Display ads attribute](https://support.google.com/merchants/answer/6069387).
+     */
+    displayAdsValue?: number | null;
+    /**
+     * The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+     */
+    energyEfficiencyClass?: string | null;
+    /**
+     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
+     */
+    excludedDestinations?: string[] | null;
+    /**
+     * Date on which the item should expire, as specified upon insertion, in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format. The actual expiration date is exposed in `productstatuses` as [googleExpirationDate](https://support.google.com/merchants/answer/6324499) and might be earlier if `expirationDate` is too far in the future.
+     */
+    expirationDate?: string | null;
+    /**
+     * Required for multi-seller accounts. Use this attribute if you're a marketplace uploading products for various sellers to your multi-seller account.
+     */
+    externalSellerId?: string | null;
+    /**
+     * Conditions to be met for a product to have free shipping.
+     */
+    freeShippingThreshold?: Schema$FreeShippingThreshold[];
+    /**
+     * Target [gender](https://support.google.com/merchants/answer/6324479) of the item.
+     */
+    gender?: string | null;
+    /**
+     * Google's category of the item (see [Google product taxonomy](https://support.google.com/merchants/answer/1705911)). When querying products, this field will contain the user provided value. There is currently no way to get back the auto assigned google product categories through the API.
+     */
+    googleProductCategory?: string | null;
+    /**
+     * Global Trade Item Numbers ([GTIN](https://support.google.com/merchants/answer/188494#gtin)) of the item. You can provide up to 10 GTINs.
+     */
+    gtins?: string[] | null;
+    /**
+     * Set this value to false when the item does not have unique product identifiers appropriate to its category, such as GTIN, MPN, and brand. Defaults to true, if not provided.
+     */
+    identifierExists?: boolean | null;
+    /**
+     * URL of an image of the item.
+     */
+    imageLink?: string | null;
+    /**
+     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
+     */
+    includedDestinations?: string[] | null;
+    /**
+     * Number and amount of installments to pay for an item.
+     */
+    installment?: Schema$ProductInstallment;
+    /**
+     * Whether the item is a business-defined sub-API. A [sub-API] (https://support.google.com/merchants/answer/6324449) is a custom grouping of different products sold by a business for a single price.
+     */
+    isBundle?: boolean | null;
+    /**
+     * Shared identifier for all variants of the same product.
+     */
+    itemGroupId?: string | null;
+    /**
+     * Additional URLs of lifestyle images of the item, used to explicitly identify images that showcase your item in a real-world context. See the [Help Center article](https://support.google.com/merchants/answer/9103186) for more information.
+     */
+    lifestyleImageLinks?: string[] | null;
+    /**
+     * URL directly linking to your item's page on your online store.
+     */
+    link?: string | null;
+    /**
+     * [Link template](https://support.google.com/merchants/answer/13871172) for business hosted local storefront.
+     */
+    linkTemplate?: string | null;
+    /**
+     * Loyalty points that users receive after purchasing the item. Japan only.
+     */
+    loyaltyPoints?: Schema$LoyaltyPoints;
+    /**
+     * A list of loyalty program information that is used to surface loyalty benefits (for example, better pricing, points, etc) to the user of this item.
+     */
+    loyaltyPrograms?: Schema$LoyaltyProgram[];
+    /**
+     * The [material](https://support.google.com/merchants/answer/6324410) of which the item is made. For example, "Leather" or "Cotton".
+     */
+    material?: string | null;
+    /**
+     * The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+     */
+    maxEnergyEfficiencyClass?: string | null;
+    /**
+     * Maximal product handling time (in business days).
+     */
+    maxHandlingTime?: string | null;
+    /**
+     * Maximum retail price (MRP) of the item. Applicable to India only.
+     */
+    maximumRetailPrice?: Schema$Price;
+    /**
+     * The [energy efficiency class](https://support.google.com/merchants/answer/7562785) as defined in EU directive 2010/30/EU.
+     */
+    minEnergyEfficiencyClass?: string | null;
+    /**
+     * Minimal product handling time (in business days).
+     */
+    minHandlingTime?: string | null;
+    /**
+     * URL for the mobile-optimized version of your item's landing page.
+     */
+    mobileLink?: string | null;
+    /**
+     * [Link template](https://support.google.com/merchants/answer/13870216) for business hosted local storefront optimized for mobile devices.
+     */
+    mobileLinkTemplate?: string | null;
+    /**
+     * Manufacturer Part Number ([MPN](https://support.google.com/merchants/answer/188494#mpn)) of the item.
+     */
+    mpn?: string | null;
+    /**
+     * The number of identical products in a business-defined multipack.
+     */
+    multipack?: string | null;
+    /**
+     * The item's [pattern](https://support.google.com/merchants/answer/6324483). For example, polka dots.
+     */
+    pattern?: string | null;
+    /**
+     * Publication of this item will be temporarily [paused](https://support.google.com/merchants/answer/11909930).
+     */
+    pause?: string | null;
+    /**
+     * The [pickup](https://support.google.com/merchants/answer/14634021) option for the item.
+     */
+    pickupMethod?: string | null;
+    /**
+     * Item store pickup timeline. For more information, see [Pickup SLA](https://support.google.com/merchants/answer/14635400).
+     */
+    pickupSla?: string | null;
+    /**
+     * Price of the item.
+     */
+    price?: Schema$Price;
+    /**
+     * Technical specification or additional product details.
+     */
+    productDetails?: Schema$ProductDetail[];
+    /**
+     * The height of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productHeight?: Schema$ProductDimension;
+    /**
+     * Bullet points describing the most relevant [product highlights](https://support.google.com/merchants/answer/9216100).
+     */
+    productHighlights?: string[] | null;
+    /**
+     * The length of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productLength?: Schema$ProductDimension;
+    /**
+     * Categories of the item (formatted as in [product data specification](https://support.google.com/merchants/answer/7052112#product_category)).
+     */
+    productTypes?: string[] | null;
+    /**
+     * The weight of the product in the units provided. The value must be between 0 (exclusive) and 2000 (inclusive).
+     */
+    productWeight?: Schema$ProductWeight;
+    /**
+     * The width of the product in the units provided. The value must be between 0 (exclusive) and 3000 (inclusive).
+     */
+    productWidth?: Schema$ProductDimension;
+    /**
+     * The unique ID of a promotion.
+     */
+    promotionIds?: string[] | null;
+    /**
+     * Advertised sale price of the item.
+     */
+    salePrice?: Schema$Price;
+    /**
+     * Date range during which the item is on sale, see [product data specification](https://support.google.com/merchants/answer/7052112#price_and_availability).
+     */
+    salePriceEffectiveDate?: Schema$Interval;
+    /**
+     * The quantity of the product that is available for selling on Google. Supported only for online products.
+     */
+    sellOnGoogleQuantity?: string | null;
+    /**
+     * Shipping rules.
+     */
+    shipping?: Schema$Shipping[];
+    /**
+     * Height of the item for shipping.
+     */
+    shippingHeight?: Schema$ShippingDimension;
+    /**
+     * The shipping label of the product, used to group product in account-level shipping rules.
+     */
+    shippingLabel?: string | null;
+    /**
+     * Length of the item for shipping.
+     */
+    shippingLength?: Schema$ShippingDimension;
+    /**
+     * Weight of the item for shipping.
+     */
+    shippingWeight?: Schema$ShippingWeight;
+    /**
+     * Width of the item for shipping.
+     */
+    shippingWidth?: Schema$ShippingDimension;
+    /**
+     * List of country codes [(ISO 3166-1 alpha-2)](https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2) to exclude the offer from Shopping Ads destination. Countries from this list are removed from countries configured in data source settings.
+     */
+    shoppingAdsExcludedCountries?: string[] | null;
+    /**
+     * Size of the item. Only one value is allowed. For variants with different sizes, insert a separate product for each size with the same `itemGroupId` value, see [Size](https://support.google.com/merchants/answer/6324492).
+     */
+    size?: string | null;
+    /**
+     * System in which the size is specified. Recommended for apparel items. For more information, see [Size system](https://support.google.com/merchants/answer/6324502).
+     */
+    sizeSystem?: string | null;
+    /**
+     * The cut of the item. It can be used to represent combined size types for apparel items. Maximum two of size types can be provided, see [Size type](https://support.google.com/merchants/answer/6324497).
+     */
+    sizeTypes?: string[] | null;
+    /**
+     * Structured description, for algorithmically (AI)-generated descriptions.
+     */
+    structuredDescription?: Schema$StructuredDescription;
+    /**
+     * Structured title, for algorithmically (AI)-generated titles.
+     */
+    structuredTitle?: Schema$StructuredTitle;
+    /**
+     * Number of periods (months or years) and amount of payment per period for an item with an associated subscription contract.
+     */
+    subscriptionCost?: Schema$SubscriptionCost;
+    /**
+     * The list of sustainability incentive programs.
+     */
+    sustainabilityIncentives?: Schema$ProductSustainabilityIncentive[];
+    /**
+     * Title of the item.
+     */
+    title?: string | null;
+    /**
+     * The transit time label of the product, used to group product in account-level transit time tables.
+     */
+    transitTimeLabel?: string | null;
+    /**
+     * The preference of the denominator of the unit price.
+     */
+    unitPricingBaseMeasure?: Schema$UnitPricingBaseMeasure;
+    /**
+     * The measure and dimension of an item.
+     */
+    unitPricingMeasure?: Schema$UnitPricingMeasure;
+    /**
+     * URL of the 3D image of the item. See the [Help Center article](https://support.google.com/merchants/answer/13674896) for more information.
+     */
+    virtualModelLink?: string | null;
+  }
+  /**
+   * Product [certification](https://support.google.com/merchants/answer/13528839), initially introduced for EU energy efficiency labeling compliance using the EU EPREL database.
+   */
+  export interface Schema$ProductCertification {
+    /**
+     * The certification authority.
+     */
+    certificationAuthority?: string | null;
+    /**
+     * The certification code. Maximum length is 2000 characters.
+     */
+    certificationCode?: string | null;
+    /**
+     * The name of the certification.
+     */
+    certificationName?: string | null;
+    /**
+     * The certification value (also known as class, level or grade), for example "A+", "C", "gold". Maximum length is 2000 characters.
+     */
+    certificationValue?: string | null;
   }
   /**
    * The change that happened to the product including old value, new value, country code as the region code and reporting context.
@@ -895,14 +862,6 @@ export namespace merchantapi_products_v1beta {
    */
   export interface Schema$ProductInput {
     /**
-     * Optional. A list of product attributes.
-     */
-    attributes?: Schema$Attributes;
-    /**
-     * Immutable. The [channel](https://support.google.com/merchants/answer/7361332) of the product.
-     */
-    channel?: string | null;
-    /**
      * Required. Immutable. The two-letter [ISO 639-1](http://en.wikipedia.org/wiki/ISO_639-1) language code for the product.
      */
     contentLanguage?: string | null;
@@ -914,6 +873,10 @@ export namespace merchantapi_products_v1beta {
      * Required. Immutable. The feed label that lets you categorize and identify your products. The maximum allowed characters are 20, and the supported characters are `A-Z`, `0-9`, hyphen, and underscore. The feed label must not include any spaces. For more information, see [Using feed labels](//support.google.com/merchants/answer/14994087).
      */
     feedLabel?: string | null;
+    /**
+     * Immutable. Determines whether the product is **only** targeting local destinations and whether the product name should be distinguished with a `local~` prefix. For example, `accounts/123/productInputs/local~en~US~sku123`. If a product that is not `legacy_local` is already targeting local destinations, creating a `legacy_local` product with an otherwise matching name will fail.
+     */
+    legacyLocal?: boolean | null;
     /**
      * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      */
@@ -927,9 +890,34 @@ export namespace merchantapi_products_v1beta {
      */
     product?: string | null;
     /**
+     * Optional. A list of strongly-typed product attributes.
+     */
+    productAttributes?: Schema$ProductAttributes;
+    /**
      * Optional. Immutable. Represents the existing version (freshness) of the product, which can be used to preserve the right order when multiple updates are done at the same time. If set, the insertion is prevented when version number is lower than the current version number of the existing product. Re-insertion (for example, product refresh after 30 days) can be performed with the current `version_number`. Only supported for insertions into primary data sources. Do not set this field for updates. Do not set this field for insertions into supplemental data sources. If the operation is prevented, the aborted exception will be thrown.
      */
     versionNumber?: string | null;
+  }
+  /**
+   * A message that represents installment.
+   */
+  export interface Schema$ProductInstallment {
+    /**
+     * The amount the buyer has to pay per month.
+     */
+    amount?: Schema$Price;
+    /**
+     * Type of installment payments.
+     */
+    creditType?: string | null;
+    /**
+     * The up-front down payment amount the buyer has to pay.
+     */
+    downpayment?: Schema$Price;
+    /**
+     * The number of installments the buyer has to pay.
+     */
+    months?: string | null;
   }
   /**
    * The status of a product, data validation issues, that is, information about a product computed asynchronously.
@@ -996,32 +984,6 @@ export namespace merchantapi_products_v1beta {
      * The resource that changed, in this case it will always be `Product`.
      */
     resourceType?: string | null;
-  }
-  /**
-   * Structured description, for algorithmically (AI)-generated descriptions.
-   */
-  export interface Schema$ProductStructuredDescription {
-    /**
-     * The description text Maximum length is 5000 characters
-     */
-    content?: string | null;
-    /**
-     * The digital source type, for example "trained_algorithmic_media". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters.
-     */
-    digitalSourceType?: string | null;
-  }
-  /**
-   * Structured title, for algorithmically (AI)-generated titles.
-   */
-  export interface Schema$ProductStructuredTitle {
-    /**
-     * The title text Maximum length is 150 characters
-     */
-    content?: string | null;
-    /**
-     * The digital source type, for example "trained_algorithmic_media". Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype). Maximum length is 40 characters.
-     */
-    digitalSourceType?: string | null;
   }
   /**
    * Information regarding sustainability-related incentive programs such as rebates or tax relief.
@@ -1129,6 +1091,32 @@ export namespace merchantapi_products_v1beta {
     value?: number | null;
   }
   /**
+   * Structured description, for algorithmically (AI)-generated descriptions.
+   */
+  export interface Schema$StructuredDescription {
+    /**
+     * The description text Maximum length is 5000 characters
+     */
+    content?: string | null;
+    /**
+     * The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
+     */
+    digitalSourceType?: string | null;
+  }
+  /**
+   * Structured title, for algorithmically (AI)-generated titles.
+   */
+  export interface Schema$StructuredTitle {
+    /**
+     * The title text Maximum length is 150 characters
+     */
+    content?: string | null;
+    /**
+     * The digital source type. Following [IPTC](https://cv.iptc.org/newscodes/digitalsourcetype).
+     */
+    digitalSourceType?: string | null;
+  }
+  /**
    * The SubscriptionCost of the product.
    */
   export interface Schema$SubscriptionCost {
@@ -1144,35 +1132,6 @@ export namespace merchantapi_products_v1beta {
      * The number of subscription periods the buyer has to pay.
      */
     periodLength?: string | null;
-  }
-  /**
-   * The Tax of the product.
-   */
-  export interface Schema$Tax {
-    /**
-     * The country within which the item is taxed, specified as a [CLDR territory code](http://www.unicode.org/repos/cldr/tags/latest/common/main/en.xml).
-     */
-    country?: string | null;
-    /**
-     * The numeric ID of a location that the tax rate applies to as defined in the [AdWords API](https://developers.google.com/adwords/api/docs/appendix/geotargeting).
-     */
-    locationId?: string | null;
-    /**
-     * The postal code range that the tax rate applies to, represented by a ZIP code, a ZIP code prefix using * wildcard, a range between two ZIP codes or two ZIP code prefixes of equal length. Examples: 94114, 94*, 94002-95460, 94*-95*.
-     */
-    postalCode?: string | null;
-    /**
-     * The percentage of tax rate that applies to the item price.
-     */
-    rate?: number | null;
-    /**
-     * The geographic region to which the tax rate applies.
-     */
-    region?: string | null;
-    /**
-     * Set to true if tax is charged on shipping.
-     */
-    taxShip?: boolean | null;
   }
   /**
    * The UnitPricingBaseMeasure of the product.
@@ -1235,7 +1194,7 @@ export namespace merchantapi_products_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('products_v1beta');
+     * const merchantapi = google.merchantapi('products_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1331,7 +1290,7 @@ export namespace merchantapi_products_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/products/v1beta/{+name}').replace(
+            url: (rootUrl + '/products/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1372,7 +1331,7 @@ export namespace merchantapi_products_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('products_v1beta');
+     * const merchantapi = google.merchantapi('products_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1395,14 +1354,14 @@ export namespace merchantapi_products_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "attributes": {},
-     *       //   "channel": "my_channel",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "customAttributes": [],
      *       //   "feedLabel": "my_feedLabel",
+     *       //   "legacyLocal": false,
      *       //   "name": "my_name",
      *       //   "offerId": "my_offerId",
      *       //   "product": "my_product",
+     *       //   "productAttributes": {},
      *       //   "versionNumber": "my_versionNumber"
      *       // }
      *     },
@@ -1411,14 +1370,14 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
-     *   //   "channel": "my_channel",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "customAttributes": [],
      *   //   "feedLabel": "my_feedLabel",
+     *   //   "legacyLocal": false,
      *   //   "name": "my_name",
      *   //   "offerId": "my_offerId",
      *   //   "product": "my_product",
+     *   //   "productAttributes": {},
      *   //   "versionNumber": "my_versionNumber"
      *   // }
      * }
@@ -1495,7 +1454,7 @@ export namespace merchantapi_products_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/products/v1beta/{+parent}/productInputs:insert'
+              rootUrl + '/products/v1/{+parent}/productInputs:insert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -1534,7 +1493,7 @@ export namespace merchantapi_products_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('products_v1beta');
+     * const merchantapi = google.merchantapi('products_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1559,14 +1518,14 @@ export namespace merchantapi_products_v1beta {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "attributes": {},
-     *       //   "channel": "my_channel",
      *       //   "contentLanguage": "my_contentLanguage",
      *       //   "customAttributes": [],
      *       //   "feedLabel": "my_feedLabel",
+     *       //   "legacyLocal": false,
      *       //   "name": "my_name",
      *       //   "offerId": "my_offerId",
      *       //   "product": "my_product",
+     *       //   "productAttributes": {},
      *       //   "versionNumber": "my_versionNumber"
      *       // }
      *     },
@@ -1575,14 +1534,14 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
-     *   //   "channel": "my_channel",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "customAttributes": [],
      *   //   "feedLabel": "my_feedLabel",
+     *   //   "legacyLocal": false,
      *   //   "name": "my_name",
      *   //   "offerId": "my_offerId",
      *   //   "product": "my_product",
+     *   //   "productAttributes": {},
      *   //   "versionNumber": "my_versionNumber"
      *   // }
      * }
@@ -1658,7 +1617,7 @@ export namespace merchantapi_products_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/products/v1beta/{+name}').replace(
+            url: (rootUrl + '/products/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1754,7 +1713,7 @@ export namespace merchantapi_products_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('products_v1beta');
+     * const merchantapi = google.merchantapi('products_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1775,15 +1734,15 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Example response
      *   // {
-     *   //   "attributes": {},
      *   //   "automatedDiscounts": {},
-     *   //   "channel": "my_channel",
      *   //   "contentLanguage": "my_contentLanguage",
      *   //   "customAttributes": [],
      *   //   "dataSource": "my_dataSource",
      *   //   "feedLabel": "my_feedLabel",
+     *   //   "legacyLocal": false,
      *   //   "name": "my_name",
      *   //   "offerId": "my_offerId",
+     *   //   "productAttributes": {},
      *   //   "productStatus": {},
      *   //   "versionNumber": "my_versionNumber"
      *   // }
@@ -1860,7 +1819,7 @@ export namespace merchantapi_products_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/products/v1beta/{+name}').replace(
+            url: (rootUrl + '/products/v1/{+name}').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -1901,7 +1860,7 @@ export namespace merchantapi_products_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('products_v1beta');
+     * const merchantapi = google.merchantapi('products_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -2004,7 +1963,7 @@ export namespace merchantapi_products_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/products/v1beta/{+parent}/products').replace(
+            url: (rootUrl + '/products/v1/{+parent}/products').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

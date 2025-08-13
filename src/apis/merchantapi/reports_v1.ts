@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace merchantapi_reports_v1beta {
+export namespace merchantapi_reports_v1 {
   export interface Options extends GlobalOptions {
-    version: 'reports_v1beta';
+    version: 'reports_v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace merchantapi_reports_v1beta {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const merchantapi = google.merchantapi('reports_v1beta');
+   * const merchantapi = google.merchantapi('reports_v1');
    * ```
    */
   export class Merchantapi {
@@ -1058,7 +1058,7 @@ export namespace merchantapi_reports_v1beta {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('reports_v1beta');
+     * const merchantapi = google.merchantapi('reports_v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -1165,7 +1165,7 @@ export namespace merchantapi_reports_v1beta {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/reports/v1beta/{+parent}/reports:search').replace(
+            url: (rootUrl + '/reports/v1/{+parent}/reports:search').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
