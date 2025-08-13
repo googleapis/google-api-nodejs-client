@@ -1,5 +1,22 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apphub-v1.0.0...apphub-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **apphub:** This release has breaking changes.
+
+### Features
+
+* **apphub:** update the API ([89f1d32](https://github.com/googleapis/google-api-nodejs-client/commit/89f1d32714c14f97ce6b4765894f99fd7f148b64))
+
+
+### Bug Fixes
+
+* **apphub:** update the API ([2dce32d](https://github.com/googleapis/google-api-nodejs-client/commit/2dce32d93794f0d206857f0a8ac7eaa7113f5573))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

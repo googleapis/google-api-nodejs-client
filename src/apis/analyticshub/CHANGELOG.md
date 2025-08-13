@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/analyticshub-v1.0.0...analyticshub-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **analyticshub:** update the API ([93c4a3a](https://github.com/googleapis/google-api-nodejs-client/commit/93c4a3a6bd8ad9aa9e0402cde63c9ffcf61de567))
+
+
+### Bug Fixes
+
+* **analyticshub:** update the API ([13e6a12](https://github.com/googleapis/google-api-nodejs-client/commit/13e6a12aba1d5739768f62fc6d67b4694336949d))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 

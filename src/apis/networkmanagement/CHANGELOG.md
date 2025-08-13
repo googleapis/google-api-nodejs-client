@@ -1,5 +1,25 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/networkmanagement-v1.0.0...networkmanagement-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **networkmanagement:** This release has breaking changes.
+
+### Features
+
+* **networkmanagement:** update the API ([2e92cb8](https://github.com/googleapis/google-api-nodejs-client/commit/2e92cb8cc0d97df1712bf3e5d99563dc829fc3fb))
+* **networkmanagement:** update the API ([3cf34f1](https://github.com/googleapis/google-api-nodejs-client/commit/3cf34f10ed87633b34c812de9196306ad993f1e0))
+* **networkmanagement:** update the API ([02de556](https://github.com/googleapis/google-api-nodejs-client/commit/02de5561692a5e7a24648e23189a3d29b765da37))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **networkmanagement:** update the API ([338707b](https://github.com/googleapis/google-api-nodejs-client/commit/338707bf5c49ee3e6846f5ac7961f1561b78227d))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 
