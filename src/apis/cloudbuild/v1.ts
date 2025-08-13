@@ -2510,6 +2510,10 @@ export namespace cloudbuild_v1 {
      */
     diskSizeGb?: string | null;
     /**
+     * Optional. Enable nested virtualization on the worker, if supported by the machine type. By default, nested virtualization is disabled.
+     */
+    enableNestedVirtualization?: boolean | null;
+    /**
      * Optional. Machine type of a worker, such as `e2-medium`. See [Worker pool config file](https://cloud.google.com/build/docs/private-pools/worker-pool-config-file-schema). If left blank, Cloud Build will use a sensible default.
      */
     machineType?: string | null;
