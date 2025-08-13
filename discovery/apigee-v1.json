@@ -2422,7 +2422,7 @@
                   "type": "string"
                 },
                 "pageSize": {
-                  "description": "Optional. Count of apps a single page can have in the response. If unspecified, at most 100 apps will be returned. The maximum value is 100; values above 100 will be coerced to 100. \"page_size\" is supported from ver 1.10.0 and above.",
+                  "description": "Optional. Count of apps a single page can have in the response. If unspecified, at most 1000 apps will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. \"page_size\" is supported from ver 1.10.0 and above.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -2440,7 +2440,7 @@
                   "type": "string"
                 },
                 "rows": {
-                  "description": "Optional. Maximum number of app IDs to return. Defaults to 1000.",
+                  "description": "Optional. Maximum number of app IDs to return. Defaults to 1000, which is also the upper limit. To get more than 1000, use pagination with 'pageSize' and 'pageToken' parameters.",
                   "format": "int64",
                   "location": "query",
                   "type": "string"
@@ -11127,7 +11127,7 @@
       }
     }
   },
-  "revision": "20250722",
+  "revision": "20250808",
   "rootUrl": "https://apigee.googleapis.com/",
   "schemas": {
     "EdgeConfigstoreBundleBadBundle": {
