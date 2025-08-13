@@ -8962,7 +8962,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250812",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3AdvancedSettings": {
@@ -14083,6 +14083,11 @@
         "faqAnswer": {
           "$ref": "GoogleCloudDialogflowV2FaqAnswer",
           "description": "Output only. The FAQ answer.",
+          "readOnly": true
+        },
+        "generatorSuggestion": {
+          "$ref": "GoogleCloudDialogflowV2GeneratorSuggestion",
+          "description": "Output only. The generator suggestion.",
           "readOnly": true
         }
       },
