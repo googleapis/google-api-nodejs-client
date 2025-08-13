@@ -236,6 +236,10 @@ export namespace versionhistory_v1 {
      */
     pinnable?: boolean | null;
     /**
+     * Rollout-related metadata. Some releases are part of one or more A/B rollouts. This field contains the names and data describing this release's role in any rollouts.
+     */
+    rolloutData?: Schema$RolloutData[];
+    /**
      * Timestamp interval of when the release was live. If end_time is unspecified, the release is currently live.
      */
     serving?: Schema$Interval;
@@ -243,6 +247,19 @@ export namespace versionhistory_v1 {
      * String containing just the version number. e.g. "84.0.4147.38"
      */
     version?: string | null;
+  }
+  /**
+   * Rollout-related metadata for a release.
+   */
+  export interface Schema$RolloutData {
+    /**
+     * The name of the rollout.
+     */
+    rolloutName?: string | null;
+    /**
+     * Tags associated with a release's role in a rollout. Most rollouts will have at least one release with a "rollout" tag and another release with a "control" tag. Some rollouts may have additional named arms.
+     */
+    tag?: string[] | null;
   }
   /**
    * Each Version is owned by a Channel. A Version only displays the Version number (e.g. 84.0.4147.38). A Version owns a collection of releases.
