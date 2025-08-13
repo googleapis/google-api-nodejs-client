@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudidentity",
-  "version": "18.0.2",
+  "version": "18.1.0",
   "description": "cloudidentity",
   "main": "build/index.js",
   "types": "build/index.d.ts",

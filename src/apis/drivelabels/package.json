@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/drivelabels",
-  "version": "9.1.1",
+  "version": "9.1.2",
   "description": "drivelabels",
   "main": "build/index.js",
   "types": "build/index.d.ts",

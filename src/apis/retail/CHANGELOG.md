@@ -1,5 +1,27 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/retail-v1.0.0...retail-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **retail:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **retail:** update the API ([a3dbe0a](https://github.com/googleapis/google-api-nodejs-client/commit/a3dbe0ad1cb8a0d9d466a7475e5880e45c87d0e3))
+* **retail:** update the API ([d03e09c](https://github.com/googleapis/google-api-nodejs-client/commit/d03e09c132ae30db4458ad975fba65b7d13e261d))
+* **retail:** update the API ([2244358](https://github.com/googleapis/google-api-nodejs-client/commit/22443584876bf13020fb9dae3e78083da0a93505))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **retail:** update the API ([9f030b0](https://github.com/googleapis/google-api-nodejs-client/commit/9f030b0301e2a0dfc4132fe033b9dcd2bfdb0690))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 
