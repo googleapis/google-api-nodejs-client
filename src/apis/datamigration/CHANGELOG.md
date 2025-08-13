@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/datamigration-v1.0.0...datamigration-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **datamigration:** update the API ([cdadda8](https://github.com/googleapis/google-api-nodejs-client/commit/cdadda8ca5a19f135d328775482ab5b60d09187b))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## 1.0.0 (2025-08-07)
 
 
