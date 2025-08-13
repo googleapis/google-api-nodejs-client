@@ -162,6 +162,10 @@ export namespace connectors_v2 {
      */
     inputParameters?: Schema$InputParameter[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Name of the action.
      */
     name?: string | null;
@@ -209,6 +213,10 @@ export namespace connectors_v2 {
      * When the connector is not in ACTIVE state, the description must be populated to specify the reason why it's not in ACTIVE state.
      */
     description?: string | null;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * State of the connector.
      */
@@ -274,6 +282,10 @@ export namespace connectors_v2 {
      */
     fields?: {[key: string]: any} | null;
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
     name?: string | null;
@@ -282,6 +294,7 @@ export namespace connectors_v2 {
    * EntityType message contains metadata information about a single entity type present in the external system.
    */
   export interface Schema$EntityType {
+    defaultSortBy?: string | null;
     /**
      * List containing metadata information about each field of the entity type.
      */
@@ -290,6 +303,10 @@ export namespace connectors_v2 {
      * JsonSchema representation of this entity's schema
      */
     jsonSchema?: Schema$JsonSchema;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * The name of the entity type.
      */
@@ -310,6 +327,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$ExchangeAuthCodeResponse {
     accessCredentials?: Schema$AccessCredentials;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * Request message for ActionService.ExecuteAction
@@ -324,6 +345,10 @@ export namespace connectors_v2 {
    * Response message for ActionService.ExecuteAction
    */
   export interface Schema$ExecuteActionResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * In the case of successful invocation of the specified action, the results Struct contains values based on the response of the action invoked. 1. If the action execution produces any entities as a result, they are returned as an array of Structs with the 'key' being the field name and the 'value' being the value of that field in each result row. { 'results': [{'key': 'value'\}, ...] \}
      */
@@ -554,6 +579,10 @@ export namespace connectors_v2 {
      */
     actions?: Schema$Action[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Next page token if more actions available.
      */
     nextPageToken?: string | null;
@@ -571,6 +600,10 @@ export namespace connectors_v2 {
      */
     entities?: Schema$Entity[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Next page token if more records are available.
      */
     nextPageToken?: string | null;
@@ -579,6 +612,10 @@ export namespace connectors_v2 {
    * Response message for EntityService.ListEntityTypes
    */
   export interface Schema$ListEntityTypesResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * Next page token if more entity types available.
      */
@@ -780,6 +817,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$RefreshAccessTokenResponse {
     accessCredentials?: Schema$AccessCredentials;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * Result Metadata message contains metadata about the result returned after executing an Action.
@@ -882,6 +923,10 @@ export namespace connectors_v2 {
    * Response message for EntityService.UpdateEntitiesWithConditions
    */
   export interface Schema$UpdateEntitiesWithConditionsResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * Response returned by the external system.
      */
@@ -1126,6 +1171,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "metadata": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -1273,7 +1319,8 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "accessCredentials": {}
+     *   //   "accessCredentials": {},
+     *   //   "metadata": {}
      *   // }
      * }
      *
@@ -1574,7 +1621,8 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "accessCredentials": {}
+     *   //   "accessCredentials": {},
+     *   //   "metadata": {}
      *   // }
      * }
      *
@@ -1782,6 +1830,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "results": []
      *   // }
      * }
@@ -1928,6 +1977,7 @@ export namespace connectors_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "inputJsonSchema": {},
      *   //   "inputParameters": [],
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "resultJsonSchema": {},
      *   //   "resultMetadata": []
@@ -2073,6 +2123,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "actions": [],
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "unsupportedActionNames": []
      *   // }
@@ -2260,6 +2311,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.entityTypes.get({
+     *     // Context metadata for request could be used to fetch customization of entity type schema.
+     *     contextMetadata: 'placeholder-value',
      *     // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
      *     // Specifies view for entity type schema.
@@ -2269,8 +2322,10 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultSortBy": "my_defaultSortBy",
      *   //   "fields": [],
      *   //   "jsonSchema": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "operations": []
      *   // }
@@ -2414,6 +2469,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "types": [],
      *   //   "unsupportedTypeNames": []
@@ -2522,6 +2578,10 @@ export namespace connectors_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Get
     extends StandardParameters {
     /**
+     * Context metadata for request could be used to fetch customization of entity type schema.
+     */
+    contextMetadata?: string;
+    /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      */
     name?: string;
@@ -2598,6 +2658,7 @@ export namespace connectors_v2 {
      *           // request body parameters
      *           // {
      *           //   "fields": {},
+     *           //   "metadata": {},
      *           //   "name": "my_name"
      *           // }
      *         },
@@ -2608,6 +2669,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3028,6 +3090,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3176,6 +3239,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "entities": [],
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
@@ -3318,6 +3382,7 @@ export namespace connectors_v2 {
      *         // request body parameters
      *         // {
      *         //   "fields": {},
+     *         //   "metadata": {},
      *         //   "name": "my_name"
      *         // }
      *       },
@@ -3327,6 +3392,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3468,6 +3534,7 @@ export namespace connectors_v2 {
      *           // request body parameters
      *           // {
      *           //   "fields": {},
+     *           //   "metadata": {},
      *           //   "name": "my_name"
      *           // }
      *         },
@@ -3477,6 +3544,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "response": {}
      *   // }
      * }
