@@ -546,11 +546,11 @@ export namespace firebaseappdistribution_v1 {
    */
   export interface Schema$GoogleFirebaseAppdistroV1DistributeReleaseRequest {
     /**
-     * A list of group aliases (IDs) to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request.
+     * Optional. A list of group aliases (IDs) to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request.
      */
     groupAliases?: string[] | null;
     /**
-     * A list of tester email addresses to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request.
+     * Optional. A list of tester email addresses to be given access to this release. A combined maximum of 999 `testerEmails` and `groupAliases` can be specified in a single request.
      */
     testerEmails?: string[] | null;
   }
@@ -884,7 +884,7 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.media.upload({
-     *     // The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
+     *     // Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
      *     app: 'projects/my-project/apps/my-app',
      *
      *     // Request body metadata
@@ -1017,7 +1017,7 @@ export namespace firebaseappdistribution_v1 {
 
   export interface Params$Resource$Media$Upload extends StandardParameters {
     /**
-     * The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
+     * Required. The name of the app resource. Format: `projects/{project_number\}/apps/{app_id\}`
      */
     app?: string;
 
@@ -1716,13 +1716,13 @@ export namespace firebaseappdistribution_v1 {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.projects.apps.releases.list({
-     *     // The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
+     *     // Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
      *     filter: 'placeholder-value',
-     *     // The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
+     *     // Optional. The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
      *     orderBy: 'placeholder-value',
-     *     // The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
+     *     // Optional. The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
      *     pageSize: 'placeholder-value',
-     *     // A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
+     *     // Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
      *     pageToken: 'placeholder-value',
      *     // Required. The name of the app resource, which is the parent of the release resources. Format: `projects/{project_number\}/apps/{app_id\}`
      *     parent: 'projects/my-project/apps/my-app',
@@ -1875,7 +1875,7 @@ export namespace firebaseappdistribution_v1 {
      *   const res = await firebaseappdistribution.projects.apps.releases.patch({
      *     // The name of the release resource. Format: `projects/{project_number\}/apps/{app_id\}/releases/{release_id\}`
      *     name: 'projects/my-project/apps/my-app/releases/my-release',
-     *     // The list of fields to update.
+     *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2046,19 +2046,19 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Releases$List
     extends StandardParameters {
     /**
-     * The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
+     * Optional. The expression to filter releases listed in the response. To learn more about filtering, refer to [Google's AIP-160 standard](http://aip.dev/160). Supported fields: - `releaseNotes.text` supports `=` (can contain a wildcard character (`*`) at the beginning or end of the string) - `createTime` supports `<`, `<=`, `\>` and `\>=`, and expects an RFC-3339 formatted string Examples: - `createTime <= "2021-09-08T00:00:00+04:00"` - `releaseNotes.text="fixes" AND createTime \>= "2021-09-08T00:00:00.0Z"` - `releaseNotes.text="*v1.0.0-rc*"`
      */
     filter?: string;
     /**
-     * The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
+     * Optional. The fields used to order releases. Supported fields: - `createTime` To specify descending order for a field, append a "desc" suffix, for example, `createTime desc`. If this parameter is not set, releases are ordered by `createTime` in descending order.
      */
     orderBy?: string;
     /**
-     * The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
+     * Optional. The maximum number of releases to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 releases are returned. Values above 100 are coerced to 100.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
+     * Optional. A page token, received from a previous `ListReleases` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListReleases` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -2073,7 +2073,7 @@ export namespace firebaseappdistribution_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * Optional. The list of fields to update.
      */
     updateMask?: string;
 
@@ -2410,9 +2410,9 @@ export namespace firebaseappdistribution_v1 {
      *   // Do the magic
      *   const res =
      *     await firebaseappdistribution.projects.apps.releases.feedbackReports.list({
-     *       // The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
+     *       // Output only. The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
      *       pageSize: 'placeholder-value',
-     *       // A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
+     *       // Output only. A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
      *       // Required. The name of the release resource, which is the parent of the feedback report resources. Format: `projects/{project_number\}/apps/{app\}/releases/{release\}`
      *       parent: 'projects/my-project/apps/my-app/releases/my-release',
@@ -2551,11 +2551,11 @@ export namespace firebaseappdistribution_v1 {
   export interface Params$Resource$Projects$Apps$Releases$Feedbackreports$List
     extends StandardParameters {
     /**
-     * The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
+     * Output only. The maximum number of feedback reports to return. The service may return fewer than this value. The valid range is [1-100]; If unspecified (0), at most 25 feedback reports are returned. Values above 100 are coerced to 100.
      */
     pageSize?: number;
     /**
-     * A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
+     * Output only. A page token, received from a previous `ListFeedbackReports` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFeedbackReports` must match the call that provided the page token.
      */
     pageToken?: string;
     /**
@@ -4278,7 +4278,7 @@ export namespace firebaseappdistribution_v1 {
      *   const res = await firebaseappdistribution.projects.groups.patch({
      *     // The name of the group resource. Format: `projects/{project_number\}/groups/{group_alias\}`
      *     name: 'projects/my-project/groups/my-group',
-     *     // The list of fields to update.
+     *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -4481,7 +4481,7 @@ export namespace firebaseappdistribution_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * Optional. The list of fields to update.
      */
     updateMask?: string;
 
@@ -4997,7 +4997,7 @@ export namespace firebaseappdistribution_v1 {
      *   const res = await firebaseappdistribution.projects.testers.patch({
      *     // The name of the tester resource. Format: `projects/{project_number\}/testers/{email_address\}`
      *     name: 'projects/my-project/testers/my-tester',
-     *     // The list of fields to update.
+     *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5172,7 +5172,7 @@ export namespace firebaseappdistribution_v1 {
      */
     name?: string;
     /**
-     * The list of fields to update.
+     * Optional. The list of fields to update.
      */
     updateMask?: string;
 
