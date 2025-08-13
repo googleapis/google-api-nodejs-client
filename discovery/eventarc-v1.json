@@ -2466,7 +2466,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250801",
   "rootUrl": "https://eventarc.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -2555,7 +2555,7 @@
           "type": "string"
         },
         "cryptoKeyName": {
-          "description": "Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
+          "description": "Optional. Resource name of a KMS crypto key (managed by the user) used to encrypt/decrypt their event data. It must match the pattern `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
         },
         "labels": {
