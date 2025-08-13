@@ -2,7 +2,7 @@
 
 # dataplex
 
-> Dataplex API is used to manage the lifecycle of data lakes.
+> A unified, intelligent governance solution for data and AI assets.
 
 ## Support status
 **Note**: Google provides multiple libraries for this service. This library is in
