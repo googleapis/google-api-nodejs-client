@@ -134,6 +134,31 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "getEntitlement": {
+              "description": "GetEntitlement returns the entitlement for the provided project.",
+              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/entitlement",
+              "httpMethod": "GET",
+              "id": "apim.projects.locations.getEntitlement",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The entitlement resource name Format: projects/{project}/locations/{location}/entitlement",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/entitlement$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1alpha/{+name}",
+              "response": {
+                "$ref": "Entitlement"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v1alpha/projects/{projectsId}/locations",
@@ -821,7 +846,7 @@
       }
     }
   },
-  "revision": "20250521",
+  "revision": "20250730",
   "rootUrl": "https://apim.googleapis.com/",
   "schemas": {
     "ApiObservation": {
@@ -994,6 +1019,38 @@
       "description": "Message for enabling an ObservationJob",
       "id": "EnableObservationJobRequest",
       "properties": {},
+      "type": "object"
+    },
+    "Entitlement": {
+      "description": "Entitlement stores data related to API Observation entitlement for a given project",
+      "id": "Entitlement",
+      "properties": {
+        "apiObservationEntitled": {
+          "description": "Whether API Observation is entitled.",
+          "type": "boolean"
+        },
+        "billingProjectNumber": {
+          "description": "Project number of associated billing project that has Apigee and Advanced API Security entitled.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time of the entitlement creation.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The entitlement resource name `projects/{project}/locations/{location}/entitlement`",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time of the entitlement update.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GclbObservationSource": {
