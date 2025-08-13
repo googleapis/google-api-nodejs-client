@@ -2817,6 +2817,10 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to protect this configuration's data, if configured during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
@@ -3585,6 +3589,10 @@ export namespace securitycenter_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The name of the Cloud KMS key used to encrypt this finding, if any.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * Data access events associated with the finding.
      */
     dataAccessEvents?: Schema$GoogleCloudSecuritycenterV2DataAccessEvent[];
@@ -4338,6 +4346,10 @@ export namespace securitycenter_v1 {
      * Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.
      */
     createTime?: string | null;
+    /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to encrypt this configuration data, if CMEK was enabled during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
     /**
      * A description of the mute config.
      */

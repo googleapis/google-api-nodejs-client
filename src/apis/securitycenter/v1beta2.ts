@@ -2534,6 +2534,10 @@ export namespace securitycenter_v1beta2 {
      */
     createTime?: string | null;
     /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to protect this configuration's data, if configured during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
@@ -3302,6 +3306,10 @@ export namespace securitycenter_v1beta2 {
      */
     createTime?: string | null;
     /**
+     * Output only. The name of the Cloud KMS key used to encrypt this finding, if any.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * Data access events associated with the finding.
      */
     dataAccessEvents?: Schema$GoogleCloudSecuritycenterV2DataAccessEvent[];
@@ -4055,6 +4063,10 @@ export namespace securitycenter_v1beta2 {
      * Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.
      */
     createTime?: string | null;
+    /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to encrypt this configuration data, if CMEK was enabled during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
     /**
      * A description of the mute config.
      */
@@ -5394,6 +5406,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityCenterSettings {
     /**
+     * The KMS key name used for CMEK encryption. Format: projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key_name\}
+     */
+    cryptoKeyName?: string | null;
+    /**
      * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id\}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services. This may only be specified for organization level onboarding.
      */
     logSinkProject?: string | null;
@@ -6248,6 +6264,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",
@@ -9452,6 +9469,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",
@@ -12811,6 +12829,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",
