@@ -924,6 +924,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
      */
     serviceName?: string | null;
+    /**
+     * Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.
+     */
+    useStaticSecrets?: boolean | null;
   }
   /**
    * Request message for CompletionService.AdvancedCompleteQuery method. .
@@ -2133,9 +2137,27 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistant {
     /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
   }
   /**
    * Multi-modal content.
@@ -2217,6 +2239,54 @@ export namespace discoveryengine_v1alpha {
      * Required. The media type (MIME type) of the file.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
   }
   /**
    * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
@@ -2306,6 +2376,28 @@ export namespace discoveryengine_v1alpha {
      * The text segment itself.
      */
     text?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolInfo[];
   }
   /**
    * User metadata of the request.
@@ -2824,6 +2916,10 @@ export namespace discoveryengine_v1alpha {
    * Document metadata contains the information of the document of the current chunk.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata {
+    /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
     /**
      * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
@@ -6011,7 +6107,7 @@ export namespace discoveryengine_v1alpha {
      */
     filter?: string | null;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string | null;
     /**
@@ -9458,6 +9554,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigAssistantSettings {
     /**
+     * Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
+    /**
      * Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.
      */
     googleSearchGroundingEnabled?: boolean | null;
@@ -9810,9 +9910,97 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
     /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -14022,6 +14210,15 @@ export namespace discoveryengine_v1alpha {
     sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
   }
   /**
+   * Customer-managed encryption configuration for Notebooks.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCmekConfig {
+    /**
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     */
+    kmsKey?: string | null;
+  }
+  /**
    * Response for NotebookService.ListRecentlyViewedNotebooks method.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse {
@@ -14038,6 +14235,10 @@ export namespace discoveryengine_v1alpha {
    * Notebook is a resource where users can store their content (as sources) and interacts with the content.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaNotebook {
+    /**
+     * Output only. CMEK-related information for the Notebook.
+     */
+    cmekConfig?: Schema$GoogleCloudNotebooklmV1alphaCmekConfig;
     /**
      * Output only. The emoji of the notebook.
      */
@@ -30478,7 +30679,7 @@ export namespace discoveryengine_v1alpha {
      *       {
      *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
-     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
      *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *         pageSize: 'placeholder-value',
@@ -30816,7 +31017,7 @@ export namespace discoveryengine_v1alpha {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -37451,7 +37652,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -37601,7 +37806,11 @@ export namespace discoveryengine_v1alpha {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "name": "my_name"
+     *           //   "customerPolicy": {},
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
      *           // }
      *         },
      *       },
@@ -37610,7 +37819,11 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -42667,7 +42880,7 @@ export namespace discoveryengine_v1alpha {
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -43004,7 +43217,7 @@ export namespace discoveryengine_v1alpha {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -54151,7 +54364,7 @@ export namespace discoveryengine_v1alpha {
      *     {
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -54487,7 +54700,7 @@ export namespace discoveryengine_v1alpha {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -58397,9 +58610,9 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.evaluations.list({
-     *     // Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list Evaluations under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
      *     parent: 'projects/my-project/locations/my-location',
@@ -58553,9 +58766,9 @@ export namespace discoveryengine_v1alpha {
      *     // Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
      *     evaluation:
      *       'projects/my-project/locations/my-location/evaluations/my-evaluation',
-     *     // Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -58697,11 +58910,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
     /**
@@ -58716,11 +58929,11 @@ export namespace discoveryengine_v1alpha {
      */
     evaluation?: string;
     /**
-     * Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
   }
