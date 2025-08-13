@@ -127,6 +127,10 @@ export namespace analyticshub_v1 {
   }
 
   /**
+   * Message for approving a QueryTemplate.
+   */
+  export interface Schema$ApproveQueryTemplateRequest {}
+  /**
    * Specifies the audit configuration for a service. The configuration determines which permission types are logged, and what identities, if any, are exempted from logging. An AuditConfig must have one or more AuditLogConfigs. If there are AuditConfigs for both `allServices` and a specific service, the union of the two AuditConfigs is used for that service: the log_types specified in each AuditConfig are enabled, and the exempted_members in each AuditLogConfig are exempted. Example Policy with multiple AuditConfigs: { "audit_configs": [ { "service": "allServices", "audit_log_configs": [ { "log_type": "DATA_READ", "exempted_members": [ "user:jose@example.com" ] \}, { "log_type": "DATA_WRITE" \}, { "log_type": "ADMIN_READ" \} ] \}, { "service": "sampleservice.googleapis.com", "audit_log_configs": [ { "log_type": "DATA_READ" \}, { "log_type": "DATA_WRITE", "exempted_members": [ "user:aliya@example.com" ] \} ] \} ] \} For sampleservice, this policy enables DATA_READ, DATA_WRITE and ADMIN_READ logging. It also exempts `jose@example.com` from DATA_READ logging, and `aliya@example.com` from DATA_WRITE logging.
    */
   export interface Schema$AuditConfig {
@@ -717,6 +721,19 @@ export namespace analyticshub_v1 {
     nextPageToken?: string | null;
   }
   /**
+   * Message for response to the list of QueryTemplates.
+   */
+  export interface Schema$ListQueryTemplatesResponse {
+    /**
+     * A token to request the next page of results.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of QueryTemplates.
+     */
+    queryTemplates?: Schema$QueryTemplate[];
+  }
+  /**
    * Message for response to the listing of shared resource subscriptions.
    */
   export interface Schema$ListSharedResourceSubscriptionsResponse {
@@ -916,6 +933,51 @@ export namespace analyticshub_v1 {
     pushEndpoint?: string | null;
   }
   /**
+   * A query template is a container for sharing table-valued functions defined by contributors in a data clean room.
+   */
+  export interface Schema$QueryTemplate {
+    /**
+     * Output only. Timestamp when the QueryTemplate was created.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Short description of the QueryTemplate. The description must not contain Unicode non-characters and C0 and C1 control codes except tabs (HT), new lines (LF), carriage returns (CR), and page breaks (FF). Default value is an empty string. Max length: 2000 bytes.
+     */
+    description?: string | null;
+    /**
+     * Required. Human-readable display name of the QueryTemplate. The display name must contain only Unicode letters, numbers (0-9), underscores (_), dashes (-), spaces ( ), ampersands (&) and can't start or end with spaces. Default value is an empty string. Max length: 63 bytes.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Documentation describing the QueryTemplate.
+     */
+    documentation?: string | null;
+    /**
+     * Output only. The resource name of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/456`
+     */
+    name?: string | null;
+    /**
+     * Optional. Email or URL of the primary point of contact of the QueryTemplate. Max Length: 1000 bytes.
+     */
+    primaryContact?: string | null;
+    /**
+     * Optional. Will be deprecated. Email or URL of the primary point of contact of the QueryTemplate. Max Length: 1000 bytes.
+     */
+    proposer?: string | null;
+    /**
+     * Optional. The routine associated with the QueryTemplate.
+     */
+    routine?: Schema$Routine;
+    /**
+     * Output only. The QueryTemplate lifecycle state.
+     */
+    state?: string | null;
+    /**
+     * Output only. Timestamp when the QueryTemplate was last modified.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * Message for refreshing a subscription.
    */
   export interface Schema$RefreshSubscriptionRequest {}
@@ -989,6 +1051,19 @@ export namespace analyticshub_v1 {
    */
   export interface Schema$RevokeSubscriptionResponse {}
   /**
+   * Represents a bigquery routine.
+   */
+  export interface Schema$Routine {
+    /**
+     * Optional. The definition body of the routine.
+     */
+    definitionBody?: string | null;
+    /**
+     * Required. The type of routine.
+     */
+    routineType?: string | null;
+  }
+  /**
    * Resource in this dataset that is selectively shared.
    */
   export interface Schema$SelectedResource {
@@ -1044,6 +1119,10 @@ export namespace analyticshub_v1 {
      */
     message?: string | null;
   }
+  /**
+   * Message for submitting a QueryTemplate.
+   */
+  export interface Schema$SubmitQueryTemplateRequest {}
   /**
    * Message for subscribing to a Data Exchange.
    */
@@ -1406,11 +1485,16 @@ export namespace analyticshub_v1 {
   export class Resource$Projects$Locations$Dataexchanges {
     context: APIRequestContext;
     listings: Resource$Projects$Locations$Dataexchanges$Listings;
+    queryTemplates: Resource$Projects$Locations$Dataexchanges$Querytemplates;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.listings = new Resource$Projects$Locations$Dataexchanges$Listings(
         this.context
       );
+      this.queryTemplates =
+        new Resource$Projects$Locations$Dataexchanges$Querytemplates(
+          this.context
+        );
     }
 
     /**
@@ -4825,6 +4909,1185 @@ export namespace analyticshub_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Dataexchanges$Querytemplates {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Approves a query template.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.approve({
+     *       // Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/queryTemplates/my-queryTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "proposer": "my_proposer",
+     *   //   "routine": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    approve(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    approve(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>;
+    approve(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryTemplate>,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    approve(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    approve(callback: BodyResponseCallback<Schema$QueryTemplate>): void;
+    approve(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:approve').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTemplate>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new QueryTemplate
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.create({
+     *       // Required. The parent resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myQueryTemplate`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *       // Required. The ID of the QueryTemplate to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
+     *       queryTemplateId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentation": "my_documentation",
+     *         //   "name": "my_name",
+     *         //   "primaryContact": "my_primaryContact",
+     *         //   "proposer": "my_proposer",
+     *         //   "routine": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "proposer": "my_proposer",
+     *   //   "routine": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryTemplate>,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$QueryTemplate>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/queryTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTemplate>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a query template.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.delete({
+     *       // Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/queryTemplates/my-queryTemplate',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Empty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a QueryTemplate
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.get({
+     *       // Required. The parent resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/queryTemplates/my-queryTemplate',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "proposer": "my_proposer",
+     *   //   "routine": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>;
+    get(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryTemplate>,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$QueryTemplate>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTemplate>(parameters);
+      }
+    }
+
+    /**
+     * Lists all QueryTemplates in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.list({
+     *       // Optional. The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token, returned by a previous call, to request the next page of results.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource path of the QueryTemplates. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     *       parent:
+     *         'projects/my-project/locations/my-location/dataExchanges/my-dataExchange',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "queryTemplates": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListQueryTemplatesResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListQueryTemplatesResponse>,
+      callback: BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List,
+      callback: BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List
+        | BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListQueryTemplatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListQueryTemplatesResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/queryTemplates').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListQueryTemplatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListQueryTemplatesResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing QueryTemplate
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.patch({
+     *       // Output only. The resource name of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/456`
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/queryTemplates/my-queryTemplate',
+     *       // Optional. Field mask specifies the fields to update in the query template resource. The fields specified in the `updateMask` are relative to the resource and are not a full request.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "createTime": "my_createTime",
+     *         //   "description": "my_description",
+     *         //   "displayName": "my_displayName",
+     *         //   "documentation": "my_documentation",
+     *         //   "name": "my_name",
+     *         //   "primaryContact": "my_primaryContact",
+     *         //   "proposer": "my_proposer",
+     *         //   "routine": {},
+     *         //   "state": "my_state",
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "proposer": "my_proposer",
+     *   //   "routine": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryTemplate>,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$QueryTemplate>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTemplate>(parameters);
+      }
+    }
+
+    /**
+     * Submits a query template for approval.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticshub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticshub = google.analyticshub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/bigquery',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await analyticshub.projects.locations.dataExchanges.queryTemplates.submit({
+     *       // Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     *       name: 'projects/my-project/locations/my-location/dataExchanges/my-dataExchange/queryTemplates/my-queryTemplate',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "documentation": "my_documentation",
+     *   //   "name": "my_name",
+     *   //   "primaryContact": "my_primaryContact",
+     *   //   "proposer": "my_proposer",
+     *   //   "routine": {},
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    submit(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    submit(
+      params?: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>;
+    submit(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    submit(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit,
+      options: MethodOptions | BodyResponseCallback<Schema$QueryTemplate>,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    submit(
+      params: Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit,
+      callback: BodyResponseCallback<Schema$QueryTemplate>
+    ): void;
+    submit(callback: BodyResponseCallback<Schema$QueryTemplate>): void;
+    submit(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryTemplate>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$QueryTemplate>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://analyticshub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:submit').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryTemplate>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryTemplate>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Approve
+    extends StandardParameters {
+    /**
+     * Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ApproveQueryTemplateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myQueryTemplate`.
+     */
+    parent?: string;
+    /**
+     * Required. The ID of the QueryTemplate to create. Must contain only Unicode letters, numbers (0-9), underscores (_). Max length: 100 bytes.
+     */
+    queryTemplateId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Get
+    extends StandardParameters {
+    /**
+     * Required. The parent resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of results to return in a single response page. Leverage the page tokens to iterate through the entire collection.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token, returned by a previous call, to request the next page of results.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource path of the QueryTemplates. e.g. `projects/myproject/locations/us/dataExchanges/123`.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Patch
+    extends StandardParameters {
+    /**
+     * Output only. The resource name of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/456`
+     */
+    name?: string;
+    /**
+     * Optional. Field mask specifies the fields to update in the query template resource. The fields specified in the `updateMask` are relative to the resource and are not a full request.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$QueryTemplate;
+  }
+  export interface Params$Resource$Projects$Locations$Dataexchanges$Querytemplates$Submit
+    extends StandardParameters {
+    /**
+     * Required. The resource path of the QueryTemplate. e.g. `projects/myproject/locations/us/dataExchanges/123/queryTemplates/myqueryTemplate`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$SubmitQueryTemplateRequest;
   }
 
   export class Resource$Projects$Locations$Subscriptions {
