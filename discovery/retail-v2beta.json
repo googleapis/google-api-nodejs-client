@@ -2427,7 +2427,7 @@
       }
     }
   },
-  "revision": "20250717",
+  "revision": "20250807",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4846,11 +4846,6 @@
         "displayName": {
           "description": "Required. The human readable control display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is thrown.",
           "type": "string"
-        },
-        "facetSpec": {
-          "$ref": "GoogleCloudRetailV2betaSearchRequestFacetSpec",
-          "deprecated": true,
-          "description": "A facet specification to perform faceted search. Note that this field is deprecated and will throw NOT_IMPLEMENTED if used for creating a control."
         },
         "name": {
           "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/controls/*`",

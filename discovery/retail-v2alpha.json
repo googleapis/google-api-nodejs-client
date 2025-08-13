@@ -2859,7 +2859,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20250807",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4566,11 +4566,6 @@
           "description": "Required. The human readable control display name. Used in Retail UI. This field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is thrown.",
           "type": "string"
         },
-        "facetSpec": {
-          "$ref": "GoogleCloudRetailV2alphaSearchRequestFacetSpec",
-          "deprecated": true,
-          "description": "A facet specification to perform faceted search. Note that this field is deprecated and will throw NOT_IMPLEMENTED if used for creating a control."
-        },
         "name": {
           "description": "Immutable. Fully qualified name `projects/*/locations/global/catalogs/*/controls/*`",
           "type": "string"
@@ -4815,7 +4810,7 @@
           "type": "string"
         },
         "userQueryTypes": {
-          "description": "The types Retail classifies the search query as. Supported values are: - \"ADVERSARIAL\" - \"CHITCHAT\" - \"JAILBREAK\" - \"ORDER_SUPPORT\" - \"SIMPLE_PRODUCT_SEARCH\" - \"INTENT_REFINEMENT\" - \"PRODUCT_DETAILS\" - \"PRODUCT_COMPARISON\" - \"DEALS_AND_COUPONS\" - \"STORE_RELEVANT\" - \"BLOCKLISTED\" - \"BEST_PRODUCT\" - \"RETAIL_SUPPORT\" - \"DISABLED\" clang-format off clang-format on",
+          "description": "LINT.IfChange(query_types_proto) The types Retail classifies the search query as. Supported values are: - \"ADVERSARIAL\" - \"CHITCHAT\" - \"JAILBREAK\" - \"ORDER_SUPPORT\" - \"SIMPLE_PRODUCT_SEARCH\" - \"INTENT_REFINEMENT\" - \"PRODUCT_DETAILS\" - \"PRODUCT_COMPARISON\" - \"DEALS_AND_COUPONS\" - \"STORE_RELEVANT\" - \"BLOCKLISTED\" - \"BEST_PRODUCT\" - \"RETAIL_SUPPORT\" - \"DISABLED\" LINT.ThenChange(//depot/google3/cloud/console/web/ai/retail/service/conversational_search_customization_config.ts:intent_types_ts)",
           "items": {
             "type": "string"
           },
