@@ -1047,6 +1047,10 @@ export namespace discoveryengine_v1 {
      * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
      */
     serviceName?: string | null;
+    /**
+     * Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.
+     */
+    useStaticSecrets?: boolean | null;
   }
   /**
    * Configuration data for advance site search.
@@ -3402,7 +3406,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string | null;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string | null;
     /**
@@ -5754,9 +5758,27 @@ export namespace discoveryengine_v1 {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
     /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig;
+    /**
      * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
   }
   /**
    * Multi-modal content.
@@ -5838,6 +5860,54 @@ export namespace discoveryengine_v1 {
      * Required. The media type (MIME type) of the file.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
   }
   /**
    * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
@@ -5927,6 +5997,28 @@ export namespace discoveryengine_v1 {
      * The text segment itself.
      */
     text?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
   }
   /**
    * User metadata of the request.
@@ -8751,6 +8843,10 @@ export namespace discoveryengine_v1 {
    * Document metadata contains the information of the document of the current chunk.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1ChunkDocumentMetadata {
+    /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
     /**
      * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
@@ -24560,7 +24656,7 @@ export namespace discoveryengine_v1 {
      *       {
      *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
-     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
      *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *         pageSize: 'placeholder-value',
@@ -24898,7 +24994,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -30260,7 +30356,11 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -30410,7 +30510,11 @@ export namespace discoveryengine_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
-     *           //   "name": "my_name"
+     *           //   "customerPolicy": {},
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
      *           // }
      *         },
      *       },
@@ -30419,7 +30523,11 @@ export namespace discoveryengine_v1 {
      *
      *   // Example response
      *   // {
-     *   //   "name": "my_name"
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
      *   // }
      * }
      *
@@ -35062,7 +35170,7 @@ export namespace discoveryengine_v1 {
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -35399,7 +35507,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -44870,7 +44978,7 @@ export namespace discoveryengine_v1 {
      *     {
      *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -45206,7 +45314,7 @@ export namespace discoveryengine_v1 {
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**

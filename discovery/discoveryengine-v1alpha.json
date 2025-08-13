@@ -3025,7 +3025,7 @@
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                               "location": "query",
                               "type": "string"
                             },
@@ -5160,7 +5160,7 @@
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                               "location": "query",
                               "type": "string"
                             },
@@ -7299,7 +7299,7 @@
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                           "location": "query",
                           "type": "string"
                         },
@@ -8049,13 +8049,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     },
@@ -8092,13 +8092,13 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -9452,7 +9452,7 @@
       }
     }
   },
-  "revision": "20250728",
+  "revision": "20250810",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -10533,9 +10533,138 @@
       "description": "Discovery Engine Assistant resource.",
       "id": "GoogleCloudDiscoveryengineV1Assistant",
       "properties": {
+        "customerPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
+          "description": "Optional. Customer policy for the assistant."
+        },
+        "enabledTools": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantToolList"
+          },
+          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "type": "object"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGenerationConfig",
+          "description": "Optional. Configuration for the generation of the assistant response."
+        },
         "name": {
           "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
+        },
+        "webGroundingType": {
+          "description": "Optional. The type of web grounding to use.",
+          "enum": [
+            "WEB_GROUNDING_TYPE_UNSPECIFIED",
+            "WEB_GROUNDING_TYPE_DISABLED",
+            "WEB_GROUNDING_TYPE_GOOGLE_SEARCH",
+            "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. This is the same as disabled.",
+            "Web grounding is disabled.",
+            "Grounding with Google Search is enabled.",
+            "Grounding with Enterprise Web Search is enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy": {
+      "description": "Customer-defined policy for the assistant.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
+      "properties": {
+        "bannedPhrases": {
+          "description": "Optional. List of banned phrases.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase": {
+      "description": "Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase",
+      "properties": {
+        "ignoreDiacritics": {
+          "description": "Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, \"cafe\" would match \"café\".",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Optional. Match type for the banned phrase.",
+          "enum": [
+            "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED",
+            "SIMPLE_STRING_MATCH",
+            "WORD_BOUNDARY_STRING_MATCH"
+          ],
+          "enumDescriptions": [
+            "Defaults to SIMPLE_STRING_MATCH.",
+            "The banned phrase matches if it is found anywhere in the text as an exact substring.",
+            "Banned phrase only matches if the pattern found in the text is surrounded by word delimiters. The phrase itself may still contain word delimiters."
+          ],
+          "type": "string"
+        },
+        "phrase": {
+          "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGenerationConfig": {
+      "description": "Configuration for the generation of the assistant response.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGenerationConfig",
+      "properties": {
+        "defaultLanguage": {
+          "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction",
+          "description": "System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction": {
+      "description": "System instruction, also known as the prompt preamble for LLM calls.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction",
+      "properties": {
+        "additionalSystemInstruction": {
+          "description": "Optional. Additional system instruction that will be added to the default system instruction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantToolInfo": {
+      "description": "Information to identify a tool.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantToolInfo",
+      "properties": {
+        "toolDisplayName": {
+          "description": "The display name of the tool.",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantToolList": {
+      "description": "The enabled tools on a connector",
+      "id": "GoogleCloudDiscoveryengineV1AssistantToolList",
+      "properties": {
+        "toolInfo": {
+          "description": "The list of tools with corresponding tool information.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantToolInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -13149,6 +13278,10 @@
         "serviceName": {
           "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
           "type": "string"
+        },
+        "useStaticSecrets": {
+          "description": "Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -14940,8 +15073,39 @@
       "description": "Discovery Engine Assistant resource.",
       "id": "GoogleCloudDiscoveryengineV1alphaAssistant",
       "properties": {
+        "customerPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
+          "description": "Optional. Customer policy for the assistant."
+        },
+        "enabledTools": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolList"
+          },
+          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "type": "object"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
+          "description": "Optional. Configuration for the generation of the assistant response."
+        },
         "name": {
           "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "webGroundingType": {
+          "description": "Optional. The type of web grounding to use.",
+          "enum": [
+            "WEB_GROUNDING_TYPE_UNSPECIFIED",
+            "WEB_GROUNDING_TYPE_DISABLED",
+            "WEB_GROUNDING_TYPE_GOOGLE_SEARCH",
+            "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. This is the same as disabled.",
+            "Web grounding is disabled.",
+            "Grounding with Google Search is enabled.",
+            "Grounding with Enterprise Web Search is enabled."
+          ],
           "type": "string"
         }
       },
@@ -15046,6 +15210,75 @@
         },
         "mimeType": {
           "description": "Required. The media type (MIME type) of the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy": {
+      "description": "Customer-defined policy for the assistant.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
+      "properties": {
+        "bannedPhrases": {
+          "description": "Optional. List of banned phrases.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase": {
+      "description": "Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase",
+      "properties": {
+        "ignoreDiacritics": {
+          "description": "Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, \"cafe\" would match \"café\".",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Optional. Match type for the banned phrase.",
+          "enum": [
+            "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED",
+            "SIMPLE_STRING_MATCH",
+            "WORD_BOUNDARY_STRING_MATCH"
+          ],
+          "enumDescriptions": [
+            "Defaults to SIMPLE_STRING_MATCH.",
+            "The banned phrase matches if it is found anywhere in the text as an exact substring.",
+            "Banned phrase only matches if the pattern found in the text is surrounded by word delimiters. The phrase itself may still contain word delimiters."
+          ],
+          "type": "string"
+        },
+        "phrase": {
+          "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig": {
+      "description": "Configuration for the generation of the assistant response.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
+      "properties": {
+        "defaultLanguage": {
+          "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction",
+          "description": "System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction": {
+      "description": "System instruction, also known as the prompt preamble for LLM calls.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction",
+      "properties": {
+        "additionalSystemInstruction": {
+          "description": "Optional. Additional system instruction that will be added to the default system instruction.",
           "type": "string"
         }
       },
@@ -15159,6 +15392,35 @@
         "text": {
           "description": "The text segment itself.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo": {
+      "description": "Information to identify a tool.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo",
+      "properties": {
+        "toolDisplayName": {
+          "description": "The display name of the tool.",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantToolList": {
+      "description": "The enabled tools on a connector",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantToolList",
+      "properties": {
+        "toolInfo": {
+          "description": "The list of tools with corresponding tool information.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15901,6 +16163,10 @@
       "description": "Document metadata contains the information of the document of the current chunk.",
       "id": "GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata",
       "properties": {
+        "mimeType": {
+          "description": "The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
         "structData": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -20603,7 +20869,7 @@
           "type": "string"
         },
         "orderBy": {
-          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
           "type": "string"
         },
         "pageSize": {
@@ -25426,6 +25692,11 @@
       "description": "Describes the assistant settings of the widget.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigAssistantSettings",
       "properties": {
+        "defaultWebGroundingToggleOff": {
+          "description": "Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "googleSearchGroundingEnabled": {
           "deprecated": true,
           "description": "Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.",
@@ -29412,6 +29683,17 @@
       },
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaCmekConfig": {
+      "description": "Customer-managed encryption configuration for Notebooks.",
+      "id": "GoogleCloudNotebooklmV1alphaCmekConfig",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse": {
       "description": "Response for NotebookService.ListRecentlyViewedNotebooks method.",
       "id": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse",
@@ -29434,6 +29716,11 @@
       "description": "Notebook is a resource where users can store their content (as sources) and interacts with the content.",
       "id": "GoogleCloudNotebooklmV1alphaNotebook",
       "properties": {
+        "cmekConfig": {
+          "$ref": "GoogleCloudNotebooklmV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the Notebook.",
+          "readOnly": true
+        },
         "emoji": {
           "description": "Output only. The emoji of the notebook.",
           "readOnly": true,
