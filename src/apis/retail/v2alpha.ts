@@ -937,10 +937,6 @@ export namespace retail_v2alpha {
      */
     displayName?: string | null;
     /**
-     * A facet specification to perform faceted search. Note that this field is deprecated and will throw NOT_IMPLEMENTED if used for creating a control.
-     */
-    facetSpec?: Schema$GoogleCloudRetailV2alphaSearchRequestFacetSpec;
-    /**
      * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      */
     name?: string | null;
@@ -1108,7 +1104,7 @@ export namespace retail_v2alpha {
      */
     state?: string | null;
     /**
-     * The types Retail classifies the search query as. Supported values are: - "ADVERSARIAL" - "CHITCHAT" - "JAILBREAK" - "ORDER_SUPPORT" - "SIMPLE_PRODUCT_SEARCH" - "INTENT_REFINEMENT" - "PRODUCT_DETAILS" - "PRODUCT_COMPARISON" - "DEALS_AND_COUPONS" - "STORE_RELEVANT" - "BLOCKLISTED" - "BEST_PRODUCT" - "RETAIL_SUPPORT" - "DISABLED" clang-format off clang-format on
+     * LINT.IfChange(query_types_proto) The types Retail classifies the search query as. Supported values are: - "ADVERSARIAL" - "CHITCHAT" - "JAILBREAK" - "ORDER_SUPPORT" - "SIMPLE_PRODUCT_SEARCH" - "INTENT_REFINEMENT" - "PRODUCT_DETAILS" - "PRODUCT_COMPARISON" - "DEALS_AND_COUPONS" - "STORE_RELEVANT" - "BLOCKLISTED" - "BEST_PRODUCT" - "RETAIL_SUPPORT" - "DISABLED" LINT.ThenChange(//depot/google3/cloud/console/web/ai/retail/service/conversational_search_customization_config.ts:intent_types_ts)
      */
     userQueryTypes?: string[] | null;
   }
@@ -12532,7 +12528,6 @@ export namespace retail_v2alpha {
      *       // {
      *       //   "associatedServingConfigIds": [],
      *       //   "displayName": "my_displayName",
-     *       //   "facetSpec": {},
      *       //   "name": "my_name",
      *       //   "rule": {},
      *       //   "searchSolutionUseCase": [],
@@ -12546,7 +12541,6 @@ export namespace retail_v2alpha {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],
@@ -12829,7 +12823,6 @@ export namespace retail_v2alpha {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],
@@ -13132,7 +13125,6 @@ export namespace retail_v2alpha {
      *       // {
      *       //   "associatedServingConfigIds": [],
      *       //   "displayName": "my_displayName",
-     *       //   "facetSpec": {},
      *       //   "name": "my_name",
      *       //   "rule": {},
      *       //   "searchSolutionUseCase": [],
@@ -13146,7 +13138,6 @@ export namespace retail_v2alpha {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],

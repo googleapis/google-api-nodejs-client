@@ -1422,10 +1422,6 @@ export namespace retail_v2beta {
      */
     displayName?: string | null;
     /**
-     * A facet specification to perform faceted search. Note that this field is deprecated and will throw NOT_IMPLEMENTED if used for creating a control.
-     */
-    facetSpec?: Schema$GoogleCloudRetailV2betaSearchRequestFacetSpec;
-    /**
      * Immutable. Fully qualified name `projects/x/locations/global/catalogs/x/controls/x`
      */
     name?: string | null;
@@ -10823,7 +10819,6 @@ export namespace retail_v2beta {
      *       // {
      *       //   "associatedServingConfigIds": [],
      *       //   "displayName": "my_displayName",
-     *       //   "facetSpec": {},
      *       //   "name": "my_name",
      *       //   "rule": {},
      *       //   "searchSolutionUseCase": [],
@@ -10837,7 +10832,6 @@ export namespace retail_v2beta {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],
@@ -11120,7 +11114,6 @@ export namespace retail_v2beta {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],
@@ -11423,7 +11416,6 @@ export namespace retail_v2beta {
      *       // {
      *       //   "associatedServingConfigIds": [],
      *       //   "displayName": "my_displayName",
-     *       //   "facetSpec": {},
      *       //   "name": "my_name",
      *       //   "rule": {},
      *       //   "searchSolutionUseCase": [],
@@ -11437,7 +11429,6 @@ export namespace retail_v2beta {
      *   // {
      *   //   "associatedServingConfigIds": [],
      *   //   "displayName": "my_displayName",
-     *   //   "facetSpec": {},
      *   //   "name": "my_name",
      *   //   "rule": {},
      *   //   "searchSolutionUseCase": [],
