@@ -689,7 +689,7 @@ export namespace redis_v1beta1 {
     internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
    */
   export interface Schema$DatabaseResourceFeed {
     /**
@@ -716,6 +716,10 @@ export namespace redis_v1beta1 {
      */
     resourceId?: Schema$DatabaseResourceId;
     resourceMetadata?: Schema$DatabaseResourceMetadata;
+    /**
+     * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
+     */
+    skipIngestion?: boolean | null;
   }
   /**
    * Common model for database resource health signal data.
