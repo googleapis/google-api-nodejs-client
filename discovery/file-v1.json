@@ -908,7 +908,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250731",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -2114,14 +2114,16 @@
             "CREATING",
             "READY",
             "REMOVING",
-            "FAILED"
+            "FAILED",
+            "PROMOTING"
           ],
           "enumDescriptions": [
             "State not set.",
             "The replica is being created.",
             "The replica is ready.",
             "The replica is being removed.",
-            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object."
+            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object.",
+            "The replica is being promoted."
           ],
           "readOnly": true,
           "type": "string"
