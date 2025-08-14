@@ -1854,11 +1854,11 @@ export namespace run_v1 {
    */
   export interface Schema$InstanceSplit {
     /**
-     * Uses the "status.latestReadyRevisionName" to determine the traffic target. When it changes, traffic will automatically migrate from the prior "latest ready" revision to the new one.
+     * Uses the "status.latestReadyRevisionName" to determine the instance split target. When it changes, workloads will automatically migrate from the prior "latest ready" revision to the new one.
      */
     latestRevision?: boolean | null;
     /**
-     * Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.
+     * Optional. Specifies percent of the instance split to this Revision. This defaults to zero if unspecified.
      */
     percent?: number | null;
     /**
@@ -3139,7 +3139,7 @@ export namespace run_v1 {
      */
     conditions?: Schema$GoogleCloudRunV1Condition[];
     /**
-     * Holds the configured traffic distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
+     * Holds the configured workload distribution. These entries will always contain RevisionName references. When ConfigurationName appears in the spec, this will hold the LatestReadyRevisionName that we last observed.
      */
     instanceSplits?: Schema$InstanceSplit[];
     /**
