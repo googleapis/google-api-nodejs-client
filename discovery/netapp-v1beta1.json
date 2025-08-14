@@ -2298,7 +2298,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250811",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -4126,6 +4126,12 @@
           "description": "Optional. True if the storage pool supports Auto Tiering enabled volumes. Default is false. Auto-tiering can be enabled after storage pool creation but it can't be disabled once enabled.",
           "type": "boolean"
         },
+        "availableThroughputMibps": {
+          "description": "Output only. Available throughput of the storage pool (in MiB/s).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
         "capacityGib": {
           "description": "Required. Capacity in GIB of the pool",
           "format": "int64",
@@ -4199,6 +4205,20 @@
         },
         "psaRange": {
           "description": "Optional. This field is not implemented. The values provided in this field are ignored.",
+          "type": "string"
+        },
+        "qosType": {
+          "description": "Optional. QoS (Quality of Service) Type of the storage pool",
+          "enum": [
+            "QOS_TYPE_UNSPECIFIED",
+            "AUTO",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified QoS Type",
+            "QoS Type is Auto",
+            "QoS Type is Manual"
+          ],
           "type": "string"
         },
         "replicaZone": {
@@ -4716,6 +4736,11 @@
         "storagePool": {
           "description": "Required. StoragePool name of the volume",
           "type": "string"
+        },
+        "throughputMibps": {
+          "description": "Optional. Throughput of the volume (in MiB/s)",
+          "format": "double",
+          "type": "number"
         },
         "tieringPolicy": {
           "$ref": "TieringPolicy",
