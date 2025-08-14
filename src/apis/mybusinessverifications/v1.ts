@@ -423,6 +423,10 @@ export namespace mybusinessverifications_v1 {
      * Optional. The input for VETTED_PARTNER method available to select [partners.](https://support.google.com/business/answer/7674102) The input is not needed for a vetted account. Token that is associated to the location. Token that is associated to the location.
      */
     token?: Schema$VerificationToken;
+    /**
+     * The input for TRUSTED_PARTNER method The verification token that is associated to the location.
+     */
+    trustedPartnerToken?: string | null;
   }
   /**
    * Response message for Verifications.VerifyLocation.
@@ -823,7 +827,8 @@ export namespace mybusinessverifications_v1 {
      *       //   "mailerContact": "my_mailerContact",
      *       //   "method": "my_method",
      *       //   "phoneNumber": "my_phoneNumber",
-     *       //   "token": {}
+     *       //   "token": {},
+     *       //   "trustedPartnerToken": "my_trustedPartnerToken"
      *       // }
      *     },
      *   });
