@@ -2293,6 +2293,10 @@ export namespace dialogflow_v3beta1 {
      */
     eventHandlers?: Schema$GoogleCloudDialogflowCxV3beta1EventHandler[];
     /**
+     * Optional. Defined structured input parameters for this flow.
+     */
+    inputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3beta1ParameterDefinition[];
+    /**
      * Optional. Knowledge connector configuration.
      */
     knowledgeConnectorSettings?: Schema$GoogleCloudDialogflowCxV3beta1KnowledgeConnectorSettings;
@@ -2312,6 +2316,10 @@ export namespace dialogflow_v3beta1 {
      * NLU related settings of the flow.
      */
     nluSettings?: Schema$GoogleCloudDialogflowCxV3beta1NluSettings;
+    /**
+     * Optional. Defined structured output parameters for this flow.
+     */
+    outputParameterDefinitions?: Schema$GoogleCloudDialogflowCxV3beta1ParameterDefinition[];
     /**
      * A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format:`projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.
      */
@@ -4751,7 +4759,7 @@ export namespace dialogflow_v3beta1 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3beta1SecuritySettingsAudioExportSettings {
     /**
-     * Filename pattern for exported audio.
+     * Filename pattern for exported audio. {conversation\} and {timestamp\} are placeholders that will be replaced with the conversation ID and epoch micros of the conversation. For example, "{conversation\}/recording_{timestamp\}.mulaw".
      */
     audioExportPattern?: string | null;
     /**
@@ -21182,11 +21190,13 @@ export namespace dialogflow_v3beta1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "eventHandlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "knowledgeConnectorSettings": {},
      *       //   "locked": false,
      *       //   "multiLanguageSettings": {},
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "outputParameterDefinitions": [],
      *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
@@ -21200,11 +21210,13 @@ export namespace dialogflow_v3beta1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
@@ -21656,11 +21668,13 @@ export namespace dialogflow_v3beta1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
@@ -22286,11 +22300,13 @@ export namespace dialogflow_v3beta1 {
      *       //   "description": "my_description",
      *       //   "displayName": "my_displayName",
      *       //   "eventHandlers": [],
+     *       //   "inputParameterDefinitions": [],
      *       //   "knowledgeConnectorSettings": {},
      *       //   "locked": false,
      *       //   "multiLanguageSettings": {},
      *       //   "name": "my_name",
      *       //   "nluSettings": {},
+     *       //   "outputParameterDefinitions": [],
      *       //   "transitionRouteGroups": [],
      *       //   "transitionRoutes": []
      *       // }
@@ -22304,11 +22320,13 @@ export namespace dialogflow_v3beta1 {
      *   //   "description": "my_description",
      *   //   "displayName": "my_displayName",
      *   //   "eventHandlers": [],
+     *   //   "inputParameterDefinitions": [],
      *   //   "knowledgeConnectorSettings": {},
      *   //   "locked": false,
      *   //   "multiLanguageSettings": {},
      *   //   "name": "my_name",
      *   //   "nluSettings": {},
+     *   //   "outputParameterDefinitions": [],
      *   //   "transitionRouteGroups": [],
      *   //   "transitionRoutes": []
      *   // }
