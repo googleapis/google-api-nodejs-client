@@ -1,5 +1,12 @@
 # Changelog
 
+## [19.1.2](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v19.1.1...androidmanagement-v19.1.2) (2025-08-13)
+
+
+### Bug Fixes
+
+* **androidmanagement:** update the API ([9b17138](https://github.com/googleapis/google-api-nodejs-client/commit/9b17138b0618c6433ef04e5fd3ce7d5d5b0f21b3))
+
 ## [19.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidmanagement-v19.1.0...androidmanagement-v19.1.1) (2025-08-07)
 
 

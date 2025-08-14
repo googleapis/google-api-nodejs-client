@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v4.1.1...mybusinessverifications-v4.2.0) (2025-08-13)
+
+
+### Features
+
+* **mybusinessverifications:** update the API ([83f6ee1](https://github.com/googleapis/google-api-nodejs-client/commit/83f6ee153d8e89f05c72f60430c7a465d408d88f))
+
 ## [4.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/mybusinessverifications-v4.1.0...mybusinessverifications-v4.1.1) (2025-08-07)
 
 

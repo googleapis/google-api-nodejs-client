@@ -1,5 +1,12 @@
 # Changelog
 
+## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v4.0.2...admob-v4.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* **admob:** update the API ([e9c8c64](https://github.com/googleapis/google-api-nodejs-client/commit/e9c8c64b284c95f33ee7fc38c38aa8950957eeb3))
+
 ## [4.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v4.0.1...admob-v4.0.2) (2025-08-07)
 
 

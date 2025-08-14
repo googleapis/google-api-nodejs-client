@@ -1,5 +1,12 @@
 # Changelog
 
+## [6.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v6.0.2...classroom-v6.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* **classroom:** update the API ([d6df758](https://github.com/googleapis/google-api-nodejs-client/commit/d6df75806517eea657000533c1a03747666d193d))
+
 ## [6.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/classroom-v6.0.1...classroom-v6.0.2) (2025-08-07)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/androidmanagement",
-  "version": "19.1.1",
+  "version": "19.1.2",
   "description": "androidmanagement",
   "main": "build/index.js",
   "types": "build/index.d.ts",
