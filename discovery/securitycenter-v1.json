@@ -5938,7 +5938,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20250808",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -9824,6 +9824,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoKeyName": {
+          "description": "Output only. The resource name of the Cloud KMS `CryptoKey` used to protect this configuration's data, if configured during Security Command Center activation.",
+          "readOnly": true,
+          "type": "string"
+        },
         "dataset": {
           "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
           "type": "string"
@@ -10955,6 +10960,11 @@
         "createTime": {
           "description": "Output only. The time at which the finding was created in Security Command Center.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyName": {
+          "description": "Output only. The name of the Cloud KMS key used to encrypt this finding, if any.",
           "readOnly": true,
           "type": "string"
         },
@@ -12747,6 +12757,11 @@
         "createTime": {
           "description": "Output only. The time at which the mute config was created. This field is set by the server and will be ignored if provided on config creation.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyName": {
+          "description": "Output only. The resource name of the Cloud KMS `CryptoKey` used to encrypt this configuration data, if CMEK was enabled during Security Command Center activation.",
           "readOnly": true,
           "type": "string"
         },
