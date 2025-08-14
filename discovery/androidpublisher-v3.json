@@ -5521,7 +5521,7 @@
       }
     }
   },
-  "revision": "20250724",
+  "revision": "20250807",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -7055,6 +7055,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "DeferredItemRemoval": {
+      "description": "Information related to deferred item replacement.",
+      "id": "DeferredItemRemoval",
+      "properties": {},
       "type": "object"
     },
     "DeferredItemReplacement": {
@@ -11318,6 +11324,10 @@
         "autoRenewingPlan": {
           "$ref": "AutoRenewingPlan",
           "description": "The item is auto renewing."
+        },
+        "deferredItemRemoval": {
+          "$ref": "DeferredItemRemoval",
+          "description": "Information for deferred item removal."
         },
         "deferredItemReplacement": {
           "$ref": "DeferredItemReplacement",
