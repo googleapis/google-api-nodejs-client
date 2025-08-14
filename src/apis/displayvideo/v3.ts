@@ -1549,7 +1549,7 @@ export namespace displayvideo_v3 {
      */
     targetLineItem?: Schema$LineItem;
     /**
-     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus
+     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAdvertising
      */
     updateMask?: string | null;
   }

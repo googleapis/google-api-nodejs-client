@@ -1551,7 +1551,7 @@ export namespace displayvideo_v4 {
      */
     targetLineItem?: Schema$LineItem;
     /**
-     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus
+     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAdvertising
      */
     updateMask?: string | null;
   }
@@ -2499,6 +2499,10 @@ export namespace displayvideo_v4 {
      * The IDs of the advertisers who have access to this algorithm. If advertiser_id is set, this field will only consist of that value. This field will not be set if the algorithm [`owner`](/display-video/api/reference/rest/v1/customBiddingAlgorithms#CustomBiddingAlgorithm.FIELDS.oneof_owner) is a partner and is being retrieved using an advertiser [`accessor`](/display-video/api/reference/rest/v1/customBiddingAlgorithms/list#body.QUERY_PARAMETERS.oneof_accessor).
      */
     sharedAdvertiserIds?: string[] | null;
+    /**
+     * Optional. Immutable. Designates the third party optimization partner that manages this algorithm.
+     */
+    thirdPartyOptimizationPartner?: string | null;
   }
   /**
    * A single custom bidding algorithm rules.
@@ -22797,7 +22801,8 @@ export namespace displayvideo_v4 {
      *       //   "modelDetails": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
-     *       //   "sharedAdvertiserIds": []
+     *       //   "sharedAdvertiserIds": [],
+     *       //   "thirdPartyOptimizationPartner": "my_thirdPartyOptimizationPartner"
      *       // }
      *     },
      *   });
@@ -22813,7 +22818,8 @@ export namespace displayvideo_v4 {
      *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
+     *   //   "sharedAdvertiserIds": [],
+     *   //   "thirdPartyOptimizationPartner": "my_thirdPartyOptimizationPartner"
      *   // }
      * }
      *
@@ -22964,7 +22970,8 @@ export namespace displayvideo_v4 {
      *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
+     *   //   "sharedAdvertiserIds": [],
+     *   //   "thirdPartyOptimizationPartner": "my_thirdPartyOptimizationPartner"
      *   // }
      * }
      *
@@ -23271,7 +23278,8 @@ export namespace displayvideo_v4 {
      *       //   "modelDetails": [],
      *       //   "name": "my_name",
      *       //   "partnerId": "my_partnerId",
-     *       //   "sharedAdvertiserIds": []
+     *       //   "sharedAdvertiserIds": [],
+     *       //   "thirdPartyOptimizationPartner": "my_thirdPartyOptimizationPartner"
      *       // }
      *     },
      *   });
@@ -23287,7 +23295,8 @@ export namespace displayvideo_v4 {
      *   //   "modelDetails": [],
      *   //   "name": "my_name",
      *   //   "partnerId": "my_partnerId",
-     *   //   "sharedAdvertiserIds": []
+     *   //   "sharedAdvertiserIds": [],
+     *   //   "thirdPartyOptimizationPartner": "my_thirdPartyOptimizationPartner"
      *   // }
      * }
      *
