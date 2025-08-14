@@ -836,6 +836,10 @@
     "package": "@googlemaps/routeoptimization"
   },
   {
+    "api": "saasservicemgmt",
+    "package": "@google-cloud/saasservicemgmt"
+  },
+  {
     "api": "solar",
     "package": "@googlemaps/solar"
   },
