@@ -377,6 +377,11 @@
                         "name"
                       ],
                       "parameters": {
+                        "contextMetadata": {
+                          "description": "Context metadata for request could be used to fetch customization of entity type schema.",
+                          "location": "query",
+                          "type": "string"
+                        },
                         "name": {
                           "description": "Required. Resource name of the Entity Type. Format: projects/{project}/locations/{location}/connections/{connection}/entityTypes/{entityType}",
                           "location": "path",
@@ -696,7 +701,7 @@
       }
     }
   },
-  "revision": "20250521",
+  "revision": "20250807",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -741,6 +746,17 @@
             "$ref": "InputParameter"
           },
           "type": "array"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
         },
         "name": {
           "description": "Name of the action.",
@@ -803,6 +819,17 @@
         "description": {
           "description": "When the connector is not in ACTIVE state, the description must be populated to specify the reason why it's not in ACTIVE state.",
           "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
         },
         "state": {
           "description": "State of the connector.",
@@ -897,6 +924,17 @@
           "description": "Fields of the entity. The key is name of the field and the value contains the applicable `google.protobuf.Value` entry for this field.",
           "type": "object"
         },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "name": {
           "description": "Output only. Resource name of the Entity. Format: projects/{project}/locations/{location}/connections/{connection}/entityTypes/{type}/entities/{id}",
           "readOnly": true,
@@ -909,6 +947,9 @@
       "description": "EntityType message contains metadata information about a single entity type present in the external system.",
       "id": "EntityType",
       "properties": {
+        "defaultSortBy": {
+          "type": "string"
+        },
         "fields": {
           "description": "List containing metadata information about each field of the entity type.",
           "items": {
@@ -919,6 +960,17 @@
         "jsonSchema": {
           "$ref": "JsonSchema",
           "description": "JsonSchema representation of this entity's schema"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
         },
         "name": {
           "description": "The name of the entity type.",
@@ -966,6 +1018,17 @@
       "properties": {
         "accessCredentials": {
           "$ref": "AccessCredentials"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -989,6 +1052,17 @@
       "description": "Response message for ActionService.ExecuteAction",
       "id": "ExecuteActionResponse",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "results": {
           "description": "In the case of successful invocation of the specified action, the results Struct contains values based on the response of the action invoked. 1. If the action execution produces any entities as a result, they are returned as an array of Structs with the 'key' being the field name and the 'value' being the value of that field in each result row. { 'results': [{'key': 'value'}, ...] }",
           "items": {
@@ -1742,6 +1816,17 @@
           },
           "type": "array"
         },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "nextPageToken": {
           "description": "Next page token if more actions available.",
           "type": "string"
@@ -1767,6 +1852,17 @@
           },
           "type": "array"
         },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "nextPageToken": {
           "description": "Next page token if more records are available.",
           "type": "string"
@@ -1778,6 +1874,17 @@
       "description": "Response message for EntityService.ListEntityTypes",
       "id": "ListEntityTypesResponse",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "nextPageToken": {
           "description": "Next page token if more entity types available.",
           "type": "string"
@@ -2192,6 +2299,17 @@
       "properties": {
         "accessCredentials": {
           "$ref": "AccessCredentials"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -2476,6 +2594,17 @@
       "description": "Response message for EntityService.UpdateEntitiesWithConditions",
       "id": "UpdateEntitiesWithConditionsResponse",
       "properties": {
+        "metadata": {
+          "additionalProperties": {
+            "additionalProperties": {
+              "description": "Properties of the object. Contains field @type with type URL.",
+              "type": "any"
+            },
+            "type": "object"
+          },
+          "description": "Metadata like service latency, etc.",
+          "type": "object"
+        },
         "response": {
           "additionalProperties": {
             "description": "Properties of the object.",
