@@ -1101,6 +1101,23 @@ export namespace cloudchannel_v1 {
     usageStartDateTime?: Schema$GoogleTypeDateTime;
   }
   /**
+   * Represents a single component of the total discount applicable on a Price.
+   */
+  export interface Schema$GoogleCloudChannelV1DiscountComponent {
+    /**
+     * Fixed value discount.
+     */
+    discountAbsolute?: Schema$GoogleTypeMoney;
+    /**
+     * Discount percentage, represented as decimal. For example, a 20% discount will be represented as 0.2.
+     */
+    discountPercentage?: number | null;
+    /**
+     * Type of the discount.
+     */
+    discountType?: string | null;
+  }
+  /**
    * Required Edu Attributes
    */
   export interface Schema$GoogleCloudChannelV1EduData {
@@ -1792,6 +1809,10 @@ export namespace cloudchannel_v1 {
      */
     discount?: number | null;
     /**
+     * Breakdown of the discount into its components. This will be empty if there is no discount present.
+     */
+    discountComponents?: Schema$GoogleCloudChannelV1DiscountComponent[];
+    /**
      * Effective Price after applying the discounts.
      */
     effectivePrice?: Schema$GoogleTypeMoney;
@@ -1799,6 +1820,10 @@ export namespace cloudchannel_v1 {
      * Link to external price list, such as link to Google Voice rate card.
      */
     externalPriceUri?: string | null;
+    /**
+     * The time period with respect to which base and effective prices are defined. Example: 1 month, 6 months, 1 year, etc.
+     */
+    pricePeriod?: Schema$GoogleCloudChannelV1Period;
   }
   /**
    * Represents price by resource type.
