@@ -117,14 +117,14 @@
     "labels": {
       "methods": {
         "create": {
-          "description": "Creates a new Label.",
+          "description": "Creates a label. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label).",
           "flatPath": "v2beta/labels",
           "httpMethod": "POST",
           "id": "drivelabels.labels.create",
           "parameterOrder": [],
           "parameters": {
             "languageCode": {
-              "description": "The BCP-47 language code to use for evaluating localized Field labels in response. When not specified, values in the default configured language will be used.",
+              "description": "The BCP-47 language code to use for evaluating localized field labels in response. When not specified, values in the default configured language will be used.",
               "location": "query",
               "type": "string"
             },
@@ -147,7 +147,7 @@
           ]
         },
         "delete": {
-          "description": "Permanently deletes a Label and related metadata on Drive Items. Once deleted, the Label and related Drive item metadata will be deleted. Only draft Labels, and disabled Labels may be deleted.",
+          "description": "Permanently deletes a label and related metadata on Drive items. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Once deleted, the label and related Drive item metadata will be deleted. Only draft labels and disabled labels may be deleted.",
           "flatPath": "v2beta/labels/{labelsId}",
           "httpMethod": "DELETE",
           "id": "drivelabels.labels.delete",
@@ -163,12 +163,12 @@
               "type": "string"
             },
             "useAdminAccess": {
-              "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+              "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
               "location": "query",
               "type": "boolean"
             },
             "writeControl.requiredRevisionId": {
-              "description": "The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.",
+              "description": "The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.",
               "location": "query",
               "type": "string"
             }
@@ -183,7 +183,7 @@
           ]
         },
         "delta": {
-          "description": "Updates a single Label by applying a set of update requests resulting in a new draft revision. The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive Items.",
+          "description": "Updates a single label by applying a set of update requests resulting in a new draft revision. For more information, see [Update a label](https://developers.google.com/workspace/drive/labels/guides/update-label). The batch update is all-or-nothing: If any of the update requests are invalid, no changes are applied. The resulting draft revision must be published before the changes may be used with Drive items.",
           "flatPath": "v2beta/labels/{labelsId}:delta",
           "httpMethod": "POST",
           "id": "drivelabels.labels.delta",
@@ -192,7 +192,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name of the Label to update.",
+              "description": "Required. The resource name of the label to update.",
               "location": "path",
               "pattern": "^labels/[^/]+$",
               "required": true,
@@ -212,7 +212,7 @@
           ]
         },
         "disable": {
-          "description": "Disable a published Label. Disabling a Label will result in a new disabled published revision based on the current published revision. If there is a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`.",
+          "description": "Disable a published label. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). Disabling a label will result in a new disabled published revision based on the current published revision. If there's a draft revision, a new disabled draft revision will be created based on the latest draft revision. Older draft revisions will be deleted. Once disabled, a label may be deleted with `DeleteLabel`.",
           "flatPath": "v2beta/labels/{labelsId}:disable",
           "httpMethod": "POST",
           "id": "drivelabels.labels.disable",
@@ -241,7 +241,7 @@
           ]
         },
         "enable": {
-          "description": "Enable a disabled Label and restore it to its published state. This will result in a new published revision based on the current disabled published revision. If there is an existing disabled draft revision, a new revision will be created based on that draft and will be enabled.",
+          "description": "Enable a disabled label and restore it to its published state. For more information, see [Disable, enable, and delete a label](https://developers.google.com/workspace/drive/labels/guides/disable-delete-label). This will result in a new published revision based on the current disabled published revision. If there's an existing disabled draft revision, a new revision will be created based on that draft and will be enabled.",
           "flatPath": "v2beta/labels/{labelsId}:enable",
           "httpMethod": "POST",
           "id": "drivelabels.labels.enable",
@@ -270,7 +270,7 @@
           ]
         },
         "get": {
-          "description": "Get a label by its resource name. Resource name may be any of: * `labels/{id}` - See `labels/{id}@latest` * `labels/{id}@latest` - Gets the latest revision of the label. * `labels/{id}@published` - Gets the current published revision of the label. * `labels/{id}@{revision_id}` - Gets the label at the specified revision ID.",
+          "description": "Get a label by its resource name. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label). Resource name may be any of: * `labels/{id}` - See `labels/{id}@latest` * `labels/{id}@latest` - Gets the latest revision of the label. * `labels/{id}@published` - Gets the current published revision of the label. * `labels/{id}@{revision_id}` - Gets the label at the specified revision ID.",
           "flatPath": "v2beta/labels/{labelsId}",
           "httpMethod": "GET",
           "id": "drivelabels.labels.get",
@@ -321,14 +321,14 @@
           ]
         },
         "list": {
-          "description": "List labels.",
+          "description": "List labels. For more information, see [Search for labels](https://developers.google.com/workspace/drive/labels/guides/search-label).",
           "flatPath": "v2beta/labels",
           "httpMethod": "GET",
           "id": "drivelabels.labels.list",
           "parameterOrder": [],
           "parameters": {
             "customer": {
-              "description": "The customer to scope this list request to. For example: \"customers/abcd1234\". If unset, will return all labels within the current customer.",
+              "description": "The customer to scope this list request to. For example: `customers/abcd1234`. If unset, will return all labels within the current customer.",
               "location": "query",
               "type": "string"
             },
@@ -338,7 +338,7 @@
               "type": "string"
             },
             "minimumRole": {
-              "description": "Specifies the level of access the user must have on the returned Labels. The minimum role a user must have on a label. Defaults to `READER`.",
+              "description": "Specifies the level of access the user must have on the returned labels. The minimum role a user must have on a label. Defaults to `READER`.",
               "enum": [
                 "LABEL_ROLE_UNSPECIFIED",
                 "READER",
@@ -373,7 +373,7 @@
               "type": "boolean"
             },
             "useAdminAccess": {
-              "description": "Set to `true` in order to use the user's admin credentials. This will return all Labels within the customer.",
+              "description": "Set to `true` in order to use the user's admin credentials. This will return all labels within the customer.",
               "location": "query",
               "type": "boolean"
             },
@@ -403,7 +403,7 @@
           ]
         },
         "publish": {
-          "description": "Publish all draft changes to the Label. Once published, the Label may not return to its draft state. See `google.apps.drive.labels.v2.Lifecycle` for more information. Publishing a Label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the Label will be rejected. For example, the following changes to a Label will be rejected after the Label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * Field.FieldType cannot be changed. * Changes to Field validation options cannot reject something that was previously accepted. * Reducing the max entries.",
+          "description": "Publish all draft changes to the label. Once published, the label may not return to its draft state. For more information, see [Create and publish a label](https://developers.google.com/workspace/drive/labels/guides/create-label). Publishing a label will result in a new published revision. All previous draft revisions will be deleted. Previous published revisions will be kept but are subject to automated deletion as needed. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). Once published, some changes are no longer permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label will be rejected. For example, the following changes to a label will be rejected after the label is published: * The label cannot be directly deleted. It must be disabled first, then deleted. * `Field.FieldType` cannot be changed. * Changes to field validation options cannot reject something that was previously accepted. * Reducing the maximum entries.",
           "flatPath": "v2beta/labels/{labelsId}:publish",
           "httpMethod": "POST",
           "id": "drivelabels.labels.publish",
@@ -432,7 +432,7 @@
           ]
         },
         "updateLabelCopyMode": {
-          "description": "Updates a Label's `CopyMode`. Changes to this policy are not revisioned, do not require publishing, and take effect immediately.",
+          "description": "Updates a label's `CopyMode`. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately.",
           "flatPath": "v2beta/labels/{labelsId}:updateLabelCopyMode",
           "httpMethod": "POST",
           "id": "drivelabels.labels.updateLabelCopyMode",
@@ -441,7 +441,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name of the Label to update.",
+              "description": "Required. The resource name of the label to update.",
               "location": "path",
               "pattern": "^labels/[^/]+$",
               "required": true,
@@ -461,7 +461,7 @@
           ]
         },
         "updateLabelEnabledAppSettings": {
-          "description": "Updates a Label's EabledAppSettings. Enabling a Label in a Workspace Application allows it to be used in that application. This change is not revisioned, does not require publishing, and takes effect immediately.",
+          "description": "Updates a label's `EnabledAppSettings`. Enabling a label in a Google Workspace app allows it to be used in that app. This change isn't revisioned, doesn't require publishing, and takes effect immediately.",
           "flatPath": "v2beta/labels/{labelsId}:updateLabelEnabledAppSettings",
           "httpMethod": "POST",
           "id": "drivelabels.labels.updateLabelEnabledAppSettings",
@@ -470,7 +470,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Required. The resource name of the Label to update. The resource name of the Label to update.",
+              "description": "Required. The resource name of the label to update. The resource name of the label to update.",
               "location": "path",
               "pattern": "^labels/[^/]+$",
               "required": true,
@@ -486,7 +486,7 @@
           }
         },
         "updatePermissions": {
-          "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+          "description": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
           "flatPath": "v2beta/labels/{labelsId}/permissions",
           "httpMethod": "PATCH",
           "id": "drivelabels.labels.updatePermissions",
@@ -495,14 +495,14 @@
           ],
           "parameters": {
             "parent": {
-              "description": "Required. The parent Label resource name.",
+              "description": "Required. The parent label resource name.",
               "location": "path",
               "pattern": "^labels/[^/]+$",
               "required": true,
               "type": "string"
             },
             "useAdminAccess": {
-              "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+              "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
               "location": "query",
               "type": "boolean"
             }
@@ -524,7 +524,7 @@
         "locks": {
           "methods": {
             "list": {
-              "description": "Lists the LabelLocks on a Label.",
+              "description": "Lists the label locks on a label.",
               "flatPath": "v2beta/labels/{labelsId}/locks",
               "httpMethod": "GET",
               "id": "drivelabels.labels.locks.list",
@@ -533,7 +533,7 @@
               ],
               "parameters": {
                 "pageSize": {
-                  "description": "Maximum number of Locks to return per page. Default: 100. Max: 200.",
+                  "description": "Maximum number of locks to return per page. Default: 100. Max: 200.",
                   "format": "int32",
                   "location": "query",
                   "type": "integer"
@@ -544,7 +544,7 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. Label on which Locks are applied. Format: labels/{label}",
+                  "description": "Required. Label on which locks are applied. Format: `labels/{label}`.",
                   "location": "path",
                   "pattern": "^labels/[^/]+$",
                   "required": true,
@@ -567,7 +567,7 @@
         "permissions": {
           "methods": {
             "batchDelete": {
-              "description": "Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+              "description": "Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
               "flatPath": "v2beta/labels/{labelsId}/permissions:batchDelete",
               "httpMethod": "POST",
               "id": "drivelabels.labels.permissions.batchDelete",
@@ -576,7 +576,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
+                  "description": "Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
                   "location": "path",
                   "pattern": "^labels/[^/]+$",
                   "required": true,
@@ -596,7 +596,7 @@
               ]
             },
             "batchUpdate": {
-              "description": "Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+              "description": "Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
               "flatPath": "v2beta/labels/{labelsId}/permissions:batchUpdate",
               "httpMethod": "POST",
               "id": "drivelabels.labels.permissions.batchUpdate",
@@ -605,7 +605,7 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
+                  "description": "Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
                   "location": "path",
                   "pattern": "^labels/[^/]+$",
                   "required": true,
@@ -625,7 +625,7 @@
               ]
             },
             "create": {
-              "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+              "description": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
               "flatPath": "v2beta/labels/{labelsId}/permissions",
               "httpMethod": "POST",
               "id": "drivelabels.labels.permissions.create",
@@ -634,14 +634,14 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent Label resource name on the Label Permission is created. Format: labels/{label}",
+                  "description": "Required. The parent label resource name on the label permission is created. Format: `labels/{label}`.",
                   "location": "path",
                   "pattern": "^labels/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "useAdminAccess": {
-                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -659,7 +659,7 @@
               ]
             },
             "delete": {
-              "description": "Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+              "description": "Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
               "flatPath": "v2beta/labels/{labelsId}/permissions/{permissionsId}",
               "httpMethod": "DELETE",
               "id": "drivelabels.labels.permissions.delete",
@@ -668,14 +668,14 @@
               ],
               "parameters": {
                 "name": {
-                  "description": "Required. Label Permission resource name.",
+                  "description": "Required. Label permission resource name.",
                   "location": "path",
                   "pattern": "^labels/[^/]+/permissions/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "useAdminAccess": {
-                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -690,7 +690,7 @@
               ]
             },
             "list": {
-              "description": "Lists a Label's permissions.",
+              "description": "Lists a label's permissions.",
               "flatPath": "v2beta/labels/{labelsId}/permissions",
               "httpMethod": "GET",
               "id": "drivelabels.labels.permissions.list",
@@ -710,14 +710,14 @@
                   "type": "string"
                 },
                 "parent": {
-                  "description": "Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label}",
+                  "description": "Required. The parent label resource name on which label permissions are listed. Format: `labels/{label}`.",
                   "location": "path",
                   "pattern": "^labels/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "useAdminAccess": {
-                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -738,7 +738,7 @@
         "revisions": {
           "methods": {
             "updatePermissions": {
-              "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+              "description": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
               "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions",
               "httpMethod": "PATCH",
               "id": "drivelabels.labels.revisions.updatePermissions",
@@ -747,14 +747,14 @@
               ],
               "parameters": {
                 "parent": {
-                  "description": "Required. The parent Label resource name.",
+                  "description": "Required. The parent label resource name.",
                   "location": "path",
                   "pattern": "^labels/[^/]+/revisions/[^/]+$",
                   "required": true,
                   "type": "string"
                 },
                 "useAdminAccess": {
-                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                  "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                   "location": "query",
                   "type": "boolean"
                 }
@@ -776,7 +776,7 @@
             "locks": {
               "methods": {
                 "list": {
-                  "description": "Lists the LabelLocks on a Label.",
+                  "description": "Lists the label locks on a label.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/locks",
                   "httpMethod": "GET",
                   "id": "drivelabels.labels.revisions.locks.list",
@@ -785,7 +785,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of Locks to return per page. Default: 100. Max: 200.",
+                      "description": "Maximum number of locks to return per page. Default: 100. Max: 200.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -796,7 +796,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Label on which Locks are applied. Format: labels/{label}",
+                      "description": "Required. Label on which locks are applied. Format: `labels/{label}`.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -819,7 +819,7 @@
             "permissions": {
               "methods": {
                 "batchDelete": {
-                  "description": "Deletes Label permissions. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+                  "description": "Deletes label permissions. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions:batchDelete",
                   "httpMethod": "POST",
                   "id": "drivelabels.labels.revisions.permissions.batchDelete",
@@ -828,7 +828,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent Label resource name shared by all permissions being deleted. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
+                      "description": "Required. The parent label resource name shared by all permissions being deleted. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -848,7 +848,7 @@
                   ]
                 },
                 "batchUpdate": {
-                  "description": "Updates Label permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+                  "description": "Updates label permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions:batchUpdate",
                   "httpMethod": "POST",
                   "id": "drivelabels.labels.revisions.permissions.batchUpdate",
@@ -857,7 +857,7 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent Label resource name shared by all permissions being updated. Format: labels/{label} If this is set, the parent field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
+                      "description": "Required. The parent label resource name shared by all permissions being updated. Format: `labels/{label}`. If this is set, the parent field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
@@ -877,7 +877,7 @@
                   ]
                 },
                 "create": {
-                  "description": "Updates a Label's permissions. If a permission for the indicated principal doesn't exist, a new Label Permission is created, otherwise the existing permission is updated. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+                  "description": "Updates a label's permissions. If a permission for the indicated principal doesn't exist, a label permission is created, otherwise the existing permission is updated. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions",
                   "httpMethod": "POST",
                   "id": "drivelabels.labels.revisions.permissions.create",
@@ -886,14 +886,14 @@
                   ],
                   "parameters": {
                     "parent": {
-                      "description": "Required. The parent Label resource name on the Label Permission is created. Format: labels/{label}",
+                      "description": "Required. The parent label resource name on the label permission is created. Format: `labels/{label}`.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "useAdminAccess": {
-                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -911,7 +911,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a Label's permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+                  "description": "Deletes a label's permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions/{permissionsId}",
                   "httpMethod": "DELETE",
                   "id": "drivelabels.labels.revisions.permissions.delete",
@@ -920,14 +920,14 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Label Permission resource name.",
+                      "description": "Required. Label permission resource name.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+/permissions/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "useAdminAccess": {
-                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -942,7 +942,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists a Label's permissions.",
+                  "description": "Lists a label's permissions.",
                   "flatPath": "v2beta/labels/{labelsId}/revisions/{revisionsId}/permissions",
                   "httpMethod": "GET",
                   "id": "drivelabels.labels.revisions.permissions.list",
@@ -962,14 +962,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent Label resource name on which Label Permission are listed. Format: labels/{label}",
+                      "description": "Required. The parent label resource name on which label permissions are listed. Format: `labels/{label}`.",
                       "location": "path",
                       "pattern": "^labels/[^/]+/revisions/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "useAdminAccess": {
-                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+                      "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -994,14 +994,14 @@
     "limits": {
       "methods": {
         "getLabel": {
-          "description": "Get the constraints on the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.",
+          "description": "Get the constraints on the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title.",
           "flatPath": "v2beta/limits/label",
           "httpMethod": "GET",
           "id": "drivelabels.limits.getLabel",
           "parameterOrder": [],
           "parameters": {
             "name": {
-              "description": "Required. Label revision resource name Must be: \"limits/label\"",
+              "description": "Required. Label revision resource name must be: \"limits/label\".",
               "location": "query",
               "type": "string"
             }
@@ -1031,7 +1031,7 @@
           ],
           "parameters": {
             "customer": {
-              "description": "The customer to scope this request to. For example: \"customers/abcd1234\". If unset, will return settings within the current customer.",
+              "description": "The customer to scope this request to. For example: `customers/abcd1234`. If unset, it will return settings within the current customer.",
               "location": "query",
               "type": "string"
             },
@@ -1057,7 +1057,7 @@
       }
     }
   },
-  "revision": "20250602",
+  "revision": "20250807",
   "rootUrl": "https://drivelabels.googleapis.com/",
   "schemas": {
     "GoogleAppsDriveLabelsV2betaBadgeColors": {
@@ -1099,7 +1099,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest": {
-      "description": "Deletes one of more Label Permissions.",
+      "description": "Deletes one or more label permissions.",
       "id": "GoogleAppsDriveLabelsV2betaBatchDeleteLabelPermissionsRequest",
       "properties": {
         "requests": {
@@ -1110,14 +1110,14 @@
           "type": "array"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access. If this is set, the use_admin_access field in the DeleteLabelPermissionRequest messages must either be empty or match this field.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `DeleteLabelPermissionRequest` messages must either be empty or match this field.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest": {
-      "description": "Updates one or more Label Permissions.",
+      "description": "Updates one or more label permissions.",
       "id": "GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsRequest",
       "properties": {
         "requests": {
@@ -1128,14 +1128,14 @@
           "type": "array"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access. If this is set, the use_admin_access field in the UpdateLabelPermissionRequest messages must either be empty or match this field.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access. If this is set, the `use_admin_access` field in the `UpdateLabelPermissionRequest` messages must either be empty or match this field.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponse": {
-      "description": "Response for updating one or more Label Permissions.",
+      "description": "Response for updating one or more label permissions.",
       "id": "GoogleAppsDriveLabelsV2betaBatchUpdateLabelPermissionsResponse",
       "properties": {
         "permissions": {
@@ -1149,52 +1149,52 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDateLimits": {
-      "description": "Limits for date Field type.",
+      "description": "Limits for date field type.",
       "id": "GoogleAppsDriveLabelsV2betaDateLimits",
       "properties": {
         "maxValue": {
           "$ref": "GoogleTypeDate",
-          "description": "Maximum value for the date Field type."
+          "description": "Maximum value for the date field type."
         },
         "minValue": {
           "$ref": "GoogleTypeDate",
-          "description": "Minimum value for the date Field type."
+          "description": "Minimum value for the date field type."
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeleteLabelPermissionRequest": {
-      "description": "Deletes a Label Permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+      "description": "Deletes a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
       "id": "GoogleAppsDriveLabelsV2betaDeleteLabelPermissionRequest",
       "properties": {
         "name": {
-          "description": "Required. Label Permission resource name.",
+          "description": "Required. Label permission resource name.",
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest": {
-      "description": "The set of requests for updating aspects of a Label. If any request is not valid, no requests will be applied.",
+      "description": "The set of requests for updating aspects of a label. If any request isn't valid, no requests will be applied.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequest",
       "properties": {
         "languageCode": {
-          "description": "The BCP-47 language code to use for evaluating localized Field labels when `include_label_in_response` is `true`.",
+          "description": "The BCP-47 language code to use for evaluating localized field labels when `include_label_in_response` is `true`.",
           "type": "string"
         },
         "requests": {
-          "description": "A list of updates to apply to the Label. Requests will be applied in the order they are specified.",
+          "description": "A list of updates to apply to the label. Requests will be applied in the order they are specified.",
           "items": {
             "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest"
           },
           "type": "array"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "view": {
@@ -1217,7 +1217,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest": {
-      "description": "Request to create a Field within a Label.",
+      "description": "Request to create a field within a label.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest",
       "properties": {
         "field": {
@@ -1228,37 +1228,37 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest": {
-      "description": "Request to create a Selection Choice.",
+      "description": "Request to create a selection choice.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest",
       "properties": {
         "choice": {
           "$ref": "GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoice",
-          "description": "Required. The Choice to create."
+          "description": "Required. The choice to create."
         },
         "fieldId": {
-          "description": "Required. The Selection Field in which a Choice will be created.",
+          "description": "Required. The selection field in which a choice will be created.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteFieldRequest": {
-      "description": "Request to delete the Field.",
+      "description": "Request to delete the field.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteFieldRequest",
       "properties": {
         "id": {
-          "description": "Required. ID of the Field to delete.",
+          "description": "Required. ID of the field to delete.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest": {
-      "description": "Request to delete a Choice.",
+      "description": "Request to delete a choice.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest",
       "properties": {
         "fieldId": {
-          "description": "Required. The Selection Field from which a Choice will be deleted.",
+          "description": "Required. The selection field from which a choice will be deleted.",
           "type": "string"
         },
         "id": {
@@ -1269,19 +1269,19 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest": {
-      "description": "Request to disable the Field.",
+      "description": "Request to disable the field.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest",
       "properties": {
         "disabledPolicy": {
           "$ref": "GoogleAppsDriveLabelsV2betaLifecycleDisabledPolicy",
-          "description": "Required. Field Disabled Policy."
+          "description": "Required. Field disabled policy."
         },
         "id": {
-          "description": "Required. Key of the Field to disable.",
+          "description": "Required. Key of the field to disable.",
           "type": "string"
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1289,7 +1289,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest": {
-      "description": "Request to disable a Choice.",
+      "description": "Request to disable a choice.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest",
       "properties": {
         "disabledPolicy": {
@@ -1297,7 +1297,7 @@
           "description": "Required. The disabled policy to update."
         },
         "fieldId": {
-          "description": "Required. The Selection Field in which a Choice will be disabled.",
+          "description": "Required. The selection field in which a choice will be disabled.",
           "type": "string"
         },
         "id": {
@@ -1305,7 +1305,7 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1313,22 +1313,22 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableFieldRequest": {
-      "description": "Request to enable the Field.",
+      "description": "Request to enable the field.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableFieldRequest",
       "properties": {
         "id": {
-          "description": "Required. ID of the Field to enable.",
+          "description": "Required. ID of the field to enable.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest": {
-      "description": "Request to enable a Choice.",
+      "description": "Request to enable a choice.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest",
       "properties": {
         "fieldId": {
-          "description": "Required. The Selection Field in which a Choice will be enabled.",
+          "description": "Required. The selection field in which a choice will be enabled.",
           "type": "string"
         },
         "id": {
@@ -1339,74 +1339,74 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest": {
-      "description": "A single kind of update to apply to a Label.",
+      "description": "A single kind of update to apply to a label.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestRequest",
       "properties": {
         "createField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateFieldRequest",
-          "description": "Creates a new Field."
+          "description": "Creates a field."
         },
         "createSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestCreateSelectionChoiceRequest",
-          "description": "Creates Choice within a Selection field."
+          "description": "Create a choice within a selection field."
         },
         "deleteField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteFieldRequest",
-          "description": "Deletes a Field from the label."
+          "description": "Deletes a field from the label."
         },
         "deleteSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDeleteSelectionChoiceRequest",
-          "description": "Delete a Choice within a Selection Field."
+          "description": "Delete a choice within a selection field."
         },
         "disableField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableFieldRequest",
-          "description": "Disables the Field."
+          "description": "Disables the field."
         },
         "disableSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestDisableSelectionChoiceRequest",
-          "description": "Disable a Choice within a Selection Field."
+          "description": "Disable a choice within a selection field."
         },
         "enableField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableFieldRequest",
-          "description": "Enables the Field."
+          "description": "Enables the field."
         },
         "enableSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestEnableSelectionChoiceRequest",
-          "description": "Enable a Choice within a Selection Field."
+          "description": "Enable a choice within a selection field."
         },
         "updateField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest",
-          "description": "Updates basic properties of a Field."
+          "description": "Updates basic properties of a field."
         },
         "updateFieldType": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest",
-          "description": "Update Field type and/or type options."
+          "description": "Update field type and/or type options."
         },
         "updateLabel": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest",
-          "description": "Updates the Label properties."
+          "description": "Updates the label properties."
         },
         "updateSelectionChoiceProperties": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest",
-          "description": "Update a Choice properties within a Selection Field."
+          "description": "Update a choice property within a selection field."
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest": {
-      "description": "Request to update Field properties.",
+      "description": "Request to update field properties.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldPropertiesRequest",
       "properties": {
         "id": {
-          "description": "Required. The Field to update.",
+          "description": "Required. The field to update.",
           "type": "string"
         },
         "properties": {
           "$ref": "GoogleAppsDriveLabelsV2betaFieldProperties",
-          "description": "Required. Basic Field properties."
+          "description": "Required. Basic field properties."
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1414,7 +1414,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest": {
-      "description": "Request to change the type of a Field.",
+      "description": "Request to change the type of a field.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateFieldTypeRequest",
       "properties": {
         "dateOptions": {
@@ -1422,7 +1422,7 @@
           "description": "Update field to Date."
         },
         "id": {
-          "description": "Required. The Field to update.",
+          "description": "Required. The field to update.",
           "type": "string"
         },
         "integerOptions": {
@@ -1438,7 +1438,7 @@
           "description": "Update field to Text."
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root of `type_options` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root of `type_options` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         },
@@ -1450,7 +1450,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest": {
-      "description": "Updates basic properties of a Label.",
+      "description": "Updates basic properties of a label.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateLabelPropertiesRequest",
       "properties": {
         "properties": {
@@ -1458,7 +1458,7 @@
           "description": "Required. Label properties to update."
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `label_properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `label_properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1466,23 +1466,23 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest": {
-      "description": "Request to update a Choice properties.",
+      "description": "Request to update a choice property.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelRequestUpdateSelectionChoicePropertiesRequest",
       "properties": {
         "fieldId": {
-          "description": "Required. The Selection Field to update.",
+          "description": "Required. The selection field to update.",
           "type": "string"
         },
         "id": {
-          "description": "Required. The Choice to update.",
+          "description": "Required. The choice to update.",
           "type": "string"
         },
         "properties": {
           "$ref": "GoogleAppsDriveLabelsV2betaFieldSelectionOptionsChoiceProperties",
-          "description": "Required. The Choice properties to update."
+          "description": "Required. The choice properties to update."
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `properties` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -1490,7 +1490,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponse": {
-      "description": "Response for Label update.",
+      "description": "Response for label update.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponse",
       "properties": {
         "responses": {
@@ -1502,13 +1502,13 @@
         },
         "updatedLabel": {
           "$ref": "GoogleAppsDriveLabelsV2betaLabel",
-          "description": "The label after updates were applied. This is only set if [BatchUpdateLabelResponse2.include_label_in_response] is `true` and there were no errors."
+          "description": "The label after updates were applied. This is only set if `include_label_in_response` is `true` and there were no errors."
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse": {
-      "description": "Response following Field create.",
+      "description": "Response following field create.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse",
       "properties": {
         "id": {
@@ -1524,52 +1524,52 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse": {
-      "description": "Response following Selection Choice create.",
+      "description": "Response following selection choice create.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse",
       "properties": {
         "fieldId": {
-          "description": "The server-generated id of the field.",
+          "description": "The server-generated ID of the field.",
           "type": "string"
         },
         "id": {
-          "description": "The server-generated ID of the created choice within the Field",
+          "description": "The server-generated ID of the created choice within the field.",
           "type": "string"
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteFieldResponse": {
-      "description": "Response following Field delete.",
+      "description": "Response following field delete.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteFieldResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse": {
-      "description": "Response following Choice delete.",
+      "description": "Response following choice delete.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse": {
-      "description": "Response following Field disable.",
+      "description": "Response following field disable.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableSelectionChoiceResponse": {
-      "description": "Response following Choice disable.",
+      "description": "Response following choice disable.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableSelectionChoiceResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableFieldResponse": {
-      "description": "Response following Field enable.",
+      "description": "Response following field enable.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableFieldResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse": {
-      "description": "Response following Choice enable.",
+      "description": "Response following choice enable.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse",
       "properties": {},
       "type": "object"
@@ -1580,57 +1580,57 @@
       "properties": {
         "createField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateFieldResponse",
-          "description": "Creates a new Field."
+          "description": "Creates a field."
         },
         "createSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseCreateSelectionChoiceResponse",
-          "description": "Creates a new selection list option to add to a Selection Field."
+          "description": "Creates a selection list option to add to a selection field."
         },
         "deleteField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteFieldResponse",
-          "description": "Deletes a Field from the label."
+          "description": "Deletes a field from the label."
         },
         "deleteSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDeleteSelectionChoiceResponse",
-          "description": "Deletes a Choice from a Selection Field."
+          "description": "Deletes a choice from a selection field."
         },
         "disableField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableFieldResponse",
-          "description": "Disables Field."
+          "description": "Disables field."
         },
         "disableSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseDisableSelectionChoiceResponse",
-          "description": "Disables a Choice within a Selection Field."
+          "description": "Disables a choice within a selection field."
         },
         "enableField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableFieldResponse",
-          "description": "Enables Field."
+          "description": "Enables field."
         },
         "enableSelectionChoice": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseEnableSelectionChoiceResponse",
-          "description": "Enables a Choice within a Selection Field."
+          "description": "Enables a choice within a selection field."
         },
         "updateField": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse",
-          "description": "Updates basic properties of a Field."
+          "description": "Updates basic properties of a field."
         },
         "updateFieldType": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse",
-          "description": "Update Field type and/or type options."
+          "description": "Updates field type and/or type options."
         },
         "updateLabel": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse",
-          "description": "Updated basic properties of a Label."
+          "description": "Updates basic properties of a label."
         },
         "updateSelectionChoiceProperties": {
           "$ref": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse",
-          "description": "Updates a Choice within a Selection Field."
+          "description": "Updates a choice within a selection field."
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse": {
-      "description": "Response following update to Field properties.",
+      "description": "Response following update to field properties.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldPropertiesResponse",
       "properties": {
         "priority": {
@@ -1642,19 +1642,19 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse": {
-      "description": "Response following update to Field type.",
+      "description": "Response following update to field type.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateFieldTypeResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse": {
-      "description": "Response following update to Label properties.",
+      "description": "Response following update to label properties.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateLabelPropertiesResponse",
       "properties": {},
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse": {
-      "description": "Response following update to Selection Choice properties.",
+      "description": "Response following update to selection choice properties.",
       "id": "GoogleAppsDriveLabelsV2betaDeltaUpdateLabelResponseUpdateSelectionChoicePropertiesResponse",
       "properties": {
         "priority": {
@@ -1666,7 +1666,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaDisableLabelRequest": {
-      "description": "Request to deprecate a published Label.",
+      "description": "Request to deprecate a published label.",
       "id": "GoogleAppsDriveLabelsV2betaDisableLabelRequest",
       "properties": {
         "disabledPolicy": {
@@ -1678,17 +1678,17 @@
           "type": "string"
         },
         "updateMask": {
-          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as short-hand for updating every field.",
+          "description": "The fields that should be updated. At least one field must be specified. The root `disabled_policy` is implied and should not be specified. A single `*` can be used as a short-hand for updating every field.",
           "format": "google-fieldmask",
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "writeControl": {
           "$ref": "GoogleAppsDriveLabelsV2betaWriteControl",
-          "description": "Provides control over how write requests are executed. Defaults to unset, which means last write wins."
+          "description": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
         }
       },
       "type": "object"
@@ -1702,12 +1702,12 @@
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "writeControl": {
           "$ref": "GoogleAppsDriveLabelsV2betaWriteControl",
-          "description": "Provides control over how write requests are executed. Defaults to unset, which means last write wins."
+          "description": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
         }
       },
       "type": "object"
@@ -1753,7 +1753,7 @@
           "readOnly": true
         },
         "id": {
-          "description": "Output only. The key of a field, unique within a label or library. This value is autogenerated. Matches the regex: `([a-zA-Z0-9])+`",
+          "description": "Output only. The key of a field, unique within a label or library. This value is autogenerated. Matches the regex: `([a-zA-Z0-9])+`.",
           "readOnly": true,
           "type": "string"
         },
@@ -1768,7 +1768,7 @@
         },
         "lockStatus": {
           "$ref": "GoogleAppsDriveLabelsV2betaLockStatus",
-          "description": "Output only. The LockStatus of this field.",
+          "description": "Output only. The `LockStatus` of this field.",
           "readOnly": true
         },
         "properties": {
@@ -1914,47 +1914,47 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaFieldLimits": {
-      "description": "Field constants governing the structure of a Field; such as, the maximum title length, minimum and maximum field values or length, etc.",
+      "description": "Field constants governing the structure of a field; such as, the maximum title length, minimum and maximum field values or length, etc.",
       "id": "GoogleAppsDriveLabelsV2betaFieldLimits",
       "properties": {
         "dateLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaDateLimits",
-          "description": "Date Field limits."
+          "description": "Date field limits."
         },
         "integerLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaIntegerLimits",
-          "description": "Integer Field limits."
+          "description": "Integer field limits."
         },
         "longTextLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaLongTextLimits",
-          "description": "Long text Field limits."
+          "description": "Long text field limits."
         },
         "maxDescriptionLength": {
-          "description": "Limits for Field description, also called help text.",
+          "description": "Limits for field description, also called help text.",
           "format": "int32",
           "type": "integer"
         },
         "maxDisplayNameLength": {
-          "description": "Limits for Field title.",
+          "description": "Limits for field title.",
           "format": "int32",
           "type": "integer"
         },
         "maxIdLength": {
-          "description": "Max length for the id.",
+          "description": "Maximum length for the id.",
           "format": "int32",
           "type": "integer"
         },
         "selectionLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaSelectionLimits",
-          "description": "Selection Field limits."
+          "description": "Selection field limits."
         },
         "textLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaTextLimits",
-          "description": "The relevant limits for the specified Field.Type. Text Field limits."
+          "description": "The relevant limits for the specified Field.Type. Text field limits."
         },
         "userLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaUserLimits",
-          "description": "User Field limits."
+          "description": "User field limits."
         }
       },
       "type": "object"
@@ -2078,7 +2078,7 @@
         },
         "lockStatus": {
           "$ref": "GoogleAppsDriveLabelsV2betaLockStatus",
-          "description": "Output only. The LockStatus of this choice.",
+          "description": "Output only. The `LockStatus` of this choice.",
           "readOnly": true
         },
         "properties": {
@@ -2243,16 +2243,16 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaIntegerLimits": {
-      "description": "Limits for integer Field type.",
+      "description": "Limits for integer field type.",
       "id": "GoogleAppsDriveLabelsV2betaIntegerLimits",
       "properties": {
         "maxValue": {
-          "description": "Maximum value for an integer Field type.",
+          "description": "Maximum value for an integer field type.",
           "format": "int64",
           "type": "string"
         },
         "minValue": {
-          "description": "Minimum value for an integer Field type.",
+          "description": "Minimum value for an integer field type.",
           "format": "int64",
           "type": "string"
         }
@@ -2285,19 +2285,19 @@
           "readOnly": true
         },
         "customer": {
-          "description": "Output only. The customer this label belongs to. For example: \"customers/123abc789.\"",
+          "description": "Output only. The customer this label belongs to. For example: `customers/123abc789`.",
           "readOnly": true,
           "type": "string"
         },
         "disableTime": {
-          "description": "Output only. The time this label was disabled. This value has no meaning when the label is not disabled.",
+          "description": "Output only. The time this label was disabled. This value has no meaning when the label isn't disabled.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "disabler": {
           "$ref": "GoogleAppsDriveLabelsV2betaUserInfo",
-          "description": "Output only. The user who disabled this label. This value has no meaning when the label is not disabled.",
+          "description": "Output only. The user who disabled this label. This value has no meaning when the label isn't disabled.",
           "readOnly": true
         },
         "displayHints": {
@@ -2307,7 +2307,7 @@
         },
         "enabledAppSettings": {
           "$ref": "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings",
-          "description": "Optional. The EnabledAppSettings for this Label."
+          "description": "Optional. The `EnabledAppSettings` for this Label."
         },
         "fields": {
           "description": "List of fields in descending priority order.",
@@ -2317,7 +2317,7 @@
           "type": "array"
         },
         "id": {
-          "description": "Output only. Globally unique identifier of this label. ID makes up part of the label `name`, but unlike `name`, ID is consistent between revisions. Matches the regex: `([a-zA-Z0-9])+`",
+          "description": "Output only. Globally unique identifier of this label. ID makes up part of the label `name`, but unlike `name`, ID is consistent between revisions. Matches the regex: `([a-zA-Z0-9])+`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2348,7 +2348,7 @@
         },
         "lockStatus": {
           "$ref": "GoogleAppsDriveLabelsV2betaLockStatus",
-          "description": "Output only. The LockStatus of this label.",
+          "description": "Output only. The `LockStatus` of this label.",
           "readOnly": true
         },
         "name": {
@@ -2361,14 +2361,14 @@
           "description": "Required. The basic properties of the label."
         },
         "publishTime": {
-          "description": "Output only. The time this label was published. This value has no meaning when the label is not published.",
+          "description": "Output only. The time this label was published. This value has no meaning when the label isn't published.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "publisher": {
           "$ref": "GoogleAppsDriveLabelsV2betaUserInfo",
-          "description": "Output only. The user who published this label. This value has no meaning when the label is not published.",
+          "description": "Output only. The user who published this label. This value has no meaning when the label isn't published.>>",
           "readOnly": true
         },
         "revisionCreateTime": {
@@ -2383,7 +2383,7 @@
           "readOnly": true
         },
         "revisionId": {
-          "description": "Output only. Revision ID of the label. Revision ID might be part of the label `name` depending on the request issued. A new revision is created whenever revisioned properties of a label are changed. Matches the regex: `([a-zA-Z0-9])+`",
+          "description": "Output only. Revision ID of the label. Revision ID might be part of the label `name` depending on the request issued. A new revision is created whenever revisioned properties of a label are changed. Matches the regex: `([a-zA-Z0-9])+`.",
           "readOnly": true,
           "type": "string"
         },
@@ -2428,7 +2428,7 @@
           ],
           "enumDescriptions": [
             "Copy mode unspecified.",
-            "The applied label and field values are not copied by default when the Drive item it's applied to is copied.",
+            "The applied label and field values aren't copied by default when the Drive item it's applied to is copied.",
             "The applied label and field values are always copied when the Drive item it's applied to is copied. Only admins can use this mode.",
             "The applied label and field values are copied if the label is appliable by the user making the copy."
           ],
@@ -2438,7 +2438,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelDisplayHints": {
-      "description": "UI display hints for rendering the label.",
+      "description": "The UI display hints for rendering the label.",
       "id": "GoogleAppsDriveLabelsV2betaLabelDisplayHints",
       "properties": {
         "disabled": {
@@ -2450,7 +2450,7 @@
           "type": "boolean"
         },
         "priority": {
-          "description": "Order to display label in a list.",
+          "description": "The order to display labels in a list.",
           "format": "int64",
           "type": "string"
         },
@@ -2462,11 +2462,11 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings": {
-      "description": "Describes the Workspace apps in which the Label can be used.",
+      "description": "Describes the Google Workspace apps in which the label can be used.",
       "id": "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings",
       "properties": {
         "enabledApps": {
-          "description": "Optional. The list of Apps where the Label can be used.",
+          "description": "Optional. The list of apps where the label can be used.",
           "items": {
             "$ref": "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettingsEnabledApp"
           },
@@ -2476,11 +2476,11 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettingsEnabledApp": {
-      "description": "An App where the Label can be used.",
+      "description": "An app where the label can be used.",
       "id": "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettingsEnabledApp",
       "properties": {
         "app": {
-          "description": "Optional. The name of the App.",
+          "description": "Optional. The name of the app.",
           "enum": [
             "APP_UNSPECIFIED",
             "DRIVE",
@@ -2488,7 +2488,7 @@
           ],
           "enumDescriptions": [
             "Unspecified",
-            "Drive.",
+            "Drive",
             "Gmail"
           ],
           "type": "string"
@@ -2497,15 +2497,15 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelLimits": {
-      "description": "Label constraints governing the structure of a Label; such as, the maximum number of Fields allowed and maximum length of the label title.",
+      "description": "Label constraints governing the structure of a label; such as, the maximum number of fields allowed and maximum length of the label title.",
       "id": "GoogleAppsDriveLabelsV2betaLabelLimits",
       "properties": {
         "fieldLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaFieldLimits",
-          "description": "The limits for Fields."
+          "description": "The limits for fields."
         },
         "maxDeletedFields": {
-          "description": "The maximum number of published Fields that can be deleted.",
+          "description": "The maximum number of published fields that can be deleted.",
           "format": "int32",
           "type": "integer"
         },
@@ -2520,7 +2520,7 @@
           "type": "integer"
         },
         "maxFields": {
-          "description": "The maximum number of Fields allowed within the label.",
+          "description": "The maximum number of fields allowed within the label.",
           "format": "int32",
           "type": "integer"
         },
@@ -2537,46 +2537,46 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelLock": {
-      "description": "A Lock that can be applied to a Label, Field, or Choice.",
+      "description": "A lock that can be applied to a label, field, or choice.",
       "id": "GoogleAppsDriveLabelsV2betaLabelLock",
       "properties": {
         "capabilities": {
           "$ref": "GoogleAppsDriveLabelsV2betaLabelLockCapabilities",
-          "description": "Output only. The user's capabilities on this LabelLock.",
+          "description": "Output only. The user's capabilities on this label lock.",
           "readOnly": true
         },
         "choiceId": {
-          "description": "The ID of the Selection Field Choice that should be locked. If present, `field_id` must also be present.",
+          "description": "The ID of the selection field choice that should be locked. If present, `field_id` must also be present.",
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. The time this LabelLock was created.",
+          "description": "Output only. The time this label lock was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "creator": {
           "$ref": "GoogleAppsDriveLabelsV2betaUserInfo",
-          "description": "Output only. The user whose credentials were used to create the LabelLock. This will not be present if no user was responsible for creating the LabelLock.",
+          "description": "Output only. The user whose credentials were used to create the label lock. Not present if no user was responsible for creating the label lock.",
           "readOnly": true
         },
         "deleteTime": {
-          "description": "Output only. A timestamp indicating when this LabelLock was scheduled for deletion. This will be present only if this LabelLock is in the DELETING state.",
+          "description": "Output only. A timestamp indicating when this label lock was scheduled for deletion. Present only if this label lock is in the `DELETING` state.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "fieldId": {
-          "description": "The ID of the Field that should be locked. Empty if the whole Label should be locked.",
+          "description": "The ID of the field that should be locked. Empty if the whole label should be locked.",
           "type": "string"
         },
         "name": {
-          "description": "Output only. Resource name of this LabelLock.",
+          "description": "Output only. Resource name of this label lock.",
           "readOnly": true,
           "type": "string"
         },
         "state": {
-          "description": "Output only. This LabelLock's state.",
+          "description": "Output only. This label lock's state.",
           "enum": [
             "STATE_UNSPECIFIED",
             "ACTIVE",
@@ -2584,8 +2584,8 @@
           ],
           "enumDescriptions": [
             "Unknown state.",
-            "The LabelLock is active and is being enforced by the server.",
-            "The LabelLock is being deleted. The LabelLock will continue to be enforced by the server until it has been fully removed."
+            "The label lock is active and is being enforced by the server.",
+            "The label lock is being deleted. The label lock will continue to be enforced by the server until it has been fully removed."
           ],
           "readOnly": true,
           "type": "string"
@@ -2594,7 +2594,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLabelLockCapabilities": {
-      "description": "A description of a user's capabilities on a LabelLock.",
+      "description": "A description of a user's capabilities on a label lock.",
       "id": "GoogleAppsDriveLabelsV2betaLabelLockCapabilities",
       "properties": {
         "canViewPolicy": {
@@ -2609,11 +2609,11 @@
       "id": "GoogleAppsDriveLabelsV2betaLabelPermission",
       "properties": {
         "audience": {
-          "description": "Audience to grant a role to. The magic value of `audiences/default` may be used to apply the role to the default audience in the context of the organization that owns the Label.",
+          "description": "Audience to grant a role to. The magic value of `audiences/default` may be used to apply the role to the default audience in the context of the organization that owns the label.",
           "type": "string"
         },
         "email": {
-          "description": "Specifies the email address for a user or group pricinpal. Not populated for audience principals. User and Group permissions may only be inserted using email address. On update requests, if email address is specified, no principal should be specified.",
+          "description": "Specifies the email address for a user or group principal. Not populated for audience principals. User and group permissions may only be inserted using an email address. On update requests, if email address is specified, no principal should be specified.",
           "type": "string"
         },
         "group": {
@@ -2688,7 +2688,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLifecycle": {
-      "description": "The lifecycle state of an object, such as label, field, or choice. The lifecycle enforces the following transitions: * `UNPUBLISHED_DRAFT` (starting state) * `UNPUBLISHED_DRAFT` -> `PUBLISHED` * `UNPUBLISHED_DRAFT` -> (Deleted) * `PUBLISHED` -> `DISABLED` * `DISABLED` -> `PUBLISHED` * `DISABLED` -> (Deleted) The published and disabled states have some distinct characteristics: * Published—Some kinds of changes might be made to an object in this state, in which case `has_unpublished_changes` will be true. Also, some kinds of changes are not permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label are rejected. * Disabled—When disabled, the configured `DisabledPolicy` takes effect.",
+      "description": "The lifecycle state of an object, such as label, field, or choice. For more information, see [Label lifecycle](https://developers.google.com/workspace/drive/labels/guides/label-lifecycle). The lifecycle enforces the following transitions: * `UNPUBLISHED_DRAFT` (starting state) * `UNPUBLISHED_DRAFT` -> `PUBLISHED` * `UNPUBLISHED_DRAFT` -> (Deleted) * `PUBLISHED` -> `DISABLED` * `DISABLED` -> `PUBLISHED` * `DISABLED` -> (Deleted) The published and disabled states have some distinct characteristics: * `Published`: Some kinds of changes might be made to an object in this state, in which case `has_unpublished_changes` will be true. Also, some kinds of changes aren't permitted. Generally, any change that would invalidate or cause new restrictions on existing metadata related to the label are rejected. * `Disabled`: When disabled, the configured `DisabledPolicy` takes effect.",
       "id": "GoogleAppsDriveLabelsV2betaLifecycle",
       "properties": {
         "disabledPolicy": {
@@ -2738,11 +2738,11 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaListLabelLocksResponse": {
-      "description": "The response to a ListLabelLocksRequest.",
+      "description": "The response to a `ListLabelLocksRequest`.",
       "id": "GoogleAppsDriveLabelsV2betaListLabelLocksResponse",
       "properties": {
         "labelLocks": {
-          "description": "LabelLocks.",
+          "description": "Label locks.",
           "items": {
             "$ref": "GoogleAppsDriveLabelsV2betaLabelLock"
           },
@@ -2756,7 +2756,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse": {
-      "description": "Response for listing the permissions on a Label.",
+      "description": "Response for listing the permissions on a label.",
       "id": "GoogleAppsDriveLabelsV2betaListLabelPermissionsResponse",
       "properties": {
         "labelPermissions": {
@@ -2774,7 +2774,7 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaListLabelsResponse": {
-      "description": "Response for listing Labels.",
+      "description": "Response for listing labels.",
       "id": "GoogleAppsDriveLabelsV2betaListLabelsResponse",
       "properties": {
         "labels": {
@@ -2792,11 +2792,11 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaListLimits": {
-      "description": "Limits for list-variant of a Field type.",
+      "description": "Limits for list-variant of a field type.",
       "id": "GoogleAppsDriveLabelsV2betaListLimits",
       "properties": {
         "maxEntries": {
-          "description": "Maximum number of values allowed for the Field type.",
+          "description": "Maximum number of values allowed for the field type.",
           "format": "int32",
           "type": "integer"
         }
@@ -2808,7 +2808,7 @@
       "id": "GoogleAppsDriveLabelsV2betaLockStatus",
       "properties": {
         "locked": {
-          "description": "Output only. Indicates whether this label component is the (direct) target of a LabelLock. A label component can be implicitly locked even if it's not the direct target of a LabelLock, in which case this field is set to false.",
+          "description": "Output only. Indicates whether this label component is the (direct) target of a label lock. A label component can be implicitly locked even if it's not the direct target of a label lock, in which case this field is set to false.",
           "readOnly": true,
           "type": "boolean"
         }
@@ -2816,16 +2816,16 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaLongTextLimits": {
-      "description": "Limits for long text Field type.",
+      "description": "Limits for long text field type.",
       "id": "GoogleAppsDriveLabelsV2betaLongTextLimits",
       "properties": {
         "maxLength": {
-          "description": "Maximum length allowed for a long text Field type.",
+          "description": "Maximum length allowed for a long text field type.",
           "format": "int32",
           "type": "integer"
         },
         "minLength": {
-          "description": "Minimum length allowed for a long text Field type.",
+          "description": "Minimum length allowed for a long text field type.",
           "format": "int32",
           "type": "integer"
         }
@@ -2841,26 +2841,26 @@
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "writeControl": {
           "$ref": "GoogleAppsDriveLabelsV2betaWriteControl",
-          "description": "Provides control over how write requests are executed. Defaults to unset, which means last write wins."
+          "description": "Provides control over how write requests are executed. Defaults to unset, which means the last write wins."
         }
       },
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaSelectionLimits": {
-      "description": "Limits for selection Field type.",
+      "description": "Limits for selection field type.",
       "id": "GoogleAppsDriveLabelsV2betaSelectionLimits",
       "properties": {
         "listLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaListLimits",
-          "description": "Limits for list-variant of a Field type."
+          "description": "Limits for list-variant of a field type."
         },
         "maxChoices": {
-          "description": "The max number of choices.",
+          "description": "Maximum number of choices.",
           "format": "int32",
           "type": "integer"
         },
@@ -2875,7 +2875,7 @@
           "type": "integer"
         },
         "maxIdLength": {
-          "description": "Maximum ID length for a selection options.",
+          "description": "Maximum ID length for a selection option.",
           "format": "int32",
           "type": "integer"
         }
@@ -2883,16 +2883,16 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaTextLimits": {
-      "description": "Limits for text Field type.",
+      "description": "Limits for text field type.",
       "id": "GoogleAppsDriveLabelsV2betaTextLimits",
       "properties": {
         "maxLength": {
-          "description": "Maximum length allowed for a text Field type.",
+          "description": "Maximum length allowed for a text field type.",
           "format": "int32",
           "type": "integer"
         },
         "minLength": {
-          "description": "Minimum length allowed for a text Field type.",
+          "description": "Minimum length allowed for a text field type.",
           "format": "int32",
           "type": "integer"
         }
@@ -2900,11 +2900,11 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest": {
-      "description": "Request to update the `CopyMode` of the given Label. Changes to this policy are not revisioned, do not require publishing, and take effect immediately. \\",
+      "description": "Request to update the `CopyMode` of the given label. Changes to this policy aren't revisioned, don't require publishing, and take effect immediately. \\",
       "id": "GoogleAppsDriveLabelsV2betaUpdateLabelCopyModeRequest",
       "properties": {
         "copyMode": {
-          "description": "Required. Indicates how the applied Label, and Field values should be copied when a Drive item is copied.",
+          "description": "Required. Indicates how the applied label and field values should be copied when a Drive item is copied.",
           "enum": [
             "COPY_MODE_UNSPECIFIED",
             "DO_NOT_COPY",
@@ -2913,7 +2913,7 @@
           ],
           "enumDescriptions": [
             "Copy mode unspecified.",
-            "The applied label and field values are not copied by default when the Drive item it's applied to is copied.",
+            "The applied label and field values aren't copied by default when the Drive item it's applied to is copied.",
             "The applied label and field values are always copied when the Drive item it's applied to is copied. Only admins can use this mode.",
             "The applied label and field values are copied if the label is appliable by the user making the copy."
           ],
@@ -2924,7 +2924,7 @@
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "view": {
@@ -2943,19 +2943,19 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest": {
-      "description": "Request to update the `EnabledAppSettings` of the given Label. This change is not revisioned, does not require publishing, and takes effect immediately. \\",
+      "description": "Request to update the `EnabledAppSettings` of the given label. This change is not revisioned, doesn't require publishing, and takes effect immediately. \\",
       "id": "GoogleAppsDriveLabelsV2betaUpdateLabelEnabledAppSettingsRequest",
       "properties": {
         "enabledAppSettings": {
           "$ref": "GoogleAppsDriveLabelsV2betaLabelEnabledAppSettings",
-          "description": "Required. The new `EnabledAppSettings` value for the Label."
+          "description": "Required. The new `EnabledAppSettings` value for the label."
         },
         "languageCode": {
           "description": "Optional. The BCP-47 language code to use for evaluating localized field labels. When not specified, values in the default configured language will be used.",
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Optional. Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         },
         "view": {
@@ -2974,19 +2974,19 @@
       "type": "object"
     },
     "GoogleAppsDriveLabelsV2betaUpdateLabelPermissionRequest": {
-      "description": "Updates a Label Permission. Permissions affect the Label resource as a whole, are not revisioned, and do not require publishing.",
+      "description": "Updates a label permission. Permissions affect the label resource as a whole, aren't revisioned, and don't require publishing.",
       "id": "GoogleAppsDriveLabelsV2betaUpdateLabelPermissionRequest",
       "properties": {
         "labelPermission": {
           "$ref": "GoogleAppsDriveLabelsV2betaLabelPermission",
-          "description": "Required. The permission to create or update on the Label."
+          "description": "Required. The permission to create or update on the label."
         },
         "parent": {
-          "description": "Required. The parent Label resource name.",
+          "description": "Required. The parent label resource name.",
           "type": "string"
         },
         "useAdminAccess": {
-          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the Label before allowing access.",
+          "description": "Set to `true` in order to use the user's admin credentials. The server will verify the user is an admin for the label before allowing access.",
           "type": "boolean"
         }
       },
@@ -3007,12 +3007,12 @@
           "type": "boolean"
         },
         "canCreateAdminLabels": {
-          "description": "Output only. Whether the user is allowed to create new admin labels.",
+          "description": "Output only. Whether the user is allowed to create admin labels.",
           "readOnly": true,
           "type": "boolean"
         },
         "canCreateSharedLabels": {
-          "description": "Output only. Whether the user is allowed to create new shared labels.",
+          "description": "Output only. Whether the user is allowed to create shared labels.",
           "readOnly": true,
           "type": "boolean"
         },
@@ -3029,7 +3029,7 @@
       "id": "GoogleAppsDriveLabelsV2betaUserInfo",
       "properties": {
         "person": {
-          "description": "The identifier for this user that can be used with the People API to get more information. For example, people/12345678.",
+          "description": "The identifier for this user that can be used with the [People API](https://developers.google.com/people) to get more information. For example, `people/12345678`.",
           "type": "string"
         }
       },
@@ -3041,7 +3041,7 @@
       "properties": {
         "listLimits": {
           "$ref": "GoogleAppsDriveLabelsV2betaListLimits",
-          "description": "Limits for list-variant of a Field type."
+          "description": "Limits for list-variant of a field type."
         }
       },
       "type": "object"
@@ -3051,7 +3051,7 @@
       "id": "GoogleAppsDriveLabelsV2betaWriteControl",
       "properties": {
         "requiredRevisionId": {
-          "description": "The revision_id of the label that the write request will be applied to. If this is not the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.",
+          "description": "The revision ID of the label that the write request will be applied to. If this isn't the latest revision of the label, the request will not be processed and will return a 400 Bad Request error.",
           "type": "string"
         }
       },
