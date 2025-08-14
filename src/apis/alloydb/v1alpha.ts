@@ -1833,6 +1833,35 @@ export namespace alloydb_v1alpha {
     backupdrManaged?: boolean | null;
   }
   /**
+   * BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata {
+    /**
+     * Backup configuration for this instance.
+     */
+    backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
+    /**
+     * BackupDR configuration for this instance.
+     */
+    backupdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration;
+    /**
+     * Latest backup run information for this instance.
+     */
+    backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    /**
+     * Required. Full resource name of this instance.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time backup configuration was refreshed.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Database resource id.
+     */
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+  }
+  /**
    * A backup run.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupRun {
@@ -1901,9 +1930,13 @@ export namespace alloydb_v1alpha {
     internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
+    /**
+     * BackupDR metadata is used to ingest metadata from BackupDR.
+     */
+    backupdrMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata;
     /**
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */

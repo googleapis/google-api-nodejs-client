@@ -1622,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250731",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -4102,6 +4102,38 @@
       },
       "type": "object"
     },
+    "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata": {
+      "description": "BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.",
+      "id": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
+      "properties": {
+        "backupConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupConfiguration",
+          "description": "Backup configuration for this instance."
+        },
+        "backupRun": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupRun",
+          "description": "Latest backup run information for this instance."
+        },
+        "backupdrConfiguration": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration",
+          "description": "BackupDR configuration for this instance."
+        },
+        "fullResourceName": {
+          "description": "Required. Full resource name of this instance.",
+          "type": "string"
+        },
+        "lastRefreshTime": {
+          "description": "Required. Last time backup configuration was refreshed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceId": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceId",
+          "description": "Required. Database resource id."
+        }
+      },
+      "type": "object"
+    },
     "StorageDatabasecenterPartnerapiV1mainBackupRun": {
       "description": "A backup run.",
       "id": "StorageDatabasecenterPartnerapiV1mainBackupRun",
@@ -4211,9 +4243,13 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
+        "backupdrMetadata": {
+          "$ref": "StorageDatabasecenterPartnerapiV1mainBackupDRMetadata",
+          "description": "BackupDR metadata is used to ingest metadata from BackupDR."
+        },
         "configBasedSignalData": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData",
           "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
@@ -4231,7 +4267,8 @@
             "OBSERVABILITY_DATA",
             "SECURITY_FINDING_DATA",
             "RECOMMENDATION_SIGNAL_DATA",
-            "CONFIG_BASED_SIGNAL_DATA"
+            "CONFIG_BASED_SIGNAL_DATA",
+            "BACKUPDR_METADATA"
           ],
           "enumDescriptions": [
             "",
@@ -4239,7 +4276,8 @@
             "Database resource monitoring data",
             "Database resource security health signal data",
             "Database resource recommendation signal data",
-            "Database config based signal data"
+            "Database config based signal data",
+            "Database resource metadata from BackupDR"
           ],
           "type": "string"
         },
@@ -4478,7 +4516,8 @@
             "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
-            "SIGNAL_TYPE_OUTDATED_VERSION"
+            "SIGNAL_TYPE_OUTDATED_VERSION",
+            "SIGNAL_TYPE_OUTDATED_CLIENT"
           ],
           "enumDeprecated": [
             false,
@@ -4487,6 +4526,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -4684,7 +4724,8 @@
             "Schema not optimized.",
             "High number of idle connections.",
             "Replication delay.",
-            "Outdated version."
+            "Outdated version.",
+            "Outdated client."
           ],
           "type": "string"
         },
@@ -5111,7 +5152,8 @@
             "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
             "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
             "SIGNAL_TYPE_REPLICATION_LAG",
-            "SIGNAL_TYPE_OUTDATED_VERSION"
+            "SIGNAL_TYPE_OUTDATED_VERSION",
+            "SIGNAL_TYPE_OUTDATED_CLIENT"
           ],
           "enumDeprecated": [
             false,
@@ -5120,6 +5162,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -5317,7 +5360,8 @@
             "Schema not optimized.",
             "High number of idle connections.",
             "Replication delay.",
-            "Outdated version."
+            "Outdated version.",
+            "Outdated client."
           ],
           "type": "string"
         }
