@@ -1622,7 +1622,7 @@
       }
     }
   },
-  "revision": "20250731",
+  "revision": "20250807",
   "rootUrl": "https://alloydb.googleapis.com/",
   "schemas": {
     "AuthorizedNetwork": {
@@ -4243,7 +4243,7 @@
       "type": "object"
     },
     "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11",
       "id": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed",
       "properties": {
         "backupdrMetadata": {
@@ -4297,6 +4297,10 @@
         },
         "resourceMetadata": {
           "$ref": "StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata"
+        },
+        "skipIngestion": {
+          "description": "Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.",
+          "type": "boolean"
         }
       },
       "type": "object"
