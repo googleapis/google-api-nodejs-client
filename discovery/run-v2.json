@@ -1922,7 +1922,7 @@
       }
     }
   },
-  "revision": "20250801",
+  "revision": "20250808",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -4580,6 +4580,10 @@
         },
         "name": {
           "description": "Required. This must match the Name of a Volume.",
+          "type": "string"
+        },
+        "subPath": {
+          "description": "Optional. Path within the volume from which the container's volume should be mounted. Defaults to \"\" (volume's root).",
           "type": "string"
         }
       },
