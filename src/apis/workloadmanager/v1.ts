@@ -146,9 +146,25 @@ export namespace workloadmanager_v1 {
      */
     availableVersion?: string | null;
     /**
+     * Optional. HANA monitoring metrics of the agent.
+     */
+    hanaMonitoring?: Schema$ServiceStates;
+    /**
      * Optional. The installed version of the agent on the host.
      */
     installedVersion?: string | null;
+    /**
+     * Optional. Whether the agent is fully enabled. If false, the agent is has some issues.
+     */
+    isFullyEnabled?: boolean | null;
+    /**
+     * Optional. The Process metrics of the agent.
+     */
+    processMetrics?: Schema$ServiceStates;
+    /**
+     * Optional. The System discovery metrics of the agent.
+     */
+    systemDiscovery?: Schema$ServiceStates;
   }
   /**
    * The schema of agent status data.
@@ -430,6 +446,10 @@ export namespace workloadmanager_v1 {
      */
     endTime?: string | null;
     /**
+     * Optional. Engine
+     */
+    engine?: string | null;
+    /**
      * Output only. [Output only] Evaluation ID
      */
     evaluationId?: string | null;
@@ -540,6 +560,19 @@ export namespace workloadmanager_v1 {
      * Service account of compute engine
      */
     serviceAccounts?: string[] | null;
+  }
+  /**
+   * The IAM permission status.
+   */
+  export interface Schema$IAMPermission {
+    /**
+     * Output only. Whether the permission is granted.
+     */
+    granted?: boolean | null;
+    /**
+     * Output only. The name of the permission.
+     */
+    name?: string | null;
   }
   /**
    * A presentation of host resource usage where the workload runs.
@@ -1442,6 +1475,19 @@ export namespace workloadmanager_v1 {
      * resource type
      */
     type?: string | null;
+  }
+  /**
+   * The state of the service.
+   */
+  export interface Schema$ServiceStates {
+    /**
+     * Optional. Output only. The IAM permissions for the service.
+     */
+    iamPermissions?: Schema$IAMPermission[];
+    /**
+     * Output only. The overall state of the service.
+     */
+    state?: string | null;
   }
   /**
    * * A ShellCommand is invoked via the agent's command line executor
@@ -3065,6 +3111,7 @@ export namespace workloadmanager_v1 {
      *   // Example response
      *   // {
      *   //   "endTime": "my_endTime",
+     *   //   "engine": "my_engine",
      *   //   "evaluationId": "my_evaluationId",
      *   //   "externalDataSources": [],
      *   //   "inventoryTime": "my_inventoryTime",

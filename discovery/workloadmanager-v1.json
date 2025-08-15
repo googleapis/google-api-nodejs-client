@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250727",
+  "revision": "20250806",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -908,9 +908,25 @@
           "description": "Optional. The available version of the agent in artifact registry.",
           "type": "string"
         },
+        "hanaMonitoring": {
+          "$ref": "ServiceStates",
+          "description": "Optional. HANA monitoring metrics of the agent."
+        },
         "installedVersion": {
           "description": "Optional. The installed version of the agent on the host.",
           "type": "string"
+        },
+        "isFullyEnabled": {
+          "description": "Optional. Whether the agent is fully enabled. If false, the agent is has some issues.",
+          "type": "boolean"
+        },
+        "processMetrics": {
+          "$ref": "ServiceStates",
+          "description": "Optional. The Process metrics of the agent."
+        },
+        "systemDiscovery": {
+          "$ref": "ServiceStates",
+          "description": "Optional. The System discovery metrics of the agent."
         }
       },
       "type": "object"
@@ -1444,6 +1460,20 @@
           "readOnly": true,
           "type": "string"
         },
+        "engine": {
+          "description": "Optional. Engine",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "ENGINE_SCANNER",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "The original CG",
+            "SlimCG / Scanner",
+            "Evaluation Engine V2"
+          ],
+          "type": "string"
+        },
         "evaluationId": {
           "description": "Output only. [Output only] Evaluation ID",
           "readOnly": true,
@@ -1627,6 +1657,23 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IAMPermission": {
+      "description": "The IAM permission status.",
+      "id": "IAMPermission",
+      "properties": {
+        "granted": {
+          "description": "Output only. Whether the permission is granted.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. The name of the permission.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2970,6 +3017,42 @@
         },
         "type": {
           "description": "resource type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceStates": {
+      "description": "The state of the service.",
+      "id": "ServiceStates",
+      "properties": {
+        "iamPermissions": {
+          "description": "Optional. Output only. The IAM permissions for the service.",
+          "items": {
+            "$ref": "IAMPermission"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The overall state of the service.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIG_FAILURE",
+            "IAM_FAILURE",
+            "FUNCTIONAILITY_FAILURE",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state means the service has config errors.",
+            "The state means the service has IAM permission errors.",
+            "The state means the service has functionality errors.",
+            "The state means the service has no error.",
+            "The state means the service disabled."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },
