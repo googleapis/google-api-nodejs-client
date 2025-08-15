@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250731",
+  "revision": "20250812",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -1384,17 +1384,7 @@
     "GoogleCloudAiplatformV1beta1GoogleMaps": {
       "description": "Tool to retrieve public maps data for grounding, powered by Google.",
       "id": "GoogleCloudAiplatformV1beta1GoogleMaps",
-      "properties": {
-        "apiAuth": {
-          "$ref": "GoogleCloudAiplatformV1beta1ApiAuth",
-          "deprecated": true,
-          "description": "The authentication config to access the API. Deprecated. Please use auth_config instead."
-        },
-        "authConfig": {
-          "$ref": "GoogleCloudAiplatformV1beta1AuthConfig",
-          "description": "The authentication config to access the API. Only API key is supported."
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudAiplatformV1beta1GoogleSearchRetrieval": {
@@ -1522,6 +1512,11 @@
       "description": "Chunk from context retrieved by the retrieval tools.",
       "id": "GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext",
       "properties": {
+        "documentName": {
+          "description": "Output only. The full document name for the referenced Vertex AI Search document.",
+          "readOnly": true,
+          "type": "string"
+        },
         "ragChunk": {
           "$ref": "GoogleCloudAiplatformV1beta1RagChunk",
           "description": "Additional context for the RAG retrieval result. This is only populated when using the RAG retrieval tool."
