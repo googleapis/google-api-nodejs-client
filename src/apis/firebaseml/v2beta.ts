@@ -892,16 +892,7 @@ export namespace firebaseml_v2beta {
   /**
    * Tool to retrieve public maps data for grounding, powered by Google.
    */
-  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMaps {
-    /**
-     * The authentication config to access the API. Deprecated. Please use auth_config instead.
-     */
-    apiAuth?: Schema$GoogleCloudAiplatformV1beta1ApiAuth;
-    /**
-     * The authentication config to access the API. Only API key is supported.
-     */
-    authConfig?: Schema$GoogleCloudAiplatformV1beta1AuthConfig;
-  }
+  export interface Schema$GoogleCloudAiplatformV1beta1GoogleMaps {}
   /**
    * Tool to retrieve public web data for grounding, powered by Google.
    */
@@ -1012,6 +1003,10 @@ export namespace firebaseml_v2beta {
    * Chunk from context retrieved by the retrieval tools.
    */
   export interface Schema$GoogleCloudAiplatformV1beta1GroundingChunkRetrievedContext {
+    /**
+     * Output only. The full document name for the referenced Vertex AI Search document.
+     */
+    documentName?: string | null;
     /**
      * Additional context for the RAG retrieval result. This is only populated when using the RAG retrieval tool.
      */
