@@ -1812,7 +1812,7 @@ export namespace alloydb_v1 {
     internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 10
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
     /**
@@ -1839,6 +1839,10 @@ export namespace alloydb_v1 {
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
+    /**
+     * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
+     */
+    skipIngestion?: boolean | null;
   }
   /**
    * Common model for database resource health signal data.
