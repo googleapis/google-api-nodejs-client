@@ -1106,15 +1106,15 @@ export namespace dataplex_v1 {
      */
     postScanActionsResult?: Schema$GoogleCloudDataplexV1DataProfileResultPostScanActionsResult;
     /**
-     * The profile information per field.
+     * Output only. The profile information per field.
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfile;
     /**
-     * The count of rows scanned.
+     * Output only. The count of rows scanned.
      */
     rowCount?: string | null;
     /**
-     * The data scanned for this result.
+     * Output only. The data scanned for this result.
      */
     scannedData?: Schema$GoogleCloudDataplexV1ScannedData;
   }
@@ -1145,7 +1145,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfile {
     /**
-     * List of fields with structural and profile information for each field.
+     * Output only. List of fields with structural and profile information for each field.
      */
     fields?: Schema$GoogleCloudDataplexV1DataProfileResultProfileField[];
   }
@@ -1154,19 +1154,19 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileField {
     /**
-     * The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.
+     * Output only. The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.
      */
     mode?: string | null;
     /**
-     * The name of the field.
+     * Output only. The name of the field.
      */
     name?: string | null;
     /**
-     * Profile information for the corresponding field.
+     * Output only. Profile information for the corresponding field.
      */
     profile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo;
     /**
-     * The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Universal Catalog Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
+     * Output only. The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Universal Catalog Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).
      */
     type?: string | null;
   }
@@ -1175,7 +1175,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo {
     /**
-     * Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
+     * Output only. Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      */
     distinctRatio?: number | null;
     /**
@@ -1187,7 +1187,7 @@ export namespace dataplex_v1 {
      */
     integerProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo;
     /**
-     * Ratio of rows with null value against total scanned rows.
+     * Output only. Ratio of rows with null value against total scanned rows.
      */
     nullRatio?: number | null;
     /**
@@ -1195,7 +1195,7 @@ export namespace dataplex_v1 {
      */
     stringProfile?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo;
     /**
-     * The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
+     * Output only. The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.
      */
     topNValues?: Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue[];
   }
@@ -1204,23 +1204,23 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo {
     /**
-     * Average of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Average of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     average?: number | null;
     /**
-     * Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     max?: number | null;
     /**
-     * Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     min?: number | null;
     /**
-     * A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.
+     * Output only. A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.
      */
     quartiles?: number[] | null;
     /**
-     * Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     standardDeviation?: number | null;
   }
@@ -1229,23 +1229,23 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo {
     /**
-     * Average of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Average of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     average?: number | null;
     /**
-     * Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Maximum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     max?: string | null;
     /**
-     * Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Minimum of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     min?: string | null;
     /**
-     * A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of approximate quartile values for the scanned data, occurring in order Q1, median, Q3.
+     * Output only. A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of approximate quartile values for the scanned data, occurring in order Q1, median, Q3.
      */
     quartiles?: string[] | null;
     /**
-     * Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
+     * Output only. Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.
      */
     standardDeviation?: number | null;
   }
@@ -1254,15 +1254,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo {
     /**
-     * Average length of non-null values in the scanned data.
+     * Output only. Average length of non-null values in the scanned data.
      */
     averageLength?: number | null;
     /**
-     * Maximum length of non-null values in the scanned data.
+     * Output only. Maximum length of non-null values in the scanned data.
      */
     maxLength?: string | null;
     /**
-     * Minimum length of non-null values in the scanned data.
+     * Output only. Minimum length of non-null values in the scanned data.
      */
     minLength?: string | null;
   }
@@ -1271,15 +1271,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue {
     /**
-     * Count of the corresponding value in the scanned data.
+     * Output only. Count of the corresponding value in the scanned data.
      */
     count?: string | null;
     /**
-     * Ratio of the corresponding value in the field against the total number of rows in the scanned data.
+     * Output only. Ratio of the corresponding value in the field against the total number of rows in the scanned data.
      */
     ratio?: number | null;
     /**
-     * String value of a top N non-null value.
+     * Output only. String value of a top N non-null value.
      */
     value?: string | null;
   }
@@ -1300,7 +1300,7 @@ export namespace dataplex_v1 {
      */
     postScanActions?: Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActions;
     /**
-     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 \>= 0 AND col2 < 10
+     * Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 \>= 0 AND col2 < 10
      */
     rowFilter?: string | null;
     /**
@@ -1322,7 +1322,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport {
     /**
-     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
+     * Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID
      */
     resultsTable?: string | null;
   }
@@ -1361,7 +1361,7 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1DataQualityDimension {
     /**
-     * Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
+     * Output only. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.
      */
     name?: string | null;
   }
@@ -3955,15 +3955,15 @@ export namespace dataplex_v1 {
    */
   export interface Schema$GoogleCloudDataplexV1ScannedDataIncrementalField {
     /**
-     * Value that marks the end of the range.
+     * Output only. Value that marks the end of the range.
      */
     end?: string | null;
     /**
-     * The field that contains values which monotonically increases over time (e.g. a timestamp column).
+     * Output only. The field that contains values which monotonically increases over time (e.g. a timestamp column).
      */
     field?: string | null;
     /**
-     * Value that marks the start of the range.
+     * Output only. Value that marks the start of the range.
      */
     start?: string | null;
   }
