@@ -1048,7 +1048,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250811",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
@@ -2302,6 +2302,13 @@
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
           "type": "string"
+        },
+        "validationOutputs": {
+          "description": "The output of the validation given the document and the validation rules. The output is appended to the document in the processing order.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentValidationOutput"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2605,6 +2612,20 @@
         },
         "mentionText": {
           "description": "Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.",
+          "type": "string"
+        },
+        "method": {
+          "description": "Optional. Specifies how the entity's value is obtained.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
+          ],
+          "enumDescriptions": [
+            "When the method is not specified, it should be treated as `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
+          ],
           "type": "string"
         },
         "normalizedValue": {
@@ -3882,6 +3903,61 @@
         "textAnchor": {
           "$ref": "GoogleCloudDocumentaiV1DocumentTextAnchor",
           "description": "Provenance of the correction. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentValidationOutput": {
+      "description": "The output of the validation given the document and the validation rules.",
+      "id": "GoogleCloudDocumentaiV1DocumentValidationOutput",
+      "properties": {
+        "passAllRules": {
+          "description": "The overall result of the validation, true if all applicable rules are valid.",
+          "type": "boolean"
+        },
+        "validationResults": {
+          "description": "The result of each validation rule.",
+          "items": {
+            "$ref": "GoogleCloudDocumentaiV1DocumentValidationOutputValidationResult"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDocumentaiV1DocumentValidationOutputValidationResult": {
+      "description": "Validation result for a single validation rule.",
+      "id": "GoogleCloudDocumentaiV1DocumentValidationOutputValidationResult",
+      "properties": {
+        "ruleDescription": {
+          "description": "The description of the validation rule.",
+          "type": "string"
+        },
+        "ruleName": {
+          "description": "The name of the validation rule.",
+          "type": "string"
+        },
+        "validationDetails": {
+          "description": "The detailed information of the running the validation process using the entity from the document based on the validation rule.",
+          "type": "string"
+        },
+        "validationResultType": {
+          "description": "The result of the validation rule.",
+          "enum": [
+            "VALIDATION_RESULT_TYPE_UNSPECIFIED",
+            "VALIDATION_RESULT_TYPE_VALID",
+            "VALIDATION_RESULT_TYPE_INVALID",
+            "VALIDATION_RESULT_TYPE_SKIPPED",
+            "VALIDATION_RESULT_TYPE_NOT_APPLICABLE"
+          ],
+          "enumDescriptions": [
+            "The validation result type is unspecified.",
+            "The validation is valid.",
+            "The validation is invalid.",
+            "The validation is skipped.",
+            "The validation is not applicable."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
