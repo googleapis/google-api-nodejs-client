@@ -535,7 +535,7 @@ export namespace firebasedataconnect_v1beta {
      */
     database?: string | null;
     /**
-     * Output only. Ephemeral is true if this data connect service is served from in-memory emulation of Postgres. Data Connect service will transfer the data on a best-effort basis to the Cloud SQL instance once it's provisioned and linked. WARNING: When `ephemeral=true`, mutations to the database are not guaranteed to be durably persisted, even if an OK status code is returned. All or parts of the data may be lost or reverted to earlier versions.
+     * Output only. Ephemeral is true if this data connect service is served from temporary in-memory emulation of Postgres. While Cloud SQL is being provisioned, the data connect service provides the ephemeral service to help developers get started. Once the Cloud SQL is provisioned, Data Connect service will transfer its data on a best-effort basis to the Cloud SQL instance. WARNING: Ephemeral data sources will expire after 24 hour. The data will be lost if they aren't transferred to the Cloud SQL instance. WARNING: When `ephemeral=true`, mutations to the database are not guaranteed to be durably persisted, even if an OK status code is returned. All or parts of the data may be lost or reverted to earlier versions.
      */
     ephemeral?: boolean | null;
     /**
