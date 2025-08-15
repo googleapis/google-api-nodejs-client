@@ -7211,7 +7211,7 @@
       }
     }
   },
-  "revision": "20250805",
+  "revision": "20250808",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8594,16 +8594,19 @@
         },
         "profile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfile",
-          "description": "The profile information per field."
+          "description": "Output only. The profile information per field.",
+          "readOnly": true
         },
         "rowCount": {
-          "description": "The count of rows scanned.",
+          "description": "Output only. The count of rows scanned.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "scannedData": {
           "$ref": "GoogleCloudDataplexV1ScannedData",
-          "description": "The data scanned for this result."
+          "description": "Output only. The data scanned for this result.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -8654,10 +8657,11 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfile",
       "properties": {
         "fields": {
-          "description": "List of fields with structural and profile information for each field.",
+          "description": "Output only. List of fields with structural and profile information for each field.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProfileResultProfileField"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -8668,19 +8672,23 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileField",
       "properties": {
         "mode": {
-          "description": "The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.",
+          "description": "Output only. The mode of the field. Possible values include: REQUIRED, if it is a required field. NULLABLE, if it is an optional field. REPEATED, if it is a repeated field.",
+          "readOnly": true,
           "type": "string"
         },
         "name": {
-          "description": "The name of the field.",
+          "description": "Output only. The name of the field.",
+          "readOnly": true,
           "type": "string"
         },
         "profile": {
           "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
-          "description": "Profile information for the corresponding field."
+          "description": "Output only. Profile information for the corresponding field.",
+          "readOnly": true
         },
         "type": {
-          "description": "The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Universal Catalog Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).",
+          "description": "Output only. The data type retrieved from the schema of the data source. For instance, for a BigQuery native table, it is the BigQuery Table Schema (https://cloud.google.com/bigquery/docs/reference/rest/v2/tables#tablefieldschema). For a Dataplex Universal Catalog Entity, it is the Entity Schema (https://cloud.google.com/dataplex/docs/reference/rpc/google.cloud.dataplex.v1#type_3).",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8691,8 +8699,9 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfo",
       "properties": {
         "distinctRatio": {
-          "description": "Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.",
+          "description": "Output only. Ratio of rows with distinct values against total scanned rows. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "doubleProfile": {
@@ -8704,8 +8713,9 @@
           "description": "Integer type field information."
         },
         "nullRatio": {
-          "description": "Ratio of rows with null value against total scanned rows.",
+          "description": "Output only. Ratio of rows with null value against total scanned rows.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "stringProfile": {
@@ -8713,10 +8723,11 @@
           "description": "String type field information."
         },
         "topNValues": {
-          "description": "The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.",
+          "description": "Output only. The list of top N non-null values, frequency and ratio with which they occur in the scanned data. N is 10 or equal to the number of distinct values in the field, whichever is smaller. Not available for complex non-groupable field type, including RECORD, ARRAY, GEOGRAPHY, and JSON, as well as fields with REPEATABLE mode.",
           "items": {
             "$ref": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue"
           },
+          "readOnly": true,
           "type": "array"
         }
       },
@@ -8727,31 +8738,36 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoDoubleFieldInfo",
       "properties": {
         "average": {
-          "description": "Average of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Average of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "max": {
-          "description": "Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "min": {
-          "description": "Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "quartiles": {
-          "description": "A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.",
+          "description": "Output only. A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of quartile values for the scanned data, occurring in order Q1, median, Q3.",
           "items": {
             "format": "double",
             "type": "number"
           },
+          "readOnly": true,
           "type": "array"
         },
         "standardDeviation": {
-          "description": "Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -8762,31 +8778,36 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoIntegerFieldInfo",
       "properties": {
         "average": {
-          "description": "Average of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Average of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "max": {
-          "description": "Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Maximum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "min": {
-          "description": "Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Minimum of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "quartiles": {
-          "description": "A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of approximate quartile values for the scanned data, occurring in order Q1, median, Q3.",
+          "description": "Output only. A quartile divides the number of data points into four parts, or quarters, of more-or-less equal size. Three main quartiles used are: The first quartile (Q1) splits off the lowest 25% of data from the highest 75%. It is also known as the lower or 25th empirical quartile, as 25% of the data is below this point. The second quartile (Q2) is the median of a data set. So, 50% of the data lies below this point. The third quartile (Q3) splits off the highest 25% of data from the lowest 75%. It is known as the upper or 75th empirical quartile, as 75% of the data lies below this point. Here, the quartiles is provided as an ordered list of approximate quartile values for the scanned data, occurring in order Q1, median, Q3.",
           "items": {
             "format": "int64",
             "type": "string"
           },
+          "readOnly": true,
           "type": "array"
         },
         "standardDeviation": {
-          "description": "Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
+          "description": "Output only. Standard deviation of non-null values in the scanned data. NaN, if the field has a NaN.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         }
       },
@@ -8797,18 +8818,21 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoStringFieldInfo",
       "properties": {
         "averageLength": {
-          "description": "Average length of non-null values in the scanned data.",
+          "description": "Output only. Average length of non-null values in the scanned data.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "maxLength": {
-          "description": "Maximum length of non-null values in the scanned data.",
+          "description": "Output only. Maximum length of non-null values in the scanned data.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "minLength": {
-          "description": "Minimum length of non-null values in the scanned data.",
+          "description": "Output only. Minimum length of non-null values in the scanned data.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8819,17 +8843,20 @@
       "id": "GoogleCloudDataplexV1DataProfileResultProfileFieldProfileInfoTopNValue",
       "properties": {
         "count": {
-          "description": "Count of the corresponding value in the scanned data.",
+          "description": "Output only. Count of the corresponding value in the scanned data.",
           "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "ratio": {
-          "description": "Ratio of the corresponding value in the field against the total number of rows in the scanned data.",
+          "description": "Output only. Ratio of the corresponding value in the field against the total number of rows in the scanned data.",
           "format": "double",
+          "readOnly": true,
           "type": "number"
         },
         "value": {
-          "description": "String value of a top N non-null value.",
+          "description": "Output only. String value of a top N non-null value.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -8852,7 +8879,7 @@
           "description": "Optional. Actions to take upon job completion.."
         },
         "rowFilter": {
-          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in GoogleSQL syntax (https://cloud.google.com/bigquery/docs/reference/standard-sql/query-syntax#where_clause).Example: col1 >= 0 AND col2 < 10",
+          "description": "Optional. A filter applied to all rows in a single DataScan job. The filter needs to be a valid SQL expression for a WHERE clause in BigQuery standard SQL syntax. Example: col1 >= 0 AND col2 < 10",
           "type": "string"
         },
         "samplingPercent": {
@@ -8879,7 +8906,7 @@
       "id": "GoogleCloudDataplexV1DataProfileSpecPostScanActionsBigQueryExport",
       "properties": {
         "resultsTable": {
-          "description": "Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID or projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "description": "Optional. The BigQuery table to export DataProfileScan results to. Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
         }
       },
@@ -8935,7 +8962,8 @@
       "id": "GoogleCloudDataplexV1DataQualityDimension",
       "properties": {
         "name": {
-          "description": "Optional. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
+          "description": "Output only. The dimension name a rule belongs to. Custom dimension name is supported with all uppercase letters and maximum length of 30 characters.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -12854,15 +12882,18 @@
       "id": "GoogleCloudDataplexV1ScannedDataIncrementalField",
       "properties": {
         "end": {
-          "description": "Value that marks the end of the range.",
+          "description": "Output only. Value that marks the end of the range.",
+          "readOnly": true,
           "type": "string"
         },
         "field": {
-          "description": "The field that contains values which monotonically increases over time (e.g. a timestamp column).",
+          "description": "Output only. The field that contains values which monotonically increases over time (e.g. a timestamp column).",
+          "readOnly": true,
           "type": "string"
         },
         "start": {
-          "description": "Value that marks the start of the range.",
+          "description": "Output only. Value that marks the start of the range.",
+          "readOnly": true,
           "type": "string"
         }
       },
