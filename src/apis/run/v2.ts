@@ -1922,6 +1922,10 @@ export namespace run_v2 {
      * Required. This must match the Name of a Volume.
      */
     name?: string | null;
+    /**
+     * Optional. Path within the volume from which the container's volume should be mounted. Defaults to "" (volume's root).
+     */
+    subPath?: string | null;
   }
   /**
    * VPC Access settings. For more information on sending traffic to a VPC network, visit https://cloud.google.com/run/docs/configuring/connecting-vpc.
