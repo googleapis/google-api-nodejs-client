@@ -1552,6 +1552,10 @@ export namespace documentai_v1 {
      * Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).
      */
     uri?: string | null;
+    /**
+     * The output of the validation given the document and the validation rules. The output is appended to the document in the processing order.
+     */
+    validationOutputs?: Schema$GoogleCloudDocumentaiV1DocumentValidationOutput[];
   }
   /**
    * Represents the chunks that the document is divided into.
@@ -1783,6 +1787,10 @@ export namespace documentai_v1 {
      * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
+    /**
+     * Optional. Specifies how the entity's value is obtained.
+     */
+    method?: string | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -2711,6 +2719,40 @@ export namespace documentai_v1 {
      * Provenance of the correction. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index.
      */
     textAnchor?: Schema$GoogleCloudDocumentaiV1DocumentTextAnchor;
+  }
+  /**
+   * The output of the validation given the document and the validation rules.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentValidationOutput {
+    /**
+     * The overall result of the validation, true if all applicable rules are valid.
+     */
+    passAllRules?: boolean | null;
+    /**
+     * The result of each validation rule.
+     */
+    validationResults?: Schema$GoogleCloudDocumentaiV1DocumentValidationOutputValidationResult[];
+  }
+  /**
+   * Validation result for a single validation rule.
+   */
+  export interface Schema$GoogleCloudDocumentaiV1DocumentValidationOutputValidationResult {
+    /**
+     * The description of the validation rule.
+     */
+    ruleDescription?: string | null;
+    /**
+     * The name of the validation rule.
+     */
+    ruleName?: string | null;
+    /**
+     * The detailed information of the running the validation process using the entity from the document based on the validation rule.
+     */
+    validationDetails?: string | null;
+    /**
+     * The result of the validation rule.
+     */
+    validationResultType?: string | null;
   }
   /**
    * The long-running operation metadata for the EnableProcessor method.
