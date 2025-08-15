@@ -5132,7 +5132,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250724",
   "rootUrl": "https://healthcare.googleapis.com/",
   "schemas": {
     "AccessDeterminationLogConfig": {
@@ -5151,7 +5151,7 @@
             "No log level specified. This value is unused.",
             "No additional consent-related logging is added to audit logs.",
             "The following information is included: * One of the following [`consentMode`](https://cloud.google.com/healthcare-api/docs/fhir-consent#audit_logs) fields: (`off`|`emptyScope`|`enforced`|`btg`|`bypass`). * The accessor's request headers * The `log_level` of the AccessDeterminationLogConfig * The final consent evaluation (`PERMIT`, `DENY`, or `NO_CONSENT`) * A human-readable summary of the evaluation",
-            "Includes `MINIMUM` and, for each resource owner, returns: * The resource owner's name * Most specific part of the `X-Consent-Scope` resulting in consensual determination * Timestamp of the applied enforcement leading to the decision * Enforcement version at the time the applicable consents were applied * The Consent resource name * The timestamp of the Consent resource used for enforcement * Policy type (`PATIENT` or `ADMIN`) Note that this mode adds some overhead to CRUD operations."
+            "Includes `MINIMUM` and, for each resource owner, returns: * The resource owner's name * Most specific part of the `X-Consent-Scope` resulting in consensual determination * Timestamp of the applied enforcement leading to the decision * Enforcement version at the time the applicable consents were applied * The Consent resource name * The timestamp of the Consent resource used for enforcement * Policy type (`PATIENT` or `ADMIN`) Due to the limited space for logging, this mode is the same as `MINIMUM` for methods that return multiple resources (such as FHIR Search)."
           ],
           "type": "string"
         }
