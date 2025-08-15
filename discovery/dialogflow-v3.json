@@ -5309,7 +5309,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250812",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -10800,7 +10800,7 @@
       "id": "GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings",
       "properties": {
         "audioExportPattern": {
-          "description": "Filename pattern for exported audio.",
+          "description": "Filename pattern for exported audio. {conversation} and {timestamp} are placeholders that will be replaced with the conversation ID and epoch micros of the conversation. For example, \"{conversation}/recording_{timestamp}.mulaw\".",
           "type": "string"
         },
         "audioFormat": {

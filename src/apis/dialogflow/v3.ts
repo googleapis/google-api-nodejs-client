@@ -5837,7 +5837,7 @@ export namespace dialogflow_v3 {
    */
   export interface Schema$GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings {
     /**
-     * Filename pattern for exported audio.
+     * Filename pattern for exported audio. {conversation\} and {timestamp\} are placeholders that will be replaced with the conversation ID and epoch micros of the conversation. For example, "{conversation\}/recording_{timestamp\}.mulaw".
      */
     audioExportPattern?: string | null;
     /**
