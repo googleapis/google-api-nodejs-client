@@ -573,6 +573,23 @@ export namespace sqladmin_v1beta4 {
      * Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance.
      */
     preferredZone?: string | null;
+    /**
+     * The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.
+     */
+    sourceInstanceDeletionTime?: string | null;
+  }
+  /**
+   * Contains the name and datatype of a column.
+   */
+  export interface Schema$Column {
+    /**
+     * Name of the column.
+     */
+    name?: string | null;
+    /**
+     * Datatype of the column.
+     */
+    type?: string | null;
   }
   /**
    * The managed connection pooling configuration.
@@ -586,6 +603,10 @@ export namespace sqladmin_v1beta4 {
      * Optional. List of connection pool configuration flags.
      */
     flags?: Schema$ConnectionPoolFlags[];
+    /**
+     * Output only. Number of connection poolers.
+     */
+    poolerCount?: number | null;
   }
   /**
    * Connection pool flags for Cloud SQL instances managed connection pool configuration.
@@ -653,6 +674,10 @@ export namespace sqladmin_v1beta4 {
      * This is always `sql#connectSettings`.
      */
     kind?: string | null;
+    /**
+     * Optional. Output only. mdx_protocol_support controls how the client uses metadata exchange when connecting to the instance. The values in the list representing parts of the MDX protocol that are supported by this instance. When the list is empty, the instance does not support MDX, so the client must not send an MDX request. The default is empty.
+     */
+    mdxProtocolSupport?: string[] | null;
     /**
      * The number of read pool nodes in a read pool.
      */
@@ -741,10 +766,6 @@ export namespace sqladmin_v1beta4 {
      * The backend type. `SECOND_GEN`: Cloud SQL database instance. `EXTERNAL`: A database server that is not managed by Google. This property is read-only; use the `tier` property in the `settings` object to determine the database type.
      */
     backendType?: string | null;
-    /**
-     * Clears private network settings when the instance is restored.
-     */
-    clearNetwork?: boolean | null;
     /**
      * Connection name of the Cloud SQL instance used in connection strings.
      */
@@ -1109,6 +1130,27 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$Empty {}
   /**
+   * The request payload used to execute SQL statements.
+   */
+  export interface Schema$ExecuteSqlPayload {
+    /**
+     * Optional. When set to true, the API caller identity associated with the request is used for database authentication. The API caller must be an IAM user in the database.
+     */
+    autoIamAuthn?: boolean | null;
+    /**
+     * Optional. Name of the database on which the statement will be executed.
+     */
+    database?: string | null;
+    /**
+     * Optional. The maximum number of rows returned per SQL statement.
+     */
+    rowLimit?: string | null;
+    /**
+     * Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.
+     */
+    sqlStatement?: string | null;
+  }
+  /**
    * Database instance export context.
    */
   export interface Schema$ExportContext {
@@ -1196,6 +1238,19 @@ export namespace sqladmin_v1beta4 {
      * The current settings version of this instance. Request will be rejected if this version doesn't match the current settings version.
      */
     settingsVersion?: string | null;
+  }
+  /**
+   * Config used to determine the final backup settings for the instance.
+   */
+  export interface Schema$FinalBackupConfig {
+    /**
+     * Whether the final backup is enabled for the instance.
+     */
+    enabled?: boolean | null;
+    /**
+     * The number of days to retain the final backup after the instance deletion. The final backup will be purged at (time_of_instance_deletion + retention_days).
+     */
+    retentionDays?: number | null;
   }
   /**
    * A flag resource.
@@ -1583,6 +1638,10 @@ export namespace sqladmin_v1beta4 {
      */
     restoreBackupContext?: Schema$RestoreBackupContext;
     /**
+     * Optional. This field has the same purpose as restore_instance_settings, changes any instance settings stored in the backup you are restoring from. With the difference that these fields are cleared in the settings.
+     */
+    restoreInstanceClearOverridesFieldNames?: string[] | null;
+    /**
      * Optional. By using this parameter, Cloud SQL overrides any instance settings stored in the backup you are restoring from. You can't change the instance's major database version and you can only increase the disk size. You can use this field to restore new instances only. This field is not applicable for restore to existing instances.
      */
     restoreInstanceSettings?: Schema$DatabaseInstance;
@@ -1751,6 +1810,15 @@ export namespace sqladmin_v1beta4 {
      * Maintenance timing settings: `canary`, `stable`, or `week5`. For more information, see [About maintenance on Cloud SQL instances](https://cloud.google.com/sql/docs/mysql/maintenance).
      */
     updateTrack?: string | null;
+  }
+  /**
+   * The additional metadata information regarding the execution of the SQL statements.
+   */
+  export interface Schema$Metadata {
+    /**
+     * The time taken to execute the SQL statements.
+     */
+    sqlStatementExecutionTime?: string | null;
   }
   /**
    * Read-replica configuration specific to MySQL databases.
@@ -2077,7 +2145,7 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$PointInTimeRestoreContext {
     /**
-     * Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone
+     * Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: "google-managed-services-default". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.
      */
     allocatedIpRange?: string | null;
     /**
@@ -2181,6 +2249,27 @@ export namespace sqladmin_v1beta4 {
     pscEnabled?: boolean | null;
   }
   /**
+   * QueryResult contains the result of executing a single SQL statement.
+   */
+  export interface Schema$QueryResult {
+    /**
+     * List of columns included in the result. This also includes the data type of the column.
+     */
+    columns?: Schema$Column[];
+    /**
+     * Message related to the SQL execution result.
+     */
+    message?: string | null;
+    /**
+     * Set to true if the SQL execution's result is truncated due to size limits.
+     */
+    partialResult?: boolean | null;
+    /**
+     * Rows returned by the SQL statement.
+     */
+    rows?: Schema$Row[];
+  }
+  /**
    * Read-replica configuration for connecting to the primary instance.
    */
   export interface Schema$ReplicaConfiguration {
@@ -2274,6 +2363,15 @@ export namespace sqladmin_v1beta4 {
      * Optional. The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.
      */
     nextVersion?: string | null;
+  }
+  /**
+   * Contains the values for a row.
+   */
+  export interface Schema$Row {
+    /**
+     * The values for the row.
+     */
+    values?: Schema$Value[];
   }
   /**
    * A list of objects that the user selects for replication from an external source instance.
@@ -2377,6 +2475,10 @@ export namespace sqladmin_v1beta4 {
      */
     enableGoogleMlIntegration?: boolean | null;
     /**
+     * Optional. The final backup configuration for the instance.
+     */
+    finalBackupConfig?: Schema$FinalBackupConfig;
+    /**
      * Insights configuration, for now relevant only for Postgres.
      */
     insightsConfig?: Schema$InsightsConfig;
@@ -2450,6 +2552,14 @@ export namespace sqladmin_v1beta4 {
    */
   export interface Schema$SqlActiveDirectoryConfig {
     /**
+     * Optional. The secret manager key storing the administrator credential. (e.g., projects/{project\}/secrets/{secret\}).
+     */
+    adminCredentialSecretName?: string | null;
+    /**
+     * Optional. Domain controller IPv4 addresses used to bootstrap Active Directory.
+     */
+    dnsServers?: string[] | null;
+    /**
      * The name of the domain (e.g., mydomain.com).
      */
     domain?: string | null;
@@ -2457,6 +2567,14 @@ export namespace sqladmin_v1beta4 {
      * This is always sql#activeDirectoryConfig.
      */
     kind?: string | null;
+    /**
+     * Optional. The mode of the Active Directory configuration.
+     */
+    mode?: string | null;
+    /**
+     * Optional. The organizational unit distinguished name. This is the full hierarchical path to the organizational unit.
+     */
+    organizationalUnit?: string | null;
   }
   /**
    * External primary instance migration setting error/warning.
@@ -2483,6 +2601,19 @@ export namespace sqladmin_v1beta4 {
      * The unique identifier for this operation.
      */
     operationId?: string | null;
+  }
+  /**
+   * Execute SQL statements response.
+   */
+  export interface Schema$SqlInstancesExecuteSqlResponse {
+    /**
+     * The additional metadata information regarding the execution of the SQL statements.
+     */
+    metadata?: Schema$Metadata;
+    /**
+     * The list of results after executing all the SQL statements.
+     */
+    results?: Schema$QueryResult[];
   }
   /**
    * Instance get disk shrink config response.
@@ -2545,6 +2676,10 @@ export namespace sqladmin_v1beta4 {
      * MySQL-specific settings for start external sync.
      */
     mysqlSyncConfig?: Schema$MySqlSyncConfig;
+    /**
+     * Optional. MySQL only. True if end-user has confirmed that this SES call will wipe replica databases overlapping with the proposed selected_objects. If this field is not set and there are both overlapping and additional databases proposed, an error will be returned.
+     */
+    replicaOverwriteEnabled?: boolean | null;
     /**
      * Whether to skip the verification step (VESS).
      */
@@ -2953,6 +3088,19 @@ export namespace sqladmin_v1beta4 {
      * Unused.
      */
     nextPageToken?: string | null;
+  }
+  /**
+   * The cell value of the table.
+   */
+  export interface Schema$Value {
+    /**
+     * If cell value is null, then this flag will be set to true.
+     */
+    nullValue?: boolean | null;
+    /**
+     * The cell value represented in string format.
+     */
+    value?: string | null;
   }
 
   export class Resource$Backupruns {
@@ -4818,6 +4966,7 @@ export namespace sqladmin_v1beta4 {
      *   //   "dnsNames": [],
      *   //   "ipAddresses": [],
      *   //   "kind": "my_kind",
+     *   //   "mdxProtocolSupport": [],
      *   //   "nodeCount": 0,
      *   //   "nodes": [],
      *   //   "pscEnabled": false,
@@ -7351,6 +7500,166 @@ export namespace sqladmin_v1beta4 {
     }
 
     /**
+     * Execute SQL statements.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/sqladmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const sqladmin = google.sqladmin('v1beta4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *       'https://www.googleapis.com/auth/sqlservice.admin',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await sql.instances.executeSql({
+     *     // Required. Database instance ID. This does not include the project ID.
+     *     instance: 'placeholder-value',
+     *     // Required. Project ID of the project that contains the instance.
+     *     project: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "autoIamAuthn": false,
+     *       //   "database": "my_database",
+     *       //   "rowLimit": "my_rowLimit",
+     *       //   "sqlStatement": "my_sqlStatement"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "results": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    executeSql(
+      params: Params$Resource$Instances$Executesql,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    executeSql(
+      params?: Params$Resource$Instances$Executesql,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SqlInstancesExecuteSqlResponse>>;
+    executeSql(
+      params: Params$Resource$Instances$Executesql,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    executeSql(
+      params: Params$Resource$Instances$Executesql,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>,
+      callback: BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+    ): void;
+    executeSql(
+      params: Params$Resource$Instances$Executesql,
+      callback: BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+    ): void;
+    executeSql(
+      callback: BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+    ): void;
+    executeSql(
+      paramsOrCallback?:
+        | Params$Resource$Instances$Executesql
+        | BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$SqlInstancesExecuteSqlResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$SqlInstancesExecuteSqlResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Instances$Executesql;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Instances$Executesql;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://sqladmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/sql/v1beta4/projects/{project}/instances/{instance}/executeSql'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['project', 'instance'],
+        pathParams: ['instance', 'project'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$SqlInstancesExecuteSqlResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$SqlInstancesExecuteSqlResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.
      * @example
      * ```js
@@ -7727,7 +8036,6 @@ export namespace sqladmin_v1beta4 {
      *   // {
      *   //   "availableMaintenanceVersions": [],
      *   //   "backendType": "my_backendType",
-     *   //   "clearNetwork": false,
      *   //   "connectionName": "my_connectionName",
      *   //   "createTime": "my_createTime",
      *   //   "currentDiskSize": "my_currentDiskSize",
@@ -8080,7 +8388,6 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "availableMaintenanceVersions": [],
      *       //   "backendType": "my_backendType",
-     *       //   "clearNetwork": false,
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
@@ -8751,7 +9058,6 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "availableMaintenanceVersions": [],
      *       //   "backendType": "my_backendType",
-     *       //   "clearNetwork": false,
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
@@ -9942,6 +10248,7 @@ export namespace sqladmin_v1beta4 {
      *       //   "backup": "my_backup",
      *       //   "backupdrBackup": "my_backupdrBackup",
      *       //   "restoreBackupContext": {},
+     *       //   "restoreInstanceClearOverridesFieldNames": [],
      *       //   "restoreInstanceSettings": {}
      *       // }
      *     },
@@ -11100,7 +11407,6 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "availableMaintenanceVersions": [],
      *       //   "backendType": "my_backendType",
-     *       //   "clearNetwork": false,
      *       //   "connectionName": "my_connectionName",
      *       //   "createTime": "my_createTime",
      *       //   "currentDiskSize": "my_currentDiskSize",
@@ -11382,6 +11688,22 @@ export namespace sqladmin_v1beta4 {
      * Request body metadata
      */
     requestBody?: Schema$InstancesDemoteMasterRequest;
+  }
+  export interface Params$Resource$Instances$Executesql
+    extends StandardParameters {
+    /**
+     * Required. Database instance ID. This does not include the project ID.
+     */
+    instance?: string;
+    /**
+     * Required. Project ID of the project that contains the instance.
+     */
+    project?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteSqlPayload;
   }
   export interface Params$Resource$Instances$Export extends StandardParameters {
     /**
@@ -12398,6 +12720,8 @@ export namespace sqladmin_v1beta4 {
      *     instance: 'placeholder-value',
      *     // Project ID of the project that contains the instance.
      *     project: 'placeholder-value',
+     *     // The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.
+     *     sourceInstanceDeletionTime: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -13062,6 +13386,7 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "migrationType": "my_migrationType",
      *       //   "mysqlSyncConfig": {},
+     *       //   "replicaOverwriteEnabled": false,
      *       //   "skipVerification": false,
      *       //   "syncMode": "my_syncMode",
      *       //   "syncParallelLevel": "my_syncParallelLevel"
@@ -13380,6 +13705,10 @@ export namespace sqladmin_v1beta4 {
      * Project ID of the project that contains the instance.
      */
     project?: string;
+    /**
+     * The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.
+     */
+    sourceInstanceDeletionTime?: string;
   }
   export interface Params$Resource$Projects$Instances$Performdiskshrink
     extends StandardParameters {
