@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -304,7 +304,7 @@
       }
     }
   },
-  "revision": "20250619",
+  "revision": "20250814",
   "rootUrl": "https://cloudlocationfinder.googleapis.com/",
   "schemas": {
     "CloudLocation": {
@@ -322,13 +322,15 @@
             "CLOUD_LOCATION_TYPE_UNSPECIFIED",
             "CLOUD_LOCATION_TYPE_REGION",
             "CLOUD_LOCATION_TYPE_ZONE",
-            "CLOUD_LOCATION_TYPE_REGION_EXTENSION"
+            "CLOUD_LOCATION_TYPE_REGION_EXTENSION",
+            "CLOUD_LOCATION_TYPE_GDCC_ZONE"
           ],
           "enumDescriptions": [
             "Unspecified type.",
             "CloudLocation type for region.",
             "CloudLocation type for zone.",
-            "CloudLocation type for region extension."
+            "CloudLocation type for region extension.",
+            "CloudLocation type for Google Distributed Cloud Connected Zone."
           ],
           "type": "string"
         },
