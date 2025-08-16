@@ -1110,6 +1110,41 @@
             "https://www.googleapis.com/auth/sqlservice.admin"
           ]
         },
+        "executeSql": {
+          "description": "Execute SQL statements.",
+          "flatPath": "v1/projects/{project}/instances/{instance}/executeSql",
+          "httpMethod": "POST",
+          "id": "sql.instances.executeSql",
+          "parameterOrder": [
+            "project",
+            "instance"
+          ],
+          "parameters": {
+            "instance": {
+              "description": "Required. Database instance ID. This does not include the project ID.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            },
+            "project": {
+              "description": "Required. Project ID of the project that contains the instance.",
+              "location": "path",
+              "required": true,
+              "type": "string"
+            }
+          },
+          "path": "v1/projects/{project}/instances/{instance}/executeSql",
+          "request": {
+            "$ref": "ExecuteSqlPayload"
+          },
+          "response": {
+            "$ref": "SqlInstancesExecuteSqlResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/cloud-platform",
+            "https://www.googleapis.com/auth/sqlservice.admin"
+          ]
+        },
         "export": {
           "description": "Exports data from a Cloud SQL instance to a Cloud Storage bucket as a SQL dump or CSV file.",
           "flatPath": "v1/projects/{project}/instances/{instance}/export",
@@ -1988,6 +2023,12 @@
                   "location": "path",
                   "required": true,
                   "type": "string"
+                },
+                "sourceInstanceDeletionTime": {
+                  "description": "The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.",
+                  "format": "google-datetime",
+                  "location": "query",
+                  "type": "string"
                 }
               },
               "path": "v1/projects/{project}/instances/{instance}/getLatestRecoveryTime",
@@ -2594,7 +2635,7 @@
       }
     }
   },
-  "revision": "20250613",
+  "revision": "20250807",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -3553,6 +3594,26 @@
         "preferredZone": {
           "description": "Optional. Copy clone and point-in-time recovery clone of an instance to the specified zone. If no zone is specified, clone to the same primary zone as the source instance. This field applies to all DB types.",
           "type": "string"
+        },
+        "sourceInstanceDeletionTime": {
+          "description": "The timestamp used to identify the time when the source instance is deleted. If this instance is deleted, then you must set the timestamp.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Column": {
+      "description": "Contains the name and datatype of a column.",
+      "id": "Column",
+      "properties": {
+        "name": {
+          "description": "Name of the column.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Datatype of the column.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3803,6 +3864,22 @@
           "description": "This is always `sql#connectSettings`.",
           "type": "string"
         },
+        "mdxProtocolSupport": {
+          "description": "Optional. Output only. mdx_protocol_support controls how the client uses metadata exchange when connecting to the instance. The values in the list representing parts of the MDX protocol that are supported by this instance. When the list is empty, the instance does not support MDX, so the client must not send an MDX request. The default is empty.",
+          "items": {
+            "enum": [
+              "MDX_PROTOCOL_SUPPORT_UNSPECIFIED",
+              "CLIENT_PROTOCOL_TYPE"
+            ],
+            "enumDescriptions": [
+              "Not specified.",
+              "Client should send the client protocol type in the MDX request."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "nodeCount": {
           "description": "The number of read pool nodes in a read pool.",
           "format": "int32",
@@ -3861,6 +3938,12 @@
             "$ref": "ConnectionPoolFlags"
           },
           "type": "array"
+        },
+        "poolerCount": {
+          "description": "Output only. Number of connection poolers.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -3981,10 +4064,6 @@
             "On premises instance."
           ],
           "type": "string"
-        },
-        "clearNetwork": {
-          "description": "Clears private network settings when the instance is restored.",
-          "type": "boolean"
         },
         "connectionName": {
           "description": "Connection name of the Cloud SQL instance used in connection strings.",
@@ -4659,6 +4738,30 @@
       "properties": {},
       "type": "object"
     },
+    "ExecuteSqlPayload": {
+      "description": "The request payload used to execute SQL statements.",
+      "id": "ExecuteSqlPayload",
+      "properties": {
+        "autoIamAuthn": {
+          "description": "Optional. When set to true, the API caller identity associated with the request is used for database authentication. The API caller must be an IAM user in the database.",
+          "type": "boolean"
+        },
+        "database": {
+          "description": "Optional. Name of the database on which the statement will be executed.",
+          "type": "string"
+        },
+        "rowLimit": {
+          "description": "Optional. The maximum number of rows returned per SQL statement.",
+          "format": "int64",
+          "type": "string"
+        },
+        "sqlStatement": {
+          "description": "Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ExportContext": {
       "description": "Database instance export context.",
       "id": "ExportContext",
@@ -4875,6 +4978,22 @@
           "description": "The current settings version of this instance. Request will be rejected if this version doesn't match the current settings version.",
           "format": "int64",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FinalBackupConfig": {
+      "description": "Config used to determine the final backup settings for the instance.",
+      "id": "FinalBackupConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the final backup is enabled for the instance.",
+          "type": "boolean"
+        },
+        "retentionDays": {
+          "description": "The number of days to retain the final backup after the instance deletion. The final backup will be purged at (time_of_instance_deletion + retention_days).",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5645,6 +5764,13 @@
           "$ref": "RestoreBackupContext",
           "description": "Parameters required to perform the restore backup operation."
         },
+        "restoreInstanceClearOverridesFieldNames": {
+          "description": "Optional. This field has the same purpose as restore_instance_settings, changes any instance settings stored in the backup you are restoring from. With the difference that these fields are cleared in the settings.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "restoreInstanceSettings": {
           "$ref": "DatabaseInstance",
           "description": "Optional. By using this parameter, Cloud SQL overrides any instance settings stored in the backup you are restoring from. You can't change the instance's major database version and you can only increase the disk size. You can use this field to restore new instances only. This field is not applicable for restore to existing instances."
@@ -5898,6 +6024,18 @@
             "For an instance with a scheduled maintenance window, this maintenance timing indicates that the maintenance update is scheduled 15 to 21 days after the notification is sent out. Also referred to as `Week 2` (Console) and `production` (gcloud CLI).",
             "For instance with a scheduled maintenance window, this maintenance timing indicates that the maintenance update is scheduled 35 to 42 days after the notification is sent out."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Metadata": {
+      "description": "The additional metadata information regarding the execution of the SQL statements.",
+      "id": "Metadata",
+      "properties": {
+        "sqlStatementExecutionTime": {
+          "description": "The time taken to execute the SQL statements.",
+          "format": "google-duration",
           "type": "string"
         }
       },
@@ -6478,7 +6616,7 @@
       "id": "PointInTimeRestoreContext",
       "properties": {
         "allocatedIpRange": {
-          "description": "Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: \"google-managed-services-default\". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use. http://go/speckle-subnet-picker-clone",
+          "description": "Optional. The name of the allocated IP range for the internal IP Cloud SQL instance. For example: \"google-managed-services-default\". If you set this, then Cloud SQL creates the IP address for the cloned instance in the allocated range. This range must comply with [RFC 1035](https://tools.ietf.org/html/rfc1035) standards. Specifically, the name must be 1-63 characters long and match the regular expression [a-z]([-a-z0-9]*[a-z0-9])?. Reserved for future use.",
           "type": "string"
         },
         "datasource": {
@@ -6641,6 +6779,35 @@
       },
       "type": "object"
     },
+    "QueryResult": {
+      "description": "QueryResult contains the result of executing a single SQL statement.",
+      "id": "QueryResult",
+      "properties": {
+        "columns": {
+          "description": "List of columns included in the result. This also includes the data type of the column.",
+          "items": {
+            "$ref": "Column"
+          },
+          "type": "array"
+        },
+        "message": {
+          "description": "Message related to the SQL execution result.",
+          "type": "string"
+        },
+        "partialResult": {
+          "description": "Set to true if the SQL execution's result is truncated due to size limits.",
+          "type": "boolean"
+        },
+        "rows": {
+          "description": "Rows returned by the SQL statement.",
+          "items": {
+            "$ref": "Row"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReplicaConfiguration": {
       "description": "Read-replica configuration for connecting to the primary instance.",
       "id": "ReplicaConfiguration",
@@ -6762,6 +6929,20 @@
         "nextVersion": {
           "description": "The fingerprint of the next version to be rotated to. If left unspecified, will be rotated to the most recently added server certificate version.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Row": {
+      "description": "Contains the values for a row.",
+      "id": "Row",
+      "properties": {
+        "values": {
+          "description": "The values for the row.",
+          "items": {
+            "$ref": "Value"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -6952,6 +7133,10 @@
           "description": "Optional. When this parameter is set to true, Cloud SQL instances can connect to Vertex AI to pass requests for real-time predictions and insights to the AI. The default value is false. This applies only to Cloud SQL for MySQL and Cloud SQL for PostgreSQL instances.",
           "type": "boolean"
         },
+        "finalBackupConfig": {
+          "$ref": "FinalBackupConfig",
+          "description": "Optional. The final backup configuration for the instance."
+        },
         "insightsConfig": {
           "$ref": "InsightsConfig",
           "description": "Insights configuration, for now relevant only for Postgres."
@@ -7054,12 +7239,41 @@
       "description": "Active Directory configuration, relevant only for Cloud SQL for SQL Server.",
       "id": "SqlActiveDirectoryConfig",
       "properties": {
+        "adminCredentialSecretName": {
+          "description": "Optional. The secret manager key storing the administrator credential. (e.g., projects/{project}/secrets/{secret}).",
+          "type": "string"
+        },
+        "dnsServers": {
+          "description": "Optional. Domain controller IPv4 addresses used to bootstrap Active Directory.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "domain": {
           "description": "The name of the domain (e.g., mydomain.com).",
           "type": "string"
         },
         "kind": {
           "description": "This is always sql#activeDirectoryConfig.",
+          "type": "string"
+        },
+        "mode": {
+          "description": "Optional. The mode of the Active Directory configuration.",
+          "enum": [
+            "ACTIVE_DIRECTORY_MODE_UNSPECIFIED",
+            "MANAGED_ACTIVE_DIRECTORY",
+            "SELF_MANAGED_ACTIVE_DIRECTORY"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode. Will default to MANAGED_ACTIVE_DIRECTORY if the mode is not specified to maintain backward compatibility.",
+            "Managed Active Directory mode.",
+            "Self-managed Active Directory mode."
+          ],
+          "type": "string"
+        },
+        "organizationalUnit": {
+          "description": "Optional. The organizational unit distinguished name. This is the full hierarchical path to the organizational unit.",
           "type": "string"
         }
       },
@@ -7134,7 +7348,10 @@
             "UNSUPPORTED_SYSTEM_OBJECTS",
             "UNSUPPORTED_TABLES_WITH_REPLICA_IDENTITY",
             "SELECTED_OBJECTS_NOT_EXIST_ON_SOURCE",
-            "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI"
+            "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI",
+            "SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS",
+            "PROMPT_DELETE_EXISTING",
+            "WILL_DELETE_EXISTING"
           ],
           "enumDescriptions": [
             "",
@@ -7191,7 +7408,10 @@
             "The selected objects include system objects that aren't supported for migration.",
             "The source database has tables with the FULL or NOTHING replica identity. Before starting your migration, either remove the identity or change it to DEFAULT. Note that this is an error and will block the migration.",
             "The selected objects don't exist on the source instance.",
-            "PSC only destination instance does not have a network attachment URI."
+            "PSC only destination instance does not have a network attachment URI.",
+            "Selected objects reference unselected objects. Based on their object type (foreign key constraint or view), selected objects will fail during migration.",
+            "The migration will delete existing data in the replica; set replica_overwrite_enabled in the request to acknowledge this. This is an error. MySQL only.",
+            "The migration will delete existing data in the replica; replica_overwrite_enabled was set in the request acknowledging this. This is a warning rather than an error. MySQL only."
           ],
           "type": "string"
         }
@@ -7205,6 +7425,24 @@
         "operationId": {
           "description": "The unique identifier for this operation.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SqlInstancesExecuteSqlResponse": {
+      "description": "Execute SQL statements response.",
+      "id": "SqlInstancesExecuteSqlResponse",
+      "properties": {
+        "metadata": {
+          "$ref": "Metadata",
+          "description": "The additional metadata information regarding the execution of the SQL statements."
+        },
+        "results": {
+          "description": "The list of results after executing all the SQL statements.",
+          "items": {
+            "$ref": "QueryResult"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -7294,6 +7532,10 @@
         "mysqlSyncConfig": {
           "$ref": "MySqlSyncConfig",
           "description": "MySQL-specific settings for start external sync."
+        },
+        "replicaOverwriteEnabled": {
+          "description": "Optional. MySQL only. True if end-user has confirmed that this SES call will wipe replica databases overlapping with the proposed selected_objects. If this field is not set and there are both overlapping and additional databases proposed, an error will be returned.",
+          "type": "boolean"
         },
         "skipVerification": {
           "description": "Whether to skip the verification step (VESS).",
@@ -7895,6 +8137,21 @@
         "nextPageToken": {
           "deprecated": true,
           "description": "Unused.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Value": {
+      "description": "The cell value of the table.",
+      "id": "Value",
+      "properties": {
+        "nullValue": {
+          "description": "If cell value is null, then this flag will be set to true.",
+          "type": "boolean"
+        },
+        "value": {
+          "description": "The cell value in string format.",
           "type": "string"
         }
       },

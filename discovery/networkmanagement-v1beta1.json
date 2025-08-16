@@ -1181,7 +1181,7 @@
       }
     }
   },
-  "revision": "20250709",
+  "revision": "20250806",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -1943,6 +1943,10 @@
           ],
           "type": "string"
         },
+        "destinationGeolocationCode": {
+          "description": "Geolocation (region code) of the destination IP address (if relevant).",
+          "type": "string"
+        },
         "destinationIp": {
           "description": "Destination IP address of the dropped packet (if relevant).",
           "type": "string"
@@ -1953,6 +1957,10 @@
         },
         "resourceUri": {
           "description": "URI of the resource that caused the drop.",
+          "type": "string"
+        },
+        "sourceGeolocationCode": {
+          "description": "Geolocation (region code) of the source IP address (if relevant).",
           "type": "string"
         },
         "sourceIp": {
@@ -2260,6 +2268,20 @@
           },
           "type": "array"
         },
+        "targetType": {
+          "description": "Target type of the firewall rule.",
+          "enum": [
+            "TARGET_TYPE_UNSPECIFIED",
+            "INSTANCES",
+            "INTERNAL_MANAGED_LB"
+          ],
+          "enumDescriptions": [
+            "Target type is not specified. In this case we treat the rule as applying to INSTANCES target type.",
+            "Firewall rule applies to instances.",
+            "Firewall rule applies to internal managed load balancers."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.",
           "type": "string"
@@ -2499,6 +2521,33 @@
         },
         "uri": {
           "description": "URI of a Compute Engine instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterconnectAttachmentInfo": {
+      "description": "For display only. Metadata associated with an Interconnect attachment.",
+      "id": "InterconnectAttachmentInfo",
+      "properties": {
+        "cloudRouterUri": {
+          "description": "URI of the Cloud Router to be used for dynamic routing.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Name of an Interconnect attachment.",
+          "type": "string"
+        },
+        "interconnectUri": {
+          "description": "URI of the Interconnect where the Interconnect attachment is configured.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Name of a Google Cloud region where the Interconnect attachment is configured.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of an Interconnect attachment.",
           "type": "string"
         }
       },
@@ -3663,6 +3712,10 @@
           "$ref": "InstanceInfo",
           "description": "Display information of a Compute Engine instance."
         },
+        "interconnectAttachment": {
+          "$ref": "InterconnectAttachmentInfo",
+          "description": "Display information of an interconnect attachment."
+        },
         "loadBalancer": {
           "$ref": "LoadBalancerInfo",
           "deprecated": true,
@@ -3737,6 +3790,7 @@
             "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
             "ARRIVE_AT_VPN_GATEWAY",
             "ARRIVE_AT_VPN_TUNNEL",
+            "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
             "ARRIVE_AT_VPC_CONNECTOR",
             "DIRECT_VPC_EGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
@@ -3784,6 +3838,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -3813,6 +3868,7 @@
             "Forwarding state: arriving at a Compute Engine external load balancer. Deprecated in favor of the `ANALYZE_LOAD_BALANCER_BACKEND` state, not used in new tests.",
             "Forwarding state: arriving at a Cloud VPN gateway.",
             "Forwarding state: arriving at a Cloud VPN tunnel.",
+            "Forwarding state: arriving at an interconnect attachment.",
             "Forwarding state: arriving at a VPC connector.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",

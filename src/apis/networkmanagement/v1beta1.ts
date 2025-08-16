@@ -445,6 +445,10 @@ export namespace networkmanagement_v1beta1 {
      */
     cause?: string | null;
     /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     */
+    destinationGeolocationCode?: string | null;
+    /**
      * Destination IP address of the dropped packet (if relevant).
      */
     destinationIp?: string | null;
@@ -456,6 +460,10 @@ export namespace networkmanagement_v1beta1 {
      * URI of the resource that caused the drop.
      */
     resourceUri?: string | null;
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     */
+    sourceGeolocationCode?: string | null;
     /**
      * Source IP address of the dropped packet (if relevant).
      */
@@ -662,6 +670,10 @@ export namespace networkmanagement_v1beta1 {
      */
     targetTags?: string[] | null;
     /**
+     * Target type of the firewall rule.
+     */
+    targetType?: string | null;
+    /**
      * The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
@@ -816,6 +828,31 @@ export namespace networkmanagement_v1beta1 {
     status?: string | null;
     /**
      * URI of a Compute Engine instance.
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with an Interconnect attachment.
+   */
+  export interface Schema$InterconnectAttachmentInfo {
+    /**
+     * URI of the Cloud Router to be used for dynamic routing.
+     */
+    cloudRouterUri?: string | null;
+    /**
+     * Name of an Interconnect attachment.
+     */
+    displayName?: string | null;
+    /**
+     * URI of the Interconnect where the Interconnect attachment is configured.
+     */
+    interconnectUri?: string | null;
+    /**
+     * Name of a Google Cloud region where the Interconnect attachment is configured.
+     */
+    region?: string | null;
+    /**
+     * URI of an Interconnect attachment.
      */
     uri?: string | null;
   }
@@ -1630,6 +1667,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Compute Engine instance.
      */
     instance?: Schema$InstanceInfo;
+    /**
+     * Display information of an interconnect attachment.
+     */
+    interconnectAttachment?: Schema$InterconnectAttachmentInfo;
     /**
      * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */

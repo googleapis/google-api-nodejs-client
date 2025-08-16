@@ -2298,7 +2298,7 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
-     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988.
+     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.
      */
     enableLegacyLustrePort?: boolean | null;
   }
@@ -3660,6 +3660,19 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * RotationConfig is config for secret manager auto rotation.
+   */
+  export interface Schema$RotationConfig {
+    /**
+     * Whether the rotation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * The interval between two consecutive rotations. Default rotation interval is 2 minutes.
+     */
+    rotationInterval?: string | null;
+  }
+  /**
    * SandboxConfig contains configurations of the sandbox to use for the node.
    */
   export interface Schema$SandboxConfig {
@@ -3693,6 +3706,10 @@ export namespace container_v1 {
      * Enable/Disable Secret Manager Config.
      */
     enabled?: boolean | null;
+    /**
+     * Rotation config for secret manager.
+     */
+    rotationConfig?: Schema$RotationConfig;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.

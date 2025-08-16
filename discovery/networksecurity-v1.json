@@ -557,7 +557,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Immutable. Identifier. name of resource",
+                      "description": "Immutable. Identifier. Name of resource.",
                       "location": "path",
                       "pattern": "^organizations/[^/]+/locations/[^/]+/firewallEndpoints/[^/]+$",
                       "required": true,
@@ -5070,7 +5070,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250806",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5460,7 +5460,7 @@
           "enumDescriptions": [
             "Unspecified principal selector. It will be treated as CLIENT_CERT_URI_SAN by default.",
             "The principal rule is matched against a list of URI SANs in the validated client's certificate. A match happens when there is any exact URI SAN value match. This is the default principal selector.",
-            "The principal rule is matched against a list of DNS Name SANs in the validated client's certificate. A match happens when there is any exact DNS Name SAN value match.",
+            "The principal rule is matched against a list of DNS Name SANs in the validated client's certificate. A match happens when there is any exact DNS Name SAN value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_DNS_NAME_SAN is not supported for INTERNAL_SELF_MANAGED load balancing scheme.",
             "The principal rule is matched against the common name in the client's certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
           ],
           "type": "string"
@@ -5884,7 +5884,7 @@
       "type": "object"
     },
     "FirewallEndpoint": {
-      "description": "Message describing Endpoint object",
+      "description": "Message describing Endpoint object.",
       "id": "FirewallEndpoint",
       "properties": {
         "associatedNetworks": {
@@ -5909,7 +5909,7 @@
           "type": "string"
         },
         "createTime": {
-          "description": "Output only. Create time stamp",
+          "description": "Output only. Create time stamp.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -5926,7 +5926,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Immutable. Identifier. name of resource",
+          "description": "Immutable. Identifier. Name of resource.",
           "type": "string"
         },
         "reconciling": {
