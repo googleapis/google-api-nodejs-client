@@ -853,6 +853,10 @@ export namespace chat_v1 {
      */
     displayStyle?: string | null;
     /**
+     * The expression data for the card. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    expressionData?: Schema$GoogleAppsCardV1ExpressionData[];
+    /**
      * The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/workspace/chat/dialogs), but not [card messages](https://developers.google.com/workspace/chat/create-messages#create). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
      */
     fixedFooter?: Schema$GoogleAppsCardV1CardFixedFooter;
@@ -1040,9 +1044,48 @@ export namespace chat_v1 {
     columnItems?: Schema$GoogleAppsCardV1Column[];
   }
   /**
+   * Represents an action that is not specific to a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1CommonWidgetAction {
+    /**
+     * The action to update the visibility of a widget.
+     */
+    updateVisibilityAction?: Schema$GoogleAppsCardV1UpdateVisibilityAction;
+  }
+  /**
+   * Represents a condition that can be used to trigger an action. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1Condition {
+    /**
+     * The unique identifier of the ActionRule.
+     */
+    actionRuleId?: string | null;
+    /**
+     * The condition that is determined by the expression data.
+     */
+    expressionDataCondition?: Schema$GoogleAppsCardV1ExpressionDataCondition;
+  }
+  /**
+   * A configuration object that helps configure the data sources for a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1DataSourceConfig {
+    /**
+     * The data is from a Google Workspace application.
+     */
+    platformDataSource?: Schema$GoogleAppsCardV1PlatformDataSource;
+    /**
+     * The data is from a remote data provider.
+     */
+    remoteDataSource?: Schema$GoogleAppsCardV1Action;
+  }
+  /**
    * Lets users input a date, a time, or both a date and a time. Supports form submission validation. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is selected. For an example in Google Chat apps, see [Let a user pick a date and time](https://developers.google.com/workspace/chat/design-interactive-card-dialog#let_a_user_pick_a_date_and_time). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
    */
   export interface Schema$GoogleAppsCardV1DateTimePicker {
+    /**
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflows, but not Google Chat API or Google Workspace Add-ons.
+     */
+    hostAppDataSource?: Schema$HostAppDataSourceMarkup;
     /**
      * The text that prompts users to input a date, a time, or a date and time. For example, if users are scheduling an appointment, use a label such as `Appointment date` or `Appointment date and time`.
      */
@@ -1117,6 +1160,53 @@ export namespace chat_v1 {
    * Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Add a horizontal divider between widgets](https://developers.google.com/workspace/chat/format-structure-card-dialog#add_a_horizontal_divider_between_widgets). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a divider: ``` "divider": {\} ```
    */
   export interface Schema$GoogleAppsCardV1Divider {}
+  /**
+   * Represents an actionthat can be performed on an ui element. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1EventAction {
+    /**
+     * The unique identifier of the ActionRule.
+     */
+    actionRuleId?: string | null;
+    /**
+     * Common widget action.
+     */
+    commonWidgetAction?: Schema$GoogleAppsCardV1CommonWidgetAction;
+    /**
+     * The list of triggers that will be triggered after the EventAction is executed.
+     */
+    postEventTriggers?: Schema$GoogleAppsCardV1Trigger[];
+  }
+  /**
+   * Represents the data that is used to evaluate an expression. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1ExpressionData {
+    /**
+     * The list of conditions that are determined by the expression evaluation result.
+     */
+    conditions?: Schema$GoogleAppsCardV1Condition[];
+    /**
+     * The list of actions that the ExpressionData can be used.
+     */
+    eventActions?: Schema$GoogleAppsCardV1EventAction[];
+    /**
+     * The uncompiled expression.
+     */
+    expression?: string | null;
+    /**
+     * The unique identifier of the ExpressionData.
+     */
+    id?: string | null;
+  }
+  /**
+   * Represents a condition that is evaluated using CEL. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1ExpressionDataCondition {
+    /**
+     * The type of the condition.
+     */
+    conditionType?: string | null;
+  }
   /**
    * Displays a grid with a collection of items. Items can only include text or images. For responsive columns, or to include more than text or images, use `Columns`. For an example in Google Chat apps, see [Display a Grid with a collection of items](https://developers.google.com/workspace/chat/format-structure-card-dialog#display_a_grid_with_a_collection_of_items). A grid supports any number of columns and items. The number of rows is determined by items divided by columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
    */
@@ -1383,6 +1473,10 @@ export namespace chat_v1 {
      */
     header?: string | null;
     /**
+     * A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    id?: string | null;
+    /**
      * The number of uncollapsible widgets which remain visible even when a section is collapsed. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed by default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.
      */
     uncollapsibleWidgetsCount?: number | null;
@@ -1395,6 +1489,10 @@ export namespace chat_v1 {
    * A widget that creates one or more UI items that users can select. Supports form submission validation for `dropdown` and `multiselect` menus only. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is selected. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Add selectable UI elements](/workspace/chat/design-interactive-card-dialog#add_selectable_ui_elements). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/workspace/chat/read-form-data). To collect undefined or abstract data from users, use the TextInput widget. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
    */
   export interface Schema$GoogleAppsCardV1SelectionInput {
+    /**
+     * Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    dataSourceConfigs?: Schema$GoogleAppsCardV1DataSourceConfig[];
     /**
      * An external data source, such as a relational database.
      */
@@ -1514,6 +1612,10 @@ export namespace chat_v1 {
      */
     hintText?: string | null;
     /**
+     * A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    hostAppDataSource?: Schema$HostAppDataSourceMarkup;
+    /**
      * Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show just `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
      */
     initialSuggestions?: Schema$GoogleAppsCardV1Suggestions;
@@ -1558,6 +1660,24 @@ export namespace chat_v1 {
      * The text that's shown in the widget.
      */
     text?: string | null;
+  }
+  /**
+   * Represents a trigger. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1Trigger {
+    /**
+     * The unique identifier of the ActionRule.
+     */
+    actionRuleId?: string | null;
+  }
+  /**
+   * Represents an action that updates the visibility of a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+   */
+  export interface Schema$GoogleAppsCardV1UpdateVisibilityAction {
+    /**
+     * The new visibility.
+     */
+    visibility?: string | null;
   }
   /**
    * Represents the necessary data for validating the widget it's attached to. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):
@@ -1605,6 +1725,10 @@ export namespace chat_v1 {
      */
     divider?: Schema$GoogleAppsCardV1Divider;
     /**
+     * Specifies the event actions that can be performed on the widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    eventActions?: Schema$GoogleAppsCardV1EventAction[];
+    /**
      * Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a 2 column grid with a single item: ``` "grid": { "title": "A fine collection of items", "columnCount": 2, "borderStyle": { "type": "STROKE", "cornerRadius": 4 \}, "items": [ { "image": { "imageUri": "https://www.example.com/image.png", "cropStyle": { "type": "SQUARE" \}, "borderStyle": { "type": "STROKE" \} \}, "title": "An item", "textAlignment": "CENTER" \} ], "onClick": { "openLink": { "url": "https://www.example.com" \} \} \} ```
      */
     grid?: Schema$GoogleAppsCardV1Grid;
@@ -1612,6 +1736,10 @@ export namespace chat_v1 {
      * Specifies whether widgets align to the left, right, or center of a column.
      */
     horizontalAlignment?: string | null;
+    /**
+     * A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    id?: string | null;
     /**
      * Displays an image. For example, the following JSON creates an image with alternative text: ``` "image": { "imageUrl": "https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png", "altText": "Chat app avatar" \} ```
      */
@@ -1628,6 +1756,10 @@ export namespace chat_v1 {
      * Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` "textParagraph": { "text": " *bold text*" \} ```
      */
     textParagraph?: Schema$GoogleAppsCardV1TextParagraph;
+    /**
+     * Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.
+     */
+    visibility?: string | null;
   }
   /**
    * The supported widgets that you can include in a column. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend)
@@ -1676,13 +1808,17 @@ export namespace chat_v1 {
     name?: string | null;
   }
   /**
-   * For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu. [Google Chat apps](https://developers.google.com/workspace/chat):
+   * A data source from a Google Workspace application. The data source populates available items for a widget.
    */
   export interface Schema$HostAppDataSourceMarkup {
     /**
      * A data source from Google Chat.
      */
     chatDataSource?: Schema$ChatClientDataSourceMarkup;
+    /**
+     * A data source from Google Workflow.
+     */
+    workflowDataSource?: Schema$WorkflowDataSourceMarkup;
   }
   /**
    * An image that's specified by a URL and can have an `onclick` action.
@@ -2074,7 +2210,7 @@ export namespace chat_v1 {
      */
     privateMessageViewer?: Schema$User;
     /**
-     * Optional. Information about a message that's quoted by a Google Chat user in a space. Google Chat users can quote a message to reply to it.
+     * Optional. Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
      */
     quotedMessageMetadata?: Schema$QuotedMessageMetadata;
     /**
@@ -2229,11 +2365,11 @@ export namespace chat_v1 {
     useAtMentionAll?: Schema$PermissionSetting;
   }
   /**
-   * Information about a quoted message.
+   * Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).
    */
   export interface Schema$QuotedMessageMetadata {
     /**
-     * Required. The timestamp when the quoted message was created or when the quoted message was last updated.
+     * Required. The timestamp when the quoted message was created or when the quoted message was last updated. If the message was edited, use this field, `last_update_time`. If the message was never edited, use `create_time`. If `last_update_time` doesn't match the latest version of the quoted message, the request fails.
      */
     lastUpdateTime?: string | null;
     /**
@@ -2847,6 +2983,19 @@ export namespace chat_v1 {
      * Display a text paragraph in this widget.
      */
     textParagraph?: Schema$TextParagraph;
+  }
+  /**
+   * * Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons. In a `TextInput` or `SelectionInput` widget with MULTI_SELECT type or a `DateTimePicker`, provide data source from Google.
+   */
+  export interface Schema$WorkflowDataSourceMarkup {
+    /**
+     * Whether to include variables from the previous step in the data source.
+     */
+    includeVariables?: boolean | null;
+    /**
+     * The type of data source.
+     */
+    type?: string | null;
   }
 
   export class Resource$Customemojis {
@@ -6952,7 +7101,7 @@ export namespace chat_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Identifier. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` Where `{space\}` is the ID of the space where the message is posted and `{message\}` is a system-assigned ID for the message. For example, `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`. If you set a custom ID when you create a message, you can use this ID to specify the message in a request by replacing `{message\}` with the value from the `clientAssignedMessageId` field. For example, `spaces/AAAAAAAAAAA/messages/client-custom-name`. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
+     *     // Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7152,7 +7301,7 @@ export namespace chat_v1 {
      *     allowMissing: 'placeholder-value',
      *     // Identifier. Resource name of the message. Format: `spaces/{space\}/messages/{message\}` Where `{space\}` is the ID of the space where the message is posted and `{message\}` is a system-assigned ID for the message. For example, `spaces/AAAAAAAAAAA/messages/BBBBBBBBBBB.BBBBBBBBBBB`. If you set a custom ID when you create a message, you can use this ID to specify the message in a request by replacing `{message\}` with the value from the `clientAssignedMessageId` field. For example, `spaces/AAAAAAAAAAA/messages/client-custom-name`. For details, see [Name a message](https://developers.google.com/workspace/chat/create-messages#name_a_created_message).
      *     name: 'spaces/my-space/messages/my-message',
-     *     // Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
+     *     // Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)
      *     updateMask: 'placeholder-value',
      *
      *     // Request body metadata
@@ -7398,7 +7547,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
+     * Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)
      */
     updateMask?: string;
 
@@ -7418,7 +7567,7 @@ export namespace chat_v1 {
      */
     name?: string;
     /**
-     * Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)
+     * Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)
      */
     updateMask?: string;
 
