@@ -277,6 +277,10 @@ export namespace dataproc_v1 {
      * Optional. A unique ID used to identify the request. If the service receives two AnalyzeBatchRequest (http://cloud/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.AnalyzeBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first request created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.
      */
     requestId?: string | null;
+    /**
+     * Optional. The requestor ID is used to identify if the request comes from a GCA investigation or the old Ask Gemini Experience.
+     */
+    requestorId?: string | null;
   }
   /**
    * Metadata describing the Analyze operation.
@@ -681,7 +685,7 @@ export namespace dataproc_v1 {
      */
     auxiliaryNodeGroups?: Schema$AuxiliaryNodeGroup[];
     /**
-     * Optional. The tier of the cluster.
+     * Optional. The cluster tier.
      */
     clusterTier?: string | null;
     /**
@@ -3394,7 +3398,7 @@ export namespace dataproc_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. The resource name of the session template.
+     * Required. Identifier. The resource name of the session template.
      */
     name?: string | null;
     /**
@@ -6076,7 +6080,8 @@ export namespace dataproc_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
-     *       //   "requestId": "my_requestId"
+     *       //   "requestId": "my_requestId",
+     *       //   "requestorId": "my_requestorId"
      *       // }
      *     },
      *   });
@@ -16040,7 +16045,7 @@ export namespace dataproc_v1 {
      *
      *   // Do the magic
      *   const res = await dataproc.projects.locations.sessionTemplates.patch({
-     *     // Required. The resource name of the session template.
+     *     // Required. Identifier. The resource name of the session template.
      *     name: 'projects/my-project/locations/my-location/sessionTemplates/my-sessionTemplate',
      *
      *     // Request body metadata
@@ -16221,7 +16226,7 @@ export namespace dataproc_v1 {
   export interface Params$Resource$Projects$Locations$Sessiontemplates$Patch
     extends StandardParameters {
     /**
-     * Required. The resource name of the session template.
+     * Required. Identifier. The resource name of the session template.
      */
     name?: string;
 
