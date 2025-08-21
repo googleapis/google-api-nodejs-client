@@ -2011,6 +2011,10 @@ export namespace contactcenterinsights_v1 {
      */
     score?: number | null;
     /**
+     * Output only. A value of "Skip". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.
+     */
+    skipValue?: boolean | null;
+    /**
      * String value.
      */
     strValue?: string | null;
@@ -5260,6 +5264,10 @@ export namespace contactcenterinsights_v1 {
      * Output only. Numerical score of the answer.
      */
     score?: number | null;
+    /**
+     * Output only. A value of "Skip". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.
+     */
+    skipValue?: boolean | null;
     /**
      * String value.
      */
@@ -30932,7 +30940,7 @@ export namespace contactcenterinsights_v1 {
      *   // Do the magic
      *   const res =
      *     await contactcenterinsights.projects.locations.qaQuestionTags.list({
-     *       // Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_revision_id` - id of the scorecard revision to list tags for * `qa_question_id - id of the question to list tags for`
+     *       // Optional. A filter to reduce results to a specific subset. Supports conjunctions (ie. AND operators). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_id` - id of the scorecard to list tags for * `revision_id` - id of the scorecard revision to list tags for` * `qa_question_id - id of the question to list tags for`
      *       filter: 'placeholder-value',
      *       // Required. The parent resource of the QaQuestionTags.
      *       parent: 'projects/my-project/locations/my-location',
@@ -31244,7 +31252,7 @@ export namespace contactcenterinsights_v1 {
   export interface Params$Resource$Projects$Locations$Qaquestiontags$List
     extends StandardParameters {
     /**
-     * Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_revision_id` - id of the scorecard revision to list tags for * `qa_question_id - id of the question to list tags for`
+     * Optional. A filter to reduce results to a specific subset. Supports conjunctions (ie. AND operators). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_id` - id of the scorecard to list tags for * `revision_id` - id of the scorecard revision to list tags for` * `qa_question_id - id of the question to list tags for`
      */
     filter?: string;
     /**

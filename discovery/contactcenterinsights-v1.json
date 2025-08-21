@@ -4639,7 +4639,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A filter to reduce results to a specific subset. Supports disjunctions (OR) and conjunctions (AND). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_revision_id` - id of the scorecard revision to list tags for * `qa_question_id - id of the question to list tags for`",
+                      "description": "Optional. A filter to reduce results to a specific subset. Supports conjunctions (ie. AND operators). Supported fields include the following: * `project_id` - id of the project to list tags for * `qa_scorecard_id` - id of the scorecard to list tags for * `revision_id` - id of the scorecard revision to list tags for` * `qa_question_id - id of the question to list tags for`",
                       "location": "query",
                       "type": "string"
                     },
@@ -5392,7 +5392,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250818",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7580,6 +7580,9 @@
             "EXPORT_V5",
             "EXPORT_V6",
             "EXPORT_V7",
+            "EXPORT_V8",
+            "EXPORT_V9",
+            "EXPORT_V10",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -7591,6 +7594,9 @@
             "Export schema version 5.",
             "Export schema version 6.",
             "Export schema version 7.",
+            "Export schema version 8.",
+            "Export schema version 9.",
+            "Export schema version 10.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -9035,6 +9041,11 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        },
+        "skipValue": {
+          "description": "Output only. A value of \"Skip\". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "strValue": {
           "description": "String value.",
@@ -11996,6 +12007,9 @@
             "EXPORT_V5",
             "EXPORT_V6",
             "EXPORT_V7",
+            "EXPORT_V8",
+            "EXPORT_V9",
+            "EXPORT_V10",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -12007,6 +12021,9 @@
             "Export schema version 5.",
             "Export schema version 6.",
             "Export schema version 7.",
+            "Export schema version 8.",
+            "Export schema version 9.",
+            "Export schema version 10.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -12943,6 +12960,11 @@
           "format": "double",
           "readOnly": true,
           "type": "number"
+        },
+        "skipValue": {
+          "description": "Output only. A value of \"Skip\". If provided, this field may only be set to `true`. If a question receives this answer, it will be excluded from any score calculations. This would mean that the question was not evaluated.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "strValue": {
           "description": "String value.",
