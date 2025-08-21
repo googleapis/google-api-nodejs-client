@@ -737,7 +737,7 @@
                   "type": "integer"
                 },
                 "endTime": {
-                  "description": "An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but startTime is specified, all sessions from startTime to the end of time will be returned.",
+                  "description": "An RFC3339 timestamp. Only sessions starting before endTime and ending after startTime up to (endTime + 1 day) will be included in the response. If this time is omitted but startTime is specified, all sessions ending after startTime to the end of time will be returned.",
                   "location": "query",
                   "type": "string"
                 },
@@ -752,7 +752,7 @@
                   "type": "string"
                 },
                 "startTime": {
-                  "description": "An RFC3339 timestamp. Only sessions ending between the start and end times will be included in the response. If this time is omitted but endTime is specified, all sessions from the start of time up to endTime will be returned.",
+                  "description": "An RFC3339 timestamp. Only sessions starting before endTime and ending after startTime up to (endTime + 1 day) will be included in the response. If this time is omitted but endTime is specified, all sessions starting before endTime and ending after the start of time up to (endTime + 1 day) will be returned.",
                   "location": "query",
                   "type": "string"
                 },
@@ -832,7 +832,7 @@
       }
     }
   },
-  "revision": "20231107",
+  "revision": "20250819",
   "rootUrl": "https://fitness.googleapis.com/",
   "schemas": {
     "AggregateBucket": {
@@ -1536,7 +1536,7 @@
           "type": "string"
         },
         "session": {
-          "description": "Sessions with an end time that is between startTime and endTime of the request.",
+          "description": "Sessions starting before endTime of the request and ending after startTime of the request up to (endTime of the request + 1 day).",
           "items": {
             "$ref": "Session"
           },
