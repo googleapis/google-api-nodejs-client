@@ -693,6 +693,74 @@
                       }
                     }
                   }
+                },
+                "tools": {
+                  "methods": {
+                    "execute": {
+                      "description": "Executes a specific tool.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/tools/{toolsId}:execute",
+                      "httpMethod": "POST",
+                      "id": "connectors.projects.locations.connections.tools.execute",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Resource name of the Tool. Format: projects/{project}/locations/{location}/connections/{connection}/tools/{tool}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+/tools/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+name}:execute",
+                      "request": {
+                        "$ref": "ExecuteToolRequest"
+                      },
+                      "response": {
+                        "$ref": "ExecuteToolResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all available tools.",
+                      "flatPath": "v2/projects/{projectsId}/locations/{locationsId}/connections/{connectionsId}/tools",
+                      "httpMethod": "GET",
+                      "id": "connectors.projects.locations.connections.tools.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Page size.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. Resource name of the Connection. Format: projects/{project}/locations/{location}/connections/{connection}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/connections/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v2/{+parent}/tools",
+                      "response": {
+                        "$ref": "ListToolsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             }
@@ -701,7 +769,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250813",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -1102,6 +1170,36 @@
             "type": "object"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteToolRequest": {
+      "description": "Request message for ConnectorAgentService.ExecuteTool",
+      "id": "ExecuteToolRequest",
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Input parameters for the tool.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "ExecuteToolResponse": {
+      "description": "Response message for ConnectorAgentService.ExecuteTool",
+      "id": "ExecuteToolResponse",
+      "properties": {
+        "result": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Output from the tool execution.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -1906,6 +2004,24 @@
       },
       "type": "object"
     },
+    "ListToolsResponse": {
+      "description": "Response message for ConnectorAgentService.ListTools",
+      "id": "ListToolsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Next page token.",
+          "type": "string"
+        },
+        "tools": {
+          "description": "List of available tools.",
+          "items": {
+            "$ref": "Tool"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "MaintenancePolicy": {
       "description": "Defines policies to service maintenance events.",
       "id": "MaintenancePolicy",
@@ -2586,6 +2702,29 @@
           "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Tool": {
+      "description": "Message representing a single tool.",
+      "id": "Tool",
+      "properties": {
+        "description": {
+          "description": "Description of the tool.",
+          "type": "string"
+        },
+        "inputSchema": {
+          "$ref": "JsonSchema",
+          "description": "JSON schema for the input parameters of the tool."
+        },
+        "name": {
+          "description": "Name of the tool.",
+          "type": "string"
+        },
+        "outputSchema": {
+          "$ref": "JsonSchema",
+          "description": "JSON schema for the output of the tool."
         }
       },
       "type": "object"

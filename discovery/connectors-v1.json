@@ -194,7 +194,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2757,7 +2757,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20250813",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3788,19 +3788,9 @@
           "description": "Indicate whether connector is being migrated to TLS.",
           "type": "boolean"
         },
-        "networkEgressMode": {
-          "description": "Indicate whether connector is being migrated to use direct VPC egress.",
-          "enum": [
-            "NETWORK_EGRESS_MODE_UNSPECIFIED",
-            "SERVERLESS_VPC_ACCESS_CONNECTOR",
-            "DIRECT_VPC_EGRESS"
-          ],
-          "enumDescriptions": [
-            "Network egress mode is not specified.",
-            "Default model VPC Access Connector.",
-            "Direct VPC Egress."
-          ],
-          "type": "string"
+        "networkEgressModeOverride": {
+          "$ref": "NetworkEgressModeOverride",
+          "description": "Network egress mode override to migrate to direct VPC egress."
         },
         "provisionCloudSpanner": {
           "description": "Indicate whether cloud spanner is required for connector job.",
@@ -7223,6 +7213,35 @@
             "Egress mode unspecified.",
             "Network egress through auto assigned IPs.",
             "Network egress through static IPs."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkEgressModeOverride": {
+      "description": "NetworkEgressModeOverride provides the network egress mode override for a connector.",
+      "id": "NetworkEgressModeOverride",
+      "properties": {
+        "isEventingOverrideEnabled": {
+          "description": "boolean should be set to true to make sure only eventing enabled connections are migrated to direct vpc egress.",
+          "type": "boolean"
+        },
+        "isJobsOverrideEnabled": {
+          "description": "boolean should be set to true to make sure only async operations enabled connections are migrated to direct vpc egress.",
+          "type": "boolean"
+        },
+        "networkEgressMode": {
+          "description": "Determines the VPC Egress mode for the connector.",
+          "enum": [
+            "NETWORK_EGRESS_MODE_UNSPECIFIED",
+            "SERVERLESS_VPC_ACCESS_CONNECTOR",
+            "DIRECT_VPC_EGRESS"
+          ],
+          "enumDescriptions": [
+            "Network Egress mode is not specified.",
+            "Default model VPC Access Connector.",
+            "Direct VPC Egress."
           ],
           "type": "string"
         }
