@@ -503,7 +503,7 @@ export namespace networkmanagement_v1 {
      */
     cloudSqlInstance?: string | null;
     /**
-     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
+     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: `projects/{project\}/global/forwardingRules/{id\}` or `projects/{project\}/regions/{region\}/forwardingRules/{id\}`
      */
     forwardingRule?: string | null;
     /**
@@ -2485,7 +2485,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.organizations.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2614,7 +2614,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3447,7 +3447,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3576,7 +3576,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6097,7 +6097,7 @@ export namespace networkmanagement_v1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.projects.locations.networkMonitoringProviders.get({
-     *       // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *       // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
      *       name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
      *     });
      *   console.log(res.data);
@@ -6246,7 +6246,7 @@ export namespace networkmanagement_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: projects/{project\}/locations/{location\}
+     *       // Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -6392,7 +6392,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Get
     extends StandardParameters {
     /**
-     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
      */
     name?: string;
   }
@@ -6407,7 +6407,7 @@ export namespace networkmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: projects/{project\}/locations/{location\}
+     * Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
   }
