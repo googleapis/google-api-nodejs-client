@@ -573,6 +573,14 @@ export namespace storage_v1 {
      */
     copySourceAcl?: boolean | null;
     /**
+     * Restores only the objects that were created after this time.
+     */
+    createdAfterTime?: string | null;
+    /**
+     * Restores only the objects that were created before this time.
+     */
+    createdBeforeTime?: string | null;
+    /**
      * Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all objects will be restored within the specified time range.
      */
     matchGlobs?: string[] | null;
@@ -11443,6 +11451,8 @@ export namespace storage_v1 {
      *       // {
      *       //   "allowOverwrite": false,
      *       //   "copySourceAcl": false,
+     *       //   "createdAfterTime": "my_createdAfterTime",
+     *       //   "createdBeforeTime": "my_createdBeforeTime",
      *       //   "matchGlobs": [],
      *       //   "softDeletedAfterTime": "my_softDeletedAfterTime",
      *       //   "softDeletedBeforeTime": "my_softDeletedBeforeTime"

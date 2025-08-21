@@ -565,9 +565,17 @@ export namespace netapp_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Type of the hybrid replication.
+     */
+    hybridReplicationType?: string | null;
+    /**
      * Optional. Labels to be added to the replication as the key value pairs.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Optional. Constituent volume count for large volume.
+     */
+    largeVolumeConstituentCount?: number | null;
     /**
      * Required. Name of the user's local source cluster to be peered with the destination cluster.
      */
@@ -588,6 +596,10 @@ export namespace netapp_v1 {
      * Required. Desired name for the replication of this volume.
      */
     replication?: string | null;
+    /**
+     * Optional. Replication Schedule for the replication created.
+     */
+    replicationSchedule?: string | null;
   }
   /**
    * KmsConfig is the customer managed encryption key(CMEK) configuration.
@@ -1050,6 +1062,10 @@ export namespace netapp_v1 {
      */
     hybridReplicationType?: string | null;
     /**
+     * Output only. Copy pastable snapmirror commands to be executed on onprem cluster by the customer.
+     */
+    hybridReplicationUserCommands?: Schema$UserCommands;
+    /**
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
@@ -1433,6 +1449,15 @@ export namespace netapp_v1 {
     updateTime?: string | null;
   }
   /**
+   * UserCommands contains the commands to be executed by the customer.
+   */
+  export interface Schema$UserCommands {
+    /**
+     * Output only. List of commands to be executed by the customer.
+     */
+    commands?: string[] | null;
+  }
+  /**
    * ValidateDirectoryServiceRequest validates the directory service policy attached to the storage pool.
    */
   export interface Schema$ValidateDirectoryServiceRequest {
@@ -1479,7 +1504,7 @@ export namespace netapp_v1 {
      */
     capacityGib?: string | null;
     /**
-     * Output only. Size of the volume cold tier data in GiB.
+     * Output only. Size of the volume cold tier data rounded down to the nearest GiB.
      */
     coldTierSizeGib?: string | null;
     /**
@@ -1854,7 +1879,7 @@ export namespace netapp_v1 {
      *
      *   // Do the magic
      *   const res = await netapp.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1982,7 +2007,7 @@ export namespace netapp_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -10284,6 +10309,7 @@ export namespace netapp_v1 {
      *       //   "healthy": false,
      *       //   "hybridPeeringDetails": {},
      *       //   "hybridReplicationType": "my_hybridReplicationType",
+     *       //   "hybridReplicationUserCommands": {},
      *       //   "labels": {},
      *       //   "mirrorState": "my_mirrorState",
      *       //   "name": "my_name",
@@ -10743,6 +10769,7 @@ export namespace netapp_v1 {
      *   //   "healthy": false,
      *   //   "hybridPeeringDetails": {},
      *   //   "hybridReplicationType": "my_hybridReplicationType",
+     *   //   "hybridReplicationUserCommands": {},
      *   //   "labels": {},
      *   //   "mirrorState": "my_mirrorState",
      *   //   "name": "my_name",
@@ -11046,6 +11073,7 @@ export namespace netapp_v1 {
      *       //   "healthy": false,
      *       //   "hybridPeeringDetails": {},
      *       //   "hybridReplicationType": "my_hybridReplicationType",
+     *       //   "hybridReplicationUserCommands": {},
      *       //   "labels": {},
      *       //   "mirrorState": "my_mirrorState",
      *       //   "name": "my_name",

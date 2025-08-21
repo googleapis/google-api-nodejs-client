@@ -5272,6 +5272,11 @@
                                   "location": "query",
                                   "type": "string"
                                 },
+                                "orderBy": {
+                                  "description": "Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`",
+                                  "location": "query",
+                                  "type": "string"
+                                },
                                 "pageSize": {
                                   "description": "Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.",
                                   "format": "int32",
@@ -9452,7 +9457,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250816",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -17516,6 +17521,10 @@
           "readOnly": true,
           "type": "array"
         },
+        "hybridIngestionDisabled": {
+          "description": "Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.",
+          "type": "boolean"
+        },
         "identityRefreshInterval": {
           "deprecated": true,
           "description": "The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.",
@@ -23016,7 +23025,7 @@
           "type": "string"
         },
         "dataStore": {
-          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. The path must include the project number, project id is not supported for this field.",
           "type": "string"
         },
         "filter": {
@@ -23765,6 +23774,80 @@
           "description": "Output only. Google provided available scores.",
           "readOnly": true,
           "type": "object"
+        },
+        "rankSignals": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals",
+          "description": "Optional. A set of ranking signals associated with the result."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals": {
+      "description": "A set of ranking signals.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals",
+      "properties": {
+        "boostingFactor": {
+          "description": "Optional. Combined custom boosts for a doc.",
+          "format": "float",
+          "type": "number"
+        },
+        "customSignals": {
+          "description": "Optional. A list of custom clearbox signals.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal"
+          },
+          "type": "array"
+        },
+        "defaultRank": {
+          "description": "Optional. The default rank of the result.",
+          "format": "float",
+          "type": "number"
+        },
+        "documentAge": {
+          "description": "Optional. Age of the document in hours.",
+          "format": "float",
+          "type": "number"
+        },
+        "keywordSimilarityScore": {
+          "description": "Optional. Keyword matching adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "pctrRank": {
+          "description": "Optional. Predicted conversion rate adjustment as a rank.",
+          "format": "float",
+          "type": "number"
+        },
+        "relevanceScore": {
+          "description": "Optional. Semantic relevance adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "semanticSimilarityScore": {
+          "description": "Optional. Semantic similarity adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "topicalityRank": {
+          "description": "Optional. Topicality adjustment as a rank.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal": {
+      "description": "Custom clearbox signal represented by name and value pair.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the signal.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -28896,7 +28979,7 @@
           "type": "string"
         },
         "dataStore": {
-          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. The path must include the project number, project id is not supported for this field.",
           "type": "string"
         },
         "filter": {

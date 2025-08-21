@@ -655,7 +655,7 @@ export namespace networksecurity_v1 {
     title?: string | null;
   }
   /**
-   * Message describing Endpoint object
+   * Message describing Endpoint object.
    */
   export interface Schema$FirewallEndpoint {
     /**
@@ -671,7 +671,7 @@ export namespace networksecurity_v1 {
      */
     billingProjectId?: string | null;
     /**
-     * Output only. Create time stamp
+     * Output only. Create time stamp.
      */
     createTime?: string | null;
     /**
@@ -683,7 +683,7 @@ export namespace networksecurity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. Name of resource.
      */
     name?: string | null;
     /**
@@ -4493,7 +4493,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.patch({
-     *       // Immutable. Identifier. name of resource
+     *       // Immutable. Identifier. Name of resource.
      *       name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -4690,7 +4690,7 @@ export namespace networksecurity_v1 {
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch
     extends StandardParameters {
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. Name of resource.
      */
     name?: string;
     /**

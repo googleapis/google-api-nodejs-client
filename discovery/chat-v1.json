@@ -1075,7 +1075,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1116,7 +1116,7 @@
                   "type": "string"
                 },
                 "updateMask": {
-                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).)",
+                  "description": "Required. The field paths to update. Separate multiple values with commas or use `*` to update all field paths. Currently supported field paths: - `text` - `attachment` - `cards` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `cards_v2` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `accessory_widgets` (Requires [app authentication](/chat/api/guides/auth/service-accounts).) - `quoted_message_metadata` (Only allows removal of the quoted message.)",
                   "format": "google-fieldmask",
                   "location": "query",
                   "type": "string"
@@ -1528,7 +1528,7 @@
       }
     }
   },
-  "revision": "20250731",
+  "revision": "20250814",
   "rootUrl": "https://chat.googleapis.com/",
   "schemas": {
     "AccessSettings": {
@@ -2641,6 +2641,13 @@
           ],
           "type": "string"
         },
+        "expressionData": {
+          "description": "The expression data for the card. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "items": {
+            "$ref": "GoogleAppsCardV1ExpressionData"
+          },
+          "type": "array"
+        },
         "fixedFooter": {
           "$ref": "GoogleAppsCardV1CardFixedFooter",
           "description": "The fixed footer shown at the bottom of this card. Setting `fixedFooter` without specifying a `primaryButton` or a `secondaryButton` causes an error. For Chat apps, you can use fixed footers in [dialogs](https://developers.google.com/workspace/chat/dialogs), but not [card messages](https://developers.google.com/workspace/chat/create-messages#create). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):"
@@ -2946,10 +2953,55 @@
       },
       "type": "object"
     },
+    "GoogleAppsCardV1CommonWidgetAction": {
+      "description": "Represents an action that is not specific to a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1CommonWidgetAction",
+      "properties": {
+        "updateVisibilityAction": {
+          "$ref": "GoogleAppsCardV1UpdateVisibilityAction",
+          "description": "The action to update the visibility of a widget."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1Condition": {
+      "description": "Represents a condition that can be used to trigger an action. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1Condition",
+      "properties": {
+        "actionRuleId": {
+          "description": "The unique identifier of the ActionRule.",
+          "type": "string"
+        },
+        "expressionDataCondition": {
+          "$ref": "GoogleAppsCardV1ExpressionDataCondition",
+          "description": "The condition that is determined by the expression data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1DataSourceConfig": {
+      "description": "A configuration object that helps configure the data sources for a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1DataSourceConfig",
+      "properties": {
+        "platformDataSource": {
+          "$ref": "GoogleAppsCardV1PlatformDataSource",
+          "description": "The data is from a Google Workspace application."
+        },
+        "remoteDataSource": {
+          "$ref": "GoogleAppsCardV1Action",
+          "description": "The data is from a remote data provider."
+        }
+      },
+      "type": "object"
+    },
     "GoogleAppsCardV1DateTimePicker": {
       "description": "Lets users input a date, a time, or both a date and a time. Supports form submission validation. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is selected. For an example in Google Chat apps, see [Let a user pick a date and time](https://developers.google.com/workspace/chat/design-interactive-card-dialog#let_a_user_pick_a_date_and_time). Users can input text or use the picker to select dates and times. If users input an invalid date or time, the picker shows an error that prompts users to input the information correctly. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1DateTimePicker",
       "properties": {
+        "hostAppDataSource": {
+          "$ref": "HostAppDataSourceMarkup",
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflows, but not Google Chat API or Google Workspace Add-ons."
+        },
         "label": {
           "description": "The text that prompts users to input a date, a time, or a date and time. For example, if users are scheduling an appointment, use a label such as `Appointment date` or `Appointment date and time`.",
           "type": "string"
@@ -3041,6 +3093,78 @@
       "description": "Displays a divider between widgets as a horizontal line. For an example in Google Chat apps, see [Add a horizontal divider between widgets](https://developers.google.com/workspace/chat/format-structure-card-dialog#add_a_horizontal_divider_between_widgets). [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a divider: ``` \"divider\": {} ```",
       "id": "GoogleAppsCardV1Divider",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleAppsCardV1EventAction": {
+      "description": "Represents an actionthat can be performed on an ui element. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1EventAction",
+      "properties": {
+        "actionRuleId": {
+          "description": "The unique identifier of the ActionRule.",
+          "type": "string"
+        },
+        "commonWidgetAction": {
+          "$ref": "GoogleAppsCardV1CommonWidgetAction",
+          "description": "Common widget action."
+        },
+        "postEventTriggers": {
+          "description": "The list of triggers that will be triggered after the EventAction is executed.",
+          "items": {
+            "$ref": "GoogleAppsCardV1Trigger"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1ExpressionData": {
+      "description": "Represents the data that is used to evaluate an expression. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1ExpressionData",
+      "properties": {
+        "conditions": {
+          "description": "The list of conditions that are determined by the expression evaluation result.",
+          "items": {
+            "$ref": "GoogleAppsCardV1Condition"
+          },
+          "type": "array"
+        },
+        "eventActions": {
+          "description": "The list of actions that the ExpressionData can be used.",
+          "items": {
+            "$ref": "GoogleAppsCardV1EventAction"
+          },
+          "type": "array"
+        },
+        "expression": {
+          "description": "The uncompiled expression.",
+          "type": "string"
+        },
+        "id": {
+          "description": "The unique identifier of the ExpressionData.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1ExpressionDataCondition": {
+      "description": "Represents a condition that is evaluated using CEL. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1ExpressionDataCondition",
+      "properties": {
+        "conditionType": {
+          "description": "The type of the condition.",
+          "enum": [
+            "CONDITION_TYPE_UNSPECIFIED",
+            "EXPRESSION_EVALUATION_SUCCESS",
+            "EXPRESSION_EVALUATION_FAILURE"
+          ],
+          "enumDescriptions": [
+            "Unspecified condition type.",
+            "The expression evaluation was successful.",
+            "The expression evaluation was unsuccessful."
+          ],
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleAppsCardV1Grid": {
@@ -3400,6 +3524,10 @@
           "description": "Text that appears at the top of a section. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting).",
           "type": "string"
         },
+        "id": {
+          "description": "A unique ID assigned to the section that's used to identify the section to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "type": "string"
+        },
         "uncollapsibleWidgetsCount": {
           "description": "The number of uncollapsible widgets which remain visible even when a section is collapsed. For example, when a section contains five widgets and the `uncollapsibleWidgetsCount` is set to `2`, the first two widgets are always shown and the last three are collapsed by default. The `uncollapsibleWidgetsCount` is taken into account only when `collapsible` is `true`.",
           "format": "int32",
@@ -3419,6 +3547,13 @@
       "description": "A widget that creates one or more UI items that users can select. Supports form submission validation for `dropdown` and `multiselect` menus only. When `Action.all_widgets_are_required` is set to `true` or this widget is specified in `Action.required_widgets`, the submission action is blocked unless a value is selected. For example, a dropdown menu or checkboxes. You can use this widget to collect data that can be predicted or enumerated. For an example in Google Chat apps, see [Add selectable UI elements](/workspace/chat/design-interactive-card-dialog#add_selectable_ui_elements). Chat apps can process the value of items that users select or input. For details about working with form inputs, see [Receive form data](https://developers.google.com/workspace/chat/read-form-data). To collect undefined or abstract data from users, use the TextInput widget. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):",
       "id": "GoogleAppsCardV1SelectionInput",
       "properties": {
+        "dataSourceConfigs": {
+          "description": "Optional. The data source configs for the selection control. This field provides more fine-grained control over the data source. If specified, the `multi_select_max_selected_items` field, `multi_select_min_query_length` field, `external_data_source` field and `platform_data_source` field are ignored. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "items": {
+            "$ref": "GoogleAppsCardV1DataSourceConfig"
+          },
+          "type": "array"
+        },
         "externalDataSource": {
           "$ref": "GoogleAppsCardV1Action",
           "description": "An external data source, such as a relational database."
@@ -3581,6 +3716,10 @@
           "description": "Text that appears below the text input field meant to assist users by prompting them to enter a certain value. This text is always visible. Required if `label` is unspecified. Otherwise, optional.",
           "type": "string"
         },
+        "hostAppDataSource": {
+          "$ref": "HostAppDataSourceMarkup",
+          "description": "A data source that's unique to a Google Workspace host application, such as Gmail emails, Google Calendar events, or Google Chat messages. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons."
+        },
         "initialSuggestions": {
           "$ref": "GoogleAppsCardV1Suggestions",
           "description": "Suggested values that users can enter. These values appear when users click inside the text input field. As users type, the suggested values dynamically filter to match what the users have typed. For example, a text input field for programming language might suggest Java, JavaScript, Python, and C++. When users start typing `Jav`, the list of suggestions filters to show just `Java` and `JavaScript`. Suggested values help guide users to enter values that your app can make sense of. When referring to JavaScript, some users might enter `javascript` and others `java script`. Suggesting `JavaScript` can standardize how users interact with your app. When specified, `TextInput.type` is always `SINGLE_LINE`, even if it's set to `MULTIPLE_LINE`. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend):"
@@ -3635,6 +3774,38 @@
         },
         "text": {
           "description": "The text that's shown in the widget.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1Trigger": {
+      "description": "Represents a trigger. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1Trigger",
+      "properties": {
+        "actionRuleId": {
+          "description": "The unique identifier of the ActionRule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleAppsCardV1UpdateVisibilityAction": {
+      "description": "Represents an action that updates the visibility of a widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+      "id": "GoogleAppsCardV1UpdateVisibilityAction",
+      "properties": {
+        "visibility": {
+          "description": "The new visibility.",
+          "enum": [
+            "VISIBILITY_UNSPECIFIED",
+            "VISIBLE",
+            "HIDDEN"
+          ],
+          "enumDescriptions": [
+            "Unspecified visibility. Do not use.",
+            "The UI element is visible.",
+            "The UI element is hidden."
+          ],
           "type": "string"
         }
       },
@@ -3704,6 +3875,13 @@
           "$ref": "GoogleAppsCardV1Divider",
           "description": "Displays a horizontal line divider between widgets. For example, the following JSON creates a divider: ``` \"divider\": { } ```"
         },
+        "eventActions": {
+          "description": "Specifies the event actions that can be performed on the widget. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "items": {
+            "$ref": "GoogleAppsCardV1EventAction"
+          },
+          "type": "array"
+        },
         "grid": {
           "$ref": "GoogleAppsCardV1Grid",
           "description": "Displays a grid with a collection of items. A grid supports any number of columns and items. The number of rows is determined by the upper bounds of the number items divided by the number of columns. A grid with 10 items and 2 columns has 5 rows. A grid with 11 items and 2 columns has 6 rows. [Google Workspace add-ons and Chat apps](https://developers.google.com/workspace/extend): For example, the following JSON creates a 2 column grid with a single item: ``` \"grid\": { \"title\": \"A fine collection of items\", \"columnCount\": 2, \"borderStyle\": { \"type\": \"STROKE\", \"cornerRadius\": 4 }, \"items\": [ { \"image\": { \"imageUri\": \"https://www.example.com/image.png\", \"cropStyle\": { \"type\": \"SQUARE\" }, \"borderStyle\": { \"type\": \"STROKE\" } }, \"title\": \"An item\", \"textAlignment\": \"CENTER\" } ], \"onClick\": { \"openLink\": { \"url\": \"https://www.example.com\" } } } ```"
@@ -3724,6 +3902,10 @@
           ],
           "type": "string"
         },
+        "id": {
+          "description": "A unique ID assigned to the widget that's used to identify the widget to be mutated. The ID has a character limit of 64 characters and should be in the format of `[a-zA-Z0-9-]+` and. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "type": "string"
+        },
         "image": {
           "$ref": "GoogleAppsCardV1Image",
           "description": "Displays an image. For example, the following JSON creates an image with alternative text: ``` \"image\": { \"imageUrl\": \"https://developers.google.com/workspace/chat/images/quickstart-app-avatar.png\", \"altText\": \"Chat app avatar\" } ```"
@@ -3739,6 +3921,20 @@
         "textParagraph": {
           "$ref": "GoogleAppsCardV1TextParagraph",
           "description": "Displays a text paragraph. Supports simple HTML formatted text. For more information about formatting text, see [Formatting text in Google Chat apps](https://developers.google.com/workspace/chat/format-messages#card-formatting) and [Formatting text in Google Workspace add-ons](https://developers.google.com/apps-script/add-ons/concepts/widgets#text_formatting). For example, the following JSON creates a bolded text: ``` \"textParagraph\": { \"text\": \" *bold text*\" } ```"
+        },
+        "visibility": {
+          "description": "Specifies whether the widget is visible or hidden. The default value is `VISIBLE`. Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons.",
+          "enum": [
+            "VISIBILITY_UNSPECIFIED",
+            "VISIBLE",
+            "HIDDEN"
+          ],
+          "enumDescriptions": [
+            "Unspecified visibility. Do not use.",
+            "The UI element is visible.",
+            "The UI element is hidden."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -3794,12 +3990,16 @@
       "type": "object"
     },
     "HostAppDataSourceMarkup": {
-      "description": "For a `SelectionInput` widget that uses a multiselect menu, a data source from a Google Workspace application. The data source populates selection items for the multiselect menu. [Google Chat apps](https://developers.google.com/workspace/chat):",
+      "description": "A data source from a Google Workspace application. The data source populates available items for a widget.",
       "id": "HostAppDataSourceMarkup",
       "properties": {
         "chatDataSource": {
           "$ref": "ChatClientDataSourceMarkup",
           "description": "A data source from Google Chat."
+        },
+        "workflowDataSource": {
+          "$ref": "WorkflowDataSourceMarkup",
+          "description": "A data source from Google Workflow."
         }
       },
       "type": "object"
@@ -4484,7 +4684,7 @@
         },
         "quotedMessageMetadata": {
           "$ref": "QuotedMessageMetadata",
-          "description": "Optional. Information about a message that's quoted by a Google Chat user in a space. Google Chat users can quote a message to reply to it."
+          "description": "Optional. Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message)."
         },
         "sender": {
           "$ref": "User",
@@ -4674,11 +4874,11 @@
       "type": "object"
     },
     "QuotedMessageMetadata": {
-      "description": "Information about a quoted message.",
+      "description": "Information about a message that another message quotes. When you create a message, you can quote messages within the same thread, or quote a root message to create a new root message. However, you can't quote a message reply from a different thread. When you update a message, you can't add or replace the `quotedMessageMetadata` field, but you can remove it. For example usage, see [Quote another message](https://developers.google.com/workspace/chat/create-messages#quote-a-message).",
       "id": "QuotedMessageMetadata",
       "properties": {
         "lastUpdateTime": {
-          "description": "Required. The timestamp when the quoted message was created or when the quoted message was last updated.",
+          "description": "Required. The timestamp when the quoted message was created or when the quoted message was last updated. If the message was edited, use this field, `last_update_time`. If the message was never edited, use `create_time`. If `last_update_time` doesn't match the latest version of the quoted message, the request fails.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -5544,6 +5744,33 @@
         "textParagraph": {
           "$ref": "TextParagraph",
           "description": "Display a text paragraph in this widget."
+        }
+      },
+      "type": "object"
+    },
+    "WorkflowDataSourceMarkup": {
+      "description": "* Only supported by Google Workspace Workflow, but not Google Chat apps or Google Workspace add-ons. In a `TextInput` or `SelectionInput` widget with MULTI_SELECT type or a `DateTimePicker`, provide data source from Google.",
+      "id": "WorkflowDataSourceMarkup",
+      "properties": {
+        "includeVariables": {
+          "description": "Whether to include variables from the previous step in the data source.",
+          "type": "boolean"
+        },
+        "type": {
+          "description": "The type of data source.",
+          "enum": [
+            "UNKNOWN",
+            "USER",
+            "SPACE",
+            "USER_WITH_FREE_FORM"
+          ],
+          "enumDescriptions": [
+            "Default value. Don't use.",
+            "Google Workspace users. The user can only view and select users from their Google Workspace organization.",
+            "Google Chat spaces that the user is a member of.",
+            "Users can choose to view and select existing members from their Google Workspace organization or manually enter an email address or a valid domain."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

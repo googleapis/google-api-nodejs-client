@@ -423,6 +423,64 @@ export namespace netapp_v1beta1 {
     state?: string | null;
   }
   /**
+   * Configuration of the cache volume.
+   */
+  export interface Schema$CacheConfig {
+    /**
+     * Optional. Flag indicating whether a CIFS change notification is enabled for the FlexCache volume.
+     */
+    cifsChangeNotifyEnabled?: boolean | null;
+  }
+  /**
+   * Cache Parameters for the volume.
+   */
+  export interface Schema$CacheParameters {
+    /**
+     * Optional. Configuration of the cache volume.
+     */
+    cacheConfig?: Schema$CacheConfig;
+    /**
+     * Output only. State of the cache volume indicating the peering status.
+     */
+    cacheState?: string | null;
+    /**
+     * Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.
+     */
+    command?: string | null;
+    /**
+     * Optional. Field indicating whether cache volume as global file lock enabled.
+     */
+    enableGlobalFileLock?: boolean | null;
+    /**
+     * Output only. Temporary passphrase generated to accept cluster peering command.
+     */
+    passphrase?: string | null;
+    /**
+     * Required. Name of the origin volume's ONTAP cluster.
+     */
+    peerClusterName?: string | null;
+    /**
+     * Optional. Expiration time for the peering command to be executed on user's ONTAP.
+     */
+    peeringCommandExpiryTime?: string | null;
+    /**
+     * Required. List of IC LIF addresses of the origin volume's ONTAP cluster.
+     */
+    peerIpAddresses?: string[] | null;
+    /**
+     * Required. Name of the origin volume's SVM.
+     */
+    peerSvmName?: string | null;
+    /**
+     * Required. Name of the origin volume for the cache volume.
+     */
+    peerVolumeName?: string | null;
+    /**
+     * Output only. Detailed description of the current cache state.
+     */
+    stateDetails?: string | null;
+  }
+  /**
    * The request message for Operations.CancelOperation.
    */
   export interface Schema$CancelOperationRequest {}
@@ -476,6 +534,27 @@ export namespace netapp_v1beta1 {
    * EstablishPeeringRequest establishes cluster and svm peerings between the source and the destination replications.
    */
   export interface Schema$EstablishPeeringRequest {
+    /**
+     * Required. Name of the user's local source cluster to be peered with the destination cluster.
+     */
+    peerClusterName?: string | null;
+    /**
+     * Optional. List of IPv4 ip addresses to be used for peering.
+     */
+    peerIpAddresses?: string[] | null;
+    /**
+     * Required. Name of the user's local source vserver svm to be peered with the destination vserver svm.
+     */
+    peerSvmName?: string | null;
+    /**
+     * Required. Name of the user's local source volume to be peered with the destination volume.
+     */
+    peerVolumeName?: string | null;
+  }
+  /**
+   * EstablishVolumePeeringRequest establishes cluster and svm peerings between the source and destination clusters.
+   */
+  export interface Schema$EstablishVolumePeeringRequest {
     /**
      * Required. Name of the user's local source cluster to be peered with the destination cluster.
      */
@@ -1517,11 +1596,15 @@ export namespace netapp_v1beta1 {
      */
     backupConfig?: Schema$BackupConfig;
     /**
+     * Optional. Cache parameters for the volume.
+     */
+    cacheParameters?: Schema$CacheParameters;
+    /**
      * Required. Capacity in GIB of the volume
      */
     capacityGib?: string | null;
     /**
-     * Output only. Size of the volume cold tier data in GiB.
+     * Output only. Size of the volume cold tier data rounded down to the nearest GiB.
      */
     coldTierSizeGib?: string | null;
     /**
@@ -1896,7 +1979,7 @@ export namespace netapp_v1beta1 {
      *
      *   // Do the magic
      *   const res = await netapp.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2024,7 +2107,7 @@ export namespace netapp_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -8429,6 +8512,7 @@ export namespace netapp_v1beta1 {
      *       // {
      *       //   "activeDirectory": "my_activeDirectory",
      *       //   "backupConfig": {},
+     *       //   "cacheParameters": {},
      *       //   "capacityGib": "my_capacityGib",
      *       //   "coldTierSizeGib": "my_coldTierSizeGib",
      *       //   "createTime": "my_createTime",
@@ -8717,6 +8801,159 @@ export namespace netapp_v1beta1 {
     }
 
     /**
+     * Establish volume peering. This is used to establish cluster and svm peerings between the GCNV and OnPrem clusters.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/netapp.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const netapp = google.netapp('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await netapp.projects.locations.volumes.establishPeering({
+     *     // Required. The volume resource name, in the format `projects/{project_id\}/locations/{location\}/volumes/{volume_id\}`
+     *     name: 'projects/my-project/locations/my-location/volumes/my-volume',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "peerClusterName": "my_peerClusterName",
+     *       //   "peerIpAddresses": [],
+     *       //   "peerSvmName": "my_peerSvmName",
+     *       //   "peerVolumeName": "my_peerVolumeName"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    establishPeering(
+      params: Params$Resource$Projects$Locations$Volumes$Establishpeering,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    establishPeering(
+      params?: Params$Resource$Projects$Locations$Volumes$Establishpeering,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    establishPeering(
+      params: Params$Resource$Projects$Locations$Volumes$Establishpeering,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    establishPeering(
+      params: Params$Resource$Projects$Locations$Volumes$Establishpeering,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    establishPeering(
+      params: Params$Resource$Projects$Locations$Volumes$Establishpeering,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    establishPeering(callback: BodyResponseCallback<Schema$Operation>): void;
+    establishPeering(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Volumes$Establishpeering
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Volumes$Establishpeering;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Volumes$Establishpeering;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://netapp.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:establishPeering').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Gets details of a single Volume.
      * @example
      * ```js
@@ -8756,6 +8993,7 @@ export namespace netapp_v1beta1 {
      *   // {
      *   //   "activeDirectory": "my_activeDirectory",
      *   //   "backupConfig": {},
+     *   //   "cacheParameters": {},
      *   //   "capacityGib": "my_capacityGib",
      *   //   "coldTierSizeGib": "my_coldTierSizeGib",
      *   //   "createTime": "my_createTime",
@@ -9077,6 +9315,7 @@ export namespace netapp_v1beta1 {
      *       // {
      *       //   "activeDirectory": "my_activeDirectory",
      *       //   "backupConfig": {},
+     *       //   "cacheParameters": {},
      *       //   "capacityGib": "my_capacityGib",
      *       //   "coldTierSizeGib": "my_coldTierSizeGib",
      *       //   "createTime": "my_createTime",
@@ -9548,6 +9787,18 @@ export namespace netapp_v1beta1 {
      * Required. Name of the volume
      */
     name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Volumes$Establishpeering
+    extends StandardParameters {
+    /**
+     * Required. The volume resource name, in the format `projects/{project_id\}/locations/{location\}/volumes/{volume_id\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$EstablishVolumePeeringRequest;
   }
   export interface Params$Resource$Projects$Locations$Volumes$Get
     extends StandardParameters {

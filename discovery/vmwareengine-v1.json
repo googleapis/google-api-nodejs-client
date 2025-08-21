@@ -1391,6 +1391,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "privateCloudDeletionNow": {
+                  "description": "Accelerates the deletion of a private cloud that is currently in soft deletion A `PrivateCloud` resource in soft deletion has `PrivateCloud.state` set to `SOFT_DELETED` and `PrivateCloud.expireTime` set to the time when deletion can no longer be reversed.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}:privateCloudDeletionNow",
+                  "httpMethod": "POST",
+                  "id": "vmwareengine.projects.locations.privateClouds.privateCloudDeletionNow",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the private cloud in softdeletion. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/privateClouds/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}:privateCloudDeletionNow",
+                  "request": {
+                    "$ref": "AcceleratePrivateCloudDeletionRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "resetNsxCredentials": {
                   "description": "Resets credentials of the NSX appliance.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/privateClouds/{privateCloudsId}:resetNsxCredentials",
@@ -3368,9 +3396,24 @@
       }
     }
   },
-  "revision": "20250603",
+  "revision": "20250811",
   "rootUrl": "https://vmwareengine.googleapis.com/",
   "schemas": {
+    "AcceleratePrivateCloudDeletionRequest": {
+      "description": "Request message for VmwareEngine.AcceleratePrivateCloudDeletion",
+      "id": "AcceleratePrivateCloudDeletionRequest",
+      "properties": {
+        "etag": {
+          "description": "Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Announcement": {
       "description": "Announcement for the resources of Vmware Engine.",
       "id": "Announcement",

@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250725",
+  "revision": "20250807",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5711,7 +5711,8 @@
       "id": "LustreCsiDriverConfig",
       "properties": {
         "enableLegacyLustrePort": {
-          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988.",
+          "deprecated": true,
+          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.",
           "type": "boolean"
         },
         "enabled": {
@@ -7717,6 +7718,22 @@
       },
       "type": "object"
     },
+    "RotationConfig": {
+      "description": "RotationConfig is config for secret manager auto rotation.",
+      "id": "RotationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the rotation is enabled.",
+          "type": "boolean"
+        },
+        "rotationInterval": {
+          "description": "The interval between two consecutive rotations. Default rotation interval is 2 minutes.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SandboxConfig": {
       "description": "SandboxConfig contains configurations of the sandbox to use for the node.",
       "id": "SandboxConfig",
@@ -7772,6 +7789,10 @@
         "enabled": {
           "description": "Enable/Disable Secret Manager Config.",
           "type": "boolean"
+        },
+        "rotationConfig": {
+          "$ref": "RotationConfig",
+          "description": "Rotation config for secret manager."
         }
       },
       "type": "object"

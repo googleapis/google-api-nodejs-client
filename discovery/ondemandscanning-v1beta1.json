@@ -339,7 +339,7 @@
       }
     }
   },
-  "revision": "20250519",
+  "revision": "20250815",
   "rootUrl": "https://ondemandscanning.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -684,6 +684,16 @@
       "id": "BuilderConfig",
       "properties": {
         "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CISAKnownExploitedVulnerabilities": {
+      "id": "CISAKnownExploitedVulnerabilities",
+      "properties": {
+        "knownRansomwareCampaignUse": {
+          "description": "Whether the vulnerability is known to have been leveraged as part of a ransomware campaign.",
           "type": "string"
         }
       },
@@ -1171,6 +1181,22 @@
         "sig": {
           "format": "byte",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ExploitPredictionScoringSystem": {
+      "id": "ExploitPredictionScoringSystem",
+      "properties": {
+        "percentile": {
+          "description": "The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score",
+          "format": "double",
+          "type": "number"
+        },
+        "score": {
+          "description": "The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days",
+          "format": "double",
+          "type": "number"
         }
       },
       "type": "object"
@@ -2430,6 +2456,20 @@
       },
       "type": "object"
     },
+    "Risk": {
+      "id": "Risk",
+      "properties": {
+        "cisaKev": {
+          "$ref": "CISAKnownExploitedVulnerabilities",
+          "description": "CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild."
+        },
+        "epss": {
+          "$ref": "ExploitPredictionScoringSystem",
+          "description": "The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild."
+        }
+      },
+      "type": "object"
+    },
     "RunDetails": {
       "id": "RunDetails",
       "properties": {
@@ -3133,6 +3173,10 @@
             "$ref": "RelatedUrl"
           },
           "type": "array"
+        },
+        "risk": {
+          "$ref": "Risk",
+          "description": "Risk information about the vulnerability, such as CISA, EPSS, etc."
         },
         "severity": {
           "description": "Output only. The note provider assigned severity of this vulnerability.",

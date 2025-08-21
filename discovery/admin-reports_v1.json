@@ -151,7 +151,8 @@
                 "data_studio",
                 "keep",
                 "vault",
-                "gemini_in_workspace_apps"
+                "gemini_in_workspace_apps",
+                "classroom"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -176,10 +177,11 @@
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
                 "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers.",
                 "The Vault activity reports return information about various types of Vault activity events.",
-                "The Gemini for Workspace activity reports return information about various types of Gemini activity events performed by users within a Workspace application."
+                "The Gemini for Workspace activity reports return information about various types of Gemini activity events performed by users within a Workspace application.",
+                "The Classroom activity reports return information about different types of [Classroom activity events](https://developers.google.com/workspace/admin/reports/v1/appendix/activity/classroom)."
               ],
               "location": "path",
-              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(classroom)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)|(vault)|(gemini_in_workspace_apps)",
               "required": true,
               "type": "string"
             },
@@ -292,7 +294,8 @@
                 "context_aware_access",
                 "chrome",
                 "data_studio",
-                "keep"
+                "keep",
+                "classroom"
               ],
               "enumDescriptions": [
                 "The Google Workspace Access Transparency activity reports return information about different types of Access Transparency activity events.",
@@ -315,10 +318,11 @@
                 "The Context-aware access activity reports return information about users' access denied events due to Context-aware access rules.",
                 "The Chrome activity reports return information about Chrome browser and Chrome OS events.",
                 "The Data Studio activity reports return information about various types of Data Studio activity events.",
-                "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers."
+                "The Keep application's activity reports return information about various Google Keep activity events. The Keep activity report is only available for Google Workspace Business and Enterprise customers.",
+                "The Classroom activity reports return information about different types of [Classroom activity events](https://developers.google.com/workspace/admin/reports/v1/appendix/activity/classroom)."
               ],
               "location": "path",
-              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
+              "pattern": "(access_transparency)|(admin)|(calendar)|(chat)|(chrome)|(classroom)|(context_aware_access)|(data_studio)|(drive)|(gcp)|(gplus)|(groups)|(groups_enterprise)|(jamboard)|(keep)|(login)|(meet)|(mobile)|(rules)|(saml)|(token)|(user_accounts)",
               "required": true,
               "type": "string"
             },
@@ -629,7 +633,7 @@
       }
     }
   },
-  "revision": "20250707",
+  "revision": "20250813",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Activities": {

@@ -1176,6 +1176,10 @@ export namespace firestore_v1 {
      * Output only. The serving state of the index.
      */
     state?: string | null;
+    /**
+     * Optional. Whether it is an unique index. Unique index ensures all values for the indexed field(s) are unique across documents.
+     */
+    unique?: boolean | null;
   }
   /**
    * The index configuration for this field.
@@ -5419,7 +5423,8 @@ export namespace firestore_v1 {
      *         //   "name": "my_name",
      *         //   "queryScope": "my_queryScope",
      *         //   "shardCount": 0,
-     *         //   "state": "my_state"
+     *         //   "state": "my_state",
+     *         //   "unique": false
      *         // }
      *       },
      *     });
@@ -5720,7 +5725,8 @@ export namespace firestore_v1 {
      *   //   "name": "my_name",
      *   //   "queryScope": "my_queryScope",
      *   //   "shardCount": 0,
-     *   //   "state": "my_state"
+     *   //   "state": "my_state",
+     *   //   "unique": false
      *   // }
      * }
      *

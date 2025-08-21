@@ -1756,7 +1756,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. The resource name of the session template.",
+                      "description": "Required. Identifier. The resource name of the session template.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/sessionTemplates/[^/]+$",
                       "required": true,
@@ -5012,7 +5012,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250813",
   "rootUrl": "https://dataproc.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -5216,6 +5216,10 @@
       "properties": {
         "requestId": {
           "description": "Optional. A unique ID used to identify the request. If the service receives two AnalyzeBatchRequest (http://cloud/dataproc/docs/reference/rpc/google.cloud.dataproc.v1#google.cloud.dataproc.v1.AnalyzeBatchRequest)s with the same request_id, the second request is ignored and the Operation that corresponds to the first request created and stored in the backend is returned.Recommendation: Set this value to a UUID (https://en.wikipedia.org/wiki/Universally_unique_identifier).The value must contain only letters (a-z, A-Z), numbers (0-9), underscores (_), and hyphens (-). The maximum length is 40 characters.",
+          "type": "string"
+        },
+        "requestorId": {
+          "description": "Optional. The requestor ID is used to identify if the request comes from a GCA investigation or the old Ask Gemini Experience. ",
           "type": "string"
         }
       },
@@ -5908,7 +5912,7 @@
           "type": "array"
         },
         "clusterTier": {
-          "description": "Optional. The tier of the cluster.",
+          "description": "Optional. The cluster tier.",
           "enum": [
             "CLUSTER_TIER_UNSPECIFIED",
             "CLUSTER_TIER_STANDARD",
@@ -5916,8 +5920,8 @@
           ],
           "enumDescriptions": [
             "Not set. Works the same as CLUSTER_TIER_STANDARD.",
-            "Standard dataproc cluster.",
-            "Premium dataproc cluster."
+            "Standard Dataproc cluster.",
+            "Premium Dataproc cluster."
           ],
           "type": "string"
         },
@@ -10399,7 +10403,7 @@
           "type": "object"
         },
         "name": {
-          "description": "Required. The resource name of the session template.",
+          "description": "Required. Identifier. The resource name of the session template.",
           "type": "string"
         },
         "runtimeConfig": {
@@ -10689,7 +10693,8 @@
               "RANGER",
               "SOLR",
               "ZEPPELIN",
-              "ZOOKEEPER"
+              "ZOOKEEPER",
+              "JUPYTER_KERNEL_GATEWAY"
             ],
             "enumDescriptions": [
               "Unspecified component. Specifying this will cause Cluster creation to fail.",
@@ -10709,7 +10714,8 @@
               "The Ranger service.",
               "The Solr service.",
               "The Zeppelin notebook.",
-              "The Zookeeper service."
+              "The Zookeeper service.",
+              "The Jupyter Kernel Gateway."
             ],
             "type": "string"
           },

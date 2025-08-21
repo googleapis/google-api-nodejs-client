@@ -198,7 +198,7 @@
       }
     }
   },
-  "revision": "20250602",
+  "revision": "20250818",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -248,8 +248,8 @@
           ],
           "enumDescriptions": [
             "Play does not have sufficient information to evaluate licensing details",
-            "The app and certificate match the versions distributed by Play.",
-            "The certificate or package name does not match Google Play records.",
+            "The user has a valid license to use the app.",
+            "The user does not have a valid license to use the app.",
             "Licensing details were not evaluated since a necessary requirement was missed. For example DeviceIntegrity did not meet the minimum bar or the application was not a known Play version."
           ],
           "type": "string"
@@ -497,6 +497,29 @@
       },
       "type": "object"
     },
+    "PcAccountDetails": {
+      "description": "Contains the account information such as the licensing status for the user in the scope.",
+      "id": "PcAccountDetails",
+      "properties": {
+        "appLicensingVerdict": {
+          "description": "Required. Details about the licensing status of the user for the app in the scope.",
+          "enum": [
+            "UNKNOWN",
+            "LICENSED",
+            "UNLICENSED",
+            "UNEVALUATED"
+          ],
+          "enumDescriptions": [
+            "Play does not have sufficient information to evaluate licensing details",
+            "The user has a valid license to use the app.",
+            "The user does not have a valid license to use the app.",
+            "Licensing details were not evaluated since a necessary requirement was missed."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PcDeviceIntegrity": {
       "description": "Contains the device attestation information.",
       "id": "PcDeviceIntegrity",
@@ -543,6 +566,10 @@
       "description": "Contains PC device attestation details.",
       "id": "PcTokenPayloadExternal",
       "properties": {
+        "accountDetails": {
+          "$ref": "PcAccountDetails",
+          "description": "Details about the account information such as the licensing status."
+        },
         "deviceIntegrity": {
           "$ref": "PcDeviceIntegrity",
           "description": "Required. Details about the device integrity."
