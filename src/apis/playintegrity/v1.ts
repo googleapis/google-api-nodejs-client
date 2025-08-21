@@ -275,6 +275,15 @@ export namespace playintegrity_v1 {
     playProtectVerdict?: string | null;
   }
   /**
+   * Contains the account information such as the licensing status for the user in the scope.
+   */
+  export interface Schema$PcAccountDetails {
+    /**
+     * Required. Details about the licensing status of the user for the app in the scope.
+     */
+    appLicensingVerdict?: string | null;
+  }
+  /**
    * Contains the device attestation information.
    */
   export interface Schema$PcDeviceIntegrity {
@@ -304,6 +313,10 @@ export namespace playintegrity_v1 {
    * Contains PC device attestation details.
    */
   export interface Schema$PcTokenPayloadExternal {
+    /**
+     * Details about the account information such as the licensing status.
+     */
+    accountDetails?: Schema$PcAccountDetails;
     /**
      * Required. Details about the device integrity.
      */
