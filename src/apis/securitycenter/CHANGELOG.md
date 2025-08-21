@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v1.1.0...securitycenter-v1.2.0) (2025-08-21)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* **securitycenter:** update the API ([e147d03](https://github.com/googleapis/google-api-nodejs-client/commit/e147d0369695235c836ca3022dcf58d8e5cfd842))
+* **securitycenter:** update the API ([c2209ae](https://github.com/googleapis/google-api-nodejs-client/commit/c2209aec6dac7ad84cb957c7b2b025db3a7b7802))
+
+
+### Bug Fixes
+
+* **securitycenter:** update the API ([e6e9c62](https://github.com/googleapis/google-api-nodejs-client/commit/e6e9c62bc2d0f52255f2fe8f979925d40c68f07c))
+* **securitycenter:** update the API ([c54ebfe](https://github.com/googleapis/google-api-nodejs-client/commit/c54ebfec0fe70edd352868c5f13183bc5af8c45c))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/securitycenter-v1.0.0...securitycenter-v1.1.0) (2025-08-13)
 
 

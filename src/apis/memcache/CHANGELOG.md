@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v1.0.1...memcache-v1.0.2) (2025-08-21)
+
+
+### Bug Fixes
+
+* **memcache:** update the API ([2374fab](https://github.com/googleapis/google-api-nodejs-client/commit/2374fab2a5c5baa7d4c67d36b0aa308e7deb9328))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/memcache-v1.0.0...memcache-v1.0.1) (2025-08-13)
 
 

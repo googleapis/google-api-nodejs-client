@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/areainsights-v1.0.1...areainsights-v1.0.2) (2025-08-21)
+
+
+### Bug Fixes
+
+* **areainsights:** update the API ([609a629](https://github.com/googleapis/google-api-nodejs-client/commit/609a629d7f0bb61505c6da57be24711c8c685a8b))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/areainsights-v1.0.0...areainsights-v1.0.1) (2025-08-13)
 
 

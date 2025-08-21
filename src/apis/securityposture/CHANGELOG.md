@@ -1,5 +1,16 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v2.1.1...securityposture-v3.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
 ## [2.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/securityposture-v2.1.0...securityposture-v2.1.1) (2025-08-07)
 
 

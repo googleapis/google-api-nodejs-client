@@ -4,6 +4,35 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [157.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v156.0.0...googleapis-v157.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **firebaseml:** This release has breaking changes.
+* This release has brea…
+
+### Features
+
+* **alloydb:** update the API ([71ff84c](https://github.com/googleapis/google-api-nodejs-client/commit/71ff84c9df4e8b2d5a116605a118061fb8d91075))
+* **dataplex:** update the API ([7d05df3](https://github.com/googleapis/google-api-nodejs-client/commit/7d05df3d5b867c1adec1f126f307798588ed81b9))
+* **documentai:** update the API ([174cf75](https://github.com/googleapis/google-api-nodejs-client/commit/174cf7590a9320304d66260fba169bb4dfb19595))
+* **firebaseml:** update the API ([29a72ba](https://github.com/googleapis/google-api-nodejs-client/commit/29a72ba2db3eb2f908e9100e35502673d1cdbe43))
+* regenerate index files ([5265ccc](https://github.com/googleapis/google-api-nodejs-client/commit/5265ccc4f7221d24290049503989c9f891f89e59))
+* run the generator ([#3743](https://github.com/googleapis/google-api-nodejs-client/issues/3743)) ([afc66fc](https://github.com/googleapis/google-api-nodejs-client/commit/afc66fc3fcff80290c9ec31a0b99583325fe5120))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+* **run:** update the API ([f0b6380](https://github.com/googleapis/google-api-nodejs-client/commit/f0b63802ed7c0d78b67c417d1c3537728d5e242d))
+* **workloadmanager:** update the API ([6e4890a](https://github.com/googleapis/google-api-nodejs-client/commit/6e4890ac875000a09e75f24d4e9dbf64cb4e86fb))
+
+
+### Bug Fixes
+
+* **compute:** update the API ([7b55b90](https://github.com/googleapis/google-api-nodejs-client/commit/7b55b907b9e67341a2f1d5d369c27cd73d020c60))
+* **dialogflow:** update the API ([4b5cb4b](https://github.com/googleapis/google-api-nodejs-client/commit/4b5cb4b52758e80b3cbbd29e07692efc6183b73b))
+* **firebasedataconnect:** update the API ([bd1e157](https://github.com/googleapis/google-api-nodejs-client/commit/bd1e15745bfb928cee51d9713c983df0886c1428))
+* **saasservicemgmt:** update the API ([0e3e062](https://github.com/googleapis/google-api-nodejs-client/commit/0e3e062ba7e198df83b9bf7079c53f227588d028))
+
 ## [156.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v155.0.1...googleapis-v156.0.0) (2025-08-13)
 
 

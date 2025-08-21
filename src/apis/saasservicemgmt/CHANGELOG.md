@@ -1,5 +1,21 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v1.0.3...saasservicemgmt-v2.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has brea…
+
+### Features
+
+* run the generator ([#3743](https://github.com/googleapis/google-api-nodejs-client/issues/3743)) ([afc66fc](https://github.com/googleapis/google-api-nodejs-client/commit/afc66fc3fcff80290c9ec31a0b99583325fe5120))
+
+
+### Bug Fixes
+
+* **saasservicemgmt:** update the API ([0e3e062](https://github.com/googleapis/google-api-nodejs-client/commit/0e3e062ba7e198df83b9bf7079c53f227588d028))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/saasservicemgmt-v1.0.2...saasservicemgmt-v1.0.3) (2025-08-13)
 
 
