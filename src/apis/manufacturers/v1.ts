@@ -319,7 +319,7 @@ export namespace manufacturers_v1 {
      */
     authority?: string | null;
     /**
-     * Required. A unique code to identify the certification.
+     * Optional. A unique code to identify the certification.
      */
     code?: string | null;
     /**
@@ -424,13 +424,29 @@ export namespace manufacturers_v1 {
      */
     authority?: string | null;
     /**
-     * Required. A unique code to identify the certification.
+     * Optional. A unique code to identify the certification.
      */
     code?: string | null;
+    /**
+     * Optional. A URL link to the certification.
+     */
+    link?: string | null;
+    /**
+     * Optional. A URL link to the certification logo.
+     */
+    logo?: string | null;
     /**
      * Required. Name of the certification.
      */
     name?: string | null;
+    /**
+     * Optional. The expiration date (UTC).
+     */
+    validUntil?: string | null;
+    /**
+     * Optional. A custom value of the certification.
+     */
+    value?: string | null;
   }
   export interface Schema$Grocery {
     /**
