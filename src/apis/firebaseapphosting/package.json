@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firebaseapphosting",
-  "version": "2.1.1",
+  "version": "3.0.0",
   "description": "firebaseapphosting",
   "main": "build/index.js",
   "types": "build/index.d.ts",
