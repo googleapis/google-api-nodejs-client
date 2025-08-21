@@ -3764,6 +3764,10 @@ export namespace discoveryengine_v1alpha {
      */
     errors?: Schema$GoogleRpcStatus[];
     /**
+     * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
+     */
+    hybridIngestionDisabled?: boolean | null;
+    /**
      * The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
      */
     identityRefreshInterval?: string | null;
@@ -7691,7 +7695,7 @@ export namespace discoveryengine_v1alpha {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -8199,6 +8203,64 @@ export namespace discoveryengine_v1alpha {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaDoubleList;
     } | null;
+    /**
+     * Optional. A set of ranking signals associated with the result.
+     */
+    rankSignals?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals;
+  }
+  /**
+   * A set of ranking signals.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals {
+    /**
+     * Optional. Combined custom boosts for a doc.
+     */
+    boostingFactor?: number | null;
+    /**
+     * Optional. A list of custom clearbox signals.
+     */
+    customSignals?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal[];
+    /**
+     * Optional. The default rank of the result.
+     */
+    defaultRank?: number | null;
+    /**
+     * Optional. Age of the document in hours.
+     */
+    documentAge?: number | null;
+    /**
+     * Optional. Keyword matching adjustment.
+     */
+    keywordSimilarityScore?: number | null;
+    /**
+     * Optional. Predicted conversion rate adjustment as a rank.
+     */
+    pctrRank?: number | null;
+    /**
+     * Optional. Semantic relevance adjustment.
+     */
+    relevanceScore?: number | null;
+    /**
+     * Optional. Semantic similarity adjustment.
+     */
+    semanticSimilarityScore?: number | null;
+    /**
+     * Optional. Topicality adjustment as a rank.
+     */
+    topicalityRank?: number | null;
+  }
+  /**
+   * Custom clearbox signal represented by name and value pair.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal {
+    /**
+     * Optional. Name of the signal.
+     */
+    name?: string | null;
+    /**
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
+     */
+    value?: number | null;
   }
   /**
    * Information about the session.
@@ -11992,7 +12054,7 @@ export namespace discoveryengine_v1alpha {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -17901,6 +17963,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -18395,6 +18458,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "endUserConfig": {},
      *         //   "entities": [],
      *         //   "errors": [],
+     *         //   "hybridIngestionDisabled": false,
      *         //   "identityRefreshInterval": "my_identityRefreshInterval",
      *         //   "identityScheduleConfig": {},
      *         //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -18437,6 +18501,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -43469,6 +43534,8 @@ export namespace discoveryengine_v1alpha {
      *       {
      *         // Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * "file_name = 'file_1'" * "file_name = 'file_1' AND mime_type = 'text/plain'" * "last_use_time \> '2025-06-14T12:00:00Z'" For a full description of the filter format, please see https://google.aip.dev/160.
      *         filter: 'placeholder-value',
+     *         // Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`
+     *         orderBy: 'placeholder-value',
      *         // Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.
      *         pageSize: 'placeholder-value',
      *         // Optional. A page token received from a previous `ListFiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFiles` must match the call that provided the page token (except `page_size`, which may differ).
@@ -43601,6 +43668,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * "file_name = 'file_1'" * "file_name = 'file_1' AND mime_type = 'text/plain'" * "last_use_time \> '2025-06-14T12:00:00Z'" For a full description of the filter format, please see https://google.aip.dev/160.
      */
     filter?: string;
+    /**
+     * Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`
+     */
+    orderBy?: string;
     /**
      * Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.
      */

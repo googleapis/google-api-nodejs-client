@@ -1852,6 +1852,10 @@ export namespace discoveryengine_v1beta {
      */
     errors?: Schema$GoogleRpcStatus[];
     /**
+     * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
+     */
+    hybridIngestionDisabled?: boolean | null;
+    /**
      * The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
      */
     identityRefreshInterval?: string | null;
@@ -4056,7 +4060,7 @@ export namespace discoveryengine_v1beta {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -10240,7 +10244,7 @@ export namespace discoveryengine_v1beta {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -10748,6 +10752,64 @@ export namespace discoveryengine_v1beta {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaDoubleList;
     } | null;
+    /**
+     * Optional. A set of ranking signals associated with the result.
+     */
+    rankSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals;
+  }
+  /**
+   * A set of ranking signals.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals {
+    /**
+     * Optional. Combined custom boosts for a doc.
+     */
+    boostingFactor?: number | null;
+    /**
+     * Optional. A list of custom clearbox signals.
+     */
+    customSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignalsCustomSignal[];
+    /**
+     * Optional. The default rank of the result.
+     */
+    defaultRank?: number | null;
+    /**
+     * Optional. Age of the document in hours.
+     */
+    documentAge?: number | null;
+    /**
+     * Optional. Keyword matching adjustment.
+     */
+    keywordSimilarityScore?: number | null;
+    /**
+     * Optional. Predicted conversion rate adjustment as a rank.
+     */
+    pctrRank?: number | null;
+    /**
+     * Optional. Semantic relevance adjustment.
+     */
+    relevanceScore?: number | null;
+    /**
+     * Optional. Semantic similarity adjustment.
+     */
+    semanticSimilarityScore?: number | null;
+    /**
+     * Optional. Topicality adjustment as a rank.
+     */
+    topicalityRank?: number | null;
+  }
+  /**
+   * Custom clearbox signal represented by name and value pair.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignalsCustomSignal {
+    /**
+     * Optional. Name of the signal.
+     */
+    name?: string | null;
+    /**
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
+     */
+    value?: number | null;
   }
   /**
    * Information about the session.
