@@ -1,5 +1,24 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v2.0.0...apigateway-v3.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* **apigateway:** update the API ([d4024ee](https://github.com/googleapis/google-api-nodejs-client/commit/d4024eeb58ec43df1c85f445658582ae192cd45a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/apigateway-v1.0.1...apigateway-v2.0.0) (2025-08-21)
 
 

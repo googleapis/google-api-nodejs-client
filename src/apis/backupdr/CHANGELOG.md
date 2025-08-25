@@ -1,5 +1,28 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v3.0.0...backupdr-v4.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **backupdr:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **backupdr:** update the API ([862877c](https://github.com/googleapis/google-api-nodejs-client/commit/862877c09b19887dda0f9360f1d9658c9e7a2105))
+* **backupdr:** update the API ([9b1735c](https://github.com/googleapis/google-api-nodejs-client/commit/9b1735cb7ffa53444ae4e2d90737d8711f584103))
+* **backupdr:** update the API ([f3d30f9](https://github.com/googleapis/google-api-nodejs-client/commit/f3d30f9a22972e88e8124aa593e0794353493480))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* **backupdr:** update the API ([aafe114](https://github.com/googleapis/google-api-nodejs-client/commit/aafe114a50ffcd6995b98a811afc8ca223ccc2d0))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/backupdr-v2.0.0...backupdr-v3.0.0) (2025-08-21)
 
 
