@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250812",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -4036,6 +4036,10 @@
           "$ref": "ClusterNetworkPerformanceConfig",
           "description": "The desired network performance config."
         },
+        "desiredNetworkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "The desired network tier configuration for the cluster."
+        },
         "desiredNodeKubeletConfig": {
           "$ref": "NodeKubeletConfig",
           "description": "The desired node kubelet config for the cluster."
@@ -5276,6 +5280,10 @@
           ],
           "type": "string"
         },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "Cluster-level network tier configuration is used to determine the default network tier for external IP addresses on cluster resources, such as node pools and load balancers."
+        },
         "nodeIpv4Cidr": {
           "deprecated": true,
           "description": "This field is deprecated, use node_ipv4_cidr_block.",
@@ -6159,6 +6167,29 @@
       },
       "type": "object"
     },
+    "NetworkTierConfig": {
+      "description": "NetworkTierConfig contains network tier information.",
+      "id": "NetworkTierConfig",
+      "properties": {
+        "networkTier": {
+          "description": "Network tier configuration.",
+          "enum": [
+            "NETWORK_TIER_UNSPECIFIED",
+            "NETWORK_TIER_DEFAULT",
+            "NETWORK_TIER_PREMIUM",
+            "NETWORK_TIER_STANDARD"
+          ],
+          "enumDescriptions": [
+            "By default, use project-level configuration. When unspecified, the behavior defaults to NETWORK_TIER_DEFAULT. For cluster updates, this implies no action (no-op).",
+            "Default network tier. Use project-level configuration. User can specify this value, meaning they want to keep the same behaviour as before cluster level network tier configuration is introduced. This field ensures backward compatibility for the network tier of cluster resources, such as node pools and load balancers, for their external IP addresses.",
+            "Premium network tier.",
+            "Standard network tier."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "NodeAffinity": {
       "description": "Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://{$universe.dns_names.final_documentation_domain}/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).",
       "id": "NodeAffinity",
@@ -6610,6 +6641,11 @@
         "networkPerformanceConfig": {
           "$ref": "NetworkPerformanceConfig",
           "description": "Network bandwidth tier configuration."
+        },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "Output only. The network tier configuration for the node pool inherits from the cluster-level configuration and remains immutable throughout the node pool's lifecycle, including during upgrades.",
+          "readOnly": true
         },
         "podCidrOverprovisionConfig": {
           "$ref": "PodCIDROverprovisionConfig",
