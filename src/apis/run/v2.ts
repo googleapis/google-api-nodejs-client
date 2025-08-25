@@ -1577,6 +1577,10 @@ export namespace run_v2 {
      */
     machineType?: string | null;
     /**
+     * Optional. The release track of the client that initiated the build request.
+     */
+    releaseTrack?: string | null;
+    /**
      * Optional. The service account to use for the build. If not set, the default Cloud Build service account for the project will be used.
      */
     serviceAccount?: string | null;
@@ -4020,6 +4024,7 @@ export namespace run_v2 {
      *       //   "dockerBuild": {},
      *       //   "imageUri": "my_imageUri",
      *       //   "machineType": "my_machineType",
+     *       //   "releaseTrack": "my_releaseTrack",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "storageSource": {},
      *       //   "tags": [],
