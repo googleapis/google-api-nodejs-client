@@ -1409,7 +1409,7 @@
       }
     }
   },
-  "revision": "20250730",
+  "revision": "20250820",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -5269,6 +5269,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "scepCaConnection": {
+          "$ref": "GoogleChromeManagementVersionsV1ScepCaConnection",
+          "description": "Output only. The CA connection is a SCEP CA connection.",
+          "readOnly": true
+        },
+        "scepProfile": {
+          "$ref": "GoogleChromeManagementVersionsV1ScepProfile",
+          "description": "Output only. The profile is a SCEP certificate provisioning profile.",
+          "readOnly": true
+        },
         "signData": {
           "description": "Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.",
           "format": "byte",
@@ -5285,11 +5295,13 @@
           "description": "Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.",
           "enum": [
             "SIGNATURE_ALGORITHM_UNSPECIFIED",
-            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
+            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+            "SIGNATURE_ALGORITHM_ECDSA_SHA256"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding."
+            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding.",
+            "The PKCS#1 digest info is built by the server-side and sent to the client unhashed. The client is responsible for signing and hashing. Uses the P-256 curve."
           ],
           "readOnly": true,
           "type": "string"
@@ -5983,6 +5995,89 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ScepCaConnection": {
+      "description": "Describes a SCEP Certificate Authority Connection.",
+      "id": "GoogleChromeManagementVersionsV1ScepCaConnection",
+      "properties": {
+        "caConnectionAdapterConfigReference": {
+          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ScepProfile": {
+      "description": "Describes a SCEP certificate provisioning profile.",
+      "id": "GoogleChromeManagementVersionsV1ScepProfile",
+      "properties": {
+        "certificateTemplateName": {
+          "description": "Output only. The certificate template name as defined by the admin on their on-prem infrastructure. This is identifiable by the customer's CA.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "country": {
+          "description": "Output only. The country of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "keyUsages": {
+          "description": "Output only. The allowed key usages for certificate's key.",
+          "items": {
+            "enum": [
+              "KEY_USAGE_UNSPECIFIED",
+              "KEY_USAGE_SIGNING",
+              "KEY_USAGE_KEY_ENCIPHERMENT"
+            ],
+            "enumDescriptions": [
+              "The key usage is unspecified.",
+              "The key can be used for signing.",
+              "The key can be used for key encipherment."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "locality": {
+          "description": "Output only. The locality of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organization": {
+          "description": "Output only. The name of the organization the subject belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationalUnits": {
+          "description": "Output only. The organizational units of the subject.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subjectAltNames": {
+          "description": "Output only. The subject alternative names.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1SubjectAltName"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subjectCommonName": {
+          "description": "Output only. The common name of the subject.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1SignDataMetadata": {
       "description": "Metadata for the long-running operation returned by signData.",
       "id": "GoogleChromeManagementVersionsV1SignDataMetadata",
@@ -6004,6 +6099,37 @@
           "$ref": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess",
           "description": "Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SubjectAltName": {
+      "description": "Describes a subject alternative name.",
+      "id": "GoogleChromeManagementVersionsV1SubjectAltName",
+      "properties": {
+        "type": {
+          "description": "Output only. The type of the SubjectAltName extension.",
+          "enum": [
+            "SUBJECT_ALT_NAME_TYPE_UNSPECIFIED",
+            "RFC822_NAME",
+            "DNS_NAME",
+            "OTHER_NAME_USER_PRINCIPAL_NAME",
+            "UNIFORM_RESOURCE_IDENTIFIER"
+          ],
+          "enumDescriptions": [
+            "The subject alternative name type is unspecified.",
+            "The subject alternative name type is an email address adhering to RFC822.",
+            "The subject alternative name type is a a Domain Name System (DNS).",
+            "The subject alternative name type is a User Principal Name (UPN).",
+            "The subject alternative name type is a Uniform Resource Identifier (URI)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The value of the subject alternative name with respoect to the `type`.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
