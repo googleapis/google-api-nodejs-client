@@ -7073,7 +7073,7 @@ export namespace dataplex_v1 {
      *
      *   // Do the magic
      *   const res = await dataplex.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -7387,7 +7387,7 @@ export namespace dataplex_v1 {
      *   const res = await dataplex.projects.locations.searchEntries({
      *     // Required. The project to which the request should be attributed in the following form: projects/{project\}/locations/global.
      *     name: 'projects/my-project/locations/my-location',
-     *     // Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc
+     *     // Optional. Specifies the ordering of results. Supported values are: relevance last_modified_timestamp last_modified_timestamp asc
      *     orderBy: 'placeholder-value',
      *     // Optional. Number of results in the search page. If <=0, then defaults to 10. Max limit for page_size is 1000. Throws an invalid argument for page_size \> 1000.
      *     pageSize: 'placeholder-value',
@@ -7527,7 +7527,7 @@ export namespace dataplex_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -7577,7 +7577,7 @@ export namespace dataplex_v1 {
      */
     name?: string;
     /**
-     * Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc
+     * Optional. Specifies the ordering of results. Supported values are: relevance last_modified_timestamp last_modified_timestamp asc
      */
     orderBy?: string;
     /**

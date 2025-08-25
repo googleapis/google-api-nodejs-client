@@ -685,6 +685,10 @@ export namespace firebaseappdistribution_v1 {
      */
     displayVersion?: string | null;
     /**
+     * Output only. The time the release will expire.
+     */
+    expireTime?: string | null;
+    /**
      * Output only. A link to the Firebase console displaying a single release.
      */
     firebaseConsoleUri?: string | null;
@@ -700,6 +704,10 @@ export namespace firebaseappdistribution_v1 {
      * Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.
      */
     testingUri?: string | null;
+    /**
+     * Output only. The time the release was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Notes that belong to a release.
@@ -1575,10 +1583,12 @@ export namespace firebaseappdistribution_v1 {
      *   //   "buildVersion": "my_buildVersion",
      *   //   "createTime": "my_createTime",
      *   //   "displayVersion": "my_displayVersion",
+     *   //   "expireTime": "my_expireTime",
      *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
      *   //   "name": "my_name",
      *   //   "releaseNotes": {},
-     *   //   "testingUri": "my_testingUri"
+     *   //   "testingUri": "my_testingUri",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *
@@ -1886,10 +1896,12 @@ export namespace firebaseappdistribution_v1 {
      *       //   "buildVersion": "my_buildVersion",
      *       //   "createTime": "my_createTime",
      *       //   "displayVersion": "my_displayVersion",
+     *       //   "expireTime": "my_expireTime",
      *       //   "firebaseConsoleUri": "my_firebaseConsoleUri",
      *       //   "name": "my_name",
      *       //   "releaseNotes": {},
-     *       //   "testingUri": "my_testingUri"
+     *       //   "testingUri": "my_testingUri",
+     *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
      *   });
@@ -1901,10 +1913,12 @@ export namespace firebaseappdistribution_v1 {
      *   //   "buildVersion": "my_buildVersion",
      *   //   "createTime": "my_createTime",
      *   //   "displayVersion": "my_displayVersion",
+     *   //   "expireTime": "my_expireTime",
      *   //   "firebaseConsoleUri": "my_firebaseConsoleUri",
      *   //   "name": "my_name",
      *   //   "releaseNotes": {},
-     *   //   "testingUri": "my_testingUri"
+     *   //   "testingUri": "my_testingUri",
+     *   //   "updateTime": "my_updateTime"
      *   // }
      * }
      *

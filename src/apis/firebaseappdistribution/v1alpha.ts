@@ -916,6 +916,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     displayVersion?: string | null;
     /**
+     * Output only. The time the release will expire.
+     */
+    expireTime?: string | null;
+    /**
      * Output only. A link to the Firebase console displaying a single release.
      */
     firebaseConsoleUri?: string | null;
@@ -931,6 +935,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.
      */
     testingUri?: string | null;
+    /**
+     * Output only. The time the release was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Notes that belong to a release.

@@ -565,6 +565,10 @@ export namespace file_v1beta1 {
      */
     maxShareCount?: string | null;
     /**
+     * Output only. The min capacity of the instance.
+     */
+    minCapacityGb?: string | null;
+    /**
      * Indicates whether this instance uses a multi-share configuration with which it can have more than one file-share or none at all. File-shares are added, updated and removed through the separate file-share APIs.
      */
     multiShareEnabled?: boolean | null;
@@ -949,6 +953,10 @@ export namespace file_v1beta1 {
      */
     verb?: string | null;
   }
+  /**
+   * PauseReplicaRequest pauses a Filestore standby instance (replica).
+   */
+  export interface Schema$PauseReplicaRequest {}
   /**
    * Used for setting the performance configuration. If the user doesn't specify PerformanceConfig, automatically provision the default performance settings as described in https://cloud.google.com/filestore/docs/performance. Larger instances will be linearly set to more IOPS. If the instance's capacity is increased or decreased, its performance will be automatically adjusted upwards or downwards accordingly (respectively).
    */
@@ -2475,6 +2483,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "maxCapacityGb": "my_maxCapacityGb",
      *       //   "maxShareCount": "my_maxShareCount",
+     *       //   "minCapacityGb": "my_minCapacityGb",
      *       //   "multiShareEnabled": false,
      *       //   "name": "my_name",
      *       //   "networks": [],
@@ -2792,6 +2801,7 @@ export namespace file_v1beta1 {
      *   //   "labels": {},
      *   //   "maxCapacityGb": "my_maxCapacityGb",
      *   //   "maxShareCount": "my_maxShareCount",
+     *   //   "minCapacityGb": "my_minCapacityGb",
      *   //   "multiShareEnabled": false,
      *   //   "name": "my_name",
      *   //   "networks": [],
@@ -3105,6 +3115,7 @@ export namespace file_v1beta1 {
      *       //   "labels": {},
      *       //   "maxCapacityGb": "my_maxCapacityGb",
      *       //   "maxShareCount": "my_maxShareCount",
+     *       //   "minCapacityGb": "my_minCapacityGb",
      *       //   "multiShareEnabled": false,
      *       //   "name": "my_name",
      *       //   "networks": [],
@@ -3207,6 +3218,154 @@ export namespace file_v1beta1 {
           {
             url: (rootUrl + '/v1beta1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Pause the standby instance (replica). WARNING: This operation makes the standby instance's NFS filesystem writable. Any data written to the standby instance while paused will be lost when the replica is resumed or promoted.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.pauseReplica({
+     *     // Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    pauseReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pauseReplica(
+      params: Params$Resource$Projects$Locations$Instances$Pausereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    pauseReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    pauseReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Pausereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Pausereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Pausereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:pauseReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
             apiVersion: '',
           },
           options
@@ -3749,6 +3908,18 @@ export namespace file_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$Instance;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Pausereplica
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$PauseReplicaRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Promotereplica
     extends StandardParameters {

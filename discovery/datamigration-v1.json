@@ -180,7 +180,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2345,7 +2345,7 @@
       }
     }
   },
-  "revision": "20250625",
+  "revision": "20250815",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -4252,6 +4252,18 @@
       },
       "type": "object"
     },
+    "HeterogeneousMetadata": {
+      "description": "Metadata for heterogeneous migration jobs objects.",
+      "id": "HeterogeneousMetadata",
+      "properties": {
+        "unsupportedEventsCount": {
+          "description": "The number of unsupported events.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ImportMappingRulesRequest": {
       "description": "Request message for 'ImportMappingRules' request.",
       "id": "ImportMappingRulesRequest",
@@ -5085,6 +5097,11 @@
         "error": {
           "$ref": "Status",
           "description": "Output only. The error details in case of failure.",
+          "readOnly": true
+        },
+        "heterogeneousMetadata": {
+          "$ref": "HeterogeneousMetadata",
+          "description": "Output only. Metadata for heterogeneous migration jobs objects.",
           "readOnly": true
         },
         "name": {

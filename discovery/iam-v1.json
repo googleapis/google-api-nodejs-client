@@ -2578,7 +2578,7 @@
                           ],
                           "parameters": {
                             "name": {
-                              "description": "Output only. The resource name of the managed identity.",
+                              "description": "Identifier. The resource name of the managed identity.",
                               "location": "path",
                               "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+/namespaces/[^/]+/managedIdentities/[^/]+$",
                               "required": true,
@@ -2948,7 +2948,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Output only. The resource name of the provider.",
+                          "description": "Identifier. The resource name of the provider.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/workloadIdentityPools/[^/]+/providers/[^/]+$",
                           "required": true,
@@ -4155,7 +4155,7 @@
       }
     }
   },
-  "revision": "20250718",
+  "revision": "20250815",
   "rootUrl": "https://iam.googleapis.com/",
   "schemas": {
     "AccessRestrictions": {
@@ -6572,11 +6572,11 @@
       "id": "WorkloadIdentityPoolManagedIdentity",
       "properties": {
         "description": {
-          "description": "A description of the managed identity. Cannot exceed 256 characters.",
+          "description": "Optional. A description of the managed identity. Cannot exceed 256 characters.",
           "type": "string"
         },
         "disabled": {
-          "description": "Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.",
+          "description": "Optional. Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.",
           "type": "boolean"
         },
         "expireTime": {
@@ -6586,8 +6586,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the managed identity.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the managed identity.",
           "type": "string"
         },
         "state": {
@@ -6613,11 +6612,11 @@
       "id": "WorkloadIdentityPoolNamespace",
       "properties": {
         "description": {
-          "description": "A description of the namespace. Cannot exceed 256 characters.",
+          "description": "Optional. A description of the namespace. Cannot exceed 256 characters.",
           "type": "string"
         },
         "disabled": {
-          "description": "Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.",
+          "description": "Optional. Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.",
           "type": "boolean"
         },
         "expireTime": {
@@ -6698,8 +6697,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. The resource name of the provider.",
-          "readOnly": true,
+          "description": "Identifier. The resource name of the provider.",
           "type": "string"
         },
         "oidc": {

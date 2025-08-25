@@ -608,7 +608,7 @@ export namespace androidpublisher_v3 {
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
     /**
-     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and taxes, call orders.get API instead if transaction details are needed.
+     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed.
      */
     recurringPrice?: Schema$Money;
   }
@@ -4608,7 +4608,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$TrackRelease {
     /**
-     * Restricts a release to a specific set of countries.
+     * Restricts a release to a specific set of countries. Note this is only allowed to be set for inProgress releases in the production track.
      */
     countryTargeting?: Schema$CountryTargeting;
     /**

@@ -5118,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250817",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -9427,6 +9427,10 @@
           "description": "A sample that is a true positive for this infoType.",
           "type": "string"
         },
+        "locationSupport": {
+          "$ref": "GooglePrivacyDlpV2LocationSupport",
+          "description": "Locations at which this feature can be used. May change over time."
+        },
         "name": {
           "description": "Internal name of the infoType.",
           "type": "string"
@@ -10530,6 +10534,34 @@
             "$ref": "GooglePrivacyDlpV2ContentLocation"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GooglePrivacyDlpV2LocationSupport": {
+      "description": "Locations at which a feature can be used.",
+      "id": "GooglePrivacyDlpV2LocationSupport",
+      "properties": {
+        "locations": {
+          "description": "Specific locations where the feature may be used. Examples: us-central1, us, asia, global If scope is ANY_LOCATION, no regions will be listed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "regionalizationScope": {
+          "description": "The current scope for location on this feature. This may expand over time.",
+          "enum": [
+            "REGIONALIZATION_SCOPE_UNSPECIFIED",
+            "REGIONAL",
+            "ANY_LOCATION"
+          ],
+          "enumDescriptions": [
+            "Invalid.",
+            "Feature may be used with one or more regions. See locations for details.",
+            "Feature may be used anywhere. Default value."
+          ],
+          "type": "string"
         }
       },
       "type": "object"

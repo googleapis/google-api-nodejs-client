@@ -239,7 +239,7 @@ export namespace cloudkms_v1 {
     logType?: string | null;
   }
   /**
-   * Cloud KMS Autokey configuration for a folder.
+   * Cloud KMS Autokey configuration for a folder or project.
    */
   export interface Schema$AutokeyConfig {
     /**
@@ -251,7 +251,7 @@ export namespace cloudkms_v1 {
      */
     keyProject?: string | null;
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string | null;
     /**
@@ -1800,7 +1800,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.folders.updateAutokeyConfig({
-     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     *     // Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      *     name: 'folders/my-folder/autokeyConfig',
      *     // Required. Masks which fields of the AutokeyConfig to update, e.g. `keyProject`.
      *     updateMask: 'placeholder-value',
@@ -2098,7 +2098,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Folders$Updateautokeyconfig
     extends StandardParameters {
     /**
-     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig`.
+     * Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER\}/autokeyConfig` `projects/{PROJECT_NUMBER\}/autokeyConfig`.
      */
     name?: string;
     /**
@@ -3774,7 +3774,7 @@ export namespace cloudkms_v1 {
      *
      *   // Do the magic
      *   const res = await cloudkms.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4070,7 +4070,7 @@ export namespace cloudkms_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

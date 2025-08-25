@@ -383,7 +383,7 @@ export namespace containeranalysis_v1alpha1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 22
+   * A step in the build pipeline. Next ID: 23
    */
   export interface Schema$BuildStep {
     /**
@@ -430,6 +430,10 @@ export namespace containeranalysis_v1alpha1 {
      * Output only. Stores timing information for pulling this build step's builder image only.
      */
     pullTiming?: Schema$TimeSpan;
+    /**
+     * Remote configuration for the build step.
+     */
+    remoteConfig?: string | null;
     results?: Schema$StepResult[];
     /**
      * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
@@ -472,6 +476,15 @@ export namespace containeranalysis_v1alpha1 {
      * Signature of the build in Occurrences pointing to the Note containing this `BuilderDetails`.
      */
     signature?: Schema$BuildSignature;
+  }
+  /**
+   * CISAKnownExploitedVulnerabilities provides information about whether the vulnerability is known to have been leveraged as part of a ransomware campaign.
+   */
+  export interface Schema$CISAKnownExploitedVulnerabilities {
+    /**
+     * Optional. Whether the vulnerability is known to have been leveraged as part of a ransomware campaign.
+     */
+    knownRansomwareCampaignUse?: string | null;
   }
   /**
    * A compliance check that is a CIS benchmark.
@@ -1976,6 +1989,19 @@ export namespace containeranalysis_v1alpha1 {
     sig?: string | null;
   }
   /**
+   * ExploitPredictionScoringSystem provides information about the Exploit Prediction Scoring System (EPSS) score and percentile.
+   */
+  export interface Schema$ExploitPredictionScoringSystem {
+    /**
+     * Optional. The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score
+     */
+    percentile?: number | null;
+    /**
+     * Optional. The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days
+     */
+    score?: number | null;
+  }
+  /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
    */
   export interface Schema$Expr {
@@ -3301,6 +3327,19 @@ export namespace containeranalysis_v1alpha1 {
     name?: string | null;
     uri?: string | null;
   }
+  /**
+   * The Risk message provides information about the risk of a vulnerability.
+   */
+  export interface Schema$Risk {
+    /**
+     * Optional. CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild.
+     */
+    cisaKev?: Schema$CISAKnownExploitedVulnerabilities;
+    /**
+     * Optional. The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild.
+     */
+    epss?: Schema$ExploitPredictionScoringSystem;
+  }
   export interface Schema$RunDetails {
     builder?: Schema$ProvenanceBuilder;
     byproducts?: Schema$ResourceDescriptor[];
@@ -3971,6 +4010,10 @@ export namespace containeranalysis_v1alpha1 {
      * The set of affected locations and their fixes (if available) within the associated resource.
      */
     packageIssue?: Schema$PackageIssue[];
+    /**
+     * Risk information about the vulnerability, such as CISA, EPSS, etc.
+     */
+    risk?: Schema$Risk;
     /**
      * Output only. The note provider assigned Severity of the vulnerability.
      */
