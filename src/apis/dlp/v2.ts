@@ -2958,6 +2958,10 @@ export namespace dlp_v2 {
      */
     example?: string | null;
     /**
+     * Locations at which this feature can be used. May change over time.
+     */
+    locationSupport?: Schema$GooglePrivacyDlpV2LocationSupport;
+    /**
      * Internal name of the infoType.
      */
     name?: string | null;
@@ -3716,6 +3720,19 @@ export namespace dlp_v2 {
      * List of nested objects pointing to the precise location of the finding within the file or record.
      */
     contentLocations?: Schema$GooglePrivacyDlpV2ContentLocation[];
+  }
+  /**
+   * Locations at which a feature can be used.
+   */
+  export interface Schema$GooglePrivacyDlpV2LocationSupport {
+    /**
+     * Specific locations where the feature may be used. Examples: us-central1, us, asia, global If scope is ANY_LOCATION, no regions will be listed.
+     */
+    locations?: string[] | null;
+    /**
+     * The current scope for location on this feature. This may expand over time.
+     */
+    regionalizationScope?: string | null;
   }
   /**
    * Job trigger option for hybrid jobs. Jobs must be manually created and finished.
