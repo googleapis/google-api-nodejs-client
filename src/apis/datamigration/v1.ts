@@ -1257,6 +1257,15 @@ export namespace datamigration_v1 {
     verb?: string | null;
   }
   /**
+   * Metadata for heterogeneous migration jobs objects.
+   */
+  export interface Schema$HeterogeneousMetadata {
+    /**
+     * The number of unsupported events.
+     */
+    unsupportedEventsCount?: string | null;
+  }
+  /**
    * Request message for 'ImportMappingRules' request.
    */
   export interface Schema$ImportMappingRulesRequest {
@@ -1793,6 +1802,10 @@ export namespace datamigration_v1 {
      * Output only. The error details in case of failure.
      */
     error?: Schema$Status;
+    /**
+     * Output only. Metadata for heterogeneous migration jobs objects.
+     */
+    heterogeneousMetadata?: Schema$HeterogeneousMetadata;
     /**
      * The object's name.
      */
@@ -3593,7 +3606,7 @@ export namespace datamigration_v1 {
      *
      *   // Do the magic
      *   const res = await datamigration.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3737,7 +3750,7 @@ export namespace datamigration_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -11804,6 +11817,7 @@ export namespace datamigration_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
+     *   //   "heterogeneousMetadata": {},
      *   //   "name": "my_name",
      *   //   "phase": "my_phase",
      *   //   "sourceObject": {},
@@ -12255,6 +12269,7 @@ export namespace datamigration_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "error": {},
+     *   //   "heterogeneousMetadata": {},
      *   //   "name": "my_name",
      *   //   "phase": "my_phase",
      *   //   "sourceObject": {},
