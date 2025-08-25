@@ -408,6 +408,10 @@ export namespace displayvideo_v4 {
      */
     billingConfig?: Schema$AdvertiserBillingConfig;
     /**
+     * Optional. Whether this advertiser contains line items that serve European Union political ads. If this field is set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING`, then the following will happen: * Any new line items created under this advertiser will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. * Any existing line items under this advertiser that do not have a set value be updated to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` within a day.
+     */
+    containsEuPoliticalAds?: string | null;
+    /**
      * Required. Creative related settings of the advertiser.
      */
     creativeConfig?: Schema$AdvertiserCreativeConfig;
@@ -586,6 +590,18 @@ export namespace displayvideo_v4 {
      * Boolean value.
      */
     boolValue?: boolean | null;
+    /**
+     * Video content duration value.
+     */
+    contentDurationValue?: string | null;
+    /**
+     * Video genre id value.
+     */
+    contentGenreIdValue?: string | null;
+    /**
+     * Video delivery type value.
+     */
+    contentStreamTypeValue?: string | null;
     /**
      * Creative dimension value.
      */
@@ -1551,7 +1567,7 @@ export namespace displayvideo_v4 {
      */
     targetLineItem?: Schema$LineItem;
     /**
-     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAdvertising
+     * Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAds
      */
     updateMask?: string | null;
   }
@@ -2950,6 +2966,10 @@ export namespace displayvideo_v4 {
    */
   export interface Schema$DuplicateLineItemRequest {
     /**
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.
+     */
+    containsEuPoliticalAds?: string | null;
+    /**
      * The display name of the new line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
     targetDisplayName?: string | null;
@@ -3384,6 +3404,10 @@ export namespace displayvideo_v4 {
    * Request message for LineItemService.GenerateDefaultLineItem.
    */
   export interface Schema$GenerateDefaultLineItemRequest {
+    /**
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.
+     */
+    containsEuPoliticalAds?: string | null;
     /**
      * Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.
      */
@@ -4212,6 +4236,10 @@ export namespace displayvideo_v4 {
      * Output only. The unique ID of the campaign that the line item belongs to.
      */
     campaignId?: string | null;
+    /**
+     * Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set when creating a new line item. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned if the parent advertiser has declared that it does not serve EU political ads, or **the `advertisers.lineItems.create` request will fail**.
+     */
+    containsEuPoliticalAds?: string | null;
     /**
      * The conversion tracking setting of the line item.
      */
@@ -6360,7 +6388,7 @@ export namespace displayvideo_v4 {
      */
     type?: string | null;
     /**
-     * The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` If not using an applicable strategy, the value of this field will be 0.
+     * The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_SHARE_OF_VOICE` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` If not using an applicable strategy, the value of this field will be 0.
      */
     value?: string | null;
   }
@@ -6692,6 +6720,7 @@ export namespace displayvideo_v4 {
      *       //   "adServerConfig": {},
      *       //   "advertiserId": "my_advertiserId",
      *       //   "billingConfig": {},
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
      *       //   "displayName": "my_displayName",
@@ -6713,6 +6742,7 @@ export namespace displayvideo_v4 {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
      *   //   "billingConfig": {},
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -7151,6 +7181,7 @@ export namespace displayvideo_v4 {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
      *   //   "billingConfig": {},
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -7602,6 +7633,7 @@ export namespace displayvideo_v4 {
      *       //   "adServerConfig": {},
      *       //   "advertiserId": "my_advertiserId",
      *       //   "billingConfig": {},
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "creativeConfig": {},
      *       //   "dataAccessConfig": {},
      *       //   "displayName": "my_displayName",
@@ -7623,6 +7655,7 @@ export namespace displayvideo_v4 {
      *   //   "adServerConfig": {},
      *   //   "advertiserId": "my_advertiserId",
      *   //   "billingConfig": {},
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "creativeConfig": {},
      *   //   "dataAccessConfig": {},
      *   //   "displayName": "my_displayName",
@@ -16282,6 +16315,7 @@ export namespace displayvideo_v4 {
      *       //   "bidStrategy": {},
      *       //   "budget": {},
      *       //   "campaignId": "my_campaignId",
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "conversionCounting": {},
      *       //   "creativeIds": [],
      *       //   "displayName": "my_displayName",
@@ -16314,6 +16348,7 @@ export namespace displayvideo_v4 {
      *   //   "bidStrategy": {},
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
@@ -16609,6 +16644,7 @@ export namespace displayvideo_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "targetDisplayName": "my_targetDisplayName"
      *       // }
      *     },
@@ -16758,6 +16794,7 @@ export namespace displayvideo_v4 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "displayName": "my_displayName",
      *       //   "insertionOrderId": "my_insertionOrderId",
      *       //   "lineItemType": "my_lineItemType",
@@ -16773,6 +16810,7 @@ export namespace displayvideo_v4 {
      *   //   "bidStrategy": {},
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
@@ -16936,6 +16974,7 @@ export namespace displayvideo_v4 {
      *   //   "bidStrategy": {},
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
@@ -17248,6 +17287,7 @@ export namespace displayvideo_v4 {
      *       //   "bidStrategy": {},
      *       //   "budget": {},
      *       //   "campaignId": "my_campaignId",
+     *       //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *       //   "conversionCounting": {},
      *       //   "creativeIds": [],
      *       //   "displayName": "my_displayName",
@@ -17280,6 +17320,7 @@ export namespace displayvideo_v4 {
      *   //   "bidStrategy": {},
      *   //   "budget": {},
      *   //   "campaignId": "my_campaignId",
+     *   //   "containsEuPoliticalAds": "my_containsEuPoliticalAds",
      *   //   "conversionCounting": {},
      *   //   "creativeIds": [],
      *   //   "displayName": "my_displayName",
