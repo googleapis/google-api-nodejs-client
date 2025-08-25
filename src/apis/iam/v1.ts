@@ -1713,11 +1713,11 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPoolManagedIdentity {
     /**
-     * A description of the managed identity. Cannot exceed 256 characters.
+     * Optional. A description of the managed identity. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.
+     * Optional. Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.
      */
     disabled?: boolean | null;
     /**
@@ -1725,7 +1725,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The resource name of the managed identity.
+     * Identifier. The resource name of the managed identity.
      */
     name?: string | null;
     /**
@@ -1738,11 +1738,11 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPoolNamespace {
     /**
-     * A description of the namespace. Cannot exceed 256 characters.
+     * Optional. A description of the namespace. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.
+     * Optional. Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.
      */
     disabled?: boolean | null;
     /**
@@ -1799,7 +1799,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The resource name of the provider.
+     * Identifier. The resource name of the provider.
      */
     name?: string | null;
     /**
@@ -14888,7 +14888,7 @@ export namespace iam_v1 {
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.namespaces.managedIdentities.patch(
      *       {
-     *         // Output only. The resource name of the managed identity.
+     *         // Identifier. The resource name of the managed identity.
      *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/namespaces/my-namespace/managedIdentities/my-managedIdentitie',
      *         // Required. The list of fields to update.
      *         updateMask: 'placeholder-value',
@@ -15556,7 +15556,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the managed identity.
+     * Identifier. The resource name of the managed identity.
      */
     name?: string;
     /**
@@ -16908,7 +16908,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.providers.patch({
-     *       // Output only. The resource name of the provider.
+     *       // Identifier. The resource name of the provider.
      *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *       // Required. The list of fields to update.
      *       updateMask: 'placeholder-value',
@@ -17239,7 +17239,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the provider.
+     * Identifier. The resource name of the provider.
      */
     name?: string;
     /**
