@@ -1,5 +1,16 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v1.0.1...cloudfunctions-v2.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
 ## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudfunctions-v1.0.0...cloudfunctions-v1.0.1) (2025-08-13)
 
 
