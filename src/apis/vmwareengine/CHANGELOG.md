@@ -1,5 +1,22 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v3.0.0...vmwareengine-v4.0.0) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **vmwareengine:** update the API ([d01da65](https://github.com/googleapis/google-api-nodejs-client/commit/d01da65894f167e73c36091e36017b1a13c87d77))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmwareengine-v2.0.0...vmwareengine-v3.0.0) (2025-08-25)
 
 
