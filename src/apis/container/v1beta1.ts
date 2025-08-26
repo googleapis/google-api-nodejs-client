@@ -1276,6 +1276,10 @@ export namespace container_v1beta1 {
      */
     desiredNetworkPerformanceConfig?: Schema$ClusterNetworkPerformanceConfig;
     /**
+     * The desired network tier configuration for the cluster.
+     */
+    desiredNetworkTierConfig?: Schema$NetworkTierConfig;
+    /**
      * The desired node kubelet config for the cluster.
      */
     desiredNodeKubeletConfig?: Schema$NodeKubeletConfig;
@@ -2193,6 +2197,10 @@ export namespace container_v1beta1 {
      */
     ipv6AccessType?: string | null;
     /**
+     * Cluster-level network tier configuration is used to determine the default network tier for external IP addresses on cluster resources, such as node pools and load balancers.
+     */
+    networkTierConfig?: Schema$NetworkTierConfig;
+    /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
     nodeIpv4Cidr?: string | null;
@@ -2818,6 +2826,15 @@ export namespace container_v1beta1 {
     tags?: string[] | null;
   }
   /**
+   * NetworkTierConfig contains network tier information.
+   */
+  export interface Schema$NetworkTierConfig {
+    /**
+     * Network tier configuration.
+     */
+    networkTier?: string | null;
+  }
+  /**
    * Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).
    */
   export interface Schema$NodeAffinity {
@@ -3187,6 +3204,10 @@ export namespace container_v1beta1 {
      * Network bandwidth tier configuration.
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
+    /**
+     * Output only. The network tier configuration for the node pool inherits from the cluster-level configuration and remains immutable throughout the node pool's lifecycle, including during upgrades.
+     */
+    networkTierConfig?: Schema$NetworkTierConfig;
     /**
      * [PRIVATE FIELD] Pod CIDR size overprovisioning config for the nodepool. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is rounded off to next power of 2 and we then double that to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled.
      */
