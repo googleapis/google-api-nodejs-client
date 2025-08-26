@@ -831,7 +831,7 @@
           ]
         },
         "getReportingIdentitySettings": {
-          "description": "Returns the singleton data retention settings for this property.",
+          "description": "Returns the reporting identity settings for this property.",
           "flatPath": "v1alpha/properties/{propertiesId}/reportingIdentitySettings",
           "httpMethod": "GET",
           "id": "analyticsadmin.properties.getReportingIdentitySettings",
@@ -5086,7 +5086,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250820",
   "rootUrl": "https://analyticsadmin.googleapis.com/",
   "schemas": {
     "GoogleAnalyticsAdminV1alphaAccessBetweenFilter": {

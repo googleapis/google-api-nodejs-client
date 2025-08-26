@@ -7318,7 +7318,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns the singleton data retention settings for this property.
+     * Returns the reporting identity settings for this property.
      * @example
      * ```js
      * // Before running the sample:
