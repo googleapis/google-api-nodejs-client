@@ -4432,7 +4432,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a shared drive.
+     * Creates a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4595,7 +4595,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.
+     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4728,7 +4728,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a shared drive's metadata by ID.
+     * Gets a shared drive's metadata by ID. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4880,7 +4880,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Hides a shared drive from the default view.
+     * Hides a shared drive from the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -5171,7 +5171,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Restores a shared drive to the default view.
+     * Restores a shared drive to the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -5318,7 +5318,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates the metadata for a shared drive.
+     * Updates the metadata for a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -10483,7 +10483,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted. For more information, see [Manage file revisions](https://developers.google.com/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -10617,7 +10617,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a revision's metadata or content by ID.
+     * Gets a revision's metadata or content by ID. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -10778,7 +10778,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a file's revisions.
+     * Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -10929,7 +10929,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates a revision with patch semantics.
+     * Updates a revision with patch semantics. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:

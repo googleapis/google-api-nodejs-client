@@ -829,7 +829,7 @@
     "drives": {
       "methods": {
         "create": {
-          "description": "Creates a shared drive.",
+          "description": "Creates a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives",
           "httpMethod": "POST",
           "id": "drive.drives.create",
@@ -856,7 +856,7 @@
           ]
         },
         "delete": {
-          "description": "Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.",
+          "description": "Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives/{driveId}",
           "httpMethod": "DELETE",
           "id": "drive.drives.delete",
@@ -889,7 +889,7 @@
           ]
         },
         "get": {
-          "description": "Gets a shared drive's metadata by ID.",
+          "description": "Gets a shared drive's metadata by ID. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives/{driveId}",
           "httpMethod": "GET",
           "id": "drive.drives.get",
@@ -920,7 +920,7 @@
           ]
         },
         "hide": {
-          "description": "Hides a shared drive from the default view.",
+          "description": "Hides a shared drive from the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives/{driveId}/hide",
           "httpMethod": "POST",
           "id": "drive.drives.hide",
@@ -986,7 +986,7 @@
           ]
         },
         "unhide": {
-          "description": "Restores a shared drive to the default view.",
+          "description": "Restores a shared drive to the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives/{driveId}/unhide",
           "httpMethod": "POST",
           "id": "drive.drives.unhide",
@@ -1010,7 +1010,7 @@
           ]
         },
         "update": {
-          "description": "Updates the metadata for a shared drive.",
+          "description": "Updates the metadata for a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).",
           "flatPath": "drives/{driveId}",
           "httpMethod": "PATCH",
           "id": "drive.drives.update",
@@ -2401,7 +2401,7 @@
     "revisions": {
       "methods": {
         "delete": {
-          "description": "Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.",
+          "description": "Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted. For more information, see [Manage file revisions](https://developers.google.com/drive/api/guides/manage-revisions).",
           "flatPath": "files/{fileId}/revisions/{revisionId}",
           "httpMethod": "DELETE",
           "id": "drive.revisions.delete",
@@ -2431,7 +2431,7 @@
           ]
         },
         "get": {
-          "description": "Gets a revision's metadata or content by ID.",
+          "description": "Gets a revision's metadata or content by ID. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).",
           "flatPath": "files/{fileId}/revisions/{revisionId}",
           "httpMethod": "GET",
           "id": "drive.revisions.get",
@@ -2477,7 +2477,7 @@
           "useMediaDownloadService": true
         },
         "list": {
-          "description": "Lists a file's revisions.",
+          "description": "Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).",
           "flatPath": "files/{fileId}/revisions",
           "httpMethod": "GET",
           "id": "drive.revisions.list",
@@ -2522,7 +2522,7 @@
           ]
         },
         "update": {
-          "description": "Updates a revision with patch semantics.",
+          "description": "Updates a revision with patch semantics. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).",
           "flatPath": "files/{fileId}/revisions/{revisionId}",
           "httpMethod": "PATCH",
           "id": "drive.revisions.update",
@@ -2718,7 +2718,7 @@
       }
     }
   },
-  "revision": "20250723",
+  "revision": "20250819",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
