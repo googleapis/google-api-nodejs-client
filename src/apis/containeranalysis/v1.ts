@@ -403,7 +403,7 @@ export namespace containeranalysis_v1 {
     triggerId?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 22
+   * A step in the build pipeline. Next ID: 23
    */
   export interface Schema$BuildStep {
     /**
@@ -450,6 +450,10 @@ export namespace containeranalysis_v1 {
      * Output only. Stores timing information for pulling this build step's builder image only.
      */
     pullTiming?: Schema$TimeSpan;
+    /**
+     * Remote configuration for the build step.
+     */
+    remoteConfig?: string | null;
     results?: Schema$StepResult[];
     /**
      * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
@@ -492,6 +496,12 @@ export namespace containeranalysis_v1 {
      * The localized name of the category.
      */
     name?: string | null;
+  }
+  export interface Schema$CISAKnownExploitedVulnerabilities {
+    /**
+     * Whether the vulnerability is known to have been leveraged as part of a ransomware campaign.
+     */
+    knownRansomwareCampaignUse?: string | null;
   }
   /**
    * A compliance check that is a CIS benchmark.
@@ -1885,6 +1895,16 @@ export namespace containeranalysis_v1 {
     keyid?: string | null;
     sig?: string | null;
   }
+  export interface Schema$ExploitPredictionScoringSystem {
+    /**
+     * The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score
+     */
+    percentile?: number | null;
+    /**
+     * The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days
+     */
+    score?: number | null;
+  }
   /**
    * The request to generate and export SBOM. Target must be specified for the request.
    */
@@ -2316,7 +2336,7 @@ export namespace containeranalysis_v1 {
      */
     notes?: Schema$Note[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }
@@ -2333,7 +2353,7 @@ export namespace containeranalysis_v1 {
      */
     occurrences?: Schema$Occurrence[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }
@@ -2850,6 +2870,16 @@ export namespace containeranalysis_v1 {
     mediaType?: string | null;
     name?: string | null;
     uri?: string | null;
+  }
+  export interface Schema$Risk {
+    /**
+     * CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild.
+     */
+    cisaKev?: Schema$CISAKnownExploitedVulnerabilities;
+    /**
+     * The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild.
+     */
+    epss?: Schema$ExploitPredictionScoringSystem;
   }
   export interface Schema$RunDetails {
     builder?: Schema$ProvenanceBuilder;
@@ -3475,6 +3505,10 @@ export namespace containeranalysis_v1 {
      */
     relatedUrls?: Schema$RelatedUrl[];
     /**
+     * Risk information about the vulnerability, such as CISA, EPSS, etc.
+     */
+    risk?: Schema$Risk;
+    /**
      * Output only. The note provider assigned severity of this vulnerability.
      */
     severity?: string | null;
@@ -3497,7 +3531,7 @@ export namespace containeranalysis_v1 {
      */
     counts?: Schema$FixableTotalByDigest[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }

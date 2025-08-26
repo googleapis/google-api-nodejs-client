@@ -1452,7 +1452,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250813",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AnalysisCompleted": {
@@ -1828,7 +1828,7 @@
       "type": "object"
     },
     "BuildStep": {
-      "description": "A step in the build pipeline. Next ID: 22",
+      "description": "A step in the build pipeline. Next ID: 23",
       "id": "BuildStep",
       "properties": {
         "allowExitCodes": {
@@ -1885,6 +1885,10 @@
         "pullTiming": {
           "$ref": "TimeSpan",
           "description": "Output only. Stores timing information for pulling this build step's builder image only."
+        },
+        "remoteConfig": {
+          "description": "Remote configuration for the build step.",
+          "type": "string"
         },
         "results": {
           "items": {
@@ -1978,6 +1982,17 @@
       "id": "BuilderConfig",
       "properties": {
         "id": {
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CISAKnownExploitedVulnerabilities": {
+      "description": "CISAKnownExploitedVulnerabilities provides information about whether the vulnerability is known to have been leveraged as part of a ransomware campaign.",
+      "id": "CISAKnownExploitedVulnerabilities",
+      "properties": {
+        "knownRansomwareCampaignUse": {
+          "description": "Optional. Whether the vulnerability is known to have been leveraged as part of a ransomware campaign.",
           "type": "string"
         }
       },
@@ -4292,6 +4307,23 @@
       },
       "type": "object"
     },
+    "ExploitPredictionScoringSystem": {
+      "description": "ExploitPredictionScoringSystem provides information about the Exploit Prediction Scoring System (EPSS) score and percentile.",
+      "id": "ExploitPredictionScoringSystem",
+      "properties": {
+        "percentile": {
+          "description": "Optional. The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score",
+          "format": "double",
+          "type": "number"
+        },
+        "score": {
+          "description": "Optional. The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days",
+          "format": "double",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Expr": {
       "description": "Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: \"Summary size limit\" description: \"Determines if a summary is less than 100 chars\" expression: \"document.summary.size() < 100\" Example (Equality): title: \"Requestor is owner\" description: \"Determines if requestor is the document owner\" expression: \"document.owner == request.auth.claims.email\" Example (Logic): title: \"Public documents\" description: \"Determine whether the document should be publicly visible\" expression: \"document.type != 'private' && document.type != 'internal'\" Example (Data Manipulation): title: \"Notification string\" description: \"Create a notification string with a timestamp.\" expression: \"'New message received at ' + string(document.create_time)\" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.",
       "id": "Expr",
@@ -6388,6 +6420,21 @@
       },
       "type": "object"
     },
+    "Risk": {
+      "description": "The Risk message provides information about the risk of a vulnerability.",
+      "id": "Risk",
+      "properties": {
+        "cisaKev": {
+          "$ref": "CISAKnownExploitedVulnerabilities",
+          "description": "Optional. CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild."
+        },
+        "epss": {
+          "$ref": "ExploitPredictionScoringSystem",
+          "description": "Optional. The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild."
+        }
+      },
+      "type": "object"
+    },
     "RunDetails": {
       "id": "RunDetails",
       "properties": {
@@ -7358,6 +7405,10 @@
             "$ref": "PackageIssue"
           },
           "type": "array"
+        },
+        "risk": {
+          "$ref": "Risk",
+          "description": "Risk information about the vulnerability, such as CISA, EPSS, etc."
         },
         "severity": {
           "description": "Output only. The note provider assigned Severity of the vulnerability.",
