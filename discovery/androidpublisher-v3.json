@@ -5521,7 +5521,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250820",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
@@ -6176,7 +6176,7 @@
         },
         "recurringPrice": {
           "$ref": "Money",
-          "description": "The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and taxes, call orders.get API instead if transaction details are needed."
+          "description": "The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed."
         }
       },
       "type": "object"
@@ -11901,7 +11901,7 @@
       "properties": {
         "countryTargeting": {
           "$ref": "CountryTargeting",
-          "description": "Restricts a release to a specific set of countries."
+          "description": "Restricts a release to a specific set of countries. Note this is only allowed to be set for inProgress releases in the production track."
         },
         "inAppUpdatePriority": {
           "description": "In-app update priority of the release. All newly added APKs in the release will be considered at this priority. Can take values in the range [0, 5], with 5 the highest priority. Defaults to 0. in_app_update_priority can not be updated once the release is rolled out. See https://developer.android.com/guide/playcore/in-app-updates.",
