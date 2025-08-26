@@ -344,6 +344,50 @@
     "package": "@google-cloud/memcache"
   },
   {
+    "api": "merchantapi",
+    "package": "@google-shopping/accounts"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/conversions"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/datasources"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/issueresolution"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/lfp"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/notifications"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/ordertracking"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/products"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/promotions"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/quota"
+  },
+  {
+    "api": "merchantapi",
+    "package": "@google-shopping/reports"
+  },
+  {
     "api": "vmmigration",
     "package": "@google-cloud/vmmigration"
   },
@@ -738,50 +782,6 @@
   {
     "api": "redis",
     "package": "@google-cloud/redis-cluster"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/accounts"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/conversions"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/datasources"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/issueresolution"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/lfp"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/notifications"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/ordertracking"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/products"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/promotions"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/quota"
-  },
-  {
-    "api": "merchantapi",
-    "package": "@google-shopping/reports"
   },
   {
     "api": "merchantapi",

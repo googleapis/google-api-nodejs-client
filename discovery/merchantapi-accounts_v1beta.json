@@ -2311,7 +2311,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250819",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -5310,7 +5310,7 @@
               "Has access to the same read-only methods as STANDARD, but no access to any mutating methods.",
               "Admin access rights.",
               "Users with this right have access to performance and insights.",
-              "Users with this right have access to Merchant API and its notifications. This role is only accessible to accounts that has a developer registration."
+              "Users with this right have access to Merchant API and its notifications. This role is only accessible to accounts that have a developer registration."
             ],
             "type": "string"
           },

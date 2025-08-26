@@ -1932,7 +1932,7 @@
       }
     }
   },
-  "revision": "20250409",
+  "revision": "20250820",
   "rootUrl": "https://tagmanager.googleapis.com/",
   "schemas": {
     "Account": {
@@ -2159,7 +2159,10 @@
               "elementVisibilityRatio",
               "elementVisibilityTime",
               "elementVisibilityFirstTime",
-              "elementVisibilityRecentTime"
+              "elementVisibilityRecentTime",
+              "analyticsClientId",
+              "analyticsSessionId",
+              "analyticsSessionNumber"
             ],
             "enumDescriptions": [
               "",
@@ -2195,6 +2198,9 @@
               "",
               "For web or mobile.",
               "For web or mobile.",
+              "",
+              "",
+              "",
               "",
               "",
               "",
