@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250822",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -873,6 +873,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "expireTime": {
+          "description": "Output only. The time the release will expire.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "firebaseConsoleUri": {
           "description": "Output only. A link to the Firebase console displaying a single release.",
           "readOnly": true,
@@ -888,6 +894,12 @@
         },
         "testingUri": {
           "description": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the release was last updated.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
