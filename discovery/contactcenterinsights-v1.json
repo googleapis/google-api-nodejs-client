@@ -4811,6 +4811,22 @@
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
+                    },
+                    "qaScorecardSources": {
+                      "description": "Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards of one or more sources.",
+                      "enum": [
+                        "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                        "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                        "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+                      ],
+                      "enumDescriptions": [
+                        "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
+                        "The scorecard is a custom scorecard created by the user.",
+                        "The scorecard is a scorecard created through discovery engine deployment."
+                      ],
+                      "location": "query",
+                      "repeated": true,
+                      "type": "string"
                     }
                   },
                   "path": "v1/{+parent}/qaScorecards",
@@ -5005,6 +5021,22 @@
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/qaScorecards/[^/]+$",
                           "required": true,
+                          "type": "string"
+                        },
+                        "qaScorecardSources": {
+                          "description": "Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards Revisions from Scorecards of one or more sources.",
+                          "enum": [
+                            "QA_SCORECARD_SOURCE_UNSPECIFIED",
+                            "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+                            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+                          ],
+                          "enumDescriptions": [
+                            "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
+                            "The scorecard is a custom scorecard created by the user.",
+                            "The scorecard is a scorecard created through discovery engine deployment."
+                          ],
+                          "location": "query",
+                          "repeated": true,
                           "type": "string"
                         }
                       },
@@ -5392,7 +5424,7 @@
       }
     }
   },
-  "revision": "20250818",
+  "revision": "20250821",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -9296,6 +9328,21 @@
         },
         "name": {
           "description": "Identifier. The scorecard name. Format: projects/{project}/locations/{location}/qaScorecards/{qa_scorecard}",
+          "type": "string"
+        },
+        "source": {
+          "description": "Output only. The source of the scorecard.",
+          "enum": [
+            "QA_SCORECARD_SOURCE_UNSPECIFIED",
+            "QA_SCORECARD_SOURCE_CUSTOMER_DEFINED",
+            "QA_SCORECARD_SOURCE_DISCOVERY_ENGINE"
+          ],
+          "enumDescriptions": [
+            "The source of the scorecard is unspecified. Default to QA_SCORECARD_SOURCE_CUSTOMER_DEFINED.",
+            "The scorecard is a custom scorecard created by the user.",
+            "The scorecard is a scorecard created through discovery engine deployment."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "updateTime": {

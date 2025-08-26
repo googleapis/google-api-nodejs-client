@@ -5444,6 +5444,10 @@ export namespace contactcenterinsights_v1 {
      */
     name?: string | null;
     /**
+     * Output only. The source of the scorecard.
+     */
+    source?: string | null;
+    /**
      * Output only. The most recent time at which the scorecard was updated.
      */
     updateTime?: string | null;
@@ -31333,6 +31337,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "isDefault": false,
      *         //   "name": "my_name",
+     *         //   "source": "my_source",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -31346,6 +31351,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
+     *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -31635,6 +31641,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
+     *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -31779,6 +31786,8 @@ export namespace contactcenterinsights_v1 {
      *     pageToken: 'placeholder-value',
      *     // Required. The parent resource of the scorecards.
      *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards of one or more sources.
+     *     qaScorecardSources: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
@@ -31941,6 +31950,7 @@ export namespace contactcenterinsights_v1 {
      *         //   "displayName": "my_displayName",
      *         //   "isDefault": false,
      *         //   "name": "my_name",
+     *         //   "source": "my_source",
      *         //   "updateTime": "my_updateTime"
      *         // }
      *       },
@@ -31955,6 +31965,7 @@ export namespace contactcenterinsights_v1 {
      *   //   "displayName": "my_displayName",
      *   //   "isDefault": false,
      *   //   "name": "my_name",
+     *   //   "source": "my_source",
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -32111,6 +32122,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the scorecards.
      */
     parent?: string;
+    /**
+     * Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards of one or more sources.
+     */
+    qaScorecardSources?: string[];
   }
   export interface Params$Resource$Projects$Locations$Qascorecards$Patch
     extends StandardParameters {
@@ -32801,6 +32816,8 @@ export namespace contactcenterinsights_v1 {
      *       // Required. The parent resource of the scorecard revisions. To list all revisions of all scorecards, substitute the QaScorecard ID with a '-' character.
      *       parent:
      *         'projects/my-project/locations/my-location/qaScorecards/my-qaScorecard',
+     *       // Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards Revisions from Scorecards of one or more sources.
+     *       qaScorecardSources: 'placeholder-value',
      *     });
      *   console.log(res.data);
      *
@@ -33305,6 +33322,10 @@ export namespace contactcenterinsights_v1 {
      * Required. The parent resource of the scorecard revisions. To list all revisions of all scorecards, substitute the QaScorecard ID with a '-' character.
      */
     parent?: string;
+    /**
+     * Optional. The source of scorecards are based on how those Scorecards were created, e.g., a customer-defined scorecard, a predefined scorecard, etc. This field is used to retrieve Scorecards Revisions from Scorecards of one or more sources.
+     */
+    qaScorecardSources?: string[];
   }
   export interface Params$Resource$Projects$Locations$Qascorecards$Revisions$Tuneqascorecardrevision
     extends StandardParameters {
