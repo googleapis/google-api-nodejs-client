@@ -771,7 +771,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -886,7 +886,7 @@
                   "type": "string"
                 },
                 "orderBy": {
-                  "description": "Optional. Specifies the ordering of results. Supported values are: relevance (default) last_modified_timestamp last_modified_timestamp asc",
+                  "description": "Optional. Specifies the ordering of results. Supported values are: relevance last_modified_timestamp last_modified_timestamp asc",
                   "location": "query",
                   "type": "string"
                 },
@@ -7211,7 +7211,7 @@
       }
     }
   },
-  "revision": "20250808",
+  "revision": "20250820",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
