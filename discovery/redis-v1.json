@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250819",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1336,8 +1336,26 @@
           "readOnly": true,
           "type": "string"
         },
+        "lastBackupTime": {
+          "description": "Output only. The last time a backup was created in the backup collection.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. Full resource path of the backup collection.",
+          "type": "string"
+        },
+        "totalBackupCount": {
+          "description": "Output only. Total number of backups in the backup collection.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBackupSizeBytes": {
+          "description": "Output only. Total size of all backups in the backup collection.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "uid": {

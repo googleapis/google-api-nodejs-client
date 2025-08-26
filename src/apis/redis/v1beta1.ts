@@ -268,9 +268,21 @@ export namespace redis_v1beta1 {
      */
     kmsKey?: string | null;
     /**
+     * Output only. The last time a backup was created in the backup collection.
+     */
+    lastBackupTime?: string | null;
+    /**
      * Identifier. Full resource path of the backup collection.
      */
     name?: string | null;
+    /**
+     * Output only. Total number of backups in the backup collection.
+     */
+    totalBackupCount?: string | null;
+    /**
+     * Output only. Total size of all backups in the backup collection.
+     */
+    totalBackupSizeBytes?: string | null;
     /**
      * Output only. System assigned unique identifier of the backup collection.
      */
@@ -2230,7 +2242,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2358,7 +2370,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2431,7 +2443,10 @@ export namespace redis_v1beta1 {
      *   //   "clusterUid": "my_clusterUid",
      *   //   "createTime": "my_createTime",
      *   //   "kmsKey": "my_kmsKey",
+     *   //   "lastBackupTime": "my_lastBackupTime",
      *   //   "name": "my_name",
+     *   //   "totalBackupCount": "my_totalBackupCount",
+     *   //   "totalBackupSizeBytes": "my_totalBackupSizeBytes",
      *   //   "uid": "my_uid"
      *   // }
      * }
