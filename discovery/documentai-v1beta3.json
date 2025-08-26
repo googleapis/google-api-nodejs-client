@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1290,9 +1290,190 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250820",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
+      "description": "Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput",
+      "properties": {
+        "validationRules": {
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule",
+      "properties": {
+        "description": {
+          "description": "Description of the validation rule. This has no use but for documentation",
+          "type": "string"
+        },
+        "fieldOccurrences": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences"
+        },
+        "fieldRegex": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex"
+        },
+        "formValidation": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation"
+        },
+        "name": {
+          "description": "Name of the validation rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant": {
+      "description": "The constant value used in the validation rules.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant",
+      "properties": {
+        "floatValue": {
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField",
+      "properties": {
+        "defaultValue": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant",
+          "description": "Default value to use if the field is not present. If the field is missing and the default value is not set, the validation run as if the field is not present in the validation logic."
+        },
+        "fieldName": {
+          "description": "The field name to validate. This can be a simple field name or a nested field one using the ':' (meant as an aggregator) or '*' (meant as foreach) operators.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences",
+      "properties": {
+        "field": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+        },
+        "maxOccurrences": {
+          "format": "uint32",
+          "type": "integer"
+        },
+        "minOccurrences": {
+          "description": "Min and max occurrences of the field. If not set, there is limit set. The defined interval is a closed-closed interval, i.e. [min, max].",
+          "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex",
+      "properties": {
+        "field": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+        },
+        "pattern": {
+          "description": "Python regex to validate the field values.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation",
+      "properties": {
+        "leftOperand": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+        },
+        "rightOperand": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+        },
+        "validationOperator": {
+          "description": "The relational operator to be applied to the operands.",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPERATION_TYPE_EQ",
+            "OPERATION_TYPE_NE",
+            "OPERATION_TYPE_LT",
+            "OPERATION_TYPE_LE",
+            "OPERATION_TYPE_GT",
+            "OPERATION_TYPE_GE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation",
+      "properties": {
+        "constants": {
+          "description": "A list of constants to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant"
+          },
+          "type": "array"
+        },
+        "fields": {
+          "description": "A list of fields to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+          },
+          "type": "array"
+        },
+        "operationType": {
+          "description": "The operation type to be applied to all the operands.",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPERATION_TYPE_SUM",
+            "OPERATION_TYPE_SUB",
+            "OPERATION_TYPE_MUL",
+            "OPERATION_TYPE_DIV",
+            "OPERATION_TYPE_MAX",
+            "OPERATION_TYPE_MIN",
+            "OPERATION_TYPE_ABS",
+            "OPERATION_TYPE_UNIQUE",
+            "OPERATION_TYPE_COUNT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of recursive operations to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
       "description": "Metadata of the auto-labeling documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata",
@@ -3194,13 +3375,6 @@
         "uri": {
           "description": "Optional. Currently supports Google Cloud Storage URI of the form `gs://bucket_name/object_name`. Object versioning is not supported. For more information, refer to [Google Cloud Storage Request URIs](https://cloud.google.com/storage/docs/reference-uris).",
           "type": "string"
-        },
-        "validationOutputs": {
-          "description": "The output of the validation given the document and the validation rules. The output is appended to the document in the processing order.",
-          "items": {
-            "$ref": "GoogleCloudDocumentaiV1beta3DocumentValidationOutput"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -5035,61 +5209,6 @@
         "textAnchor": {
           "$ref": "GoogleCloudDocumentaiV1beta3DocumentTextAnchor",
           "description": "Provenance of the correction. Text anchor indexing into the Document.text. There can only be a single `TextAnchor.text_segments` element. If the start and end index of the text segment are the same, the text change is inserted before that index."
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDocumentaiV1beta3DocumentValidationOutput": {
-      "description": "The output of the validation given the document and the validation rules.",
-      "id": "GoogleCloudDocumentaiV1beta3DocumentValidationOutput",
-      "properties": {
-        "passAllRules": {
-          "description": "The overall result of the validation, true if all applicable rules are valid.",
-          "type": "boolean"
-        },
-        "validationResults": {
-          "description": "The result of each validation rule.",
-          "items": {
-            "$ref": "GoogleCloudDocumentaiV1beta3DocumentValidationOutputValidationResult"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "GoogleCloudDocumentaiV1beta3DocumentValidationOutputValidationResult": {
-      "description": "Validation result for a single validation rule.",
-      "id": "GoogleCloudDocumentaiV1beta3DocumentValidationOutputValidationResult",
-      "properties": {
-        "ruleDescription": {
-          "description": "The description of the validation rule.",
-          "type": "string"
-        },
-        "ruleName": {
-          "description": "The name of the validation rule.",
-          "type": "string"
-        },
-        "validationDetails": {
-          "description": "The detailed information of the running the validation process using the entity from the document based on the validation rule.",
-          "type": "string"
-        },
-        "validationResultType": {
-          "description": "The result of the validation rule.",
-          "enum": [
-            "VALIDATION_RESULT_TYPE_UNSPECIFIED",
-            "VALIDATION_RESULT_TYPE_VALID",
-            "VALIDATION_RESULT_TYPE_INVALID",
-            "VALIDATION_RESULT_TYPE_SKIPPED",
-            "VALIDATION_RESULT_TYPE_NOT_APPLICABLE"
-          ],
-          "enumDescriptions": [
-            "The validation result type is unspecified.",
-            "The validation is valid.",
-            "The validation is invalid.",
-            "The validation is skipped.",
-            "The validation is not applicable."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
