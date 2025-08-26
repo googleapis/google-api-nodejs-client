@@ -414,7 +414,7 @@ export namespace orgpolicy_v2 {
      */
     enforce?: boolean | null;
     /**
-     * Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \}
+     * Optional. Required for managed constraints if parameters are defined. Passes parameter values when policy enforcement is enabled. Ensure that parameter value types match those defined in the constraint definition. For example: ``` { "allowedLocations" : ["us-east1", "us-west1"], "allowAll" : true \} ```
      */
     parameters?: {[key: string]: any} | null;
     /**
