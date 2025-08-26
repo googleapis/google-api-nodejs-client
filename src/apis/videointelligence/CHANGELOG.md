@@ -1,5 +1,17 @@
 # Changelog
 
+## [4.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v4.0.0...videointelligence-v4.1.0) (2025-08-26)
+
+
+### Features
+
+* **videointelligence:** update the API ([935c39a](https://github.com/googleapis/google-api-nodejs-client/commit/935c39a17f4e336b7eb2431d518385e185d9dfe9))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/videointelligence-v3.0.0...videointelligence-v4.0.0) (2025-08-25)
 
 

@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/websecurityscanner-v1.0.3...websecurityscanner-v1.0.4) (2025-08-26)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **websecurityscanner:** update the API ([1ff7e38](https://github.com/googleapis/google-api-nodejs-client/commit/1ff7e38f3a2f0cba69750e159729ce8d0e150faa))
+
 ## [1.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/websecurityscanner-v1.0.2...websecurityscanner-v1.0.3) (2025-08-25)
 
 
