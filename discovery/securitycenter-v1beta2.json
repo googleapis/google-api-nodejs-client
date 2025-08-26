@@ -2003,7 +2003,7 @@
       }
     }
   },
-  "revision": "20250808",
+  "revision": "20250815",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2483,7 +2483,7 @@
       "type": "object"
     },
     "BigQueryDestination": {
-      "description": "The destination big query dataset to export findings to.",
+      "description": "The destination BigQuery dataset to export findings to.",
       "id": "BigQueryDestination",
       "properties": {
         "dataset": {
@@ -3498,7 +3498,7 @@
       "properties": {
         "bigQueryDestination": {
           "$ref": "BigQueryDestination",
-          "description": "Required. The destination big query dataset to export findings to."
+          "description": "Required. The destination BigQuery dataset to export findings to."
         },
         "exportStartTime": {
           "description": "Optional. Timestamp at which export was started",

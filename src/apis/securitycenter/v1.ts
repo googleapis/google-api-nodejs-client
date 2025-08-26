@@ -694,7 +694,7 @@ export namespace securitycenter_v1 {
     resourceValueConfigs?: Schema$GoogleCloudSecuritycenterV1ResourceValueConfig[];
   }
   /**
-   * The destination big query dataset to export findings to.
+   * The destination BigQuery dataset to export findings to.
    */
   export interface Schema$BigQueryDestination {
     /**
@@ -1407,7 +1407,7 @@ export namespace securitycenter_v1 {
    */
   export interface Schema$ExportFindingsMetadata {
     /**
-     * Required. The destination big query dataset to export findings to.
+     * Required. The destination BigQuery dataset to export findings to.
      */
     bigQueryDestination?: Schema$BigQueryDestination;
     /**
