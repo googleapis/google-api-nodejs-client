@@ -131,66 +131,6 @@
   "resources": {
     "operations": {
       "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-          "flatPath": "v2/operations/{operationsId}:cancel",
-          "httpMethod": "POST",
-          "id": "bigtableadmin.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}:cancel",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/bigtable.admin",
-            "https://www.googleapis.com/auth/bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/bigtable.admin.instance",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "v2/operations/{operationsId}",
-          "httpMethod": "DELETE",
-          "id": "bigtableadmin.operations.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be deleted.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/bigtable.admin",
-            "https://www.googleapis.com/auth/bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/bigtable.admin.instance",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
           "flatPath": "v2/operations/{operationsId}",
@@ -3079,37 +3019,6 @@
         },
         "locations": {
           "methods": {
-            "get": {
-              "description": "Gets information about a location.",
-              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}",
-              "httpMethod": "GET",
-              "id": "bigtableadmin.projects.locations.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Resource name for the location.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+name}",
-              "response": {
-                "$ref": "Location"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/bigtable.admin",
-                "https://www.googleapis.com/auth/bigtable.admin.cluster",
-                "https://www.googleapis.com/auth/bigtable.admin.instance",
-                "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
-              ]
-            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v2/projects/{projectsId}/locations",
@@ -3168,7 +3077,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250811",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4699,7 +4608,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: \"123/environment\": \"production\", \"123/costCenter\": \"marketing\" Tags and Labels (above) are both used to bind metadata to resources, with different use-cases. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for an in-depth overview on the difference between tags and labels.",
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: - \"123/environment\": \"production\", - \"123/costCenter\": \"marketing\" Tags and Labels (above) are both used to bind metadata to resources, with different use-cases. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for an in-depth overview on the difference between tags and labels.",
           "type": "object"
         },
         "type": {
