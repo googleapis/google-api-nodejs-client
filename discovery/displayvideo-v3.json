@@ -9268,7 +9268,7 @@
       }
     }
   },
-  "revision": "20250812",
+  "revision": "20250819",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -9935,6 +9935,20 @@
           "$ref": "AdvertiserBillingConfig",
           "description": "Required. Billing related settings of the advertiser."
         },
+        "containsEuPoliticalAds": {
+          "description": "Optional. Whether this advertiser contains line items that serve European Union political ads. If this field is set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING`, then the following will happen: * Any new line items created under this advertiser will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. * Any existing line items under this advertiser that do not have a set value be updated to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` within a day.",
+          "enum": [
+            "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+            "CONTAINS_EU_POLITICAL_ADVERTISING",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Contains EU political advertising.",
+            "Does not contain EU political advertising."
+          ],
+          "type": "string"
+        },
         "creativeConfig": {
           "$ref": "AdvertiserCreativeConfig",
           "description": "Required. Creative related settings of the advertiser."
@@ -10240,6 +10254,49 @@
         "boolValue": {
           "description": "Boolean value.",
           "type": "boolean"
+        },
+        "contentDurationValue": {
+          "description": "Video content duration value.",
+          "enum": [
+            "CONTENT_DURATION_UNSPECIFIED",
+            "CONTENT_DURATION_UNKNOWN",
+            "CONTENT_DURATION_0_TO_1_MIN",
+            "CONTENT_DURATION_1_TO_5_MIN",
+            "CONTENT_DURATION_5_TO_15_MIN",
+            "CONTENT_DURATION_15_TO_30_MIN",
+            "CONTENT_DURATION_30_TO_60_MIN",
+            "CONTENT_DURATION_OVER_60_MIN"
+          ],
+          "enumDescriptions": [
+            "Content duration is not specified in this version. This enum is a place holder for a default value and does not represent a real content duration.",
+            "The content duration is unknown.",
+            "Content is 0-1 minute long.",
+            "Content is 1-5 minutes long.",
+            "Content is 5-15 minutes long.",
+            "Content is 15-30 minutes long.",
+            "Content is 30-60 minutes long.",
+            "Content is over 60 minutes long."
+          ],
+          "type": "string"
+        },
+        "contentGenreIdValue": {
+          "description": "Video genre id value.",
+          "format": "int64",
+          "type": "string"
+        },
+        "contentStreamTypeValue": {
+          "description": "Video delivery type value.",
+          "enum": [
+            "CONTENT_STREAM_TYPE_UNSPECIFIED",
+            "CONTENT_LIVE_STREAM",
+            "CONTENT_ON_DEMAND"
+          ],
+          "enumDescriptions": [
+            "Content stream type is not specified in this version. This enum is a place holder for a default value and does not represent a real content stream type.",
+            "The content is being live-streamed.",
+            "The content is viewed on-demand."
+          ],
+          "type": "string"
         },
         "creativeDimensionValue": {
           "$ref": "Dimensions",
@@ -10689,7 +10746,10 @@
             "COUNTRY_ID",
             "CITY_ID",
             "BROWSER_ID",
-            "CREATIVE_DIMENSION"
+            "CREATIVE_DIMENSION",
+            "VIDEO_CONTENT_DURATION_BUCKET",
+            "VIDEO_DELIVERY_TYPE",
+            "VIDEO_GENRE_ID"
           ],
           "enumDescriptions": [
             "Unknown signal.",
@@ -10703,7 +10763,10 @@
             "The country or region identifier. Value is stored in the int64Value field of the comparison value.",
             "The city identifier. Value is stored in the int64Value field of the comparison value.",
             "The browser identifier. Value is stored in the int64Value field of the comparison value.",
-            "Creative height and width in pixels. Value is stored in the creativeDimensionValue field of the comparison value."
+            "Creative height and width in pixels. Value is stored in the creativeDimensionValue field of the comparison value.",
+            "Video content duration. Value is stored in the contentDurationValue field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`.",
+            "Video delivery type. Value is stored in the contentStreamTypeValue field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`.",
+            "Video genre id. Value is stored in the int64Value field of the comparison value. The comparisonOperator field must be set to `LIST_CONTAINS`."
           ],
           "type": "string"
         }
@@ -10722,7 +10785,8 @@
             "GREATER_THAN",
             "LESS_THAN",
             "GREATER_THAN_OR_EQUAL_TO",
-            "LESS_THAN_OR_EQUAL_TO"
+            "LESS_THAN_OR_EQUAL_TO",
+            "LIST_CONTAINS"
           ],
           "enumDescriptions": [
             "Unknown operator.",
@@ -10730,7 +10794,8 @@
             "Signal value is greater than the comparison value.",
             "Signal value is less than the second.",
             "Signal value is greater than or equal to the second.",
-            "Signal value is less than or equal to the comparison value."
+            "Signal value is less than or equal to the comparison value.",
+            "Signal value is a list and contains the comparison value."
           ],
           "type": "string"
         },
@@ -12120,7 +12185,7 @@
           "description": "Required. A line item object containing the fields to be updated and the new values to assign to all line items specified in line_item_ids.\""
         },
         "updateMask": {
-          "description": "Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAdvertising",
+          "description": "Required. A field mask identifying which fields to update. Only the following fields are currently supported: * entityStatus * containsEuPoliticalAds",
           "format": "google-fieldmask",
           "type": "string"
         }
@@ -13509,7 +13574,8 @@
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
-            "SDF_VERSION_8_1"
+            "SDF_VERSION_8_1",
+            "SDF_VERSION_9"
           ],
           "enumDeprecated": [
             false,
@@ -13524,6 +13590,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -13545,7 +13612,8 @@
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1."
+            "SDF version 8.1.",
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -15152,6 +15220,20 @@
       "description": "Request message for LineItemService.DuplicateLineItem.",
       "id": "DuplicateLineItemRequest",
       "properties": {
+        "containsEuPoliticalAds": {
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.",
+          "enum": [
+            "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+            "CONTAINS_EU_POLITICAL_ADVERTISING",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Contains EU political advertising.",
+            "Does not contain EU political advertising."
+          ],
+          "type": "string"
+        },
         "targetDisplayName": {
           "description": "The display name of the new line item. Must be UTF-8 encoded with a maximum size of 240 bytes.",
           "type": "string"
@@ -16681,6 +16763,20 @@
       "description": "Request message for LineItemService.GenerateDefaultLineItem.",
       "id": "GenerateDefaultLineItemRequest",
       "properties": {
+        "containsEuPoliticalAds": {
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned to the line item if the parent advertiser has declared that it does not serve EU political ads, or **the request will fail**.",
+          "enum": [
+            "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+            "CONTAINS_EU_POLITICAL_ADVERTISING",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Contains EU political advertising.",
+            "Does not contain EU political advertising."
+          ],
+          "type": "string"
+        },
         "displayName": {
           "description": "Required. The display name of the line item. Must be UTF-8 encoded with a maximum size of 240 bytes.",
           "type": "string"
@@ -18753,6 +18849,20 @@
           "description": "Output only. The unique ID of the campaign that the line item belongs to.",
           "format": "int64",
           "readOnly": true,
+          "type": "string"
+        },
+        "containsEuPoliticalAds": {
+          "description": "Whether this line item will serve European Union political ads. If contains_eu_political_ads has been set to `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` in the parent advertiser, then this field will be assigned `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` if not otherwise specified. This field can then be updated using the UI, API, or Structured Data Files. *Warning*: Starting **September 8, 2025**, this field must be set when creating a new line item. If not, either the value `DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING` will be assigned if the parent advertiser has declared that it does not serve EU political ads, or **the `advertisers.lineItems.create` request will fail**.",
+          "enum": [
+            "EU_POLITICAL_ADVERTISING_STATUS_UNKNOWN",
+            "CONTAINS_EU_POLITICAL_ADVERTISING",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADVERTISING"
+          ],
+          "enumDescriptions": [
+            "Unknown.",
+            "Contains EU political advertising.",
+            "Does not contain EU political advertising."
+          ],
           "type": "string"
         },
         "conversionCounting": {
@@ -21375,7 +21485,8 @@
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
-            "SDF_VERSION_8_1"
+            "SDF_VERSION_8_1",
+            "SDF_VERSION_9"
           ],
           "enumDeprecated": [
             false,
@@ -21390,6 +21501,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21411,7 +21523,8 @@
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1."
+            "SDF version 8.1.",
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -21461,7 +21574,8 @@
             "SDF_VERSION_7",
             "SDF_VERSION_7_1",
             "SDF_VERSION_8",
-            "SDF_VERSION_8_1"
+            "SDF_VERSION_8_1",
+            "SDF_VERSION_9"
           ],
           "enumDeprecated": [
             false,
@@ -21476,6 +21590,7 @@
             true,
             true,
             true,
+            false,
             false,
             false,
             false,
@@ -21497,7 +21612,8 @@
             "SDF version 7. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 7.1. Read the [v7 migration guide](/display-video/api/structured-data-file/v7-migration-guide) before migrating to this version.",
             "SDF version 8. Read the [v8 migration guide](/display-video/api/structured-data-file/v8-migration-guide) before migrating to this version.",
-            "SDF version 8.1."
+            "SDF version 8.1.",
+            "SDF version 9. Read the [v9 migration guide](/display-video/api/structured-data-file/v9-migration-guide) before migrating to this version."
           ],
           "type": "string"
         }
@@ -22872,7 +22988,7 @@
           "type": "string"
         },
         "value": {
-          "description": "The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` If not using an applicable strategy, the value of this field will be 0.",
+          "description": "The value used by the bidding strategy. When the bidding strategy is assigned at the line item level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_SHARE_OF_VOICE` When the bidding strategy is assigned at the ad group level, this field is only applicable for the following strategy types: * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_MANUAL_CPV` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPA` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_RESERVE_CPM` * `YOUTUBE_AND_PARTNERS_BIDDING_STRATEGY_TYPE_TARGET_ROAS` If not using an applicable strategy, the value of this field will be 0.",
           "format": "int64",
           "type": "string"
         }
