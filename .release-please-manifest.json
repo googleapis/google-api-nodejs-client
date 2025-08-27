@@ -232,7 +232,7 @@
   "src/apis/tpu": "4.0.0",
   "src/apis/billingbudgets": "1.0.3",
   "src/apis/meet": "1.0.2",
-  "src/apis/aiplatform": "4.0.0",
+  "src/apis/aiplatform": "4.0.1",
   "src/apis/transcoder": "1.3.0",
   "src/apis/domains": "1.0.3",
   "src/apis/apihub": "1.1.0",
