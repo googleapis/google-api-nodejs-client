@@ -1,5 +1,31 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v4.0.0...compute-v5.0.0) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **compute:** This release has breaking changes.
+* **compute:** This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **compute:** update the API ([cbc7a7f](https://github.com/googleapis/google-api-nodejs-client/commit/cbc7a7fa71625fd30808ee515c94a0ec92ce6b4d))
+* **compute:** update the API ([374063c](https://github.com/googleapis/google-api-nodejs-client/commit/374063cd477a55436184b1f5808b47c795a24ac5))
+* **compute:** update the API ([f9f26f4](https://github.com/googleapis/google-api-nodejs-client/commit/f9f26f43ea8ca69d53d1b1c96452618efbce667e))
+* **compute:** update the API ([2e3c7c3](https://github.com/googleapis/google-api-nodejs-client/commit/2e3c7c36e6e40299fbdef45e1b57b183bdea52b7))
+* **compute:** update the API ([744cef8](https://github.com/googleapis/google-api-nodejs-client/commit/744cef860257c434d2fc770fedf50553529a3339))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+
+### Bug Fixes
+
+* **compute:** update the API ([7b55b90](https://github.com/googleapis/google-api-nodejs-client/commit/7b55b907b9e67341a2f1d5d369c27cd73d020c60))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/compute-v3.0.0...compute-v4.0.0) (2025-08-25)
 
 

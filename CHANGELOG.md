@@ -4,6 +4,17 @@
 
 [1]: https://www.npmjs.com/package/googleapis?activeTab=versions
 
+## [159.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v158.0.0...googleapis-v159.0.0) (2025-08-26)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3753](https://github.com/googleapis/google-api-nodejs-client/issues/3753)) ([de822b3](https://github.com/googleapis/google-api-nodejs-client/commit/de822b3677f26b6923accb2dcde943b3165e5dde))
+
 ## [158.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/googleapis-v157.0.0...googleapis-v158.0.0) (2025-08-25)
 
 
