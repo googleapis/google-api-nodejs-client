@@ -999,7 +999,7 @@ export namespace places_v1 {
      */
     restaurant?: Schema$GoogleMapsPlacesV1ContentBlock;
     /**
-     * A summary of the nearby gas stations.
+     * A summary of the nearby stores.
      */
     store?: Schema$GoogleMapsPlacesV1ContentBlock;
   }

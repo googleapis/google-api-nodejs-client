@@ -1160,9 +1160,6 @@ export namespace datacatalog_v1 {
    * Request message for ReconcileTags.
    */
   export interface Schema$GoogleCloudDatacatalogV1ReconcileTagsRequest {
-    /**
-     * If set to `true`, deletes entry tags related to a tag template not listed in the tags source from an entry. If set to `false`, unlisted tags are retained.
-     */
     forceDeleteMissing?: boolean | null;
     /**
      * A list of tags to apply to an entry. A tag can specify a tag template, which must be the template specified in the `ReconcileTagsRequest`. The sole entry and each of its columns must be mentioned at most once.

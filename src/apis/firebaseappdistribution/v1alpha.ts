@@ -363,6 +363,14 @@ export namespace firebaseappdistribution_v1alpha {
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteraction {
     /**
+     * Output only. A back action.
+     */
+    backAction?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionBack;
+    /**
+     * Output only. A drag and drop action.
+     */
+    dragAndDrop?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop;
+    /**
      * Output only. A text entry action, that enters text into a particular text field, clearing any existing text in the field. Unlike `text_input` this action does not require any other actions such as a tap to be performed before it can enter the text.
      */
     enterText?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText;
@@ -370,6 +378,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. Key code for a key event action.
      */
     keyCode?: string | null;
+    /**
+     * Output only. A long press (tap and hold) action.
+     */
+    longPress?: Schema$AndroidxCrawlerOutputPoint;
     /**
      * Output only. The screenshot used in the context of this action. The screen may have changed before the action was actually taken.
      */
@@ -390,6 +402,23 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. A wait action.
      */
     wait?: Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionWait;
+  }
+  /**
+   * A back action.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionBack {}
+  /**
+   * A drag and drop action.
+   */
+  export interface Schema$GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop {
+    /**
+     * Output only. The end point of the drag and drop.
+     */
+    end?: Schema$AndroidxCrawlerOutputPoint;
+    /**
+     * Output only. The start point of the drag and drop.
+     */
+    start?: Schema$AndroidxCrawlerOutputPoint;
   }
   /**
    * A text entry action, that enters text into a particular text field, clearing any existing text in the field.
@@ -774,6 +803,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     createTime?: string | null;
     /**
+     * Output only. Other test cases that depend on this test cse as a prerequisite.
+     */
+    dependentTestCases?: string[] | null;
+    /**
      * Required. Display name of the test case.
      */
     displayName?: string | null;
@@ -781,6 +814,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Identifier. The name of the test case resource. Format: `projects/{project_number\}/apps/{app_id\}/testCases/{test_case_id\}`
      */
     name?: string | null;
+    /**
+     * Optional. Test case that must be run before this test case.
+     */
+    prerequisiteTestCase?: string | null;
   }
   /**
    * Configuration for automated tests
@@ -879,6 +916,10 @@ export namespace firebaseappdistribution_v1alpha {
      */
     displayVersion?: string | null;
     /**
+     * Output only. The time the release will expire.
+     */
+    expireTime?: string | null;
+    /**
      * Output only. A link to the Firebase console displaying a single release.
      */
     firebaseConsoleUri?: string | null;
@@ -894,6 +935,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.
      */
     testingUri?: string | null;
+    /**
+     * Output only. The time the release was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Notes that belong to a release.
@@ -1126,7 +1171,7 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.apps.getJwt({
-     *     // Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     *     // Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      *     mobilesdkAppId: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1255,7 +1300,7 @@ export namespace firebaseappdistribution_v1alpha {
   }
   export interface Params$Resource$Apps$Getjwt extends StandardParameters {
     /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
     mobilesdkAppId?: string;
   }
@@ -1299,9 +1344,9 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.apps.releases.enable_access({
-     *     // Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     *     // Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      *     mobilesdkAppId: 'placeholder-value',
-     *     // Release identifier
+     *     // Required. Release identifier
      *     releaseId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1431,11 +1476,11 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Apps$Releases$Enable_access
     extends StandardParameters {
     /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
     mobilesdkAppId?: string;
     /**
-     * Release identifier
+     * Required. Release identifier
      */
     releaseId?: string;
 
@@ -1482,9 +1527,9 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.apps.releases.notes.create({
-     *     // Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     *     // Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      *     mobilesdkAppId: 'placeholder-value',
-     *     // Release identifier
+     *     // Required. Release identifier
      *     releaseId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -1611,11 +1656,11 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Apps$Releases$Notes$Create
     extends StandardParameters {
     /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
     mobilesdkAppId?: string;
     /**
-     * Release identifier
+     * Required. Release identifier
      */
     releaseId?: string;
 
@@ -1662,9 +1707,9 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.apps.release_by_hash.get({
-     *     // Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     *     // Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      *     mobilesdkAppId: 'placeholder-value',
-     *     // The hash for the upload
+     *     // Required. The hash for the upload
      *     uploadHash: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -1785,11 +1830,11 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Apps$Release_by_hash$Get
     extends StandardParameters {
     /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
     mobilesdkAppId?: string;
     /**
-     * The hash for the upload
+     * Required. The hash for the upload
      */
     uploadHash?: string;
   }
@@ -1999,9 +2044,9 @@ export namespace firebaseappdistribution_v1alpha {
      *
      *   // Do the magic
      *   const res = await firebaseappdistribution.apps.upload_status.get({
-     *     // Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     *     // Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      *     mobilesdkAppId: 'placeholder-value',
-     *     // The token for the upload
+     *     // Required. The token for the upload
      *     uploadToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -2125,11 +2170,11 @@ export namespace firebaseappdistribution_v1alpha {
   export interface Params$Resource$Apps$Upload_status$Get
     extends StandardParameters {
     /**
-     * Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
+     * Required. Unique id for a Firebase app of the format: {version\}:{project_number\}:{platform\}:{hash(bundle_id)\} Example: 1:581234567376:android:aa0a3c7b135e90289
      */
     mobilesdkAppId?: string;
     /**
-     * The token for the upload
+     * Required. The token for the upload
      */
     uploadToken?: string;
   }
@@ -3535,8 +3580,10 @@ export namespace firebaseappdistribution_v1alpha {
      *       // {
      *       //   "aiInstructions": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dependentTestCases": [],
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *       // }
      *     },
      *   });
@@ -3546,8 +3593,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *
@@ -3830,8 +3879,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *
@@ -4131,8 +4182,10 @@ export namespace firebaseappdistribution_v1alpha {
      *       // {
      *       //   "aiInstructions": {},
      *       //   "createTime": "my_createTime",
+     *       //   "dependentTestCases": [],
      *       //   "displayName": "my_displayName",
-     *       //   "name": "my_name"
+     *       //   "name": "my_name",
+     *       //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *       // }
      *     },
      *   });
@@ -4142,8 +4195,10 @@ export namespace firebaseappdistribution_v1alpha {
      *   // {
      *   //   "aiInstructions": {},
      *   //   "createTime": "my_createTime",
+     *   //   "dependentTestCases": [],
      *   //   "displayName": "my_displayName",
-     *   //   "name": "my_name"
+     *   //   "name": "my_name",
+     *   //   "prerequisiteTestCase": "my_prerequisiteTestCase"
      *   // }
      * }
      *

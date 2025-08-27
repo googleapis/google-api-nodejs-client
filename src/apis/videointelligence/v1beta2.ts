@@ -201,7 +201,7 @@ export namespace videointelligence_v1beta2 {
      */
     name?: string | null;
     /**
-     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     * The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1.
      */
     point?: Schema$GoogleCloudVideointelligenceV1beta2_NormalizedVertex;
   }
@@ -256,6 +256,19 @@ export namespace videointelligence_v1beta2 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Status of exporting annotation response to user specified `output_uri`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus {
+    /**
+     * Output only. State of the `output_uri` export.
+     */
+    state?: string | null;
+    /**
+     * Output only. Only set if state is FAILED.
+     */
+    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -445,7 +458,7 @@ export namespace videointelligence_v1beta2 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly {
     /**
@@ -743,6 +756,10 @@ export namespace videointelligence_v1beta2 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress {
     /**
+     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
+     */
+    exportStatus?: Schema$GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus;
+    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -967,7 +984,7 @@ export namespace videointelligence_v1beta2 {
      */
     name?: string | null;
     /**
-     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     * The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1.
      */
     point?: Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex;
   }
@@ -1013,6 +1030,19 @@ export namespace videointelligence_v1beta2 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Status of exporting annotation response to user specified `output_uri`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus {
+    /**
+     * Output only. State of the `output_uri` export.
+     */
+    state?: string | null;
+    /**
+     * Output only. Only set if state is FAILED.
+     */
+    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -1160,7 +1190,7 @@ export namespace videointelligence_v1beta2 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly {
     /**
@@ -1360,6 +1390,10 @@ export namespace videointelligence_v1beta2 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress {
     /**
+     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
+     */
+    exportStatus?: Schema$GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus;
+    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -1543,7 +1577,7 @@ export namespace videointelligence_v1beta2 {
      */
     name?: string | null;
     /**
-     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     * The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1.
      */
     point?: Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex;
   }
@@ -1589,6 +1623,19 @@ export namespace videointelligence_v1beta2 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Status of exporting annotation response to user specified `output_uri`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus {
+    /**
+     * Output only. State of the `output_uri` export.
+     */
+    state?: string | null;
+    /**
+     * Output only. Only set if state is FAILED.
+     */
+    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -1736,7 +1783,7 @@ export namespace videointelligence_v1beta2 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly {
     /**
@@ -1935,6 +1982,10 @@ export namespace videointelligence_v1beta2 {
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress {
+    /**
+     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
+     */
+    exportStatus?: Schema$GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus;
     /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
@@ -2162,7 +2213,7 @@ export namespace videointelligence_v1beta2 {
      */
     name?: string | null;
     /**
-     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     * The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1.
      */
     point?: Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex;
   }
@@ -2208,6 +2259,19 @@ export namespace videointelligence_v1beta2 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Status of exporting annotation response to user specified `output_uri`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus {
+    /**
+     * Output only. State of the `output_uri` export.
+     */
+    state?: string | null;
+    /**
+     * Output only. Only set if state is FAILED.
+     */
+    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -2355,7 +2419,7 @@ export namespace videointelligence_v1beta2 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly {
     /**
@@ -2610,6 +2674,10 @@ export namespace videointelligence_v1beta2 {
    */
   export interface Schema$GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress {
     /**
+     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
+     */
+    exportStatus?: Schema$GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus;
+    /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */
     feature?: string | null;
@@ -2797,7 +2865,7 @@ export namespace videointelligence_v1beta2 {
      */
     name?: string | null;
     /**
-     * The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1.
+     * The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1.
      */
     point?: Schema$GoogleCloudVideointelligenceV1_NormalizedVertex;
   }
@@ -2843,6 +2911,19 @@ export namespace videointelligence_v1beta2 {
      * Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.
      */
     timeOffset?: string | null;
+  }
+  /**
+   * Status of exporting annotation response to user specified `output_uri`.
+   */
+  export interface Schema$GoogleCloudVideointelligenceV1_ExportToOutputUriStatus {
+    /**
+     * Output only. State of the `output_uri` export.
+     */
+    state?: string | null;
+    /**
+     * Output only. Only set if state is FAILED.
+     */
+    status?: Schema$GoogleRpc_Status;
   }
   /**
    * Deprecated. No effect.
@@ -2990,7 +3071,7 @@ export namespace videointelligence_v1beta2 {
     top?: number | null;
   }
   /**
-   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.
+   * Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_NormalizedBoundingPoly {
     /**
@@ -3189,6 +3270,10 @@ export namespace videointelligence_v1beta2 {
    * Annotation progress for a single video.
    */
   export interface Schema$GoogleCloudVideointelligenceV1_VideoAnnotationProgress {
+    /**
+     * Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request.
+     */
+    exportStatus?: Schema$GoogleCloudVideointelligenceV1_ExportToOutputUriStatus;
     /**
      * Specifies which feature is being tracked if the request contains more than one feature.
      */

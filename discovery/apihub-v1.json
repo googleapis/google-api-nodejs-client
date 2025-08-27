@@ -1701,7 +1701,7 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \\\"deployment-1\\\"` is equivalent to `name = \\\"projects/test-project-id/locations/test-location-id/deployments/deployment-1\\\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \\\"Staging Deployment\\\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \\\"2021-08-15T14:50:00Z\\\" AND create_time > \\\"2021-08-10T12:00:00Z\\\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \\\"99.99%\\\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.",
+                      "description": "Optional. An expression that filters the list of Deployments. A filter expression consists of a field name, a comparison operator, and a value for filtering. The value must be a string. The comparison operator must be one of: `<`, `>` or `=`. Filters are not case sensitive. The following fields in the `Deployments` are eligible for filtering: * `display_name` - The display name of the Deployment. Allowed comparison operators: `=`. * `create_time` - The time at which the Deployment was created. The value should be in the (RFC3339)[https://tools.ietf.org/html/rfc3339] format. Allowed comparison operators: `>` and `<`. * `resource_uri` - A URI to the deployment resource. Allowed comparison operators: `=`. * `api_versions` - The API versions linked to this deployment. Allowed comparison operators: `:`. * `source_project` - The project/organization at source for the deployment. Allowed comparison operators: `=`. * `source_environment` - The environment at source for the deployment. Allowed comparison operators: `=`. * `deployment_type.enum_values.values.id` - The allowed value id of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `deployment_type.enum_values.values.display_name` - The allowed value display name of the deployment_type attribute associated with the Deployment. Allowed comparison operators: `:`. * `slo.string_values.values` -The allowed string value of the slo attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.id` - The allowed value id of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `environment.enum_values.values.display_name` - The allowed value display name of the environment attribute associated with the deployment. Allowed comparison operators: `:`. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.id` - The allowed value id of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-id is a placeholder that can be replaced with any user defined enum attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.enum_values.values.display_name` - The allowed value display name of the user defined enum attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-enum-display-name is a placeholder that can be replaced with any user defined enum attribute enum name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.string_values.values` - The allowed value of the user defined string attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-string is a placeholder that can be replaced with any user defined string attribute name. * `attributes.projects/test-project-id/locations/test-location-id/ attributes/user-defined-attribute-id.json_values.values` - The allowed value of the user defined JSON attribute associated with the Resource. Allowed comparison operator is `:`. Here user-defined-attribute-json is a placeholder that can be replaced with any user defined JSON attribute name. A filter function is also supported in the filter string. The filter function is `id(name)`. The `id(name)` function returns the id of the resource name. For example, `id(name) = \\\"deployment-1\\\"` is equivalent to `name = \\\"projects/test-project-id/locations/test-location-id/deployments/deployment-1\\\"` provided the parent is `projects/test-project-id/locations/test-location-id`. Expressions are combined with either `AND` logic operator or `OR` logical operator but not both of them together i.e. only one of the `AND` or `OR` operator can be used throughout the filter string and both the operators cannot be used together. No other logical operators are supported. At most three filter fields are allowed in the filter string and if provided more than that then `INVALID_ARGUMENT` error is returned by the API. Here are a few examples: * `environment.enum_values.values.id: staging-id` - The allowed value id of the environment attribute associated with the Deployment is _staging-id_. * `environment.enum_values.values.display_name: \\\"Staging Deployment\\\"` - The allowed value display name of the environment attribute associated with the Deployment is `Staging Deployment`. * `environment.enum_values.values.id: production-id AND create_time < \\\"2021-08-15T14:50:00Z\\\" AND create_time > \\\"2021-08-10T12:00:00Z\\\"` - The allowed value id of the environment attribute associated with the Deployment is _production-id_ and Deployment was created before _2021-08-15 14:50:00 UTC_ and after _2021-08-10 12:00:00 UTC_. * `environment.enum_values.values.id: production-id OR slo.string_values.values: \\\"99.99%\\\"` - The allowed value id of the environment attribute Deployment is _production-id_ or string value of the slo attribute is _99.99%_. * `environment.enum_values.values.id: staging-id AND attributes.projects/test-project-id/locations/test-location-id/ attributes/17650f90-4a29-4971-b3c0-d5532da3764b.string_values.values: test` - The filter string specifies that the allowed value id of the environment attribute associated with the Deployment is _staging-id_ and the value of the user defined attribute of type string is _test_.",
                       "location": "query",
                       "type": "string"
                     },
@@ -1765,6 +1765,138 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                }
+              }
+            },
+            "discoveredApiObservations": {
+              "methods": {
+                "get": {
+                  "description": "Gets a DiscoveredAPIObservation in a given project, location and ApiObservation.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredApiObservations/{discoveredApiObservationsId}",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.discoveredApiObservations.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the DiscoveredApiObservation to retrieve. Format: projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/discoveredApiObservations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1DiscoveredApiObservation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists all the DiscoveredAPIObservations in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredApiObservations",
+                  "httpMethod": "GET",
+                  "id": "apihub.projects.locations.discoveredApiObservations.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of ApiObservations to return. The service may return fewer than this value. If unspecified, at most 10 ApiObservations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListApiObservations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListApiObservations` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent, which owns this collection of ApiObservations. Format: projects/{project}/locations/{location}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/discoveredApiObservations",
+                  "response": {
+                    "$ref": "GoogleCloudApihubV1ListDiscoveredApiObservationsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
+              "resources": {
+                "discoveredApiOperations": {
+                  "methods": {
+                    "get": {
+                      "description": "Gets a DiscoveredAPIOperation in a given project, location, ApiObservation and ApiOperation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredApiObservations/{discoveredApiObservationsId}/discoveredApiOperations/{discoveredApiOperationsId}",
+                      "httpMethod": "GET",
+                      "id": "apihub.projects.locations.discoveredApiObservations.discoveredApiOperations.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiscoveredApiOperation to retrieve. Format: projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}/discoveredApiOperations/{discovered_api_operation}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/discoveredApiObservations/[^/]+/discoveredApiOperations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudApihubV1DiscoveredApiOperation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists all the DiscoveredAPIOperations in a given project, location and ApiObservation.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/discoveredApiObservations/{discoveredApiObservationsId}/discoveredApiOperations",
+                      "httpMethod": "GET",
+                      "id": "apihub.projects.locations.discoveredApiObservations.discoveredApiOperations.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "pageSize": {
+                          "description": "Optional. DiscoveredApiOperations will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListDiscoveredApiApiOperations` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListDiscoveredApiApiOperations` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of DiscoveredApiOperations. Format: projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/discoveredApiObservations/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/discoveredApiOperations",
+                      "response": {
+                        "$ref": "GoogleCloudApihubV1ListDiscoveredApiOperationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
                 }
               }
             },
@@ -2814,7 +2946,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250731",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -3977,14 +4109,14 @@
         },
         "managementUrl": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
-          "description": "Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API."
+          "description": "Optional. The uri where users can navigate to for the management of the deployment. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-management-url` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URL."
         },
         "name": {
           "description": "Identifier. The name of the deployment. Format: `projects/{project}/locations/{location}/deployments/{deployment}`",
           "type": "string"
         },
         "resourceUri": {
-          "description": "Required. A uri that uniquely identfies the deployment within a particular gateway. For example, if the runtime resource is of type APIGEE_PROXY, then this field will be a combination of org, proxy name and environment.",
+          "description": "Required. The resource URI identifies the deployment within its gateway. For Apigee gateways, its recommended to use the format: organizations/{org}/environments/{env}/apis/{api}. For ex: if a proxy with name `orders` is deployed in `staging` environment of `cymbal` organization, the resource URI would be: `organizations/cymbal/environments/staging/apis/orders`.",
           "type": "string"
         },
         "slo": {
@@ -4009,7 +4141,7 @@
         },
         "sourceUri": {
           "$ref": "GoogleCloudApihubV1AttributeValues",
-          "description": "Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API."
+          "description": "Optional. The uri where additional source specific information for this deployment can be found. This maps to the following system defined attribute: `projects/{project}/locations/{location}/attributes/system-source-uri` The number of values for this attribute will be based on the cardinality of the attribute. The same can be retrieved via GetAttribute API. The value of the attribute should be a valid URI, and in case of Cloud Storage URI, it should point to a Cloud Storage object, not a directory."
         },
         "updateTime": {
           "description": "Output only. The time at which the deployment was last updated.",
@@ -4060,6 +4192,181 @@
       "description": "The DisablePlugin method's request.",
       "id": "GoogleCloudApihubV1DisablePluginRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudApihubV1DiscoveredApiObservation": {
+      "description": "Respresents an API Observation observed in one of the sources.",
+      "id": "GoogleCloudApihubV1DiscoveredApiObservation",
+      "properties": {
+        "apiOperationCount": {
+          "description": "Optional. The number of observed API Operations.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time stamp of the observation in API Hub.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "hostname": {
+          "description": "Optional. The hostname of requests processed for this Observation.",
+          "type": "string"
+        },
+        "knownOperationsCount": {
+          "description": "Output only. The number of known API Operations.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "lastEventDetectedTime": {
+          "description": "Optional. Last event detected time stamp",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The name of the discovered API Observation. Format: `projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}`",
+          "type": "string"
+        },
+        "origin": {
+          "description": "Optional. For an observation pushed from a gcp resource, this would be the gcp project id.",
+          "type": "string"
+        },
+        "serverIps": {
+          "description": "Optional. The IP address (IPv4 or IPv6) of the origin server that the request was sent to. This field can include port information. Examples: `\"192.168.1.1\"`, `\"10.0.0.1:80\"`, `\"FE80::0202:B3FF:FE1E:8329\"`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sourceLocations": {
+          "description": "Optional. The location of the observation source.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "sourceMetadata": {
+          "$ref": "GoogleCloudApihubV1SourceMetadata",
+          "description": "Output only. The metadata of the source from which the observation was collected.",
+          "readOnly": true
+        },
+        "sourceTypes": {
+          "description": "Optional. The type of the source from which the observation was collected.",
+          "items": {
+            "enum": [
+              "SOURCE_TYPE_UNSPECIFIED",
+              "GCP_XLB",
+              "GCP_ILB"
+            ],
+            "enumDescriptions": [
+              "Source type not specified.",
+              "GCP external load balancer.",
+              "GCP internal load balancer."
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "style": {
+          "description": "Optional. Style of ApiObservation",
+          "enum": [
+            "STYLE_UNSPECIFIED",
+            "REST",
+            "GRPC",
+            "GRAPHQL"
+          ],
+          "enumDescriptions": [
+            "Unknown style",
+            "Style is Rest API",
+            "Style is Grpc API",
+            "Style is GraphQL API"
+          ],
+          "type": "string"
+        },
+        "unknownOperationsCount": {
+          "description": "Output only. The number of unknown API Operations.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Update time stamp of the observation in API Hub.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1DiscoveredApiOperation": {
+      "description": "DiscoveredApiOperation represents an API Operation observed in one of the sources.",
+      "id": "GoogleCloudApihubV1DiscoveredApiOperation",
+      "properties": {
+        "classification": {
+          "description": "Output only. The classification of the discovered API operation.",
+          "enum": [
+            "CLASSIFICATION_UNSPECIFIED",
+            "KNOWN",
+            "UNKNOWN"
+          ],
+          "enumDescriptions": [
+            "Operation is not classified as known or unknown.",
+            "Operation has a matched catalog operation.",
+            "Operation does not have a matched catalog operation."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "count": {
+          "description": "Optional. The number of occurrences of this API Operation.",
+          "format": "int64",
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Create time stamp of the discovered API operation in API Hub.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "firstSeenTime": {
+          "description": "Optional. First seen time stamp",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "httpOperation": {
+          "$ref": "GoogleCloudApihubV1HttpOperationDetails",
+          "description": "Optional. An HTTP Operation."
+        },
+        "lastSeenTime": {
+          "description": "Optional. Last seen time stamp",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "matchResults": {
+          "description": "Output only. The list of matched results for the discovered API operation. This will be populated only if the classification is known. The current usecase is for a single match. Keeping it repeated to support multiple matches in future.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1MatchResult"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Identifier. The name of the discovered API Operation. Format: `projects/{project}/locations/{location}/discoveredApiObservations/{discovered_api_observation}/discoveredApiOperations/{discovered_api_operation}`",
+          "type": "string"
+        },
+        "sourceMetadata": {
+          "$ref": "GoogleCloudApihubV1SourceMetadata",
+          "description": "Output only. The metadata of the source from which the api operation was collected.",
+          "readOnly": true
+        },
+        "updateTime": {
+          "description": "Output only. Update time stamp of the discovered API operation in API Hub.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudApihubV1Documentation": {
@@ -4220,6 +4527,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1Header": {
+      "description": "An aggregation of HTTP header occurrences.",
+      "id": "GoogleCloudApihubV1Header",
+      "properties": {
+        "count": {
+          "description": "The number of occurrences of this Header across transactions.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "Data type of header",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "UUID"
+          ],
+          "enumDescriptions": [
+            "Unspecified data type",
+            "Boolean data type",
+            "Integer data type",
+            "Float data type",
+            "String data type",
+            "UUID data type"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Header name.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1HostProjectRegistration": {
       "description": "Host project registration refers to the registration of a Google cloud project with Api Hub as a host project. This is the project where Api Hub is provisioned. It acts as the consumer project for the Api Hub instance provisioned. Multiple runtime projects can be attached to the host project and these attachments define the scope of Api Hub.",
       "id": "GoogleCloudApihubV1HostProjectRegistration",
@@ -4285,6 +4628,75 @@
         "path": {
           "$ref": "GoogleCloudApihubV1Path",
           "description": "Optional. The path details for the Operation. Note: Even though this field is optional, it is required for CreateApiOperation API and we will fail the request if not provided."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1HttpOperationDetails": {
+      "description": "An HTTP-based API Operation, sometimes called a \"REST\" Operation.",
+      "id": "GoogleCloudApihubV1HttpOperationDetails",
+      "properties": {
+        "httpOperation": {
+          "$ref": "GoogleCloudApihubV1HttpOperation",
+          "description": "Required. An HTTP Operation."
+        },
+        "pathParams": {
+          "description": "Optional. Path params of HttpOperation",
+          "items": {
+            "$ref": "GoogleCloudApihubV1PathParam"
+          },
+          "type": "array"
+        },
+        "queryParams": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApihubV1QueryParam"
+          },
+          "description": "Optional. Query params of HttpOperation",
+          "type": "object"
+        },
+        "request": {
+          "$ref": "GoogleCloudApihubV1HttpRequest",
+          "description": "Optional. Request metadata."
+        },
+        "response": {
+          "$ref": "GoogleCloudApihubV1HttpResponse",
+          "description": "Optional. Response metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1HttpRequest": {
+      "description": "An aggregation of HTTP requests.",
+      "id": "GoogleCloudApihubV1HttpRequest",
+      "properties": {
+        "headers": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApihubV1Header"
+          },
+          "description": "Optional. Unordered map from header name to header metadata",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1HttpResponse": {
+      "description": "An aggregation of HTTP responses.",
+      "id": "GoogleCloudApihubV1HttpResponse",
+      "properties": {
+        "headers": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudApihubV1Header"
+          },
+          "description": "Optional. Unordered map from header name to header metadata",
+          "type": "object"
+        },
+        "responseCodes": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Optional. Map of status code to observed count",
+          "type": "object"
         }
       },
       "type": "object"
@@ -4544,6 +4956,42 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1ListDiscoveredApiObservationsResponse": {
+      "description": "Message for response to listing DiscoveredApiObservations",
+      "id": "GoogleCloudApihubV1ListDiscoveredApiObservationsResponse",
+      "properties": {
+        "discoveredApiObservations": {
+          "description": "The DiscoveredApiObservation from the specified project and location.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1DiscoveredApiObservation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ListDiscoveredApiOperationsResponse": {
+      "description": "Message for response to listing DiscoveredApiOperations",
+      "id": "GoogleCloudApihubV1ListDiscoveredApiOperationsResponse",
+      "properties": {
+        "discoveredApiOperations": {
+          "description": "The DiscoveredApiOperations from the specified project, location and DiscoveredApiObservation.",
+          "items": {
+            "$ref": "GoogleCloudApihubV1DiscoveredApiOperation"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1ListExternalApisResponse": {
       "description": "The ListExternalApis method's response.",
       "id": "GoogleCloudApihubV1ListExternalApisResponse",
@@ -4688,6 +5136,18 @@
         "runtimeProjectAttachment": {
           "$ref": "GoogleCloudApihubV1RuntimeProjectAttachment",
           "description": "Runtime project attachment for a project if exists, empty otherwise."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1MatchResult": {
+      "description": "MatchResult represents the result of matching a discovered API operation with a catalog API operation.",
+      "id": "GoogleCloudApihubV1MatchResult",
+      "properties": {
+        "name": {
+          "description": "Output only. The name of the matched API Operation. Format: `projects/{project}/locations/{location}/apis/{api}/versions/{version}/operations/{operation}`",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4881,12 +5341,44 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1PathParam": {
+      "description": "HTTP Path parameter.",
+      "id": "GoogleCloudApihubV1PathParam",
+      "properties": {
+        "dataType": {
+          "description": "Optional. Data type of path param",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "UUID"
+          ],
+          "enumDescriptions": [
+            "Unspecified data type",
+            "Boolean data type",
+            "Integer data type",
+            "Float data type",
+            "String data type",
+            "UUID data type"
+          ],
+          "type": "string"
+        },
+        "position": {
+          "description": "Optional. Segment location in the path, 1-indexed",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudApihubV1Plugin": {
       "description": "A plugin resource in the API Hub.",
       "id": "GoogleCloudApihubV1Plugin",
       "properties": {
         "actionsConfig": {
-          "description": "Optional. The configuration of actions supported by the plugin.",
+          "description": "Required. The configuration of actions supported by the plugin.",
           "items": {
             "$ref": "GoogleCloudApihubV1PluginActionConfig"
           },
@@ -5080,7 +5572,7 @@
           "type": "string"
         },
         "sourceProjectId": {
-          "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This is a required field.",
+          "description": "Optional. The source project id of the plugin instance. This will be the id of runtime project in case of gcp based plugins and org id in case of non gcp based plugins. This field will be a required field for Google provided on-ramp plugins.",
           "type": "string"
         },
         "state": {
@@ -5219,6 +5711,42 @@
           "description": "Required. Line number (zero-indexed).",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1QueryParam": {
+      "description": "An aggregation of HTTP query parameter occurrences.",
+      "id": "GoogleCloudApihubV1QueryParam",
+      "properties": {
+        "count": {
+          "description": "Optional. The number of occurrences of this query parameter across transactions.",
+          "format": "int64",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "Optional. Data type of path param",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "BOOL",
+            "INTEGER",
+            "FLOAT",
+            "STRING",
+            "UUID"
+          ],
+          "enumDescriptions": [
+            "Unspecified data type",
+            "Boolean data type",
+            "Integer data type",
+            "Float data type",
+            "String data type",
+            "UUID data type"
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of query param",
+          "type": "string"
         }
       },
       "type": "object"

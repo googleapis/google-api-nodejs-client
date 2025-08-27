@@ -124,7 +124,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -152,7 +152,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
+                  "description": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -183,7 +183,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
+                  "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -228,7 +228,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -279,7 +279,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
+                  "description": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -322,7 +322,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -363,7 +363,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -411,7 +411,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.",
+                  "description": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -442,7 +442,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+                  "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -474,7 +474,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                  "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -512,7 +512,7 @@
               ],
               "parameters": {
                 "appsId": {
-                  "description": "Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.",
+                  "description": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -599,7 +599,7 @@
                   "type": "string"
                 },
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -761,7 +761,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -829,7 +829,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -877,7 +877,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
+                          "description": "Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -922,7 +922,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
+                          "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -986,7 +986,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -1046,7 +1046,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
+                          "description": "Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -1108,7 +1108,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -1172,7 +1172,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `parent`. Name of the parent Application resource. Example: apps/myapp.",
+                          "description": "Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -1220,7 +1220,7 @@
                           "type": "string"
                         },
                         "projectsId": {
-                          "description": "Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
+                          "description": "Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.",
                           "location": "path",
                           "required": true,
                           "type": "string"
@@ -1338,7 +1338,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250816",
   "rootUrl": "https://appengine.googleapis.com/",
   "schemas": {
     "AuthorizedCertificate": {

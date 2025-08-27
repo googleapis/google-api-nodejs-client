@@ -191,6 +191,10 @@ export namespace datastream_v1 {
    */
   export interface Schema$BackfillNoneStrategy {}
   /**
+   * Message to represent the option where Datastream will enforce encryption without authenticating server identity. Server certificates will be trusted by default.
+   */
+  export interface Schema$BasicEncryption {}
+  /**
    * BigQuery destination configuration
    */
   export interface Schema$BigQueryDestinationConfig {
@@ -479,6 +483,23 @@ export namespace datastream_v1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  /**
+   * Message to represent the option where Datastream will enforce encryption and authenticate server identity. ca_certificate must be set if user selects this option.
+   */
+  export interface Schema$EncryptionAndServerValidation {
+    /**
+     * Optional. Input only. PEM-encoded certificate of the CA that signed the source database server's certificate.
+     */
+    caCertificate?: string | null;
+    /**
+     * Optional. The hostname mentioned in the Subject or SAN extension of the server certificate. This field is used for bypassing the hostname validation while verifying server certificate. This is required for scenarios where the host name that datastream connects to is different from the certificate's subject. This specifically happens for private connectivity. It could also happen when the customer provides a public IP in connection profile but the same is not present in the server certificate.
+     */
+    serverCertificateHostname?: string | null;
+  }
+  /**
+   * Message to represent the option where encryption is not enforced. An empty message right now to allow future extensibility.
+   */
+  export interface Schema$EncryptionNotEnforced {}
   /**
    * Represent a user-facing Error.
    */
@@ -2013,6 +2034,10 @@ export namespace datastream_v1 {
      */
     secretManagerStoredPassword?: string | null;
     /**
+     * Optional. SSL configuration for the SQLServer connection.
+     */
+    sslConfig?: Schema$SqlServerSslConfig;
+    /**
      * Required. Username for the SQLServer connection.
      */
     username?: string | null;
@@ -2067,6 +2092,23 @@ export namespace datastream_v1 {
      * CDC reader reads from transaction logs.
      */
     transactionLogs?: Schema$SqlServerTransactionLogs;
+  }
+  /**
+   * SQL Server SSL configuration information.
+   */
+  export interface Schema$SqlServerSslConfig {
+    /**
+     * If set, Datastream will enforce encryption without authenticating server identity. Server certificates will be trusted by default.
+     */
+    basicEncryption?: Schema$BasicEncryption;
+    /**
+     * If set, Datastream will enforce encryption and authenticate server identity.
+     */
+    encryptionAndServerValidation?: Schema$EncryptionAndServerValidation;
+    /**
+     * If set, Datastream will not enforce encryption. If the DB server mandates encryption, then connection will be encrypted but server identity will not be authenticated.
+     */
+    encryptionNotEnforced?: Schema$EncryptionNotEnforced;
   }
   /**
    * SQLServer table.
@@ -2679,7 +2721,7 @@ export namespace datastream_v1 {
      *
      *   // Do the magic
      *   const res = await datastream.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2822,7 +2864,7 @@ export namespace datastream_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

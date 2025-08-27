@@ -231,7 +231,7 @@ export namespace homegraph_v1 {
      */
     defaultNames?: string[] | null;
     /**
-     * Primary name of the device, generally provided by the user.
+     * Primary name of the device, generally provided by the user. Names will be truncated if over the 60 Unicode code point (character) limit and no errors will be thrown. Developers are responsible for handling long names.
      */
     name?: string | null;
     /**

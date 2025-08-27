@@ -127,7 +127,7 @@ export namespace merchantapi_accounts_v1beta {
   }
 
   /**
-   * Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).
+   * Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?ref_topic=15145634&sjid=6892280366904591178-NC)).
    */
   export interface Schema$About {
     /**
@@ -140,7 +140,7 @@ export namespace merchantapi_accounts_v1beta {
     uri?: string | null;
   }
   /**
-   * Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
+   * Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).
    */
   export interface Schema$Accepted {
     /**
@@ -566,7 +566,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     effectiveUriSettings?: Schema$UriSettings;
     /**
-     * Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`
+     * Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`
      */
     eligibleDestinations?: string[] | null;
     /**
@@ -953,7 +953,7 @@ export namespace merchantapi_accounts_v1beta {
     uri?: string | null;
   }
   /**
-   * Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).
+   * Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?ref_topic=15145634&sjid=6892280366904591178-NC).
    */
   export interface Schema$InventoryVerification {
     /**
@@ -1306,7 +1306,7 @@ export namespace merchantapi_accounts_v1beta {
     regionCode?: string | null;
   }
   /**
-   * Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).
+   * Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?ref_topic=15145747&sjid=6892280366904591178-NC)).
    */
   export interface Schema$OnDisplayToOrder {
     /**
@@ -1679,7 +1679,7 @@ export namespace merchantapi_accounts_v1beta {
   /**
    * Request message for the RegisterGCP method.
    */
-  export interface Schema$RegisterGCPRequest {
+  export interface Schema$RegisterGcpRequest {
     /**
      * Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have "API developer" access type and the email preference corresponding to that user will be updated to have the new "API notifications" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new "API notifications" preference
      */
@@ -1953,7 +1953,7 @@ export namespace merchantapi_accounts_v1beta {
     regionCode?: string | null;
   }
   /**
-   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services, we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`. The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.
+   * This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field.
    */
   export interface Schema$TermsOfServiceAgreementState {
     /**
@@ -2036,7 +2036,7 @@ export namespace merchantapi_accounts_v1beta {
   /**
    * Request message for the UnregisterGCP method.
    */
-  export interface Schema$UnregisterGCPRequest {}
+  export interface Schema$UnregisterGcpRequest {}
   /**
    * URL settings for cart or checkout URL.
    */
@@ -2130,7 +2130,7 @@ export namespace merchantapi_accounts_v1beta {
      */
     carrierService?: string | null;
     /**
-     * Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)
+     * Required. Warehouse name. This should match warehouse.
      */
     warehouse?: string | null;
   }
@@ -2649,148 +2649,6 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
-     * Retrieves a developer registration for a merchant.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const merchantapi = google.merchantapi('accounts_v1beta');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/content'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await merchantapi.accounts.getDeveloperRegistration({
-     *     // Required. The `name` (ID) of the developer registration.
-     *     name: 'accounts/my-account/developerRegistration',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "gcpIds": [],
-     *   //   "name": "my_name"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    getDeveloperRegistration(
-      params: Params$Resource$Accounts$Getdeveloperregistration,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    getDeveloperRegistration(
-      params?: Params$Resource$Accounts$Getdeveloperregistration,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$DeveloperRegistration>>;
-    getDeveloperRegistration(
-      params: Params$Resource$Accounts$Getdeveloperregistration,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    getDeveloperRegistration(
-      params: Params$Resource$Accounts$Getdeveloperregistration,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$DeveloperRegistration>,
-      callback: BodyResponseCallback<Schema$DeveloperRegistration>
-    ): void;
-    getDeveloperRegistration(
-      params: Params$Resource$Accounts$Getdeveloperregistration,
-      callback: BodyResponseCallback<Schema$DeveloperRegistration>
-    ): void;
-    getDeveloperRegistration(
-      callback: BodyResponseCallback<Schema$DeveloperRegistration>
-    ): void;
-    getDeveloperRegistration(
-      paramsOrCallback?:
-        | Params$Resource$Accounts$Getdeveloperregistration
-        | BodyResponseCallback<Schema$DeveloperRegistration>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$DeveloperRegistration>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$DeveloperRegistration>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$DeveloperRegistration>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Accounts$Getdeveloperregistration;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Accounts$Getdeveloperregistration;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$DeveloperRegistration>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$DeveloperRegistration>(parameters);
-      }
-    }
-
-    /**
      * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.
      * @example
      * ```js
@@ -3257,13 +3115,6 @@ export namespace merchantapi_accounts_v1beta {
   export interface Params$Resource$Accounts$Get extends StandardParameters {
     /**
      * Required. The name of the account to retrieve. Format: `accounts/{account\}`
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Accounts$Getdeveloperregistration
-    extends StandardParameters {
-    /**
-     * Required. The `name` (ID) of the developer registration.
      */
     name?: string;
   }
@@ -4657,6 +4508,150 @@ export namespace merchantapi_accounts_v1beta {
     }
 
     /**
+     * Retrieves a developer registration for a merchant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await merchantapi.accounts.developerRegistration.getDeveloperRegistration({
+     *       // Required. The `name` (ID) of the developer registration.
+     *       name: 'accounts/my-account/developerRegistration',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "gcpIds": [],
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getDeveloperRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getDeveloperRegistration(
+      params?: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DeveloperRegistration>>;
+    getDeveloperRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getDeveloperRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$DeveloperRegistration>,
+      callback: BodyResponseCallback<Schema$DeveloperRegistration>
+    ): void;
+    getDeveloperRegistration(
+      params: Params$Resource$Accounts$Developerregistration$Getdeveloperregistration,
+      callback: BodyResponseCallback<Schema$DeveloperRegistration>
+    ): void;
+    getDeveloperRegistration(
+      callback: BodyResponseCallback<Schema$DeveloperRegistration>
+    ): void;
+    getDeveloperRegistration(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Developerregistration$Getdeveloperregistration
+        | BodyResponseCallback<Schema$DeveloperRegistration>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DeveloperRegistration>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DeveloperRegistration>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DeveloperRegistration>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Developerregistration$Getdeveloperregistration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Accounts$Developerregistration$Getdeveloperregistration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/accounts/v1beta/{+name}').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DeveloperRegistration>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DeveloperRegistration>(parameters);
+      }
+    }
+
+    /**
      * Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an "API developer" and add the "developer_email" as a contact with "API notifications" email preference on.
      * @example
      * ```js
@@ -4950,6 +4945,13 @@ export namespace merchantapi_accounts_v1beta {
     }
   }
 
+  export interface Params$Resource$Accounts$Developerregistration$Getdeveloperregistration
+    extends StandardParameters {
+    /**
+     * Required. The `name` (ID) of the developer registration.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Accounts$Developerregistration$Registergcp
     extends StandardParameters {
     /**
@@ -4960,7 +4962,7 @@ export namespace merchantapi_accounts_v1beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$RegisterGCPRequest;
+    requestBody?: Schema$RegisterGcpRequest;
   }
   export interface Params$Resource$Accounts$Developerregistration$Unregistergcp
     extends StandardParameters {
@@ -4972,7 +4974,7 @@ export namespace merchantapi_accounts_v1beta {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$UnregisterGCPRequest;
+    requestBody?: Schema$UnregisterGcpRequest;
   }
 
   export class Resource$Accounts$Emailpreferences {

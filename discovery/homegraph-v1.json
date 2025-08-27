@@ -216,7 +216,7 @@
       }
     }
   },
-  "revision": "20250410",
+  "revision": "20250716",
   "rootUrl": "https://homegraph.googleapis.com/",
   "schemas": {
     "AgentDeviceId": {
@@ -349,7 +349,7 @@
           "type": "array"
         },
         "name": {
-          "description": "Primary name of the device, generally provided by the user.",
+          "description": "Primary name of the device, generally provided by the user. Names will be truncated if over the 60 Unicode code point (character) limit and no errors will be thrown. Developers are responsible for handling long names.",
           "type": "string"
         },
         "nicknames": {

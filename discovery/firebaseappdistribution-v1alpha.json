@@ -156,7 +156,7 @@
           ],
           "parameters": {
             "mobilesdkAppId": {
-              "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+              "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
               "location": "path",
               "required": true,
               "type": "string"
@@ -185,13 +185,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "uploadHash": {
-                  "description": "The hash for the upload",
+                  "description": "Required. The hash for the upload",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -220,13 +220,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "releaseId": {
-                  "description": "Release identifier",
+                  "description": "Required. Release identifier",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -258,13 +258,13 @@
                   ],
                   "parameters": {
                     "mobilesdkAppId": {
-                      "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                      "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                       "location": "path",
                       "required": true,
                       "type": "string"
                     },
                     "releaseId": {
-                      "description": "Release identifier",
+                      "description": "Required. Release identifier",
                       "location": "path",
                       "required": true,
                       "type": "string"
@@ -331,13 +331,13 @@
               ],
               "parameters": {
                 "mobilesdkAppId": {
-                  "description": "Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
+                  "description": "Required. Unique id for a Firebase app of the format: {version}:{project_number}:{platform}:{hash(bundle_id)} Example: 1:581234567376:android:aa0a3c7b135e90289",
                   "location": "path",
                   "required": true,
                   "type": "string"
                 },
                 "uploadToken": {
-                  "description": "The token for the upload",
+                  "description": "Required. The token for the upload",
                   "location": "path",
                   "required": true,
                   "type": "string"
@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250612",
+  "revision": "20250822",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -873,6 +873,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "expireTime": {
+          "description": "Output only. The time the release will expire.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "firebaseConsoleUri": {
           "description": "Output only. A link to the Firebase console displaying a single release.",
           "readOnly": true,
@@ -888,6 +894,12 @@
         },
         "testingUri": {
           "description": "Output only. A link to the release in the tester web clip or Android app that lets testers (which were granted access to the app) view release notes and install the app onto their devices.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. The time the release was last updated.",
+          "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         }
@@ -1311,6 +1323,16 @@
       "description": "An interaction with the device, such as a tap, text entry, wait, etc.",
       "id": "GoogleFirebaseAppdistroV1alphaDeviceInteraction",
       "properties": {
+        "backAction": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionBack",
+          "description": "Output only. A back action.",
+          "readOnly": true
+        },
+        "dragAndDrop": {
+          "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop",
+          "description": "Output only. A drag and drop action.",
+          "readOnly": true
+        },
         "enterText": {
           "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionEnterText",
           "description": "Output only. A text entry action, that enters text into a particular text field, clearing any existing text in the field. Unlike `text_input` this action does not require any other actions such as a tap to be performed before it can enter the text.",
@@ -1320,6 +1342,11 @@
           "description": "Output only. Key code for a key event action.",
           "readOnly": true,
           "type": "string"
+        },
+        "longPress": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. A long press (tap and hold) action.",
+          "readOnly": true
         },
         "screenshot": {
           "$ref": "GoogleFirebaseAppdistroV1alphaScreenshot",
@@ -1344,6 +1371,29 @@
         "wait": {
           "$ref": "GoogleFirebaseAppdistroV1alphaDeviceInteractionWait",
           "description": "Output only. A wait action.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteractionBack": {
+      "description": "A back action.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteractionBack",
+      "properties": {},
+      "type": "object"
+    },
+    "GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop": {
+      "description": "A drag and drop action.",
+      "id": "GoogleFirebaseAppdistroV1alphaDeviceInteractionDragAndDrop",
+      "properties": {
+        "end": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. The end point of the drag and drop.",
+          "readOnly": true
+        },
+        "start": {
+          "$ref": "AndroidxCrawlerOutputPoint",
+          "description": "Output only. The start point of the drag and drop.",
           "readOnly": true
         }
       },
@@ -1927,12 +1977,24 @@
           "readOnly": true,
           "type": "string"
         },
+        "dependentTestCases": {
+          "description": "Output only. Other test cases that depend on this test cse as a prerequisite.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "displayName": {
           "description": "Required. Display name of the test case.",
           "type": "string"
         },
         "name": {
           "description": "Identifier. The name of the test case resource. Format: `projects/{project_number}/apps/{app_id}/testCases/{test_case_id}`",
+          "type": "string"
+        },
+        "prerequisiteTestCase": {
+          "description": "Optional. Test case that must be run before this test case.",
           "type": "string"
         }
       },

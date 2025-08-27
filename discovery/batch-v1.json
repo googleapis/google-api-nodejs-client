@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -595,7 +595,7 @@
       }
     }
   },
-  "revision": "20250519",
+  "revision": "20250813",
   "rootUrl": "https://batch.googleapis.com/",
   "schemas": {
     "Accelerator": {
@@ -1298,19 +1298,22 @@
             "PROVISIONING_MODEL_UNSPECIFIED",
             "STANDARD",
             "SPOT",
-            "PREEMPTIBLE"
+            "PREEMPTIBLE",
+            "RESERVATION_BOUND"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unspecified.",
             "Standard VM.",
             "SPOT VM.",
-            "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported."
+            "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported.",
+            "Bound to the lifecycle of the reservation in which it is provisioned."
           ],
           "type": "string"
         },
@@ -1366,19 +1369,22 @@
             "PROVISIONING_MODEL_UNSPECIFIED",
             "STANDARD",
             "SPOT",
-            "PREEMPTIBLE"
+            "PREEMPTIBLE",
+            "RESERVATION_BOUND"
           ],
           "enumDeprecated": [
             false,
             false,
             false,
-            true
+            true,
+            false
           ],
           "enumDescriptions": [
             "Unspecified.",
             "Standard VM.",
             "SPOT VM.",
-            "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported."
+            "Preemptible VM (PVM). Above SPOT VM is the preferable model for preemptible VM instances: the old preemptible VM model (indicated by this field) is the older model, and has been migrated to use the SPOT model as the underlying technology. This old model will still be supported.",
+            "Bound to the lifecycle of the reservation in which it is provisioned."
           ],
           "type": "string"
         },

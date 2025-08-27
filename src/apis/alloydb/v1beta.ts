@@ -1692,6 +1692,27 @@ export namespace alloydb_v1beta {
     status?: string | null;
   }
   /**
+   * Timing information for the stage execution.
+   */
+  export interface Schema$StageSchedule {
+    /**
+     * Actual end time of the stage. Set only if the stage has completed.
+     */
+    actualEndTime?: string | null;
+    /**
+     * Actual start time of the stage. Set only if the stage has started.
+     */
+    actualStartTime?: string | null;
+    /**
+     * When the stage is expected to end. Set only if the stage has not completed yet.
+     */
+    estimatedEndTime?: string | null;
+    /**
+     * When the stage is expected to start. Set only if the stage has not started yet.
+     */
+    estimatedStartTime?: string | null;
+  }
+  /**
    * Status of an upgrade stage.
    */
   export interface Schema$StageStatus {
@@ -1699,6 +1720,10 @@ export namespace alloydb_v1beta {
      * Read pool instances upgrade metadata.
      */
     readPoolInstancesUpgrade?: Schema$ReadPoolInstancesUpgradeStageStatus;
+    /**
+     * Output only. Timing information for the stage execution.
+     */
+    schedule?: Schema$StageSchedule;
     /**
      * Upgrade stage.
      */
@@ -1783,6 +1808,44 @@ export namespace alloydb_v1beta {
     pointInTimeRecoveryEnabled?: boolean | null;
   }
   /**
+   * BackupDRConfiguration to capture the backup and disaster recovery details of database resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration {
+    /**
+     * Indicates if the resource is managed by BackupDR.
+     */
+    backupdrManaged?: boolean | null;
+  }
+  /**
+   * BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata {
+    /**
+     * Backup configuration for this instance.
+     */
+    backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
+    /**
+     * BackupDR configuration for this instance.
+     */
+    backupdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration;
+    /**
+     * Latest backup run information for this instance.
+     */
+    backupRun?: Schema$StorageDatabasecenterPartnerapiV1mainBackupRun;
+    /**
+     * Required. Full resource name of this instance.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time backup configuration was refreshed.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Database resource id.
+     */
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+  }
+  /**
    * A backup run.
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainBackupRun {
@@ -1817,6 +1880,31 @@ export namespace alloydb_v1beta {
     version?: string | null;
   }
   /**
+   * Config based signal data. This is used to send signals to Condor which are based on the DB level configurations. These will be used to send signals for self managed databases.
+   */
+  export interface Schema$StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData {
+    /**
+     * Required. Full Resource name of the source resource.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time signal was refreshed
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Database resource id.
+     */
+    resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
+    /**
+     * Signal data for boolean signals.
+     */
+    signalBoolValue?: boolean | null;
+    /**
+     * Required. Signal type of the signal
+     */
+    signalType?: string | null;
+  }
+  /**
    * Any custom metadata associated with the resource. e.g. A spanner instance can have multiple databases with its own unique metadata. Information for these individual databases can be captured in custom metadata data
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainCustomMetadataData {
@@ -1826,9 +1914,17 @@ export namespace alloydb_v1beta {
     internalResourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainInternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 8
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceFeed {
+    /**
+     * BackupDR metadata is used to ingest metadata from BackupDR.
+     */
+    backupdrMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRMetadata;
+    /**
+     * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
+     */
+    configBasedSignalData?: Schema$StorageDatabasecenterPartnerapiV1mainConfigBasedSignalData;
     /**
      * Required. Timestamp when feed is generated.
      */
@@ -1845,6 +1941,10 @@ export namespace alloydb_v1beta {
      */
     resourceId?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceId;
     resourceMetadata?: Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata;
+    /**
+     * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
+     */
+    skipIngestion?: boolean | null;
   }
   /**
    * Common model for database resource health signal data.
@@ -1930,7 +2030,7 @@ export namespace alloydb_v1beta {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 25
+   * Common model for database resource instance metadata. Next ID: 26
    */
   export interface Schema$StorageDatabasecenterPartnerapiV1mainDatabaseResourceMetadata {
     /**
@@ -1941,6 +2041,10 @@ export namespace alloydb_v1beta {
      * Backup configuration for this instance
      */
     backupConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupConfiguration;
+    /**
+     * Optional. BackupDR Configuration for the resource.
+     */
+    backupdrConfiguration?: Schema$StorageDatabasecenterPartnerapiV1mainBackupDRConfiguration;
     /**
      * Latest backup run information for this instance
      */
@@ -2204,6 +2308,10 @@ export namespace alloydb_v1beta {
      * The specific engine that the underlying database is running.
      */
     engine?: string | null;
+    /**
+     * Minor version of the underlying database engine. Example values: For MySQL, it could be "8.0.32", "5.7.32" etc.. For Postgres, it could be "14.3", "15.3" etc..
+     */
+    minorVersion?: string | null;
     /**
      * Type of specific database product. It could be CloudSQL, AlloyDB etc..
      */

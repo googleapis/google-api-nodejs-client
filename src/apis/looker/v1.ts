@@ -291,6 +291,10 @@ export namespace looker_v1 {
      */
     adminSettings?: Schema$AdminSettings;
     /**
+     * Optional. Storage class of the instance.
+     */
+    classType?: string | null;
+    /**
      * Network name in the consumer project. Format: `projects/{project\}/global/networks/{network\}`. Note that the consumer network may be in a different GCP project than the consumer project that is hosting the Looker Instance.
      */
     consumerNetwork?: string | null;
@@ -1111,6 +1115,7 @@ export namespace looker_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminSettings": {},
+     *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "createTime": "my_createTime",
      *       //   "customDomain": {},
@@ -1576,6 +1581,7 @@ export namespace looker_v1 {
      *   // Example response
      *   // {
      *   //   "adminSettings": {},
+     *   //   "classType": "my_classType",
      *   //   "consumerNetwork": "my_consumerNetwork",
      *   //   "createTime": "my_createTime",
      *   //   "customDomain": {},
@@ -2032,6 +2038,7 @@ export namespace looker_v1 {
      *       // request body parameters
      *       // {
      *       //   "adminSettings": {},
+     *       //   "classType": "my_classType",
      *       //   "consumerNetwork": "my_consumerNetwork",
      *       //   "createTime": "my_createTime",
      *       //   "customDomain": {},

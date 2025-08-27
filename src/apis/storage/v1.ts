@@ -267,7 +267,21 @@ export namespace storage_v1 {
     /**
      * Encryption configuration for a bucket.
      */
-    encryption?: {defaultKmsKeyName?: string} | null;
+    encryption?: {
+      customerManagedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+      customerSuppliedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+      defaultKmsKeyName?: string;
+      googleManagedEncryptionEnforcementConfig?: {
+        effectiveTime?: string;
+        restrictionMode?: string;
+      };
+    } | null;
     /**
      * HTTP 1.1 Entity tag for the bucket.
      */
@@ -558,6 +572,14 @@ export namespace storage_v1 {
      * If true, copies the source object's ACL; otherwise, uses the bucket's default object ACL. The default is false.
      */
     copySourceAcl?: boolean | null;
+    /**
+     * Restores only the objects that were created after this time.
+     */
+    createdAfterTime?: string | null;
+    /**
+     * Restores only the objects that were created before this time.
+     */
+    createdBeforeTime?: string | null;
     /**
      * Restores only the objects matching any of the specified glob(s). If this parameter is not specified, all objects will be restored within the specified time range.
      */
@@ -11429,6 +11451,8 @@ export namespace storage_v1 {
      *       // {
      *       //   "allowOverwrite": false,
      *       //   "copySourceAcl": false,
+     *       //   "createdAfterTime": "my_createdAfterTime",
+     *       //   "createdBeforeTime": "my_createdBeforeTime",
      *       //   "matchGlobs": [],
      *       //   "softDeletedAfterTime": "my_softDeletedAfterTime",
      *       //   "softDeletedBeforeTime": "my_softDeletedBeforeTime"

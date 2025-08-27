@@ -1,5 +1,88 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v3.0.0...beyondcorp-v4.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([cbb9989](https://github.com/googleapis/google-api-nodejs-client/commit/cbb99894c584a346ecdc3ea028858692e324bd65))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v2.0.0...beyondcorp-v3.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([cbb9989](https://github.com/googleapis/google-api-nodejs-client/commit/cbb99894c584a346ecdc3ea028858692e324bd65))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v1.0.0...beyondcorp-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([cbb9989](https://github.com/googleapis/google-api-nodejs-client/commit/cbb99894c584a346ecdc3ea028858692e324bd65))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **beyondcorp:** This release has breaking changes.
+
+### Features
+
+* **beyondcorp:** update the API ([cbb9989](https://github.com/googleapis/google-api-nodejs-client/commit/cbb99894c584a346ecdc3ea028858692e324bd65))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [22.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v22.0.0...beyondcorp-v22.0.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **beyondcorp:** update the API ([010229b](https://github.com/googleapis/google-api-nodejs-client/commit/010229bcfa2cfe4feab2be70042a4a02917d269a))
+
 ## [22.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/beyondcorp-v21.0.0...beyondcorp-v22.0.0) (2025-07-22)
 
 

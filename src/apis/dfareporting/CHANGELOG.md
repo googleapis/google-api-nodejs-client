@@ -1,5 +1,19 @@
 # Changelog
 
+## [14.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v14.1.0...dfareporting-v14.1.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v14.0.1...dfareporting-v14.1.0) (2025-08-04)
+
+
+### Features
+
+* **dfareporting:** update the API ([ee06982](https://github.com/googleapis/google-api-nodejs-client/commit/ee069824bbf98aa882d318e884a4c58c3ca38158))
+
 ## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/dfareporting-v14.0.0...dfareporting-v14.0.1) (2025-07-08)
 
 

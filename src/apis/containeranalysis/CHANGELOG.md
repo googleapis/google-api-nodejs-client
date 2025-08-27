@@ -1,5 +1,34 @@
 # Changelog
 
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v1.0.1...containeranalysis-v2.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v1.0.0...containeranalysis-v1.0.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([d317416](https://github.com/googleapis/google-api-nodejs-client/commit/d3174161d9a5c70bbaee4c1b8e693eeee2eac29d))
+* **containeranalysis:** update the API ([2883ef0](https://github.com/googleapis/google-api-nodejs-client/commit/2883ef0502402ef046498d35348536af561ce2ba))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **containeranalysis:** update the API ([d317416](https://github.com/googleapis/google-api-nodejs-client/commit/d3174161d9a5c70bbaee4c1b8e693eeee2eac29d))
+* **containeranalysis:** update the API ([2883ef0](https://github.com/googleapis/google-api-nodejs-client/commit/2883ef0502402ef046498d35348536af561ce2ba))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [13.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/containeranalysis-v13.0.1...containeranalysis-v13.0.2) (2025-07-15)
 
 

@@ -213,9 +213,6 @@ export namespace appengine_v1 {
      * Location from which this application runs. Application instances run out of the data centers in the specified location, which is also where all of the application's end user content is stored.Defaults to us-central.View the list of supported locations (https://cloud.google.com/appengine/docs/locations).
      */
     locationId?: string | null;
-    /**
-     * Output only. Full path to the Application resource in the API. Example: apps/myapp.@OutputOnly
-     */
     name?: string | null;
     /**
      * The service account associated with the application. This is the app-level default identity. If no identity provided during create version, Admin API will fallback to this one.
@@ -632,7 +629,7 @@ export namespace appengine_v1 {
     sourceUrl?: string | null;
   }
   /**
-   * A single firewall rule that is evaluated against incoming traffic and provides an action to take on matched requests.
+   * A single firewall rule that is evaluated against incoming traffic and provides an action to take on matched requests. A positive integer between 1, Int32.MaxValue-1 that defines the order of rule evaluation. Rules with the lowest priority are evaluated first.A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule matches. Only the action of this rule can be modified by the user.
    */
   export interface Schema$FirewallRule {
     /**
@@ -643,9 +640,6 @@ export namespace appengine_v1 {
      * An optional string description of this rule. This field has a maximum length of 400 characters.
      */
     description?: string | null;
-    /**
-     * A positive integer between 1, Int32.MaxValue-1 that defines the order of rule evaluation. Rules with the lowest priority are evaluated first.A default rule at priority Int32.MaxValue matches all IPv4 and IPv6 traffic when no previous rule matches. Only the action of this rule can be modified by the user.
-     */
     priority?: number | null;
     /**
      * IP address or range, defined using CIDR notation, of requests that this rule applies to. You can use the wildcard character "*" to match all IPs equivalent to "0/0" and "::/0" together. Examples: 192.168.1.1 or 192.168.0.0/16 or 2001:db8::/32 or 2001:0db8:0000:0042:0000:8a2e:0370:7334. Truncation will be silently performed on addresses which are not properly truncated. For example, 1.2.3.4/24 is accepted as the same address as 1.2.3.0/24. Similarly, for IPv6, 2001:db8::1/32 is accepted as the same address as 2001:db8::/32.
@@ -2100,7 +2094,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.get({
-     *     // Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     *     // Part of `name`. Required. Name of the Application resource to get. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Options to include extra data
      *     includeExtraData: 'placeholder-value',
@@ -2399,7 +2393,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.patch({
-     *     // Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     *     // Part of `name`. Required. Name of the Application resource to update. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -2562,7 +2556,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.repair({
-     *     // Part of `name`. Name of the application to repair. Example: apps/myapp
+     *     // Part of `name`. Required. Name of the application to repair. Example: apps/myapp
      *     appsId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2686,7 +2680,7 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Get extends StandardParameters {
     /**
-     * Part of `name`. Name of the Application resource to get. Example: apps/myapp.
+     * Part of `name`. Required. Name of the Application resource to get. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -2707,7 +2701,7 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Patch extends StandardParameters {
     /**
-     * Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     * Part of `name`. Required. Name of the Application resource to update. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -2722,7 +2716,7 @@ export namespace appengine_v1 {
   }
   export interface Params$Resource$Apps$Repair extends StandardParameters {
     /**
-     * Part of `name`. Name of the application to repair. Example: apps/myapp
+     * Part of `name`. Required. Name of the application to repair. Example: apps/myapp
      */
     appsId?: string;
 
@@ -2769,7 +2763,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.create({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -2932,7 +2926,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.delete({
-     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     *     // Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     authorizedCertificatesId: 'placeholder-value',
@@ -3073,7 +3067,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     authorizedCertificatesId: 'placeholder-value',
@@ -3228,7 +3222,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -3382,7 +3376,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedCertificates.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     *     // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     authorizedCertificatesId: 'placeholder-value',
@@ -3522,7 +3516,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Create
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
 
@@ -3534,7 +3528,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Delete
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
     /**
@@ -3545,7 +3539,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Get
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
     /**
@@ -3560,7 +3554,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -3579,7 +3573,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizedcertificates$Patch
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      */
     appsId?: string;
     /**
@@ -3638,7 +3632,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.authorizedDomains.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -3759,7 +3753,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Authorizeddomains$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -3809,7 +3803,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.create({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
      *     overrideStrategy: 'placeholder-value',
@@ -3963,7 +3957,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.delete({
-     *     // Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+     *     // Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     domainMappingsId: 'placeholder-value',
@@ -4109,7 +4103,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     domainMappingsId: 'placeholder-value',
@@ -4254,7 +4248,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -4400,7 +4394,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.domainMappings.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+     *     // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     domainMappingsId: 'placeholder-value',
@@ -4528,7 +4522,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Create
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -4544,7 +4538,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Delete
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
+     * Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
     /**
@@ -4555,7 +4549,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Get
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
     /**
@@ -4566,7 +4560,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -4581,7 +4575,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Domainmappings$Patch
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/domainMappings/example.com.
      */
     appsId?: string;
     /**
@@ -4795,7 +4789,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.firewall.ingressRules.create({
-     *     // Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
+     *     // Part of `parent`. Required. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
      *     appsId: 'placeholder-value',
      *
      *     // Request body metadata
@@ -5519,7 +5513,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Firewall$Ingressrules$Create
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
+     * Part of `parent`. Required. Name of the parent Firewall collection in which to create a new rule. Example: apps/myapp/firewall/ingressRules.
      */
     appsId?: string;
 
@@ -5779,7 +5773,7 @@ export namespace appengine_v1 {
      *   const res = await appengine.apps.locations.list({
      *     // Part of `name`. The resource that owns the locations collection, if applicable.
      *     appsId: 'placeholder-value',
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -5913,7 +5907,7 @@ export namespace appengine_v1 {
      */
     appsId?: string;
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -6303,7 +6297,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -6450,7 +6444,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -6598,7 +6592,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.list({
-     *     // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *     // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -6742,7 +6736,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     *     // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default.
      *     appsId: 'placeholder-value',
      *     // Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
      *     migrateTraffic: 'placeholder-value',
@@ -6875,7 +6869,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Delete
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      */
     appsId?: string;
     /**
@@ -6886,7 +6880,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Get
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      */
     appsId?: string;
     /**
@@ -6897,7 +6891,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     appsId?: string;
     /**
@@ -6912,7 +6906,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Patch
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default.
      */
     appsId?: string;
     /**
@@ -6975,7 +6969,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.create({
-     *     // Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
+     *     // Part of `parent`. Required. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
      *     appsId: 'placeholder-value',
      *     // Part of `parent`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -7166,7 +7160,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -7315,7 +7309,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -7503,7 +7497,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.list({
-     *     // Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
+     *     // Part of `parent`. Required. Name of the parent Service resource. Example: apps/myapp/services/default.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -7650,7 +7644,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.patch({
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     *     // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     servicesId: 'placeholder-value',
@@ -7819,7 +7813,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Create
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
+     * Part of `parent`. Required. Name of the parent resource to create this version under. Example: apps/myapp/services/default.
      */
     appsId?: string;
     /**
@@ -7835,7 +7829,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Delete
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
     appsId?: string;
     /**
@@ -7850,7 +7844,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Get
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
     appsId?: string;
     /**
@@ -7869,7 +7863,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Service resource. Example: apps/myapp/services/default.
+     * Part of `parent`. Required. Name of the parent Service resource. Example: apps/myapp/services/default.
      */
     appsId?: string;
     /**
@@ -7892,7 +7886,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Patch
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
      */
     appsId?: string;
     /**
@@ -7951,7 +7945,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.instances.debug({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     instancesId: 'placeholder-value',
@@ -8106,7 +8100,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.instances.delete({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     instancesId: 'placeholder-value',
@@ -8257,7 +8251,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.instances.get({
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      *     appsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `appsId`.
      *     instancesId: 'placeholder-value',
@@ -8420,7 +8414,7 @@ export namespace appengine_v1 {
      *
      *   // Do the magic
      *   const res = await appengine.apps.services.versions.instances.list({
-     *     // Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
+     *     // Part of `parent`. Required. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
      *     appsId: 'placeholder-value',
      *     // Maximum results to return per page.
      *     pageSize: 'placeholder-value',
@@ -8541,7 +8535,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Debug
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
     /**
@@ -8565,7 +8559,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Delete
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
     /**
@@ -8584,7 +8578,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$Get
     extends StandardParameters {
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1/instances/instance-1.
      */
     appsId?: string;
     /**
@@ -8603,7 +8597,7 @@ export namespace appengine_v1 {
   export interface Params$Resource$Apps$Services$Versions$Instances$List
     extends StandardParameters {
     /**
-     * Part of `parent`. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
+     * Part of `parent`. Required. Name of the parent Version resource. Example: apps/myapp/services/default/versions/v1.
      */
     appsId?: string;
     /**
@@ -8704,7 +8698,7 @@ export namespace appengine_v1 {
      *     applicationsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `projectsId`.
      *     locationsId: 'placeholder-value',
-     *     // Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     *     // Part of `name`. Required. Name of the Application resource to update. Example: apps/myapp.
      *     projectsId: 'placeholder-value',
      *     // Required. Standard field mask for the set of fields to be updated.
      *     updateMask: 'placeholder-value',
@@ -8852,7 +8846,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the Application resource to update. Example: apps/myapp.
+     * Part of `name`. Required. Name of the Application resource to update. Example: apps/myapp.
      */
     projectsId?: string;
     /**
@@ -8909,7 +8903,7 @@ export namespace appengine_v1 {
      *         applicationsId: 'placeholder-value',
      *         // Part of `parent`. See documentation of `projectsId`.
      *         locationsId: 'placeholder-value',
-     *         // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *         // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *         projectsId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -9082,7 +9076,7 @@ export namespace appengine_v1 {
      *         authorizedCertificatesId: 'placeholder-value',
      *         // Part of `name`. See documentation of `projectsId`.
      *         locationsId: 'placeholder-value',
-     *         // Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     *         // Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      *         projectsId: 'placeholder-value',
      *       },
      *     );
@@ -9240,7 +9234,7 @@ export namespace appengine_v1 {
      *       authorizedCertificatesId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       locationsId: 'placeholder-value',
-     *       // Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     *       // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      *       projectsId: 'placeholder-value',
      *       // Controls the set of fields returned in the GET response.
      *       view: 'placeholder-value',
@@ -9414,7 +9408,7 @@ export namespace appengine_v1 {
      *         pageSize: 'placeholder-value',
      *         // Continuation token for fetching the next page of results.
      *         pageToken: 'placeholder-value',
-     *         // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *         // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *         projectsId: 'placeholder-value',
      *         // Controls the set of fields returned in the LIST response.
      *         view: 'placeholder-value',
@@ -9574,7 +9568,7 @@ export namespace appengine_v1 {
      *         authorizedCertificatesId: 'placeholder-value',
      *         // Part of `name`. See documentation of `projectsId`.
      *         locationsId: 'placeholder-value',
-     *         // Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     *         // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      *         projectsId: 'placeholder-value',
      *         // Standard field mask for the set of fields to be updated. Updates are only supported on the certificate_raw_data and display_name fields.
      *         updateMask: 'placeholder-value',
@@ -9732,7 +9726,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
 
@@ -9756,7 +9750,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource to delete. Example: apps/myapp/authorizedCertificates/12345.
      */
     projectsId?: string;
   }
@@ -9775,7 +9769,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/authorizedCertificates/12345.
      */
     projectsId?: string;
     /**
@@ -9802,7 +9796,7 @@ export namespace appengine_v1 {
      */
     pageToken?: string;
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
     /**
@@ -9825,7 +9819,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/authorizedCertificates/12345.
      */
     projectsId?: string;
     /**
@@ -9889,7 +9883,7 @@ export namespace appengine_v1 {
      *       pageSize: 'placeholder-value',
      *       // Continuation token for fetching the next page of results.
      *       pageToken: 'placeholder-value',
-     *       // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *       // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *       projectsId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -10023,7 +10017,7 @@ export namespace appengine_v1 {
      */
     pageToken?: string;
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
   }
@@ -10072,7 +10066,7 @@ export namespace appengine_v1 {
      *       locationsId: 'placeholder-value',
      *       // Whether the domain creation should override any existing mappings for this domain. By default, overrides are rejected.
      *       overrideStrategy: 'placeholder-value',
-     *       // Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     *       // Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      *       projectsId: 'placeholder-value',
      *
      *       // Request body metadata
@@ -10236,7 +10230,7 @@ export namespace appengine_v1 {
      *       domainMappingsId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       locationsId: 'placeholder-value',
-     *       // Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     *       // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      *       projectsId: 'placeholder-value',
      *     });
      *   console.log(res.data);
@@ -10372,7 +10366,7 @@ export namespace appengine_v1 {
      */
     overrideStrategy?: string;
     /**
-     * Part of `parent`. Name of the parent Application resource. Example: apps/myapp.
+     * Part of `parent`. Required. Name of the parent Application resource. Example: apps/myapp.
      */
     projectsId?: string;
 
@@ -10396,7 +10390,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/domainMappings/example.com.
      */
     projectsId?: string;
   }
@@ -10447,7 +10441,7 @@ export namespace appengine_v1 {
      *     applicationsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `projectsId`.
      *     locationsId: 'placeholder-value',
-     *     // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     *     // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      *     projectsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `projectsId`.
      *     servicesId: 'placeholder-value',
@@ -10607,7 +10601,7 @@ export namespace appengine_v1 {
      *     locationsId: 'placeholder-value',
      *     // Set to true to gradually shift traffic to one or more versions that you specify. By default, traffic is shifted immediately. For gradual traffic migration, the target versions must be located within instances that are configured for both warmup requests (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#InboundServiceType) and automatic scaling (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services.versions#AutomaticScaling). You must specify the shardBy (https://cloud.google.com/appengine/docs/admin-api/reference/rest/v1/apps.services#ShardBy) field in the Service resource. Gradual traffic migration is not supported in the App Engine flexible environment. For examples, see Migrating and Splitting Traffic (https://cloud.google.com/appengine/docs/admin-api/migrating-splitting-traffic).
      *     migrateTraffic: 'placeholder-value',
-     *     // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     *     // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default.
      *     projectsId: 'placeholder-value',
      *     // Part of `name`. See documentation of `projectsId`.
      *     servicesId: 'placeholder-value',
@@ -10757,7 +10751,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default.
      */
     projectsId?: string;
     /**
@@ -10780,7 +10774,7 @@ export namespace appengine_v1 {
      */
     migrateTraffic?: boolean;
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default.
      */
     projectsId?: string;
     /**
@@ -10840,7 +10834,7 @@ export namespace appengine_v1 {
      *       applicationsId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       locationsId: 'placeholder-value',
-     *       // Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     *       // Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      *       projectsId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       servicesId: 'placeholder-value',
@@ -11003,7 +10997,7 @@ export namespace appengine_v1 {
      *       applicationsId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       locationsId: 'placeholder-value',
-     *       // Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     *       // Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
      *       projectsId: 'placeholder-value',
      *       // Part of `name`. See documentation of `projectsId`.
      *       servicesId: 'placeholder-value',
@@ -11193,7 +11187,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
+     * Part of `name`. Required. Name of the resource requested. Example: apps/myapp/services/default/versions/v1.
      */
     projectsId?: string;
     /**
@@ -11216,7 +11210,7 @@ export namespace appengine_v1 {
      */
     locationsId?: string;
     /**
-     * Part of `name`. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
+     * Part of `name`. Required. Name of the resource to update. Example: apps/myapp/services/default/versions/1.
      */
     projectsId?: string;
     /**

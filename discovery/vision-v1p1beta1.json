@@ -449,7 +449,7 @@
       }
     }
   },
-  "revision": "20240823",
+  "revision": "20250804",
   "rootUrl": "https://vision.googleapis.com/",
   "schemas": {
     "AnnotateFileResponse": {
@@ -1958,7 +1958,7 @@
           "type": "integer"
         },
         "model": {
-          "description": "Model to use for the feature. Supported values: \"builtin/stable\" (the default if unset) and \"builtin/latest\". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also support \"builtin/weekly\" for the bleeding edge release updated weekly.",
+          "description": "Model to use for the feature. Supported values: \"builtin/stable\" (the default if unset) and \"builtin/latest\". `DOCUMENT_TEXT_DETECTION` and `TEXT_DETECTION` also support \"builtin/rc\" for the latest release candidate.",
           "type": "string"
         },
         "type": {

@@ -271,7 +271,7 @@
       }
     }
   },
-  "revision": "20250601",
+  "revision": "20250810",
   "rootUrl": "https://versionhistory.googleapis.com/",
   "schemas": {
     "Channel": {
@@ -475,6 +475,13 @@
           "description": "Whether or not the release was available for version pinning.",
           "type": "boolean"
         },
+        "rolloutData": {
+          "description": "Rollout-related metadata. Some releases are part of one or more A/B rollouts. This field contains the names and data describing this release's role in any rollouts.",
+          "items": {
+            "$ref": "RolloutData"
+          },
+          "type": "array"
+        },
         "serving": {
           "$ref": "Interval",
           "description": "Timestamp interval of when the release was live. If end_time is unspecified, the release is currently live."
@@ -482,6 +489,24 @@
         "version": {
           "description": "String containing just the version number. e.g. \"84.0.4147.38\"",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "RolloutData": {
+      "description": "Rollout-related metadata for a release.",
+      "id": "RolloutData",
+      "properties": {
+        "rolloutName": {
+          "description": "The name of the rollout.",
+          "type": "string"
+        },
+        "tag": {
+          "description": "Tags associated with a release's role in a rollout. Most rollouts will have at least one release with a \"rollout\" tag and another release with a \"control\" tag. Some rollouts may have additional named arms.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

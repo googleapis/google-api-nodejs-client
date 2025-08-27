@@ -264,7 +264,7 @@
           ],
           "parameters": {
             "name": {
-              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+              "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` `projects/{PROJECT_NUMBER}/autokeyConfig`.",
               "location": "path",
               "pattern": "^folders/[^/]+/autokeyConfig$",
               "required": true,
@@ -627,7 +627,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1795,6 +1795,35 @@
                             "https://www.googleapis.com/auth/cloudkms"
                           ]
                         },
+                        "decapsulate": {
+                          "description": "Decapsulates data that was encapsulated with a public key retrieved from GetPublicKey corresponding to a CryptoKeyVersion with CryptoKey.purpose KEY_ENCAPSULATION.",
+                          "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:decapsulate",
+                          "httpMethod": "POST",
+                          "id": "cloudkms.projects.locations.keyRings.cryptoKeys.cryptoKeyVersions.decapsulate",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. The resource name of the CryptoKeyVersion to use for decapsulation.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/keyRings/[^/]+/cryptoKeys/[^/]+/cryptoKeyVersions/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1/{+name}:decapsulate",
+                          "request": {
+                            "$ref": "DecapsulateRequest"
+                          },
+                          "response": {
+                            "$ref": "DecapsulateResponse"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform",
+                            "https://www.googleapis.com/auth/cloudkms"
+                          ]
+                        },
                         "destroy": {
                           "description": "Schedule a CryptoKeyVersion for destruction. Upon calling this method, CryptoKeyVersion.state will be set to DESTROY_SCHEDULED, and destroy_time will be set to the time destroy_scheduled_duration in the future. At that time, the state will automatically change to DESTROYED, and the key material will be irrevocably destroyed. Before the destroy_time is reached, RestoreCryptoKeyVersion may be called to reverse the process.",
                           "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/keyRings/{keyRingsId}/cryptoKeys/{cryptoKeysId}/cryptoKeyVersions/{cryptoKeyVersionsId}:destroy",
@@ -1871,12 +1900,16 @@
                               "enum": [
                                 "PUBLIC_KEY_FORMAT_UNSPECIFIED",
                                 "PEM",
-                                "NIST_PQC"
+                                "DER",
+                                "NIST_PQC",
+                                "XWING_RAW_BYTES"
                               ],
                               "enumDescriptions": [
                                 "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
                                 "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
-                                "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205)."
+                                "The returned public key will be encoded in DER format (the PrivateKeyInfo structure from RFC 5208).",
+                                "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205).",
+                                "The returned public key is in raw bytes format defined in its standard https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem."
                               ],
                               "location": "query",
                               "type": "string"
@@ -2402,7 +2435,7 @@
       }
     }
   },
-  "revision": "20250523",
+  "revision": "20250818",
   "rootUrl": "https://cloudkms.googleapis.com/",
   "schemas": {
     "AsymmetricDecryptRequest": {
@@ -2583,7 +2616,7 @@
       "type": "object"
     },
     "AutokeyConfig": {
-      "description": "Cloud KMS Autokey configuration for a folder.",
+      "description": "Cloud KMS Autokey configuration for a folder or project.",
       "id": "AutokeyConfig",
       "properties": {
         "etag": {
@@ -2595,7 +2628,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig`.",
+          "description": "Identifier. Name of the AutokeyConfig resource, e.g. `folders/{FOLDER_NUMBER}/autokeyConfig` `projects/{PROJECT_NUMBER}/autokeyConfig`.",
           "type": "string"
         },
         "state": {
@@ -2799,7 +2832,8 @@
             "ASYMMETRIC_SIGN",
             "ASYMMETRIC_DECRYPT",
             "RAW_ENCRYPT_DECRYPT",
-            "MAC"
+            "MAC",
+            "KEY_ENCAPSULATION"
           ],
           "enumDescriptions": [
             "Not specified.",
@@ -2807,7 +2841,8 @@
             "CryptoKeys with this purpose may be used with AsymmetricSign and GetPublicKey.",
             "CryptoKeys with this purpose may be used with AsymmetricDecrypt and GetPublicKey.",
             "CryptoKeys with this purpose may be used with RawEncrypt and RawDecrypt. This purpose is meant to be used for interoperable symmetric encryption and does not support automatic CryptoKey rotation.",
-            "CryptoKeys with this purpose may be used with MacSign."
+            "CryptoKeys with this purpose may be used with MacSign.",
+            "CryptoKeys with this purpose may be used with GetPublicKey and Decapsulate."
           ],
           "type": "string"
         },
@@ -2866,6 +2901,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -2907,6 +2945,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
@@ -3078,6 +3119,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -3119,6 +3163,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
@@ -3142,6 +3189,66 @@
             "Crypto operations are performed in an EKM-over-VPC backend."
           ],
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DecapsulateRequest": {
+      "description": "Request message for KeyManagementService.Decapsulate.",
+      "id": "DecapsulateRequest",
+      "properties": {
+        "ciphertext": {
+          "description": "Required. The ciphertext produced from encapsulation with the named CryptoKeyVersion public key(s).",
+          "format": "byte",
+          "type": "string"
+        },
+        "ciphertextCrc32c": {
+          "description": "Optional. A CRC32C checksum of the DecapsulateRequest.ciphertext. If specified, KeyManagementService will verify the integrity of the received DecapsulateRequest.ciphertext using this checksum. KeyManagementService will report an error if the checksum verification fails. If you receive a checksum error, your client should verify that CRC32C(DecapsulateRequest.ciphertext) is equal to DecapsulateRequest.ciphertext_crc32c, and if so, perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DecapsulateResponse": {
+      "description": "Response message for KeyManagementService.Decapsulate.",
+      "id": "DecapsulateResponse",
+      "properties": {
+        "name": {
+          "description": "The resource name of the CryptoKeyVersion used for decapsulation. Check this field to verify that the intended resource was used for decapsulation.",
+          "type": "string"
+        },
+        "protectionLevel": {
+          "description": "The ProtectionLevel of the CryptoKeyVersion used in decapsulation.",
+          "enum": [
+            "PROTECTION_LEVEL_UNSPECIFIED",
+            "SOFTWARE",
+            "HSM",
+            "EXTERNAL",
+            "EXTERNAL_VPC"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Crypto operations are performed in software.",
+            "Crypto operations are performed in a Hardware Security Module.",
+            "Crypto operations are performed by an external key manager.",
+            "Crypto operations are performed in an EKM-over-VPC backend."
+          ],
+          "type": "string"
+        },
+        "sharedSecret": {
+          "description": "The decapsulated shared_secret originally encapsulated with the matching public key.",
+          "format": "byte",
+          "type": "string"
+        },
+        "sharedSecretCrc32c": {
+          "description": "Integrity verification field. A CRC32C checksum of the returned DecapsulateResponse.shared_secret. An integrity check of DecapsulateResponse.shared_secret can be performed by computing the CRC32C checksum of DecapsulateResponse.shared_secret and comparing your results to this field. Discard the response in case of non-matching checksum values, and perform a limited number of retries. A persistent mismatch may indicate an issue in your computation of the CRC32C checksum. Note: receiving this response message indicates that KeyManagementService is able to successfully decrypt the ciphertext. Note: This field is defined as int64 for reasons of compatibility across different languages. However, it is a non-negative integer, which will never exceed 2^32-1, and can be safely downconverted to uint32 in languages that support this type.",
+          "format": "int64",
+          "type": "string"
+        },
+        "verifiedCiphertextCrc32c": {
+          "description": "Integrity verification field. A flag indicating whether DecapsulateRequest.ciphertext_crc32c was received by KeyManagementService and used for the integrity verification of the ciphertext. A false value of this field indicates either that DecapsulateRequest.ciphertext_crc32c was left unset or that it was not delivered to KeyManagementService. If you've set DecapsulateRequest.ciphertext_crc32c but this field is still false, discard the response and perform a limited number of retries.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -3505,6 +3612,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -3546,6 +3656,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
@@ -4260,6 +4373,9 @@
             "HMAC_SHA512",
             "HMAC_SHA224",
             "EXTERNAL_SYMMETRIC_ENCRYPTION",
+            "ML_KEM_768",
+            "ML_KEM_1024",
+            "KEM_XWING",
             "PQ_SIGN_ML_DSA_65",
             "PQ_SIGN_SLH_DSA_SHA2_128S",
             "PQ_SIGN_HASH_SLH_DSA_SHA2_128S_SHA256"
@@ -4301,6 +4417,9 @@
             "HMAC-SHA512 signing with a 512 bit key.",
             "HMAC-SHA224 signing with a 224 bit key.",
             "Algorithm representing symmetric encryption by an external key manager.",
+            "ML-KEM-768 (FIPS 203)",
+            "ML-KEM-1024 (FIPS 203)",
+            "X-Wing hybrid KEM combining ML-KEM-768 with X25519 following datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem/.",
             "The post-quantum Module-Lattice-Based Digital Signature Algorithm, at security level 3. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized version.",
             "The post-quantum stateless hash-based digital signature algorithm, at security level 1. Randomized pre-hash version supporting SHA256 digests."
@@ -4347,12 +4466,16 @@
           "enum": [
             "PUBLIC_KEY_FORMAT_UNSPECIFIED",
             "PEM",
-            "NIST_PQC"
+            "DER",
+            "NIST_PQC",
+            "XWING_RAW_BYTES"
           ],
           "enumDescriptions": [
             "If the public_key_format field is not specified: - For PQC algorithms, an error will be returned. - For non-PQC algorithms, the default format is PEM, and the field pem will be populated. Otherwise, the public key will be exported through the public_key field in the requested format.",
             "The returned public key will be encoded in PEM format. See the [RFC7468](https://tools.ietf.org/html/rfc7468) sections for [General Considerations](https://tools.ietf.org/html/rfc7468#section-2) and [Textual Encoding of Subject Public Key Info] (https://tools.ietf.org/html/rfc7468#section-13) for more information.",
-            "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205)."
+            "The returned public key will be encoded in DER format (the PrivateKeyInfo structure from RFC 5208).",
+            "This is supported only for PQC algorithms. The key material is returned in the format defined by NIST PQC standards (FIPS 203, FIPS 204, and FIPS 205).",
+            "The returned public key is in raw bytes format defined in its standard https://datatracker.ietf.org/doc/draft-connolly-cfrg-xwing-kem."
           ],
           "type": "string"
         }

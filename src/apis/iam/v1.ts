@@ -691,6 +691,32 @@ export namespace iam_v1 {
     workforcePoolProviderKeys?: Schema$WorkforcePoolProviderKey[];
   }
   /**
+   * Response message for ListWorkforcePoolProviderScimTenants.
+   */
+  export interface Schema$ListWorkforcePoolProviderScimTenantsResponse {
+    /**
+     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. A list of scim tenants.
+     */
+    workforcePoolProviderScimTenants?: Schema$WorkforcePoolProviderScimTenant[];
+  }
+  /**
+   * Response message for ListWorkforcePoolProviderScimTokens.
+   */
+  export interface Schema$ListWorkforcePoolProviderScimTokensResponse {
+    /**
+     * Optional. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. A list of scim tokens.
+     */
+    workforcePoolProviderScimTokens?: Schema$WorkforcePoolProviderScimToken[];
+  }
+  /**
    * Response message for ListWorkforcePoolProviders.
    */
   export interface Schema$ListWorkforcePoolProvidersResponse {
@@ -1420,6 +1446,14 @@ export namespace iam_v1 {
    */
   export interface Schema$UndeleteWorkforcePoolProviderRequest {}
   /**
+   * Request message for UndeleteWorkforcePoolProviderScimTenant.
+   */
+  export interface Schema$UndeleteWorkforcePoolProviderScimTenantRequest {}
+  /**
+   * Request message for UndeleteWorkforcePoolProviderScimToken.
+   */
+  export interface Schema$UndeleteWorkforcePoolProviderScimTokenRequest {}
+  /**
    * Request message for UndeleteWorkforcePool.
    */
   export interface Schema$UndeleteWorkforcePoolRequest {}
@@ -1530,6 +1564,10 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
+     * Optional. The configuration for OAuth 2.0 client used to get the extended group memberships for user identities. Only the `AZURE_AD_GROUPS_ID` attribute type is supported. Extended groups supports a subset of Google Cloud services. When the user accesses these services, extended group memberships override the mapped `google.groups` attribute. Extended group memberships cannot be used in attribute mapping or attribute condition expressions. To keep extended group memberships up to date, extended groups are retrieved when the user signs in and at regular intervals during the user's active session. Each user identity in the workforce identity pool must map to a specific, unique Microsoft Entra ID user.
+     */
+    extendedAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
+    /**
      * Optional. The configuration for OAuth 2.0 client used to get the additional user attributes. This should be used when users can't get the desired claims in authentication credentials. Currently this configuration is only supported with OIDC protocol.
      */
     extraAttributesOauth2Client?: Schema$GoogleIamAdminV1WorkforcePoolProviderExtraAttributesOAuth2Client;
@@ -1574,6 +1612,60 @@ export namespace iam_v1 {
      * Required. The purpose of the key.
      */
     use?: string | null;
+  }
+  /**
+   * Represents a scim tenant. Used for provisioning and managing identity data (such as Users and Groups) in cross-domain environments.
+   */
+  export interface Schema$WorkforcePoolProviderScimTenant {
+    /**
+     * Output only. Represents the base URI as defined in [RFC 7644, Section 1.3](https://datatracker.ietf.org/doc/html/rfc7644#section-1.3). Clients must use this as the root address for managing resources under the tenant. Format: https://iamscim.googleapis.com/{version\}/{tenant_id\}/
+     */
+    baseUri?: string | null;
+    /**
+     * Optional. Maps BYOID claims to SCIM claims.
+     */
+    claimMapping?: {[key: string]: string} | null;
+    /**
+     * Optional. The user-specified description of the scim tenant. Cannot exceed 256 characters.
+     */
+    description?: string | null;
+    /**
+     * Optional. The user-specified display name of the scim tenant. Cannot exceed 32 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The timestamp when the scim tenant is going to be purged.
+     */
+    purgeTime?: string | null;
+    /**
+     * Output only. The state of the tenant.
+     */
+    state?: string | null;
+  }
+  /**
+   * Represents a token for the WorkforcePoolProviderScimTenant. Used for authenticating SCIM Provisioning requests.
+   */
+  export interface Schema$WorkforcePoolProviderScimToken {
+    /**
+     * Optional. The user-specified display name of the scim token. Cannot exceed 32 characters.
+     */
+    displayName?: string | null;
+    /**
+     * Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     */
+    name?: string | null;
+    /**
+     * Output only. The token string. Provide this to the IdP for authentication. Will be set only during creation.
+     */
+    securityToken?: string | null;
+    /**
+     * Output only. The state of the token.
+     */
+    state?: string | null;
   }
   /**
    * Represents a collection of workload identities. You can define IAM policies to grant these identities access to Google Cloud resources.
@@ -1621,11 +1713,11 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPoolManagedIdentity {
     /**
-     * A description of the managed identity. Cannot exceed 256 characters.
+     * Optional. A description of the managed identity. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.
+     * Optional. Whether the managed identity is disabled. If disabled, credentials may no longer be issued for the identity, however existing credentials will still be accepted until they expire.
      */
     disabled?: boolean | null;
     /**
@@ -1633,7 +1725,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The resource name of the managed identity.
+     * Identifier. The resource name of the managed identity.
      */
     name?: string | null;
     /**
@@ -1646,11 +1738,11 @@ export namespace iam_v1 {
    */
   export interface Schema$WorkloadIdentityPoolNamespace {
     /**
-     * A description of the namespace. Cannot exceed 256 characters.
+     * Optional. A description of the namespace. Cannot exceed 256 characters.
      */
     description?: string | null;
     /**
-     * Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.
+     * Optional. Whether the namespace is disabled. If disabled, credentials may no longer be issued for identities within this namespace, however existing credentials will still be accepted until they expire.
      */
     disabled?: boolean | null;
     /**
@@ -1707,7 +1799,7 @@ export namespace iam_v1 {
      */
     expireTime?: string | null;
     /**
-     * Output only. The resource name of the provider.
+     * Identifier. The resource name of the provider.
      */
     name?: string | null;
     /**
@@ -3717,6 +3809,7 @@ export namespace iam_v1 {
     context: APIRequestContext;
     keys: Resource$Locations$Workforcepools$Providers$Keys;
     operations: Resource$Locations$Workforcepools$Providers$Operations;
+    scimTenants: Resource$Locations$Workforcepools$Providers$Scimtenants;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.keys = new Resource$Locations$Workforcepools$Providers$Keys(
@@ -3724,6 +3817,10 @@ export namespace iam_v1 {
       );
       this.operations =
         new Resource$Locations$Workforcepools$Providers$Operations(
+          this.context
+        );
+      this.scimTenants =
+        new Resource$Locations$Workforcepools$Providers$Scimtenants(
           this.context
         );
     }
@@ -3775,6 +3872,7 @@ export namespace iam_v1 {
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
      *       //   "expireTime": "my_expireTime",
+     *       //   "extendedAttributesOauth2Client": {},
      *       //   "extraAttributesOauth2Client": {},
      *       //   "name": "my_name",
      *       //   "oidc": {},
@@ -4075,6 +4173,7 @@ export namespace iam_v1 {
      *   //   "disabled": false,
      *   //   "displayName": "my_displayName",
      *   //   "expireTime": "my_expireTime",
+     *   //   "extendedAttributesOauth2Client": {},
      *   //   "extraAttributesOauth2Client": {},
      *   //   "name": "my_name",
      *   //   "oidc": {},
@@ -4378,6 +4477,7 @@ export namespace iam_v1 {
      *       //   "disabled": false,
      *       //   "displayName": "my_displayName",
      *       //   "expireTime": "my_expireTime",
+     *       //   "extendedAttributesOauth2Client": {},
      *       //   "extraAttributesOauth2Client": {},
      *       //   "name": "my_name",
      *       //   "oidc": {},
@@ -5832,6 +5932,2040 @@ export namespace iam_v1 {
      * The name of the operation resource.
      */
     name?: string;
+  }
+
+  export class Resource$Locations$Workforcepools$Providers$Scimtenants {
+    context: APIRequestContext;
+    tokens: Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.tokens =
+        new Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens(
+          this.context
+        );
+    }
+
+    /**
+     * Creates a new WorkforcePoolProviderScimTenant in a WorkforcePoolProvider. You cannot reuse the name of a deleted scim tenant until 30 days after deletion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.create({
+     *     // Required. The parent to create scim tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     *     parent:
+     *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
+     *     // Required. The ID to use for the scim tenant, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     *     workforcePoolProviderScimTenantId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "baseUri": "my_baseUri",
+     *       //   "claimMapping": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "purgeTime": "my_purgeTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseUri": "my_baseUri",
+     *   //   "claimMapping": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/scimTenants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a WorkforcePoolProviderScimTenant. You can undelete a scim tenant for 30 days. After 30 days, deletion is permanent. You cannot update deleted scim tenants. However, you can view and list them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.delete({
+     *     // Required. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseUri": "my_baseUri",
+     *   //   "claimMapping": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets an individual WorkforcePoolProviderScimTenant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.get({
+     *     // Required. The name of the scim tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseUri": "my_baseUri",
+     *   //   "claimMapping": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all non-deleted WorkforcePoolProviderScimTenants in a WorkforcePoolProvider. If `show_deleted` is set to `true`, then deleted scim tenants are also listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.list({
+     *     // Optional. The maximum number of scim tenants to return. If unspecified, at most 1 scim tenant will be returned.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
+     *     pageToken: 'placeholder-value',
+     *     // Required. The parent to list scim tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     *     parent:
+     *       'locations/my-location/workforcePools/my-workforcePool/providers/my-provider',
+     *     // Optional. Whether to return soft-deleted scim tenants.
+     *     showDeleted: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workforcePoolProviderScimTenants": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+    >;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderScimTenantsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/scimTenants').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkforcePoolProviderScimTenantsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkforcePoolProviderScimTenantsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing WorkforcePoolProviderScimTenant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.patch({
+     *     // Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     *     name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *     // Optional. The list of fields to update.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "baseUri": "my_baseUri",
+     *       //   "claimMapping": {},
+     *       //   "description": "my_description",
+     *       //   "displayName": "my_displayName",
+     *       //   "name": "my_name",
+     *       //   "purgeTime": "my_purgeTime",
+     *       //   "state": "my_state"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseUri": "my_baseUri",
+     *   //   "claimMapping": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Undeletes a WorkforcePoolProviderScimTenant, as long as it was deleted fewer than 30 days ago.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await iam.locations.workforcePools.providers.scimTenants.undelete(
+     *     {
+     *       // Required. The name of the scim tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     },
+     *   );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "baseUri": "my_baseUri",
+     *   //   "claimMapping": {},
+     *   //   "description": "my_description",
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "purgeTime": "my_purgeTime",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    undelete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    undelete(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+    ): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimTenant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimTenant>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimTenant>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent to create scim tenant. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the scim tenant, which becomes the final component of the resource name. This value should be 4-32 characters, and may contain the characters [a-z0-9-].
+     */
+    workforcePoolProviderScimTenantId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkforcePoolProviderScimTenant;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim tenant to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim tenant to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of scim tenants to return. If unspecified, at most 1 scim tenant will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListScimTenants` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent to list scim tenants. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}'
+     */
+    parent?: string;
+    /**
+     * Optional. Whether to return soft-deleted scim tenants.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the SCIM Tenant. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkforcePoolProviderScimTenant;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim tenant to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteWorkforcePoolProviderScimTenantRequest;
+  }
+
+  export class Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new WorkforcePoolProviderScimToken in a WorkforcePoolProviderScimTenant. You cannot reuse the name of a deleted SCIM token until 30 days after deletion.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.create({
+     *       // Required. The parent tenant to create scim token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     *       parent:
+     *         'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *       // Required. The ID to use for the scim token, which becomes the final component of the resource name. This value should be 4-32 characters and follow this pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
+     *       workforcePoolProviderScimTokenId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "displayName": "my_displayName",
+     *         //   "name": "my_name",
+     *         //   "securityToken": "my_securityToken",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "securityToken": "my_securityToken",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    create(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/tokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a WorkforcePoolProviderScimToken. You can undelete a scim token for 30 days. After 30 days, deletion is permanent. You cannot update deleted scim tokens. However, you can view and list them.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.delete({
+     *       // Required. The name of the scim token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "securityToken": "my_securityToken",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    delete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets an individual WorkforcePoolProviderScimToken.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.get({
+     *       // Required. The name of the scim token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "securityToken": "my_securityToken",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    get(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Lists all non-deleted WorkforcePoolProviderScimTokenss in a WorkforcePoolProviderScimTenant. If `show_deleted` is set to `true`, then deleted SCIM tokens are also listed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.list({
+     *       // Optional. The maximum number of scim tokens to return. If unspecified, at most 2 scim tokens will be returned.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent to list scim tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     *       parent:
+     *         'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant',
+     *       // Optional. Whether to return soft-deleted scim tokens.
+     *       showDeleted: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "workforcePoolProviderScimTokens": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderScimTokensResponse>
+    >;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+    ): void;
+    list(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List,
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListWorkforcePoolProviderScimTokensResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListWorkforcePoolProviderScimTokensResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/tokens').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListWorkforcePoolProviderScimTokensResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListWorkforcePoolProviderScimTokensResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing WorkforcePoolProviderScimToken.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.patch({
+     *       // Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
+     *       // Optional. The list of fields to update.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "displayName": "my_displayName",
+     *         //   "name": "my_name",
+     *         //   "securityToken": "my_securityToken",
+     *         //   "state": "my_state"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "securityToken": "my_securityToken",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    patch(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Undeletes a WorkforcePoolProviderScimToken, as long as it was deleted fewer than 30 days ago.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/iam.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const iam = google.iam('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await iam.locations.workforcePools.providers.scimTenants.tokens.undelete({
+     *       // Required. The name of the scim token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     *       name: 'locations/my-location/workforcePools/my-workforcePool/providers/my-provider/scimTenants/my-scimTenant/tokens/my-token',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "displayName": "my_displayName",
+     *   //   "name": "my_name",
+     *   //   "securityToken": "my_securityToken",
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    undelete(
+      params?: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    undelete(
+      params: Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete,
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    undelete(
+      callback: BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+    ): void;
+    undelete(
+      paramsOrCallback?:
+        | Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$WorkforcePoolProviderScimToken>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$WorkforcePoolProviderScimToken>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://iam.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:undelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$WorkforcePoolProviderScimToken>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent tenant to create scim token. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     */
+    parent?: string;
+    /**
+     * Required. The ID to use for the scim token, which becomes the final component of the resource name. This value should be 4-32 characters and follow this pattern: "([a-z]([a-z0-9\\-]{2,30\}[a-z0-9]))"
+     */
+    workforcePoolProviderScimTokenId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkforcePoolProviderScimToken;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim token to delete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim token to retrieve. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$List
+    extends StandardParameters {
+    /**
+     * Optional. The maximum number of scim tokens to return. If unspecified, at most 2 scim tokens will be returned.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListWorkforcePoolProviderScimTokens` call. Provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent to list scim tokens. Format: 'locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}'
+     */
+    parent?: string;
+    /**
+     * Optional. Whether to return soft-deleted scim tokens.
+     */
+    showDeleted?: boolean;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. The resource name of the SCIM Token. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/ {workforce_pool_provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     */
+    name?: string;
+    /**
+     * Optional. The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$WorkforcePoolProviderScimToken;
+  }
+  export interface Params$Resource$Locations$Workforcepools$Providers$Scimtenants$Tokens$Undelete
+    extends StandardParameters {
+    /**
+     * Required. The name of the scim token to undelete. Format: `locations/{location\}/workforcePools/{workforce_pool\}/providers/{provider\}/scimTenants/{scim_tenant\}/tokens/{token\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$UndeleteWorkforcePoolProviderScimTokenRequest;
   }
 
   export class Resource$Locations$Workforcepools$Subjects {
@@ -12754,7 +14888,7 @@ export namespace iam_v1 {
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.namespaces.managedIdentities.patch(
      *       {
-     *         // Output only. The resource name of the managed identity.
+     *         // Identifier. The resource name of the managed identity.
      *         name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/namespaces/my-namespace/managedIdentities/my-managedIdentitie',
      *         // Required. The list of fields to update.
      *         updateMask: 'placeholder-value',
@@ -13422,7 +15556,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Namespaces$Managedidentities$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the managed identity.
+     * Identifier. The resource name of the managed identity.
      */
     name?: string;
     /**
@@ -14774,7 +16908,7 @@ export namespace iam_v1 {
      *   // Do the magic
      *   const res =
      *     await iam.projects.locations.workloadIdentityPools.providers.patch({
-     *       // Output only. The resource name of the provider.
+     *       // Identifier. The resource name of the provider.
      *       name: 'projects/my-project/locations/my-location/workloadIdentityPools/my-workloadIdentityPool/providers/my-provider',
      *       // Required. The list of fields to update.
      *       updateMask: 'placeholder-value',
@@ -15105,7 +17239,7 @@ export namespace iam_v1 {
   export interface Params$Resource$Projects$Locations$Workloadidentitypools$Providers$Patch
     extends StandardParameters {
     /**
-     * Output only. The resource name of the provider.
+     * Identifier. The resource name of the provider.
      */
     name?: string;
     /**

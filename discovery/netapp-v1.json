@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2270,7 +2270,7 @@
       }
     }
   },
-  "revision": "20250604",
+  "revision": "20250817",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2911,12 +2911,35 @@
           "description": "Optional. Description of the replication.",
           "type": "string"
         },
+        "hybridReplicationType": {
+          "description": "Optional. Type of the hybrid replication.",
+          "enum": [
+            "VOLUME_HYBRID_REPLICATION_TYPE_UNSPECIFIED",
+            "MIGRATION",
+            "CONTINUOUS_REPLICATION",
+            "ONPREM_REPLICATION",
+            "REVERSE_ONPREM_REPLICATION"
+          ],
+          "enumDescriptions": [
+            "Unspecified hybrid replication type.",
+            "Hybrid replication type for migration.",
+            "Hybrid replication type for continuous replication.",
+            "New field for reversible OnPrem replication, to be used for data protection.",
+            "New field for reversible OnPrem replication, to be used for data protection."
+          ],
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
           },
           "description": "Optional. Labels to be added to the replication as the key value pairs.",
           "type": "object"
+        },
+        "largeVolumeConstituentCount": {
+          "description": "Optional. Constituent volume count for large volume.",
+          "format": "int32",
+          "type": "integer"
         },
         "peerClusterName": {
           "description": "Required. Name of the user's local source cluster to be peered with the destination cluster.",
@@ -2939,6 +2962,22 @@
         },
         "replication": {
           "description": "Required. Desired name for the replication of this volume.",
+          "type": "string"
+        },
+        "replicationSchedule": {
+          "description": "Optional. Replication Schedule for the replication created.",
+          "enum": [
+            "HYBRID_REPLICATION_SCHEDULE_UNSPECIFIED",
+            "EVERY_10_MINUTES",
+            "HOURLY",
+            "DAILY"
+          ],
+          "enumDescriptions": [
+            "Unspecified HybridReplicationSchedule",
+            "Replication happens once every 10 minutes.",
+            "Replication happens once every hour.",
+            "Replication happens once every day."
+          ],
           "type": "string"
         }
       },
@@ -3664,15 +3703,24 @@
           "enum": [
             "HYBRID_REPLICATION_TYPE_UNSPECIFIED",
             "MIGRATION",
-            "CONTINUOUS_REPLICATION"
+            "CONTINUOUS_REPLICATION",
+            "ONPREM_REPLICATION",
+            "REVERSE_ONPREM_REPLICATION"
           ],
           "enumDescriptions": [
             "Unspecified hybrid replication type.",
             "Hybrid replication type for migration.",
-            "Hybrid replication type for continuous replication."
+            "Hybrid replication type for continuous replication.",
+            "New field for reversible OnPrem replication, to be used for data protection.",
+            "Hybrid replication type for incremental Transfer in the reverse direction (GCNV is source and Onprem is destination)"
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "hybridReplicationUserCommands": {
+          "$ref": "UserCommands",
+          "description": "Output only. Copy pastable snapmirror commands to be executed on onprem cluster by the customer.",
+          "readOnly": true
         },
         "labels": {
           "additionalProperties": {
@@ -3690,7 +3738,9 @@
             "STOPPED",
             "TRANSFERRING",
             "BASELINE_TRANSFERRING",
-            "ABORTED"
+            "ABORTED",
+            "EXTERNALLY_MANAGED",
+            "PENDING_PEERING"
           ],
           "enumDescriptions": [
             "Unspecified MirrorState",
@@ -3699,7 +3749,9 @@
             "Destination volume is not receiving replication transfers.",
             "Incremental replication is in progress.",
             "Baseline replication is in progress.",
-            "Replication is aborted."
+            "Replication is aborted.",
+            "Replication is being managed from Onprem ONTAP.",
+            "Peering is yet to be established."
           ],
           "readOnly": true,
           "type": "string"
@@ -3754,7 +3806,9 @@
             "DELETING",
             "ERROR",
             "PENDING_CLUSTER_PEERING",
-            "PENDING_SVM_PEERING"
+            "PENDING_SVM_PEERING",
+            "PENDING_REMOTE_RESYNC",
+            "EXTERNALLY_MANAGED_REPLICATION"
           ],
           "enumDescriptions": [
             "Unspecified replication State",
@@ -3764,7 +3818,9 @@
             "Replication is deleting.",
             "Replication is in error state.",
             "Replication is waiting for cluster peering to be established.",
-            "Replication is waiting for SVM peering to be established."
+            "Replication is waiting for SVM peering to be established.",
+            "Replication is waiting for Commands to be executed on Onprem ONTAP.",
+            "Onprem ONTAP is destination and Replication can only be managed from Onprem."
           ],
           "readOnly": true,
           "type": "string"
@@ -4022,6 +4078,12 @@
           "description": "Optional. True if the storage pool supports Auto Tiering enabled volumes. Default is false. Auto-tiering can be enabled after storage pool creation but it can't be disabled once enabled.",
           "type": "boolean"
         },
+        "availableThroughputMibps": {
+          "description": "Output only. Available throughput of the storage pool (in MiB/s).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
         "capacityGib": {
           "description": "Required. Capacity in GIB of the pool",
           "format": "int64",
@@ -4095,6 +4157,20 @@
         },
         "psaRange": {
           "description": "Optional. This field is not implemented. The values provided in this field are ignored.",
+          "type": "string"
+        },
+        "qosType": {
+          "description": "Optional. QoS (Quality of Service) Type of the storage pool",
+          "enum": [
+            "QOS_TYPE_UNSPECIFIED",
+            "AUTO",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified QoS Type",
+            "QoS Type is Auto",
+            "QoS Type is Manual"
+          ],
           "type": "string"
         },
         "replicaZone": {
@@ -4276,6 +4352,21 @@
       },
       "type": "object"
     },
+    "UserCommands": {
+      "description": "UserCommands contains the commands to be executed by the customer.",
+      "id": "UserCommands",
+      "properties": {
+        "commands": {
+          "description": "Output only. List of commands to be executed by the customer.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ValidateDirectoryServiceRequest": {
       "description": "ValidateDirectoryServiceRequest validates the directory service policy attached to the storage pool.",
       "id": "ValidateDirectoryServiceRequest",
@@ -4342,7 +4433,7 @@
           "type": "string"
         },
         "coldTierSizeGib": {
-          "description": "Output only. Size of the volume cold tier data in GiB.",
+          "description": "Output only. Size of the volume cold tier data rounded down to the nearest GiB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -4597,6 +4688,11 @@
         "storagePool": {
           "description": "Required. StoragePool name of the volume",
           "type": "string"
+        },
+        "throughputMibps": {
+          "description": "Optional. Throughput of the volume (in MiB/s)",
+          "format": "double",
+          "type": "number"
         },
         "tieringPolicy": {
           "$ref": "TieringPolicy",

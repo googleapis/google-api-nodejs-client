@@ -125,6 +125,82 @@ export namespace documentai_v1beta3 {
   }
 
   /**
+   * Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document.
+   */
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInput {
+    validationRules?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule[];
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule {
+    /**
+     * Description of the validation rule. This has no use but for documentation
+     */
+    description?: string | null;
+    fieldOccurrences?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences;
+    fieldRegex?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex;
+    formValidation?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation;
+    /**
+     * Name of the validation rule.
+     */
+    name?: string | null;
+  }
+  /**
+   * The constant value used in the validation rules.
+   */
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant {
+    floatValue?: number | null;
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField {
+    /**
+     * Default value to use if the field is not present. If the field is missing and the default value is not set, the validation run as if the field is not present in the validation logic.
+     */
+    defaultValue?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant;
+    /**
+     * The field name to validate. This can be a simple field name or a nested field one using the ':' (meant as an aggregator) or '*' (meant as foreach) operators.
+     */
+    fieldName?: string | null;
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences {
+    field?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField;
+    maxOccurrences?: number | null;
+    /**
+     * Min and max occurrences of the field. If not set, there is limit set. The defined interval is a closed-closed interval, i.e. [min, max].
+     */
+    minOccurrences?: number | null;
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex {
+    field?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField;
+    /**
+     * Python regex to validate the field values.
+     */
+    pattern?: string | null;
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation {
+    leftOperand?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation;
+    rightOperand?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation;
+    /**
+     * The relational operator to be applied to the operands.
+     */
+    validationOperator?: string | null;
+  }
+  export interface Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation {
+    /**
+     * A list of constants to be used as operands.
+     */
+    constants?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant[];
+    /**
+     * A list of fields to be used as operands.
+     */
+    fields?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField[];
+    /**
+     * A list of recursive operations to be used as operands.
+     */
+    operations?: Schema$CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation[];
+    /**
+     * The operation type to be applied to all the operands.
+     */
+    operationType?: string | null;
+  }
+  /**
    * Metadata of the auto-labeling documents operation.
    */
   export interface Schema$GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata {
@@ -1594,6 +1670,10 @@ export namespace documentai_v1beta3 {
      * Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.
      */
     mentionText?: string | null;
+    /**
+     * Optional. Specifies how the entity's value is obtained.
+     */
+    method?: string | null;
     /**
      * Optional. Normalized entity value. Absent if the extracted value could not be converted or the type (e.g. address) is not supported for certain parsers. This field is also only populated for certain supported document types.
      */
@@ -4684,7 +4764,7 @@ export namespace documentai_v1beta3 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4827,7 +4907,7 @@ export namespace documentai_v1beta3 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

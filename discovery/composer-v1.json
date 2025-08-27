@@ -1226,7 +1226,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250803",
   "rootUrl": "https://composer.googleapis.com/",
   "schemas": {
     "AirflowMetadataRetentionPolicyConfig": {
@@ -2194,7 +2194,8 @@
             "CHECK",
             "SAVE_SNAPSHOT",
             "LOAD_SNAPSHOT",
-            "DATABASE_FAILOVER"
+            "DATABASE_FAILOVER",
+            "MIGRATE"
           ],
           "enumDescriptions": [
             "Unused.",
@@ -2204,7 +2205,8 @@
             "A resource check operation.",
             "Saves snapshot of the resource operation.",
             "Loads snapshot of the resource operation.",
-            "Triggers failover of environment's Cloud SQL instance (only for highly resilient environments)."
+            "Triggers failover of environment's Cloud SQL instance (only for highly resilient environments).",
+            "Migrates resource to a new major version."
           ],
           "type": "string"
         },

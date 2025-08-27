@@ -268,9 +268,21 @@ export namespace redis_v1beta1 {
      */
     kmsKey?: string | null;
     /**
+     * Output only. The last time a backup was created in the backup collection.
+     */
+    lastBackupTime?: string | null;
+    /**
      * Identifier. Full resource path of the backup collection.
      */
     name?: string | null;
+    /**
+     * Output only. Total number of backups in the backup collection.
+     */
+    totalBackupCount?: string | null;
+    /**
+     * Output only. Total size of all backups in the backup collection.
+     */
+    totalBackupSizeBytes?: string | null;
     /**
      * Output only. System assigned unique identifier of the backup collection.
      */
@@ -292,6 +304,44 @@ export namespace redis_v1beta1 {
      * Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.
      */
     pointInTimeRecoveryEnabled?: boolean | null;
+  }
+  /**
+   * BackupDRConfiguration to capture the backup and disaster recovery details of database resource.
+   */
+  export interface Schema$BackupDRConfiguration {
+    /**
+     * Indicates if the resource is managed by BackupDR.
+     */
+    backupdrManaged?: boolean | null;
+  }
+  /**
+   * BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.
+   */
+  export interface Schema$BackupDRMetadata {
+    /**
+     * Backup configuration for this instance.
+     */
+    backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * BackupDR configuration for this instance.
+     */
+    backupdrConfiguration?: Schema$BackupDRConfiguration;
+    /**
+     * Latest backup run information for this instance.
+     */
+    backupRun?: Schema$BackupRun;
+    /**
+     * Required. Full resource name of this instance.
+     */
+    fullResourceName?: string | null;
+    /**
+     * Required. Last time backup configuration was refreshed.
+     */
+    lastRefreshTime?: string | null;
+    /**
+     * Required. Database resource id.
+     */
+    resourceId?: Schema$DatabaseResourceId;
   }
   /**
    * Backup is consisted of multiple backup files.
@@ -455,6 +505,14 @@ export namespace redis_v1beta1 {
      * Optional. The number of replica nodes per shard.
      */
     replicaCount?: number | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzi?: boolean | null;
+    /**
+     * Optional. Output only. Reserved for future use.
+     */
+    satisfiesPzs?: boolean | null;
     /**
      * Optional. Number of shards for the Redis cluster.
      */
@@ -643,9 +701,13 @@ export namespace redis_v1beta1 {
     internalResourceMetadata?: Schema$InternalResourceMetadata[];
   }
   /**
-   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9
+   * DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11
    */
   export interface Schema$DatabaseResourceFeed {
+    /**
+     * BackupDR metadata is used to ingest metadata from BackupDR.
+     */
+    backupdrMetadata?: Schema$BackupDRMetadata;
     /**
      * Config based signal data is used to ingest signals that are generated based on the configuration of the database resource.
      */
@@ -666,6 +728,10 @@ export namespace redis_v1beta1 {
      */
     resourceId?: Schema$DatabaseResourceId;
     resourceMetadata?: Schema$DatabaseResourceMetadata;
+    /**
+     * Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.
+     */
+    skipIngestion?: boolean | null;
   }
   /**
    * Common model for database resource health signal data.
@@ -751,7 +817,7 @@ export namespace redis_v1beta1 {
     uniqueId?: string | null;
   }
   /**
-   * Common model for database resource instance metadata. Next ID: 25
+   * Common model for database resource instance metadata. Next ID: 26
    */
   export interface Schema$DatabaseResourceMetadata {
     /**
@@ -762,6 +828,10 @@ export namespace redis_v1beta1 {
      * Backup configuration for this instance
      */
     backupConfiguration?: Schema$BackupConfiguration;
+    /**
+     * Optional. BackupDR Configuration for the resource.
+     */
+    backupdrConfiguration?: Schema$BackupDRConfiguration;
     /**
      * Latest backup run information for this instance
      */
@@ -2172,7 +2242,7 @@ export namespace redis_v1beta1 {
      *
      *   // Do the magic
      *   const res = await redis.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2300,7 +2370,7 @@ export namespace redis_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2373,7 +2443,10 @@ export namespace redis_v1beta1 {
      *   //   "clusterUid": "my_clusterUid",
      *   //   "createTime": "my_createTime",
      *   //   "kmsKey": "my_kmsKey",
+     *   //   "lastBackupTime": "my_lastBackupTime",
      *   //   "name": "my_name",
+     *   //   "totalBackupCount": "my_totalBackupCount",
+     *   //   "totalBackupSizeBytes": "my_totalBackupSizeBytes",
      *   //   "uid": "my_uid"
      *   // }
      * }
@@ -3506,6 +3579,8 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,
@@ -3828,6 +3903,8 @@ export namespace redis_v1beta1 {
      *   //   "pscServiceAttachments": [],
      *   //   "redisConfigs": {},
      *   //   "replicaCount": 0,
+     *   //   "satisfiesPzi": false,
+     *   //   "satisfiesPzs": false,
      *   //   "shardCount": 0,
      *   //   "simulateMaintenanceEvent": false,
      *   //   "sizeGb": 0,
@@ -4284,6 +4361,8 @@ export namespace redis_v1beta1 {
      *       //   "pscServiceAttachments": [],
      *       //   "redisConfigs": {},
      *       //   "replicaCount": 0,
+     *       //   "satisfiesPzi": false,
+     *       //   "satisfiesPzs": false,
      *       //   "shardCount": 0,
      *       //   "simulateMaintenanceEvent": false,
      *       //   "sizeGb": 0,

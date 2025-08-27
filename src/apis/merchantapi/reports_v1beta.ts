@@ -1008,7 +1008,7 @@ export namespace merchantapi_reports_v1beta {
      */
     pageToken?: string | null;
     /**
-     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the [Available fields](/merchant/api/reference/rest/reports_v1beta/accounts.reports).
+     * Required. Query that defines a report to be retrieved. For details on how to construct your query, see the [Query Language guide](/merchant/api/guides/reports/query-language). For the full list of available tables and fields, see the [Available fields](/merchant/api/reference/rest/reports_{api_version\}/accounts.reports).
      */
     query?: string | null;
   }

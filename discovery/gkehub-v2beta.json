@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250815",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -3065,7 +3065,18 @@
             "MODERNIZATION_IN_PROGRESS",
             "MODERNIZATION_COMPLETED",
             "MODERNIZATION_ABORTED",
-            "MODERNIZATION_WILL_BE_SCHEDULED"
+            "MODERNIZATION_PREPARING",
+            "MODERNIZATION_STALLED",
+            "MODERNIZATION_PREPARED",
+            "MODERNIZATION_MIGRATING_WORKLOADS",
+            "MODERNIZATION_ROLLING_BACK_CLUSTER",
+            "MODERNIZATION_WILL_BE_SCHEDULED",
+            "MODERNIZATION_MANUAL",
+            "MODERNIZATION_ELIGIBLE",
+            "MODERNIZATION_MODERNIZING",
+            "MODERNIZATION_MODERNIZED_SOAKING",
+            "MODERNIZATION_FINALIZED",
+            "MODERNIZATION_ROLLING_BACK_FLEET"
           ],
           "enumDescriptions": [
             "Default Unspecified code",
@@ -3109,7 +3120,18 @@
             "Modernization is in progress for a cluster.",
             "Modernization is completed for a cluster.",
             "Modernization is aborted for a cluster.",
-            "Modernization will be scheduled for a fleet."
+            "Preparing cluster so that its workloads can be migrated.",
+            "Modernization is stalled for a cluster.",
+            "Cluster has been prepared for its workloads to be migrated.",
+            "Migrating the cluster's workloads to the new implementation.",
+            "Rollback is in progress for modernization of a cluster.",
+            "Modernization will be scheduled for a fleet.",
+            "Fleet is opted out from automated modernization.",
+            "Fleet is eligible for modernization.",
+            "Modernization of one or more clusters in a fleet is in progress.",
+            "Modernization of all the fleet's clusters is complete. Soaking before finalizing the modernization.",
+            "Modernization is finalized for all clusters in a fleet. Rollback is no longer allowed.",
+            "Rollback is in progress for modernization of all clusters in a fleet."
           ],
           "type": "string"
         },
@@ -3178,7 +3200,8 @@
             "ACTIVE",
             "STALLED",
             "NEEDS_ATTENTION",
-            "DEGRADED"
+            "DEGRADED",
+            "DEPROVISIONING"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -3188,7 +3211,8 @@
             "ACTIVE means that the component is ready for use.",
             "STALLED means that provisioning could not be done.",
             "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
-            "DEGRADED means that the component is ready, but operating in a degraded state."
+            "DEGRADED means that the component is ready, but operating in a degraded state.",
+            "DEPROVISIONING means that deprovisioning is in progress."
           ],
           "type": "string"
         }
@@ -3216,7 +3240,8 @@
             "ACTIVE",
             "STALLED",
             "NEEDS_ATTENTION",
-            "DEGRADED"
+            "DEGRADED",
+            "DEPROVISIONING"
           ],
           "enumDescriptions": [
             "Unspecified",
@@ -3226,7 +3251,8 @@
             "ACTIVE means that the component is ready for use.",
             "STALLED means that provisioning could not be done.",
             "NEEDS_ATTENTION means that the component is ready, but some user intervention is required. (For example that the user should migrate workloads to a new control plane revision.)",
-            "DEGRADED means that the component is ready, but operating in a degraded state."
+            "DEGRADED means that the component is ready, but operating in a degraded state.",
+            "DEPROVISIONING means that deprovisioning is in progress."
           ],
           "type": "string"
         }
@@ -3288,12 +3314,14 @@
           "enum": [
             "MANAGEMENT_UNSPECIFIED",
             "MANAGEMENT_AUTOMATIC",
-            "MANAGEMENT_MANUAL"
+            "MANAGEMENT_MANUAL",
+            "MANAGEMENT_NOT_INSTALLED"
           ],
           "enumDescriptions": [
-            "Unspecified",
+            "Unspecified.",
             "Google should manage my Service Mesh for the cluster.",
-            "User will manually configure their service mesh components."
+            "User will manually configure their service mesh components.",
+            "Google should remove any managed Service Mesh components from this cluster and deprovision any resources."
           ],
           "type": "string"
         }

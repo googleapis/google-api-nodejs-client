@@ -1,5 +1,84 @@
 # Changelog
 
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v3.0.0...datacatalog-v4.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([e2999ec](https://github.com/googleapis/google-api-nodejs-client/commit/e2999ec14670cdc078242a0c52ea351e12d999bd))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v2.0.0...datacatalog-v3.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([e2999ec](https://github.com/googleapis/google-api-nodejs-client/commit/e2999ec14670cdc078242a0c52ea351e12d999bd))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v1.0.0...datacatalog-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([e2999ec](https://github.com/googleapis/google-api-nodejs-client/commit/e2999ec14670cdc078242a0c52ea351e12d999bd))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([e2999ec](https://github.com/googleapis/google-api-nodejs-client/commit/e2999ec14670cdc078242a0c52ea351e12d999bd))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [9.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v8.0.1...datacatalog-v9.0.0) (2025-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
 ## [8.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v8.0.0...datacatalog-v8.0.1) (2025-07-08)
 
 

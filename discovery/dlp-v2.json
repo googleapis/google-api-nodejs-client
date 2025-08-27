@@ -5118,7 +5118,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250817",
   "rootUrl": "https://dlp.googleapis.com/",
   "schemas": {
     "GooglePrivacyDlpV2Action": {
@@ -7204,7 +7204,7 @@
           "type": "string"
         },
         "fileTypesToTransform": {
-          "description": "List of user-specified file type groups to transform. If specified, only the files with these file types will be transformed. If empty, all supported files will be transformed. Supported types may be automatically added over time. If a file type is set in this field that isn't supported by the Deidentify action then the job will fail and will not be successfully created/started. Currently the only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.",
+          "description": "List of user-specified file type groups to transform. If specified, only the files with these file types are transformed. If empty, all supported files are transformed. Supported types may be automatically added over time. Any unsupported file types that are set in this field are excluded from de-identification. An error is recorded for each unsupported file in the TransformationDetails output table. Currently the only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.",
           "items": {
             "enum": [
               "FILE_TYPE_UNSPECIFIED",
@@ -8272,16 +8272,16 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2DocumentFallbackLocation": {
-      "description": "Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.",
+      "description": "Configure document processing to fall back to any of the following processing options if document processing is unavailable in the original request location.",
       "id": "GooglePrivacyDlpV2DocumentFallbackLocation",
       "properties": {
         "globalProcessing": {
           "$ref": "GooglePrivacyDlpV2GlobalProcessing",
-          "description": "Processing will happen in the global region."
+          "description": "Processing occurs in the global region."
         },
         "multiRegionProcessing": {
           "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
-          "description": "Processing will happen in a multi-region that contains the current region if available."
+          "description": "Processing occurs in a multi-region that contains the current region if available."
         }
       },
       "type": "object"
@@ -8987,7 +8987,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2GlobalProcessing": {
-      "description": "Processing will happen in the global region.",
+      "description": "Processing occurs in the global region.",
       "id": "GooglePrivacyDlpV2GlobalProcessing",
       "properties": {},
       "type": "object"
@@ -9138,16 +9138,16 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2ImageFallbackLocation": {
-      "description": "Configure image processing to fall back to the configured processing option below if unavailable in the request location.",
+      "description": "Configure image processing to fall back to any of the following processing options if image processing is unavailable in the original request location.",
       "id": "GooglePrivacyDlpV2ImageFallbackLocation",
       "properties": {
         "globalProcessing": {
           "$ref": "GooglePrivacyDlpV2GlobalProcessing",
-          "description": "Processing will happen in the global region."
+          "description": "Processing occurs in the global region."
         },
         "multiRegionProcessing": {
           "$ref": "GooglePrivacyDlpV2MultiRegionProcessing",
-          "description": "Processing will happen in a multi-region that contains the current region if available."
+          "description": "Processing occurs in a multi-region that contains the current region if available."
         }
       },
       "type": "object"
@@ -9269,6 +9269,7 @@
             "ARGENTINA",
             "ARMENIA",
             "AUSTRALIA",
+            "AUSTRIA",
             "AZERBAIJAN",
             "BELARUS",
             "BELGIUM",
@@ -9323,6 +9324,7 @@
             "The infoType is typically used in Argentina.",
             "The infoType is typically used in Armenia.",
             "The infoType is typically used in Australia.",
+            "The infoType is typically used in Austria.",
             "The infoType is typically used in Azerbaijan.",
             "The infoType is typically used in Belarus.",
             "The infoType is typically used in Belgium.",
@@ -9424,6 +9426,10 @@
         "example": {
           "description": "A sample that is a true positive for this infoType.",
           "type": "string"
+        },
+        "locationSupport": {
+          "$ref": "GooglePrivacyDlpV2LocationSupport",
+          "description": "Locations at which this feature can be used. May change over time."
         },
         "name": {
           "description": "Internal name of the infoType.",
@@ -10532,6 +10538,34 @@
       },
       "type": "object"
     },
+    "GooglePrivacyDlpV2LocationSupport": {
+      "description": "Locations at which a feature can be used.",
+      "id": "GooglePrivacyDlpV2LocationSupport",
+      "properties": {
+        "locations": {
+          "description": "Specific locations where the feature may be used. Examples: us-central1, us, asia, global If scope is ANY_LOCATION, no regions will be listed.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "regionalizationScope": {
+          "description": "The current scope for location on this feature. This may expand over time.",
+          "enum": [
+            "REGIONALIZATION_SCOPE_UNSPECIFIED",
+            "REGIONAL",
+            "ANY_LOCATION"
+          ],
+          "enumDescriptions": [
+            "Invalid.",
+            "Feature may be used with one or more regions. See locations for details.",
+            "Feature may be used anywhere. Default value."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GooglePrivacyDlpV2Manual": {
       "description": "Job trigger option for hybrid jobs. Jobs must be manually created and finished.",
       "id": "GooglePrivacyDlpV2Manual",
@@ -10562,7 +10596,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2MultiRegionProcessing": {
-      "description": "Processing will happen in a multi-region that contains the current region if available.",
+      "description": "Processing occurs in a multi-region that contains the current region if available.",
       "id": "GooglePrivacyDlpV2MultiRegionProcessing",
       "properties": {},
       "type": "object"
@@ -10895,11 +10929,11 @@
       "properties": {
         "documentFallbackLocation": {
           "$ref": "GooglePrivacyDlpV2DocumentFallbackLocation",
-          "description": "Document processing will fall back using this configuration."
+          "description": "Document processing falls back using this configuration."
         },
         "imageFallbackLocation": {
           "$ref": "GooglePrivacyDlpV2ImageFallbackLocation",
-          "description": "Image processing will fall back using this configuration."
+          "description": "Image processing falls back using this configuration."
         }
       },
       "type": "object"
@@ -11148,7 +11182,7 @@
       "id": "GooglePrivacyDlpV2QuasiId",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
@@ -11186,7 +11220,7 @@
       "id": "GooglePrivacyDlpV2QuasiIdentifierField",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
@@ -11534,7 +11568,7 @@
       "type": "object"
     },
     "GooglePrivacyDlpV2Result": {
-      "description": "All result fields mentioned below are updated while the job is processing.",
+      "description": "All Result fields are updated while the job is processing.",
       "id": "GooglePrivacyDlpV2Result",
       "properties": {
         "hybridStats": {
@@ -12310,7 +12344,7 @@
       "id": "GooglePrivacyDlpV2TaggedField",
       "properties": {
         "customTag": {
-          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).",
+          "description": "A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.",
           "type": "string"
         },
         "field": {
@@ -13047,6 +13081,42 @@
           "description": "Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "Proto2BridgeMessageSet": {
+      "deprecated": true,
+      "description": "This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a \"bridge\" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.",
+      "id": "Proto2BridgeMessageSet",
+      "properties": {},
+      "type": "object"
+    },
+    "UtilStatusProto": {
+      "description": "Wire-format for a Status object",
+      "id": "UtilStatusProto",
+      "properties": {
+        "canonicalCode": {
+          "description": "copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;",
+          "format": "int32",
+          "type": "integer"
+        },
+        "code": {
+          "description": "Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;",
+          "format": "int32",
+          "type": "integer"
+        },
+        "message": {
+          "description": "Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;",
+          "type": "string"
+        },
+        "messageSet": {
+          "$ref": "Proto2BridgeMessageSet",
+          "description": "message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;"
+        },
+        "space": {
+          "description": "copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs",
+          "type": "string"
         }
       },
       "type": "object"

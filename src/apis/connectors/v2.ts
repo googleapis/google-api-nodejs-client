@@ -162,6 +162,10 @@ export namespace connectors_v2 {
      */
     inputParameters?: Schema$InputParameter[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Name of the action.
      */
     name?: string | null;
@@ -209,6 +213,10 @@ export namespace connectors_v2 {
      * When the connector is not in ACTIVE state, the description must be populated to specify the reason why it's not in ACTIVE state.
      */
     description?: string | null;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * State of the connector.
      */
@@ -274,6 +282,10 @@ export namespace connectors_v2 {
      */
     fields?: {[key: string]: any} | null;
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Output only. Resource name of the Entity. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{type\}/entities/{id\}
      */
     name?: string | null;
@@ -282,6 +294,7 @@ export namespace connectors_v2 {
    * EntityType message contains metadata information about a single entity type present in the external system.
    */
   export interface Schema$EntityType {
+    defaultSortBy?: string | null;
     /**
      * List containing metadata information about each field of the entity type.
      */
@@ -290,6 +303,10 @@ export namespace connectors_v2 {
      * JsonSchema representation of this entity's schema
      */
     jsonSchema?: Schema$JsonSchema;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * The name of the entity type.
      */
@@ -310,6 +327,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$ExchangeAuthCodeResponse {
     accessCredentials?: Schema$AccessCredentials;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * Request message for ActionService.ExecuteAction
@@ -324,6 +345,10 @@ export namespace connectors_v2 {
    * Response message for ActionService.ExecuteAction
    */
   export interface Schema$ExecuteActionResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * In the case of successful invocation of the specified action, the results Struct contains values based on the response of the action invoked. 1. If the action execution produces any entities as a result, they are returned as an array of Structs with the 'key' being the field name and the 'value' being the value of that field in each result row. { 'results': [{'key': 'value'\}, ...] \}
      */
@@ -346,6 +371,24 @@ export namespace connectors_v2 {
      * In the case of successful execution of the query the response contains results returned by the external system. For example, the result rows of the query are contained in the 'results' Struct list - "results": [ { "field1": "val1", "field2": "val2",.. \},.. ] Each Struct row can contain fields any type of like nested Structs or lists.
      */
     results?: Array<{[key: string]: any}> | null;
+  }
+  /**
+   * Request message for ConnectorAgentService.ExecuteTool
+   */
+  export interface Schema$ExecuteToolRequest {
+    /**
+     * Input parameters for the tool.
+     */
+    parameters?: {[key: string]: any} | null;
+  }
+  /**
+   * Response message for ConnectorAgentService.ExecuteTool
+   */
+  export interface Schema$ExecuteToolResponse {
+    /**
+     * Output from the tool execution.
+     */
+    result?: {[key: string]: any} | null;
   }
   /**
    * Message contains EntityType's Field metadata.
@@ -554,6 +597,10 @@ export namespace connectors_v2 {
      */
     actions?: Schema$Action[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Next page token if more actions available.
      */
     nextPageToken?: string | null;
@@ -571,6 +618,10 @@ export namespace connectors_v2 {
      */
     entities?: Schema$Entity[];
     /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
+    /**
      * Next page token if more records are available.
      */
     nextPageToken?: string | null;
@@ -579,6 +630,10 @@ export namespace connectors_v2 {
    * Response message for EntityService.ListEntityTypes
    */
   export interface Schema$ListEntityTypesResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * Next page token if more entity types available.
      */
@@ -591,6 +646,19 @@ export namespace connectors_v2 {
      * List of entity type names which contain unsupported Datatypes. Check datatype.proto for more information.
      */
     unsupportedTypeNames?: string[] | null;
+  }
+  /**
+   * Response message for ConnectorAgentService.ListTools
+   */
+  export interface Schema$ListToolsResponse {
+    /**
+     * Next page token.
+     */
+    nextPageToken?: string | null;
+    /**
+     * List of available tools.
+     */
+    tools?: Schema$Tool[];
   }
   /**
    * Defines policies to service maintenance events.
@@ -780,6 +848,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$RefreshAccessTokenResponse {
     accessCredentials?: Schema$AccessCredentials;
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
   }
   /**
    * Result Metadata message contains metadata about the result returned after executing an Action.
@@ -879,9 +951,34 @@ export namespace connectors_v2 {
     seconds?: number | null;
   }
   /**
+   * Message representing a single tool.
+   */
+  export interface Schema$Tool {
+    /**
+     * Description of the tool.
+     */
+    description?: string | null;
+    /**
+     * JSON schema for the input parameters of the tool.
+     */
+    inputSchema?: Schema$JsonSchema;
+    /**
+     * Name of the tool.
+     */
+    name?: string | null;
+    /**
+     * JSON schema for the output of the tool.
+     */
+    outputSchema?: Schema$JsonSchema;
+  }
+  /**
    * Response message for EntityService.UpdateEntitiesWithConditions
    */
   export interface Schema$UpdateEntitiesWithConditionsResponse {
+    /**
+     * Metadata like service latency, etc.
+     */
+    metadata?: {[key: string]: {[key: string]: any}} | null;
     /**
      * Response returned by the external system.
      */
@@ -938,6 +1035,7 @@ export namespace connectors_v2 {
     context: APIRequestContext;
     actions: Resource$Projects$Locations$Connections$Actions;
     entityTypes: Resource$Projects$Locations$Connections$Entitytypes;
+    tools: Resource$Projects$Locations$Connections$Tools;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.actions = new Resource$Projects$Locations$Connections$Actions(
@@ -945,6 +1043,9 @@ export namespace connectors_v2 {
       );
       this.entityTypes =
         new Resource$Projects$Locations$Connections$Entitytypes(this.context);
+      this.tools = new Resource$Projects$Locations$Connections$Tools(
+        this.context
+      );
     }
 
     /**
@@ -1126,6 +1227,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "description": "my_description",
+     *   //   "metadata": {},
      *   //   "state": "my_state"
      *   // }
      * }
@@ -1273,7 +1375,8 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "accessCredentials": {}
+     *   //   "accessCredentials": {},
+     *   //   "metadata": {}
      *   // }
      * }
      *
@@ -1574,7 +1677,8 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
-     *   //   "accessCredentials": {}
+     *   //   "accessCredentials": {},
+     *   //   "metadata": {}
      *   // }
      * }
      *
@@ -1782,6 +1886,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "results": []
      *   // }
      * }
@@ -1928,6 +2033,7 @@ export namespace connectors_v2 {
      *   //   "displayName": "my_displayName",
      *   //   "inputJsonSchema": {},
      *   //   "inputParameters": [],
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "resultJsonSchema": {},
      *   //   "resultMetadata": []
@@ -2073,6 +2179,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "actions": [],
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "unsupportedActionNames": []
      *   // }
@@ -2260,6 +2367,8 @@ export namespace connectors_v2 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.entityTypes.get({
+     *     // Context metadata for request could be used to fetch customization of entity type schema.
+     *     contextMetadata: 'placeholder-value',
      *     // Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      *     name: 'projects/my-project/locations/my-location/connections/my-connection/entityTypes/my-entityType',
      *     // Specifies view for entity type schema.
@@ -2269,8 +2378,10 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "defaultSortBy": "my_defaultSortBy",
      *   //   "fields": [],
      *   //   "jsonSchema": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name",
      *   //   "operations": []
      *   // }
@@ -2414,6 +2525,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken",
      *   //   "types": [],
      *   //   "unsupportedTypeNames": []
@@ -2522,6 +2634,10 @@ export namespace connectors_v2 {
   export interface Params$Resource$Projects$Locations$Connections$Entitytypes$Get
     extends StandardParameters {
     /**
+     * Context metadata for request could be used to fetch customization of entity type schema.
+     */
+    contextMetadata?: string;
+    /**
      * Required. Resource name of the Entity Type. Format: projects/{project\}/locations/{location\}/connections/{connection\}/entityTypes/{entityType\}
      */
     name?: string;
@@ -2598,6 +2714,7 @@ export namespace connectors_v2 {
      *           // request body parameters
      *           // {
      *           //   "fields": {},
+     *           //   "metadata": {},
      *           //   "name": "my_name"
      *           // }
      *         },
@@ -2608,6 +2725,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3028,6 +3146,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3176,6 +3295,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "entities": [],
+     *   //   "metadata": {},
      *   //   "nextPageToken": "my_nextPageToken"
      *   // }
      * }
@@ -3318,6 +3438,7 @@ export namespace connectors_v2 {
      *         // request body parameters
      *         // {
      *         //   "fields": {},
+     *         //   "metadata": {},
      *         //   "name": "my_name"
      *         // }
      *       },
@@ -3327,6 +3448,7 @@ export namespace connectors_v2 {
      *   // Example response
      *   // {
      *   //   "fields": {},
+     *   //   "metadata": {},
      *   //   "name": "my_name"
      *   // }
      * }
@@ -3468,6 +3590,7 @@ export namespace connectors_v2 {
      *           // request body parameters
      *           // {
      *           //   "fields": {},
+     *           //   "metadata": {},
      *           //   "name": "my_name"
      *           // }
      *         },
@@ -3477,6 +3600,7 @@ export namespace connectors_v2 {
      *
      *   // Example response
      *   // {
+     *   //   "metadata": {},
      *   //   "response": {}
      *   // }
      * }
@@ -3679,5 +3803,330 @@ export namespace connectors_v2 {
      * Request body metadata
      */
     requestBody?: Schema$Entity;
+  }
+
+  export class Resource$Projects$Locations$Connections$Tools {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Executes a specific tool.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.tools.execute({
+     *     // Required. Resource name of the Tool. Format: projects/{project\}/locations/{location\}/connections/{connection\}/tools/{tool\}
+     *     name: 'projects/my-project/locations/my-location/connections/my-connection/tools/my-tool',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "parameters": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "result": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    execute(
+      params: Params$Resource$Projects$Locations$Connections$Tools$Execute,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    execute(
+      params?: Params$Resource$Projects$Locations$Connections$Tools$Execute,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExecuteToolResponse>>;
+    execute(
+      params: Params$Resource$Projects$Locations$Connections$Tools$Execute,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    execute(
+      params: Params$Resource$Projects$Locations$Connections$Tools$Execute,
+      options: MethodOptions | BodyResponseCallback<Schema$ExecuteToolResponse>,
+      callback: BodyResponseCallback<Schema$ExecuteToolResponse>
+    ): void;
+    execute(
+      params: Params$Resource$Projects$Locations$Connections$Tools$Execute,
+      callback: BodyResponseCallback<Schema$ExecuteToolResponse>
+    ): void;
+    execute(callback: BodyResponseCallback<Schema$ExecuteToolResponse>): void;
+    execute(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Tools$Execute
+        | BodyResponseCallback<Schema$ExecuteToolResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ExecuteToolResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ExecuteToolResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExecuteToolResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Tools$Execute;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Tools$Execute;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+name}:execute').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ExecuteToolResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ExecuteToolResponse>(parameters);
+      }
+    }
+
+    /**
+     * Lists all available tools.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/connectors.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const connectors = google.connectors('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await connectors.projects.locations.connections.tools.list({
+     *     // Page size.
+     *     pageSize: 'placeholder-value',
+     *     // Page token.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     *     parent:
+     *       'projects/my-project/locations/my-location/connections/my-connection',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "tools": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Tools$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Connections$Tools$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListToolsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Tools$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Tools$List,
+      options: MethodOptions | BodyResponseCallback<Schema$ListToolsResponse>,
+      callback: BodyResponseCallback<Schema$ListToolsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Connections$Tools$List,
+      callback: BodyResponseCallback<Schema$ListToolsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListToolsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Connections$Tools$List
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListToolsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListToolsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Connections$Tools$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Connections$Tools$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://connectors.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+parent}/tools').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListToolsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListToolsResponse>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Connections$Tools$Execute
+    extends StandardParameters {
+    /**
+     * Required. Resource name of the Tool. Format: projects/{project\}/locations/{location\}/connections/{connection\}/tools/{tool\}
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ExecuteToolRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Connections$Tools$List
+    extends StandardParameters {
+    /**
+     * Page size.
+     */
+    pageSize?: number;
+    /**
+     * Page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. Resource name of the Connection. Format: projects/{project\}/locations/{location\}/connections/{connection\}
+     */
+    parent?: string;
   }
 }

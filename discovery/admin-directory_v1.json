@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250707",
+  "revision": "20250804",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5838,6 +5838,23 @@
         },
         "osVersion": {
           "description": "The Chrome device's operating system version.",
+          "type": "string"
+        },
+        "osVersionCompliance": {
+          "description": "Output only. Compliance status of the OS version.",
+          "enum": [
+            "complianceUnspecified",
+            "compliant",
+            "pending",
+            "notCompliant"
+          ],
+          "enumDescriptions": [
+            "Compliance status unspecified.",
+            "Compliance status compliant.",
+            "Compliance status pending.",
+            "Compliance status not compliant."
+          ],
+          "readOnly": true,
           "type": "string"
         },
         "platformVersion": {

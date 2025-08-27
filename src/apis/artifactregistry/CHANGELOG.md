@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v1.0.0...artifactregistry-v1.0.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([d0de349](https://github.com/googleapis/google-api-nodejs-client/commit/d0de349e6601320e86e71d4d3d2e4774d068334d))
+* **artifactregistry:** update the API ([4da45bc](https://github.com/googleapis/google-api-nodejs-client/commit/4da45bcfc9faf47ae75fd5634f9a1a6494234d25))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **artifactregistry:** update the API ([d0de349](https://github.com/googleapis/google-api-nodejs-client/commit/d0de349e6601320e86e71d4d3d2e4774d068334d))
+* **artifactregistry:** update the API ([4da45bc](https://github.com/googleapis/google-api-nodejs-client/commit/4da45bcfc9faf47ae75fd5634f9a1a6494234d25))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [15.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/artifactregistry-v15.0.1...artifactregistry-v15.0.2) (2025-07-15)
 
 

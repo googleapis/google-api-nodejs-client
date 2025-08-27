@@ -1,5 +1,34 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v15.0.0...paymentsresellersubscription-v16.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v14.0.1...paymentsresellersubscription-v15.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* **paymentsresellersubscription:** This release has breaking changes.
+
+### Features
+
+* **paymentsresellersubscription:** update the API ([1e15be0](https://github.com/googleapis/google-api-nodejs-client/commit/1e15be055791362d0eaa3d908321878c0fff8426))
+
+## [14.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v14.0.0...paymentsresellersubscription-v14.0.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [14.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/paymentsresellersubscription-v13.0.2...paymentsresellersubscription-v14.0.0) (2025-07-22)
 
 

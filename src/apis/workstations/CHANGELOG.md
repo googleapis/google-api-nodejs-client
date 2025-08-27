@@ -1,5 +1,48 @@
 # Changelog
 
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v1.0.0...workstations-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* **workstations:** update the API ([23b2dd2](https://github.com/googleapis/google-api-nodejs-client/commit/23b2dd23c6e43d3eddb0bcd59057ee5dce6990c6))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **workstations:** update the API ([bd709fa](https://github.com/googleapis/google-api-nodejs-client/commit/bd709fa00092684ceb02aa7dbab3ddd8aeef43c5))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* **workstations:** update the API ([23b2dd2](https://github.com/googleapis/google-api-nodejs-client/commit/23b2dd23c6e43d3eddb0bcd59057ee5dce6990c6))
+* **workstations:** update the API ([a61f1e5](https://github.com/googleapis/google-api-nodejs-client/commit/a61f1e516c84f2a87155c84aa311f5814abd9b90))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **workstations:** update the API ([bd709fa](https://github.com/googleapis/google-api-nodejs-client/commit/bd709fa00092684ceb02aa7dbab3ddd8aeef43c5))
+
+## [13.2.1](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v13.2.0...workstations-v13.2.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **workstations:** update the API ([bd709fa](https://github.com/googleapis/google-api-nodejs-client/commit/bd709fa00092684ceb02aa7dbab3ddd8aeef43c5))
+
+## [13.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v13.1.0...workstations-v13.2.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [13.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/workstations-v13.0.0...workstations-v13.1.0) (2025-07-08)
 
 

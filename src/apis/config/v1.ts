@@ -254,6 +254,10 @@ export namespace config_v1 {
      */
     name?: string | null;
     /**
+     * Optional. This field specifies the provider configurations.
+     */
+    providerConfig?: Schema$ProviderConfig;
+    /**
      * Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.
      */
     quotaValidation?: string | null;
@@ -736,6 +740,10 @@ export namespace config_v1 {
      */
     previewMode?: string | null;
     /**
+     * Optional. This field specifies the provider configurations.
+     */
+    providerConfig?: Schema$ProviderConfig;
+    /**
      * Required. User-specified Service Account (SA) credentials to be used when previewing resources. Format: `projects/{projectID\}/serviceAccounts/{serviceAccount\}`
      */
     serviceAccount?: string | null;
@@ -860,6 +868,15 @@ export namespace config_v1 {
      * Output only. The path of the property drift.
      */
     path?: string | null;
+  }
+  /**
+   * ProviderConfig contains the provider configurations.
+   */
+  export interface Schema$ProviderConfig {
+    /**
+     * Optional. ProviderSource specifies the source type of the provider.
+     */
+    sourceType?: string | null;
   }
   /**
    * Resource represents a Google Cloud Platform resource actuated by IM. Resources are child resources of Revisions.
@@ -1036,6 +1053,10 @@ export namespace config_v1 {
      * Revision name. Format: `projects/{project\}/locations/{location\}/deployments/{deployment\}/ revisions/{revision\}`
      */
     name?: string | null;
+    /**
+     * Output only. This field specifies the provider configurations.
+     */
+    providerConfig?: Schema$ProviderConfig;
     /**
      * Optional. Input to control quota checks for resources in terraform configuration files. There are limited resources on which quota validation applies.
      */
@@ -1430,7 +1451,7 @@ export namespace config_v1 {
      *
      *   // Do the magic
      *   const res = await config.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1558,7 +1579,7 @@ export namespace config_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1644,6 +1665,7 @@ export namespace config_v1 {
      *       //   "latestRevision": "my_latestRevision",
      *       //   "lockState": "my_lockState",
      *       //   "name": "my_name",
+     *       //   "providerConfig": {},
      *       //   "quotaValidation": "my_quotaValidation",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state",
@@ -2393,6 +2415,7 @@ export namespace config_v1 {
      *   //   "latestRevision": "my_latestRevision",
      *   //   "lockState": "my_lockState",
      *   //   "name": "my_name",
+     *   //   "providerConfig": {},
      *   //   "quotaValidation": "my_quotaValidation",
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state",
@@ -3137,6 +3160,7 @@ export namespace config_v1 {
      *       //   "latestRevision": "my_latestRevision",
      *       //   "lockState": "my_lockState",
      *       //   "name": "my_name",
+     *       //   "providerConfig": {},
      *       //   "quotaValidation": "my_quotaValidation",
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state",
@@ -4100,6 +4124,7 @@ export namespace config_v1 {
      *   //   "importExistingResources": false,
      *   //   "logs": "my_logs",
      *   //   "name": "my_name",
+     *   //   "providerConfig": {},
      *   //   "quotaValidation": "my_quotaValidation",
      *   //   "quotaValidationResults": "my_quotaValidationResults",
      *   //   "serviceAccount": "my_serviceAccount",
@@ -5406,6 +5431,7 @@ export namespace config_v1 {
      *       //   "name": "my_name",
      *       //   "previewArtifacts": {},
      *       //   "previewMode": "my_previewMode",
+     *       //   "providerConfig": {},
      *       //   "serviceAccount": "my_serviceAccount",
      *       //   "state": "my_state",
      *       //   "terraformBlueprint": {},
@@ -5861,6 +5887,7 @@ export namespace config_v1 {
      *   //   "name": "my_name",
      *   //   "previewArtifacts": {},
      *   //   "previewMode": "my_previewMode",
+     *   //   "providerConfig": {},
      *   //   "serviceAccount": "my_serviceAccount",
      *   //   "state": "my_state",
      *   //   "terraformBlueprint": {},

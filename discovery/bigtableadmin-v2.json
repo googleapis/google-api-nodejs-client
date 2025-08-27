@@ -131,66 +131,6 @@
   "resources": {
     "operations": {
       "methods": {
-        "cancel": {
-          "description": "Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.",
-          "flatPath": "v2/operations/{operationsId}:cancel",
-          "httpMethod": "POST",
-          "id": "bigtableadmin.operations.cancel",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be cancelled.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}:cancel",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/bigtable.admin",
-            "https://www.googleapis.com/auth/bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/bigtable.admin.instance",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
-        "delete": {
-          "description": "Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.",
-          "flatPath": "v2/operations/{operationsId}",
-          "httpMethod": "DELETE",
-          "id": "bigtableadmin.operations.delete",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "The name of the operation resource to be deleted.",
-              "location": "path",
-              "pattern": "^operations/.*$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "v2/{+name}",
-          "response": {
-            "$ref": "Empty"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/bigtable.admin",
-            "https://www.googleapis.com/auth/bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/bigtable.admin.instance",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin",
-            "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-            "https://www.googleapis.com/auth/cloud-platform"
-          ]
-        },
         "get": {
           "description": "Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.",
           "flatPath": "v2/operations/{operationsId}",
@@ -2933,6 +2873,23 @@
                           "pattern": "^projects/[^/]+/instances/[^/]+/tables/[^/]+$",
                           "required": true,
                           "type": "string"
+                        },
+                        "view": {
+                          "description": "Optional. The resource_view to be applied to the returned SchemaBundles' fields. Defaults to NAME_ONLY.",
+                          "enum": [
+                            "SCHEMA_BUNDLE_VIEW_UNSPECIFIED",
+                            "NAME_ONLY",
+                            "BASIC",
+                            "FULL"
+                          ],
+                          "enumDescriptions": [
+                            "Uses the default view for each method as documented in the request.",
+                            "Only populates `name`.",
+                            "Only populates the SchemaBundle's basic metadata. This includes: name, etag, create_time, update_time.",
+                            "Populates every field."
+                          ],
+                          "location": "query",
+                          "type": "string"
                         }
                       },
                       "path": "v2/{+parent}/schemaBundles",
@@ -3062,37 +3019,6 @@
         },
         "locations": {
           "methods": {
-            "get": {
-              "description": "Gets information about a location.",
-              "flatPath": "v2/projects/{projectsId}/locations/{locationsId}",
-              "httpMethod": "GET",
-              "id": "bigtableadmin.projects.locations.get",
-              "parameterOrder": [
-                "name"
-              ],
-              "parameters": {
-                "name": {
-                  "description": "Resource name for the location.",
-                  "location": "path",
-                  "pattern": "^projects/[^/]+/locations/[^/]+$",
-                  "required": true,
-                  "type": "string"
-                }
-              },
-              "path": "v2/{+name}",
-              "response": {
-                "$ref": "Location"
-              },
-              "scopes": [
-                "https://www.googleapis.com/auth/bigtable.admin",
-                "https://www.googleapis.com/auth/bigtable.admin.cluster",
-                "https://www.googleapis.com/auth/bigtable.admin.instance",
-                "https://www.googleapis.com/auth/cloud-bigtable.admin",
-                "https://www.googleapis.com/auth/cloud-bigtable.admin.cluster",
-                "https://www.googleapis.com/auth/cloud-platform",
-                "https://www.googleapis.com/auth/cloud-platform.read-only"
-              ]
-            },
             "list": {
               "description": "Lists information about the supported locations for this service.",
               "flatPath": "v2/projects/{projectsId}/locations",
@@ -3151,7 +3077,7 @@
       }
     }
   },
-  "revision": "20250624",
+  "revision": "20250811",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4343,6 +4269,21 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleBigtableAdminV2TypeEnum": {
+      "description": "A protobuf enum type. Values of type `Enum` are stored in `Value.int_value`.",
+      "id": "GoogleBigtableAdminV2TypeEnum",
+      "properties": {
+        "enumName": {
+          "description": "The fully qualified name of the protobuf enum message, including package. In the format of \"foo.bar.EnumMessage\".",
+          "type": "string"
+        },
+        "schemaBundleId": {
+          "description": "The ID of the schema bundle that this enum is defined in.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleBigtableAdminV2TypeFloat32": {
       "description": "Float32 Values of type `Float32` are stored in `Value.float_value`.",
       "id": "GoogleBigtableAdminV2TypeFloat32",
@@ -4410,6 +4351,21 @@
         "valueType": {
           "$ref": "Type",
           "description": "The type of the values in a map."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleBigtableAdminV2TypeProto": {
+      "description": "A protobuf message type. Values of type `Proto` are stored in `Value.bytes_value`.",
+      "id": "GoogleBigtableAdminV2TypeProto",
+      "properties": {
+        "messageName": {
+          "description": "The fully qualified name of the protobuf message, including package. In the format of \"foo.bar.Message\".",
+          "type": "string"
+        },
+        "schemaBundleId": {
+          "description": "The ID of the schema bundle that this proto is defined in.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4647,6 +4603,13 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Input only. Immutable. Tag keys/values directly bound to this resource. For example: - \"123/environment\": \"production\", - \"123/costCenter\": \"marketing\" Tags and Labels (above) are both used to bind metadata to resources, with different use-cases. See https://cloud.google.com/resource-manager/docs/tags/tags-overview for an in-depth overview on the difference between tags and labels.",
+          "type": "object"
         },
         "type": {
           "description": "The type of the instance. Defaults to `PRODUCTION`.",
@@ -5628,6 +5591,10 @@
           "$ref": "GoogleBigtableAdminV2TypeDate",
           "description": "Date"
         },
+        "enumType": {
+          "$ref": "GoogleBigtableAdminV2TypeEnum",
+          "description": "Enum"
+        },
         "float32Type": {
           "$ref": "GoogleBigtableAdminV2TypeFloat32",
           "description": "Float32"
@@ -5643,6 +5610,10 @@
         "mapType": {
           "$ref": "GoogleBigtableAdminV2TypeMap",
           "description": "Map"
+        },
+        "protoType": {
+          "$ref": "GoogleBigtableAdminV2TypeProto",
+          "description": "Proto"
         },
         "stringType": {
           "$ref": "GoogleBigtableAdminV2TypeString",

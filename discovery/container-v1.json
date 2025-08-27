@@ -2660,7 +2660,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250812",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -2943,7 +2943,12 @@
     "AutoIpamConfig": {
       "description": "AutoIpamConfig contains all information related to Auto IPAM",
       "id": "AutoIpamConfig",
-      "properties": {},
+      "properties": {
+        "enabled": {
+          "description": "The flag that enables Auto IPAM on this cluster",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "AutoMonitoringConfig": {
@@ -2991,6 +2996,10 @@
         "enabled": {
           "description": "Enable Autopilot",
           "type": "boolean"
+        },
+        "privilegedAdmissionConfig": {
+          "$ref": "PrivilegedAdmissionConfig",
+          "description": "PrivilegedAdmissionConfig is the configuration related to privileged admission control."
         },
         "workloadPolicyConfig": {
           "$ref": "WorkloadPolicyConfig",
@@ -3793,6 +3802,10 @@
           ],
           "type": "string"
         },
+        "defaultComputeClassConfig": {
+          "$ref": "DefaultComputeClassConfig",
+          "description": "Default compute class is a configuration for default compute class."
+        },
         "enableNodeAutoprovisioning": {
           "description": "Enables automatic node pool creation and deletion.",
           "type": "boolean"
@@ -4022,6 +4035,10 @@
         "desiredNetworkPerformanceConfig": {
           "$ref": "ClusterNetworkPerformanceConfig",
           "description": "The desired network performance config."
+        },
+        "desiredNetworkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "The desired network tier configuration for the cluster."
         },
         "desiredNodeKubeletConfig": {
           "$ref": "NodeKubeletConfig",
@@ -4597,6 +4614,17 @@
       },
       "type": "object"
     },
+    "DefaultComputeClassConfig": {
+      "description": "DefaultComputeClassConfig defines default compute class configuration.",
+      "id": "DefaultComputeClassConfig",
+      "properties": {
+        "enabled": {
+          "description": "Enables default compute class.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "DefaultSnatStatus": {
       "description": "DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.",
       "id": "DefaultSnatStatus",
@@ -4852,6 +4880,18 @@
         "membership": {
           "description": "Output only. The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/*/locations/*/memberships/*`.",
           "readOnly": true,
+          "type": "string"
+        },
+        "membershipType": {
+          "description": "The type of the cluster's fleet membership.",
+          "enum": [
+            "MEMBERSHIP_TYPE_UNSPECIFIED",
+            "LIGHTWEIGHT"
+          ],
+          "enumDescriptions": [
+            "The MembershipType is not set.",
+            "The membership supports only lightweight compatible features."
+          ],
           "type": "string"
         },
         "preRegistered": {
@@ -5239,6 +5279,10 @@
             "Access type external (all v6 addresses are external IPs)"
           ],
           "type": "string"
+        },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "Cluster-level network tier configuration is used to determine the default network tier for external IP addresses on cluster resources, such as node pools and load balancers."
         },
         "nodeIpv4Cidr": {
           "deprecated": true,
@@ -5675,7 +5719,8 @@
       "id": "LustreCsiDriverConfig",
       "properties": {
         "enableLegacyLustrePort": {
-          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988.",
+          "deprecated": true,
+          "description": "If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.",
           "type": "boolean"
         },
         "enabled": {
@@ -6118,6 +6163,29 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "NetworkTierConfig": {
+      "description": "NetworkTierConfig contains network tier information.",
+      "id": "NetworkTierConfig",
+      "properties": {
+        "networkTier": {
+          "description": "Network tier configuration.",
+          "enum": [
+            "NETWORK_TIER_UNSPECIFIED",
+            "NETWORK_TIER_DEFAULT",
+            "NETWORK_TIER_PREMIUM",
+            "NETWORK_TIER_STANDARD"
+          ],
+          "enumDescriptions": [
+            "By default, use project-level configuration. When unspecified, the behavior defaults to NETWORK_TIER_DEFAULT. For cluster updates, this implies no action (no-op).",
+            "Default network tier. Use project-level configuration. User can specify this value, meaning they want to keep the same behaviour as before cluster level network tier configuration is introduced. This field ensures backward compatibility for the network tier of cluster resources, such as node pools and load balancers, for their external IP addresses.",
+            "Premium network tier.",
+            "Standard network tier."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -6573,6 +6641,11 @@
         "networkPerformanceConfig": {
           "$ref": "NetworkPerformanceConfig",
           "description": "Network bandwidth tier configuration."
+        },
+        "networkTierConfig": {
+          "$ref": "NetworkTierConfig",
+          "description": "Output only. The network tier configuration for the node pool inherits from the cluster-level configuration and remains immutable throughout the node pool's lifecycle, including during upgrades.",
+          "readOnly": true
         },
         "podCidrOverprovisionConfig": {
           "$ref": "PodCIDROverprovisionConfig",
@@ -7346,6 +7419,20 @@
       },
       "type": "object"
     },
+    "PrivilegedAdmissionConfig": {
+      "description": "PrivilegedAdmissionConfig stores the list of authorized allowlist paths for the cluster.",
+      "id": "PrivilegedAdmissionConfig",
+      "properties": {
+        "allowlistPaths": {
+          "description": "The customer allowlist Cloud Storage paths for the cluster. These paths are used with the `--autopilot-privileged-admission` flag to authorize privileged workloads in Autopilot clusters. Paths can be GKE-owned, in the format `gke:////`, or customer-owned, in the format `gs:///`. Wildcards (`*`) are supported to authorize all allowlists under specific paths or directories. Example: `gs://my-bucket/*` will authorize all allowlists under the `my-bucket` bucket.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "PubSub": {
       "description": "Pub/Sub specific notification config.",
       "id": "PubSub",
@@ -7667,6 +7754,22 @@
       },
       "type": "object"
     },
+    "RotationConfig": {
+      "description": "RotationConfig is config for secret manager auto rotation.",
+      "id": "RotationConfig",
+      "properties": {
+        "enabled": {
+          "description": "Whether the rotation is enabled.",
+          "type": "boolean"
+        },
+        "rotationInterval": {
+          "description": "The interval between two consecutive rotations. Default rotation interval is 2 minutes.",
+          "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SandboxConfig": {
       "description": "SandboxConfig contains configurations of the sandbox to use for the node.",
       "id": "SandboxConfig",
@@ -7722,6 +7825,10 @@
         "enabled": {
           "description": "Enable/Disable Secret Manager Config.",
           "type": "boolean"
+        },
+        "rotationConfig": {
+          "$ref": "RotationConfig",
+          "description": "Rotation config for secret manager."
         }
       },
       "type": "object"

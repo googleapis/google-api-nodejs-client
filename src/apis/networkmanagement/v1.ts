@@ -445,6 +445,10 @@ export namespace networkmanagement_v1 {
      */
     cause?: string | null;
     /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     */
+    destinationGeolocationCode?: string | null;
+    /**
      * Destination IP address of the dropped packet (if relevant).
      */
     destinationIp?: string | null;
@@ -456,6 +460,10 @@ export namespace networkmanagement_v1 {
      * URI of the resource that caused the drop.
      */
     resourceUri?: string | null;
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     */
+    sourceGeolocationCode?: string | null;
     /**
      * Source IP address of the dropped packet (if relevant).
      */
@@ -495,7 +503,7 @@ export namespace networkmanagement_v1 {
      */
     cloudSqlInstance?: string | null;
     /**
-     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
+     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: `projects/{project\}/global/forwardingRules/{id\}` or `projects/{project\}/regions/{region\}/forwardingRules/{id\}`
      */
     forwardingRule?: string | null;
     /**
@@ -658,6 +666,10 @@ export namespace networkmanagement_v1 {
      */
     targetTags?: string[] | null;
     /**
+     * Target type of the firewall rule.
+     */
+    targetType?: string | null;
+    /**
      * The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
@@ -729,6 +741,19 @@ export namespace networkmanagement_v1 {
     vip?: string | null;
   }
   /**
+   * The geographical location of the MonitoringPoint.
+   */
+  export interface Schema$GeoLocation {
+    /**
+     * Country.
+     */
+    country?: string | null;
+    /**
+     * Formatted address.
+     */
+    formattedAddress?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Google Kubernetes Engine (GKE) cluster master.
    */
   export interface Schema$GKEMasterInfo {
@@ -786,6 +811,10 @@ export namespace networkmanagement_v1 {
      * Output only. The cloud region of the host.
      */
     cloudRegion?: string | null;
+    /**
+     * Output only. The ids of cloud virtual networks of the host.
+     */
+    cloudVirtualNetworkIds?: string[] | null;
     /**
      * Output only. The id of Virtual Private Cloud (VPC) of the host.
      */
@@ -845,6 +874,31 @@ export namespace networkmanagement_v1 {
     status?: string | null;
     /**
      * URI of a Compute Engine instance.
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with an Interconnect attachment.
+   */
+  export interface Schema$InterconnectAttachmentInfo {
+    /**
+     * URI of the Cloud Router to be used for dynamic routing.
+     */
+    cloudRouterUri?: string | null;
+    /**
+     * Name of an Interconnect attachment.
+     */
+    displayName?: string | null;
+    /**
+     * URI of the Interconnect where the Interconnect attachment is configured.
+     */
+    interconnectUri?: string | null;
+    /**
+     * Name of a Google Cloud region where the Interconnect attachment is configured.
+     */
+    region?: string | null;
+    /**
+     * URI of an Interconnect attachment.
      */
     uri?: string | null;
   }
@@ -1127,9 +1181,9 @@ export namespace networkmanagement_v1 {
      */
     errors?: string[] | null;
     /**
-     * Output only. The geographical location of the MonitoringPoint. Examples: - "New York, NY, USA" - "Berlin, Germany"
+     * Output only. The geographical location of the MonitoringPoint. ;
      */
-    geoLocation?: string | null;
+    geoLocation?: Schema$GeoLocation;
     /**
      * Output only. The host information of the MonitoringPoint.
      */
@@ -1162,6 +1216,10 @@ export namespace networkmanagement_v1 {
      * Output only. The time the MonitoringPoint was updated.
      */
     updateTime?: string | null;
+    /**
+     * Output only. Indicates if an upgrade is available for the MonitoringPoint.
+     */
+    upgradeAvailable?: boolean | null;
     /**
      * Output only. The type of upgrade available for the MonitoringPoint.
      */
@@ -1295,6 +1353,10 @@ export namespace networkmanagement_v1 {
      */
     createTime?: string | null;
     /**
+     * Output only. The list of error messages detected for the NetworkMonitoringProvider.
+     */
+    errors?: string[] | null;
+    /**
      * Output only. Identifier. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
      */
     name?: string | null;
@@ -1328,9 +1390,9 @@ export namespace networkmanagement_v1 {
      */
     destination?: string | null;
     /**
-     * Output only. Geographical location of the destination MonitoringPoint.
+     * Output only. Geographical location of the destination MonitoringPoint. ;
      */
-    destinationGeoLocation?: string | null;
+    destinationGeoLocation?: Schema$GeoLocation;
     /**
      * Output only. The display name of the network path.
      */
@@ -1908,6 +1970,10 @@ export namespace networkmanagement_v1 {
      */
     instance?: Schema$InstanceInfo;
     /**
+     * Display information of an interconnect attachment.
+     */
+    interconnectAttachment?: Schema$InterconnectAttachmentInfo;
+    /**
      * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */
     loadBalancer?: Schema$LoadBalancerInfo;
@@ -2419,7 +2485,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.organizations.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2548,7 +2614,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3381,7 +3447,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3510,7 +3576,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5737,6 +5803,7 @@ export namespace networkmanagement_v1 {
      *           // request body parameters
      *           // {
      *           //   "createTime": "my_createTime",
+     *           //   "errors": [],
      *           //   "name": "my_name",
      *           //   "providerType": "my_providerType",
      *           //   "providerUri": "my_providerUri",
@@ -6030,7 +6097,7 @@ export namespace networkmanagement_v1 {
      *   // Do the magic
      *   const res =
      *     await networkmanagement.projects.locations.networkMonitoringProviders.get({
-     *       // Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     *       // Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
      *       name: 'projects/my-project/locations/my-location/networkMonitoringProviders/my-networkMonitoringProvider',
      *     });
      *   console.log(res.data);
@@ -6038,6 +6105,7 @@ export namespace networkmanagement_v1 {
      *   // Example response
      *   // {
      *   //   "createTime": "my_createTime",
+     *   //   "errors": [],
      *   //   "name": "my_name",
      *   //   "providerType": "my_providerType",
      *   //   "providerUri": "my_providerUri",
@@ -6178,7 +6246,7 @@ export namespace networkmanagement_v1 {
      *       pageSize: 'placeholder-value',
      *       // Optional. A page token, received from a previous `ListMonitoringPoints` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListMonitoringPoints` must match the call that provided the page token.
      *       pageToken: 'placeholder-value',
-     *       // Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: projects/{project\}/locations/{location\}
+     *       // Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
      *       parent: 'projects/my-project/locations/my-location',
      *     });
      *   console.log(res.data);
@@ -6324,7 +6392,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$Networkmonitoringproviders$Get
     extends StandardParameters {
     /**
-     * Required. Name of the resource. Format: projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}
+     * Required. Name of the resource. Format: `projects/{project\}/locations/{location\}/networkMonitoringProviders/{network_monitoring_provider\}`
      */
     name?: string;
   }
@@ -6339,7 +6407,7 @@ export namespace networkmanagement_v1 {
      */
     pageToken?: string;
     /**
-     * Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: projects/{project\}/locations/{location\}
+     * Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project\}/locations/{location\}`
      */
     parent?: string;
   }
@@ -6396,7 +6464,7 @@ export namespace networkmanagement_v1 {
      *   //   "createTime": "my_createTime",
      *   //   "displayName": "my_displayName",
      *   //   "errors": [],
-     *   //   "geoLocation": "my_geoLocation",
+     *   //   "geoLocation": {},
      *   //   "host": {},
      *   //   "hostname": "my_hostname",
      *   //   "name": "my_name",
@@ -6405,6 +6473,7 @@ export namespace networkmanagement_v1 {
      *   //   "providerTags": [],
      *   //   "type": "my_type",
      *   //   "updateTime": "my_updateTime",
+     *   //   "upgradeAvailable": false,
      *   //   "upgradeType": "my_upgradeType",
      *   //   "version": "my_version"
      *   // }
@@ -6731,7 +6800,7 @@ export namespace networkmanagement_v1 {
      *   // {
      *   //   "createTime": "my_createTime",
      *   //   "destination": "my_destination",
-     *   //   "destinationGeoLocation": "my_destinationGeoLocation",
+     *   //   "destinationGeoLocation": {},
      *   //   "displayName": "my_displayName",
      *   //   "dualEnded": false,
      *   //   "monitoringEnabled": false,

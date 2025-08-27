@@ -1,5 +1,41 @@
 # Changelog
 
+## [16.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v15.0.1...drive-v16.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+## [15.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v15.0.0...drive-v15.0.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v14.2.0...drive-v15.0.0) (2025-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **drive:** This release has breaking changes.
+
+### Features
+
+* **drive:** update the API ([d015972](https://github.com/googleapis/google-api-nodejs-client/commit/d0159723f38c148ecbf07e074570d8a59e4716ba))
+
+## [14.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v14.1.0...drive-v14.2.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [14.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/drive-v14.0.0...drive-v14.1.0) (2025-07-08)
 
 

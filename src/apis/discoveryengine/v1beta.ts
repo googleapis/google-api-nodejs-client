@@ -112,6 +112,7 @@ export namespace discoveryengine_v1beta {
    */
   export class Discoveryengine {
     context: APIRequestContext;
+    media: Resource$Media;
     projects: Resource$Projects;
 
     constructor(options: GlobalOptions, google?: GoogleConfigurable) {
@@ -120,10 +121,342 @@ export namespace discoveryengine_v1beta {
         google,
       };
 
+      this.media = new Resource$Media(this.context);
       this.projects = new Resource$Projects(this.context);
     }
   }
 
+  /**
+   * Information to read/write to blobstore2.
+   */
+  export interface Schema$GdataBlobstore2Info {
+    /**
+     * The blob generation id.
+     */
+    blobGeneration?: string | null;
+    /**
+     * The blob id, e.g., /blobstore/prod/playground/scotty
+     */
+    blobId?: string | null;
+    /**
+     * Read handle passed from Bigstore -\> Scotty for a GCS download. This is a signed, serialized blobstore2.ReadHandle proto which must never be set outside of Bigstore, and is not applicable to non-GCS media downloads.
+     */
+    downloadReadHandle?: string | null;
+    /**
+     * The blob read token. Needed to read blobs that have not been replicated. Might not be available until the final call.
+     */
+    readToken?: string | null;
+    /**
+     * Metadata passed from Blobstore -\> Scotty for a new GCS upload. This is a signed, serialized blobstore2.BlobMetadataContainer proto which must never be consumed outside of Bigstore, and is not applicable to non-GCS media uploads.
+     */
+    uploadMetadataContainer?: string | null;
+  }
+  /**
+   * A sequence of media data references representing composite data. Introduced to support Bigstore composite objects. For details, visit http://go/bigstore-composites.
+   */
+  export interface Schema$GdataCompositeMedia {
+    /**
+     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
+     */
+    blobRef?: string | null;
+    /**
+     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
+     */
+    blobstore2Info?: Schema$GdataBlobstore2Info;
+    /**
+     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
+     */
+    cosmoBinaryReference?: string | null;
+    /**
+     * crc32.c hash for the payload.
+     */
+    crc32cHash?: number | null;
+    /**
+     * Media data, set if reference_type is INLINE
+     */
+    inline?: string | null;
+    /**
+     * Size of the data, in bytes
+     */
+    length?: string | null;
+    /**
+     * MD5 hash for the payload.
+     */
+    md5Hash?: string | null;
+    /**
+     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
+     */
+    objectId?: Schema$GdataObjectId;
+    /**
+     * Path to the data, set if reference_type is PATH
+     */
+    path?: string | null;
+    /**
+     * Describes what the field reference contains.
+     */
+    referenceType?: string | null;
+    /**
+     * SHA-1 hash for the payload.
+     */
+    sha1Hash?: string | null;
+  }
+  /**
+   * Detailed Content-Type information from Scotty. The Content-Type of the media will typically be filled in by the header or Scotty's best_guess, but this extended information provides the backend with more information so that it can make a better decision if needed. This is only used on media upload requests from Scotty.
+   */
+  export interface Schema$GdataContentTypeInfo {
+    /**
+     * Scotty's best guess of what the content type of the file is.
+     */
+    bestGuess?: string | null;
+    /**
+     * The content type of the file derived by looking at specific bytes (i.e. "magic bytes") of the actual file.
+     */
+    fromBytes?: string | null;
+    /**
+     * The content type of the file derived from the file extension of the original file name used by the client.
+     */
+    fromFileName?: string | null;
+    /**
+     * The content type of the file as specified in the request headers, multipart headers, or RUPIO start request.
+     */
+    fromHeader?: string | null;
+    /**
+     * The content type of the file derived from the file extension of the URL path. The URL path is assumed to represent a file name (which is typically only true for agents that are providing a REST API).
+     */
+    fromUrlPath?: string | null;
+  }
+  /**
+   * Backend response for a Diff get checksums response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffChecksumsResponse {
+    /**
+     * Exactly one of these fields must be populated. If checksums_location is filled, the server will return the corresponding contents to the user. If object_location is filled, the server will calculate the checksums based on the content there and return that to the user. For details on the format of the checksums, see http://go/scotty-diff-protocol.
+     */
+    checksumsLocation?: Schema$GdataCompositeMedia;
+    /**
+     * The chunk size of checksums. Must be a multiple of 256KB.
+     */
+    chunkSizeBytes?: string | null;
+    /**
+     * If set, calculate the checksums based on the contents and return them to the caller.
+     */
+    objectLocation?: Schema$GdataCompositeMedia;
+    /**
+     * The total size of the server object.
+     */
+    objectSizeBytes?: string | null;
+    /**
+     * The object version of the object the checksums are being returned for.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Backend response for a Diff download response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffDownloadResponse {
+    /**
+     * The original object location.
+     */
+    objectLocation?: Schema$GdataCompositeMedia;
+  }
+  /**
+   * A Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffUploadRequest {
+    /**
+     * The location of the checksums for the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received. For details on the format of the checksums, see http://go/scotty-diff-protocol.
+     */
+    checksumsInfo?: Schema$GdataCompositeMedia;
+    /**
+     * The location of the new object. Agents must clone the object located here, as the upload server will delete the contents once a response is received.
+     */
+    objectInfo?: Schema$GdataCompositeMedia;
+    /**
+     * The object version of the object that is the base version the incoming diff script will be applied to. This field will always be filled in.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Backend response for a Diff upload request. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffUploadResponse {
+    /**
+     * The object version of the object at the server. Must be included in the end notification response. The version in the end notification response must correspond to the new version of the object that is now stored at the server, after the upload.
+     */
+    objectVersion?: string | null;
+    /**
+     * The location of the original file for a diff upload request. Must be filled in if responding to an upload start notification.
+     */
+    originalObject?: Schema$GdataCompositeMedia;
+  }
+  /**
+   * Backend response for a Diff get version response. For details on the Scotty Diff protocol, visit http://go/scotty-diff-protocol.
+   */
+  export interface Schema$GdataDiffVersionResponse {
+    /**
+     * The total size of the server object.
+     */
+    objectSizeBytes?: string | null;
+    /**
+     * The version of the object stored at the server.
+     */
+    objectVersion?: string | null;
+  }
+  /**
+   * Parameters specific to media downloads.
+   */
+  export interface Schema$GdataDownloadParameters {
+    /**
+     * A boolean to be returned in the response to Scotty. Allows/disallows gzip encoding of the payload content when the server thinks it's advantageous (hence, does not guarantee compression) which allows Scotty to GZip the response to the client.
+     */
+    allowGzipCompression?: boolean | null;
+    /**
+     * Determining whether or not Apiary should skip the inclusion of any Content-Range header on its response to Scotty.
+     */
+    ignoreRange?: boolean | null;
+  }
+  /**
+   * A reference to data stored on the filesystem, on GFS or in blobstore.
+   */
+  export interface Schema$GdataMedia {
+    /**
+     * Deprecated, use one of explicit hash type fields instead. Algorithm used for calculating the hash. As of 2011/01/21, "MD5" is the only possible value for this field. New values may be added at any time.
+     */
+    algorithm?: string | null;
+    /**
+     * Use object_id instead.
+     */
+    bigstoreObjectRef?: string | null;
+    /**
+     * Blobstore v1 reference, set if reference_type is BLOBSTORE_REF This should be the byte representation of a blobstore.BlobRef. Since Blobstore is deprecating v1, use blobstore2_info instead. For now, any v2 blob will also be represented in this field as v1 BlobRef.
+     */
+    blobRef?: string | null;
+    /**
+     * Blobstore v2 info, set if reference_type is BLOBSTORE_REF and it refers to a v2 blob.
+     */
+    blobstore2Info?: Schema$GdataBlobstore2Info;
+    /**
+     * A composite media composed of one or more media objects, set if reference_type is COMPOSITE_MEDIA. The media length field must be set to the sum of the lengths of all composite media objects. Note: All composite media must have length specified.
+     */
+    compositeMedia?: Schema$GdataCompositeMedia[];
+    /**
+     * MIME type of the data
+     */
+    contentType?: string | null;
+    /**
+     * Extended content type information provided for Scotty uploads.
+     */
+    contentTypeInfo?: Schema$GdataContentTypeInfo;
+    /**
+     * A binary data reference for a media download. Serves as a technology-agnostic binary reference in some Google infrastructure. This value is a serialized storage_cosmo.BinaryReference proto. Storing it as bytes is a hack to get around the fact that the cosmo proto (as well as others it includes) doesn't support JavaScript. This prevents us from including the actual type of this field.
+     */
+    cosmoBinaryReference?: string | null;
+    /**
+     * For Scotty Uploads: Scotty-provided hashes for uploads For Scotty Downloads: (WARNING: DO NOT USE WITHOUT PERMISSION FROM THE SCOTTY TEAM.) A Hash provided by the agent to be used to verify the data being downloaded. Currently only supported for inline payloads. Further, only crc32c_hash is currently supported.
+     */
+    crc32cHash?: number | null;
+    /**
+     * Set if reference_type is DIFF_CHECKSUMS_RESPONSE.
+     */
+    diffChecksumsResponse?: Schema$GdataDiffChecksumsResponse;
+    /**
+     * Set if reference_type is DIFF_DOWNLOAD_RESPONSE.
+     */
+    diffDownloadResponse?: Schema$GdataDiffDownloadResponse;
+    /**
+     * Set if reference_type is DIFF_UPLOAD_REQUEST.
+     */
+    diffUploadRequest?: Schema$GdataDiffUploadRequest;
+    /**
+     * Set if reference_type is DIFF_UPLOAD_RESPONSE.
+     */
+    diffUploadResponse?: Schema$GdataDiffUploadResponse;
+    /**
+     * Set if reference_type is DIFF_VERSION_RESPONSE.
+     */
+    diffVersionResponse?: Schema$GdataDiffVersionResponse;
+    /**
+     * Parameters for a media download.
+     */
+    downloadParameters?: Schema$GdataDownloadParameters;
+    /**
+     * Original file name
+     */
+    filename?: string | null;
+    /**
+     * Deprecated, use one of explicit hash type fields instead. These two hash related fields will only be populated on Scotty based media uploads and will contain the content of the hash group in the NotificationRequest: http://cs/#google3/blobstore2/api/scotty/service/proto/upload_listener.proto&q=class:Hash Hex encoded hash value of the uploaded media.
+     */
+    hash?: string | null;
+    /**
+     * For Scotty uploads only. If a user sends a hash code and the backend has requested that Scotty verify the upload against the client hash, Scotty will perform the check on behalf of the backend and will reject it if the hashes don't match. This is set to true if Scotty performed this verification.
+     */
+    hashVerified?: boolean | null;
+    /**
+     * Media data, set if reference_type is INLINE
+     */
+    inline?: string | null;
+    /**
+     * |is_potential_retry| is set false only when Scotty is certain that it has not sent the request before. When a client resumes an upload, this field must be set true in agent calls, because Scotty cannot be certain that it has never sent the request before due to potential failure in the session state persistence.
+     */
+    isPotentialRetry?: boolean | null;
+    /**
+     * Size of the data, in bytes
+     */
+    length?: string | null;
+    /**
+     * Scotty-provided MD5 hash for an upload.
+     */
+    md5Hash?: string | null;
+    /**
+     * Media id to forward to the operation GetMedia. Can be set if reference_type is GET_MEDIA.
+     */
+    mediaId?: string | null;
+    /**
+     * Reference to a TI Blob, set if reference_type is BIGSTORE_REF.
+     */
+    objectId?: Schema$GdataObjectId;
+    /**
+     * Path to the data, set if reference_type is PATH
+     */
+    path?: string | null;
+    /**
+     * Describes what the field reference contains.
+     */
+    referenceType?: string | null;
+    /**
+     * Scotty-provided SHA1 hash for an upload.
+     */
+    sha1Hash?: string | null;
+    /**
+     * Scotty-provided SHA256 hash for an upload.
+     */
+    sha256Hash?: string | null;
+    /**
+     * Time at which the media data was last updated, in milliseconds since UNIX epoch
+     */
+    timestamp?: string | null;
+    /**
+     * A unique fingerprint/version id for the media data
+     */
+    token?: string | null;
+  }
+  /**
+   * This is a copy of the tech.blob.ObjectId proto, which could not be used directly here due to transitive closure issues with JavaScript support; see http://b/8801763.
+   */
+  export interface Schema$GdataObjectId {
+    /**
+     * The name of the bucket to which this object belongs.
+     */
+    bucketName?: string | null;
+    /**
+     * Generation of the object. Generations are monotonically increasing across writes, allowing them to be be compared to determine which generation is newer. If this is omitted in a request, then you are requesting the live object. See http://go/bigstore-versions
+     */
+    generation?: string | null;
+    /**
+     * The name of the object.
+     */
+    objectName?: string | null;
+  }
   /**
    * `Distribution` contains summary statistics for a population of values. It optionally contains a histogram representing the distribution of those values across a set of buckets. The summary statistics are the count, mean, sum of the squared deviation from the mean, the minimum, and the maximum of the set of population of values. The histogram is based on a sequence of buckets and gives a count of values that fall into each bucket. The boundaries of the buckets are given either explicitly or by formulas for buckets of fixed or exponentially increasing widths. Although it is not forbidden, it is generally a bad idea to include non-finite values (infinities or NaNs) in the population of values, as this will render the `mean` and `sum_of_squared_deviation` fields meaningless.
    */
@@ -480,6 +813,10 @@ export namespace discoveryengine_v1beta {
      * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
      */
     serviceName?: string | null;
+    /**
+     * Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.
+     */
+    useStaticSecrets?: boolean | null;
   }
   /**
    * Configuration data for advance site search.
@@ -1000,11 +1337,11 @@ export namespace discoveryengine_v1beta {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -1514,6 +1851,10 @@ export namespace discoveryengine_v1beta {
      * Output only. The errors from initialization or from the latest connector run.
      */
     errors?: Schema$GoogleRpcStatus[];
+    /**
+     * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
+     */
+    hybridIngestionDisabled?: boolean | null;
     /**
      * The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
      */
@@ -2428,6 +2769,23 @@ export namespace discoveryengine_v1beta {
     sampleQuerySet?: string | null;
   }
   /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsResponse {}
+  /**
    * Configurations for fields of a schema. For example, configuring a field is indexable, or searchable.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFieldConfig {
@@ -2814,11 +3172,11 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string | null;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string | null;
     /**
@@ -3373,7 +3731,7 @@ export namespace discoveryengine_v1beta {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -3702,7 +4060,7 @@ export namespace discoveryengine_v1beta {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -3808,6 +4166,10 @@ export namespace discoveryengine_v1beta {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -4335,6 +4697,103 @@ export namespace discoveryengine_v1beta {
      * Optional. The top-p value to be used for the user defined classifier.
      */
     topP?: number | null;
+  }
+  /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
+    /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig;
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
   }
   /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -5544,6 +6003,10 @@ export namespace discoveryengine_v1beta {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/assistAnswers/{assist_answer\}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
      * Replies of the assistant.
      */
     replies?: Schema$GoogleCloudDiscoveryengineV1betaAssistAnswerReply[];
@@ -5560,6 +6023,33 @@ export namespace discoveryengine_v1beta {
      * Possibly grounded response text or media from the assistant.
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGroundedContent;
+  }
+  /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistant {
+    /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1betaAssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfig;
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
   }
   /**
    * Multi-modal content.
@@ -5641,6 +6131,54 @@ export namespace discoveryengine_v1beta {
      * Required. The media type (MIME type) of the file.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
   }
   /**
    * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
@@ -5730,6 +6268,28 @@ export namespace discoveryengine_v1beta {
      * The text segment itself.
      */
     text?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1betaAssistantToolInfo[];
   }
   /**
    * User metadata of the request.
@@ -6164,6 +6724,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaChunkDocumentMetadata {
     /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
+    /**
      * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
     structData?: {[key: string]: any} | null;
@@ -6240,11 +6804,11 @@ export namespace discoveryengine_v1beta {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -8674,6 +9238,19 @@ export namespace discoveryengine_v1beta {
      * Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.
      */
     dataUseTermsVersion?: string | null;
+    /**
+     * Optional. Parameters for Agentspace.
+     */
+    saasParams?: Schema$GoogleCloudDiscoveryengineV1betaProvisionProjectRequestSaasParams;
+  }
+  /**
+   * Parameters for Agentspace.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaProvisionProjectRequestSaasParams {
+    /**
+     * Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].
+     */
+    acceptBizQos?: boolean | null;
   }
   /**
    * Request message for CompletionService.PurgeCompletionSuggestions method.
@@ -8926,7 +9503,7 @@ export namespace discoveryengine_v1beta {
      */
     query?: string | null;
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      */
     records?: Schema$GoogleCloudDiscoveryengineV1betaRankingRecord[];
     /**
@@ -9342,7 +9919,7 @@ export namespace discoveryengine_v1beta {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -9667,7 +10244,7 @@ export namespace discoveryengine_v1beta {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -9773,6 +10350,10 @@ export namespace discoveryengine_v1beta {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -10171,6 +10752,64 @@ export namespace discoveryengine_v1beta {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1betaDoubleList;
     } | null;
+    /**
+     * Optional. A set of ranking signals associated with the result.
+     */
+    rankSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals;
+  }
+  /**
+   * A set of ranking signals.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignals {
+    /**
+     * Optional. Combined custom boosts for a doc.
+     */
+    boostingFactor?: number | null;
+    /**
+     * Optional. A list of custom clearbox signals.
+     */
+    customSignals?: Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignalsCustomSignal[];
+    /**
+     * Optional. The default rank of the result.
+     */
+    defaultRank?: number | null;
+    /**
+     * Optional. Age of the document in hours.
+     */
+    documentAge?: number | null;
+    /**
+     * Optional. Keyword matching adjustment.
+     */
+    keywordSimilarityScore?: number | null;
+    /**
+     * Optional. Predicted conversion rate adjustment as a rank.
+     */
+    pctrRank?: number | null;
+    /**
+     * Optional. Semantic relevance adjustment.
+     */
+    relevanceScore?: number | null;
+    /**
+     * Optional. Semantic similarity adjustment.
+     */
+    semanticSimilarityScore?: number | null;
+    /**
+     * Optional. Topicality adjustment as a rank.
+     */
+    topicalityRank?: number | null;
+  }
+  /**
+   * Custom clearbox signal represented by name and value pair.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaSearchResponseSearchResultRankSignalsCustomSignal {
+    /**
+     * Optional. Name of the signal.
+     */
+    name?: string | null;
+    /**
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
+     */
+    value?: number | null;
   }
   /**
    * Information about the session.
@@ -10687,10 +11326,6 @@ export namespace discoveryengine_v1beta {
      */
     imageGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecImageGenerationSpec;
     /**
-     * Optional. The name of the tool registry to use. Format: `projects/{project\}/locations/{location\}/toolRegistries/{tool_registry\}`
-     */
-    toolRegistry?: string | null;
-    /**
      * Optional. Specification of the Vertex AI Search tool.
      */
     vertexAiSearchSpec?: Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecVertexAiSearchSpec;
@@ -10716,10 +11351,6 @@ export namespace discoveryengine_v1beta {
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestDataStoreSpec[];
     /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.
-     */
-    disabled?: boolean | null;
-    /**
      * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
@@ -10731,12 +11362,7 @@ export namespace discoveryengine_v1beta {
   /**
    * Specification of the web grounding tool.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecWebGroundingSpec {
-    /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.
-     */
-    enabled?: boolean | null;
-  }
+  export interface Schema$GoogleCloudDiscoveryengineV1betaStreamAssistRequestToolsSpecWebGroundingSpec {}
   /**
    * Response for the AssistantService.StreamAssist method.
    */
@@ -11179,11 +11805,11 @@ export namespace discoveryengine_v1beta {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -13122,6 +13748,198 @@ export namespace discoveryengine_v1beta {
     version?: string | null;
   }
 
+  export class Resource$Media {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Downloads a file from the session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.media.download({
+     *     // Required. The ID of the file to be downloaded.
+     *     fileId: 'placeholder-value',
+     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *     // Optional. The ID of the view to be downloaded.
+     *     viewId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    download(
+      params?: Params$Resource$Media$Download,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
+    download(
+      params: Params$Resource$Media$Download,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$GdataMedia>
+    ): void;
+    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(
+      paramsOrCallback?:
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GdataMedia>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Media$Download;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}:downloadFile').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GdataMedia>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GdataMedia>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Media$Download extends StandardParameters {
+    /**
+     * Required. The ID of the file to be downloaded.
+     */
+    fileId?: string;
+    /**
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     */
+    name?: string;
+    /**
+     * Optional. The ID of the view to be downloaded.
+     */
+    viewId?: string;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -13171,7 +13989,8 @@ export namespace discoveryengine_v1beta {
      *       // request body parameters
      *       // {
      *       //   "acceptDataUseTerms": false,
-     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion"
+     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "saasParams": {}
      *       // }
      *     },
      *   });
@@ -25307,9 +26126,9 @@ export namespace discoveryengine_v1beta {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
-     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
      *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *         pageSize: 'placeholder-value',
@@ -25643,11 +26462,11 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -31499,6 +32318,326 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets an Assistant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.get(
+     *       {
+     *         // Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Assistant
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.patch(
+     *       {
+     *         // Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *         // The list of fields to update.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "customerPolicy": {},
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Assists the user with a query in a streaming fashion.
      * @example
      * ```js
@@ -31665,6 +32804,29 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAssistant;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
     extends StandardParameters {
     /**
@@ -36407,9 +37569,9 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -36742,11 +37904,11 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -46602,9 +47764,9 @@ export namespace discoveryengine_v1beta {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -46936,11 +48098,11 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -50640,9 +51802,9 @@ export namespace discoveryengine_v1beta {
      *
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.evaluations.list({
-     *     // Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list Evaluations under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
      *     parent: 'projects/my-project/locations/my-location',
@@ -50796,9 +51958,9 @@ export namespace discoveryengine_v1beta {
      *     // Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
      *     evaluation:
      *       'projects/my-project/locations/my-location/evaluations/my-evaluation',
-     *     // Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -50940,11 +52102,11 @@ export namespace discoveryengine_v1beta {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
     /**
@@ -50959,11 +52121,11 @@ export namespace discoveryengine_v1beta {
      */
     evaluation?: string;
     /**
-     * Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
   }

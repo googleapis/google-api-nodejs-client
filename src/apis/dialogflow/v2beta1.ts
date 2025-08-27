@@ -3972,6 +3972,10 @@ export namespace dialogflow_v2beta1 {
      * Output only. The FAQ answer.
      */
     faqAnswer?: Schema$GoogleCloudDialogflowV2beta1FaqAnswer;
+    /**
+     * Output only. The generator suggestion.
+     */
+    generatorSuggestion?: Schema$GoogleCloudDialogflowV2beta1GeneratorSuggestion;
   }
   /**
    * The request message for Participants.AnalyzeContent.

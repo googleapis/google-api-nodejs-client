@@ -206,6 +206,52 @@ export namespace androidpublisher_v3 {
     productId?: string | null;
   }
   /**
+   * Request message for ActivateOneTimeProductOffer.
+   */
+  export interface Schema$ActivateOneTimeProductOfferRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The offer ID of the offer to activate.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to activate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the offer to activate.
+     */
+    productId?: string | null;
+    /**
+     * Required. The parent purchase option (ID) of the offer to activate.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
+   * Request message for UpdatePurchaseOptionState.
+   */
+  export interface Schema$ActivatePurchaseOptionRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the purchase option to activate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the purchase option to activate.
+     */
+    productId?: string | null;
+    /**
+     * Required. The purchase option ID of the purchase option to activate.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
    * Request message for ActivateSubscriptionOffer.
    */
   export interface Schema$ActivateSubscriptionOfferRequest {
@@ -562,7 +608,7 @@ export namespace androidpublisher_v3 {
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
     /**
-     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and taxes, call orders.get API instead if transaction details are needed.
+     * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed.
      */
     recurringPrice?: Schema$Money;
   }
@@ -602,6 +648,60 @@ export namespace androidpublisher_v3 {
      * Output only. The state of the base plan, i.e. whether it's active. Draft and inactive base plans can be activated or deleted. Active base plans can be made inactive. Inactive base plans can be canceled. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.
      */
     state?: string | null;
+  }
+  /**
+   * Request message for BatchDeleteOneTimeProductOffers.
+   */
+  export interface Schema$BatchDeleteOneTimeProductOffersRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must correspond to different offers.
+     */
+    requests?: Schema$DeleteOneTimeProductOfferRequest[];
+  }
+  /**
+   * Request message for BatchDeleteOneTimeProduct.
+   */
+  export interface Schema$BatchDeleteOneTimeProductsRequest {
+    /**
+     * Required. A list of delete requests of up to 100 elements. All requests must delete different one-time products.
+     */
+    requests?: Schema$DeleteOneTimeProductRequest[];
+  }
+  /**
+   * Request message for BatchDeletePurchaseOption.
+   */
+  export interface Schema$BatchDeletePurchaseOptionsRequest {
+    /**
+     * Required. A list of delete requests of up to 100 elements. All requests must delete purchase options from different one-time products.
+     */
+    requests?: Schema$DeletePurchaseOptionRequest[];
+  }
+  /**
+   * Request message for the BatchGetOneTimeProductOffers endpoint.
+   */
+  export interface Schema$BatchGetOneTimeProductOffersRequest {
+    /**
+     * Required. A list of get requests of up to 100 elements. All requests must retrieve different offers.
+     */
+    requests?: Schema$GetOneTimeProductOfferRequest[];
+  }
+  /**
+   * Response message for the BatchGetOneTimeProductOffers endpoint.
+   */
+  export interface Schema$BatchGetOneTimeProductOffersResponse {
+    /**
+     * The list of updated one-time product offers, in the same order as the request.
+     */
+    oneTimeProductOffers?: Schema$OneTimeProductOffer[];
+  }
+  /**
+   * Response message for the BatchGetOneTimeProducts endpoint.
+   */
+  export interface Schema$BatchGetOneTimeProductsResponse {
+    /**
+     * The list of requested one-time products, in the same order as the request.
+     */
+    oneTimeProducts?: Schema$OneTimeProduct[];
   }
   /**
    * Response for the orders.batchGet API.
@@ -671,6 +771,78 @@ export namespace androidpublisher_v3 {
      * The list of updated subscriptions. This list will match the requests one to one, in the same order.
      */
     subscriptions?: Schema$Subscription[];
+  }
+  /**
+   * Request message for BatchUpdateOneTimeProductOffers.
+   */
+  export interface Schema$BatchUpdateOneTimeProductOffersRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must update different offers.
+     */
+    requests?: Schema$UpdateOneTimeProductOfferRequest[];
+  }
+  /**
+   * Response message for BatchUpdateOneTimeProductOffers.
+   */
+  export interface Schema$BatchUpdateOneTimeProductOffersResponse {
+    /**
+     * The list of updated one-time product offers, in the same order as the request.
+     */
+    oneTimeProductOffers?: Schema$OneTimeProductOffer[];
+  }
+  /**
+   * Request message for BatchUpdateOneTimeProductOfferStates.
+   */
+  export interface Schema$BatchUpdateOneTimeProductOfferStatesRequest {
+    /**
+     * Required. The update request list of up to 100 elements. All requests must update different offers.
+     */
+    requests?: Schema$UpdateOneTimeProductOfferStateRequest[];
+  }
+  /**
+   * Response message for BatchUpdateOneTimeProductOfferStates.
+   */
+  export interface Schema$BatchUpdateOneTimeProductOfferStatesResponse {
+    /**
+     * The updated one-time product offers list, in the same order as the request.
+     */
+    oneTimeProductOffers?: Schema$OneTimeProductOffer[];
+  }
+  /**
+   * Request message for BatchUpdateOneTimeProduct.
+   */
+  export interface Schema$BatchUpdateOneTimeProductsRequest {
+    /**
+     * Required. A list of update requests of up to 100 elements. All requests must update different one-time products.
+     */
+    requests?: Schema$UpdateOneTimeProductRequest[];
+  }
+  /**
+   * Response message for BatchUpdateOneTimeProduct.
+   */
+  export interface Schema$BatchUpdateOneTimeProductsResponse {
+    /**
+     * The list of updated one-time products list, in the same order as the request.
+     */
+    oneTimeProducts?: Schema$OneTimeProduct[];
+  }
+  /**
+   * Request message for BatchUpdatePurchaseOptionStates.
+   */
+  export interface Schema$BatchUpdatePurchaseOptionStatesRequest {
+    /**
+     * Required. The update request list of up to 100 elements. All requests must update different purchase options.
+     */
+    requests?: Schema$UpdatePurchaseOptionStateRequest[];
+  }
+  /**
+   * Response message for BatchUpdatePurchaseOptionStates.
+   */
+  export interface Schema$BatchUpdatePurchaseOptionStatesResponse {
+    /**
+     * The list of updated one-time products. This list will match the requests one to one, in the same order.
+     */
+    oneTimeProducts?: Schema$OneTimeProduct[];
   }
   /**
    * Request message for BatchUpdateSubscriptionOffers.
@@ -812,6 +984,31 @@ export namespace androidpublisher_v3 {
     eventTime?: string | null;
   }
   /**
+   * Request message for CancelOneTimeProductOffer.
+   */
+  export interface Schema$CancelOneTimeProductOfferRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The offer ID of the offer to cancel.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to cancel.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the offer to cancel.
+     */
+    productId?: string | null;
+    /**
+     * Required. The parent purchase option (ID) of the offer to cancel.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
    * Result of the cancel survey when the subscription was canceled by the user.
    */
   export interface Schema$CancelSurveyResult {
@@ -941,6 +1138,52 @@ export namespace androidpublisher_v3 {
     productId?: string | null;
   }
   /**
+   * Request message for DeactivateOneTimeProductOffer.
+   */
+  export interface Schema$DeactivateOneTimeProductOfferRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The offer ID of the offer to deactivate.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to deactivate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the offer to deactivate.
+     */
+    productId?: string | null;
+    /**
+     * Required. The parent purchase option (ID) of the offer to deactivate.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
+   * Request message for UpdatePurchaseOptionState.
+   */
+  export interface Schema$DeactivatePurchaseOptionRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the purchase option to deactivate.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the purchase option to deactivate.
+     */
+    productId?: string | null;
+    /**
+     * Required. The purchase option ID of the purchase option to deactivate.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
    * Request message for DeactivateSubscriptionOffer.
    */
   export interface Schema$DeactivateSubscriptionOfferRequest {
@@ -968,11 +1211,82 @@ export namespace androidpublisher_v3 {
   /**
    * Information related to deferred item replacement.
    */
+  export interface Schema$DeferredItemRemoval {}
+  /**
+   * Information related to deferred item replacement.
+   */
   export interface Schema$DeferredItemReplacement {
     /**
      * The product_id going to replace the existing product_id.
      */
     productId?: string | null;
+  }
+  /**
+   * Request message for deleting an one-time product offer.
+   */
+  export interface Schema$DeleteOneTimeProductOfferRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The unique offer ID of the offer to delete.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to delete.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the offer to delete.
+     */
+    productId?: string | null;
+    /**
+     * Required. The parent purchase option (ID) of the offer to delete.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
+   * Request message for deleting a one-time product.
+   */
+  export interface Schema$DeleteOneTimeProductRequest {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the one-time product to delete.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The one-time product ID of the one-time product to delete.
+     */
+    productId?: string | null;
+  }
+  /**
+   * Request message for deleting a purchase option.
+   */
+  export interface Schema$DeletePurchaseOptionRequest {
+    /**
+     * Optional. This field has no effect for purchase options with no offers under them. For purchase options with associated offers: * If `force` is set to false (default), an error will be returned. * If `force` is set to true, any associated offers under the purchase option will be deleted.
+     */
+    force?: boolean | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The parent app (package name) of the purchase option to delete.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the purchase option to delete.
+     */
+    productId?: string | null;
+    /**
+     * Required. The purchase option ID of the purchase option to delete.
+     */
+    purchaseOptionId?: string | null;
   }
   /**
    * Represents a deobfuscation file.
@@ -1539,6 +1853,27 @@ export namespace androidpublisher_v3 {
     downloadId?: string | null;
   }
   /**
+   * Request message for GetOneTimeProductOffers.
+   */
+  export interface Schema$GetOneTimeProductOfferRequest {
+    /**
+     * Required. The unique offer ID of the offer to get.
+     */
+    offerId?: string | null;
+    /**
+     * Required. The parent app (package name) of the offer to get.
+     */
+    packageName?: string | null;
+    /**
+     * Required. The parent one-time product (ID) of the offer to get.
+     */
+    productId?: string | null;
+    /**
+     * Required. The parent purchase option (ID) of the offer to get.
+     */
+    purchaseOptionId?: string | null;
+  }
+  /**
    * Request message for GetSubscriptionOffer.
    */
   export interface Schema$GetSubscriptionOfferRequest {
@@ -2004,6 +2339,32 @@ export namespace androidpublisher_v3 {
     listings?: Schema$Listing[];
   }
   /**
+   * Response message for ListOneTimeProductOffers.
+   */
+  export interface Schema$ListOneTimeProductOffersResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The one_time_product offers from the specified request.
+     */
+    oneTimeProductOffers?: Schema$OneTimeProductOffer[];
+  }
+  /**
+   * Response message for ListOneTimeProducts.
+   */
+  export interface Schema$ListOneTimeProductsResponse {
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The one-time products from the specified app.
+     */
+    oneTimeProducts?: Schema$OneTimeProduct[];
+  }
+  /**
    * Response message for ListSubscriptionOffers.
    */
   export interface Schema$ListSubscriptionOffersResponse {
@@ -2226,6 +2587,282 @@ export namespace androidpublisher_v3 {
      * Input only. Provided during the call to Create. Retrieved from the client when the alternative billing flow is launched.
      */
     externalTransactionToken?: string | null;
+  }
+  /**
+   * A single one-time product for an app.
+   */
+  export interface Schema$OneTimeProduct {
+    /**
+     * Required. Set of localized title and description data. Must not have duplicate entries with the same language_code.
+     */
+    listings?: Schema$OneTimeProductListing[];
+    /**
+     * Optional. List of up to 20 custom tags specified for this one-time product, and returned to the app through the billing library. Purchase options and offers for this product will also receive these tags in the billing library.
+     */
+    offerTags?: Schema$OfferTag[];
+    /**
+     * Required. Immutable. Package name of the parent app.
+     */
+    packageName?: string | null;
+    /**
+     * Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.).
+     */
+    productId?: string | null;
+    /**
+     * Required. The set of purchase options for this one-time product.
+     */
+    purchaseOptions?: Schema$OneTimeProductPurchaseOption[];
+    /**
+     * Output only. The version of the regions configuration that was used to generate the one-time product.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Optional. Countries where the purchase of this one-time product is restricted to payment methods registered in the same country. If empty, no payment location restrictions are imposed.
+     */
+    restrictedPaymentCountries?: Schema$RestrictedPaymentCountries;
+    /**
+     * Details about taxes and legal compliance.
+     */
+    taxAndComplianceSettings?: Schema$OneTimeProductTaxAndComplianceSettings;
+  }
+  /**
+   * A purchase option that can be bought.
+   */
+  export interface Schema$OneTimeProductBuyPurchaseOption {
+    /**
+     * Optional. Whether this purchase option will be available in legacy PBL flows that do not support one-time products model. Up to one "buy" purchase option can be marked as backwards compatible.
+     */
+    legacyCompatible?: boolean | null;
+    /**
+     * Optional. Whether this purchase option allows multi-quantity. Multi-quantity allows buyer to purchase more than one item in a single checkout.
+     */
+    multiQuantityEnabled?: boolean | null;
+  }
+  /**
+   * Configuration specific to discounted offers.
+   */
+  export interface Schema$OneTimeProductDiscountedOffer {
+    /**
+     * Time when the offer will stop being available.
+     */
+    endTime?: string | null;
+    /**
+     * Optional. The number of times this offer can be redeemed. If unset or set to 0, allows for unlimited offer redemptions. Otherwise must be a number between 1 and 50 inclusive.
+     */
+    redemptionLimit?: string | null;
+    /**
+     * Time when the offer will start being available.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * Regional store listing for a one-time product.
+   */
+  export interface Schema$OneTimeProductListing {
+    /**
+     * Required. The description of this product in the language of this listing. The maximum length is 200 characters.
+     */
+    description?: string | null;
+    /**
+     * Required. The language of this listing, as defined by BCP-47, e.g., "en-US".
+     */
+    languageCode?: string | null;
+    /**
+     * Required. The title of this product in the language of this listing. The maximum length is 55 characters.
+     */
+    title?: string | null;
+  }
+  /**
+   * A single offer for a one-time product.
+   */
+  export interface Schema$OneTimeProductOffer {
+    /**
+     * A discounted offer.
+     */
+    discountedOffer?: Schema$OneTimeProductDiscountedOffer;
+    /**
+     * Required. Immutable. The ID of this product offer. Must be unique within the purchase option. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.
+     */
+    offerId?: string | null;
+    /**
+     * Optional. List of up to 20 custom tags specified for this offer, and returned to the app through the billing library.
+     */
+    offerTags?: Schema$OfferTag[];
+    /**
+     * Required. Immutable. The package name of the app the parent product belongs to.
+     */
+    packageName?: string | null;
+    /**
+     * A pre-order offer.
+     */
+    preOrderOffer?: Schema$OneTimeProductPreOrderOffer;
+    /**
+     * Required. Immutable. The ID of the parent product this offer belongs to.
+     */
+    productId?: string | null;
+    /**
+     * Required. Immutable. The ID of the purchase option to which this offer is an extension.
+     */
+    purchaseOptionId?: string | null;
+    /**
+     * Set of regional pricing and availability information for this offer. Must not have duplicate entries with the same region_code.
+     */
+    regionalPricingAndAvailabilityConfigs?: Schema$OneTimeProductOfferRegionalPricingAndAvailabilityConfig[];
+    /**
+     * Output only. The version of the regions configuration that was used to generate the one-time product offer.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Output only. The current state of this offer. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.
+     */
+    state?: string | null;
+  }
+  /**
+   * Options for one-time product offers without a regional price override.
+   */
+  export interface Schema$OneTimeProductOfferNoPriceOverrideOptions {}
+  /**
+   * Regional pricing and availability configuration for a one-time product offer.
+   */
+  export interface Schema$OneTimeProductOfferRegionalPricingAndAvailabilityConfig {
+    /**
+     * The absolute value of the discount that is subtracted from the purchase option price. It should be between 0 and the purchase option price.
+     */
+    absoluteDiscount?: Schema$Money;
+    /**
+     * Required. The availability for this region.
+     */
+    availability?: string | null;
+    /**
+     * The price defined in the purchase option for this region will be used.
+     */
+    noOverride?: Schema$OneTimeProductOfferNoPriceOverrideOptions;
+    /**
+     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US".
+     */
+    regionCode?: string | null;
+    /**
+     * The fraction of the purchase option price that the user pays for this offer. For example, if the purchase option price for this region is $12, then a 50% discount would correspond to a price of $6. The discount must be specified as a fraction strictly larger than 0 and strictly smaller than 1. The resulting price will be rounded to the nearest billable unit (e.g. cents for USD). The relative discount is considered invalid if the discounted price ends up being smaller than the minimum price allowed in this region.
+     */
+    relativeDiscount?: number | null;
+  }
+  /**
+   * Configuration specific to pre-order offers.
+   */
+  export interface Schema$OneTimeProductPreOrderOffer {
+    /**
+     * Required. Time when the pre-order will stop being available.
+     */
+    endTime?: string | null;
+    /**
+     * Required. Immutable. Specifies how price changes affect pre-existing pre-orders.
+     */
+    priceChangeBehavior?: string | null;
+    /**
+     * Required. Time on which the product associated with the pre-order will be released and the pre-order orders fulfilled.
+     */
+    releaseTime?: string | null;
+    /**
+     * Required. Time when the pre-order will start being available.
+     */
+    startTime?: string | null;
+  }
+  /**
+   * A single purchase option for a one-time product.
+   */
+  export interface Schema$OneTimeProductPurchaseOption {
+    /**
+     * A purchase option that can be bought.
+     */
+    buyOption?: Schema$OneTimeProductBuyPurchaseOption;
+    /**
+     * Pricing information for any new locations Play may launch in the future. If omitted, the purchase option will not be automatically available in any new locations Play may launch in the future.
+     */
+    newRegionsConfig?: Schema$OneTimeProductPurchaseOptionNewRegionsConfig;
+    /**
+     * Optional. List of up to 20 custom tags specified for this purchase option, and returned to the app through the billing library. Offers for this purchase option will also receive these tags in the billing library.
+     */
+    offerTags?: Schema$OfferTag[];
+    /**
+     * Required. Immutable. The unique identifier of this purchase option. Must be unique within the one-time product. It must start with a number or lower-case letter, and can only contain lower-case letters (a-z), numbers (0-9), and hyphens (-). The maximum length is 63 characters.
+     */
+    purchaseOptionId?: string | null;
+    /**
+     * Regional pricing and availability information for this purchase option.
+     */
+    regionalPricingAndAvailabilityConfigs?: Schema$OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig[];
+    /**
+     * A purchase option that can be rented.
+     */
+    rentOption?: Schema$OneTimeProductRentPurchaseOption;
+    /**
+     * Output only. The state of the purchase option, i.e., whether it's active. This field cannot be changed by updating the resource. Use the dedicated endpoints instead.
+     */
+    state?: string | null;
+    /**
+     * Optional. Details about taxes and legal compliance.
+     */
+    taxAndComplianceSettings?: Schema$PurchaseOptionTaxAndComplianceSettings;
+  }
+  /**
+   * Pricing information for any new regions Play may launch in the future.
+   */
+  export interface Schema$OneTimeProductPurchaseOptionNewRegionsConfig {
+    /**
+     * Required. The regional availability for the new regions config. When set to AVAILABLE, the pricing information will be used for any new regions Play may launch in the future.
+     */
+    availability?: string | null;
+    /**
+     * Required. Price in EUR to use for any new regions Play may launch in.
+     */
+    eurPrice?: Schema$Money;
+    /**
+     * Required. Price in USD to use for any new regions Play may launch in.
+     */
+    usdPrice?: Schema$Money;
+  }
+  /**
+   * Regional pricing and availability configuration for a purchase option.
+   */
+  export interface Schema$OneTimeProductPurchaseOptionRegionalPricingAndAvailabilityConfig {
+    /**
+     * The availability of the purchase option.
+     */
+    availability?: string | null;
+    /**
+     * The price of the purchase option in the specified region. Must be set in the currency that is linked to the specified region.
+     */
+    price?: Schema$Money;
+    /**
+     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g., "US".
+     */
+    regionCode?: string | null;
+  }
+  /**
+   * A purchase option that can be rented.
+   */
+  export interface Schema$OneTimeProductRentPurchaseOption {
+    /**
+     * Optional. The amount of time the user has after starting consuming the entitlement before it is revoked. Specified in ISO 8601 format.
+     */
+    expirationPeriod?: string | null;
+    /**
+     * Required. The amount of time a user has the entitlement for. Starts at purchase flow completion. Specified in ISO 8601 format.
+     */
+    rentalPeriod?: string | null;
+  }
+  /**
+   * Details about taxation, Google Play policy and legal compliance for one-time products.
+   */
+  export interface Schema$OneTimeProductTaxAndComplianceSettings {
+    /**
+     * Whether this one-time product is declared as a product representing a tokenized digital asset.
+     */
+    isTokenizedDigitalAsset?: boolean | null;
+    /**
+     * Regional tax configuration.
+     */
+    regionalTaxConfigs?: Schema$RegionalTaxConfig[];
   }
   /**
    * Details of a one-time purchase.
@@ -2706,6 +3343,15 @@ export namespace androidpublisher_v3 {
     testPurchaseContext?: Schema$TestPurchaseContext;
   }
   /**
+   * Details about taxation, Google Play policy and legal compliance for one-time product purchase options.
+   */
+  export interface Schema$PurchaseOptionTaxAndComplianceSettings {
+    /**
+     * Optional. Digital content or service classification for products distributed to users in eligible regions. If unset, it defaults to `WITHDRAWAL_RIGHT_DIGITAL_CONTENT`. Refer to the [Help Center article](https://support.google.com/googleplay/android-developer/answer/10463498) for more information.
+     */
+    withdrawalRightType?: string | null;
+  }
+  /**
    * Context about the purchase state.
    */
   export interface Schema$PurchaseStateContext {
@@ -2862,6 +3508,27 @@ export namespace androidpublisher_v3 {
    * Represents the free price override configuration for a single phase of a subscription offer
    */
   export interface Schema$RegionalSubscriptionOfferPhaseFreePriceOverride {}
+  /**
+   * Details about taxation in a given geographical region.
+   */
+  export interface Schema$RegionalTaxConfig {
+    /**
+     * You must tell us if your app contains streaming products to correctly charge US state and local sales tax. Field only supported in the United States.
+     */
+    eligibleForStreamingServiceTaxRate?: boolean | null;
+    /**
+     * Required. Region code this configuration applies to, as defined by ISO 3166-2, e.g. "US".
+     */
+    regionCode?: string | null;
+    /**
+     * To collect communications or amusement taxes in the United States, choose the appropriate tax category. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498#streaming_tax).
+     */
+    streamingTaxType?: string | null;
+    /**
+     * Tax tier to specify reduced tax rate. Developers who sell digital news, magazines, newspapers, books, or audiobooks in various regions may be eligible for reduced tax rates. [Learn more](https://support.google.com/googleplay/android-developer/answer/10463498).
+     */
+    taxTier?: string | null;
+  }
   /**
    * Specified details about taxation in a given geographical region.
    */
@@ -3551,6 +4218,10 @@ export namespace androidpublisher_v3 {
      */
     autoRenewingPlan?: Schema$AutoRenewingPlan;
     /**
+     * Information for deferred item removal.
+     */
+    deferredItemRemoval?: Schema$DeferredItemRemoval;
+    /**
      * Information for deferred item replacement.
      */
     deferredItemReplacement?: Schema$DeferredItemReplacement;
@@ -3937,7 +4608,7 @@ export namespace androidpublisher_v3 {
    */
   export interface Schema$TrackRelease {
     /**
-     * Restricts a release to a specific set of countries.
+     * Restricts a release to a specific set of countries. Note this is only allowed to be set for inProgress releases in the production track.
      */
     countryTargeting?: Schema$CountryTargeting;
     /**
@@ -3999,6 +4670,86 @@ export namespace androidpublisher_v3 {
      * Deactivates a base plan. Once deactivated, the base plan will become unavailable to new subscribers, but existing subscribers will maintain their subscription
      */
     deactivateBasePlanRequest?: Schema$DeactivateBasePlanRequest;
+  }
+  /**
+   * Request message for UpdateOneTimeProductOffer.
+   */
+  export interface Schema$UpdateOneTimeProductOfferRequest {
+    /**
+     * Optional. If set to true, and the offer with the given package_name, product_id, purchase_option_id and offer_id doesn't exist, an offer will be created. If a new offer is created, the update_mask is ignored.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this offer update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The one-time product offer to update.
+     */
+    oneTimeProductOffer?: Schema$OneTimeProductOffer;
+    /**
+     * Required. The version of the available regions being used for the offer.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Request message to update the state of a one-time product offer.
+   */
+  export interface Schema$UpdateOneTimeProductOfferStateRequest {
+    /**
+     * Activates an offer. Once activated, the offer is available to users, as long as its conditions are met.
+     */
+    activateOneTimeProductOfferRequest?: Schema$ActivateOneTimeProductOfferRequest;
+    /**
+     * Cancels an offer. Once cancelled, the offer is not available to users. Any pending orders related to this offer will be cancelled. This state transition is specific to pre-orders.
+     */
+    cancelOneTimeProductOfferRequest?: Schema$CancelOneTimeProductOfferRequest;
+    /**
+     * Deactivates an offer. Once deactivated, the offer is no longer available to users. This state transition is specific to discounted offers.
+     */
+    deactivateOneTimeProductOfferRequest?: Schema$DeactivateOneTimeProductOfferRequest;
+  }
+  /**
+   * Request message for UpdateOneTimeProduct.
+   */
+  export interface Schema$UpdateOneTimeProductRequest {
+    /**
+     * Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.
+     */
+    allowMissing?: boolean | null;
+    /**
+     * Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string | null;
+    /**
+     * Required. The one-time product to upsert.
+     */
+    oneTimeProduct?: Schema$OneTimeProduct;
+    /**
+     * Required. The version of the available regions being used for the one-time product.
+     */
+    regionsVersion?: Schema$RegionsVersion;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string | null;
+  }
+  /**
+   * Request message to update the state of a one-time product purchase option.
+   */
+  export interface Schema$UpdatePurchaseOptionStateRequest {
+    /**
+     * Activates a purchase option. Once activated, the purchase option will be available.
+     */
+    activatePurchaseOptionRequest?: Schema$ActivatePurchaseOptionRequest;
+    /**
+     * Deactivates a purchase option. Once deactivated, the purchase option will become unavailable.
+     */
+    deactivatePurchaseOptionRequest?: Schema$DeactivatePurchaseOptionRequest;
   }
   /**
    * Request message for UpdateSubscriptionOffer.
@@ -15403,9 +16154,13 @@ export namespace androidpublisher_v3 {
 
   export class Resource$Monetization {
     context: APIRequestContext;
+    onetimeproducts: Resource$Monetization$Onetimeproducts;
     subscriptions: Resource$Monetization$Subscriptions;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.onetimeproducts = new Resource$Monetization$Onetimeproducts(
+        this.context
+      );
       this.subscriptions = new Resource$Monetization$Subscriptions(
         this.context
       );
@@ -15575,6 +16330,3024 @@ export namespace androidpublisher_v3 {
      * Request body metadata
      */
     requestBody?: Schema$ConvertRegionPricesRequest;
+  }
+
+  export class Resource$Monetization$Onetimeproducts {
+    context: APIRequestContext;
+    purchaseOptions: Resource$Monetization$Onetimeproducts$Purchaseoptions;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.purchaseOptions =
+        new Resource$Monetization$Onetimeproducts$Purchaseoptions(this.context);
+    }
+
+    /**
+     * Deletes one or more one-time products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.batchDelete({
+     *     // Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Monetization$Onetimeproducts$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<void>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Batchdelete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads one or more one-time products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.batchGet({
+     *     // Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests.
+     *     packageName: 'placeholder-value',
+     *     // Required. A list of up to 100 product IDs to retrieve. All IDs must be different.
+     *     productIds: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProducts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchget,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchGet(
+      params?: Params$Resource$Monetization$Onetimeproducts$Batchget,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchGetOneTimeProductsResponse>>;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Batchget
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchGetOneTimeProductsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetOneTimeProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetOneTimeProductsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates or updates one or more one-time products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.batchUpdate({
+     *     // Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources.
+     *     packageName: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProducts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdate(
+      params?: Params$Resource$Monetization$Onetimeproducts$Batchupdate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductsResponse>
+    >;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateOneTimeProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateOneTimeProductsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes a one-time product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.delete({
+     *     // Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     *     latencyTolerance: 'placeholder-value',
+     *     // Required. The parent app (package name) of the one-time product to delete.
+     *     packageName: 'placeholder-value',
+     *     // Required. The one-time product ID of the one-time product to delete.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Monetization$Onetimeproducts$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Monetization$Onetimeproducts$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    delete(
+      params: Params$Resource$Monetization$Onetimeproducts$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Onetimeproducts$Delete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(
+      params: Params$Resource$Monetization$Onetimeproducts$Delete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    delete(callback: BodyResponseCallback<void>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Delete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads a single one-time product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.get({
+     *     // Required. The parent app (package name) of the product to retrieve.
+     *     packageName: 'placeholder-value',
+     *     // Required. The product ID of the product to retrieve.
+     *     productId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listings": [],
+     *   //   "offerTags": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "purchaseOptions": [],
+     *   //   "regionsVersion": {},
+     *   //   "restrictedPaymentCountries": {},
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Monetization$Onetimeproducts$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Monetization$Onetimeproducts$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProduct>>;
+    get(
+      params: Params$Resource$Monetization$Onetimeproducts$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Onetimeproducts$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$OneTimeProduct>,
+      callback: BodyResponseCallback<Schema$OneTimeProduct>
+    ): void;
+    get(
+      params: Params$Resource$Monetization$Onetimeproducts$Get,
+      callback: BodyResponseCallback<Schema$OneTimeProduct>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$OneTimeProduct>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Get
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProduct>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OneTimeProduct>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OneTimeProduct>(parameters);
+      }
+    }
+
+    /**
+     * Lists all one-time products under a given app.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.list({
+     *     // Required. The parent app (package name) for which the one-time product should be read.
+     *     packageName: 'placeholder-value',
+     *     // Optional. The maximum number of one-time product to return. The service may return fewer than this value. If unspecified, at most 50 one-time products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A page token, received from a previous `ListOneTimeProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOneTimeProducts` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneTimeProducts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Monetization$Onetimeproducts$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOneTimeProductsResponse>>;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOneTimeProductsResponse>,
+      callback: BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$List,
+      callback: BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$List
+        | BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOneTimeProductsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListOneTimeProductsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName'],
+        pathParams: ['packageName'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOneTimeProductsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOneTimeProductsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Creates or updates a one-time product.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.monetization.onetimeproducts.patch({
+     *     // Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.
+     *     allowMissing: 'placeholder-value',
+     *     // Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive.
+     *     latencyTolerance: 'placeholder-value',
+     *     // Required. Immutable. Package name of the parent app.
+     *     packageName: 'placeholder-value',
+     *     // Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.).
+     *     productId: 'placeholder-value',
+     *     // Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
+     *     'regionsVersion.version': 'placeholder-value',
+     *     // Required. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "listings": [],
+     *       //   "offerTags": [],
+     *       //   "packageName": "my_packageName",
+     *       //   "productId": "my_productId",
+     *       //   "purchaseOptions": [],
+     *       //   "regionsVersion": {},
+     *       //   "restrictedPaymentCountries": {},
+     *       //   "taxAndComplianceSettings": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "listings": [],
+     *   //   "offerTags": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "productId": "my_productId",
+     *   //   "purchaseOptions": [],
+     *   //   "regionsVersion": {},
+     *   //   "restrictedPaymentCountries": {},
+     *   //   "taxAndComplianceSettings": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Monetization$Onetimeproducts$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Monetization$Onetimeproducts$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProduct>>;
+    patch(
+      params: Params$Resource$Monetization$Onetimeproducts$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Onetimeproducts$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$OneTimeProduct>,
+      callback: BodyResponseCallback<Schema$OneTimeProduct>
+    ): void;
+    patch(
+      params: Params$Resource$Monetization$Onetimeproducts$Patch,
+      callback: BodyResponseCallback<Schema$OneTimeProduct>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$OneTimeProduct>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Patch
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OneTimeProduct>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProduct>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Monetization$Onetimeproducts$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/onetimeproducts/{productId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OneTimeProduct>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OneTimeProduct>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the one-time products should be deleted. Must be equal to the package_name field on all the OneTimeProduct resources.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteOneTimeProductsRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the products should be retrieved. Must be equal to the package_name field on all requests.
+     */
+    packageName?: string;
+    /**
+     * Required. A list of up to 100 product IDs to retrieve. All IDs must be different.
+     */
+    productIds?: string[];
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the one-time products should be updated. Must be equal to the package_name field on all the OneTimeProduct resources.
+     */
+    packageName?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateOneTimeProductsRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Delete
+    extends StandardParameters {
+    /**
+     * Optional. The latency tolerance for the propagation of this product update. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
+    /**
+     * Required. The parent app (package name) of the one-time product to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The one-time product ID of the one-time product to delete.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Get
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the product to retrieve.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the product to retrieve.
+     */
+    productId?: string;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$List
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the one-time product should be read.
+     */
+    packageName?: string;
+    /**
+     * Optional. The maximum number of one-time product to return. The service may return fewer than this value. If unspecified, at most 50 one-time products will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListOneTimeProducts` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListOneTimeProducts` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Patch
+    extends StandardParameters {
+    /**
+     * Optional. If set to true, and the one-time product with the given package_name and product_id doesn't exist, the one-time product will be created. If a new one-time product is created, update_mask is ignored.
+     */
+    allowMissing?: boolean;
+    /**
+     * Optional. The latency tolerance for the propagation of this product upsert. Defaults to latency-sensitive.
+     */
+    latencyTolerance?: string;
+    /**
+     * Required. Immutable. Package name of the parent app.
+     */
+    packageName?: string;
+    /**
+     * Required. Immutable. Unique product ID of the product. Unique within the parent app. Product IDs must start with a number or lowercase letter, and can contain numbers (0-9), lowercase letters (a-z), underscores (_), and periods (.).
+     */
+    productId?: string;
+    /**
+     * Required. A string representing the version of available regions being used for the specified resource. Regional prices and latest supported version for the resource have to be specified according to the information published in [this article](https://support.google.com/googleplay/android-developer/answer/10532353). Each time the supported locations substantially change, the version will be incremented. Using this field will ensure that creating and updating the resource with an older region's version and set of regional prices and currencies will succeed even though a new version is available.
+     */
+    'regionsVersion.version'?: string;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$OneTimeProduct;
+  }
+
+  export class Resource$Monetization$Onetimeproducts$Purchaseoptions {
+    context: APIRequestContext;
+    offers: Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+      this.offers =
+        new Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers(
+          this.context
+        );
+    }
+
+    /**
+     * Deletes purchase options across one or multiple one-time products. By default this operation will fail if there are any existing offers under the deleted purchase options. Use the force parameter to override the default behavior.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.batchDelete(
+     *       {
+     *         // Required. The parent app (package name) of the purchase options to delete.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all purchase options to delete belong to the same one-time product. If this batch delete spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<void>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Activates or deactivates purchase options across one or multiple one-time products.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.batchUpdateStates(
+     *       {
+     *         // Required. The parent app (package name) of the updated purchase options.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all updated purchase options belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProducts": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdateStates(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchUpdatePurchaseOptionStatesResponse>
+    >;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates,
+      callback: BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+    ): void;
+    batchUpdateStates(
+      callback: BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+    ): void;
+    batchUpdateStates(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates
+        | BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdatePurchaseOptionStatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchUpdatePurchaseOptionStatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions:batchUpdateStates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId'],
+        pathParams: ['packageName', 'productId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdatePurchaseOptionStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdatePurchaseOptionStatesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the purchase options to delete.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all purchase options to delete belong to the same one-time product. If this batch delete spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeletePurchaseOptionsRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Batchupdatestates
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the updated purchase options.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all updated purchase options belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdatePurchaseOptionStatesRequest;
+  }
+
+  export class Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Activates a one-time product offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.activate(
+     *       {
+     *         // Required. The offer ID of the offer to activate.
+     *         offerId: 'placeholder-value',
+     *         // Required. The parent app (package name) of the offer to activate.
+     *         packageName: 'placeholder-value',
+     *         // Required. The parent one-time product (ID) of the offer to activate.
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) of the offer to activate.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "latencyTolerance": "my_latencyTolerance",
+     *           //   "offerId": "my_offerId",
+     *           //   "packageName": "my_packageName",
+     *           //   "productId": "my_productId",
+     *           //   "purchaseOptionId": "my_purchaseOptionId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discountedOffer": {},
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "preOrderOffer": {},
+     *   //   "productId": "my_productId",
+     *   //   "purchaseOptionId": "my_purchaseOptionId",
+     *   //   "regionalPricingAndAvailabilityConfigs": [],
+     *   //   "regionsVersion": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    activate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    activate(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>;
+    activate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate,
+      options: MethodOptions | BodyResponseCallback<Schema$OneTimeProductOffer>,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    activate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    activate(callback: BodyResponseCallback<Schema$OneTimeProductOffer>): void;
+    activate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:activate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'packageName',
+          'productId',
+          'purchaseOptionId',
+          'offerId',
+        ],
+        pathParams: ['offerId', 'packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OneTimeProductOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OneTimeProductOffer>(parameters);
+      }
+    }
+
+    /**
+     * Deletes one or more one-time product offers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchDelete(
+     *       {
+     *         // Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all offers to delete belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) for which the offers should be deleted. May be specified as '-' to update offers from multiple purchase options.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<void>>;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<void>,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete,
+      callback: BodyResponseCallback<void>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<void>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<void>
+        | BodyResponseCallback<Readable>,
+      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<void>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'purchaseOptionId'],
+        pathParams: ['packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<void>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<void>(parameters);
+      }
+    }
+
+    /**
+     * Reads one or more one-time product offers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchGet(
+     *       {
+     *         // Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProductOffers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchGet(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchGetOneTimeProductOffersResponse>
+    >;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>,
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+    ): void;
+    batchGet(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget,
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+    ): void;
+    batchGet(
+      callback: BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+    ): void;
+    batchGet(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchGetOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchGetOneTimeProductOffersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchGet'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'purchaseOptionId'],
+        pathParams: ['packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchGetOneTimeProductOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchGetOneTimeProductOffersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Creates or updates one or more one-time product offers.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchUpdate(
+     *       {
+     *         // Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProductOffers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdate(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductOffersResponse>
+    >;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductOffersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'purchaseOptionId'],
+        pathParams: ['packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateOneTimeProductOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateOneTimeProductOffersResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates a batch of one-time product offer states.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.batchUpdateStates(
+     *       {
+     *         // Required. The parent app (package name) of the updated one-time product offers.
+     *         packageName: 'placeholder-value',
+     *         // Required. The product ID of the parent one-time product, if all updated offers belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-".
+     *         productId: 'placeholder-value',
+     *         // Required. The purchase option ID of the parent purchase option, if all updated offers belong to the same purchase option. If this batch update spans multiple purchase options, set this field to "-".
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "requests": []
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "oneTimeProductOffers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdateStates(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+    >;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates,
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      callback: BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+    ): void;
+    batchUpdateStates(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$BatchUpdateOneTimeProductOfferStatesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers:batchUpdateStates'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'purchaseOptionId'],
+        pathParams: ['packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateOneTimeProductOfferStatesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateOneTimeProductOfferStatesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Cancels a one-time product offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.cancel(
+     *       {
+     *         // Required. The offer ID of the offer to cancel.
+     *         offerId: 'placeholder-value',
+     *         // Required. The parent app (package name) of the offer to cancel.
+     *         packageName: 'placeholder-value',
+     *         // Required. The parent one-time product (ID) of the offer to cancel.
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) of the offer to cancel.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "latencyTolerance": "my_latencyTolerance",
+     *           //   "offerId": "my_offerId",
+     *           //   "packageName": "my_packageName",
+     *           //   "productId": "my_productId",
+     *           //   "purchaseOptionId": "my_purchaseOptionId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discountedOffer": {},
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "preOrderOffer": {},
+     *   //   "productId": "my_productId",
+     *   //   "purchaseOptionId": "my_purchaseOptionId",
+     *   //   "regionalPricingAndAvailabilityConfigs": [],
+     *   //   "regionsVersion": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>;
+    cancel(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$OneTimeProductOffer>,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    cancel(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$OneTimeProductOffer>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'packageName',
+          'productId',
+          'purchaseOptionId',
+          'offerId',
+        ],
+        pathParams: ['offerId', 'packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OneTimeProductOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OneTimeProductOffer>(parameters);
+      }
+    }
+
+    /**
+     * Deactivates a one-time product offer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.deactivate(
+     *       {
+     *         // Required. The offer ID of the offer to deactivate.
+     *         offerId: 'placeholder-value',
+     *         // Required. The parent app (package name) of the offer to deactivate.
+     *         packageName: 'placeholder-value',
+     *         // Required. The parent one-time product (ID) of the offer to deactivate.
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) of the offer to deactivate.
+     *         purchaseOptionId: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "latencyTolerance": "my_latencyTolerance",
+     *           //   "offerId": "my_offerId",
+     *           //   "packageName": "my_packageName",
+     *           //   "productId": "my_productId",
+     *           //   "purchaseOptionId": "my_purchaseOptionId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "discountedOffer": {},
+     *   //   "offerId": "my_offerId",
+     *   //   "offerTags": [],
+     *   //   "packageName": "my_packageName",
+     *   //   "preOrderOffer": {},
+     *   //   "productId": "my_productId",
+     *   //   "purchaseOptionId": "my_purchaseOptionId",
+     *   //   "regionalPricingAndAvailabilityConfigs": [],
+     *   //   "regionsVersion": {},
+     *   //   "state": "my_state"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    deactivate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    deactivate(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>;
+    deactivate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate,
+      options: MethodOptions | BodyResponseCallback<Schema$OneTimeProductOffer>,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    deactivate(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate,
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    deactivate(
+      callback: BodyResponseCallback<Schema$OneTimeProductOffer>
+    ): void;
+    deactivate(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$OneTimeProductOffer>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$OneTimeProductOffer>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers/{offerId}:deactivate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [
+          'packageName',
+          'productId',
+          'purchaseOptionId',
+          'offerId',
+        ],
+        pathParams: ['offerId', 'packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$OneTimeProductOffer>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$OneTimeProductOffer>(parameters);
+      }
+    }
+
+    /**
+     * Lists all offers under a given app, product, or purchase option.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await androidpublisher.monetization.onetimeproducts.purchaseOptions.offers.list(
+     *       {
+     *         // Required. The parent app (package name) for which the offers should be read.
+     *         packageName: 'placeholder-value',
+     *         // Optional. The maximum number of offers to return. The service may return fewer than this value. If unspecified, at most 50 offers will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token, received from a previous `ListOneTimeProductsOffers` call. Provide this to retrieve the subsequent page. When paginating, product_id, package_name and purchase_option_id provided to `ListOneTimeProductsOffersRequest` must match the call that provided the page token.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent one-time product (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.
+     *         productId: 'placeholder-value',
+     *         // Required. The parent purchase option (ID) for which the offers should be read. May be specified as '-' to read all offers under a one-time product or an app. Must be specified as '-' if product_id is specified as '-'.
+     *         purchaseOptionId: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "oneTimeProductOffers": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListOneTimeProductOffersResponse>
+    >;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>,
+      callback: BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+    ): void;
+    list(
+      params: Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List,
+      callback: BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List
+        | BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListOneTimeProductOffersResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListOneTimeProductOffersResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/oneTimeProducts/{productId}/purchaseOptions/{purchaseOptionId}/offers'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'productId', 'purchaseOptionId'],
+        pathParams: ['packageName', 'productId', 'purchaseOptionId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListOneTimeProductOffersResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListOneTimeProductOffersResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Activate
+    extends StandardParameters {
+    /**
+     * Required. The offer ID of the offer to activate.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to activate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent one-time product (ID) of the offer to activate.
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) of the offer to activate.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ActivateOneTimeProductOfferRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the offers to delete. Must be equal to the package_name field on all the OneTimeProductOffer resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all offers to delete belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) for which the offers should be deleted. May be specified as '-' to update offers from multiple purchase options.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteOneTimeProductOffersRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchget
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchGetOneTimeProductOffersRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the updated offers. Must be equal to the package_name field on all the updated OneTimeProductOffer resources.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all updated offers belong to the same product. If this request spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) for which the offers should be updated. May be specified as '-' to update offers from multiple purchase options.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateOneTimeProductOffersRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Batchupdatestates
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) of the updated one-time product offers.
+     */
+    packageName?: string;
+    /**
+     * Required. The product ID of the parent one-time product, if all updated offers belong to the same one-time product. If this batch update spans multiple one-time products, set this field to "-".
+     */
+    productId?: string;
+    /**
+     * Required. The purchase option ID of the parent purchase option, if all updated offers belong to the same purchase option. If this batch update spans multiple purchase options, set this field to "-".
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateOneTimeProductOfferStatesRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The offer ID of the offer to cancel.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to cancel.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent one-time product (ID) of the offer to cancel.
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) of the offer to cancel.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelOneTimeProductOfferRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$Deactivate
+    extends StandardParameters {
+    /**
+     * Required. The offer ID of the offer to deactivate.
+     */
+    offerId?: string;
+    /**
+     * Required. The parent app (package name) of the offer to deactivate.
+     */
+    packageName?: string;
+    /**
+     * Required. The parent one-time product (ID) of the offer to deactivate.
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) of the offer to deactivate.
+     */
+    purchaseOptionId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DeactivateOneTimeProductOfferRequest;
+  }
+  export interface Params$Resource$Monetization$Onetimeproducts$Purchaseoptions$Offers$List
+    extends StandardParameters {
+    /**
+     * Required. The parent app (package name) for which the offers should be read.
+     */
+    packageName?: string;
+    /**
+     * Optional. The maximum number of offers to return. The service may return fewer than this value. If unspecified, at most 50 offers will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListOneTimeProductsOffers` call. Provide this to retrieve the subsequent page. When paginating, product_id, package_name and purchase_option_id provided to `ListOneTimeProductsOffersRequest` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent one-time product (ID) for which the offers should be read. May be specified as '-' to read all offers under an app.
+     */
+    productId?: string;
+    /**
+     * Required. The parent purchase option (ID) for which the offers should be read. May be specified as '-' to read all offers under a one-time product or an app. Must be specified as '-' if product_id is specified as '-'.
+     */
+    purchaseOptionId?: string;
   }
 
   export class Resource$Monetization$Subscriptions {

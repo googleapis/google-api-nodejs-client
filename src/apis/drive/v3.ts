@@ -636,7 +636,7 @@ export namespace drive_v3 {
    */
   export interface Schema$DownloadRestrictionsMetadata {
     /**
-     * The effective download restriction applied to this file. This considers all restriction settings and DLP rules.
+     * Output only. The effective download restriction applied to this file. This considers all restriction settings and DLP rules.
      */
     effectiveDownloadRestrictionWithContext?: Schema$DownloadRestriction;
     /**
@@ -1275,19 +1275,6 @@ export namespace drive_v3 {
      * The continuation token for the next page of results. This will be absent if the end of the results list has been reached. If the token is rejected for any reason, it should be discarded, and pagination should be restarted from the first page of results.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * The response message for Operations.ListOperations.
-   */
-  export interface Schema$ListOperationsResponse {
-    /**
-     * The standard List next-page token.
-     */
-    nextPageToken?: string | null;
-    /**
-     * A list of operations that matches the specified filter in the request.
-     */
-    operations?: Schema$Operation[];
   }
   /**
    * A request to modify the set of labels on a file. This request may contain many modifications that will either all succeed or all fail atomically.
@@ -4445,7 +4432,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Creates a shared drive.
+     * Creates a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4608,7 +4595,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items.
+     * Permanently deletes a shared drive for which the user is an `organizer`. The shared drive cannot contain any untrashed items. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4741,7 +4728,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a shared drive's metadata by ID.
+     * Gets a shared drive's metadata by ID. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -4893,7 +4880,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Hides a shared drive from the default view.
+     * Hides a shared drive from the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -5184,7 +5171,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Restores a shared drive to the default view.
+     * Restores a shared drive to the default view. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -5331,7 +5318,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates the metadata for a shared drive.
+     * Updates the metadata for a shared drive. For more information, see [Manage shared drives](https://developers.google.com/workspace/drive/api/guides/manage-shareddrives).
      * @example
      * ```js
      * // Before running the sample:
@@ -8441,276 +8428,6 @@ export namespace drive_v3 {
     }
 
     /**
-     * Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use Operations.GetOperation or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an Operation.error value with a google.rpc.Status.code of `1`, corresponding to `Code.CANCELLED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.meet.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.operations.cancel({
-     *     // The name of the operation resource to be cancelled.
-     *     name: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    cancel(
-      params?: Params$Resource$Operations$Cancel,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<void>>;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    cancel(
-      params: Params$Resource$Operations$Cancel,
-      callback: BodyResponseCallback<void>
-    ): void;
-    cancel(callback: BodyResponseCallback<void>): void;
-    cancel(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Cancel
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<void>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Cancel;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Cancel;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/drive/v3/operations/{name}:cancel').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'POST',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
-     * Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.meet.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.operations.delete({
-     *     // The name of the operation resource to be deleted.
-     *     name: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    delete(
-      params?: Params$Resource$Operations$Delete,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<void>>;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      options: MethodOptions | BodyResponseCallback<void>,
-      callback: BodyResponseCallback<void>
-    ): void;
-    delete(
-      params: Params$Resource$Operations$Delete,
-      callback: BodyResponseCallback<void>
-    ): void;
-    delete(callback: BodyResponseCallback<void>): void;
-    delete(
-      paramsOrCallback?:
-        | Params$Resource$Operations$Delete
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<void>
-        | BodyResponseCallback<Readable>,
-      callback?: BodyResponseCallback<void> | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<void>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Operations$Delete;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$Delete;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/drive/v3/operations/{name}').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'DELETE',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['name'],
-        pathParams: ['name'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<void>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<void>(parameters);
-      }
-    }
-
-    /**
      * Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service.
      * @example
      * ```js
@@ -8854,195 +8571,13 @@ export namespace drive_v3 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
-
-    /**
-     * Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/drive.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const drive = google.drive('v3');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: [
-     *       'https://www.googleapis.com/auth/drive',
-     *       'https://www.googleapis.com/auth/drive.file',
-     *       'https://www.googleapis.com/auth/drive.meet.readonly',
-     *       'https://www.googleapis.com/auth/drive.readonly',
-     *     ],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await drive.operations.list({
-     *     // The standard list filter.
-     *     filter: 'placeholder-value',
-     *     // The name of the operation's parent resource.
-     *     name: 'placeholder-value',
-     *     // The standard list page size.
-     *     pageSize: 'placeholder-value',
-     *     // The standard list page token.
-     *     pageToken: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "operations": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Operations$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Operations$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>;
-    list(
-      params: Params$Resource$Operations$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Operations$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(
-      params: Params$Resource$Operations$List,
-      callback: BodyResponseCallback<Schema$ListOperationsResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ListOperationsResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Operations$List
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ListOperationsResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ListOperationsResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Operations$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Operations$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://www.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (rootUrl + '/drive/v3/operations').replace(
-              /([^:]\/)\/+/g,
-              '$1'
-            ),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: [],
-        pathParams: [],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ListOperationsResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ListOperationsResponse>(parameters);
-      }
-    }
   }
 
-  export interface Params$Resource$Operations$Cancel
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be cancelled.
-     */
-    name?: string;
-  }
-  export interface Params$Resource$Operations$Delete
-    extends StandardParameters {
-    /**
-     * The name of the operation resource to be deleted.
-     */
-    name?: string;
-  }
   export interface Params$Resource$Operations$Get extends StandardParameters {
     /**
      * The name of the operation resource.
      */
     name?: string;
-  }
-  export interface Params$Resource$Operations$List extends StandardParameters {
-    /**
-     * The standard list filter.
-     */
-    filter?: string;
-    /**
-     * The name of the operation's parent resource.
-     */
-    name?: string;
-    /**
-     * The standard list page size.
-     */
-    pageSize?: number;
-    /**
-     * The standard list page token.
-     */
-    pageToken?: string;
   }
 
   export class Resource$Permissions {
@@ -10948,7 +10483,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted.
+     * Permanently deletes a file version. You can only delete revisions for files with binary content in Google Drive, like images or videos. Revisions for other files, like Google Docs or Sheets, and the last remaining file version can't be deleted. For more information, see [Manage file revisions](https://developers.google.com/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -11082,7 +10617,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Gets a revision's metadata or content by ID.
+     * Gets a revision's metadata or content by ID. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -11243,7 +10778,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Lists a file's revisions.
+     * Lists a file's revisions. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:
@@ -11394,7 +10929,7 @@ export namespace drive_v3 {
     }
 
     /**
-     * Updates a revision with patch semantics.
+     * Updates a revision with patch semantics. For more information, see [Manage file revisions](https://developers.google.com/workspace/drive/api/guides/manage-revisions).
      * @example
      * ```js
      * // Before running the sample:

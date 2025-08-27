@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1487,6 +1487,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "establishPeering": {
+                  "description": "Establish volume peering. This is used to establish cluster and svm peerings between the GCNV and OnPrem clusters.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}:establishPeering",
+                  "httpMethod": "POST",
+                  "id": "netapp.projects.locations.volumes.establishPeering",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The volume resource name, in the format `projects/{project_id}/locations/{location}/volumes/{volume_id}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/volumes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:establishPeering",
+                  "request": {
+                    "$ref": "EstablishVolumePeeringRequest"
+                  },
+                  "response": {
+                    "$ref": "Operation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Volume.",
                   "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/volumes/{volumesId}",
@@ -2298,7 +2326,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250817",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -2760,6 +2788,90 @@
       },
       "type": "object"
     },
+    "CacheConfig": {
+      "description": "Configuration of the cache volume.",
+      "id": "CacheConfig",
+      "properties": {
+        "cifsChangeNotifyEnabled": {
+          "description": "Optional. Flag indicating whether a CIFS change notification is enabled for the FlexCache volume.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "CacheParameters": {
+      "description": "Cache Parameters for the volume.",
+      "id": "CacheParameters",
+      "properties": {
+        "cacheConfig": {
+          "$ref": "CacheConfig",
+          "description": "Optional. Configuration of the cache volume."
+        },
+        "cacheState": {
+          "description": "Output only. State of the cache volume indicating the peering status.",
+          "enum": [
+            "CACHE_STATE_UNSPECIFIED",
+            "PENDING_CLUSTER_PEERING",
+            "PENDING_SVM_PEERING",
+            "PEERED",
+            "ERROR"
+          ],
+          "enumDescriptions": [
+            "Default unspecified state.",
+            "State indicating waiting for cluster peering to be established.",
+            "State indicating waiting for SVM peering to be established.",
+            "State indiciating successful establishment of peering with origin volumes's ONTAP cluster.",
+            "Terminal state wherein peering with origin volume's ONTAP cluster has failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "command": {
+          "description": "Output only. Copy-paste-able commands to be used on user's ONTAP to accept peering requests.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "enableGlobalFileLock": {
+          "description": "Optional. Field indicating whether cache volume as global file lock enabled.",
+          "type": "boolean"
+        },
+        "passphrase": {
+          "description": "Output only. Temporary passphrase generated to accept cluster peering command.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "peerClusterName": {
+          "description": "Required. Name of the origin volume's ONTAP cluster.",
+          "type": "string"
+        },
+        "peerIpAddresses": {
+          "description": "Required. List of IC LIF addresses of the origin volume's ONTAP cluster.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "peerSvmName": {
+          "description": "Required. Name of the origin volume's SVM.",
+          "type": "string"
+        },
+        "peerVolumeName": {
+          "description": "Required. Name of the origin volume for the cache volume.",
+          "type": "string"
+        },
+        "peeringCommandExpiryTime": {
+          "description": "Optional. Expiration time for the peering command to be executed on user's ONTAP.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "stateDetails": {
+          "description": "Output only. Detailed description of the current cache state.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CancelOperationRequest": {
       "description": "The request message for Operations.CancelOperation.",
       "id": "CancelOperationRequest",
@@ -2824,6 +2936,32 @@
     "EstablishPeeringRequest": {
       "description": "EstablishPeeringRequest establishes cluster and svm peerings between the source and the destination replications.",
       "id": "EstablishPeeringRequest",
+      "properties": {
+        "peerClusterName": {
+          "description": "Required. Name of the user's local source cluster to be peered with the destination cluster.",
+          "type": "string"
+        },
+        "peerIpAddresses": {
+          "description": "Optional. List of IPv4 ip addresses to be used for peering.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "peerSvmName": {
+          "description": "Required. Name of the user's local source vserver svm to be peered with the destination vserver svm.",
+          "type": "string"
+        },
+        "peerVolumeName": {
+          "description": "Required. Name of the user's local source volume to be peered with the destination volume.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EstablishVolumePeeringRequest": {
+      "description": "EstablishVolumePeeringRequest establishes cluster and svm peerings between the source and destination clusters.",
+      "id": "EstablishVolumePeeringRequest",
       "properties": {
         "peerClusterName": {
           "description": "Required. Name of the user's local source cluster to be peered with the destination cluster.",
@@ -3767,7 +3905,8 @@
             "TRANSFERRING",
             "BASELINE_TRANSFERRING",
             "ABORTED",
-            "EXTERNALLY_MANAGED"
+            "EXTERNALLY_MANAGED",
+            "PENDING_PEERING"
           ],
           "enumDescriptions": [
             "Unspecified MirrorState",
@@ -3777,7 +3916,8 @@
             "Incremental replication is in progress.",
             "Baseline replication is in progress.",
             "Replication is aborted.",
-            "Replication is being managed from Onprem ONTAP."
+            "Replication is being managed from Onprem ONTAP.",
+            "Peering is yet to be established."
           ],
           "readOnly": true,
           "type": "string"
@@ -4126,6 +4266,12 @@
           "description": "Optional. True if the storage pool supports Auto Tiering enabled volumes. Default is false. Auto-tiering can be enabled after storage pool creation but it can't be disabled once enabled.",
           "type": "boolean"
         },
+        "availableThroughputMibps": {
+          "description": "Output only. Available throughput of the storage pool (in MiB/s).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
         "capacityGib": {
           "description": "Required. Capacity in GIB of the pool",
           "format": "int64",
@@ -4199,6 +4345,20 @@
         },
         "psaRange": {
           "description": "Optional. This field is not implemented. The values provided in this field are ignored.",
+          "type": "string"
+        },
+        "qosType": {
+          "description": "Optional. QoS (Quality of Service) Type of the storage pool",
+          "enum": [
+            "QOS_TYPE_UNSPECIFIED",
+            "AUTO",
+            "MANUAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified QoS Type",
+            "QoS Type is Auto",
+            "QoS Type is Manual"
+          ],
           "type": "string"
         },
         "replicaZone": {
@@ -4455,13 +4615,17 @@
           "$ref": "BackupConfig",
           "description": "BackupConfig of the volume."
         },
+        "cacheParameters": {
+          "$ref": "CacheParameters",
+          "description": "Optional. Cache parameters for the volume."
+        },
         "capacityGib": {
           "description": "Required. Capacity in GIB of the volume",
           "format": "int64",
           "type": "string"
         },
         "coldTierSizeGib": {
-          "description": "Output only. Size of the volume cold tier data in GiB.",
+          "description": "Output only. Size of the volume cold tier data rounded down to the nearest GiB.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -4716,6 +4880,11 @@
         "storagePool": {
           "description": "Required. StoragePool name of the volume",
           "type": "string"
+        },
+        "throughputMibps": {
+          "description": "Optional. Throughput of the volume (in MiB/s)",
+          "format": "double",
+          "type": "number"
         },
         "tieringPolicy": {
           "$ref": "TieringPolicy",

@@ -374,6 +374,12 @@ export namespace ondemandscanning_v1 {
      */
     name?: string | null;
   }
+  export interface Schema$CISAKnownExploitedVulnerabilities {
+    /**
+     * Whether the vulnerability is known to have been leveraged as part of a ransomware campaign.
+     */
+    knownRansomwareCampaignUse?: string | null;
+  }
   /**
    * A CloudRepoSourceContext denotes a particular revision in a Google Cloud Source Repo.
    */
@@ -588,6 +594,16 @@ export namespace ondemandscanning_v1 {
   export interface Schema$EnvelopeSignature {
     keyid?: string | null;
     sig?: string | null;
+  }
+  export interface Schema$ExploitPredictionScoringSystem {
+    /**
+     * The percentile of the current score, the proportion of all scored vulnerabilities with the same or a lower EPSS score
+     */
+    percentile?: number | null;
+    /**
+     * The EPSS score representing the probability [0-1] of exploitation in the wild in the next 30 days
+     */
+    score?: number | null;
   }
   export interface Schema$File {
     digest?: {[key: string]: string} | null;
@@ -1384,6 +1400,16 @@ export namespace ondemandscanning_v1 {
     name?: string | null;
     uri?: string | null;
   }
+  export interface Schema$Risk {
+    /**
+     * CISA maintains the authoritative source of vulnerabilities that have been exploited in the wild.
+     */
+    cisaKev?: Schema$CISAKnownExploitedVulnerabilities;
+    /**
+     * The Exploit Prediction Scoring System (EPSS) estimates the likelihood (probability) that a software vulnerability will be exploited in the wild.
+     */
+    epss?: Schema$ExploitPredictionScoringSystem;
+  }
   export interface Schema$RunDetails {
     builder?: Schema$ProvenanceBuilder;
     byproducts?: Schema$ResourceDescriptor[];
@@ -1838,6 +1864,10 @@ export namespace ondemandscanning_v1 {
      * Output only. URLs related to this vulnerability.
      */
     relatedUrls?: Schema$RelatedUrl[];
+    /**
+     * Risk information about the vulnerability, such as CISA, EPSS, etc.
+     */
+    risk?: Schema$Risk;
     /**
      * Output only. The note provider assigned severity of this vulnerability.
      */

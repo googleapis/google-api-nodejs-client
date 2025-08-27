@@ -872,6 +872,10 @@ export namespace bigquery_v2 {
    */
   export interface Schema$DataFormatOptions {
     /**
+     * Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
+     */
+    timestampOutputFormat?: string | null;
+    /**
      * Optional. Output timestamp as usec int64. Default is false.
      */
     useInt64Timestamp?: boolean | null;
@@ -1644,11 +1648,11 @@ export namespace bigquery_v2 {
    */
   export interface Schema$ExternalRuntimeOptions {
     /**
-     * Optional. Amount of CPU provisioned for the container instance. If not specified, the default value is 0.33 vCPUs.
+     * Optional. Amount of CPU provisioned for a Python UDF container instance. For more information, see [Configure container limits for Python UDFs](https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits)
      */
     containerCpu?: number | null;
     /**
-     * Optional. Amount of memory provisioned for the container instance. Format: {number\}{unit\} where unit is one of "M", "G", "Mi" and "Gi" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi.
+     * Optional. Amount of memory provisioned for a Python UDF container instance. Format: {number\}{unit\} where unit is one of "M", "G", "Mi" and "Gi" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi. For more information, see [Configure container limits for Python UDFs](https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits)
      */
     containerMemory?: string | null;
     /**
@@ -1660,7 +1664,7 @@ export namespace bigquery_v2 {
      */
     runtimeConnection?: string | null;
     /**
-     * Optional. Language runtime version (e.g. python-3.11).
+     * Optional. Language runtime version. Example: `python-3.11`.
      */
     runtimeVersion?: string | null;
   }
@@ -1668,6 +1672,10 @@ export namespace bigquery_v2 {
    * The external service cost is a portion of the total cost, these costs are not additive with total_bytes_billed. Moreover, this field only track external service costs that will show up as BigQuery costs (e.g. training BigQuery ML job with google cloud CAIP or Automl Tables services), not other costs which may be accrued by running the query (e.g. reading from Bigtable or Cloud Storage). The external service costs with different billing sku (e.g. CAIP job is charged based on VM usage) are converted to BigQuery billed_bytes and slot_ms with equivalent amount of US dollars. Services may not directly correlate to these metrics, but these are the equivalents for billing purposes. Output only.
    */
   export interface Schema$ExternalServiceCost {
+    /**
+     * The billing method used for the external job. This field is only used when billed on the services sku, set to "SERVICES_SKU". Otherwise, it is unspecified for backward compatibility.
+     */
+    billingMethod?: string | null;
     /**
      * External service cost in terms of bigquery bytes billed.
      */
@@ -2935,6 +2943,10 @@ export namespace bigquery_v2 {
      */
     totalPartitionsProcessed?: string | null;
     /**
+     * Output only. Total slot-milliseconds for the job that run on external services and billed on the service SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is "SERVICES_SKU".
+     */
+    totalServicesSkuSlotMs?: string | null;
+    /**
      * Output only. Slot-milliseconds for the job.
      */
     totalSlotMs?: string | null;
@@ -3556,11 +3568,11 @@ export namespace bigquery_v2 {
    */
   export interface Schema$PythonOptions {
     /**
-     * Required. The entry point function in the user's Python code.
+     * Required. The name of the function defined in Python code as the entry point when the Python UDF is invoked.
      */
     entryPoint?: string | null;
     /**
-     * Optional. A list of package names along with versions to be installed. Follows requirements.txt syntax (e.g. numpy==2.0, permutation, urllib3<2.2.1)
+     * Optional. A list of Python package names along with versions to be installed. Example: ["pandas\>=2.1", "google-cloud-translate==3.11"]. For more information, see [Use third-party packages](https://cloud.google.com/bigquery/docs/user-defined-functions-python#third-party-packages).
      */
     packages?: string[] | null;
   }
@@ -3610,6 +3622,10 @@ export namespace bigquery_v2 {
       name?: string;
       type?: Schema$QueryParameterType;
     }> | null;
+    /**
+     * Optional. Precision (maximum number of total digits in base 10) for seconds of TIMESTAMP type. Possible values include: * 6 (Default, for TIMESTAMP type with microsecond precision) * 12 (For TIMESTAMP type with picosecond precision)
+     */
+    timestampPrecision?: string | null;
     /**
      * Required. The top level type of this field.
      */
@@ -4030,7 +4046,7 @@ export namespace bigquery_v2 {
      */
     lastModifiedTime?: string | null;
     /**
-     * Optional. Options for Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)
+     * Optional. Options for the Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)
      */
     pythonOptions?: Schema$PythonOptions;
     /**
@@ -7480,6 +7496,8 @@ export namespace bigquery_v2 {
      *
      *   // Do the magic
      *   const res = await bigquery.jobs.getQueryResults({
+     *     // Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
+     *     'formatOptions.timestampOutputFormat': 'placeholder-value',
      *     // Optional. Output timestamp as usec int64. Default is false.
      *     'formatOptions.useInt64Timestamp': 'placeholder-value',
      *     // Required. Job ID of the query job.
@@ -8186,6 +8204,10 @@ export namespace bigquery_v2 {
   }
   export interface Params$Resource$Jobs$Getqueryresults
     extends StandardParameters {
+    /**
+     * Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
+     */
+    'formatOptions.timestampOutputFormat'?: string;
     /**
      * Optional. Output timestamp as usec int64. Default is false.
      */
@@ -12342,6 +12364,8 @@ export namespace bigquery_v2 {
      *   const res = await bigquery.tabledata.list({
      *     // Required. Dataset id of the table to list.
      *     datasetId: '[^/]+',
+     *     // Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
+     *     'formatOptions.timestampOutputFormat': 'placeholder-value',
      *     // Optional. Output timestamp as usec int64. Default is false.
      *     'formatOptions.useInt64Timestamp': 'placeholder-value',
      *     // Row limit of the table.
@@ -12489,6 +12513,10 @@ export namespace bigquery_v2 {
      * Required. Dataset id of the table to list.
      */
     datasetId?: string;
+    /**
+     * Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.
+     */
+    'formatOptions.timestampOutputFormat'?: string;
     /**
      * Optional. Output timestamp as usec int64. Default is false.
      */

@@ -913,7 +913,7 @@
       }
     }
   },
-  "revision": "20250707",
+  "revision": "20250815",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -1505,7 +1505,7 @@
       "type": "object"
     },
     "BigQueryDestination": {
-      "description": "The destination big query dataset to export findings to.",
+      "description": "The destination BigQuery dataset to export findings to.",
       "id": "BigQueryDestination",
       "properties": {
         "dataset": {
@@ -1585,6 +1585,40 @@
         "threatVector": {
           "description": "Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, \"L3_4\" for Layer 3 and Layer 4 DDoS attacks, or \"L_7\" for Layer 7 DDoS attacks.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudControl": {
+      "description": "CloudControl associated with the finding.",
+      "id": "CloudControl",
+      "properties": {
+        "cloudControlName": {
+          "description": "Name of the CloudControl associated with the finding.",
+          "type": "string"
+        },
+        "policyType": {
+          "description": "Policy type of the CloudControl",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of cloud control.",
+          "enum": [
+            "CLOUD_CONTROL_TYPE_UNSPECIFIED",
+            "BUILT_IN",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Built in Cloud Control.",
+            "Custom Cloud Control."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the Cloud Control",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -1680,6 +1714,31 @@
         "version": {
           "description": "Version of the standard or benchmark, for example, 1.1",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComplianceDetails": {
+      "description": "Compliance Details associated with the finding.",
+      "id": "ComplianceDetails",
+      "properties": {
+        "cloudControl": {
+          "$ref": "CloudControl",
+          "description": "CloudControl associated with the finding"
+        },
+        "cloudControlDeploymentNames": {
+          "description": "Cloud Control Deployments associated with the finding. For example, organizations/123/locations/global/cloudControlDeployments/deploymentIdentifier",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frameworks": {
+          "description": "Details of Frameworks associated with the finding",
+          "items": {
+            "$ref": "Framework"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -1780,6 +1839,21 @@
         },
         "uri": {
           "description": "Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Control": {
+      "description": "Compliance control associated with the finding.",
+      "id": "Control",
+      "properties": {
+        "controlName": {
+          "description": "Name of the Control",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the control. For example, AU-02.",
           "type": "string"
         }
       },
@@ -2327,7 +2401,7 @@
       "properties": {
         "bigQueryDestination": {
           "$ref": "BigQueryDestination",
-          "description": "Required. The destination big query dataset to export findings to."
+          "description": "Required. The destination BigQuery dataset to export findings to."
         },
         "exportStartTime": {
           "description": "Optional. Timestamp at which export was started",
@@ -2488,6 +2562,10 @@
         "cloudDlpInspection": {
           "$ref": "CloudDlpInspection",
           "description": "Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding."
+        },
+        "complianceDetails": {
+          "$ref": "ComplianceDetails",
+          "description": "Details about the compliance implications of the finding."
         },
         "compliances": {
           "description": "Contains compliance information for security standards associated to the finding.",
@@ -2818,6 +2896,63 @@
         },
         "resourceFolderDisplayName": {
           "description": "The user defined display name for this folder.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Framework": {
+      "description": "Compliance framework associated with the finding.",
+      "id": "Framework",
+      "properties": {
+        "category": {
+          "description": "Category of the framework associated with the finding. E.g. Security Benchmark, or Assured Workloads",
+          "items": {
+            "enum": [
+              "FRAMEWORK_CATEGORY_UNSPECIFIED",
+              "SECURITY_BENCHMARKS",
+              "ASSURED_WORKLOADS",
+              "DATA_SECURITY",
+              "GOOGLE_BEST_PRACTICES"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Security Benchmarks framework",
+              "Assured Workloads framework",
+              "Data Security framework",
+              "Google Best Practices framework"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "controls": {
+          "description": "The controls associated with the framework.",
+          "items": {
+            "$ref": "Control"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Display name of the framework. For a standard framework, this will look like e.g. PCI DSS 3.2.1, whereas for a custom framework it can be a user defined string like MyFramework",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the framework associated with the finding",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the framework associated with the finding, to specify whether the framework is built-in (pre-defined and immutable) or a custom framework defined by the customer (equivalent to security posture)",
+          "enum": [
+            "FRAMEWORK_TYPE_UNSPECIFIED",
+            "FRAMEWORK_TYPE_BUILT_IN",
+            "FRAMEWORK_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The framework is a built-in framework if it is created and managed by GCP.",
+            "The framework is a custom framework if it is created and managed by the user."
+          ],
           "type": "string"
         }
       },
@@ -4359,6 +4494,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoKeyName": {
+          "description": "Output only. The resource name of the Cloud KMS `CryptoKey` used to protect this configuration's data, if configured during Security Command Center activation.",
+          "readOnly": true,
+          "type": "string"
+        },
         "dataset": {
           "description": "The dataset to write findings' updates to. Its format is \"projects/[project_id]/datasets/[bigquery_dataset_id]\". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).",
           "type": "string"
@@ -4472,6 +4612,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudSecuritycenterV2CloudControl": {
+      "description": "CloudControl associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2CloudControl",
+      "properties": {
+        "cloudControlName": {
+          "description": "Name of the CloudControl associated with the finding.",
+          "type": "string"
+        },
+        "policyType": {
+          "description": "Policy type of the CloudControl",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of cloud control.",
+          "enum": [
+            "CLOUD_CONTROL_TYPE_UNSPECIFIED",
+            "BUILT_IN",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified.",
+            "Built in Cloud Control.",
+            "Custom Cloud Control."
+          ],
+          "type": "string"
+        },
+        "version": {
+          "description": "Version of the Cloud Control",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudSecuritycenterV2CloudDlpDataProfile": {
       "description": "The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.",
       "id": "GoogleCloudSecuritycenterV2CloudDlpDataProfile",
@@ -4563,6 +4737,31 @@
         "version": {
           "description": "Version of the standard or benchmark, for example, 1.1",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2ComplianceDetails": {
+      "description": "Compliance Details associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2ComplianceDetails",
+      "properties": {
+        "cloudControl": {
+          "$ref": "GoogleCloudSecuritycenterV2CloudControl",
+          "description": "CloudControl associated with the finding"
+        },
+        "cloudControlDeploymentNames": {
+          "description": "Cloud Control Deployments associated with the finding. For example, organizations/123/locations/global/cloudControlDeployments/deploymentIdentifier",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "frameworks": {
+          "description": "Details of Frameworks associated with the finding",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Framework"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -4663,6 +4862,21 @@
         },
         "uri": {
           "description": "Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Control": {
+      "description": "Compliance control associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Control",
+      "properties": {
+        "controlName": {
+          "description": "Name of the Control",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Display name of the control. For example, AU-02.",
           "type": "string"
         }
       },
@@ -5380,6 +5594,10 @@
           "$ref": "GoogleCloudSecuritycenterV2CloudDlpInspection",
           "description": "Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding."
         },
+        "complianceDetails": {
+          "$ref": "GoogleCloudSecuritycenterV2ComplianceDetails",
+          "description": "Details about the compliance implications of the finding."
+        },
         "compliances": {
           "description": "Contains compliance information for security standards associated to the finding.",
           "items": {
@@ -5412,6 +5630,11 @@
         "createTime": {
           "description": "Output only. The time at which the finding was created in Security Command Center.",
           "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "cryptoKeyName": {
+          "description": "Output only. The name of the Cloud KMS key used to encrypt this finding, if any.",
           "readOnly": true,
           "type": "string"
         },
@@ -5711,6 +5934,63 @@
         },
         "resourceFolderDisplayName": {
           "description": "The user defined display name for this folder.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2Framework": {
+      "description": "Compliance framework associated with the finding.",
+      "id": "GoogleCloudSecuritycenterV2Framework",
+      "properties": {
+        "category": {
+          "description": "Category of the framework associated with the finding. E.g. Security Benchmark, or Assured Workloads",
+          "items": {
+            "enum": [
+              "FRAMEWORK_CATEGORY_UNSPECIFIED",
+              "SECURITY_BENCHMARKS",
+              "ASSURED_WORKLOADS",
+              "DATA_SECURITY",
+              "GOOGLE_BEST_PRACTICES"
+            ],
+            "enumDescriptions": [
+              "Default value. This value is unused.",
+              "Security Benchmarks framework",
+              "Assured Workloads framework",
+              "Data Security framework",
+              "Google Best Practices framework"
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "controls": {
+          "description": "The controls associated with the framework.",
+          "items": {
+            "$ref": "GoogleCloudSecuritycenterV2Control"
+          },
+          "type": "array"
+        },
+        "displayName": {
+          "description": "Display name of the framework. For a standard framework, this will look like e.g. PCI DSS 3.2.1, whereas for a custom framework it can be a user defined string like MyFramework",
+          "type": "string"
+        },
+        "name": {
+          "description": "Name of the framework associated with the finding",
+          "type": "string"
+        },
+        "type": {
+          "description": "Type of the framework associated with the finding, to specify whether the framework is built-in (pre-defined and immutable) or a custom framework defined by the customer (equivalent to security posture)",
+          "enum": [
+            "FRAMEWORK_TYPE_UNSPECIFIED",
+            "FRAMEWORK_TYPE_BUILT_IN",
+            "FRAMEWORK_TYPE_CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The framework is a built-in framework if it is created and managed by GCP.",
+            "The framework is a custom framework if it is created and managed by the user."
+          ],
           "type": "string"
         }
       },
@@ -7150,6 +7430,11 @@
           "readOnly": true,
           "type": "string"
         },
+        "cryptoKeyName": {
+          "description": "Output only. The resource name of the Cloud KMS `CryptoKey` used to encrypt this configuration data, if CMEK was enabled during Security Command Center activation.",
+          "readOnly": true,
+          "type": "string"
+        },
         "description": {
           "description": "A description of the mute config.",
           "type": "string"
@@ -7608,7 +7893,7 @@
         },
         "gcpMetadata": {
           "$ref": "GcpMetadata",
-          "description": "The GCP metadata associated with the finding."
+          "description": "The Google Cloud metadata associated with the finding."
         },
         "location": {
           "description": "The region or location of the service (if applicable).",

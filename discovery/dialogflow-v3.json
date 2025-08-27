@@ -5309,7 +5309,7 @@
       }
     }
   },
-  "revision": "20250627",
+  "revision": "20250812",
   "rootUrl": "https://dialogflow.googleapis.com/",
   "schemas": {
     "GoogleCloudDialogflowCxV3Action": {
@@ -5324,9 +5324,17 @@
           "$ref": "GoogleCloudDialogflowCxV3FlowInvocation",
           "description": "Optional. Action performed on behalf of the agent by invoking a CX flow."
         },
+        "flowTransition": {
+          "$ref": "GoogleCloudDialogflowCxV3FlowTransition",
+          "description": "Optional. Action performed on behalf of the agent by transitioning to a target CX flow."
+        },
         "playbookInvocation": {
           "$ref": "GoogleCloudDialogflowCxV3PlaybookInvocation",
           "description": "Optional. Action performed on behalf of the agent by invoking a child playbook."
+        },
+        "playbookTransition": {
+          "$ref": "GoogleCloudDialogflowCxV3PlaybookTransition",
+          "description": "Optional. Action performed on behalf of the agent by transitioning to a target playbook."
         },
         "toolUse": {
           "$ref": "GoogleCloudDialogflowCxV3ToolUse",
@@ -7502,6 +7510,13 @@
           },
           "type": "array"
         },
+        "inputParameterDefinitions": {
+          "description": "Optional. Defined structured input parameters for this flow.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
+          },
+          "type": "array"
+        },
         "knowledgeConnectorSettings": {
           "$ref": "GoogleCloudDialogflowCxV3KnowledgeConnectorSettings",
           "description": "Optional. Knowledge connector configuration."
@@ -7521,6 +7536,13 @@
         "nluSettings": {
           "$ref": "GoogleCloudDialogflowCxV3NluSettings",
           "description": "NLU related settings of the flow."
+        },
+        "outputParameterDefinitions": {
+          "description": "Optional. Defined structured output parameters for this flow.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
+          },
+          "type": "array"
         },
         "transitionRouteGroups": {
           "description": "A flow's transition route group serve two purposes: * They are responsible for matching the user's first utterances in the flow. * They are inherited by every page's transition route groups. Transition route groups defined in the page have higher priority than those defined in the flow. Format: `projects//locations//agents//flows//transitionRouteGroups/` or `projects//locations//agents//transitionRouteGroups/` for agent-level groups.",
@@ -7616,6 +7638,22 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3FlowTransition": {
+      "description": "Stores metadata of the transition to a target CX flow. Flow transition actions exit the caller playbook and enter the child flow.",
+      "id": "GoogleCloudDialogflowCxV3FlowTransition",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the flow.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "flow": {
+          "description": "Required. The unique identifier of the flow. Format: `projects//locations//agents/`.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -8427,6 +8465,35 @@
           "description": "Output only. The uncompressed byte content for the objects. Only populated in responses.",
           "format": "byte",
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3InlineSchema": {
+      "description": "A type schema object that's specified inline.",
+      "id": "GoogleCloudDialogflowCxV3InlineSchema",
+      "properties": {
+        "items": {
+          "$ref": "GoogleCloudDialogflowCxV3TypeSchema",
+          "description": "Schema of the elements if this is an ARRAY type."
+        },
+        "type": {
+          "description": "Data type of the schema.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "STRING",
+            "NUMBER",
+            "BOOLEAN",
+            "ARRAY"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Represents any string value.",
+            "Represents any number value.",
+            "Represents a boolean value.",
+            "Represents a repeated value."
+          ],
           "type": "string"
         }
       },
@@ -9506,6 +9573,48 @@
       },
       "type": "object"
     },
+    "GoogleCloudDialogflowCxV3ParameterDefinition": {
+      "description": "Defines the properties of a parameter. Used to define parameters used in the agent and the input / output parameters for each fulfillment.",
+      "id": "GoogleCloudDialogflowCxV3ParameterDefinition",
+      "properties": {
+        "description": {
+          "description": "Human-readable description of the parameter. Limited to 300 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Required. Name of parameter.",
+          "type": "string"
+        },
+        "type": {
+          "deprecated": true,
+          "description": "Type of parameter.",
+          "enum": [
+            "PARAMETER_TYPE_UNSPECIFIED",
+            "STRING",
+            "NUMBER",
+            "BOOLEAN",
+            "NULL",
+            "OBJECT",
+            "LIST"
+          ],
+          "enumDescriptions": [
+            "Not specified. No validation will be performed.",
+            "Represents any string value.",
+            "Represents any number value.",
+            "Represents a boolean value.",
+            "Represents a null value.",
+            "Represents any object value.",
+            "Represents a repeated value."
+          ],
+          "type": "string"
+        },
+        "typeSchema": {
+          "$ref": "GoogleCloudDialogflowCxV3TypeSchema",
+          "description": "Optional. Type schema of parameter."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDialogflowCxV3Phrase": {
       "description": "Text input which can be used for prompt or banned phrases.",
       "id": "GoogleCloudDialogflowCxV3Phrase",
@@ -9542,6 +9651,13 @@
           },
           "type": "array"
         },
+        "inputParameterDefinitions": {
+          "description": "Optional. Defined structured input parameters for this playbook.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
+          },
+          "type": "array"
+        },
         "instruction": {
           "$ref": "GoogleCloudDialogflowCxV3PlaybookInstruction",
           "description": "Instruction to accomplish target goal."
@@ -9552,6 +9668,27 @@
         },
         "name": {
           "description": "The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
+          "type": "string"
+        },
+        "outputParameterDefinitions": {
+          "description": "Optional. Defined structured output parameters for this playbook.",
+          "items": {
+            "$ref": "GoogleCloudDialogflowCxV3ParameterDefinition"
+          },
+          "type": "array"
+        },
+        "playbookType": {
+          "description": "Optional. Type of the playbook.",
+          "enum": [
+            "PLAYBOOK_TYPE_UNSPECIFIED",
+            "TASK",
+            "ROUTINE"
+          ],
+          "enumDescriptions": [
+            "Unspecified type. Default to TASK.",
+            "Task playbook.",
+            "Routine playbook."
+          ],
           "type": "string"
         },
         "referencedFlows": {
@@ -9756,6 +9893,22 @@
         },
         "text": {
           "description": "Step instruction in text format.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3PlaybookTransition": {
+      "description": "Stores metadata of the transition to another target playbook. Playbook transition actions exit the caller playbook and enter the target playbook.",
+      "id": "GoogleCloudDialogflowCxV3PlaybookTransition",
+      "properties": {
+        "displayName": {
+          "description": "Output only. The display name of the playbook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "playbook": {
+          "description": "Required. The unique identifier of the playbook. Format: `projects//locations//agents//playbooks/`.",
           "type": "string"
         }
       },
@@ -10647,7 +10800,7 @@
       "id": "GoogleCloudDialogflowCxV3SecuritySettingsAudioExportSettings",
       "properties": {
         "audioExportPattern": {
-          "description": "Filename pattern for exported audio.",
+          "description": "Filename pattern for exported audio. {conversation} and {timestamp} are placeholders that will be replaced with the conversation ID and epoch micros of the conversation. For example, \"{conversation}/recording_{timestamp}.mulaw\".",
           "type": "string"
         },
         "audioFormat": {
@@ -11703,6 +11856,36 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3TypeSchema": {
+      "description": "Encapsulates different type schema variations: either a reference to an a schema that's already defined by a tool, or an inline definition.",
+      "id": "GoogleCloudDialogflowCxV3TypeSchema",
+      "properties": {
+        "inlineSchema": {
+          "$ref": "GoogleCloudDialogflowCxV3InlineSchema",
+          "description": "Set if this is an inline schema definition."
+        },
+        "schemaReference": {
+          "$ref": "GoogleCloudDialogflowCxV3TypeSchemaSchemaReference",
+          "description": "Set if this is a schema reference."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDialogflowCxV3TypeSchemaSchemaReference": {
+      "description": "A reference to the schema of an existing tool.",
+      "id": "GoogleCloudDialogflowCxV3TypeSchemaSchemaReference",
+      "properties": {
+        "schema": {
+          "description": "The name of the schema.",
+          "type": "string"
+        },
+        "tool": {
+          "description": "The tool that contains this schema definition. Format: `projects//locations//agents//tools/`.",
+          "type": "string"
         }
       },
       "type": "object"

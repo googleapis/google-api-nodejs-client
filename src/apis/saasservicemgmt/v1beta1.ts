@@ -102,7 +102,7 @@ export namespace saasservicemgmt_v1beta1 {
   /**
    * SaaS Runtime API
    *
-   *
+   * Model, deploy, and operate your SaaS at scale.
    *
    * @example
    * ```js
@@ -662,7 +662,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Optional. Immutable. List of locations that the service is available in. Rollout refers to the list to generate a rollout plan.
+     * Optional. List of locations that the service is available in. Rollout refers to the list to generate a rollout plan.
      */
     locations?: Schema$Location[];
     /**
@@ -696,7 +696,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     annotations?: {[key: string]: string} | null;
     /**
-     * Optional. Immutable. A reference to the consumer resource this SaaS Tenant is representing. The relationship with a consumer resource can be used by EasySaaS for retrieving consumer-defined settings and policies such as maintenance policies (using Unified Maintenance Policy API).
+     * Optional. Immutable. A reference to the consumer resource this SaaS Tenant is representing. The relationship with a consumer resource can be used by SaaS Runtime for retrieving consumer-defined settings and policies such as maintenance policies (using Unified Maintenance Policy API).
      */
     consumerResource?: string | null;
     /**
@@ -716,7 +716,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     name?: string | null;
     /**
-     * Required. Immutable. A reference to the Saas that defines the product (managed service) that the producer wants to manage with EasySaaS. Part of the EasySaaS common data model.
+     * Required. Immutable. A reference to the Saas that defines the product (managed service) that the producer wants to manage with SaaS Runtime. Part of the SaaS Runtime common data model.
      */
     saas?: string | null;
     /**
@@ -737,7 +737,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     dependency?: string | null;
     /**
-     * Optional. Tells EasySaaS if this mapping should be used during lookup or not
+     * Optional. Tells SaaS Runtime if this mapping should be used during lookup or not
      */
     ignoreForLookup?: boolean | null;
     /**
@@ -921,7 +921,7 @@ export namespace saasservicemgmt_v1beta1 {
      */
     outputVariableMappings?: Schema$VariableMapping[];
     /**
-     * Required. Immutable. A reference to the Saas that defines the product (managed service) that the producer wants to manage with EasySaaS. Part of the EasySaaS common data model. Immutable once set.
+     * Required. Immutable. A reference to the Saas that defines the product (managed service) that the producer wants to manage with SaaS Runtime. Part of the SaaS Runtime common data model. Immutable once set.
      */
     saas?: string | null;
     /**
@@ -934,7 +934,7 @@ export namespace saasservicemgmt_v1beta1 {
     updateTime?: string | null;
   }
   /**
-   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations.
+   * UnitOperation encapsulates the intent of changing/interacting with the service component represented by the specific Unit. Multiple UnitOperations can be created (requested) and scheduled in the future, however only one will be allowed to execute at a time (that can change in the future for non-mutating operations). UnitOperations allow different actors interacting with the same unit to focus only on the change they have requested. This is a base object that contains the common fields in all unit operations. Next: 19
    */
   export interface Schema$UnitOperation {
     /**

@@ -3115,7 +3115,7 @@
       }
     }
   },
-  "revision": "20241002",
+  "revision": "20250807",
   "rootUrl": "https://adexchangebuyer.googleapis.com/",
   "schemas": {
     "AbsoluteDateRange": {
@@ -5661,14 +5661,16 @@
             "AD_NOT_RENDERED",
             "INVALID_IMPRESSION",
             "FATAL_VAST_ERROR",
-            "LOST_IN_MEDIATION"
+            "LOST_IN_MEDIATION",
+            "OVERDELIVERED_IMPRESSION"
           ],
           "enumDescriptions": [
             "A placeholder for an undefined status. This value will never be returned in responses.",
             "The buyer was not billed because the ad was not rendered by the publisher.",
             "The buyer was not billed because the impression won by the bid was determined to be invalid.",
             "A video impression was served but a fatal error was reported from the client during playback.",
-            "The buyer was not billed because the ad was outplaced in the mediation waterfall."
+            "The buyer was not billed because the ad was outplaced in the mediation waterfall.",
+            "The impression was not billed because it exceeded a guaranteed deal delivery goal."
           ],
           "type": "string"
         }

@@ -178,6 +178,10 @@ export namespace merchantapi_ordertracking_v1beta {
      */
     gtin?: string | null;
     /**
+     * Optional. The Global Trade Item Numbers.
+     */
+    gtins?: string[] | null;
+    /**
      * Required. The ID for this line item.
      */
     lineItemId?: string | null;
@@ -400,10 +404,10 @@ export namespace merchantapi_ordertracking_v1beta {
 
   export class Resource$Accounts {
     context: APIRequestContext;
-    ordertrackingsignals: Resource$Accounts$Ordertrackingsignals;
+    orderTrackingSignals: Resource$Accounts$Ordertrackingsignals;
     constructor(context: APIRequestContext) {
       this.context = context;
-      this.ordertrackingsignals = new Resource$Accounts$Ordertrackingsignals(
+      this.orderTrackingSignals = new Resource$Accounts$Ordertrackingsignals(
         this.context
       );
     }
@@ -445,7 +449,7 @@ export namespace merchantapi_ordertracking_v1beta {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await merchantapi.accounts.ordertrackingsignals.create({
+     *   const res = await merchantapi.accounts.orderTrackingSignals.create({
      *     // Output only. The ID that uniquely identifies this order tracking signal.
      *     orderTrackingSignalId: 'placeholder-value',
      *     // Required. The account of the business for which the order signal is created. Format: accounts/{account\}
@@ -557,7 +561,7 @@ export namespace merchantapi_ordertracking_v1beta {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/ordertracking/v1beta/{+parent}/ordertrackingsignals'
+              rootUrl + '/ordertracking/v1beta/{+parent}/orderTrackingSignals'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',

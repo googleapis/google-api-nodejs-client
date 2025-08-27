@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v1.1.0...osconfig-v1.2.0) (2025-08-21)
+
+
+### Features
+
+* **osconfig:** update the API ([718e046](https://github.com/googleapis/google-api-nodejs-client/commit/718e046370a2f031f12693a533bf0bb42df65a4a))
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([6487d43](https://github.com/googleapis/google-api-nodejs-client/commit/6487d43b5546dfdaf6be6a1448e0d678620261f9))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v1.0.0...osconfig-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **osconfig:** update the API ([718e046](https://github.com/googleapis/google-api-nodejs-client/commit/718e046370a2f031f12693a533bf0bb42df65a4a))
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([6487d43](https://github.com/googleapis/google-api-nodejs-client/commit/6487d43b5546dfdaf6be6a1448e0d678620261f9))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **osconfig:** update the API ([718e046](https://github.com/googleapis/google-api-nodejs-client/commit/718e046370a2f031f12693a533bf0bb42df65a4a))
+
+
+### Bug Fixes
+
+* **osconfig:** update the API ([6487d43](https://github.com/googleapis/google-api-nodejs-client/commit/6487d43b5546dfdaf6be6a1448e0d678620261f9))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [7.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v7.0.1...osconfig-v7.1.0) (2025-08-04)
+
+
+### Features
+
+* **osconfig:** update the API ([718e046](https://github.com/googleapis/google-api-nodejs-client/commit/718e046370a2f031f12693a533bf0bb42df65a4a))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/osconfig-v7.0.0...osconfig-v7.0.1) (2025-07-08)
 
 

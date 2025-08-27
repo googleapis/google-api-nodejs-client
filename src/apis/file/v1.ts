@@ -492,6 +492,10 @@ export namespace file_v1 {
    */
   export interface Schema$Instance {
     /**
+     * Output only. The increase/decrease capacity step size in GB.
+     */
+    capacityStepSizeGb?: string | null;
+    /**
      * Output only. The time when the instance was created.
      */
     createTime?: string | null;
@@ -527,6 +531,14 @@ export namespace file_v1 {
      * Resource labels to represent user provided metadata.
      */
     labels?: {[key: string]: string} | null;
+    /**
+     * Output only. The max capacity of the instance in GB.
+     */
+    maxCapacityGb?: string | null;
+    /**
+     * Output only. The min capacity of the instance in GB.
+     */
+    minCapacityGb?: string | null;
     /**
      * Output only. The resource name of the instance, in the format `projects/{project\}/locations/{location\}/instances/{instance\}`.
      */
@@ -912,6 +924,10 @@ export namespace file_v1 {
      * Output only. Additional information about the replication state, if available.
      */
     stateReasons?: string[] | null;
+    /**
+     * Output only. The time when the replica state was updated.
+     */
+    stateUpdateTime?: string | null;
   }
   /**
    * Replication specifications.
@@ -2294,6 +2310,7 @@ export namespace file_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceSupported": false,
      *       //   "deletionProtectionEnabled": false,
@@ -2303,6 +2320,8 @@ export namespace file_v1 {
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
+     *       //   "maxCapacityGb": "my_maxCapacityGb",
+     *       //   "minCapacityGb": "my_minCapacityGb",
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "performanceConfig": {},
@@ -2604,6 +2623,7 @@ export namespace file_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *   //   "createTime": "my_createTime",
      *   //   "customPerformanceSupported": false,
      *   //   "deletionProtectionEnabled": false,
@@ -2613,6 +2633,8 @@ export namespace file_v1 {
      *   //   "fileShares": [],
      *   //   "kmsKeyName": "my_kmsKeyName",
      *   //   "labels": {},
+     *   //   "maxCapacityGb": "my_maxCapacityGb",
+     *   //   "minCapacityGb": "my_minCapacityGb",
      *   //   "name": "my_name",
      *   //   "networks": [],
      *   //   "performanceConfig": {},
@@ -2910,6 +2932,7 @@ export namespace file_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "capacityStepSizeGb": "my_capacityStepSizeGb",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceSupported": false,
      *       //   "deletionProtectionEnabled": false,
@@ -2919,6 +2942,8 @@ export namespace file_v1 {
      *       //   "fileShares": [],
      *       //   "kmsKeyName": "my_kmsKeyName",
      *       //   "labels": {},
+     *       //   "maxCapacityGb": "my_maxCapacityGb",
+     *       //   "minCapacityGb": "my_minCapacityGb",
      *       //   "name": "my_name",
      *       //   "networks": [],
      *       //   "performanceConfig": {},

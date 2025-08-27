@@ -1,5 +1,39 @@
 # Changelog
 
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v1.1.0...cloudsupport-v1.2.0) (2025-08-21)
+
+
+### Features
+
+* **cloudsupport:** update the API ([3b345a9](https://github.com/googleapis/google-api-nodejs-client/commit/3b345a983ff7fc5a5792ba93608960d441c4b8b2))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([3cbe991](https://github.com/googleapis/google-api-nodejs-client/commit/3cbe991119c1d4e731fc37c67b14b46c488205a6))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v1.0.0...cloudsupport-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **cloudsupport:** update the API ([3b345a9](https://github.com/googleapis/google-api-nodejs-client/commit/3b345a983ff7fc5a5792ba93608960d441c4b8b2))
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([3cbe991](https://github.com/googleapis/google-api-nodejs-client/commit/3cbe991119c1d4e731fc37c67b14b46c488205a6))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **cloudsupport:** update the API ([3cbe991](https://github.com/googleapis/google-api-nodejs-client/commit/3cbe991119c1d4e731fc37c67b14b46c488205a6))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [13.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/cloudsupport-v13.0.0...cloudsupport-v13.0.1) (2025-07-08)
 
 

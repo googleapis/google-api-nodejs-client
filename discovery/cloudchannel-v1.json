@@ -2289,7 +2289,7 @@
       }
     }
   },
-  "revision": "20250614",
+  "revision": "20250809",
   "rootUrl": "https://cloudchannel.googleapis.com/",
   "schemas": {
     "GoogleCloudChannelV1ActivateEntitlementRequest": {
@@ -3031,6 +3031,42 @@
         "usageStartDateTime": {
           "$ref": "GoogleTypeDateTime",
           "description": "The earliest usage date time (inclusive). If you use time groupings (daily, weekly, etc), each group uses midnight to midnight (Pacific time). The usage start date is rounded down to include all usage from the specified date. We recommend that clients pass `usage_start_date_time` in Pacific time."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudChannelV1DiscountComponent": {
+      "description": "Represents a single component of the total discount applicable on a Price.",
+      "id": "GoogleCloudChannelV1DiscountComponent",
+      "properties": {
+        "discountAbsolute": {
+          "$ref": "GoogleTypeMoney",
+          "description": "Fixed value discount."
+        },
+        "discountPercentage": {
+          "description": "Discount percentage, represented as decimal. For example, a 20% discount will be represented as 0.2.",
+          "format": "double",
+          "type": "number"
+        },
+        "discountType": {
+          "description": "Type of the discount.",
+          "enum": [
+            "DISCOUNT_TYPE_UNSPECIFIED",
+            "REGIONAL_DISCOUNT",
+            "PROMOTIONAL_DISCOUNT",
+            "SALES_DISCOUNT",
+            "RESELLER_MARGIN",
+            "DEAL_CODE"
+          ],
+          "enumDescriptions": [
+            "Not used.",
+            "Regional discount.",
+            "Promotional discount.",
+            "Sales-provided discount.",
+            "Reseller margin.",
+            "Deal code discount."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4157,6 +4193,13 @@
           "format": "double",
           "type": "number"
         },
+        "discountComponents": {
+          "description": "Breakdown of the discount into its components. This will be empty if there is no discount present.",
+          "items": {
+            "$ref": "GoogleCloudChannelV1DiscountComponent"
+          },
+          "type": "array"
+        },
         "effectivePrice": {
           "$ref": "GoogleTypeMoney",
           "description": "Effective Price after applying the discounts."
@@ -4164,6 +4207,10 @@
         "externalPriceUri": {
           "description": "Link to external price list, such as link to Google Voice rate card.",
           "type": "string"
+        },
+        "pricePeriod": {
+          "$ref": "GoogleCloudChannelV1Period",
+          "description": "The time period with respect to which base and effective prices are defined. Example: 1 month, 6 months, 1 year, etc."
         }
       },
       "type": "object"

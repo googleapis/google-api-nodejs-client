@@ -141,6 +141,8 @@ export namespace dfareporting_v4 {
     creatives: Resource$Creatives;
     dimensionValues: Resource$Dimensionvalues;
     directorySites: Resource$Directorysites;
+    dynamicFeeds: Resource$Dynamicfeeds;
+    dynamicProfiles: Resource$Dynamicprofiles;
     dynamicTargetingKeys: Resource$Dynamictargetingkeys;
     eventTags: Resource$Eventtags;
     files: Resource$Files;
@@ -220,6 +222,8 @@ export namespace dfareporting_v4 {
       this.creatives = new Resource$Creatives(this.context);
       this.dimensionValues = new Resource$Dimensionvalues(this.context);
       this.directorySites = new Resource$Directorysites(this.context);
+      this.dynamicFeeds = new Resource$Dynamicfeeds(this.context);
+      this.dynamicProfiles = new Resource$Dynamicprofiles(this.context);
       this.dynamicTargetingKeys = new Resource$Dynamictargetingkeys(
         this.context
       );
@@ -1736,6 +1740,56 @@ export namespace dfareporting_v4 {
     name?: string | null;
   }
   /**
+   * Contains the content source of the dynamic feed.
+   */
+  export interface Schema$ContentSource {
+    /**
+     * Optional. The name of the content source. It is defaulted to content source file name if not provided.
+     */
+    contentSourceName?: string | null;
+    /**
+     * Output only. The creation timestamp of the content source. This is a read-only field.
+     */
+    createInfo?: Schema$LastModifiedInfo;
+    /**
+     * Output only. The last modified timestamp of the content source. This is a read-only field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Output only. Metadata of the content source. It contains the number of rows and the column names from resource link. This is a read-only field.
+     */
+    metaData?: Schema$ContentSourceMetaData;
+    /**
+     * Required. The link to the file of the content source.
+     */
+    resourceLink?: string | null;
+    /**
+     * Required. The resource type of the content source.
+     */
+    resourceType?: string | null;
+  }
+  /**
+   * Contains the meta data of the content source. This is a read-only field.
+   */
+  export interface Schema$ContentSourceMetaData {
+    /**
+     * Output only. The charset of the content source.
+     */
+    charset?: string | null;
+    /**
+     * Output only. The list of column names in the content source.
+     */
+    fieldNames?: string[] | null;
+    /**
+     * Output only. The number of rows in the content source.
+     */
+    rowNumber?: number | null;
+    /**
+     * Output only. The separator of the content source.
+     */
+    separator?: string | null;
+  }
+  /**
    * A Conversion represents when a user successfully performs a desired action after seeing an ad.
    */
   export interface Schema$Conversion {
@@ -2930,6 +2984,36 @@ export namespace dfareporting_v4 {
     kind?: string | null;
   }
   /**
+   * Contains custom rule information.
+   */
+  export interface Schema$CustomRule {
+    /**
+     * Optional. Name of this custom rule.
+     */
+    name?: string | null;
+    /**
+     * Optional. Priority of the custom rule.
+     */
+    priority?: number | null;
+    /**
+     * Optional. A list of field filter, the custom rule will apply.
+     */
+    ruleBlocks?: Schema$RuleBlock[];
+  }
+  /**
+   * Contains custom value field information.
+   */
+  export interface Schema$CustomValueField {
+    /**
+     * Optional. Field ID in the element.
+     */
+    fieldId?: number | null;
+    /**
+     * Optional. Custom key used to match for auto filtering.
+     */
+    requestKey?: string | null;
+  }
+  /**
    * Custom Viewability Metric
    */
   export interface Schema$CustomViewabilityMetric {
@@ -3057,6 +3141,19 @@ export namespace dfareporting_v4 {
      * Serving priority of an ad, with respect to other ads. The lower the priority number, the greater the priority with which it is served.
      */
     priority?: string | null;
+  }
+  /**
+   * Contains dependent field value information.
+   */
+  export interface Schema$DependentFieldValue {
+    /**
+     * Optional. The ID of the element that value's field will match against.
+     */
+    elementId?: string | null;
+    /**
+     * Optional. The field id of the dependent field.
+     */
+    fieldId?: number | null;
   }
   /**
    * Google Ad Manager Settings
@@ -3262,6 +3359,184 @@ export namespace dfareporting_v4 {
     nextPageToken?: string | null;
   }
   /**
+   * Contains dynamic feed information.
+   */
+  export interface Schema$DynamicFeed {
+    /**
+     * Required. The content source of the dynamic feed. This is a required field.
+     */
+    contentSource?: Schema$ContentSource;
+    /**
+     * Output only. The creation timestamp of the dynamic feed. This is a read-only field.
+     */
+    createInfo?: Schema$LastModifiedInfo;
+    /**
+     * Output only. Unique ID of this dynamic feed. This is a read-only, auto-generated field.
+     */
+    dynamicFeedId?: string | null;
+    /**
+     * Optional. Name of this dynamic feed. It is defaulted to content source file name if not provided.
+     */
+    dynamicFeedName?: string | null;
+    /**
+     * Required. The element of the dynamic feed that is to specify the schema of the feed. This is a required field.
+     */
+    element?: Schema$Element;
+    /**
+     * Output only. The ingestion status of the dynamic feed. This is a read-only field.
+     */
+    feedIngestionStatus?: Schema$FeedIngestionStatus;
+    /**
+     * Optional. The schedule of the dynamic feed. It can be set if the feed is published.
+     */
+    feedSchedule?: Schema$FeedSchedule;
+    /**
+     * Output only. Indicates whether the dynamic feed has a published version. This is a read-only field.
+     */
+    hasPublished?: boolean | null;
+    /**
+     * Output only. The last modified timestamp of the dynamic feed. This is a read-only field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Output only. The status of the feed. It is a read-only field that depends on the the feed ingestion status. The default value is INACTIVE, and it will be updated to ACTIVE once the feed is ingested successfully.
+     */
+    status?: string | null;
+    /**
+     * Required. Advertiser ID of this dynamic feed. This is a required field.
+     */
+    studioAdvertiserId?: string | null;
+  }
+  /**
+   * Dynamic profile ID is required for dynamic feed insert as the current GPA API only can create a dynamic feed under profile context,even though the dynnamic feed itself don't need the dynamic profile id. See go/cm3-dco-display-api-interface
+   */
+  export interface Schema$DynamicFeedsInsertRequest {
+    /**
+     * Required. Dynamic feed to insert.
+     */
+    dynamicFeed?: Schema$DynamicFeed;
+    /**
+     * Required. Dynamic profile ID of the inserted dynamic feed.
+     */
+    dynamicProfileId?: string | null;
+  }
+  /**
+   * Contains dynamic profile information.
+   */
+  export interface Schema$DynamicProfile {
+    /**
+     * Optional. Active version of the dynamic profile.
+     */
+    active?: Schema$DynamicProfileVersion;
+    /**
+     * Optional. Archive status of this dynamic profile.
+     */
+    archiveStatus?: string | null;
+    /**
+     * Output only. The creation timestamp of the dynamic profile. This is a read-only field.
+     */
+    createInfo?: Schema$LastModifiedInfo;
+    /**
+     * Optional. Description of this dynamic profile.
+     */
+    description?: string | null;
+    /**
+     * Optional. Draft version of the dynamic profile.
+     */
+    draft?: Schema$DynamicProfileVersion;
+    /**
+     * Output only. Unique ID of this dynamic profile. This is a read-only, auto-generated field.
+     */
+    dynamicProfileId?: string | null;
+    /**
+     * Output only. Identifies what kind of resource this is. Value: the fixed string "dfareporting#dynamicProfile".
+     */
+    kind?: string | null;
+    /**
+     * Output only. The last modified timestamp of the dynamic profile. This is a read-only field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Required. Identifier. Name of this dynamic profile. This is a required field and must be less than 256 characters long.
+     */
+    name?: string | null;
+    /**
+     * Optional. Status of this dynamic profile.
+     */
+    status?: string | null;
+    /**
+     * Required. Advertiser ID of this dynamic profile. This is a required field on insertion.
+     */
+    studioAdvertiserId?: string | null;
+  }
+  /**
+   * Contains dynamic profile specific settings for an associated dynamic feed.
+   */
+  export interface Schema$DynamicProfileFeedSettings {
+    /**
+     * Optional. Dynamic feed ID associated with dynamic profile version.
+     */
+    dynamicFeedId?: string | null;
+    /**
+     * Optional. Dynamic rules for row selection for the given dynamic feed in the given dynamic profile.
+     */
+    dynamicRules?: Schema$DynamicRules;
+    /**
+     * Optional. The number of this dynamic feed rows needed by the dynamic profile, default value is 1. Acceptable values are between 1 to 99, inclusive.
+     */
+    quantity?: number | null;
+  }
+  /**
+   * Contains dynamic profile version information.
+   */
+  export interface Schema$DynamicProfileVersion {
+    /**
+     * Optional. Associated dynamic feeds and their settings (including dynamic rules) for this dynamic profile version.
+     */
+    dynamicProfileFeedSettings?: Schema$DynamicProfileFeedSettings[];
+    /**
+     * Output only. Version ID of this dynamic profile version. This is a read-only, auto-generated field. -1 for draft version, 0+ for published versions.
+     */
+    versionId?: string | null;
+  }
+  /**
+   * Contains dynamic rules information.
+   */
+  export interface Schema$DynamicRules {
+    /**
+     * Optional. List of field IDs in this element that should be auto-targeted. Applicable when rule type is AUTO.
+     */
+    autoTargetedFieldIds?: number[] | null;
+    /**
+     * Optional. The custom rules of the dynamic feed, only applicable when rule type is CUSTOM.
+     */
+    customRules?: Schema$CustomRule[];
+    /**
+     * Optional. Mapping between field ID and custom key that are used to match for auto filtering.
+     */
+    customValueFields?: Schema$CustomValueField[];
+    /**
+     * Optional. The proximity targeting rules of the dynamic feed, only applicable when rule type is PROXIMITY_TARGETING.
+     */
+    proximityFilter?: Schema$ProximityFilter;
+    /**
+     * Optional. The link between an element field ID and a list of user attribute IDs.
+     */
+    remarketingValueAttributes?: Schema$RemarketingValueAttribute[];
+    /**
+     * Optional. The rotation type to select from eligible rows. Rotation type only apply when the filtering rule results in more than one eligible rows.
+     */
+    rotationType?: string | null;
+    /**
+     * Optional. The type of the rule, the default value is OPEN.
+     */
+    ruleType?: string | null;
+    /**
+     * Optional. The field ID for the feed that will be used for weighted rotation, only applicable when rotation type is WEIGHTED.
+     */
+    weightFieldId?: number | null;
+  }
+  /**
    * Contains properties of a dynamic targeting key. Dynamic targeting keys are unique, user-friendly labels, created at the advertiser level in DCM, that can be assigned to ads, creatives, and placements and used for targeting with Studio dynamic creatives. Use these labels instead of numeric Campaign Manager IDs (such as placement IDs) to save time and avoid errors in your dynamic feeds.
    */
   export interface Schema$DynamicTargetingKey {
@@ -3294,6 +3569,59 @@ export namespace dfareporting_v4 {
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#dynamicTargetingKeysListResponse".
      */
     kind?: string | null;
+  }
+  /**
+   * Contains the element of the dynamic feed.
+   */
+  export interface Schema$Element {
+    /**
+     * Optional. The field ID to specify the active field in the feed.
+     */
+    activeFieldId?: number | null;
+    /**
+     * Output only. The creation timestamp of the element. This is a read-only field.
+     */
+    createInfo?: Schema$LastModifiedInfo;
+    /**
+     * Optional. The field ID to specify the field that represents the default field in the feed.
+     */
+    defaultFieldId?: number | null;
+    /**
+     * Optional. The name of the element. It is defaulted to resource file name if not provided.
+     */
+    elementName?: string | null;
+    /**
+     * Optional. The field ID to specify the field that represents the end timestamp. Only applicable if you're planning to use scheduling in your dynamic creative.
+     */
+    endTimestampFieldId?: number | null;
+    /**
+     * Required. The field ID to specify the field used for uniquely identifying the feed row. This is a required field.
+     */
+    externalIdFieldId?: number | null;
+    /**
+     * Required. The list of fields of the element. The field order and name should match the meta data in the content source source.
+     */
+    feedFields?: Schema$FeedField[];
+    /**
+     * Optional. Whether the start and end timestamp is local timestamp. The default value is false which means start and end timestamp is in UTC.
+     */
+    isLocalTimestamp?: boolean | null;
+    /**
+     * Output only. The last modified timestamp of the element. This is a read-only field.
+     */
+    lastModifiedInfo?: Schema$LastModifiedInfo;
+    /**
+     * Optional. The field ID that specify field used for proximity targeting.
+     */
+    proximityTargetingFieldId?: number | null;
+    /**
+     * Required. The field ID to specify the field used for dynamic reporting in Campaign Manager 360.
+     */
+    reportingLabelFieldId?: number | null;
+    /**
+     * Optional. The field ID to specify the field that represents the start timestamp. Only applicable if you're planning to use scheduling in your dynamic creative.
+     */
+    startTimestampFieldId?: number | null;
   }
   /**
    * A description of how user IDs are encrypted.
@@ -3418,6 +3746,139 @@ export namespace dfareporting_v4 {
      * Identifies what kind of resource this is. Value: the fixed string "dfareporting#eventTagsListResponse".
      */
     kind?: string | null;
+  }
+  /**
+   * Each field of the element. This is a required field.
+   */
+  export interface Schema$FeedField {
+    /**
+     * Optional. The default value of the field.
+     */
+    defaultValue?: string | null;
+    /**
+     * Optional. Whether the field is filterable. Could be set as true when the field type is any of the following and is not renderable: - STRING - BOOL - COUNTRY_CODE_ISO - CM360_SITE_ID - CM360_KEYWORD - CM360_CREATIVE_ID - CM360_PLACEMENT_ID - CM360_AD_ID - CM360_ADVERTISER_ID - CM360_CAMPAIGN_ID - CITY - REGION - POSTAL_CODE - METRO - CUSTOM_VALUE - REMARKETING_VALUE - GEO_CANONICAL - STRING_LIST - CREATIVE_DIMENSION - USERLIST_ID - CM360_DYNAMIC_TARGETING_KEY - DV360_LINE_ITEM_ID
+     */
+    filterable?: boolean | null;
+    /**
+     * Required. The ID of the field. The ID is based on the column index starting from 0, and it should match the column index in the resource link.
+     */
+    id?: number | null;
+    /**
+     * Required. The name of the field.
+     */
+    name?: string | null;
+    /**
+     * Optional. Whether the field is able to display. Could be set as true when the field type is not in any of the following and the field is not filterable: - COUNTRY_CODE_ISO - CITY - REGION - POSTAL_CODE - METRO - GEO_CANONICAL - USERLIST_ID - CONTEXTUAL_KEYWORD - CM360_DYNAMIC_TARGETING_KEY - WEIGHT
+     */
+    renderable?: boolean | null;
+    /**
+     * Optional. Whether the field is required and should not be empty in the feed. Could be set as true when the field type is any of the following: - GPA_SERVED_IMAGE_URL - GPA_SERVED_ASSET_URL - ASSET_LIBRARY_HANDLE - ASSET_LIBRARY_VIDEO_HANDLE - ASSET_LIBRARY_DIRECTORY_HANDLE
+     */
+    required?: boolean | null;
+    /**
+     * Required. The type of the field.
+     */
+    type?: string | null;
+  }
+  /**
+   * Contains the ingestion status of the dynamic feed. Feed ingestion is an asynchronous process. If the feed create request is successful, feed ingestion will be processed in the background, including validation, assets retrieval, and saving the data from the resource link. The processing time is dependent on the data size in the resource link. This read-only status field contains the current stage of that processing and its ingestion state.
+   */
+  export interface Schema$FeedIngestionStatus {
+    /**
+     * Output only. The ingestion error records of the feed.
+     */
+    ingestionErrorRecords?: Schema$IngestionErrorRecord[];
+    /**
+     * Output only. The ingestion status of the feed.
+     */
+    ingestionStatus?: Schema$IngestionStatus;
+    /**
+     * Output only. The processing state of the feed.
+     */
+    state?: string | null;
+  }
+  /**
+   * Contains the schedule of the dynamic feed.
+   */
+  export interface Schema$FeedSchedule {
+    /**
+     * Optional. The number of times the feed retransforms within one day. This is a required field if the schedule is enabled. Acceptable values are between 1 to 6, inclusive.
+     */
+    repeatValue?: string | null;
+    /**
+     * Optional. Whether the schedule is enabled.
+     */
+    scheduleEnabled?: boolean | null;
+    /**
+     * Optional. The hour of the day to start the feed. It is applicable if the repeat value is equal to 1. Default value is 0.
+     */
+    startHour?: string | null;
+    /**
+     * Optional. The minute of the hour to start the feed. It is applicable if the repeat value is equal to 1. Default value is 0.
+     */
+    startMinute?: string | null;
+    /**
+     * Optional. The time zone to schedule the feed. It is applicable if the repeat value is equal to 1. Default value is "America/Los_Angeles".
+     */
+    timeZone?: string | null;
+  }
+  /**
+   * Contains the field error of the dynamic feed.
+   */
+  export interface Schema$FieldError {
+    /**
+     * Output only. The ID of the field.
+     */
+    fieldId?: number | null;
+    /**
+     * Output only. The name of the field.
+     */
+    fieldName?: string | null;
+    /**
+     * Output only. The list of values of the field.
+     */
+    fieldValues?: string[] | null;
+    /**
+     * Output only. The ingestion error of the field.
+     */
+    ingestionError?: string | null;
+    /**
+     * Output only. Incidcates whether the field has error or warning.
+     */
+    isError?: boolean | null;
+  }
+  /**
+   * Contains field filter information.
+   */
+  export interface Schema$FieldFilter {
+    /**
+     * Optional. The boolean values, only applicable when rhs_value_type is BOOL.
+     */
+    boolValue?: boolean | null;
+    /**
+     * Optional. The dependent values, only applicable when rhs_value_type is DEPENDENT.
+     */
+    dependentFieldValue?: Schema$DependentFieldValue;
+    /**
+     * Optional. The field ID on the left hand side of the expression.
+     */
+    fieldId?: number | null;
+    /**
+     * Optional. Left hand side of the expression match type.
+     */
+    matchType?: string | null;
+    /**
+     * Optional. The request value, only applicable when rhs_value_type is REQUEST.
+     */
+    requestValue?: Schema$RequestValue;
+    /**
+     * Optional. The string value, only applicable when rhs_value_type is STRING.
+     */
+    stringValue?: string | null;
+    /**
+     * Optional. Right hand side of the expression.
+     */
+    valueType?: string | null;
   }
   /**
    * Represents a File resource. A file contains the metadata for a report run. It shows the status of the run and holds the URLs to the generated report data if the run is finished and the status is "REPORT_AVAILABLE".
@@ -3945,6 +4406,44 @@ export namespace dfareporting_v4 {
      * Regions to be targeted. For each region only dartId is required. The other fields are populated automatically when the ad is inserted or updated. If targeting a region, do not target or exclude the country of the region.
      */
     regions?: Schema$Region[];
+  }
+  /**
+   * Contains the ingestion error record of the dynamic feed. limited to 100 records.
+   */
+  export interface Schema$IngestionErrorRecord {
+    /**
+     * Output only. The list of field errors of the ingestion error record.
+     */
+    errors?: Schema$FieldError[];
+    /**
+     * Output only. The record ID of the ingestion error record.
+     */
+    recordId?: string | null;
+  }
+  /**
+   * Contains the ingestion status of the dynamic feed.
+   */
+  export interface Schema$IngestionStatus {
+    /**
+     * Output only. The number of active rows in the feed.
+     */
+    numActiveRows?: string | null;
+    /**
+     * Output only. The number of rows processed in the feed.
+     */
+    numRowsProcessed?: string | null;
+    /**
+     * Output only. The total number of rows in the feed.
+     */
+    numRowsTotal?: string | null;
+    /**
+     * Output only. The number of rows with errors in the feed.
+     */
+    numRowsWithErrors?: string | null;
+    /**
+     * Output only. The total number of warnings in the feed.
+     */
+    numWarningsTotal?: string | null;
   }
   /**
    * Represents a buy from the Planning inventory store.
@@ -5559,6 +6058,27 @@ export namespace dfareporting_v4 {
     projects?: Schema$Project[];
   }
   /**
+   * Contains proximity filter information.
+   */
+  export interface Schema$ProximityFilter {
+    /**
+     * Optional. Field ID in the element.
+     */
+    fieldId?: number | null;
+    /**
+     * Optional. The radius bucket type of the proximity filter
+     */
+    radiusBucketType?: string | null;
+    /**
+     * Optional. The units of the radius value
+     */
+    radiusUnitType?: string | null;
+    /**
+     * Optional. Radius length in units defined by radius_units.
+     */
+    radiusValue?: number | null;
+  }
+  /**
    * Represents fields that are compatible to be selected for a report of type "REACH".
    */
   export interface Schema$ReachReportCompatibleFields {
@@ -5740,6 +6260,19 @@ export namespace dfareporting_v4 {
      * Remarketing list collection.
      */
     remarketingLists?: Schema$RemarketingList[];
+  }
+  /**
+   * Contains remarketing value attribute information.
+   */
+  export interface Schema$RemarketingValueAttribute {
+    /**
+     * Optional. Field ID in the element.
+     */
+    fieldId?: number | null;
+    /**
+     * Optional. Remarketing user attribute IDs for auto filtering.
+     */
+    userAttributeIds?: string[] | null;
   }
   /**
    * Represents a Report resource.
@@ -5961,6 +6494,23 @@ export namespace dfareporting_v4 {
     reportGenerationTimeZoneId?: string | null;
   }
   /**
+   * Contains request value information.
+   */
+  export interface Schema$RequestValue {
+    /**
+     * Optional. User attribute IDs in the request that should be excluded. Used only when the field type is REMARKETING_VALUE or USER_ATTRIBUTE_ID.
+     */
+    excludeFromUserAttributeIds?: string[] | null;
+    /**
+     * Optional. Custom key in the request. Used only when the field type is CUSTOM_VALUE.
+     */
+    key?: string | null;
+    /**
+     * Optional. User attribute IDs in the request. Used only when the field type is REMARKETING_VALUE or USER_ATTRIBUTE_ID.
+     */
+    userAttributeIds?: string[] | null;
+  }
+  /**
    * Rich Media Exit Override.
    */
   export interface Schema$RichMediaExitOverride {
@@ -5993,6 +6543,15 @@ export namespace dfareporting_v4 {
      * A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
      */
     targetingTemplateId?: string | null;
+  }
+  /**
+   * Contains a list of field filters that the given custom rule will apply.
+   */
+  export interface Schema$RuleBlock {
+    /**
+     * Optional. A list of non-auto field filters
+     */
+    fieldFilter?: Schema$FieldFilter[];
   }
   /**
    * Contains properties of a site.
@@ -23977,6 +24536,825 @@ export namespace dfareporting_v4 {
      * Order of sorted results.
      */
     sortOrder?: string;
+  }
+
+  export class Resource$Dynamicfeeds {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a dynamic feed by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicFeeds.get({
+     *     // Required. Dynamic feed ID.
+     *     dynamicFeedId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSource": {},
+     *   //   "createInfo": {},
+     *   //   "dynamicFeedId": "my_dynamicFeedId",
+     *   //   "dynamicFeedName": "my_dynamicFeedName",
+     *   //   "element": {},
+     *   //   "feedIngestionStatus": {},
+     *   //   "feedSchedule": {},
+     *   //   "hasPublished": false,
+     *   //   "lastModifiedInfo": {},
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Dynamicfeeds$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Dynamicfeeds$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>;
+    get(
+      params: Params$Resource$Dynamicfeeds$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Dynamicfeeds$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicFeed>,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    get(
+      params: Params$Resource$Dynamicfeeds$Get,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DynamicFeed>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicfeeds$Get
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback || {}) as Params$Resource$Dynamicfeeds$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicfeeds$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/dfareporting/v4/studio/dynamicFeeds/{+dynamicFeedId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dynamicFeedId'],
+        pathParams: ['dynamicFeedId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicFeed>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicFeed>(parameters);
+      }
+    }
+
+    /**
+     * Inserts a new dynamic feed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicFeeds.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "dynamicFeed": {},
+     *       //   "dynamicProfileId": "my_dynamicProfileId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "contentSource": {},
+     *   //   "createInfo": {},
+     *   //   "dynamicFeedId": "my_dynamicFeedId",
+     *   //   "dynamicFeedName": "my_dynamicFeedName",
+     *   //   "element": {},
+     *   //   "feedIngestionStatus": {},
+     *   //   "feedSchedule": {},
+     *   //   "hasPublished": false,
+     *   //   "lastModifiedInfo": {},
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Dynamicfeeds$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Dynamicfeeds$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>;
+    insert(
+      params: Params$Resource$Dynamicfeeds$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Dynamicfeeds$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicFeed>,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    insert(
+      params: Params$Resource$Dynamicfeeds$Insert,
+      callback: BodyResponseCallback<Schema$DynamicFeed>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$DynamicFeed>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicfeeds$Insert
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicFeed>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicFeed>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicfeeds$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicfeeds$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v4/studio/dynamicFeeds').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicFeed>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicFeed>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Dynamicfeeds$Get extends StandardParameters {
+    /**
+     * Required. Dynamic feed ID.
+     */
+    dynamicFeedId?: string;
+  }
+  export interface Params$Resource$Dynamicfeeds$Insert
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DynamicFeedsInsertRequest;
+  }
+
+  export class Resource$Dynamicprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets a dynamic profile by ID.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicProfiles.get({
+     *     // Required. Dynamic profile ID.
+     *     dynamicProfileId: '[^/]+',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": {},
+     *   //   "archiveStatus": "my_archiveStatus",
+     *   //   "createInfo": {},
+     *   //   "description": "my_description",
+     *   //   "draft": {},
+     *   //   "dynamicProfileId": "my_dynamicProfileId",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Dynamicprofiles$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Dynamicprofiles$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>;
+    get(
+      params: Params$Resource$Dynamicprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Dynamicprofiles$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicProfile>,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    get(
+      params: Params$Resource$Dynamicprofiles$Get,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DynamicProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicprofiles$Get
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/dfareporting/v4/studio/dynamicProfiles/{+dynamicProfileId}'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['dynamicProfileId'],
+        pathParams: ['dynamicProfileId'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicProfile>(parameters);
+      }
+    }
+
+    /**
+     * Inserts a new dynamic profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicProfiles.insert({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": {},
+     *       //   "archiveStatus": "my_archiveStatus",
+     *       //   "createInfo": {},
+     *       //   "description": "my_description",
+     *       //   "draft": {},
+     *       //   "dynamicProfileId": "my_dynamicProfileId",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "status": "my_status",
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": {},
+     *   //   "archiveStatus": "my_archiveStatus",
+     *   //   "createInfo": {},
+     *   //   "description": "my_description",
+     *   //   "draft": {},
+     *   //   "dynamicProfileId": "my_dynamicProfileId",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    insert(
+      params: Params$Resource$Dynamicprofiles$Insert,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    insert(
+      params?: Params$Resource$Dynamicprofiles$Insert,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>;
+    insert(
+      params: Params$Resource$Dynamicprofiles$Insert,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    insert(
+      params: Params$Resource$Dynamicprofiles$Insert,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicProfile>,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    insert(
+      params: Params$Resource$Dynamicprofiles$Insert,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    insert(callback: BodyResponseCallback<Schema$DynamicProfile>): void;
+    insert(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicprofiles$Insert
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicprofiles$Insert;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicprofiles$Insert;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v4/studio/dynamicProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicProfile>(parameters);
+      }
+    }
+
+    /**
+     * Updates an existing dynamic profile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const dfareporting = google.dfareporting('v4');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await dfareporting.dynamicProfiles.update({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "active": {},
+     *       //   "archiveStatus": "my_archiveStatus",
+     *       //   "createInfo": {},
+     *       //   "description": "my_description",
+     *       //   "draft": {},
+     *       //   "dynamicProfileId": "my_dynamicProfileId",
+     *       //   "kind": "my_kind",
+     *       //   "lastModifiedInfo": {},
+     *       //   "name": "my_name",
+     *       //   "status": "my_status",
+     *       //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "active": {},
+     *   //   "archiveStatus": "my_archiveStatus",
+     *   //   "createInfo": {},
+     *   //   "description": "my_description",
+     *   //   "draft": {},
+     *   //   "dynamicProfileId": "my_dynamicProfileId",
+     *   //   "kind": "my_kind",
+     *   //   "lastModifiedInfo": {},
+     *   //   "name": "my_name",
+     *   //   "status": "my_status",
+     *   //   "studioAdvertiserId": "my_studioAdvertiserId"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    update(
+      params: Params$Resource$Dynamicprofiles$Update,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    update(
+      params?: Params$Resource$Dynamicprofiles$Update,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>;
+    update(
+      params: Params$Resource$Dynamicprofiles$Update,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    update(
+      params: Params$Resource$Dynamicprofiles$Update,
+      options: MethodOptions | BodyResponseCallback<Schema$DynamicProfile>,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    update(
+      params: Params$Resource$Dynamicprofiles$Update,
+      callback: BodyResponseCallback<Schema$DynamicProfile>
+    ): void;
+    update(callback: BodyResponseCallback<Schema$DynamicProfile>): void;
+    update(
+      paramsOrCallback?:
+        | Params$Resource$Dynamicprofiles$Update
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DynamicProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DynamicProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Dynamicprofiles$Update;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Dynamicprofiles$Update;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/dfareporting/v4/studio/dynamicProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'PUT',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DynamicProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DynamicProfile>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Dynamicprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Dynamic profile ID.
+     */
+    dynamicProfileId?: string;
+  }
+  export interface Params$Resource$Dynamicprofiles$Insert
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DynamicProfile;
+  }
+  export interface Params$Resource$Dynamicprofiles$Update
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DynamicProfile;
   }
 
   export class Resource$Dynamictargetingkeys {

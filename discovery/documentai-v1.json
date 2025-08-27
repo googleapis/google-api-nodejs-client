@@ -198,7 +198,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1048,9 +1048,190 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250820",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
+      "description": "Definition of the validation rules. Those are the input to the validator logic and they are used to validate a document.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput",
+      "properties": {
+        "validationRules": {
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRule",
+      "properties": {
+        "description": {
+          "description": "Description of the validation rule. This has no use but for documentation",
+          "type": "string"
+        },
+        "fieldOccurrences": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences"
+        },
+        "fieldRegex": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex"
+        },
+        "formValidation": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation"
+        },
+        "name": {
+          "description": "Name of the validation rule.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant": {
+      "description": "The constant value used in the validation rules.",
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant",
+      "properties": {
+        "floatValue": {
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField",
+      "properties": {
+        "defaultValue": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant",
+          "description": "Default value to use if the field is not present. If the field is missing and the default value is not set, the validation run as if the field is not present in the validation logic."
+        },
+        "fieldName": {
+          "description": "The field name to validate. This can be a simple field name or a nested field one using the ':' (meant as an aggregator) or '*' (meant as foreach) operators.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldOccurrences",
+      "properties": {
+        "field": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+        },
+        "maxOccurrences": {
+          "format": "uint32",
+          "type": "integer"
+        },
+        "minOccurrences": {
+          "description": "Min and max occurrences of the field. If not set, there is limit set. The defined interval is a closed-closed interval, i.e. [min, max].",
+          "format": "uint32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFieldRegex",
+      "properties": {
+        "field": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+        },
+        "pattern": {
+          "description": "Python regex to validate the field values.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidation",
+      "properties": {
+        "leftOperand": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+        },
+        "rightOperand": {
+          "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+        },
+        "validationOperator": {
+          "description": "The relational operator to be applied to the operands.",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPERATION_TYPE_EQ",
+            "OPERATION_TYPE_NE",
+            "OPERATION_TYPE_LT",
+            "OPERATION_TYPE_LE",
+            "OPERATION_TYPE_GT",
+            "OPERATION_TYPE_GE"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation": {
+      "id": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation",
+      "properties": {
+        "constants": {
+          "description": "A list of constants to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleConstant"
+          },
+          "type": "array"
+        },
+        "fields": {
+          "description": "A list of fields to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleField"
+          },
+          "type": "array"
+        },
+        "operationType": {
+          "description": "The operation type to be applied to all the operands.",
+          "enum": [
+            "OPERATION_TYPE_UNSPECIFIED",
+            "OPERATION_TYPE_SUM",
+            "OPERATION_TYPE_SUB",
+            "OPERATION_TYPE_MUL",
+            "OPERATION_TYPE_DIV",
+            "OPERATION_TYPE_MAX",
+            "OPERATION_TYPE_MIN",
+            "OPERATION_TYPE_ABS",
+            "OPERATION_TYPE_UNIQUE",
+            "OPERATION_TYPE_COUNT"
+          ],
+          "enumDescriptions": [
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            "",
+            ""
+          ],
+          "type": "string"
+        },
+        "operations": {
+          "description": "A list of recursive operations to be used as operands.",
+          "items": {
+            "$ref": "CloudAiDocumentaiLabHifiaToolsValidationValidatorInputValidationRuleFormValidationOperation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata": {
       "description": "Metadata of the auto-labeling documents operation.",
       "id": "GoogleCloudDocumentaiUiv1beta3AutoLabelDocumentsMetadata",
@@ -2605,6 +2786,20 @@
         },
         "mentionText": {
           "description": "Optional. Text value of the entity e.g. `1600 Amphitheatre Pkwy`.",
+          "type": "string"
+        },
+        "method": {
+          "description": "Optional. Specifies how the entity's value is obtained.",
+          "enum": [
+            "METHOD_UNSPECIFIED",
+            "EXTRACT",
+            "DERIVE"
+          ],
+          "enumDescriptions": [
+            "When the method is not specified, it should be treated as `EXTRACT`.",
+            "The entity's value is directly extracted as-is from the document text.",
+            "The entity's value is derived through inference and is not necessarily an exact text extraction from the document."
+          ],
           "type": "string"
         },
         "normalizedValue": {

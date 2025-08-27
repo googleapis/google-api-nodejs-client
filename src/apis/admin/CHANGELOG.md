@@ -1,5 +1,41 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v26.0.0...admin-v27.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.2.0...admin-v26.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+## [25.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.1.1...admin-v25.2.0) (2025-08-13)
+
+
+### Features
+
+* **admin:** update the API ([90a0c33](https://github.com/googleapis/google-api-nodejs-client/commit/90a0c3383e2425b5f0bde9ab48e10d231ca067d4))
+
+## [25.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.1.0...admin-v25.1.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [25.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/admin-v25.0.1...admin-v25.1.0) (2025-07-15)
 
 

@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250819",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1336,8 +1336,26 @@
           "readOnly": true,
           "type": "string"
         },
+        "lastBackupTime": {
+          "description": "Output only. The last time a backup was created in the backup collection.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
         "name": {
           "description": "Identifier. Full resource path of the backup collection.",
+          "type": "string"
+        },
+        "totalBackupCount": {
+          "description": "Output only. Total number of backups in the backup collection.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "totalBackupSizeBytes": {
+          "description": "Output only. Total size of all backups in the backup collection.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "uid": {
@@ -1363,6 +1381,49 @@
         "pointInTimeRecoveryEnabled": {
           "description": "Whether point-in-time recovery is enabled. This is optional field, if the database service does not have this feature or metadata is not available in control plane, this can be omitted.",
           "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupDRConfiguration": {
+      "description": "BackupDRConfiguration to capture the backup and disaster recovery details of database resource.",
+      "id": "BackupDRConfiguration",
+      "properties": {
+        "backupdrManaged": {
+          "description": "Indicates if the resource is managed by BackupDR.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "BackupDRMetadata": {
+      "description": "BackupDRMetadata contains information about the backup and disaster recovery metadata of a database resource.",
+      "id": "BackupDRMetadata",
+      "properties": {
+        "backupConfiguration": {
+          "$ref": "BackupConfiguration",
+          "description": "Backup configuration for this instance."
+        },
+        "backupRun": {
+          "$ref": "BackupRun",
+          "description": "Latest backup run information for this instance."
+        },
+        "backupdrConfiguration": {
+          "$ref": "BackupDRConfiguration",
+          "description": "BackupDR configuration for this instance."
+        },
+        "fullResourceName": {
+          "description": "Required. Full resource name of this instance.",
+          "type": "string"
+        },
+        "lastRefreshTime": {
+          "description": "Required. Last time backup configuration was refreshed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resourceId": {
+          "$ref": "DatabaseResourceId",
+          "description": "Required. Database resource id."
         }
       },
       "type": "object"
@@ -1614,6 +1675,16 @@
           "description": "Optional. The number of replica nodes per shard.",
           "format": "int32",
           "type": "integer"
+        },
+        "satisfiesPzi": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "satisfiesPzs": {
+          "description": "Optional. Output only. Reserved for future use.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "shardCount": {
           "description": "Optional. Number of shards for the Redis cluster.",
@@ -1940,9 +2011,13 @@
       "type": "object"
     },
     "DatabaseResourceFeed": {
-      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 9",
+      "description": "DatabaseResourceFeed is the top level proto to be used to ingest different database resource level events into Condor platform. Next ID: 11",
       "id": "DatabaseResourceFeed",
       "properties": {
+        "backupdrMetadata": {
+          "$ref": "BackupDRMetadata",
+          "description": "BackupDR metadata is used to ingest metadata from BackupDR."
+        },
         "configBasedSignalData": {
           "$ref": "ConfigBasedSignalData",
           "description": "Config based signal data is used to ingest signals that are generated based on the configuration of the database resource."
@@ -1960,7 +2035,8 @@
             "OBSERVABILITY_DATA",
             "SECURITY_FINDING_DATA",
             "RECOMMENDATION_SIGNAL_DATA",
-            "CONFIG_BASED_SIGNAL_DATA"
+            "CONFIG_BASED_SIGNAL_DATA",
+            "BACKUPDR_METADATA"
           ],
           "enumDescriptions": [
             "",
@@ -1968,7 +2044,8 @@
             "Database resource monitoring data",
             "Database resource security health signal data",
             "Database resource recommendation signal data",
-            "Database config based signal data"
+            "Database config based signal data",
+            "Database resource metadata from BackupDR"
           ],
           "type": "string"
         },
@@ -1988,6 +2065,10 @@
         },
         "resourceMetadata": {
           "$ref": "DatabaseResourceMetadata"
+        },
+        "skipIngestion": {
+          "description": "Optional. If true, the feed won't be ingested by DB Center. This indicates that the feed is intentionally skipped. For example, BackupDR feeds are only needed for resources integrated with DB Center (e.g., CloudSQL, AlloyDB). Feeds for non-integrated resources (e.g., Compute Engine, Persistent Disk) can be skipped.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -2203,7 +2284,12 @@
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
             "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION"
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_VERSION",
+            "SIGNAL_TYPE_OUTDATED_CLIENT"
           ],
           "enumDeprecated": [
             false,
@@ -2212,6 +2298,11 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -2401,7 +2492,12 @@
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
             "Location org policy not satisfied.",
-            "Outdated DB minor version."
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections.",
+            "Replication delay.",
+            "Outdated version.",
+            "Outdated client."
           ],
           "type": "string"
         },
@@ -2465,7 +2561,7 @@
       "type": "object"
     },
     "DatabaseResourceMetadata": {
-      "description": "Common model for database resource instance metadata. Next ID: 25",
+      "description": "Common model for database resource instance metadata. Next ID: 26",
       "id": "DatabaseResourceMetadata",
       "properties": {
         "availabilityConfiguration": {
@@ -2479,6 +2575,10 @@
         "backupRun": {
           "$ref": "BackupRun",
           "description": "Latest backup run information for this instance"
+        },
+        "backupdrConfiguration": {
+          "$ref": "BackupDRConfiguration",
+          "description": "Optional. BackupDR Configuration for the resource."
         },
         "creationTime": {
           "description": "The creation time of the resource, i.e. the time when resource is created and recorded in partner service.",
@@ -2552,6 +2652,7 @@
         },
         "gcbdrConfiguration": {
           "$ref": "GCBDRConfiguration",
+          "deprecated": true,
           "description": "GCBDR configuration for the resource."
         },
         "id": {
@@ -2819,7 +2920,12 @@
             "SIGNAL_TYPE_HIGH_READ_PRESSURE",
             "SIGNAL_TYPE_ENCRYPTION_ORG_POLICY_NOT_SATISFIED",
             "SIGNAL_TYPE_LOCATION_ORG_POLICY_NOT_SATISFIED",
-            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION"
+            "SIGNAL_TYPE_OUTDATED_MINOR_VERSION",
+            "SIGNAL_TYPE_SCHEMA_NOT_OPTIMIZED",
+            "SIGNAL_TYPE_MANY_IDLE_CONNECTIONS",
+            "SIGNAL_TYPE_REPLICATION_LAG",
+            "SIGNAL_TYPE_OUTDATED_VERSION",
+            "SIGNAL_TYPE_OUTDATED_CLIENT"
           ],
           "enumDeprecated": [
             false,
@@ -2828,6 +2934,11 @@
             true,
             true,
             true,
+            false,
+            false,
+            false,
+            false,
+            false,
             false,
             false,
             false,
@@ -3017,7 +3128,12 @@
             "Heavy read pressure on the database rows.",
             "Encryption org policy not satisfied.",
             "Location org policy not satisfied.",
-            "Outdated DB minor version."
+            "Outdated DB minor version.",
+            "Schema not optimized.",
+            "High number of idle connections.",
+            "Replication delay.",
+            "Outdated version.",
+            "Outdated client."
           ],
           "type": "string"
         }
@@ -4230,6 +4346,7 @@
             "ENGINE_OTHER",
             "ENGINE_FIRESTORE_WITH_NATIVE_MODE",
             "ENGINE_FIRESTORE_WITH_DATASTORE_MODE",
+            "ENGINE_FIRESTORE_WITH_MONGODB_COMPATIBILITY_MODE",
             "ENGINE_EXADATA_ORACLE",
             "ENGINE_ADB_SERVERLESS_ORACLE"
           ],
@@ -4243,6 +4360,7 @@
             true,
             false,
             true,
+            false,
             false,
             false,
             false,
@@ -4270,6 +4388,7 @@
             "Other refers to rest of other database engine. This is to be when engine is known, but it is not present in this enum.",
             "Firestore with native mode.",
             "Firestore with datastore mode.",
+            "Firestore with MongoDB compatibility mode.",
             "Oracle Exadata engine.",
             "Oracle Autonomous DB Serverless engine."
           ],

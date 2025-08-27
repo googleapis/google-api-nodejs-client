@@ -306,11 +306,15 @@ export namespace networksecurity_v1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleFromRequestSource {
     /**
-     * Optional. A list of IPs or CIDRs to match against the source IP of a request. Limited to 5 ip_blocks.
+     * Optional. A list of IP addresses or IP address ranges to match against the source IP address of the request. Limited to 10 ip_blocks per Authorization Policy
      */
     ipBlocks?: Schema$AuthzPolicyAuthzRuleIpBlock[];
     /**
-     * Optional. A list of resources to match against the resource of the source VM of a request. Limited to 5 resources.
+     * Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for Regional Internal Application Load Balancer, Regional External Application Load Balancer, Cross-region Internal Application Load Balancer, and Cloud Service Mesh. Limited to 25 principals per Authorization Policy for Global External Application Load Balancer.
+     */
+    principals?: Schema$AuthzPolicyAuthzRulePrincipal[];
+    /**
+     * Optional. A list of resources to match against the resource of the source VM of a request. Limited to 10 resources per Authorization Policy.
      */
     resources?: Schema$AuthzPolicyAuthzRuleRequestResource[];
   }
@@ -341,6 +345,19 @@ export namespace networksecurity_v1 {
     prefix?: string | null;
   }
   /**
+   * Describes the properties of a principal to be matched against.
+   */
+  export interface Schema$AuthzPolicyAuthzRulePrincipal {
+    /**
+     * Required. A non-empty string whose value is matched against the principal value based on the principal_selector. Only exact match can be applied for CLIENT_CERT_URI_SAN, CLIENT_CERT_DNS_NAME_SAN, CLIENT_CERT_COMMON_NAME selectors.
+     */
+    principal?: Schema$AuthzPolicyAuthzRuleStringMatch;
+    /**
+     * Optional. An enum to decide what principal value the principal rule will match against. If not specified, the PrincipalSelector is CLIENT_CERT_URI_SAN.
+     */
+    principalSelector?: string | null;
+  }
+  /**
    * Describes the properties of a client VM resource accessing the internal application load balancers.
    */
   export interface Schema$AuthzPolicyAuthzRuleRequestResource {
@@ -358,7 +375,7 @@ export namespace networksecurity_v1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleRequestResourceTagValueIdSet {
     /**
-     * Required. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request. The match follows AND semantics which means all the ids must match. Limited to 5 matches.
+     * Required. A list of resource tag value permanent IDs to match against the resource manager tags value associated with the source VM of a request. The match follows AND semantics which means all the ids must match. Limited to 5 ids in the Tag value id set.
      */
     ids?: string[] | null;
   }
@@ -409,15 +426,15 @@ export namespace networksecurity_v1 {
      */
     headerSet?: Schema$AuthzPolicyAuthzRuleToRequestOperationHeaderSet;
     /**
-     * Optional. A list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.
+     * Optional. A list of HTTP Hosts to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 10 hosts per Authorization Policy.
      */
     hosts?: Schema$AuthzPolicyAuthzRuleStringMatch[];
     /**
-     * Optional. A list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive.
+     * Optional. A list of HTTP methods to match against. Each entry must be a valid HTTP method name (GET, PUT, POST, HEAD, PATCH, DELETE, OPTIONS). It only allows exact match and is always case sensitive. Limited to 10 methods per Authorization Policy.
      */
     methods?: string[] | null;
     /**
-     * Optional. A list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
+     * Optional. A list of paths to match against. The match can be one of exact, prefix, suffix, or contains (substring match). Matches are always case sensitive unless the ignoreCase is set. Limited to 10 paths per Authorization Policy. Note that this path match includes the query parameters. For gRPC services, this should be a fully-qualified name of the form /package.service/method.
      */
     paths?: Schema$AuthzPolicyAuthzRuleStringMatch[];
   }
@@ -426,7 +443,7 @@ export namespace networksecurity_v1 {
    */
   export interface Schema$AuthzPolicyAuthzRuleToRequestOperationHeaderSet {
     /**
-     * Required. A list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set. Limited to 5 matches.
+     * Required. A list of headers to match against in http header. The match can be one of exact, prefix, suffix, or contains (substring match). The match follows AND semantics which means all the headers must match. Matches are always case sensitive unless the ignoreCase is set. Limited to 10 headers per Authorization Policy.
      */
     headers?: Schema$AuthzPolicyAuthzRuleHeaderMatch[];
   }
@@ -470,7 +487,7 @@ export namespace networksecurity_v1 {
     resources?: string[] | null;
   }
   /**
-   * BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer’s BackendService directly determining how that BackendService negotiates TLS.
+   * BackendAuthenticationConfig message groups the TrustConfig together with other settings that control how the load balancer authenticates, and expresses its identity to, the backend: * `trustConfig` is the attached TrustConfig. * `wellKnownRoots` indicates whether the load balance should trust backend server certificates that are issued by public certificate authorities, in addition to certificates trusted by the TrustConfig. * `clientCertificate` is a client certificate that the load balancer uses to express its identity to the backend, if the connection to the backend uses mTLS. You can attach the BackendAuthenticationConfig to the load balancer's BackendService directly determining how that BackendService negotiates TLS.
    */
   export interface Schema$BackendAuthenticationConfig {
     /**
@@ -544,7 +561,7 @@ export namespace networksecurity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      */
     name?: string | null;
     /**
@@ -638,7 +655,7 @@ export namespace networksecurity_v1 {
     title?: string | null;
   }
   /**
-   * Message describing Endpoint object
+   * Message describing Endpoint object.
    */
   export interface Schema$FirewallEndpoint {
     /**
@@ -654,7 +671,7 @@ export namespace networksecurity_v1 {
      */
     billingProjectId?: string | null;
     /**
-     * Output only. Create time stamp
+     * Output only. Create time stamp.
      */
     createTime?: string | null;
     /**
@@ -666,7 +683,7 @@ export namespace networksecurity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. Name of resource.
      */
     name?: string | null;
     /**
@@ -4476,7 +4493,7 @@ export namespace networksecurity_v1 {
      *   // Do the magic
      *   const res =
      *     await networksecurity.organizations.locations.firewallEndpoints.patch({
-     *       // Immutable. Identifier. name of resource
+     *       // Immutable. Identifier. Name of resource.
      *       name: 'organizations/my-organization/locations/my-location/firewallEndpoints/my-firewallEndpoint',
      *       // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *       requestId: 'placeholder-value',
@@ -4673,7 +4690,7 @@ export namespace networksecurity_v1 {
   export interface Params$Resource$Organizations$Locations$Firewallendpoints$Patch
     extends StandardParameters {
     /**
-     * Immutable. Identifier. name of resource
+     * Immutable. Identifier. Name of resource.
      */
     name?: string;
     /**
@@ -13691,7 +13708,7 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.clientTlsPolicies.patch({
-     *     // Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     *     // Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      *     name: 'projects/my-project/locations/my-location/clientTlsPolicies/my-clientTlsPolicie',
      *     // Optional. Field mask is used to specify the fields to be overwritten in the ClientTlsPolicy resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
      *     updateMask: 'placeholder-value',
@@ -14193,7 +14210,7 @@ export namespace networksecurity_v1 {
   export interface Params$Resource$Projects$Locations$Clienttlspolicies$Patch
     extends StandardParameters {
     /**
-     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/x/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
+     * Required. Name of the ClientTlsPolicy resource. It matches the pattern `projects/{project\}/locations/{location\}/clientTlsPolicies/{client_tls_policy\}`
      */
     name?: string;
     /**

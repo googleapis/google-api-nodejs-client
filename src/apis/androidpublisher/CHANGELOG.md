@@ -1,5 +1,37 @@
 # Changelog
 
+## [30.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.4.0...androidpublisher-v30.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+## [29.4.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.3.1...androidpublisher-v29.4.0) (2025-08-13)
+
+
+### Features
+
+* **androidpublisher:** update the API ([29056f6](https://github.com/googleapis/google-api-nodejs-client/commit/29056f618a2346325b0319718c5ca3eddf8618bd))
+
+## [29.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.3.0...androidpublisher-v29.3.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [29.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.2.0...androidpublisher-v29.3.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [29.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/androidpublisher-v29.1.0...androidpublisher-v29.2.0) (2025-07-15)
 
 

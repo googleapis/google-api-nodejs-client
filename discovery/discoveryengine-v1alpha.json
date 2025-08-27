@@ -137,45 +137,42 @@
   "resources": {
     "media": {
       "methods": {
-        "upload": {
-          "description": "Uploads a file for Notebook LM to use. Creates a Source.",
-          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:uploadFile",
-          "httpMethod": "POST",
-          "id": "discoveryengine.media.upload",
-          "mediaUpload": {
-            "accept": [
-              "*/*"
-            ],
-            "protocols": {
-              "simple": {
-                "multipart": true,
-                "path": "/upload/v1alpha/{+parent}/sources:uploadFile"
-              }
-            }
-          },
+        "download": {
+          "description": "Downloads a file from the session.",
+          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}:downloadFile",
+          "httpMethod": "GET",
+          "id": "discoveryengine.media.download",
           "parameterOrder": [
-            "parent"
+            "name"
           ],
           "parameters": {
-            "parent": {
-              "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+            "fileId": {
+              "description": "Required. The ID of the file to be downloaded.",
+              "location": "query",
+              "type": "string"
+            },
+            "name": {
+              "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}`",
               "location": "path",
-              "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
               "required": true,
+              "type": "string"
+            },
+            "viewId": {
+              "description": "Optional. The ID of the view to be downloaded.",
+              "location": "query",
               "type": "string"
             }
           },
-          "path": "v1alpha/{+parent}/sources:uploadFile",
-          "request": {
-            "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileRequest"
-          },
+          "path": "v1alpha/{+name}:downloadFile",
           "response": {
-            "$ref": "GoogleCloudNotebooklmV1alphaUploadSourceFileResponse"
+            "$ref": "GdataMedia"
           },
           "scopes": [
             "https://www.googleapis.com/auth/cloud-platform"
           ],
-          "supportsMediaUpload": true
+          "supportsMediaDownload": true,
+          "useMediaDownloadService": true
         }
       }
     },
@@ -3023,12 +3020,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                               "location": "query",
                               "type": "string"
                             },
@@ -4218,8 +4215,99 @@
                     }
                   },
                   "resources": {
+                    "analytics": {
+                      "methods": {
+                        "exportMetrics": {
+                          "description": "Exports metrics.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/analytics:exportMetrics",
+                          "httpMethod": "POST",
+                          "id": "discoveryengine.projects.locations.collections.engines.analytics.exportMetrics",
+                          "parameterOrder": [
+                            "analytics"
+                          ],
+                          "parameters": {
+                            "analytics": {
+                              "description": "Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/analytics`.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/analytics$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+analytics}:exportMetrics",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest"
+                          },
+                          "response": {
+                            "$ref": "GoogleLongrunningOperation"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        }
+                      }
+                    },
                     "assistants": {
                       "methods": {
+                        "get": {
+                          "description": "Gets an Assistant.",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
+                          "httpMethod": "GET",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.get",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Required. Resource name of Assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}`",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
+                        "patch": {
+                          "description": "Updates an Assistant",
+                          "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}",
+                          "httpMethod": "PATCH",
+                          "id": "discoveryengine.projects.locations.collections.engines.assistants.patch",
+                          "parameterOrder": [
+                            "name"
+                          ],
+                          "parameters": {
+                            "name": {
+                              "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                              "location": "path",
+                              "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/assistants/[^/]+$",
+                              "required": true,
+                              "type": "string"
+                            },
+                            "updateMask": {
+                              "description": "The list of fields to update.",
+                              "format": "google-fieldmask",
+                              "location": "query",
+                              "type": "string"
+                            }
+                          },
+                          "path": "v1alpha/{+name}",
+                          "request": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "response": {
+                            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistant"
+                          },
+                          "scopes": [
+                            "https://www.googleapis.com/auth/cloud-platform"
+                          ]
+                        },
                         "streamAssist": {
                           "description": "Assists the user with a query in a streaming fashion.",
                           "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/assistants/{assistantsId}:streamAssist",
@@ -5067,12 +5155,12 @@
                           ],
                           "parameters": {
                             "filter": {
-                              "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                              "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                               "location": "query",
                               "type": "string"
                             },
                             "orderBy": {
-                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                              "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                               "location": "query",
                               "type": "string"
                             },
@@ -5161,6 +5249,56 @@
                               "path": "v1alpha/{+name}",
                               "response": {
                                 "$ref": "GoogleCloudDiscoveryengineV1alphaAnswer"
+                              },
+                              "scopes": [
+                                "https://www.googleapis.com/auth/cloud-platform"
+                              ]
+                            }
+                          }
+                        },
+                        "files": {
+                          "methods": {
+                            "list": {
+                              "description": "Lists metadata for all files in the current session.",
+                              "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/collections/{collectionsId}/engines/{enginesId}/sessions/{sessionsId}/files",
+                              "httpMethod": "GET",
+                              "id": "discoveryengine.projects.locations.collections.engines.sessions.files.list",
+                              "parameterOrder": [
+                                "parent"
+                              ],
+                              "parameters": {
+                                "filter": {
+                                  "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * \"file_name = 'file_1'\" * \"file_name = 'file_1' AND mime_type = 'text/plain'\" * \"last_use_time > '2025-06-14T12:00:00Z'\" For a full description of the filter format, please see https://google.aip.dev/160.",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "orderBy": {
+                                  "description": "Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "pageSize": {
+                                  "description": "Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.",
+                                  "format": "int32",
+                                  "location": "query",
+                                  "type": "integer"
+                                },
+                                "pageToken": {
+                                  "description": "Optional. A page token received from a previous `ListFiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFiles` must match the call that provided the page token (except `page_size`, which may differ).",
+                                  "location": "query",
+                                  "type": "string"
+                                },
+                                "parent": {
+                                  "description": "Required. The resource name of the Session. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}` Name of the session resource to which the file belong.",
+                                  "location": "path",
+                                  "pattern": "^projects/[^/]+/locations/[^/]+/collections/[^/]+/engines/[^/]+/sessions/[^/]+$",
+                                  "required": true,
+                                  "type": "string"
+                                }
+                              },
+                              "path": "v1alpha/{+parent}/files",
+                              "response": {
+                                "$ref": "GoogleCloudDiscoveryengineV1alphaListFilesResponse"
                               },
                               "scopes": [
                                 "https://www.googleapis.com/auth/cloud-platform"
@@ -7161,12 +7299,12 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+                          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+                          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
                           "location": "query",
                           "type": "string"
                         },
@@ -7916,13 +8054,13 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     },
@@ -7959,13 +8097,13 @@
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
                     },
                     "pageToken": {
-                      "description": "A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
+                      "description": "Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.",
                       "location": "query",
                       "type": "string"
                     }
@@ -8341,9 +8479,75 @@
               }
             },
             "notebooks": {
+              "methods": {
+                "listRecentlyViewed": {
+                  "description": "Lists the recently viewed notebooks. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:listRecentlyViewed",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.notebooks.listRecentlyViewed",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. Maximum number of Notebooks to return. If unspecified, defaults to \"200\". The maximum allowed value is \"500\". If this field is negative, will use the default value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The page token, provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/notebooks:listRecentlyViewed",
+                  "response": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "sources": {
                   "methods": {
+                    "batchCreate": {
+                      "description": "Creates a list of Sources.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:batchCreate",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.notebooks.sources.batchCreate",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where the sources will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/sources:batchCreate",
+                      "request": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "uploadFile": {
                       "description": "Uploads a file for Notebook LM to use. Creates a Source.",
                       "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources/{sourceId}:uploadFile",
@@ -9253,7 +9457,7 @@
       }
     }
   },
-  "revision": "20250716",
+  "revision": "20250816",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -10330,6 +10534,146 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1Assistant": {
+      "description": "Discovery Engine Assistant resource.",
+      "id": "GoogleCloudDiscoveryengineV1Assistant",
+      "properties": {
+        "customerPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
+          "description": "Optional. Customer policy for the assistant."
+        },
+        "enabledTools": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantToolList"
+          },
+          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "type": "object"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGenerationConfig",
+          "description": "Optional. Configuration for the generation of the assistant response."
+        },
+        "name": {
+          "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "webGroundingType": {
+          "description": "Optional. The type of web grounding to use.",
+          "enum": [
+            "WEB_GROUNDING_TYPE_UNSPECIFIED",
+            "WEB_GROUNDING_TYPE_DISABLED",
+            "WEB_GROUNDING_TYPE_GOOGLE_SEARCH",
+            "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. This is the same as disabled.",
+            "Web grounding is disabled.",
+            "Grounding with Google Search is enabled.",
+            "Grounding with Enterprise Web Search is enabled."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy": {
+      "description": "Customer-defined policy for the assistant.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicy",
+      "properties": {
+        "bannedPhrases": {
+          "description": "Optional. List of banned phrases.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase": {
+      "description": "Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase",
+      "properties": {
+        "ignoreDiacritics": {
+          "description": "Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, \"cafe\" would match \"café\".",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Optional. Match type for the banned phrase.",
+          "enum": [
+            "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED",
+            "SIMPLE_STRING_MATCH",
+            "WORD_BOUNDARY_STRING_MATCH"
+          ],
+          "enumDescriptions": [
+            "Defaults to SIMPLE_STRING_MATCH.",
+            "The banned phrase matches if it is found anywhere in the text as an exact substring.",
+            "Banned phrase only matches if the pattern found in the text is surrounded by word delimiters. The phrase itself may still contain word delimiters."
+          ],
+          "type": "string"
+        },
+        "phrase": {
+          "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGenerationConfig": {
+      "description": "Configuration for the generation of the assistant response.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGenerationConfig",
+      "properties": {
+        "defaultLanguage": {
+          "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction",
+          "description": "System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction": {
+      "description": "System instruction, also known as the prompt preamble for LLM calls.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction",
+      "properties": {
+        "additionalSystemInstruction": {
+          "description": "Optional. Additional system instruction that will be added to the default system instruction.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantToolInfo": {
+      "description": "Information to identify a tool.",
+      "id": "GoogleCloudDiscoveryengineV1AssistantToolInfo",
+      "properties": {
+        "toolDisplayName": {
+          "description": "The display name of the tool.",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AssistantToolList": {
+      "description": "The enabled tools on a connector",
+      "id": "GoogleCloudDiscoveryengineV1AssistantToolList",
+      "properties": {
+        "toolInfo": {
+          "description": "The list of tools with corresponding tool information.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1AssistantToolInfo"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata": {
       "description": "Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.",
       "id": "GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata",
@@ -10419,11 +10763,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -12938,6 +13283,10 @@
         "serviceName": {
           "description": "Optional. The Service Directory resource name (projects/*/locations/*/namespaces/*/services/*) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.",
           "type": "string"
+        },
+        "useStaticSecrets": {
+          "description": "Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -14667,6 +15016,10 @@
           },
           "type": "array"
         },
+        "name": {
+          "description": "Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/sessions/{session}/assistAnswers/{assist_answer}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
         "replies": {
           "description": "Replies of the assistant.",
           "items": {
@@ -14716,6 +15069,48 @@
         },
         "timeZone": {
           "description": "Optional. IANA time zone, e.g. Europe/Budapest.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistant": {
+      "description": "Discovery Engine Assistant resource.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistant",
+      "properties": {
+        "customerPolicy": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
+          "description": "Optional. Customer policy for the assistant."
+        },
+        "enabledTools": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolList"
+          },
+          "description": "Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example \"projects/{projectId}/locations/{locationId}/collections/{collectionId}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {\"jira1ConnectorName\": [(toolId1, \"createTicket\"), (toolId2, \"transferTicket\")], \"gmail1ConnectorName\": [(toolId3, \"sendEmail\"),..] }",
+          "type": "object"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
+          "description": "Optional. Configuration for the generation of the assistant response."
+        },
+        "name": {
+          "description": "Immutable. Resource name of the assistant. Format: `projects/{project}/locations/{location}/collections/{collection}/engines/{engine}/assistants/{assistant}` It must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "webGroundingType": {
+          "description": "Optional. The type of web grounding to use.",
+          "enum": [
+            "WEB_GROUNDING_TYPE_UNSPECIFIED",
+            "WEB_GROUNDING_TYPE_DISABLED",
+            "WEB_GROUNDING_TYPE_GOOGLE_SEARCH",
+            "WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH"
+          ],
+          "enumDescriptions": [
+            "Default, unspecified setting. This is the same as disabled.",
+            "Web grounding is disabled.",
+            "Grounding with Google Search is enabled.",
+            "Grounding with Enterprise Web Search is enabled."
+          ],
           "type": "string"
         }
       },
@@ -14820,6 +15215,75 @@
         },
         "mimeType": {
           "description": "Required. The media type (MIME type) of the file.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy": {
+      "description": "Customer-defined policy for the assistant.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy",
+      "properties": {
+        "bannedPhrases": {
+          "description": "Optional. List of banned phrases.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase": {
+      "description": "Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase",
+      "properties": {
+        "ignoreDiacritics": {
+          "description": "Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, \"cafe\" would match \"café\".",
+          "type": "boolean"
+        },
+        "matchType": {
+          "description": "Optional. Match type for the banned phrase.",
+          "enum": [
+            "BANNED_PHRASE_MATCH_TYPE_UNSPECIFIED",
+            "SIMPLE_STRING_MATCH",
+            "WORD_BOUNDARY_STRING_MATCH"
+          ],
+          "enumDescriptions": [
+            "Defaults to SIMPLE_STRING_MATCH.",
+            "The banned phrase matches if it is found anywhere in the text as an exact substring.",
+            "Banned phrase only matches if the pattern found in the text is surrounded by word delimiters. The phrase itself may still contain word delimiters."
+          ],
+          "type": "string"
+        },
+        "phrase": {
+          "description": "Required. The raw string content to be banned.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig": {
+      "description": "Configuration for the generation of the assistant response.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig",
+      "properties": {
+        "defaultLanguage": {
+          "description": "The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.",
+          "type": "string"
+        },
+        "systemInstruction": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction",
+          "description": "System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction": {
+      "description": "System instruction, also known as the prompt preamble for LLM calls.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction",
+      "properties": {
+        "additionalSystemInstruction": {
+          "description": "Optional. Additional system instruction that will be added to the default system instruction.",
           "type": "string"
         }
       },
@@ -14933,6 +15397,35 @@
         "text": {
           "description": "The text segment itself.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo": {
+      "description": "Information to identify a tool.",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo",
+      "properties": {
+        "toolDisplayName": {
+          "description": "The display name of the tool.",
+          "type": "string"
+        },
+        "toolName": {
+          "description": "The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaAssistantToolList": {
+      "description": "The enabled tools on a connector",
+      "id": "GoogleCloudDiscoveryengineV1alphaAssistantToolList",
+      "properties": {
+        "toolInfo": {
+          "description": "The list of tools with corresponding tool information.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaAssistantToolInfo"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -15159,6 +15652,21 @@
       "description": "Request message for SiteSearchEngineService.BatchVerifyTargetSites method.",
       "id": "GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest",
       "properties": {},
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaBigQueryDestination": {
+      "description": "The BigQuery output destination configuration.",
+      "id": "GoogleCloudDiscoveryengineV1alphaBigQueryDestination",
+      "properties": {
+        "datasetId": {
+          "description": "Required. The ID of a BigQuery Dataset.",
+          "type": "string"
+        },
+        "tableId": {
+          "description": "Required. The table_id of exported BigQuery table.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaBigQuerySource": {
@@ -15660,6 +16168,10 @@
       "description": "Document metadata contains the information of the document of the current chunk.",
       "id": "GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata",
       "properties": {
+        "mimeType": {
+          "description": "The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
         "structData": {
           "additionalProperties": {
             "description": "Properties of the object.",
@@ -15766,11 +16278,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -17007,6 +17520,10 @@
           },
           "readOnly": true,
           "type": "array"
+        },
+        "hybridIngestionDisabled": {
+          "description": "Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.",
+          "type": "boolean"
         },
         "identityRefreshInterval": {
           "deprecated": true,
@@ -18636,6 +19153,40 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata": {
+      "description": "Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata",
+      "properties": {
+        "createTime": {
+          "description": "Operation create time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Operation last update time. If the operation is done, this is also the finish time.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest": {
+      "description": "Request message for the `ExportMetrics` method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsRequest",
+      "properties": {
+        "outputConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaOutputConfig",
+          "description": "Required. The output location of the data."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaExportMetricsResponse": {
+      "description": "Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.",
+      "id": "GoogleCloudDiscoveryengineV1alphaExportMetricsResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaFactChunk": {
       "description": "Fact Chunk.",
       "id": "GoogleCloudDiscoveryengineV1alphaFactChunk",
@@ -18901,6 +19452,169 @@
             "Searchable option enabled for a schema field.",
             "Searchable option disabled for a schema field."
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFileCharacteristics": {
+      "description": "Caracteristics of other file types.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileCharacteristics",
+      "properties": {
+        "characteristics": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Output only. Generic map of characteristics.",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFileMetadata": {
+      "description": "Represents a file attached to a session (context file)",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileMetadata",
+      "properties": {
+        "byteSize": {
+          "description": "Output only. The size of the context file in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "downloadUri": {
+          "description": "Output only. The AssistantService.DownloadSessionFile URL to download the file. This URL will need the same credentials as AssistantService.ListSessionFileMetadata method and will provide the resource.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileId": {
+          "description": "Output only. The ID of the file.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileOriginType": {
+          "description": "Optional. The origin of the file.",
+          "enum": [
+            "FILE_ORIGIN_TYPE_UNSPECIFIED",
+            "USER_PROVIDED",
+            "AI_GENERATED",
+            "INTERNALLY_GENERATED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "The file was provided by the user.",
+            "The file was generated by an AI model.",
+            "The file was generated from other files by an internal process."
+          ],
+          "type": "string"
+        },
+        "lastAddTime": {
+          "description": "Output only. The time the file was added to the session. Note that if a file was added, then modified externally, then added again, the add time will be updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Represents metadata related to the file that can suit particular use cases. The prefix \"google.\" is reserved for the key for use by Google, but other prefixes can be freely used.",
+          "type": "object"
+        },
+        "mimeType": {
+          "description": "The content type of the file, see https://www.iana.org/assignments/media-types/media-types.xhtml.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Output only. The name of the file uploaded.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "originalSourceType": {
+          "description": "Optional. The type of the original source of the file.",
+          "enum": [
+            "FILE_SOURCE_UNSPECIFIED",
+            "FILE_SOURCE_INLINE",
+            "FILE_SOURCE_LOCAL",
+            "FILE_SOURCE_CLOUD_STORAGE",
+            "FILE_SOURCE_CLOUD_DRIVE",
+            "FILE_SOURCE_URL"
+          ],
+          "enumDescriptions": [
+            "Default value. Unknown source.",
+            "The data of the file was provided inline (e.g. pasted from the clipboard).",
+            "The file was uploaded from a local file.",
+            "The file was uploaded from Cloud Storage.",
+            "The file was uploaded from Drive.",
+            "The file was retrieved from a URL (e.g. public web)."
+          ],
+          "type": "string"
+        },
+        "originalUri": {
+          "description": "Optional. The original location of the file. It may be a local file path, or any other URI that allows accessing the file in an external system. There are two scenarios in which this url may be empty: 1. If the file was sent as inline data (e.g. pasted from the clipboard). 2. If the original location is not available. Note that there's no guarantee that the URI will be pointing to a valid or actually existing file. For example, a file might have been uploaded to the session, and then deleted from the original source.",
+          "type": "string"
+        },
+        "uploadTime": {
+          "description": "Output only. The time the file was uploaded (If this is a file generated by an internal process and then made available to the session, this indicates the moment it happened).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "views": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFileView"
+          },
+          "description": "Output only. Alternate views of this file object. Each file view is attached to a specific role. Possible example keys: - \"thumbnail\" - \"mobile_thumbnail\" - \"clip\" - \"summary\" - \"translation\"",
+          "readOnly": true,
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaFileView": {
+      "description": "Represents a specific alternate version or \"view\" of a file object, such as a summary, a thumbnail, a translated version, etc.",
+      "id": "GoogleCloudDiscoveryengineV1alphaFileView",
+      "properties": {
+        "byteSize": {
+          "description": "Output only. The size of the view in bytes.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. The time the view was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fileCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaFileCharacteristics",
+          "description": "Output only. Characteristics of other file types.",
+          "readOnly": true
+        },
+        "imageCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaImageCharacteristics",
+          "description": "Output only. Characteristics of an image media view.",
+          "readOnly": true
+        },
+        "mimeType": {
+          "description": "Output only. MIME type (e.g., \"image/jpeg\", \"image/png\", \"text/plain\", \"video/mp4\")",
+          "readOnly": true,
+          "type": "string"
+        },
+        "uri": {
+          "description": "Output only. The URI to access this media view.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "videoCharacteristics": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics",
+          "description": "Output only. Characteristics of a video media view.",
+          "readOnly": true
+        },
+        "viewId": {
+          "description": "Output only. Globally Unique id for this specific view.",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -19178,6 +19892,52 @@
         "workforcePoolName": {
           "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaImageCharacteristics": {
+      "description": "Standard characteristics of an image media view.",
+      "id": "GoogleCloudDiscoveryengineV1alphaImageCharacteristics",
+      "properties": {
+        "bitDepth": {
+          "description": "Output only. Bit depth of the image (e.g., 8-bit, 16-bit).",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "colorSpace": {
+          "description": "Output only. Color space of the image (e.g., \"RGB\", \"CMYK\", \"Grayscale\").",
+          "enum": [
+            "COLOR_SPACE_UNSPECIFIED",
+            "RGB",
+            "CMYK",
+            "GRAYSCALE",
+            "YUV",
+            "OTHER_COLOR_SPACE"
+          ],
+          "enumDescriptions": [
+            "Default value. Unknown color space.",
+            "Red, green, blue colorspace.",
+            "Cyan, magenta, yellow, and black colorspace.",
+            "Grayscale colorspace.",
+            "YUV colorspace.",
+            "Other colorspace."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "height": {
+          "description": "Output only. Image height in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "width": {
+          "description": "Output only. Image width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -19983,6 +20743,24 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaListFilesResponse": {
+      "description": "Response message for SessionService.ListFiles method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaListFilesResponse",
+      "properties": {
+        "files": {
+          "description": "The FileMetadatas.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaFileMetadata"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve next page of results. Pass this value in the ListFilesRequest.page_token field in the subsequent call to `ListFiles` method to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaListIdentityMappingStoresResponse": {
       "description": "Response message for IdentityMappingStoreService.ListIdentityMappingStores",
       "id": "GoogleCloudDiscoveryengineV1alphaListIdentityMappingStoresResponse",
@@ -20096,11 +20874,11 @@
       "id": "GoogleCloudDiscoveryengineV1alphaListSessionsRequest",
       "properties": {
         "filter": {
-          "description": "A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: \"user_pseudo_id = some_id\" \"starred = true\"",
+          "description": "A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = \"some_name\"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time > \"1970-01-01T12:00:00Z\"`",
           "type": "string"
         },
         "orderBy": {
-          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * \"update_time desc\" * \"create_time\" * \"is_pinned desc,update_time desc\": list sessions by is_pinned first, then by update_time.",
+          "description": "A comma-separated list of fields to order by, sorted in ascending order. Use \"desc\" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.",
           "type": "string"
         },
         "pageSize": {
@@ -20272,6 +21050,17 @@
         "vertexAiOrganicCrawlRate": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries",
           "description": "Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaOutputConfig": {
+      "description": "The output configuration setting.",
+      "id": "GoogleCloudDiscoveryengineV1alphaOutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaBigQueryDestination",
+          "description": "The BigQuery location where the output is to be written to."
         }
       },
       "type": "object"
@@ -20461,6 +21250,21 @@
         "dataUseTermsVersion": {
           "description": "Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.",
           "type": "string"
+        },
+        "saasParams": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
+          "description": "Optional. Parameters for Agentspace."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams": {
+      "description": "Parameters for Agentspace.",
+      "id": "GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams",
+      "properties": {
+        "acceptBizQos": {
+          "description": "Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].",
+          "type": "boolean"
         }
       },
       "type": "object"
@@ -20825,7 +21629,7 @@
           "type": "string"
         },
         "records": {
-          "description": "Required. A list of records to rank. At most 200 records to rank.",
+          "description": "Required. A list of records to rank.",
           "items": {
             "$ref": "GoogleCloudDiscoveryengineV1alphaRankingRecord"
           },
@@ -21765,7 +22569,7 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -22221,7 +23025,7 @@
           "type": "string"
         },
         "dataStore": {
-          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. The path must include the project number, project id is not supported for this field.",
           "type": "string"
         },
         "filter": {
@@ -22374,6 +23178,20 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "extractedFilterBehavior": {
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "enum": [
+            "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
+            "HARD_FILTER",
+            "SOFT_BOOST"
+          ],
+          "enumDescriptions": [
+            "`EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED` will use the default behavior for extracted filters. For single datastore search, the default is to apply as hard filters. For multi-datastore search, the default is to apply as soft boosts.",
+            "Applies all extracted filters as hard filters on the results. Results that do not pass the extracted filters will not be returned in the result set.",
+            "Applies all extracted filters as soft boosts. Results that pass the filters will be boosted up to higher ranks in the result set."
+          ],
+          "type": "string"
+        },
         "filterExtractionCondition": {
           "description": "The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.",
           "enum": [
@@ -22956,6 +23774,80 @@
           "description": "Output only. Google provided available scores.",
           "readOnly": true,
           "type": "object"
+        },
+        "rankSignals": {
+          "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals",
+          "description": "Optional. A set of ranking signals associated with the result."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals": {
+      "description": "A set of ranking signals.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals",
+      "properties": {
+        "boostingFactor": {
+          "description": "Optional. Combined custom boosts for a doc.",
+          "format": "float",
+          "type": "number"
+        },
+        "customSignals": {
+          "description": "Optional. A list of custom clearbox signals.",
+          "items": {
+            "$ref": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal"
+          },
+          "type": "array"
+        },
+        "defaultRank": {
+          "description": "Optional. The default rank of the result.",
+          "format": "float",
+          "type": "number"
+        },
+        "documentAge": {
+          "description": "Optional. Age of the document in hours.",
+          "format": "float",
+          "type": "number"
+        },
+        "keywordSimilarityScore": {
+          "description": "Optional. Keyword matching adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "pctrRank": {
+          "description": "Optional. Predicted conversion rate adjustment as a rank.",
+          "format": "float",
+          "type": "number"
+        },
+        "relevanceScore": {
+          "description": "Optional. Semantic relevance adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "semanticSimilarityScore": {
+          "description": "Optional. Semantic similarity adjustment.",
+          "format": "float",
+          "type": "number"
+        },
+        "topicalityRank": {
+          "description": "Optional. Topicality adjustment as a rank.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal": {
+      "description": "Custom clearbox signal represented by name and value pair.",
+      "id": "GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal",
+      "properties": {
+        "name": {
+          "description": "Optional. Name of the signal.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -23839,10 +24731,6 @@
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecImageGenerationSpec",
           "description": "Optional. Specification of the image generation tool."
         },
-        "toolRegistry": {
-          "description": "Optional. The name of the tool registry to use. Format: `projects/{project}/locations/{location}/toolRegistries/{tool_registry}`",
-          "type": "string"
-        },
         "vertexAiSearchSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecVertexAiSearchSpec",
           "description": "Optional. Specification of the Vertex AI Search tool."
@@ -23875,11 +24763,6 @@
           },
           "type": "array"
         },
-        "disabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.",
-          "type": "boolean"
-        },
         "filter": {
           "description": "Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --> name:'ANY(\"king kong\")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)",
           "type": "string"
@@ -23896,13 +24779,7 @@
     "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec": {
       "description": "Specification of the web grounding tool.",
       "id": "GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec",
-      "properties": {
-        "enabled": {
-          "deprecated": true,
-          "description": "Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.",
-          "type": "boolean"
-        }
-      },
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudDiscoveryengineV1alphaStreamAssistResponse": {
@@ -24339,6 +25216,36 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest": {
+      "description": "Request for the AssistantService.UploadSessionFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest",
+      "properties": {
+        "blob": {
+          "$ref": "GdataMedia",
+          "description": "Information about the file being uploaded."
+        },
+        "mediaRequestInfo": {
+          "$ref": "ApiservingMediaRequestInfo",
+          "description": "Media upload request metadata."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse": {
+      "description": "Response for the AssistantService.UploadSessionFile method.",
+      "id": "GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse",
+      "properties": {
+        "fileId": {
+          "description": "The ID of the uploaded file.",
+          "type": "string"
+        },
+        "mediaResponseInfo": {
+          "$ref": "ApiservingMediaResponseInfo",
+          "description": "Media upload response metadata."
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1alphaUserEvent": {
       "description": "UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.",
       "id": "GoogleCloudDiscoveryengineV1alphaUserEvent",
@@ -24523,6 +25430,65 @@
         "userProfile": {
           "description": "Optional. The user profile. We user user full name(First name + Last name) as user profile.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics": {
+      "description": "Standard characteristics of a video media view.",
+      "id": "GoogleCloudDiscoveryengineV1alphaVideoCharacteristics",
+      "properties": {
+        "audioBitrateKbps": {
+          "description": "Output only. Bitrate of the audio in kbps.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "audioCodecs": {
+          "description": "Output only. Audio codecs used in the video.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "duration": {
+          "description": "Output only. Video duration.",
+          "format": "google-duration",
+          "readOnly": true,
+          "type": "string"
+        },
+        "frameRate": {
+          "description": "Output only. Frame rate (frames per second).",
+          "format": "double",
+          "readOnly": true,
+          "type": "number"
+        },
+        "height": {
+          "description": "Output only. Video height in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "videoBitrateKbps": {
+          "description": "Output only. Bitrate of the video in kbps.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
+        },
+        "videoCodecs": {
+          "description": "Output only. Video codecs used in the video.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "width": {
+          "description": "Output only. Video width in pixels.",
+          "format": "int32",
+          "readOnly": true,
+          "type": "integer"
         }
       },
       "type": "object"
@@ -24809,6 +25775,11 @@
       "description": "Describes the assistant settings of the widget.",
       "id": "GoogleCloudDiscoveryengineV1alphaWidgetConfigAssistantSettings",
       "properties": {
+        "defaultWebGroundingToggleOff": {
+          "description": "Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.",
+          "readOnly": true,
+          "type": "boolean"
+        },
         "googleSearchGroundingEnabled": {
           "deprecated": true,
           "description": "Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.",
@@ -25403,11 +26374,12 @@
           "type": "boolean"
         },
         "kmsKey": {
-          "description": "KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
         },
         "kmsKeyVersion": {
-          "description": "KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "description": "Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion}`.",
+          "readOnly": true,
           "type": "string"
         },
         "lastRotationTimestampMicros": {
@@ -27555,7 +28527,7 @@
         },
         "naturalLanguageQueryUnderstandingSpec": {
           "$ref": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
-          "description": "If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
+          "description": "Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done."
         },
         "offset": {
           "description": "A 0-indexed integer that specifies the current offset (that is, starting result location, amongst the Documents deemed by the API as relevant) in search results. This field is only considered if page_token is unset. If this field is negative, an `INVALID_ARGUMENT` is returned.",
@@ -28007,7 +28979,7 @@
           "type": "string"
         },
         "dataStore": {
-          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`.",
+          "description": "Required. Full resource name of DataStore, such as `projects/{project}/locations/{location}/collections/{collection_id}/dataStores/{data_store_id}`. The path must include the project number, project id is not supported for this field.",
           "type": "string"
         },
         "filter": {
@@ -28160,6 +29132,20 @@
       "description": "Specification to enable natural language understanding capabilities for search requests.",
       "id": "GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec",
       "properties": {
+        "extractedFilterBehavior": {
+          "description": "Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.",
+          "enum": [
+            "EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED",
+            "HARD_FILTER",
+            "SOFT_BOOST"
+          ],
+          "enumDescriptions": [
+            "`EXTRACTED_FILTER_BEHAVIOR_UNSPECIFIED` will use the default behavior for extracted filters. For single datastore search, the default is to apply as hard filters. For multi-datastore search, the default is to apply as soft boosts.",
+            "Applies all extracted filters as hard filters on the results. Results that do not pass the extracted filters will not be returned in the result set.",
+            "Applies all extracted filters as soft boosts. Results that pass the filters will be boosted up to higher ranks in the result set."
+          ],
+          "type": "string"
+        },
         "filterExtractionCondition": {
           "description": "The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.",
           "enum": [
@@ -28735,6 +29721,161 @@
       },
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaAgentspaceMetadata": {
+      "description": "Metadata about an agentspace source.",
+      "id": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
+      "properties": {
+        "documentName": {
+          "description": "Output only. The full document name in Agentspace.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "documentTitle": {
+          "description": "Output only. The title of the document.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest": {
+      "description": "Request for SourceService.BatchCreateSources method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest",
+      "properties": {
+        "userContents": {
+          "description": "Required. The UserContents to be uploaded.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaUserContent"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse": {
+      "description": "Response for SourceService.BatchCreateSources method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse",
+      "properties": {
+        "sources": {
+          "description": "The Sources.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaSource"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaCmekConfig": {
+      "description": "Customer-managed encryption configuration for Notebooks.",
+      "id": "GoogleCloudNotebooklmV1alphaCmekConfig",
+      "properties": {
+        "kmsKey": {
+          "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse": {
+      "description": "Response for NotebookService.ListRecentlyViewedNotebooks method.",
+      "id": "GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "The page token, provide this to retrieve the subsequent page.",
+          "type": "string"
+        },
+        "notebooks": {
+          "description": "The list of recently viewed notebooks.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaNotebook": {
+      "description": "Notebook is a resource where users can store their content (as sources) and interacts with the content.",
+      "id": "GoogleCloudNotebooklmV1alphaNotebook",
+      "properties": {
+        "cmekConfig": {
+          "$ref": "GoogleCloudNotebooklmV1alphaCmekConfig",
+          "description": "Output only. CMEK-related information for the Notebook.",
+          "readOnly": true
+        },
+        "emoji": {
+          "description": "Output only. The emoji of the notebook.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "metadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
+          "description": "The metadata of the notebook."
+        },
+        "name": {
+          "description": "Identifier. The identifier of the notebook. Format: `projects/{project}/locations/{location}/notebooks/{notebook_id}`. This field must be a UTF-8 encoded string.",
+          "type": "string"
+        },
+        "notebookId": {
+          "description": "Optional. Notebook id, which is the last segment of the notebook's resource name. This is to make it similar with notebooklm API.",
+          "type": "string"
+        },
+        "title": {
+          "description": "Optional. The title of the notebook.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaNotebookMetadata": {
+      "description": "Metadata for a notebook.",
+      "id": "GoogleCloudNotebooklmV1alphaNotebookMetadata",
+      "properties": {
+        "createTime": {
+          "description": "The time at which this project was created.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "isShareable": {
+          "description": "True if the project is shareable.",
+          "type": "boolean"
+        },
+        "isShared": {
+          "description": "True if this project is currently shared with other people, false otherwise.",
+          "type": "boolean"
+        },
+        "lastViewed": {
+          "description": "A timestamp indicating the time that the current in session user has last viewed the project.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaSource": {
+      "description": "Source represents a single source of content.",
+      "id": "GoogleCloudNotebooklmV1alphaSource",
+      "properties": {
+        "metadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaSourceMetadata",
+          "description": "Metadata about the source."
+        },
+        "name": {
+          "description": "Identifier. The full resource name of the source. Format: `projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "sourceId": {
+          "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
+          "description": "Optional. Source id, which is the last segment of the source's resource name. This is to make it similar with notebooklm API."
+        },
+        "title": {
+          "description": "Optional. Title of the source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaSourceId": {
       "description": "SourceId is the last segment of the source's resource name.",
       "id": "GoogleCloudNotebooklmV1alphaSourceId",
@@ -28742,6 +29883,32 @@
         "id": {
           "description": "The id of the source.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaSourceMetadata": {
+      "description": "Represents the metadata of a source and some additional information.",
+      "id": "GoogleCloudNotebooklmV1alphaSourceMetadata",
+      "properties": {
+        "agentspaceMetadata": {
+          "$ref": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
+          "description": "Metadata for an agentspace source."
+        },
+        "sourceAddedTimestamp": {
+          "description": "The timestamp the source was added.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "tokenCount": {
+          "description": "The number of tokens in the source.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "wordCount": {
+          "description": "The word count of the source.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -28776,6 +29943,36 @@
         "sourceId": {
           "$ref": "GoogleCloudNotebooklmV1alphaSourceId",
           "description": "The source id of the uploaded source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContent": {
+      "description": "The \"Content\" messages refer to data the user wants to upload.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContent",
+      "properties": {
+        "agentspaceContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
+          "description": "Agentspace content uploaded as source."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent": {
+      "description": "Agentspace content uploaded as source.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
+      "properties": {
+        "documentName": {
+          "description": "Optional. The full document name in Agentspace.",
+          "type": "string"
+        },
+        "engineName": {
+          "description": "Optional. Engine to verify the permission of the document.",
+          "type": "string"
+        },
+        "ideaforgeIdeaName": {
+          "description": "Optional. The full idea name for IdeaForge.",
+          "type": "string"
         }
       },
       "type": "object"

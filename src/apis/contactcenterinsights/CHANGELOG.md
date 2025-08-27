@@ -1,5 +1,94 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v2.0.0...contactcenterinsights-v3.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+
+### Features
+
+* **contactcenterinsights:** update the API ([9a194ea](https://github.com/googleapis/google-api-nodejs-client/commit/9a194ea849cdfb7a690791eb1346129f7d94cc23))
+* **contactcenterinsights:** update the API ([89c4b12](https://github.com/googleapis/google-api-nodejs-client/commit/89c4b12e95adfe9b5ad080bb3e7151156e7ae84a))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([db5a534](https://github.com/googleapis/google-api-nodejs-client/commit/db5a534af371278e5b57efd2bc4d113697639cbe))
+* **contactcenterinsights:** update the API ([f0a09e0](https://github.com/googleapis/google-api-nodejs-client/commit/f0a09e09fb5ba93535980ee5cbe78edd6a0f23d8))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v1.1.0...contactcenterinsights-v2.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **contactcenterinsights:** update the API ([9a194ea](https://github.com/googleapis/google-api-nodejs-client/commit/9a194ea849cdfb7a690791eb1346129f7d94cc23))
+* **contactcenterinsights:** update the API ([89c4b12](https://github.com/googleapis/google-api-nodejs-client/commit/89c4b12e95adfe9b5ad080bb3e7151156e7ae84a))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([db5a534](https://github.com/googleapis/google-api-nodejs-client/commit/db5a534af371278e5b57efd2bc4d113697639cbe))
+* **contactcenterinsights:** update the API ([f0a09e0](https://github.com/googleapis/google-api-nodejs-client/commit/f0a09e09fb5ba93535980ee5cbe78edd6a0f23d8))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v1.0.0...contactcenterinsights-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([9a194ea](https://github.com/googleapis/google-api-nodejs-client/commit/9a194ea849cdfb7a690791eb1346129f7d94cc23))
+* **contactcenterinsights:** update the API ([89c4b12](https://github.com/googleapis/google-api-nodejs-client/commit/89c4b12e95adfe9b5ad080bb3e7151156e7ae84a))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([db5a534](https://github.com/googleapis/google-api-nodejs-client/commit/db5a534af371278e5b57efd2bc4d113697639cbe))
+* **contactcenterinsights:** update the API ([f0a09e0](https://github.com/googleapis/google-api-nodejs-client/commit/f0a09e09fb5ba93535980ee5cbe78edd6a0f23d8))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **contactcenterinsights:** update the API ([89c4b12](https://github.com/googleapis/google-api-nodejs-client/commit/89c4b12e95adfe9b5ad080bb3e7151156e7ae84a))
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([db5a534](https://github.com/googleapis/google-api-nodejs-client/commit/db5a534af371278e5b57efd2bc4d113697639cbe))
+* **contactcenterinsights:** update the API ([f0a09e0](https://github.com/googleapis/google-api-nodejs-client/commit/f0a09e09fb5ba93535980ee5cbe78edd6a0f23d8))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [15.3.1](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v15.3.0...contactcenterinsights-v15.3.1) (2025-08-04)
+
+
+### Bug Fixes
+
+* **contactcenterinsights:** update the API ([db5a534](https://github.com/googleapis/google-api-nodejs-client/commit/db5a534af371278e5b57efd2bc4d113697639cbe))
+
+## [15.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v15.2.0...contactcenterinsights-v15.3.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [15.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/contactcenterinsights-v15.1.1...contactcenterinsights-v15.2.0) (2025-07-15)
 
 

@@ -695,6 +695,23 @@
             "jobId"
           ],
           "parameters": {
+            "formatOptions.timestampOutputFormat": {
+              "description": "Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.",
+              "enum": [
+                "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
+                "FLOAT64",
+                "INT64",
+                "ISO8601_STRING"
+              ],
+              "enumDescriptions": [
+                "Corresponds to default API output behavior, which is FLOAT64.",
+                "Timestamp is output as float64 seconds since Unix epoch.",
+                "Timestamp is output as int64 microseconds since Unix epoch.",
+                "Timestamp is output as ISO 8601 String (\"YYYY-MM-DDTHH:MM:SS.FFFFFFFFFFFFZ\")."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "formatOptions.useInt64Timestamp": {
               "description": "Optional. Output timestamp as usec int64. Default is false.",
               "location": "query",
@@ -1910,6 +1927,23 @@
               "required": true,
               "type": "string"
             },
+            "formatOptions.timestampOutputFormat": {
+              "description": "Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.",
+              "enum": [
+                "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
+                "FLOAT64",
+                "INT64",
+                "ISO8601_STRING"
+              ],
+              "enumDescriptions": [
+                "Corresponds to default API output behavior, which is FLOAT64.",
+                "Timestamp is output as float64 seconds since Unix epoch.",
+                "Timestamp is output as int64 microseconds since Unix epoch.",
+                "Timestamp is output as ISO 8601 String (\"YYYY-MM-DDTHH:MM:SS.FFFFFFFFFFFFZ\")."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "formatOptions.useInt64Timestamp": {
               "description": "Optional. Output timestamp as usec int64. Default is false.",
               "location": "query",
@@ -2345,7 +2379,7 @@
       }
     }
   },
-  "revision": "20250615",
+  "revision": "20250713",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -3497,6 +3531,22 @@
       "description": "Options for data format adjustments.",
       "id": "DataFormatOptions",
       "properties": {
+        "timestampOutputFormat": {
+          "description": "Optional. The API output format for a timestamp. This offers more explicit control over the timestamp output format as compared to the existing `use_int64_timestamp` option.",
+          "enum": [
+            "TIMESTAMP_OUTPUT_FORMAT_UNSPECIFIED",
+            "FLOAT64",
+            "INT64",
+            "ISO8601_STRING"
+          ],
+          "enumDescriptions": [
+            "Corresponds to default API output behavior, which is FLOAT64.",
+            "Timestamp is output as float64 seconds since Unix epoch.",
+            "Timestamp is output as int64 microseconds since Unix epoch.",
+            "Timestamp is output as ISO 8601 String (\"YYYY-MM-DDTHH:MM:SS.FFFFFFFFFFFFZ\")."
+          ],
+          "type": "string"
+        },
         "useInt64Timestamp": {
           "description": "Optional. Output timestamp as usec int64. Default is false.",
           "type": "boolean"
@@ -4609,12 +4659,12 @@
       "id": "ExternalRuntimeOptions",
       "properties": {
         "containerCpu": {
-          "description": "Optional. Amount of CPU provisioned for the container instance. If not specified, the default value is 0.33 vCPUs.",
+          "description": "Optional. Amount of CPU provisioned for a Python UDF container instance. For more information, see [Configure container limits for Python UDFs](https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits)",
           "format": "double",
           "type": "number"
         },
         "containerMemory": {
-          "description": "Optional. Amount of memory provisioned for the container instance. Format: {number}{unit} where unit is one of \"M\", \"G\", \"Mi\" and \"Gi\" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi.",
+          "description": "Optional. Amount of memory provisioned for a Python UDF container instance. Format: {number}{unit} where unit is one of \"M\", \"G\", \"Mi\" and \"Gi\" (e.g. 1G, 512Mi). If not specified, the default value is 512Mi. For more information, see [Configure container limits for Python UDFs](https://cloud.google.com/bigquery/docs/user-defined-functions-python#configure-container-limits)",
           "type": "string"
         },
         "maxBatchingRows": {
@@ -4627,7 +4677,7 @@
           "type": "string"
         },
         "runtimeVersion": {
-          "description": "Optional. Language runtime version (e.g. python-3.11).",
+          "description": "Optional. Language runtime version. Example: `python-3.11`.",
           "type": "string"
         }
       },
@@ -4637,6 +4687,10 @@
       "description": "The external service cost is a portion of the total cost, these costs are not additive with total_bytes_billed. Moreover, this field only track external service costs that will show up as BigQuery costs (e.g. training BigQuery ML job with google cloud CAIP or Automl Tables services), not other costs which may be accrued by running the query (e.g. reading from Bigtable or Cloud Storage). The external service costs with different billing sku (e.g. CAIP job is charged based on VM usage) are converted to BigQuery billed_bytes and slot_ms with equivalent amount of US dollars. Services may not directly correlate to these metrics, but these are the equivalents for billing purposes. Output only.",
       "id": "ExternalServiceCost",
       "properties": {
+        "billingMethod": {
+          "description": "The billing method used for the external job. This field is only used when billed on the services sku, set to \"SERVICES_SKU\". Otherwise, it is unspecified for backward compatibility.",
+          "type": "string"
+        },
         "bytesBilled": {
           "description": "External service cost in terms of bigquery bytes billed.",
           "format": "int64",
@@ -6439,6 +6493,12 @@
           "readOnly": true,
           "type": "string"
         },
+        "totalServicesSkuSlotMs": {
+          "description": "Output only. Total slot-milliseconds for the job that run on external services and billed on the service SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is \"SERVICES_SKU\".",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "totalSlotMs": {
           "description": "Output only. Slot-milliseconds for the job.",
           "format": "int64",
@@ -7531,11 +7591,11 @@
       "id": "PythonOptions",
       "properties": {
         "entryPoint": {
-          "description": "Required. The entry point function in the user's Python code.",
+          "description": "Required. The name of the function defined in Python code as the entry point when the Python UDF is invoked.",
           "type": "string"
         },
         "packages": {
-          "description": "Optional. A list of package names along with versions to be installed. Follows requirements.txt syntax (e.g. numpy==2.0, permutation, urllib3<2.2.1)",
+          "description": "Optional. A list of Python package names along with versions to be installed. Example: [\"pandas>=2.1\", \"google-cloud-translate==3.11\"]. For more information, see [Use third-party packages](https://cloud.google.com/bigquery/docs/user-defined-functions-python#third-party-packages).",
           "items": {
             "type": "string"
           },
@@ -7612,6 +7672,12 @@
             "type": "object"
           },
           "type": "array"
+        },
+        "timestampPrecision": {
+          "default": "6",
+          "description": "Optional. Precision (maximum number of total digits in base 10) for seconds of TIMESTAMP type. Possible values include: * 6 (Default, for TIMESTAMP type with microsecond precision) * 12 (For TIMESTAMP type with picosecond precision)",
+          "format": "int64",
+          "type": "string"
         },
         "type": {
           "description": "Required. The top level type of this field.",
@@ -8234,7 +8300,7 @@
         },
         "pythonOptions": {
           "$ref": "PythonOptions",
-          "description": "Optional. Options for Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)"
+          "description": "Optional. Options for the Python UDF. [Preview](https://cloud.google.com/products/#product-launch-stages)"
         },
         "remoteFunctionOptions": {
           "$ref": "RemoteFunctionOptions",

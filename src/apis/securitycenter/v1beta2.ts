@@ -512,7 +512,7 @@ export namespace securitycenter_v1beta2 {
     storagePool?: string | null;
   }
   /**
-   * The destination big query dataset to export findings to.
+   * The destination BigQuery dataset to export findings to.
    */
   export interface Schema$BigQueryDestination {
     /**
@@ -557,6 +557,27 @@ export namespace securitycenter_v1beta2 {
      * Distinguish between volumetric & protocol DDoS attack and application layer attacks. For example, "L3_4" for Layer 3 and Layer 4 DDoS attacks, or "L_7" for Layer 7 DDoS attacks.
      */
     threatVector?: string | null;
+  }
+  /**
+   * CloudControl associated with the finding.
+   */
+  export interface Schema$CloudControl {
+    /**
+     * Name of the CloudControl associated with the finding.
+     */
+    cloudControlName?: string | null;
+    /**
+     * Policy type of the CloudControl
+     */
+    policyType?: string | null;
+    /**
+     * Type of cloud control.
+     */
+    type?: string | null;
+    /**
+     * Version of the Cloud Control
+     */
+    version?: number | null;
   }
   /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
@@ -629,6 +650,23 @@ export namespace securitycenter_v1beta2 {
      * Version of the standard or benchmark, for example, 1.1
      */
     version?: string | null;
+  }
+  /**
+   * Compliance Details associated with the finding.
+   */
+  export interface Schema$ComplianceDetails {
+    /**
+     * CloudControl associated with the finding
+     */
+    cloudControl?: Schema$CloudControl;
+    /**
+     * Cloud Control Deployments associated with the finding. For example, organizations/123/locations/global/cloudControlDeployments/deploymentIdentifier
+     */
+    cloudControlDeploymentNames?: string[] | null;
+    /**
+     * Details of Frameworks associated with the finding
+     */
+    frameworks?: Schema$Framework[];
   }
   /**
    * Configuration of a module.
@@ -735,6 +773,19 @@ export namespace securitycenter_v1beta2 {
      * Output only. The time the settings were last updated.
      */
     updateTime?: string | null;
+  }
+  /**
+   * Compliance control associated with the finding.
+   */
+  export interface Schema$Control {
+    /**
+     * Name of the Control
+     */
+    controlName?: string | null;
+    /**
+     * Display name of the control. For example, AU-02.
+     */
+    displayName?: string | null;
   }
   /**
    * CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.
@@ -1091,7 +1142,7 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$ExportFindingsMetadata {
     /**
-     * Required. The destination big query dataset to export findings to.
+     * Required. The destination BigQuery dataset to export findings to.
      */
     bigQueryDestination?: Schema$BigQueryDestination;
     /**
@@ -1222,6 +1273,10 @@ export namespace securitycenter_v1beta2 {
      * Cloud Data Loss Prevention (Cloud DLP) inspection results that are associated with the finding.
      */
     cloudDlpInspection?: Schema$CloudDlpInspection;
+    /**
+     * Details about the compliance implications of the finding.
+     */
+    complianceDetails?: Schema$ComplianceDetails;
     /**
      * Contains compliance information for security standards associated to the finding.
      */
@@ -1433,6 +1488,31 @@ export namespace securitycenter_v1beta2 {
      * The user defined display name for this folder.
      */
     resourceFolderDisplayName?: string | null;
+  }
+  /**
+   * Compliance framework associated with the finding.
+   */
+  export interface Schema$Framework {
+    /**
+     * Category of the framework associated with the finding. E.g. Security Benchmark, or Assured Workloads
+     */
+    category?: string[] | null;
+    /**
+     * The controls associated with the framework.
+     */
+    controls?: Schema$Control[];
+    /**
+     * Display name of the framework. For a standard framework, this will look like e.g. PCI DSS 3.2.1, whereas for a custom framework it can be a user defined string like MyFramework
+     */
+    displayName?: string | null;
+    /**
+     * Name of the framework associated with the finding
+     */
+    name?: string | null;
+    /**
+     * Type of the framework associated with the finding, to specify whether the framework is built-in (pre-defined and immutable) or a custom framework defined by the customer (equivalent to security posture)
+     */
+    type?: string | null;
   }
   /**
    * Google Cloud metadata associated with the resource. Only applicable if the finding's cloud provider is Google Cloud.
@@ -2454,6 +2534,10 @@ export namespace securitycenter_v1beta2 {
      */
     createTime?: string | null;
     /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to protect this configuration's data, if configured during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * The dataset to write findings' updates to. Its format is "projects/[project_id]/datasets/[bigquery_dataset_id]". BigQuery dataset unique ID must contain only letters (a-z, A-Z), numbers (0-9), or underscores (_).
      */
     dataset?: string | null;
@@ -2546,6 +2630,27 @@ export namespace securitycenter_v1beta2 {
     threatVector?: string | null;
   }
   /**
+   * CloudControl associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2CloudControl {
+    /**
+     * Name of the CloudControl associated with the finding.
+     */
+    cloudControlName?: string | null;
+    /**
+     * Policy type of the CloudControl
+     */
+    policyType?: string | null;
+    /**
+     * Type of cloud control.
+     */
+    type?: string | null;
+    /**
+     * Version of the Cloud Control
+     */
+    version?: number | null;
+  }
+  /**
    * The [data profile](https://cloud.google.com/dlp/docs/data-profiles) associated with the finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV2CloudDlpDataProfile {
@@ -2618,6 +2723,23 @@ export namespace securitycenter_v1beta2 {
     version?: string | null;
   }
   /**
+   * Compliance Details associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2ComplianceDetails {
+    /**
+     * CloudControl associated with the finding
+     */
+    cloudControl?: Schema$GoogleCloudSecuritycenterV2CloudControl;
+    /**
+     * Cloud Control Deployments associated with the finding. For example, organizations/123/locations/global/cloudControlDeployments/deploymentIdentifier
+     */
+    cloudControlDeploymentNames?: string[] | null;
+    /**
+     * Details of Frameworks associated with the finding
+     */
+    frameworks?: Schema$GoogleCloudSecuritycenterV2Framework[];
+  }
+  /**
    * Contains information about the IP connection associated with the finding.
    */
   export interface Schema$GoogleCloudSecuritycenterV2Connection {
@@ -2684,6 +2806,19 @@ export namespace securitycenter_v1beta2 {
      * Container image URI provided when configuring a pod or container. This string can identify a container image version using mutable tags.
      */
     uri?: string | null;
+  }
+  /**
+   * Compliance control associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Control {
+    /**
+     * Name of the Control
+     */
+    controlName?: string | null;
+    /**
+     * Display name of the control. For example, AU-02.
+     */
+    displayName?: string | null;
   }
   /**
    * CVE stands for Common Vulnerabilities and Exposures. Information from the [CVE record](https://www.cve.org/ResourcesSupport/Glossary) that describes this vulnerability.
@@ -3145,6 +3280,10 @@ export namespace securitycenter_v1beta2 {
      */
     cloudDlpInspection?: Schema$GoogleCloudSecuritycenterV2CloudDlpInspection;
     /**
+     * Details about the compliance implications of the finding.
+     */
+    complianceDetails?: Schema$GoogleCloudSecuritycenterV2ComplianceDetails;
+    /**
      * Contains compliance information for security standards associated to the finding.
      */
     compliances?: Schema$GoogleCloudSecuritycenterV2Compliance[];
@@ -3166,6 +3305,10 @@ export namespace securitycenter_v1beta2 {
      * Output only. The time at which the finding was created in Security Command Center.
      */
     createTime?: string | null;
+    /**
+     * Output only. The name of the Cloud KMS key used to encrypt this finding, if any.
+     */
+    cryptoKeyName?: string | null;
     /**
      * Data access events associated with the finding.
      */
@@ -3357,6 +3500,31 @@ export namespace securitycenter_v1beta2 {
      * The user defined display name for this folder.
      */
     resourceFolderDisplayName?: string | null;
+  }
+  /**
+   * Compliance framework associated with the finding.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2Framework {
+    /**
+     * Category of the framework associated with the finding. E.g. Security Benchmark, or Assured Workloads
+     */
+    category?: string[] | null;
+    /**
+     * The controls associated with the framework.
+     */
+    controls?: Schema$GoogleCloudSecuritycenterV2Control[];
+    /**
+     * Display name of the framework. For a standard framework, this will look like e.g. PCI DSS 3.2.1, whereas for a custom framework it can be a user defined string like MyFramework
+     */
+    displayName?: string | null;
+    /**
+     * Name of the framework associated with the finding
+     */
+    name?: string | null;
+    /**
+     * Type of the framework associated with the finding, to specify whether the framework is built-in (pre-defined and immutable) or a custom framework defined by the customer (equivalent to security posture)
+     */
+    type?: string | null;
   }
   /**
    * Represents a geographical location for a given access.
@@ -3896,6 +4064,10 @@ export namespace securitycenter_v1beta2 {
      */
     createTime?: string | null;
     /**
+     * Output only. The resource name of the Cloud KMS `CryptoKey` used to encrypt this configuration data, if CMEK was enabled during Security Command Center activation.
+     */
+    cryptoKeyName?: string | null;
+    /**
      * A description of the mute config.
      */
     description?: string | null;
@@ -4246,7 +4418,7 @@ export namespace securitycenter_v1beta2 {
      */
     displayName?: string | null;
     /**
-     * The GCP metadata associated with the finding.
+     * The Google Cloud metadata associated with the finding.
      */
     gcpMetadata?: Schema$GcpMetadata;
     /**
@@ -5234,6 +5406,10 @@ export namespace securitycenter_v1beta2 {
    */
   export interface Schema$SecurityCenterSettings {
     /**
+     * The KMS key name used for CMEK encryption. Format: projects/{project\}/locations/{location\}/keyRings/{key_ring\}/cryptoKeys/{key_name\}
+     */
+    cryptoKeyName?: string | null;
+    /**
      * The resource name of the project to send logs to. This project must be part of the organization this resource resides in. The format is `projects/{project_id\}`. An empty value disables logging. This value is only referenced by services that support log sink. Please refer to the documentation for an updated list of compatible services. This may only be specified for organization level onboarding.
      */
     logSinkProject?: string | null;
@@ -6088,6 +6264,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",
@@ -9292,6 +9469,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",
@@ -12651,6 +12829,7 @@ export namespace securitycenter_v1beta2 {
      *
      *   // Example response
      *   // {
+     *   //   "cryptoKeyName": "my_cryptoKeyName",
      *   //   "logSinkProject": "my_logSinkProject",
      *   //   "name": "my_name",
      *   //   "onboardingTime": "my_onboardingTime",

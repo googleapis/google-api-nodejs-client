@@ -1488,7 +1488,7 @@ export namespace beyondcorp_v1alpha {
     type?: string | null;
   }
   /**
-   * A Beyondcorp Application resource information.
+   * The information about an application resource.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaApplication {
     /**
@@ -1496,11 +1496,11 @@ export namespace beyondcorp_v1alpha {
      */
     createTime?: string | null;
     /**
-     * Optional. An arbitrary user-provided name for the Application resource. Cannot exceed 64 characters.
+     * Optional. An arbitrary user-provided name for the application resource. Cannot exceed 64 characters.
      */
     displayName?: string | null;
     /**
-     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matcher is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one the conditions are met. The conditions can be one of the following combination (Hostname), (Hostname & Ports) EXAMPLES: Hostname - ("*.abc.com"), ("xyz.abc.com") Hostname and Ports - ("abc.com" and "22"), ("abc.com" and "22,33") etc
+     * Required. Endpoint matchers associated with an application. A combination of hostname and ports as endpoint matchers is used to match the application. Match conditions for OR logic. An array of match conditions to allow for multiple matching criteria. The rule is considered a match if one of the conditions is met. The conditions can be one of the following combinations (Hostname), (Hostname & Ports) EXAMPLES: Hostname - ("*.example.com"), ("xyz.example.com") Hostname and Ports - ("example.com" and "22"), ("example.com" and "22,33") etc
      */
     endpointMatchers?: Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaEndpointMatcher[];
     /**
@@ -1613,7 +1613,7 @@ export namespace beyondcorp_v1alpha {
     unreachable?: string[] | null;
   }
   /**
-   * Information about a BeyondCorp SecurityGateway resource.
+   * The information about a security gateway resource.
    */
   export interface Schema$GoogleCloudBeyondcorpSecuritygatewaysV1alphaSecurityGateway {
     /**
@@ -14873,7 +14873,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Creates a new SecurityGateway in a given project and location.
+     * Creates a new Security Gateway in a given project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -14905,7 +14905,7 @@ export namespace beyondcorp_v1alpha {
      *   const res = await beyondcorp.projects.locations.securityGateways.create({
      *     // Required. The resource project name of the SecurityGateway location using the form: `projects/{project_id\}/locations/{location_id\}`
      *     parent: 'projects/my-project/locations/my-location',
-     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
      *     requestId: 'placeholder-value',
      *     // Optional. User-settable SecurityGateway resource ID. * Must start with a letter. * Must contain between 4-63 characters from `/a-z-/`. * Must end with a number or letter.
      *     securityGatewayId: 'placeholder-value',
@@ -16123,7 +16123,7 @@ export namespace beyondcorp_v1alpha {
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request.
      */
     requestId?: string;
     /**
@@ -16409,7 +16409,7 @@ export namespace beyondcorp_v1alpha {
     }
 
     /**
-     * Deletes a single Application.
+     * Deletes a single application.
      * @example
      * ```js
      * // Before running the sample:

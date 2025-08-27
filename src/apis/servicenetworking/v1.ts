@@ -293,7 +293,7 @@ export namespace servicenetworking_v1 {
     useCustomComputeIdempotencyWindow?: boolean | null;
   }
   /**
-   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology.
+   * Api is a light-weight descriptor for an API Interface. Interfaces are also described as "protocol buffer services" in some contexts, such as by the "service" keyword in a .proto file, but they are different from API Services, which represent a concrete implementation of an interface as opposed to simply a description of methods and bindings. They are also sometimes simply referred to as "APIs" in other contexts, such as the name of this message itself. See https://cloud.google.com/apis/design/glossary for detailed terminology. New usages of this message as an alternative to ServiceDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Api {
     /**
@@ -1037,7 +1037,7 @@ export namespace servicenetworking_v1 {
     target?: string | null;
   }
   /**
-   * Enum type definition.
+   * Enum type definition. New usages of this message as an alternative to EnumDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Enum {
     /**
@@ -1066,7 +1066,7 @@ export namespace servicenetworking_v1 {
     syntax?: string | null;
   }
   /**
-   * Enum value definition.
+   * Enum value definition. New usages of this message as an alternative to EnumValueDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$EnumValue {
     /**
@@ -1100,7 +1100,7 @@ export namespace servicenetworking_v1 {
     unversionedPackageDisabled?: boolean | null;
   }
   /**
-   * A single field of a message type.
+   * A single field of a message type. New usages of this message as an alternative to FieldDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Field {
     /**
@@ -1477,11 +1477,11 @@ export namespace servicenetworking_v1 {
     totalPollTimeout?: string | null;
   }
   /**
-   * Method represents a method of an API interface.
+   * Method represents a method of an API interface. New usages of this message as an alternative to MethodDescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Method {
     /**
-     * The source edition string, only valid when syntax is SYNTAX_EDITIONS.
+     * The source edition string, only valid when syntax is SYNTAX_EDITIONS. This field should be ignored, instead the edition should be inherited from Api. This is similar to Field and EnumValue.
      */
     edition?: string | null;
     /**
@@ -1509,7 +1509,7 @@ export namespace servicenetworking_v1 {
      */
     responseTypeUrl?: string | null;
     /**
-     * The source syntax of this method.
+     * The source syntax of this method. This field should be ignored, instead the syntax should be inherited from Api. This is similar to Field and EnumValue.
      */
     syntax?: string | null;
   }
@@ -1742,7 +1742,7 @@ export namespace servicenetworking_v1 {
     response?: {[key: string]: any} | null;
   }
   /**
-   * A protocol buffer option, which can be attached to a message, field, enumeration, etc.
+   * A protocol buffer option, which can be attached to a message, field, enumeration, etc. New usages of this message as an alternative to FileOptions, MessageOptions, FieldOptions, EnumOptions, EnumValueOptions, ServiceOptions, or MethodOptions are strongly discouraged.
    */
   export interface Schema$Option {
     /**
@@ -2327,7 +2327,7 @@ export namespace servicenetworking_v1 {
     rules?: Schema$SystemParameterRule[];
   }
   /**
-   * A protocol buffer message type.
+   * A protocol buffer message type. New usages of this message as an alternative to DescriptorProto are strongly discouraged. This message does not reliability preserve all information necessary to model the schema and preserve semantics. Instead make use of FileDescriptorSet which preserves the necessary information.
    */
   export interface Schema$Type {
     /**

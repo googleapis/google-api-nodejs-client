@@ -1576,7 +1576,7 @@ export namespace dlp_v2 {
      */
     cloudStorageOutput?: string | null;
     /**
-     * List of user-specified file type groups to transform. If specified, only the files with these file types will be transformed. If empty, all supported files will be transformed. Supported types may be automatically added over time. If a file type is set in this field that isn't supported by the Deidentify action then the job will fail and will not be successfully created/started. Currently the only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
+     * List of user-specified file type groups to transform. If specified, only the files with these file types are transformed. If empty, all supported files are transformed. Supported types may be automatically added over time. Any unsupported file types that are set in this field are excluded from de-identification. An error is recorded for each unsupported file in the TransformationDetails output table. Currently the only file types supported are: IMAGES, TEXT_FILES, CSV, TSV.
      */
     fileTypesToTransform?: string[] | null;
     /**
@@ -2240,15 +2240,15 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
-   * Configure document processing to fall back to the configured processing option below if document processing is unavailable in the original request location.
+   * Configure document processing to fall back to any of the following processing options if document processing is unavailable in the original request location.
    */
   export interface Schema$GooglePrivacyDlpV2DocumentFallbackLocation {
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      */
     globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
     /**
-     * Processing will happen in a multi-region that contains the current region if available.
+     * Processing occurs in a multi-region that contains the current region if available.
      */
     multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
@@ -2716,7 +2716,7 @@ export namespace dlp_v2 {
     upperBound?: Schema$GooglePrivacyDlpV2Value;
   }
   /**
-   * Processing will happen in the global region.
+   * Processing occurs in the global region.
    */
   export interface Schema$GooglePrivacyDlpV2GlobalProcessing {}
   /**
@@ -2835,15 +2835,15 @@ export namespace dlp_v2 {
     tableOptions?: Schema$GooglePrivacyDlpV2TableOptions;
   }
   /**
-   * Configure image processing to fall back to the configured processing option below if unavailable in the request location.
+   * Configure image processing to fall back to any of the following processing options if image processing is unavailable in the original request location.
    */
   export interface Schema$GooglePrivacyDlpV2ImageFallbackLocation {
     /**
-     * Processing will happen in the global region.
+     * Processing occurs in the global region.
      */
     globalProcessing?: Schema$GooglePrivacyDlpV2GlobalProcessing;
     /**
-     * Processing will happen in a multi-region that contains the current region if available.
+     * Processing occurs in a multi-region that contains the current region if available.
      */
     multiRegionProcessing?: Schema$GooglePrivacyDlpV2MultiRegionProcessing;
   }
@@ -2957,6 +2957,10 @@ export namespace dlp_v2 {
      * A sample that is a true positive for this infoType.
      */
     example?: string | null;
+    /**
+     * Locations at which this feature can be used. May change over time.
+     */
+    locationSupport?: Schema$GooglePrivacyDlpV2LocationSupport;
     /**
      * Internal name of the infoType.
      */
@@ -3718,6 +3722,19 @@ export namespace dlp_v2 {
     contentLocations?: Schema$GooglePrivacyDlpV2ContentLocation[];
   }
   /**
+   * Locations at which a feature can be used.
+   */
+  export interface Schema$GooglePrivacyDlpV2LocationSupport {
+    /**
+     * Specific locations where the feature may be used. Examples: us-central1, us, asia, global If scope is ANY_LOCATION, no regions will be listed.
+     */
+    locations?: string[] | null;
+    /**
+     * The current scope for location on this feature. This may expand over time.
+     */
+    regionalizationScope?: string | null;
+  }
+  /**
    * Job trigger option for hybrid jobs. Jobs must be manually created and finished.
    */
   export interface Schema$GooglePrivacyDlpV2Manual {}
@@ -3735,7 +3752,7 @@ export namespace dlp_v2 {
     type?: string | null;
   }
   /**
-   * Processing will happen in a multi-region that contains the current region if available.
+   * Processing occurs in a multi-region that contains the current region if available.
    */
   export interface Schema$GooglePrivacyDlpV2MultiRegionProcessing {}
   /**
@@ -4007,11 +4024,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2ProcessingLocation {
     /**
-     * Document processing will fall back using this configuration.
+     * Document processing falls back using this configuration.
      */
     documentFallbackLocation?: Schema$GooglePrivacyDlpV2DocumentFallbackLocation;
     /**
-     * Image processing will fall back using this configuration.
+     * Image processing falls back using this configuration.
      */
     imageFallbackLocation?: Schema$GooglePrivacyDlpV2ImageFallbackLocation;
   }
@@ -4168,7 +4185,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2QuasiId {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
@@ -4189,7 +4206,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2QuasiIdentifierField {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
@@ -4486,7 +4503,7 @@ export namespace dlp_v2 {
     jobConfig?: Schema$GooglePrivacyDlpV2RiskAnalysisJobConfig;
   }
   /**
-   * All result fields mentioned below are updated while the job is processing.
+   * All Result fields are updated while the job is processing.
    */
   export interface Schema$GooglePrivacyDlpV2Result {
     /**
@@ -4993,7 +5010,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TaggedField {
     /**
-     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column (below).
+     * A column can be tagged with a custom tag. In this case, the user must indicate an auxiliary table that contains statistical information on the possible values of this column.
      */
     customTag?: string | null;
     /**
@@ -5539,6 +5556,35 @@ export namespace dlp_v2 {
      * Seconds of a minute. Must be greater than or equal to 0 and typically must be less than or equal to 59. An API may allow the value 60 if it allows leap-seconds.
      */
     seconds?: number | null;
+  }
+  /**
+   * This is proto2's version of MessageSet. DEPRECATED: DO NOT USE FOR NEW FIELDS. If you are using editions or proto2, please make your own extendable messages for your use case. If you are using proto3, please use `Any` instead. MessageSet was the implementation of extensions for proto1. When proto2 was introduced, extensions were implemented as a first-class feature. This schema for MessageSet was meant to be a "bridge" solution to migrate MessageSet-bearing messages from proto1 to proto2. This schema has been open-sourced only to facilitate the migration of Google products with MessageSet-bearing messages to open-source environments.
+   */
+  export interface Schema$Proto2BridgeMessageSet {}
+  /**
+   * Wire-format for a Status object
+   */
+  export interface Schema$UtilStatusProto {
+    /**
+     * copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 canonical_code = 6;
+     */
+    canonicalCode?: number | null;
+    /**
+     * Numeric code drawn from the space specified below. Often, this is the canonical error space, and code is drawn from google3/util/task/codes.proto copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional int32 code = 1;
+     */
+    code?: number | null;
+    /**
+     * Detail message copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional string message = 3;
+     */
+    message?: string | null;
+    /**
+     * message_set associates an arbitrary proto message with the status. copybara:strip_begin(b/383363683) copybara:strip_end_and_replace optional proto2.bridge.MessageSet message_set = 5;
+     */
+    messageSet?: Schema$Proto2BridgeMessageSet;
+    /**
+     * copybara:strip_begin(b/383363683) Space to which this status belongs copybara:strip_end_and_replace optional string space = 2; // Space to which this status belongs
+     */
+    space?: string | null;
   }
 
   export class Resource$Infotypes {

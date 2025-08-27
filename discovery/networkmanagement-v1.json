@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -349,7 +349,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -867,7 +867,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the resource. Format: projects/{project}/locations/{location}/networkMonitoringProviders/{network_monitoring_provider}",
+                      "description": "Required. Name of the resource. Format: `projects/{project}/locations/{location}/networkMonitoringProviders/{network_monitoring_provider}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/networkMonitoringProviders/[^/]+$",
                       "required": true,
@@ -903,7 +903,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: projects/{project}/locations/{location}",
+                      "description": "Required. Parent value for ListNetworkMonitoringProvidersRequest. Format: `projects/{project}/locations/{location}`",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -1289,7 +1289,7 @@
       }
     }
   },
-  "revision": "20250709",
+  "revision": "20250813",
   "rootUrl": "https://networkmanagement.googleapis.com/",
   "schemas": {
     "AbortInfo": {
@@ -2051,6 +2051,10 @@
           ],
           "type": "string"
         },
+        "destinationGeolocationCode": {
+          "description": "Geolocation (region code) of the destination IP address (if relevant).",
+          "type": "string"
+        },
         "destinationIp": {
           "description": "Destination IP address of the dropped packet (if relevant).",
           "type": "string"
@@ -2061,6 +2065,10 @@
         },
         "resourceUri": {
           "description": "URI of the resource that caused the drop.",
+          "type": "string"
+        },
+        "sourceGeolocationCode": {
+          "description": "Geolocation (region code) of the source IP address (if relevant).",
           "type": "string"
         },
         "sourceIp": {
@@ -2108,7 +2116,7 @@
           "type": "string"
         },
         "forwardingRule": {
-          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project}/global/forwardingRules/{id} or projects/{project}/regions/{region}/forwardingRules/{id}",
+          "description": "A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: `projects/{project}/global/forwardingRules/{id}` or `projects/{project}/regions/{region}/forwardingRules/{id}`",
           "type": "string"
         },
         "forwardingRuleTarget": {
@@ -2364,6 +2372,20 @@
           },
           "type": "array"
         },
+        "targetType": {
+          "description": "Target type of the firewall rule.",
+          "enum": [
+            "TARGET_TYPE_UNSPECIFIED",
+            "INSTANCES",
+            "INTERNAL_MANAGED_LB"
+          ],
+          "enumDescriptions": [
+            "Target type is not specified. In this case we treat the rule as applying to INSTANCES target type.",
+            "Firewall rule applies to instances.",
+            "Firewall rule applies to internal managed load balancers."
+          ],
+          "type": "string"
+        },
         "uri": {
           "description": "The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.",
           "type": "string"
@@ -2507,6 +2529,21 @@
       },
       "type": "object"
     },
+    "GeoLocation": {
+      "description": "The geographical location of the MonitoringPoint.",
+      "id": "GeoLocation",
+      "properties": {
+        "country": {
+          "description": "Country.",
+          "type": "string"
+        },
+        "formattedAddress": {
+          "description": "Formatted address.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleServiceInfo": {
       "description": "For display only. Details of a Google Service sending packets to a VPC network. Although the source IP might be a publicly routable address, some Google Services use special routes within Google production infrastructure to reach Compute Engine Instances. https://cloud.google.com/vpc/docs/routes#special_return_paths",
       "id": "GoogleServiceInfo",
@@ -2565,6 +2602,14 @@
           "description": "Output only. The cloud region of the host.",
           "readOnly": true,
           "type": "string"
+        },
+        "cloudVirtualNetworkIds": {
+          "description": "Output only. The ids of cloud virtual networks of the host.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         },
         "cloudVpcId": {
           "description": "Output only. The id of Virtual Private Cloud (VPC) of the host.",
@@ -2645,6 +2690,33 @@
         },
         "uri": {
           "description": "URI of a Compute Engine instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InterconnectAttachmentInfo": {
+      "description": "For display only. Metadata associated with an Interconnect attachment.",
+      "id": "InterconnectAttachmentInfo",
+      "properties": {
+        "cloudRouterUri": {
+          "description": "URI of the Cloud Router to be used for dynamic routing.",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Name of an Interconnect attachment.",
+          "type": "string"
+        },
+        "interconnectUri": {
+          "description": "URI of the Interconnect where the Interconnect attachment is configured.",
+          "type": "string"
+        },
+        "region": {
+          "description": "Name of a Google Cloud region where the Interconnect attachment is configured.",
+          "type": "string"
+        },
+        "uri": {
+          "description": "URI of an Interconnect attachment.",
           "type": "string"
         }
       },
@@ -3093,9 +3165,9 @@
           "type": "array"
         },
         "geoLocation": {
-          "description": "Output only. The geographical location of the MonitoringPoint. Examples: - \"New York, NY, USA\" - \"Berlin, Germany\"",
-          "readOnly": true,
-          "type": "string"
+          "$ref": "GeoLocation",
+          "description": "Output only. The geographical location of the MonitoringPoint. ;",
+          "readOnly": true
         },
         "host": {
           "$ref": "Host",
@@ -3142,6 +3214,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "upgradeAvailable": {
+          "description": "Output only. Indicates if an upgrade is available for the MonitoringPoint.",
+          "readOnly": true,
+          "type": "boolean"
         },
         "upgradeType": {
           "description": "Output only. The type of upgrade available for the MonitoringPoint.",
@@ -3330,6 +3407,14 @@
           "readOnly": true,
           "type": "string"
         },
+        "errors": {
+          "description": "Output only. The list of error messages detected for the NetworkMonitoringProvider.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
         "name": {
           "description": "Output only. Identifier. Name of the resource. Format: `projects/{project}/locations/{location}/networkMonitoringProviders/{network_monitoring_provider}`",
           "readOnly": true,
@@ -3400,9 +3485,9 @@
           "type": "string"
         },
         "destinationGeoLocation": {
-          "description": "Output only. Geographical location of the destination MonitoringPoint.",
-          "readOnly": true,
-          "type": "string"
+          "$ref": "GeoLocation",
+          "description": "Output only. Geographical location of the destination MonitoringPoint. ;",
+          "readOnly": true
         },
         "displayName": {
           "description": "Output only. The display name of the network path.",
@@ -3694,7 +3779,6 @@
           "enum": [
             "RESOURCE_TYPE_UNSPECIFIED",
             "NETWORK_PATH",
-            "PATH_TEMPLATE",
             "WEB_PATH",
             "MONITORING_POLICY",
             "MONITORING_POINT"
@@ -3702,7 +3786,6 @@
           "enumDescriptions": [
             "The default value. This value is used if the status is omitted.",
             "Network path.",
-            "Path template.",
             "Web path.",
             "Monitoring policy.",
             "Monitoring point."
@@ -4249,6 +4332,10 @@
           "$ref": "InstanceInfo",
           "description": "Display information of a Compute Engine instance."
         },
+        "interconnectAttachment": {
+          "$ref": "InterconnectAttachmentInfo",
+          "description": "Display information of an interconnect attachment."
+        },
         "loadBalancer": {
           "$ref": "LoadBalancerInfo",
           "deprecated": true,
@@ -4323,6 +4410,7 @@
             "ARRIVE_AT_EXTERNAL_LOAD_BALANCER",
             "ARRIVE_AT_VPN_GATEWAY",
             "ARRIVE_AT_VPN_TUNNEL",
+            "ARRIVE_AT_INTERCONNECT_ATTACHMENT",
             "ARRIVE_AT_VPC_CONNECTOR",
             "DIRECT_VPC_EGRESS_CONNECTION",
             "SERVERLESS_EXTERNAL_CONNECTION",
@@ -4370,6 +4458,7 @@
             false,
             false,
             false,
+            false,
             false
           ],
           "enumDescriptions": [
@@ -4399,6 +4488,7 @@
             "Forwarding state: arriving at a Compute Engine external load balancer.",
             "Forwarding state: arriving at a Cloud VPN gateway.",
             "Forwarding state: arriving at a Cloud VPN tunnel.",
+            "Forwarding state: arriving at an interconnect attachment.",
             "Forwarding state: arriving at a VPC connector.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through Direct VPC egress.",
             "Forwarding state: for packets originating from a serverless endpoint forwarded through public (external) connectivity.",

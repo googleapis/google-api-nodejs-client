@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250724",
   "rootUrl": "https://videointelligence.googleapis.com/",
   "schemas": {
     "GoogleCloudVideointelligenceV1_AnnotateVideoProgress": {
@@ -194,7 +194,7 @@
         },
         "point": {
           "$ref": "GoogleCloudVideointelligenceV1_NormalizedVertex",
-          "description": "The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1."
+          "description": "The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1."
         }
       },
       "type": "object"
@@ -264,6 +264,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -471,7 +498,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1_NormalizedBoundingPoly": {
-      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.",
+      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.",
       "id": "GoogleCloudVideointelligenceV1_NormalizedBoundingPoly",
       "properties": {
         "vertices": {
@@ -740,6 +767,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -1081,7 +1112,7 @@
         },
         "point": {
           "$ref": "GoogleCloudVideointelligenceV1beta2_NormalizedVertex",
-          "description": "The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1."
+          "description": "The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1."
         }
       },
       "type": "object"
@@ -1162,6 +1193,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -1429,7 +1487,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly": {
-      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.",
+      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.",
       "id": "GoogleCloudVideointelligenceV1beta2_NormalizedBoundingPoly",
       "properties": {
         "vertices": {
@@ -1823,6 +1881,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1beta2_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1beta2_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -2151,7 +2213,7 @@
         },
         "point": {
           "$ref": "GoogleCloudVideointelligenceV1p1beta1_NormalizedVertex",
-          "description": "The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1."
+          "description": "The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1."
         }
       },
       "type": "object"
@@ -2221,6 +2283,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -2428,7 +2517,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly": {
-      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.",
+      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_NormalizedBoundingPoly",
       "properties": {
         "vertices": {
@@ -2697,6 +2786,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p1beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p1beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -2979,7 +3072,7 @@
         },
         "point": {
           "$ref": "GoogleCloudVideointelligenceV1p2beta1_NormalizedVertex",
-          "description": "The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1."
+          "description": "The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1."
         }
       },
       "type": "object"
@@ -3049,6 +3142,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -3256,7 +3376,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly": {
-      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.",
+      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_NormalizedBoundingPoly",
       "properties": {
         "vertices": {
@@ -3525,6 +3645,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p2beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p2beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [
@@ -3862,7 +3986,7 @@
         },
         "point": {
           "$ref": "GoogleCloudVideointelligenceV1p3beta1_NormalizedVertex",
-          "description": "The 2D point of the detected landmark using the normalized image coordindate system. The normalized coordinates have the range from 0 to 1."
+          "description": "The 2D point of the detected landmark using the normalized image coordinate system. The normalized coordinates have the range from 0 to 1."
         }
       },
       "type": "object"
@@ -3932,6 +4056,33 @@
           "description": "Time-offset, relative to the beginning of the video, corresponding to the video frame for this location.",
           "format": "google-duration",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus": {
+      "description": "Status of exporting annotation response to user specified `output_uri`.",
+      "id": "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus",
+      "properties": {
+        "state": {
+          "description": "Output only. State of the `output_uri` export.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "SUCCEEDED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "Export succeeded.",
+            "Export failed."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "status": {
+          "$ref": "GoogleRpc_Status",
+          "description": "Output only. Only set if state is FAILED.",
+          "readOnly": true
         }
       },
       "type": "object"
@@ -4139,7 +4290,7 @@
       "type": "object"
     },
     "GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly": {
-      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trignometric calculations for location of the box.",
+      "description": "Normalized bounding polygon for text (that might not be aligned with axis). Contains list of the corner points in clockwise order starting from top-left corner. For example, for a rectangular bounding box: When the text is horizontal it might look like: 0----1 | | 3----2 When it's clockwise rotated 180 degrees around the top-left corner it becomes: 2----3 | | 1----0 and the vertex order will still be (0, 1, 2, 3). Note that values can be less than 0, or greater than 1 due to trigonometric calculations for location of the box.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_NormalizedBoundingPoly",
       "properties": {
         "vertices": {
@@ -4480,6 +4631,10 @@
       "description": "Annotation progress for a single video.",
       "id": "GoogleCloudVideointelligenceV1p3beta1_VideoAnnotationProgress",
       "properties": {
+        "exportStatus": {
+          "$ref": "GoogleCloudVideointelligenceV1p3beta1_ExportToOutputUriStatus",
+          "description": "Status of exporting annotation response to user specified `output_uri`. Only set if `output_uri` is set in the request."
+        },
         "feature": {
           "description": "Specifies which feature is being tracked if the request contains more than one feature.",
           "enum": [

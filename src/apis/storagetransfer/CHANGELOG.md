@@ -1,5 +1,57 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v1.2.0...storagetransfer-v1.3.0) (2025-08-25)
+
+
+### Features
+
+* **storagetransfer:** update the API ([9627d8e](https://github.com/googleapis/google-api-nodejs-client/commit/9627d8e19a6be447ca8e4fd293b44ad9526d99b4))
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([711ae5b](https://github.com/googleapis/google-api-nodejs-client/commit/711ae5bfa20774bb9848935f22c90fa0689c49ea))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v1.1.0...storagetransfer-v1.2.0) (2025-08-21)
+
+
+### Features
+
+* **storagetransfer:** update the API ([9627d8e](https://github.com/googleapis/google-api-nodejs-client/commit/9627d8e19a6be447ca8e4fd293b44ad9526d99b4))
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([711ae5b](https://github.com/googleapis/google-api-nodejs-client/commit/711ae5bfa20774bb9848935f22c90fa0689c49ea))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v1.0.0...storagetransfer-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **storagetransfer:** update the API ([9627d8e](https://github.com/googleapis/google-api-nodejs-client/commit/9627d8e19a6be447ca8e4fd293b44ad9526d99b4))
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([711ae5b](https://github.com/googleapis/google-api-nodejs-client/commit/711ae5bfa20774bb9848935f22c90fa0689c49ea))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **storagetransfer:** update the API ([94f5e64](https://github.com/googleapis/google-api-nodejs-client/commit/94f5e6407991a7c392dc2f41560a029f72fd4d2f))
+
+
+### Bug Fixes
+
+* **storagetransfer:** update the API ([711ae5b](https://github.com/googleapis/google-api-nodejs-client/commit/711ae5bfa20774bb9848935f22c90fa0689c49ea))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [9.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/storagetransfer-v9.0.0...storagetransfer-v9.1.0) (2025-07-08)
 
 

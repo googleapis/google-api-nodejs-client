@@ -180,31 +180,6 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
-        "getDeveloperRegistration": {
-          "description": "Retrieves a developer registration for a merchant.",
-          "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
-          "httpMethod": "GET",
-          "id": "merchantapi.accounts.getDeveloperRegistration",
-          "parameterOrder": [
-            "name"
-          ],
-          "parameters": {
-            "name": {
-              "description": "Required. The `name` (ID) of the developer registration.",
-              "location": "path",
-              "pattern": "^accounts/[^/]+/developerRegistration$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "accounts/v1beta/{+name}",
-          "response": {
-            "$ref": "DeveloperRegistration"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/content"
-          ]
-        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1beta/accounts",
@@ -563,6 +538,31 @@
         },
         "developerRegistration": {
           "methods": {
+            "getDeveloperRegistration": {
+              "description": "Retrieves a developer registration for a merchant.",
+              "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration",
+              "httpMethod": "GET",
+              "id": "merchantapi.accounts.developerRegistration.getDeveloperRegistration",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. The `name` (ID) of the developer registration.",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+/developerRegistration$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1beta/{+name}",
+              "response": {
+                "$ref": "DeveloperRegistration"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "registerGcp": {
               "description": "Registers the GCP used for the API call to the shopping account passed in the request. Will create a user with an \"API developer\" and add the \"developer_email\" as a contact with \"API notifications\" email preference on.",
               "flatPath": "accounts/v1beta/accounts/{accountsId}/developerRegistration:registerGcp",
@@ -582,7 +582,7 @@
               },
               "path": "accounts/v1beta/{+name}:registerGcp",
               "request": {
-                "$ref": "RegisterGCPRequest"
+                "$ref": "RegisterGcpRequest"
               },
               "response": {
                 "$ref": "DeveloperRegistration"
@@ -610,7 +610,7 @@
               },
               "path": "accounts/v1beta/{+name}:unregisterGcp",
               "request": {
-                "$ref": "UnregisterGCPRequest"
+                "$ref": "UnregisterGcpRequest"
               },
               "response": {
                 "$ref": "Empty"
@@ -2311,11 +2311,11 @@
       }
     }
   },
-  "revision": "20250715",
+  "revision": "20250819",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
-      "description": "Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC)).",
+      "description": "Collection of information related to the about page ([impressum](https://support.google.com/merchants/answer/14675634?ref_topic=15145634&sjid=6892280366904591178-NC)).",
       "id": "About",
       "properties": {
         "state": {
@@ -2356,7 +2356,7 @@
       "type": "object"
     },
     "Accepted": {
-      "description": "Describes the [accepted terms of service](/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).",
+      "description": "Describes the [accepted terms of service](https://developers.google.com/merchant/api/guides/accounts/create-and-configure#accept_the_merchant_center_terms_of_service).",
       "id": "Accepted",
       "properties": {
         "acceptedBy": {
@@ -2926,7 +2926,7 @@
           "readOnly": true
         },
         "eligibleDestinations": {
-          "description": "Optional. The destinations to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
+          "description": "Optional. The destinations (also known as [Marketing methods](https://support.google.com/merchants/answer/15130232)) to which the checkout program applies, valid destination values are `SHOPPING_ADS`, `FREE_LISTINGS`",
           "items": {
             "enum": [
               "DESTINATION_ENUM_UNSPECIFIED",
@@ -3635,7 +3635,7 @@
       "type": "object"
     },
     "InventoryVerification": {
-      "description": "Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?hl=en&ref_topic=15145634&sjid=6892280366904591178-NC).",
+      "description": "Collection of information related to [inventory verification](https://support.google.com/merchants/answer/14684499?ref_topic=15145634&sjid=6892280366904591178-NC).",
       "id": "InventoryVerification",
       "properties": {
         "contact": {
@@ -4145,7 +4145,7 @@
       "type": "object"
     },
     "OnDisplayToOrder": {
-      "description": "Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?hl=en&ref_topic=15145747&sjid=6892280366904591178-NC)).",
+      "description": "Collection of information related to the on display to order ([ODO](https://support.google.com/merchants/answer/14615056?ref_topic=15145747&sjid=6892280366904591178-NC)).",
       "id": "OnDisplayToOrder",
       "properties": {
         "state": {
@@ -4766,9 +4766,9 @@
       },
       "type": "object"
     },
-    "RegisterGCPRequest": {
+    "RegisterGcpRequest": {
       "description": "Request message for the RegisterGCP method.",
-      "id": "RegisterGCPRequest",
+      "id": "RegisterGcpRequest",
       "properties": {
         "developerEmail": {
           "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference",
@@ -5154,7 +5154,7 @@
       "type": "object"
     },
     "TermsOfServiceAgreementState": {
-      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services, we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`. The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource.",
+      "description": "This resource represents the agreement state for a given account and terms of service kind. The state is as follows: * If the business has accepted a terms of service, `accepted` will be populated, otherwise it will be empty * If the business must sign a terms of service, `required` will be populated, otherwise it will be empty. Note that both `required` and `accepted` can be present. In this case the `accepted` terms of services will have an expiration date set in the `valid_until` field. The `required` terms of services need to be accepted before `valid_until` in order for the account to continue having a valid agreement. When accepting new terms of services we expect third-party providers to display the text associated with the given terms of service agreement (the url to the file containing the text is added in the Required message below as `tos_file_uri`). The actual acceptance of the terms of service is done by calling accept on the `TermsOfService` resource. `valid_until` field.",
       "id": "TermsOfServiceAgreementState",
       "properties": {
         "accepted": {
@@ -5268,9 +5268,9 @@
       "properties": {},
       "type": "object"
     },
-    "UnregisterGCPRequest": {
+    "UnregisterGcpRequest": {
       "description": "Request message for the UnregisterGCP method.",
-      "id": "UnregisterGCPRequest",
+      "id": "UnregisterGcpRequest",
       "properties": {},
       "type": "object"
     },
@@ -5310,7 +5310,7 @@
               "Has access to the same read-only methods as STANDARD, but no access to any mutating methods.",
               "Admin access rights.",
               "Users with this right have access to performance and insights.",
-              "Users with this right have access to Merchant API and its notifications. This role is only accessible to accounts that has a developer registration."
+              "Users with this right have access to Merchant API and its notifications. This role is only accessible to accounts that have a developer registration."
             ],
             "type": "string"
           },
@@ -5406,7 +5406,7 @@
           "type": "string"
         },
         "warehouse": {
-          "description": "Required. Warehouse name. This should match [warehouse](/merchant/api/reference/rest/accounts_v1beta/accounts.shippingSettings#warehouse)",
+          "description": "Required. Warehouse name. This should match warehouse.",
           "type": "string"
         }
       },

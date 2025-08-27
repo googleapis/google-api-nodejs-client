@@ -138,6 +138,35 @@ export namespace workloadmanager_v1 {
     parameters?: {[key: string]: string} | null;
   }
   /**
+   * Agent status.
+   */
+  export interface Schema$AgentStates {
+    /**
+     * Optional. The available version of the agent in artifact registry.
+     */
+    availableVersion?: string | null;
+    /**
+     * Optional. HANA monitoring metrics of the agent.
+     */
+    hanaMonitoring?: Schema$ServiceStates;
+    /**
+     * Optional. The installed version of the agent on the host.
+     */
+    installedVersion?: string | null;
+    /**
+     * Optional. Whether the agent is fully enabled. If false, the agent is has some issues.
+     */
+    isFullyEnabled?: boolean | null;
+    /**
+     * Optional. The Process metrics of the agent.
+     */
+    processMetrics?: Schema$ServiceStates;
+    /**
+     * Optional. The System discovery metrics of the agent.
+     */
+    systemDiscovery?: Schema$ServiceStates;
+  }
+  /**
    * The schema of agent status data.
    */
   export interface Schema$AgentStatus {
@@ -169,6 +198,10 @@ export namespace workloadmanager_v1 {
      * Output only. The installed version of the agent on the host.
      */
     installedVersion?: string | null;
+    /**
+     * Output only. The URI of the instance. Format: projects//zones//instances/
+     */
+    instanceUri?: string | null;
     /**
      * Output only. The kernel version of the system.
      */
@@ -368,6 +401,10 @@ export namespace workloadmanager_v1 {
      */
     evaluationType?: string | null;
     /**
+     * Optional. Immutable. Customer-managed encryption key name, in the format projects/x/locations/x/keyRings/x/cryptoKeys/x.
+     */
+    kmsKey?: string | null;
+    /**
      * Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
@@ -408,6 +445,10 @@ export namespace workloadmanager_v1 {
      * Output only. [Output only] End time stamp
      */
     endTime?: string | null;
+    /**
+     * Optional. Engine
+     */
+    engine?: string | null;
     /**
      * Output only. [Output only] Evaluation ID
      */
@@ -519,6 +560,19 @@ export namespace workloadmanager_v1 {
      * Service account of compute engine
      */
     serviceAccounts?: string[] | null;
+  }
+  /**
+   * The IAM permission status.
+   */
+  export interface Schema$IAMPermission {
+    /**
+     * Output only. Whether the permission is granted.
+     */
+    granted?: boolean | null;
+    /**
+     * Output only. The name of the permission.
+     */
+    name?: string | null;
   }
   /**
    * A presentation of host resource usage where the workload runs.
@@ -1342,6 +1396,10 @@ export namespace workloadmanager_v1 {
    */
   export interface Schema$SapInstanceProperties {
     /**
+     * Optional. Sap Instance Agent status.
+     */
+    agentStates?: Schema$AgentStates;
+    /**
      * Optional. SAP Instance numbers. They are from '00' to '99'.
      */
     numbers?: string[] | null;
@@ -1417,6 +1475,19 @@ export namespace workloadmanager_v1 {
      * resource type
      */
     type?: string | null;
+  }
+  /**
+   * The state of the service.
+   */
+  export interface Schema$ServiceStates {
+    /**
+     * Optional. Output only. The IAM permissions for the service.
+     */
+    iamPermissions?: Schema$IAMPermission[];
+    /**
+     * Output only. The overall state of the service.
+     */
+    state?: string | null;
   }
   /**
    * * A ShellCommand is invoked via the agent's command line executor
@@ -1826,7 +1897,7 @@ export namespace workloadmanager_v1 {
      *
      *   // Do the magic
      *   const res = await workloadmanager.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1955,7 +2026,7 @@ export namespace workloadmanager_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -2213,6 +2284,7 @@ export namespace workloadmanager_v1 {
      *       //   "customRulesBucket": "my_customRulesBucket",
      *       //   "description": "my_description",
      *       //   "evaluationType": "my_evaluationType",
+     *       //   "kmsKey": "my_kmsKey",
      *       //   "labels": {},
      *       //   "name": "my_name",
      *       //   "resourceFilter": {},
@@ -2518,6 +2590,7 @@ export namespace workloadmanager_v1 {
      *   //   "customRulesBucket": "my_customRulesBucket",
      *   //   "description": "my_description",
      *   //   "evaluationType": "my_evaluationType",
+     *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "resourceFilter": {},
@@ -3038,6 +3111,7 @@ export namespace workloadmanager_v1 {
      *   // Example response
      *   // {
      *   //   "endTime": "my_endTime",
+     *   //   "engine": "my_engine",
      *   //   "evaluationId": "my_evaluationId",
      *   //   "externalDataSources": [],
      *   //   "inventoryTime": "my_inventoryTime",

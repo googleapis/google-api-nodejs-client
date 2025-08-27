@@ -766,9 +766,9 @@ export namespace connectors_v1 {
      */
     migrateTls?: boolean | null;
     /**
-     * Indicate whether connector is being migrated to use direct VPC egress.
+     * Network egress mode override to migrate to direct VPC egress.
      */
-    networkEgressMode?: string | null;
+    networkEgressModeOverride?: Schema$NetworkEgressModeOverride;
     /**
      * Indicate whether cloud spanner is required for connector job.
      */
@@ -2837,6 +2837,23 @@ export namespace connectors_v1 {
     egressMode?: string | null;
   }
   /**
+   * NetworkEgressModeOverride provides the network egress mode override for a connector.
+   */
+  export interface Schema$NetworkEgressModeOverride {
+    /**
+     * boolean should be set to true to make sure only eventing enabled connections are migrated to direct vpc egress.
+     */
+    isEventingOverrideEnabled?: boolean | null;
+    /**
+     * boolean should be set to true to make sure only async operations enabled connections are migrated to direct vpc egress.
+     */
+    isJobsOverrideEnabled?: boolean | null;
+    /**
+     * Determines the VPC Egress mode for the connector.
+     */
+    networkEgressMode?: string | null;
+  }
+  /**
    * Node configuration for the connection.
    */
   export interface Schema$NodeConfig {
@@ -4432,7 +4449,7 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4728,7 +4745,7 @@ export namespace connectors_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5012,6 +5029,8 @@ export namespace connectors_v1 {
      *
      *   // Do the magic
      *   const res = await connectors.projects.locations.connections.delete({
+     *     // Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete
+     *     force: 'placeholder-value',
      *     // Required. Resource name of the form: `projects/x/locations/x/connections/x`
      *     name: 'projects/my-project/locations/my-location/connections/my-connection',
      *   });
@@ -6677,6 +6696,10 @@ export namespace connectors_v1 {
   }
   export interface Params$Resource$Projects$Locations$Connections$Delete
     extends StandardParameters {
+    /**
+     * Optional. If set to true, any child EndUserAuthentication/EventSubscription resources will also be deleted. Otherwise, the request will fail if the connection has any children. Followed the best practice from https://aip.dev/135#cascading-delete
+     */
+    force?: boolean;
     /**
      * Required. Resource name of the form: `projects/x/locations/x/connections/x`
      */

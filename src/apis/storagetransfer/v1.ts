@@ -301,11 +301,11 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$ErrorLogEntry {
     /**
-     * A list of messages that carry the error details.
+     * Optional. A list of messages that carry the error details.
      */
     errorDetails?: string[] | null;
     /**
-     * Required. A URL that refers to the target (a data source, a data sink, or an object) with which the error is associated.
+     * Output only. A URL that refers to the target (a data source, a data sink, or an object) with which the error is associated.
      */
     url?: string | null;
   }
@@ -945,23 +945,23 @@ export namespace storagetransfer_v1 {
    */
   export interface Schema$TransferSpec {
     /**
-     * An AWS S3 compatible data source.
+     * Optional. An AWS S3 compatible data source.
      */
     awsS3CompatibleDataSource?: Schema$AwsS3CompatibleData;
     /**
-     * An AWS S3 data source.
+     * Optional. An AWS S3 data source.
      */
     awsS3DataSource?: Schema$AwsS3Data;
     /**
-     * An Azure Blob Storage data source.
+     * Optional. An Azure Blob Storage data source.
      */
     azureBlobStorageDataSource?: Schema$AzureBlobStorageData;
     /**
-     * A Cloud Storage data sink.
+     * Optional. A Cloud Storage data sink.
      */
     gcsDataSink?: Schema$GcsData;
     /**
-     * A Cloud Storage data source.
+     * Optional. A Cloud Storage data source.
      */
     gcsDataSource?: Schema$GcsData;
     /**
@@ -969,11 +969,11 @@ export namespace storagetransfer_v1 {
      */
     gcsIntermediateDataLocation?: Schema$GcsData;
     /**
-     * An HDFS cluster data source.
+     * Optional. An HDFS cluster data source.
      */
     hdfsDataSource?: Schema$HdfsData;
     /**
-     * An HTTP URL data source.
+     * Optional. An HTTP URL data source.
      */
     httpDataSource?: Schema$HttpData;
     /**
@@ -981,11 +981,11 @@ export namespace storagetransfer_v1 {
      */
     objectConditions?: Schema$ObjectConditions;
     /**
-     * A POSIX Filesystem data sink.
+     * Optional. A POSIX Filesystem data sink.
      */
     posixDataSink?: Schema$PosixFilesystem;
     /**
-     * A POSIX Filesystem data source.
+     * Optional. A POSIX Filesystem data source.
      */
     posixDataSource?: Schema$PosixFilesystem;
     /**

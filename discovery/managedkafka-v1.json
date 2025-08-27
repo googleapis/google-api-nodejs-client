@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1531,6 +1531,21 @@
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
+                      "type": "string"
+                    },
+                    "view": {
+                      "description": "Optional. Specifies the view to return for the schema registry instances. If not specified, the default view is SCHEMA_REGISTRY_VIEW_BASIC.",
+                      "enum": [
+                        "SCHEMA_REGISTRY_VIEW_UNSPECIFIED",
+                        "SCHEMA_REGISTRY_VIEW_BASIC",
+                        "SCHEMA_REGISTRY_VIEW_FULL"
+                      ],
+                      "enumDescriptions": [
+                        "The unset value. The API will default to SCHEMA_REGISTRY_VIEW_BASIC.",
+                        "If SchemaRegistryView is not specified, this is the default value. Returns only the name of the schema registry. The contexts associated with it are not included.",
+                        "Returns the name of the schema registry and all the contexts associated with it."
+                      ],
+                      "location": "query",
                       "type": "string"
                     }
                   },
@@ -2919,7 +2934,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250814",
   "rootUrl": "https://managedkafka.googleapis.com/",
   "schemas": {
     "AccessConfig": {

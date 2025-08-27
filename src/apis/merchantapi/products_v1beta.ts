@@ -245,7 +245,7 @@ export namespace merchantapi_products_v1beta {
      */
     energyEfficiencyClass?: string | null;
     /**
-     * The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
+     * Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to exclude for this target (corresponds to unchecked check boxes in Merchant Center). For more information, see [Excluded destination](https://support.google.com/merchants/answer/6324486). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
      */
     excludedDestinations?: string[] | null;
     /**
@@ -285,7 +285,7 @@ export namespace merchantapi_products_v1beta {
      */
     imageLink?: string | null;
     /**
-     * The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
+     * Destinations also known as [Marketing methods](https://support.google.com/merchants/answer/15130232) selections. The list of destinations to include for this target (corresponds to checked check boxes in Merchant Center). Default destinations are always included unless provided in `excludedDestinations`. For more information, see [Included destination](https://support.google.com/merchants/answer/7501026). Note: We recommend setting destinations on datasources level for most use cases. Use this field within products to only setup exceptions.
      */
     includedDestinations?: string[] | null;
     /**
@@ -823,7 +823,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * The name of the product. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
+     * The name of the product. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      */
     name?: string | null;
     /**
@@ -915,7 +915,7 @@ export namespace merchantapi_products_v1beta {
      */
     feedLabel?: string | null;
     /**
-     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
+     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      */
     name?: string | null;
     /**
@@ -1251,7 +1251,7 @@ export namespace merchantapi_products_v1beta {
      *   const res = await merchantapi.accounts.productInputs.delete({
      *     // Required. The primary or supplemental data source from which the product input should be deleted. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
-     *     // Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/online~en~US~sku123`.
+     *     // Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
      *   });
      *   console.log(res.data);
@@ -1356,7 +1356,7 @@ export namespace merchantapi_products_v1beta {
     }
 
     /**
-     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/overview#upload-product-input). You must have a products [data source](/merchant/api/guides/data-sources/overview) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
+     * [Uploads a product input to your Merchant Center account](/merchant/api/guides/products/add-manage#add_a_product). You must have a products [data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source) to be able to insert a product. The unique identifier of the data source is passed as a query parameter in the request URL. If a product input with the same contentLanguage, offerId, and dataSource already exists, then the product input inserted by this method replaces that entry. After inserting, updating, or deleting a product input, it may take several minutes before the processed product can be retrieved.
      * @example
      * ```js
      * // Before running the sample:
@@ -1386,7 +1386,7 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.productInputs.insert({
-     *     // Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Overview of Data sources sub-API](/merchant/api/guides/data-sources/overview). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     *     // Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
      *     // Required. The account where this product will be inserted. Format: `accounts/{account\}`
      *     parent: 'accounts/my-account',
@@ -1550,7 +1550,7 @@ export namespace merchantapi_products_v1beta {
      *   const res = await merchantapi.accounts.productInputs.patch({
      *     // Required. The primary or supplemental product data source where `data_source` name identifies the product input to be updated. Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      *     dataSource: 'placeholder-value',
-     *     // Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
+     *     // Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      *     name: 'accounts/my-account/productInputs/my-productInput',
      *     // Optional. The list of product attributes to be updated. If the update mask is omitted, then it is treated as implied field mask equivalent to all fields that are populated (have a non-empty value). Attributes specified in the update mask without a value specified in the body will be deleted from the product. Update mask can only be specified for top level fields in attributes and custom attributes. To specify the update mask for custom attributes you need to add the `custom_attribute.` prefix. Providing special "*" value for full product replacement is not supported.
      *     updateMask: 'placeholder-value',
@@ -1690,14 +1690,14 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/online~en~US~sku123`.
+     * Required. The name of the product input resource to delete. Format: `accounts/{account\}/productInputs/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/productInputs/en~US~sku123`.
      */
     name?: string;
   }
   export interface Params$Resource$Accounts$Productinputs$Insert
     extends StandardParameters {
     /**
-     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Overview of Data sources sub-API](/merchant/api/guides/data-sources/overview). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
+     * Required. The primary or supplemental product data source name. If the product already exists and data source provided is different, then the product will be moved to a new data source. For more information, see [Create a primary data source](/merchant/api/guides/data-sources/api-sources#create-primary-data-source). Only API data sources are supported. Format: `accounts/{account\}/dataSources/{datasource\}`. For example, `accounts/123456/dataSources/104628`.
      */
     dataSource?: string;
     /**
@@ -1717,7 +1717,7 @@ export namespace merchantapi_products_v1beta {
      */
     dataSource?: string;
     /**
-     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/online~en~US~sku123`
+     * Identifier. The name of the product input. Format: `accounts/{account\}/productInputs/{productinput\}` where the last section `productinput` consists of: `content_language~feed_label~offer_id` example for product input name is `accounts/123/productInputs/en~US~sku123`. A legacy local product input name would be `accounts/123/productInputs/local~en~US~sku123`. Note: For calls to the v1beta version, the `productInput` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/productInputs/online~en~US~sku123`.
      */
     name?: string;
     /**
@@ -1768,7 +1768,7 @@ export namespace merchantapi_products_v1beta {
      *
      *   // Do the magic
      *   const res = await merchantapi.accounts.products.get({
-     *     // Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
+     *     // Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      *     name: 'accounts/my-account/products/my-product',
      *   });
      *   console.log(res.data);
@@ -2032,7 +2032,7 @@ export namespace merchantapi_products_v1beta {
   export interface Params$Resource$Accounts$Products$Get
     extends StandardParameters {
     /**
-     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of 4 parts: `channel~content_language~feed_label~offer_id` example for product name is `accounts/123/products/online~en~US~sku123`
+     * Required. The name of the product to retrieve. Format: `accounts/{account\}/products/{product\}` where the last section `product` consists of: `content_language~feed_label~offer_id` example for product name is `accounts/123/products/en~US~sku123`. A legacy local product name would be `accounts/123/products/local~en~US~sku123`. Note: For calls to the v1beta version, the `product` section consists of: `channel~content_language~feed_label~offer_id`, for example: `accounts/123/products/online~en~US~sku123`.
      */
     name?: string;
   }

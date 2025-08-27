@@ -401,7 +401,7 @@ export namespace containeranalysis_v1beta1 {
     signature?: string | null;
   }
   /**
-   * A step in the build pipeline. Next ID: 22
+   * A step in the build pipeline. Next ID: 23
    */
   export interface Schema$BuildStep {
     /**
@@ -448,6 +448,10 @@ export namespace containeranalysis_v1beta1 {
      * Output only. Stores timing information for pulling this build step's builder image only.
      */
     pullTiming?: Schema$TimeSpan;
+    /**
+     * Remote configuration for the build step.
+     */
+    remoteConfig?: string | null;
     results?: Schema$StepResult[];
     /**
      * A shell script to be executed in the step. When script is provided, the user cannot specify the entrypoint or args.
@@ -2440,7 +2444,7 @@ export namespace containeranalysis_v1beta1 {
      */
     notes?: Schema$Note[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }
@@ -2457,7 +2461,7 @@ export namespace containeranalysis_v1beta1 {
      */
     occurrences?: Schema$Occurrence[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }
@@ -3480,7 +3484,7 @@ export namespace containeranalysis_v1beta1 {
      */
     counts?: Schema$FixableTotalByDigest[];
     /**
-     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/
+     * Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`
      */
     unreachable?: string[] | null;
   }

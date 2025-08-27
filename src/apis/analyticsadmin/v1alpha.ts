@@ -2846,6 +2846,36 @@ export namespace analyticsadmin_v1alpha {
     postbackWindowTwo?: Schema$GoogleAnalyticsAdminV1alphaPostbackWindow;
   }
   /**
+   * Request message for SubmitUserDeletion RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest {
+    /**
+     * Firebase [application instance ID](https://firebase.google.com/docs/reference/android/com/google/firebase/analytics/FirebaseAnalytics.html#getAppInstanceId).
+     */
+    appInstanceId?: string | null;
+    /**
+     * Google Analytics [client ID](https://support.google.com/analytics/answer/11593727).
+     */
+    clientId?: string | null;
+    /**
+     * Google Analytics [user ID](https://firebase.google.com/docs/analytics/userid).
+     */
+    userId?: string | null;
+    /**
+     * [User-provided data](https://support.google.com/analytics/answer/14077171). May contain either one email address or one phone number. Email addresses should be normalized as such: * lowercase * remove periods before @ for gmail.com/googlemail.com addresses * remove all spaces Phone numbers should be normalized as such: * remove all non digit characters * add + prefix
+     */
+    userProvidedData?: string | null;
+  }
+  /**
+   * Response message for SubmitUserDeletion RPC.
+   */
+  export interface Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse {
+    /**
+     * Marks the moment for which all visitor data before this point should be deleted. This is set to the time at which the deletion request was received.
+     */
+    deletionRequestTime?: string | null;
+  }
+  /**
    * A resource message representing a Google Analytics subproperty event filter.
    */
   export interface Schema$GoogleAnalyticsAdminV1alphaSubpropertyEventFilter {
@@ -7288,7 +7318,7 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
-     * Returns the singleton data retention settings for this property.
+     * Returns the reporting identity settings for this property.
      * @example
      * ```js
      * // Before running the sample:
@@ -8102,6 +8132,165 @@ export namespace analyticsadmin_v1alpha {
     }
 
     /**
+     * Submits a request for user deletion for a property.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/analyticsadmin.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const analyticsadmin = google.analyticsadmin('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/analytics.edit'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await analyticsadmin.properties.submitUserDeletion({
+     *     // Required. The name of the property to submit user deletion for.
+     *     name: 'properties/my-propertie',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "appInstanceId": "my_appInstanceId",
+     *       //   "clientId": "my_clientId",
+     *       //   "userId": "my_userId",
+     *       //   "userProvidedData": "my_userProvidedData"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "deletionRequestTime": "my_deletionRequestTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    submitUserDeletion(
+      params: Params$Resource$Properties$Submituserdeletion,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    submitUserDeletion(
+      params?: Params$Resource$Properties$Submituserdeletion,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+    >;
+    submitUserDeletion(
+      params: Params$Resource$Properties$Submituserdeletion,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    submitUserDeletion(
+      params: Params$Resource$Properties$Submituserdeletion,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+    ): void;
+    submitUserDeletion(
+      params: Params$Resource$Properties$Submituserdeletion,
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+    ): void;
+    submitUserDeletion(
+      callback: BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+    ): void;
+    submitUserDeletion(
+      paramsOrCallback?:
+        | Params$Resource$Properties$Submituserdeletion
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Properties$Submituserdeletion;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Properties$Submituserdeletion;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://analyticsadmin.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:submitUserDeletion').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates attribution settings on a property.
      * @example
      * ```js
@@ -8703,6 +8892,18 @@ export namespace analyticsadmin_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleAnalyticsAdminV1alphaRunAccessReportRequest;
+  }
+  export interface Params$Resource$Properties$Submituserdeletion
+    extends StandardParameters {
+    /**
+     * Required. The name of the property to submit user deletion for.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleAnalyticsAdminV1alphaSubmitUserDeletionRequest;
   }
   export interface Params$Resource$Properties$Updateattributionsettings
     extends StandardParameters {

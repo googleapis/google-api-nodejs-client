@@ -125,6 +125,19 @@ export namespace vmwareengine_v1 {
   }
 
   /**
+   * Request message for VmwareEngine.AcceleratePrivateCloudDeletion
+   */
+  export interface Schema$AcceleratePrivateCloudDeletionRequest {
+    /**
+     * Optional. Checksum used to ensure that the user-provided value is up to date before the server processes the request. The server compares provided checksum with the current checksum of the resource. If the user-provided value is out of date, this request returns an `ABORTED` error.
+     */
+    etag?: string | null;
+    /**
+     * Optional. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string | null;
+  }
+  /**
    * Announcement for the resources of Vmware Engine.
    */
   export interface Schema$Announcement {
@@ -7949,6 +7962,162 @@ export namespace vmwareengine_v1 {
     }
 
     /**
+     * Accelerates the deletion of a private cloud that is currently in soft deletion A `PrivateCloud` resource in soft deletion has `PrivateCloud.state` set to `SOFT_DELETED` and `PrivateCloud.expireTime` set to the time when deletion can no longer be reversed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmwareengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmwareengine = google.vmwareengine('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmwareengine.projects.locations.privateClouds.privateCloudDeletionNow(
+     *       {
+     *         // Required. The resource name of the private cloud in softdeletion. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     *         name: 'projects/my-project/locations/my-location/privateClouds/my-privateCloud',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "etag": "my_etag",
+     *           //   "requestId": "my_requestId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    privateCloudDeletionNow(
+      params: Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    privateCloudDeletionNow(
+      params?: Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    privateCloudDeletionNow(
+      params: Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    privateCloudDeletionNow(
+      params: Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    privateCloudDeletionNow(
+      params: Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    privateCloudDeletionNow(
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    privateCloudDeletionNow(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmwareengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:privateCloudDeletionNow').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Resets credentials of the NSX appliance.
      * @example
      * ```js
@@ -9262,6 +9431,18 @@ export namespace vmwareengine_v1 {
      * Request body metadata
      */
     requestBody?: Schema$PrivateCloud;
+  }
+  export interface Params$Resource$Projects$Locations$Privateclouds$Privateclouddeletionnow
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the private cloud in softdeletion. Resource names are schemeless URIs that follow the conventions in https://cloud.google.com/apis/design/resource_names. For example: `projects/my-project/locations/us-central1-a/privateClouds/my-cloud`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$AcceleratePrivateCloudDeletionRequest;
   }
   export interface Params$Resource$Projects$Locations$Privateclouds$Resetnsxcredentials
     extends StandardParameters {

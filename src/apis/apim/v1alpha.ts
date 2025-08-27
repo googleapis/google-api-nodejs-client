@@ -242,6 +242,31 @@ export namespace apim_v1alpha {
    */
   export interface Schema$EnableObservationJobRequest {}
   /**
+   * Entitlement stores data related to API Observation entitlement for a given project
+   */
+  export interface Schema$Entitlement {
+    /**
+     * Whether API Observation is entitled.
+     */
+    apiObservationEntitled?: boolean | null;
+    /**
+     * Project number of associated billing project that has Apigee and Advanced API Security entitled.
+     */
+    billingProjectNumber?: string | null;
+    /**
+     * Output only. The time of the entitlement creation.
+     */
+    createTime?: string | null;
+    /**
+     * Identifier. The entitlement resource name `projects/{project\}/locations/{location\}/entitlement`
+     */
+    name?: string | null;
+    /**
+     * Output only. The time of the entitlement update.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * The GCLB observation source.
    */
   export interface Schema$GclbObservationSource {
@@ -789,6 +814,144 @@ export namespace apim_v1alpha {
     }
 
     /**
+     * GetEntitlement returns the entitlement for the provided project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apim.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apim = google.apim('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await apim.projects.locations.getEntitlement({
+     *     // Required. The entitlement resource name Format: projects/{project\}/locations/{location\}/entitlement
+     *     name: 'projects/my-project/locations/my-location/entitlement',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "apiObservationEntitled": false,
+     *   //   "billingProjectNumber": "my_billingProjectNumber",
+     *   //   "createTime": "my_createTime",
+     *   //   "name": "my_name",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getEntitlement(
+      params: Params$Resource$Projects$Locations$Getentitlement,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getEntitlement(
+      params?: Params$Resource$Projects$Locations$Getentitlement,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Entitlement>>;
+    getEntitlement(
+      params: Params$Resource$Projects$Locations$Getentitlement,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getEntitlement(
+      params: Params$Resource$Projects$Locations$Getentitlement,
+      options: MethodOptions | BodyResponseCallback<Schema$Entitlement>,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
+    getEntitlement(
+      params: Params$Resource$Projects$Locations$Getentitlement,
+      callback: BodyResponseCallback<Schema$Entitlement>
+    ): void;
+    getEntitlement(callback: BodyResponseCallback<Schema$Entitlement>): void;
+    getEntitlement(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getentitlement
+        | BodyResponseCallback<Schema$Entitlement>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Entitlement>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Entitlement>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Entitlement>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getentitlement;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getentitlement;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apim.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Entitlement>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Entitlement>(parameters);
+      }
+    }
+
+    /**
      * Lists information about the supported locations for this service.
      * @example
      * ```js
@@ -819,7 +982,7 @@ export namespace apim_v1alpha {
      *
      *   // Do the magic
      *   const res = await apim.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1092,10 +1255,17 @@ export namespace apim_v1alpha {
      */
     name?: string;
   }
+  export interface Params$Resource$Projects$Locations$Getentitlement
+    extends StandardParameters {
+    /**
+     * Required. The entitlement resource name Format: projects/{project\}/locations/{location\}/entitlement
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

@@ -1,5 +1,19 @@
 # Changelog
 
+## [24.1.1](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v24.1.0...servicenetworking-v24.1.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [24.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v24.0.0...servicenetworking-v24.1.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/servicenetworking-v23.1.0...servicenetworking-v24.0.0) (2025-07-22)
 
 

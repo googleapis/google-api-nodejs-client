@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2254,7 +2254,7 @@
       }
     }
   },
-  "revision": "20250701",
+  "revision": "20250817",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -3333,7 +3333,7 @@
           "type": "boolean"
         },
         "serviceAccount": {
-          "description": "The service account to associate the VM with.",
+          "description": "Optional. The service account to associate the VM with.",
           "type": "string"
         },
         "targetProject": {
@@ -5196,7 +5196,7 @@
           "type": "string"
         },
         "network": {
-          "description": "The network to connect the NIC to.",
+          "description": "Optional. The network to connect the NIC to.",
           "type": "string"
         },
         "networkTier": {

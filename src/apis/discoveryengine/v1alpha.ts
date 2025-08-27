@@ -924,6 +924,10 @@ export namespace discoveryengine_v1alpha {
      * Optional. The Service Directory resource name (projects/x/locations/x/namespaces/x/services/x) representing a VPC network endpoint used to connect to the data source's `instance_uri`, defined in DataConnector.params. Required when VPC Service Controls are enabled.
      */
     serviceName?: string | null;
+    /**
+     * Optional. Whether to use static secrets for the connector. If true, the secrets provided in the action_params will be ignored.
+     */
+    useStaticSecrets?: boolean | null;
   }
   /**
    * Request message for CompletionService.AdvancedCompleteQuery method. .
@@ -2107,6 +2111,10 @@ export namespace discoveryengine_v1alpha {
      */
     assistSkippedReasons?: string[] | null;
     /**
+     * Immutable. Identifier. Resource name of the `AssistAnswer`. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}/assistAnswers/{assist_answer\}` This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
      * Replies of the assistant.
      */
     replies?: Schema$GoogleCloudDiscoveryengineV1alphaAssistAnswerReply[];
@@ -2123,6 +2131,33 @@ export namespace discoveryengine_v1alpha {
      * Possibly grounded response text or media from the assistant.
      */
     groundedContent?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGroundedContent;
+  }
+  /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistant {
+    /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig;
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
   }
   /**
    * Multi-modal content.
@@ -2204,6 +2239,54 @@ export namespace discoveryengine_v1alpha {
      * Required. The media type (MIME type) of the file.
      */
     mimeType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
   }
   /**
    * A piece of content and possibly its grounding information. Not all content needs grounding. Phrases like "Of course, I will gladly search it for you." do not need grounding.
@@ -2293,6 +2376,28 @@ export namespace discoveryengine_v1alpha {
      * The text segment itself.
      */
     text?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1alphaAssistantToolInfo[];
   }
   /**
    * User metadata of the request.
@@ -2454,6 +2559,19 @@ export namespace discoveryengine_v1alpha {
    * Request message for SiteSearchEngineService.BatchVerifyTargetSites method.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaBatchVerifyTargetSitesRequest {}
+  /**
+   * The BigQuery output destination configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaBigQueryDestination {
+    /**
+     * Required. The ID of a BigQuery Dataset.
+     */
+    datasetId?: string | null;
+    /**
+     * Required. The table_id of exported BigQuery table.
+     */
+    tableId?: string | null;
+  }
   /**
    * BigQuery source import data from.
    */
@@ -2799,6 +2917,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaChunkDocumentMetadata {
     /**
+     * The mime type of the document. https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
+    /**
      * Data representation. The structured JSON data for the document. It should conform to the registered Schema or an `INVALID_ARGUMENT` error is thrown.
      */
     structData?: {[key: string]: any} | null;
@@ -2875,11 +2997,11 @@ export namespace discoveryengine_v1alpha {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -3641,6 +3763,10 @@ export namespace discoveryengine_v1alpha {
      * Output only. The errors from initialization or from the latest connector run.
      */
     errors?: Schema$GoogleRpcStatus[];
+    /**
+     * Optional. If the connector is a hybrid connector, determines whether ingestion is enabled and appropriate resources are provisioned during connector creation. If the connector is not a hybrid connector, this field is ignored.
+     */
+    hybridIngestionDisabled?: boolean | null;
     /**
      * The refresh interval to sync the Access Control List information for the documents ingested by this connector. If not set, the access control list will be refreshed at the default interval of 30 minutes. The identity refresh interval can be at least 30 minutes and at most 7 days.
      */
@@ -4771,6 +4897,32 @@ export namespace discoveryengine_v1alpha {
     sampleQuerySet?: string | null;
   }
   /**
+   * Metadata related to the progress of the Export operation. This is returned by the google.longrunning.Operation.metadata field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsMetadata {
+    /**
+     * Operation create time.
+     */
+    createTime?: string | null;
+    /**
+     * Operation last update time. If the operation is done, this is also the finish time.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Request message for the `ExportMetrics` method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsRequest {
+    /**
+     * Required. The output location of the data.
+     */
+    outputConfig?: Schema$GoogleCloudDiscoveryengineV1alphaOutputConfig;
+  }
+  /**
+   * Response of the ExportMetricsRequest. If the long running operation was successful, then this message is returned by the google.longrunning.Operations.response field.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsResponse {}
+  /**
    * Fact Chunk.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaFactChunk {
@@ -4911,6 +5063,107 @@ export namespace discoveryengine_v1alpha {
      * If searchable_option is SEARCHABLE_ENABLED, field values are searchable by text queries in SearchService.Search. If SEARCHABLE_ENABLED but field type is numerical, field values will not be searchable by text queries in SearchService.Search, as there are no text values associated to numerical fields. If searchable_option is unset, the server behavior defaults to SEARCHABLE_DISABLED for fields that support setting searchable options. Only `string` fields that have no key property mapping support setting searchable_option. For those fields that do not support setting searchable options, the server will skip searchable option setting, and setting searchable_option for those fields will throw `INVALID_ARGUMENT` error.
      */
     searchableOption?: string | null;
+  }
+  /**
+   * Caracteristics of other file types.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaFileCharacteristics {
+    /**
+     * Output only. Generic map of characteristics.
+     */
+    characteristics?: {[key: string]: string} | null;
+  }
+  /**
+   * Represents a file attached to a session (context file)
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaFileMetadata {
+    /**
+     * Output only. The size of the context file in bytes.
+     */
+    byteSize?: string | null;
+    /**
+     * Output only. The AssistantService.DownloadSessionFile URL to download the file. This URL will need the same credentials as AssistantService.ListSessionFileMetadata method and will provide the resource.
+     */
+    downloadUri?: string | null;
+    /**
+     * Output only. The ID of the file.
+     */
+    fileId?: string | null;
+    /**
+     * Optional. The origin of the file.
+     */
+    fileOriginType?: string | null;
+    /**
+     * Output only. The time the file was added to the session. Note that if a file was added, then modified externally, then added again, the add time will be updated.
+     */
+    lastAddTime?: string | null;
+    /**
+     * Optional. Represents metadata related to the file that can suit particular use cases. The prefix "google." is reserved for the key for use by Google, but other prefixes can be freely used.
+     */
+    metadata?: {[key: string]: string} | null;
+    /**
+     * The content type of the file, see https://www.iana.org/assignments/media-types/media-types.xhtml.
+     */
+    mimeType?: string | null;
+    /**
+     * Output only. The name of the file uploaded.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of the original source of the file.
+     */
+    originalSourceType?: string | null;
+    /**
+     * Optional. The original location of the file. It may be a local file path, or any other URI that allows accessing the file in an external system. There are two scenarios in which this url may be empty: 1. If the file was sent as inline data (e.g. pasted from the clipboard). 2. If the original location is not available. Note that there's no guarantee that the URI will be pointing to a valid or actually existing file. For example, a file might have been uploaded to the session, and then deleted from the original source.
+     */
+    originalUri?: string | null;
+    /**
+     * Output only. The time the file was uploaded (If this is a file generated by an internal process and then made available to the session, this indicates the moment it happened).
+     */
+    uploadTime?: string | null;
+    /**
+     * Output only. Alternate views of this file object. Each file view is attached to a specific role. Possible example keys: - "thumbnail" - "mobile_thumbnail" - "clip" - "summary" - "translation"
+     */
+    views?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaFileView;
+    } | null;
+  }
+  /**
+   * Represents a specific alternate version or "view" of a file object, such as a summary, a thumbnail, a translated version, etc.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaFileView {
+    /**
+     * Output only. The size of the view in bytes.
+     */
+    byteSize?: string | null;
+    /**
+     * Output only. The time the view was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Characteristics of other file types.
+     */
+    fileCharacteristics?: Schema$GoogleCloudDiscoveryengineV1alphaFileCharacteristics;
+    /**
+     * Output only. Characteristics of an image media view.
+     */
+    imageCharacteristics?: Schema$GoogleCloudDiscoveryengineV1alphaImageCharacteristics;
+    /**
+     * Output only. MIME type (e.g., "image/jpeg", "image/png", "text/plain", "video/mp4")
+     */
+    mimeType?: string | null;
+    /**
+     * Output only. The URI to access this media view.
+     */
+    uri?: string | null;
+    /**
+     * Output only. Characteristics of a video media view.
+     */
+    videoCharacteristics?: Schema$GoogleCloudDiscoveryengineV1alphaVideoCharacteristics;
+    /**
+     * Output only. Globally Unique id for this specific view.
+     */
+    viewId?: string | null;
   }
   /**
    * Firestore source import data from.
@@ -5129,6 +5382,27 @@ export namespace discoveryengine_v1alpha {
      * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
      */
     workforcePoolName?: string | null;
+  }
+  /**
+   * Standard characteristics of an image media view.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaImageCharacteristics {
+    /**
+     * Output only. Bit depth of the image (e.g., 8-bit, 16-bit).
+     */
+    bitDepth?: number | null;
+    /**
+     * Output only. Color space of the image (e.g., "RGB", "CMYK", "Grayscale").
+     */
+    colorSpace?: string | null;
+    /**
+     * Output only. Image height in pixels.
+     */
+    height?: number | null;
+    /**
+     * Output only. Image width in pixels.
+     */
+    width?: number | null;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -5738,6 +6012,19 @@ export namespace discoveryengine_v1alpha {
     nextPageToken?: string | null;
   }
   /**
+   * Response message for SessionService.ListFiles method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse {
+    /**
+     * The FileMetadatas.
+     */
+    files?: Schema$GoogleCloudDiscoveryengineV1alphaFileMetadata[];
+    /**
+     * A token to retrieve next page of results. Pass this value in the ListFilesRequest.page_token field in the subsequent call to `ListFiles` method to retrieve the next page of results.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
    * Response message for IdentityMappingStoreService.ListIdentityMappings
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListIdentityMappingsResponse {
@@ -5820,11 +6107,11 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaListSessionsRequest {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string | null;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string | null;
     /**
@@ -5947,6 +6234,15 @@ export namespace discoveryengine_v1alpha {
      * Vertex AI's organic crawl rate time series, which is the crawl rate of Google-CloudVertexBot when dedicate crawl is not set. Please refer to https://developers.google.com/search/docs/crawling-indexing/google-common-crawlers#google-cloudvertexbot for more details about Google-CloudVertexBot.
      */
     vertexAiOrganicCrawlRate?: Schema$GoogleCloudDiscoveryengineV1alphaCrawlRateTimeSeries;
+  }
+  /**
+   * The output configuration setting.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaOutputConfig {
+    /**
+     * The BigQuery location where the output is to be written to.
+     */
+    bigqueryDestination?: Schema$GoogleCloudDiscoveryengineV1alphaBigQueryDestination;
   }
   /**
    * Detailed page information.
@@ -6094,6 +6390,19 @@ export namespace discoveryengine_v1alpha {
      * Required. The version of the [Terms for data use](https://cloud.google.com/retail/data-use-terms) that caller has read and would like to give consent to. Acceptable version is `2022-11-23`, and this may change over time.
      */
     dataUseTermsVersion?: string | null;
+    /**
+     * Optional. Parameters for Agentspace.
+     */
+    saasParams?: Schema$GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams;
+  }
+  /**
+   * Parameters for Agentspace.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaProvisionProjectRequestSaasParams {
+    /**
+     * Optional. Set to `true` to specify that caller has read and would like to give consent to the [Terms for Agent Space quality of service].
+     */
+    acceptBizQos?: boolean | null;
   }
   /**
    * Metadata related to the progress of the PurgeCompletionSuggestions operation. This is returned by the google.longrunning.Operation.metadata field.
@@ -6402,7 +6711,7 @@ export namespace discoveryengine_v1alpha {
      */
     query?: string | null;
     /**
-     * Required. A list of records to rank. At most 200 records to rank.
+     * Required. A list of records to rank.
      */
     records?: Schema$GoogleCloudDiscoveryengineV1alphaRankingRecord[];
     /**
@@ -7057,7 +7366,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -7386,7 +7695,7 @@ export namespace discoveryengine_v1alpha {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -7492,6 +7801,10 @@ export namespace discoveryengine_v1alpha {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -7890,6 +8203,64 @@ export namespace discoveryengine_v1alpha {
     modelScores?: {
       [key: string]: Schema$GoogleCloudDiscoveryengineV1alphaDoubleList;
     } | null;
+    /**
+     * Optional. A set of ranking signals associated with the result.
+     */
+    rankSignals?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals;
+  }
+  /**
+   * A set of ranking signals.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignals {
+    /**
+     * Optional. Combined custom boosts for a doc.
+     */
+    boostingFactor?: number | null;
+    /**
+     * Optional. A list of custom clearbox signals.
+     */
+    customSignals?: Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal[];
+    /**
+     * Optional. The default rank of the result.
+     */
+    defaultRank?: number | null;
+    /**
+     * Optional. Age of the document in hours.
+     */
+    documentAge?: number | null;
+    /**
+     * Optional. Keyword matching adjustment.
+     */
+    keywordSimilarityScore?: number | null;
+    /**
+     * Optional. Predicted conversion rate adjustment as a rank.
+     */
+    pctrRank?: number | null;
+    /**
+     * Optional. Semantic relevance adjustment.
+     */
+    relevanceScore?: number | null;
+    /**
+     * Optional. Semantic similarity adjustment.
+     */
+    semanticSimilarityScore?: number | null;
+    /**
+     * Optional. Topicality adjustment as a rank.
+     */
+    topicalityRank?: number | null;
+  }
+  /**
+   * Custom clearbox signal represented by name and value pair.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaSearchResponseSearchResultRankSignalsCustomSignal {
+    /**
+     * Optional. Name of the signal.
+     */
+    name?: string | null;
+    /**
+     * Optional. Float value representing the ranking signal (e.g. 1.25 for BM25).
+     */
+    value?: number | null;
   }
   /**
    * Information about the session.
@@ -8494,10 +8865,6 @@ export namespace discoveryengine_v1alpha {
      */
     imageGenerationSpec?: Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecImageGenerationSpec;
     /**
-     * Optional. The name of the tool registry to use. Format: `projects/{project\}/locations/{location\}/toolRegistries/{tool_registry\}`
-     */
-    toolRegistry?: string | null;
-    /**
      * Optional. Specification of the Vertex AI Search tool.
      */
     vertexAiSearchSpec?: Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecVertexAiSearchSpec;
@@ -8523,10 +8890,6 @@ export namespace discoveryengine_v1alpha {
      */
     dataStoreSpecs?: Schema$GoogleCloudDiscoveryengineV1alphaSearchRequestDataStoreSpec[];
     /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the Vertex AI Search tool is disabled. Default value is false, the tool is enabled by default.
-     */
-    disabled?: boolean | null;
-    /**
      * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the documents being filtered. Filter expression is case-sensitive. If this field is unrecognizable, an `INVALID_ARGUMENT` is returned. Filtering in Vertex AI Search is done by mapping the LHS filter key to a key property defined in the Vertex AI Search backend -- this mapping is defined by the customer in their schema. For example a media customer might have a field 'name' in their schema. In this case the filter would look like this: filter --\> name:'ANY("king kong")' For more information about filtering including syntax and filter operators, see [Filter](https://cloud.google.com/generative-ai-app-builder/docs/filter-search-metadata)
      */
     filter?: string | null;
@@ -8538,12 +8901,7 @@ export namespace discoveryengine_v1alpha {
   /**
    * Specification of the web grounding tool.
    */
-  export interface Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec {
-    /**
-     * Optional. Deprecated. Please refrain from using this field. Whether the web grounding tool is enabled.
-     */
-    enabled?: boolean | null;
-  }
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaStreamAssistRequestToolsSpecWebGroundingSpec {}
   /**
    * Response for the AssistantService.StreamAssist method.
    */
@@ -8868,6 +9226,32 @@ export namespace discoveryengine_v1alpha {
     updateTime?: string | null;
   }
   /**
+   * Request for the AssistantService.UploadSessionFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileRequest {
+    /**
+     * Information about the file being uploaded.
+     */
+    blob?: Schema$GdataMedia;
+    /**
+     * Media upload request metadata.
+     */
+    mediaRequestInfo?: Schema$ApiservingMediaRequestInfo;
+  }
+  /**
+   * Response for the AssistantService.UploadSessionFile method.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaUploadSessionFileResponse {
+    /**
+     * The ID of the uploaded file.
+     */
+    fileId?: string | null;
+    /**
+     * Media upload response metadata.
+     */
+    mediaResponseInfo?: Schema$ApiservingMediaResponseInfo;
+  }
+  /**
    * UserEvent captures all metadata information Discovery Engine API needs to know about how end users interact with your website.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaUserEvent {
@@ -9011,6 +9395,43 @@ export namespace discoveryengine_v1alpha {
      * Optional. The user profile. We user user full name(First name + Last name) as user profile.
      */
     userProfile?: string | null;
+  }
+  /**
+   * Standard characteristics of a video media view.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1alphaVideoCharacteristics {
+    /**
+     * Output only. Bitrate of the audio in kbps.
+     */
+    audioBitrateKbps?: number | null;
+    /**
+     * Output only. Audio codecs used in the video.
+     */
+    audioCodecs?: string[] | null;
+    /**
+     * Output only. Video duration.
+     */
+    duration?: string | null;
+    /**
+     * Output only. Frame rate (frames per second).
+     */
+    frameRate?: number | null;
+    /**
+     * Output only. Video height in pixels.
+     */
+    height?: number | null;
+    /**
+     * Output only. Bitrate of the video in kbps.
+     */
+    videoBitrateKbps?: number | null;
+    /**
+     * Output only. Video codecs used in the video.
+     */
+    videoCodecs?: string[] | null;
+    /**
+     * Output only. Video width in pixels.
+     */
+    width?: number | null;
   }
   /**
    * WidgetConfig captures configs at the Widget level.
@@ -9194,6 +9615,10 @@ export namespace discoveryengine_v1alpha {
    * Describes the assistant settings of the widget.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaWidgetConfigAssistantSettings {
+    /**
+     * Output only. This field controls the default web grounding toggle for end users if `web_grounding_type` is set to `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`. By default, this field is set to false. If `web_grounding_type` is `WEB_GROUNDING_TYPE_GOOGLE_SEARCH` or `WEB_GROUNDING_TYPE_ENTERPRISE_WEB_SEARCH`, end users will have web grounding enabled by default on UI. If true, grounding toggle will be disabled by default on UI. End users can still enable web grounding in the UI if web grounding is enabled.
+     */
+    defaultWebGroundingToggleOff?: boolean | null;
     /**
      * Whether or not the Google search grounding toggle is shown. Deprecated. Use web_grounding_type instead.
      */
@@ -9543,6 +9968,103 @@ export namespace discoveryengine_v1alpha {
     topP?: number | null;
   }
   /**
+   * Discovery Engine Assistant resource.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1Assistant {
+    /**
+     * Optional. Customer policy for the assistant.
+     */
+    customerPolicy?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy;
+    /**
+     * Optional. Note: not implemented yet. Use enabled_actions instead. The enabled tools on this assistant. The keys are connector name, for example "projects/{projectId\}/locations/{locationId\}/collections/{collectionId\}/dataconnector The values consist of admin enabled tools towards the connector instance. Admin can selectively enable multiple tools on any of the connector instances that they created in the project. For example {"jira1ConnectorName": [(toolId1, "createTicket"), (toolId2, "transferTicket")], "gmail1ConnectorName": [(toolId3, "sendEmail"),..] \}
+     */
+    enabledTools?: {
+      [key: string]: Schema$GoogleCloudDiscoveryengineV1AssistantToolList;
+    } | null;
+    /**
+     * Optional. Configuration for the generation of the assistant response.
+     */
+    generationConfig?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig;
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. The type of web grounding to use.
+     */
+    webGroundingType?: string | null;
+  }
+  /**
+   * Customer-defined policy for the assistant.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicy {
+    /**
+     * Optional. List of banned phrases.
+     */
+    bannedPhrases?: Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase[];
+  }
+  /**
+   * Definition of a customer-defined banned phrase. A banned phrase is not allowed to appear in the user query or the LLM response, or else the answer will be refused.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantCustomerPolicyBannedPhrase {
+    /**
+     * Optional. If true, diacritical marks (e.g., accents, umlauts) are ignored when matching banned phrases. For example, "cafe" would match "café".
+     */
+    ignoreDiacritics?: boolean | null;
+    /**
+     * Optional. Match type for the banned phrase.
+     */
+    matchType?: string | null;
+    /**
+     * Required. The raw string content to be banned.
+     */
+    phrase?: string | null;
+  }
+  /**
+   * Configuration for the generation of the assistant response.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfig {
+    /**
+     * The default language to use for the generation of the assistant response. Use an ISO 639-1 language code such as `en`. If not specified, the language will be automatically detected.
+     */
+    defaultLanguage?: string | null;
+    /**
+     * System instruction, also known as the prompt preamble for LLM calls. See also https://cloud.google.com/vertex-ai/generative-ai/docs/learn/prompts/system-instructions
+     */
+    systemInstruction?: Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction;
+  }
+  /**
+   * System instruction, also known as the prompt preamble for LLM calls.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantGenerationConfigSystemInstruction {
+    /**
+     * Optional. Additional system instruction that will be added to the default system instruction.
+     */
+    additionalSystemInstruction?: string | null;
+  }
+  /**
+   * Information to identify a tool.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo {
+    /**
+     * The display name of the tool.
+     */
+    toolDisplayName?: string | null;
+    /**
+     * The name of the tool as defined by DataConnectorService.QueryAvailableActions. Note: it's using `action` in the DataConnectorService apis, but they are the same as the `tool` here.
+     */
+    toolName?: string | null;
+  }
+  /**
+   * The enabled tools on a connector
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AssistantToolList {
+    /**
+     * The list of tools with corresponding tool information.
+     */
+    toolInfo?: Schema$GoogleCloudDiscoveryengineV1AssistantToolInfo[];
+  }
+  /**
    * Metadata related to the progress of the SiteSearchEngineService.BatchCreateTargetSites operation. This will be returned by the google.longrunning.Operation.metadata field.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1BatchCreateTargetSiteMetadata {
@@ -9676,11 +10198,11 @@ export namespace discoveryengine_v1alpha {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -11207,7 +11729,7 @@ export namespace discoveryengine_v1alpha {
      */
     languageCode?: string | null;
     /**
-     * If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
+     * Config for natural language query understanding capabilities, such as extracting structured field filters from the query. Refer to [this documentation](https://cloud.google.com/generative-ai-app-builder/docs/natural-language-queries) for more information. If `naturalLanguageQueryUnderstandingSpec` is not specified, no additional natural language query understanding will be done.
      */
     naturalLanguageQueryUnderstandingSpec?: Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec;
     /**
@@ -11532,7 +12054,7 @@ export namespace discoveryengine_v1alpha {
      */
     customSearchOperators?: string | null;
     /**
-     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`.
+     * Required. Full resource name of DataStore, such as `projects/{project\}/locations/{location\}/collections/{collection_id\}/dataStores/{data_store_id\}`. The path must include the project number, project id is not supported for this field.
      */
     dataStore?: string | null;
     /**
@@ -11638,6 +12160,10 @@ export namespace discoveryengine_v1alpha {
    * Specification to enable natural language understanding capabilities for search requests.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaSearchRequestNaturalLanguageQueryUnderstandingSpec {
+    /**
+     * Optional. Controls behavior of how extracted filters are applied to the search. The default behavior depends on the request. For single datastore structured search, the default is `HARD_FILTER`. For multi-datastore search, the default behavior is `SOFT_BOOST`. Location-based filters are always applied as hard filters, and the `SOFT_BOOST` setting will not affect them. This field is only used if SearchRequest.natural_language_query_understanding_spec.filter_extraction_condition is set to FilterExtractionCondition.ENABLED.
+     */
+    extractedFilterBehavior?: string | null;
     /**
      * The condition under which filter extraction should occur. Server behavior defaults to `DISABLED`.
      */
@@ -11994,11 +12520,11 @@ export namespace discoveryengine_v1alpha {
      */
     isDefault?: boolean | null;
     /**
-     * KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
     /**
-     * KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
+     * Output only. KMS key version resource name which will be used to encrypt resources `/cryptoKeyVersions/{keyVersion\}`.
      */
     kmsKeyVersion?: string | null;
     /**
@@ -13715,6 +14241,130 @@ export namespace discoveryengine_v1alpha {
     type?: string | null;
   }
   /**
+   * Metadata about an agentspace source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata {
+    /**
+     * Output only. The full document name in Agentspace.
+     */
+    documentName?: string | null;
+    /**
+     * Output only. The title of the document.
+     */
+    documentTitle?: string | null;
+  }
+  /**
+   * Request for SourceService.BatchCreateSources method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest {
+    /**
+     * Required. The UserContents to be uploaded.
+     */
+    userContents?: Schema$GoogleCloudNotebooklmV1alphaUserContent[];
+  }
+  /**
+   * Response for SourceService.BatchCreateSources method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse {
+    /**
+     * The Sources.
+     */
+    sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
+  }
+  /**
+   * Customer-managed encryption configuration for Notebooks.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCmekConfig {
+    /**
+     * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
+     */
+    kmsKey?: string | null;
+  }
+  /**
+   * Response for NotebookService.ListRecentlyViewedNotebooks method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse {
+    /**
+     * The page token, provide this to retrieve the subsequent page.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of recently viewed notebooks.
+     */
+    notebooks?: Schema$GoogleCloudNotebooklmV1alphaNotebook[];
+  }
+  /**
+   * Notebook is a resource where users can store their content (as sources) and interacts with the content.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaNotebook {
+    /**
+     * Output only. CMEK-related information for the Notebook.
+     */
+    cmekConfig?: Schema$GoogleCloudNotebooklmV1alphaCmekConfig;
+    /**
+     * Output only. The emoji of the notebook.
+     */
+    emoji?: string | null;
+    /**
+     * The metadata of the notebook.
+     */
+    metadata?: Schema$GoogleCloudNotebooklmV1alphaNotebookMetadata;
+    /**
+     * Identifier. The identifier of the notebook. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`. This field must be a UTF-8 encoded string.
+     */
+    name?: string | null;
+    /**
+     * Optional. Notebook id, which is the last segment of the notebook's resource name. This is to make it similar with notebooklm API.
+     */
+    notebookId?: string | null;
+    /**
+     * Optional. The title of the notebook.
+     */
+    title?: string | null;
+  }
+  /**
+   * Metadata for a notebook.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaNotebookMetadata {
+    /**
+     * The time at which this project was created.
+     */
+    createTime?: string | null;
+    /**
+     * True if the project is shareable.
+     */
+    isShareable?: boolean | null;
+    /**
+     * True if this project is currently shared with other people, false otherwise.
+     */
+    isShared?: boolean | null;
+    /**
+     * A timestamp indicating the time that the current in session user has last viewed the project.
+     */
+    lastViewed?: string | null;
+  }
+  /**
+   * Source represents a single source of content.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaSource {
+    /**
+     * Metadata about the source.
+     */
+    metadata?: Schema$GoogleCloudNotebooklmV1alphaSourceMetadata;
+    /**
+     * Identifier. The full resource name of the source. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * Optional. Source id, which is the last segment of the source's resource name. This is to make it similar with notebooklm API.
+     */
+    sourceId?: Schema$GoogleCloudNotebooklmV1alphaSourceId;
+    /**
+     * Optional. Title of the source.
+     */
+    title?: string | null;
+  }
+  /**
    * SourceId is the last segment of the source's resource name.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaSourceId {
@@ -13722,6 +14372,27 @@ export namespace discoveryengine_v1alpha {
      * The id of the source.
      */
     id?: string | null;
+  }
+  /**
+   * Represents the metadata of a source and some additional information.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaSourceMetadata {
+    /**
+     * Metadata for an agentspace source.
+     */
+    agentspaceMetadata?: Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata;
+    /**
+     * The timestamp the source was added.
+     */
+    sourceAddedTimestamp?: string | null;
+    /**
+     * The number of tokens in the source.
+     */
+    tokenCount?: number | null;
+    /**
+     * The word count of the source.
+     */
+    wordCount?: number | null;
   }
   /**
    * Request for the SourceService.UploadSourceFile method.
@@ -13752,6 +14423,32 @@ export namespace discoveryengine_v1alpha {
      * The source id of the uploaded source.
      */
     sourceId?: Schema$GoogleCloudNotebooklmV1alphaSourceId;
+  }
+  /**
+   * The "Content" messages refer to data the user wants to upload.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContent {
+    /**
+     * Agentspace content uploaded as source.
+     */
+    agentspaceContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent;
+  }
+  /**
+   * Agentspace content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent {
+    /**
+     * Optional. The full document name in Agentspace.
+     */
+    documentName?: string | null;
+    /**
+     * Optional. Engine to verify the permission of the document.
+     */
+    engineName?: string | null;
+    /**
+     * Optional. The full idea name for IdeaForge.
+     */
+    ideaforgeIdeaName?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -14004,7 +14701,7 @@ export namespace discoveryengine_v1alpha {
     }
 
     /**
-     * Uploads a file for Notebook LM to use. Creates a Source.
+     * Downloads a file from the session.
      * @example
      * ```js
      * // Before running the sample:
@@ -14033,30 +14730,48 @@ export namespace discoveryengine_v1alpha {
      *   google.options({auth: authClient});
      *
      *   // Do the magic
-     *   const res = await discoveryengine.media.upload({
-     *     // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
-     *     parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "blob": {},
-     *       //   "mediaRequestInfo": {},
-     *       //   "sourceId": "my_sourceId"
-     *       // }
-     *     },
-     *     media: {
-     *       mimeType: 'placeholder-value',
-     *       body: 'placeholder-value',
-     *     },
+     *   const res = await discoveryengine.media.download({
+     *     // Required. The ID of the file to be downloaded.
+     *     fileId: 'placeholder-value',
+     *     // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
+     *     name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *     // Optional. The ID of the view to be downloaded.
+     *     viewId: 'placeholder-value',
      *   });
      *   console.log(res.data);
      *
      *   // Example response
      *   // {
-     *   //   "mediaResponseInfo": {},
-     *   //   "sourceId": {}
+     *   //   "algorithm": "my_algorithm",
+     *   //   "bigstoreObjectRef": "my_bigstoreObjectRef",
+     *   //   "blobRef": "my_blobRef",
+     *   //   "blobstore2Info": {},
+     *   //   "compositeMedia": [],
+     *   //   "contentType": "my_contentType",
+     *   //   "contentTypeInfo": {},
+     *   //   "cosmoBinaryReference": "my_cosmoBinaryReference",
+     *   //   "crc32cHash": 0,
+     *   //   "diffChecksumsResponse": {},
+     *   //   "diffDownloadResponse": {},
+     *   //   "diffUploadRequest": {},
+     *   //   "diffUploadResponse": {},
+     *   //   "diffVersionResponse": {},
+     *   //   "downloadParameters": {},
+     *   //   "filename": "my_filename",
+     *   //   "hash": "my_hash",
+     *   //   "hashVerified": false,
+     *   //   "inline": "my_inline",
+     *   //   "isPotentialRetry": false,
+     *   //   "length": "my_length",
+     *   //   "md5Hash": "my_md5Hash",
+     *   //   "mediaId": "my_mediaId",
+     *   //   "objectId": {},
+     *   //   "path": "my_path",
+     *   //   "referenceType": "my_referenceType",
+     *   //   "sha1Hash": "my_sha1Hash",
+     *   //   "sha256Hash": "my_sha256Hash",
+     *   //   "timestamp": "my_timestamp",
+     *   //   "token": "my_token"
      *   // }
      * }
      *
@@ -14072,60 +14787,52 @@ export namespace discoveryengine_v1alpha {
      * @param callback - Optional callback that handles the response.
      * @returns A promise if used with async/await, or void if used with a callback.
      */
-    upload(
-      params: Params$Resource$Media$Upload,
+    download(
+      params: Params$Resource$Media$Download,
       options: StreamMethodOptions
     ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    upload(
-      params?: Params$Resource$Media$Upload,
+    download(
+      params?: Params$Resource$Media$Download,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-    >;
-    upload(
-      params: Params$Resource$Media$Upload,
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>;
+    download(
+      params: Params$Resource$Media$Download,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
       callback: BodyResponseCallback<Readable>
     ): void;
-    upload(
-      params: Params$Resource$Media$Upload,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    download(
+      params: Params$Resource$Media$Download,
+      options: MethodOptions | BodyResponseCallback<Schema$GdataMedia>,
+      callback: BodyResponseCallback<Schema$GdataMedia>
     ): void;
-    upload(
-      params: Params$Resource$Media$Upload,
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+    download(
+      params: Params$Resource$Media$Download,
+      callback: BodyResponseCallback<Schema$GdataMedia>
     ): void;
-    upload(
-      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-    ): void;
-    upload(
+    download(callback: BodyResponseCallback<Schema$GdataMedia>): void;
+    download(
       paramsOrCallback?:
-        | Params$Resource$Media$Upload
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | Params$Resource$Media$Download
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
+        | BodyResponseCallback<Schema$GdataMedia>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$GdataMedia>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Media$Upload;
+      let params = (paramsOrCallback || {}) as Params$Resource$Media$Download;
       let options = (optionsOrCallback || {}) as MethodOptions;
 
       if (typeof paramsOrCallback === 'function') {
         callback = paramsOrCallback;
-        params = {} as Params$Resource$Media$Upload;
+        params = {} as Params$Resource$Media$Download;
         options = {};
       }
 
@@ -14139,61 +14846,44 @@ export namespace discoveryengine_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/sources:uploadFile').replace(
+            url: (rootUrl + '/v1alpha/{+name}:downloadFile').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
-            method: 'POST',
+            method: 'GET',
             apiVersion: '',
           },
           options
         ),
         params,
-        mediaUrl: (
-          rootUrl + '/upload/v1alpha/{+parent}/sources:uploadFile'
-        ).replace(/([^:]\/)\/+/g, '$1'),
-        requiredParams: ['parent'],
-        pathParams: ['parent'],
+        requiredParams: ['name'],
+        pathParams: ['name'],
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
+        createAPIRequest<Schema$GdataMedia>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GdataMedia>(parameters);
       }
     }
   }
 
-  export interface Params$Resource$Media$Upload extends StandardParameters {
+  export interface Params$Resource$Media$Download extends StandardParameters {
     /**
-     * Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     * Required. The ID of the file to be downloaded.
      */
-    parent?: string;
-
+    fileId?: string;
     /**
-     * Request body metadata
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}`
      */
-    requestBody?: Schema$GoogleCloudNotebooklmV1alphaUploadSourceFileRequest;
-
+    name?: string;
     /**
-     * Media metadata
+     * Optional. The ID of the view to be downloaded.
      */
-    media?: {
-      /**
-       * Media mime-type
-       */
-      mimeType?: string;
-
-      /**
-       * Media body contents
-       */
-      body?: any;
-    };
+    viewId?: string;
   }
 
   export class Resource$Projects {
@@ -14392,7 +15082,8 @@ export namespace discoveryengine_v1alpha {
      *       // request body parameters
      *       // {
      *       //   "acceptDataUseTerms": false,
-     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion"
+     *       //   "dataUseTermsVersion": "my_dataUseTermsVersion",
+     *       //   "saasParams": {}
      *       // }
      *     },
      *   });
@@ -17272,6 +17963,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -17766,6 +18458,7 @@ export namespace discoveryengine_v1alpha {
      *         //   "endUserConfig": {},
      *         //   "entities": [],
      *         //   "errors": [],
+     *         //   "hybridIngestionDisabled": false,
      *         //   "identityRefreshInterval": "my_identityRefreshInterval",
      *         //   "identityScheduleConfig": {},
      *         //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -17808,6 +18501,7 @@ export namespace discoveryengine_v1alpha {
      *   //   "endUserConfig": {},
      *   //   "entities": [],
      *   //   "errors": [],
+     *   //   "hybridIngestionDisabled": false,
      *   //   "identityRefreshInterval": "my_identityRefreshInterval",
      *   //   "identityScheduleConfig": {},
      *   //   "incrementalRefreshInterval": "my_incrementalRefreshInterval",
@@ -30048,9 +30742,9 @@ export namespace discoveryengine_v1alpha {
      *   const res =
      *     await discoveryengine.projects.locations.collections.dataStores.sessions.list(
      *       {
-     *         // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *         // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *         filter: 'placeholder-value',
-     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *         // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *         orderBy: 'placeholder-value',
      *         // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *         pageSize: 'placeholder-value',
@@ -30384,11 +31078,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -35322,6 +36016,7 @@ export namespace discoveryengine_v1alpha {
 
   export class Resource$Projects$Locations$Collections$Engines {
     context: APIRequestContext;
+    analytics: Resource$Projects$Locations$Collections$Engines$Analytics;
     assistants: Resource$Projects$Locations$Collections$Engines$Assistants;
     completionConfig: Resource$Projects$Locations$Collections$Engines$Completionconfig;
     controls: Resource$Projects$Locations$Collections$Engines$Controls;
@@ -35332,6 +36027,10 @@ export namespace discoveryengine_v1alpha {
     widgetConfigs: Resource$Projects$Locations$Collections$Engines$Widgetconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.analytics =
+        new Resource$Projects$Locations$Collections$Engines$Analytics(
+          this.context
+        );
       this.assistants =
         new Resource$Projects$Locations$Collections$Engines$Assistants(
           this.context
@@ -36792,10 +37491,509 @@ export namespace discoveryengine_v1alpha {
     requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaTuneEngineRequest;
   }
 
+  export class Resource$Projects$Locations$Collections$Engines$Analytics {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Exports metrics.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.analytics.exportMetrics(
+     *       {
+     *         // Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/analytics`.
+     *         analytics:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/analytics',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "outputConfig": {}
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    exportMetrics(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    exportMetrics(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+analytics}:exportMetrics').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['analytics'],
+        pathParams: ['analytics'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Analytics$Exportmetrics
+    extends StandardParameters {
+    /**
+     * Required. The analytics resource name under the engine where the metrics are created. The format is `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/analytics`.
+     */
+    analytics?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaExportMetricsRequest;
+  }
+
   export class Resource$Projects$Locations$Collections$Engines$Assistants {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Gets an Assistant.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.get(
+     *       {
+     *         // Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an Assistant
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.assistants.patch(
+     *       {
+     *         // Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *         name: 'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/assistants/my-assistant',
+     *         // The list of fields to update.
+     *         updateMask: 'placeholder-value',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "customerPolicy": {},
+     *           //   "enabledTools": {},
+     *           //   "generationConfig": {},
+     *           //   "name": "my_name",
+     *           //   "webGroundingType": "my_webGroundingType"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customerPolicy": {},
+     *   //   "enabledTools": {},
+     *   //   "generationConfig": {},
+     *   //   "name": "my_name",
+     *   //   "webGroundingType": "my_webGroundingType"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    >;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaAssistant>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -36965,6 +38163,29 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Get
+    extends StandardParameters {
+    /**
+     * Required. Resource name of Assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Patch
+    extends StandardParameters {
+    /**
+     * Immutable. Resource name of the assistant. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/assistants/{assistant\}` It must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+    /**
+     * The list of fields to update.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1alphaAssistant;
+  }
   export interface Params$Resource$Projects$Locations$Collections$Engines$Assistants$Streamassist
     extends StandardParameters {
     /**
@@ -41209,10 +42430,15 @@ export namespace discoveryengine_v1alpha {
   export class Resource$Projects$Locations$Collections$Engines$Sessions {
     context: APIRequestContext;
     answers: Resource$Projects$Locations$Collections$Engines$Sessions$Answers;
+    files: Resource$Projects$Locations$Collections$Engines$Sessions$Files;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.answers =
         new Resource$Projects$Locations$Collections$Engines$Sessions$Answers(
+          this.context
+        );
+      this.files =
+        new Resource$Projects$Locations$Collections$Engines$Sessions$Files(
           this.context
         );
     }
@@ -41717,9 +42943,9 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res =
      *     await discoveryengine.projects.locations.collections.engines.sessions.list({
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -42052,11 +43278,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -42265,6 +43491,199 @@ export namespace discoveryengine_v1alpha {
      * Required. The resource name of the Answer to get. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine_id\}/sessions/{session_id\}/answers/{answer_id\}`
      */
     name?: string;
+  }
+
+  export class Resource$Projects$Locations$Collections$Engines$Sessions$Files {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Lists metadata for all files in the current session.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.collections.engines.sessions.files.list(
+     *       {
+     *         // Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * "file_name = 'file_1'" * "file_name = 'file_1' AND mime_type = 'text/plain'" * "last_use_time \> '2025-06-14T12:00:00Z'" For a full description of the filter format, please see https://google.aip.dev/160.
+     *         filter: 'placeholder-value',
+     *         // Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`
+     *         orderBy: 'placeholder-value',
+     *         // Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. A page token received from a previous `ListFiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFiles` must match the call that provided the page token (except `page_size`, which may differ).
+     *         pageToken: 'placeholder-value',
+     *         // Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}` Name of the session resource to which the file belong.
+     *         parent:
+     *           'projects/my-project/locations/my-location/collections/my-collection/engines/my-engine/sessions/my-session',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "files": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/files').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1alphaListFilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Collections$Engines$Sessions$Files$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter syntax consists of an expression language for constructing a predicate from one or more fields of the files being filtered. Filter expression is case-sensitive. Currently supported field names are: * upload_time * last_add_time * last_use_time * file_name * mime_type Some examples of filters would be: * "file_name = 'file_1'" * "file_name = 'file_1' AND mime_type = 'text/plain'" * "last_use_time \> '2025-06-14T12:00:00Z'" For a full description of the filter format, please see https://google.aip.dev/160.
+     */
+    filter?: string;
+    /**
+     * Optional. Specifies the order in which files are returned. The value is a comma-separated string of fields to sort by. For ascending order - just the field name is used. For descending order - the field name is suffixed with ` desc`. Sorting is stable and applied sequentially according to the order of fields provided in the string. Supported fields for ordering: * `upload_time`: The time the file was uploaded. * `file_name`: The name of the file. * `mime_type`: The MIME type of the file. * `session_name`: The name of the session the file belongs to. Default Behavior: If the `order_by` field is not specified, files will be returned sorted by creation time in descending order. Examples: 1. Sort by file name in ascending order: `file_name` 2. Sort by upload time in descending order: `upload_time desc` 3. Sort by file name (ascending), then by content type (MIME type) (descending), and finally by upload time (ascending): `file_name, mime_type desc, upload_time`
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of files to return. The service may return fewer than this value. If unspecified, at most 100 files will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000. If user specifies a value less than or equal to 0 - the request will be rejected with an INVALID_ARGUMENT error.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token received from a previous `ListFiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListFiles` must match the call that provided the page token (except `page_size`, which may differ).
+     */
+    pageToken?: string;
+    /**
+     * Required. The resource name of the Session. Format: `projects/{project\}/locations/{location\}/collections/{collection\}/engines/{engine\}/sessions/{session\}` Name of the session resource to which the file belong.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Collections$Engines$Widgetconfigs {
@@ -53014,9 +54433,9 @@ export namespace discoveryengine_v1alpha {
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.dataStores.sessions.list(
      *     {
-     *       // A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     *       // A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      *       filter: 'placeholder-value',
-     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     *       // A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      *       orderBy: 'placeholder-value',
      *       // Maximum number of results to return. If unspecified, defaults to 50. Max allowed value is 1000.
      *       pageSize: 'placeholder-value',
@@ -53348,11 +54767,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Datastores$Sessions$List
     extends StandardParameters {
     /**
-     * A filter to apply on the list results. The supported features are: user_pseudo_id, state, starred. Examples: "user_pseudo_id = some_id" "starred = true"
+     * A comma-separated list of fields to filter by, in EBNF grammar. The supported fields are: * `user_pseudo_id` * `state` * `display_name` * `starred` * `is_pinned` * `labels` * `create_time` * `update_time` Examples: * `user_pseudo_id = some_id` * `display_name = "some_name"` * `starred = true` * `is_pinned=true AND (NOT labels:hidden)` * `create_time \> "1970-01-01T12:00:00Z"`
      */
     filter?: string;
     /**
-     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * "update_time desc" * "create_time" * "is_pinned desc,update_time desc": list sessions by is_pinned first, then by update_time.
+     * A comma-separated list of fields to order by, sorted in ascending order. Use "desc" after a field name for descending. Supported fields: * `update_time` * `create_time` * `session_name` * `is_pinned` Example: * `update_time desc` * `create_time` * `is_pinned desc,update_time desc`: list sessions by is_pinned first, then by update_time.
      */
     orderBy?: string;
     /**
@@ -57262,9 +58681,9 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Do the magic
      *   const res = await discoveryengine.projects.locations.evaluations.list({
-     *     // Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *     // Required. The parent location resource name, such as `projects/{project\}/locations/{location\}`. If the caller does not have permission to list Evaluations under this location, regardless of whether or not this location exists, a `PERMISSION_DENIED` error is returned.
      *     parent: 'projects/my-project/locations/my-location',
@@ -57418,9 +58837,9 @@ export namespace discoveryengine_v1alpha {
      *     // Required. The evaluation resource name, such as `projects/{project\}/locations/{location\}/evaluations/{evaluation\}`. If the caller does not have permission to list ListEvaluationResultsResponse.EvaluationResult under this evaluation, regardless of whether or not this evaluation set exists, a `PERMISSION_DENIED` error is returned.
      *     evaluation:
      *       'projects/my-project/locations/my-location/evaluations/my-evaluation',
-     *     // Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      *     pageSize: 'placeholder-value',
-     *     // A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     *     // Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      *     pageToken: 'placeholder-value',
      *   });
      *   console.log(res.data);
@@ -57562,11 +58981,11 @@ export namespace discoveryengine_v1alpha {
   export interface Params$Resource$Projects$Locations$Evaluations$List
     extends StandardParameters {
     /**
-     * Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of Evaluations to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationsResponse.next_page_token, received from a previous EvaluationService.ListEvaluations call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluations must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
     /**
@@ -57581,11 +59000,11 @@ export namespace discoveryengine_v1alpha {
      */
     evaluation?: string;
     /**
-     * Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
+     * Optional. Maximum number of ListEvaluationResultsResponse.EvaluationResult to return. If unspecified, defaults to 100. The maximum allowed value is 1000. Values above 1000 will be coerced to 1000. If this field is negative, an `INVALID_ARGUMENT` error is returned.
      */
     pageSize?: number;
     /**
-     * A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
+     * Optional. A page token ListEvaluationResultsResponse.next_page_token, received from a previous EvaluationService.ListEvaluationResults call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to EvaluationService.ListEvaluationResults must match the call that provided the page token. Otherwise, an `INVALID_ARGUMENT` error is returned.
      */
     pageToken?: string;
   }
@@ -59484,12 +60903,340 @@ export namespace discoveryengine_v1alpha {
         this.context
       );
     }
+
+    /**
+     * Lists the recently viewed notebooks. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.listRecentlyViewed({
+     *       // Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. The page token, provide this to retrieve the subsequent page.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "notebooks": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    listRecentlyViewed(
+      params?: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    >;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      params: Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+    ): void;
+    listRecentlyViewed(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha/{+parent}/notebooks:listRecentlyViewed'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaListRecentlyViewedNotebooksResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
+    extends StandardParameters {
+    /**
+     * Optional. Maximum number of Notebooks to return. If unspecified, defaults to "200". The maximum allowed value is "500". If this field is negative, will use the default value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. The page token, provide this to retrieve the subsequent page.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
   }
 
   export class Resource$Projects$Locations$Notebooks$Sources {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
       this.context = context;
+    }
+
+    /**
+     * Creates a list of Sources.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.sources.batchCreate({
+     *       // Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "userContents": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "sources": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchCreate(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    >;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sources:batchCreate').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -59655,6 +61402,18 @@ export namespace discoveryengine_v1alpha {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the sources will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest;
+  }
   export interface Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
     extends StandardParameters {
     /**

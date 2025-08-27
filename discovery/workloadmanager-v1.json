@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250630",
+  "revision": "20250813",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -896,6 +896,37 @@
           },
           "description": "parameters is a map of key/value pairs that can be used to specify additional one-time executable settings.",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "AgentStates": {
+      "description": "Agent status.",
+      "id": "AgentStates",
+      "properties": {
+        "availableVersion": {
+          "description": "Optional. The available version of the agent in artifact registry.",
+          "type": "string"
+        },
+        "hanaMonitoring": {
+          "$ref": "ServiceStates",
+          "description": "Optional. HANA monitoring metrics of the agent."
+        },
+        "installedVersion": {
+          "description": "Optional. The installed version of the agent on the host.",
+          "type": "string"
+        },
+        "isFullyEnabled": {
+          "description": "Optional. Whether the agent is fully enabled. If false, the agent is has some issues.",
+          "type": "boolean"
+        },
+        "processMetrics": {
+          "$ref": "ServiceStates",
+          "description": "Optional. The Process metrics of the agent."
+        },
+        "systemDiscovery": {
+          "$ref": "ServiceStates",
+          "description": "Optional. The System discovery metrics of the agent."
         }
       },
       "type": "object"
@@ -960,6 +991,11 @@
         },
         "installedVersion": {
           "description": "Output only. The installed version of the agent on the host.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "instanceUri": {
+          "description": "Output only. The URI of the instance. Format: projects//zones//instances/",
           "readOnly": true,
           "type": "string"
         },
@@ -1362,6 +1398,10 @@
           ],
           "type": "string"
         },
+        "kmsKey": {
+          "description": "Optional. Immutable. Customer-managed encryption key name, in the format projects/*/locations/*/keyRings/*/cryptoKeys/*.",
+          "type": "string"
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -1418,6 +1458,20 @@
           "description": "Output only. [Output only] End time stamp",
           "format": "google-datetime",
           "readOnly": true,
+          "type": "string"
+        },
+        "engine": {
+          "description": "Optional. Engine",
+          "enum": [
+            "ENGINE_UNSPECIFIED",
+            "ENGINE_SCANNER",
+            "V2"
+          ],
+          "enumDescriptions": [
+            "The original CG",
+            "SlimCG / Scanner",
+            "Evaluation Engine V2"
+          ],
           "type": "string"
         },
         "evaluationId": {
@@ -1603,6 +1657,23 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "IAMPermission": {
+      "description": "The IAM permission status.",
+      "id": "IAMPermission",
+      "properties": {
+        "granted": {
+          "description": "Output only. Whether the permission is granted.",
+          "readOnly": true,
+          "type": "boolean"
+        },
+        "name": {
+          "description": "Output only. The name of the permission.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -2802,6 +2873,10 @@
       "description": "SAP instance properties.",
       "id": "SapInstanceProperties",
       "properties": {
+        "agentStates": {
+          "$ref": "AgentStates",
+          "description": "Optional. Sap Instance Agent status."
+        },
         "numbers": {
           "description": "Optional. SAP Instance numbers. They are from '00' to '99'.",
           "items": {
@@ -2942,6 +3017,42 @@
         },
         "type": {
           "description": "resource type",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ServiceStates": {
+      "description": "The state of the service.",
+      "id": "ServiceStates",
+      "properties": {
+        "iamPermissions": {
+          "description": "Optional. Output only. The IAM permissions for the service.",
+          "items": {
+            "$ref": "IAMPermission"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The overall state of the service.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "CONFIG_FAILURE",
+            "IAM_FAILURE",
+            "FUNCTIONALITY_FAILURE",
+            "ENABLED",
+            "DISABLED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified.",
+            "The state means the service has config errors.",
+            "The state means the service has IAM permission errors.",
+            "The state means the service has functionality errors.",
+            "The state means the service has no error.",
+            "The state means the service disabled."
+          ],
+          "readOnly": true,
           "type": "string"
         }
       },

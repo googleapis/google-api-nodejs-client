@@ -1,5 +1,73 @@
 # Changelog
 
+## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v3.0.0...managedkafka-v3.1.0) (2025-08-25)
+
+
+### Features
+
+* **managedkafka:** update the API ([a740fd8](https://github.com/googleapis/google-api-nodejs-client/commit/a740fd8b6b4f207ab930841daa4b973e6fa18abe))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.0.0...managedkafka-v3.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **managedkafka:** update the API ([a740fd8](https://github.com/googleapis/google-api-nodejs-client/commit/a740fd8b6b4f207ab930841daa4b973e6fa18abe))
+* **managedkafka:** update the API ([c94055f](https://github.com/googleapis/google-api-nodejs-client/commit/c94055feb848da359ce86ce3fd96d239e74a4701))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **managedkafka:** update the API ([a1fdc4e](https://github.com/googleapis/google-api-nodejs-client/commit/a1fdc4eee2d152bdc75d0ee3b3677a57634e1cac))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v1.0.0...managedkafka-v2.0.0) (2025-08-13)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **managedkafka:** update the API ([a740fd8](https://github.com/googleapis/google-api-nodejs-client/commit/a740fd8b6b4f207ab930841daa4b973e6fa18abe))
+* **managedkafka:** update the API ([c94055f](https://github.com/googleapis/google-api-nodejs-client/commit/c94055feb848da359ce86ce3fd96d239e74a4701))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **managedkafka:** update the API ([a1fdc4e](https://github.com/googleapis/google-api-nodejs-client/commit/a1fdc4eee2d152bdc75d0ee3b3677a57634e1cac))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **managedkafka:** update the API ([c94055f](https://github.com/googleapis/google-api-nodejs-client/commit/c94055feb848da359ce86ce3fd96d239e74a4701))
+* run the generator ([#3716](https://github.com/googleapis/google-api-nodejs-client/issues/3716)) ([cc510de](https://github.com/googleapis/google-api-nodejs-client/commit/cc510de95a4f5b76dd72cd01c496f5bca66dbebd))
+
+
+### Bug Fixes
+
+* **managedkafka:** update the API ([a1fdc4e](https://github.com/googleapis/google-api-nodejs-client/commit/a1fdc4eee2d152bdc75d0ee3b3677a57634e1cac))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v2.2.0...managedkafka-v3.0.0) (2025-07-22)
 
 

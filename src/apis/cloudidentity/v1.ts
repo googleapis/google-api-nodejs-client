@@ -115,6 +115,7 @@ export namespace cloudidentity_v1 {
     customers: Resource$Customers;
     devices: Resource$Devices;
     groups: Resource$Groups;
+    inboundOidcSsoProfiles: Resource$Inboundoidcssoprofiles;
     inboundSamlSsoProfiles: Resource$Inboundsamlssoprofiles;
     inboundSsoAssignments: Resource$Inboundssoassignments;
     policies: Resource$Policies;
@@ -128,6 +129,9 @@ export namespace cloudidentity_v1 {
       this.customers = new Resource$Customers(this.context);
       this.devices = new Resource$Devices(this.context);
       this.groups = new Resource$Groups(this.context);
+      this.inboundOidcSsoProfiles = new Resource$Inboundoidcssoprofiles(
+        this.context
+      );
       this.inboundSamlSsoProfiles = new Resource$Inboundsamlssoprofiles(
         this.context
       );
@@ -174,6 +178,15 @@ export namespace cloudidentity_v1 {
    */
   export interface Schema$CreateGroupMetadata {}
   /**
+   * LRO response metadata for InboundOidcSsoProfilesService.CreateInboundOidcSsoProfile.
+   */
+  export interface Schema$CreateInboundOidcSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
+  /**
    * LRO response metadata for InboundSamlSsoProfilesService.CreateInboundSamlSsoProfile.
    */
   export interface Schema$CreateInboundSamlSsoProfileOperationMetadata {
@@ -198,6 +211,10 @@ export namespace cloudidentity_v1 {
    * LRO response metadata for InboundSamlSsoProfilesService.DeleteIdpCredential.
    */
   export interface Schema$DeleteIdpCredentialOperationMetadata {}
+  /**
+   * LRO response metadata for InboundOidcSsoProfilesService.DeleteInboundOidcSsoProfile.
+   */
+  export interface Schema$DeleteInboundOidcSsoProfileOperationMetadata {}
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.DeleteInboundSamlSsoProfile.
    */
@@ -1055,6 +1072,31 @@ export namespace cloudidentity_v1 {
     updateTime?: string | null;
   }
   /**
+   * An [OIDC](https://openid.net/developers/how-connect-works/) federation between a Google enterprise customer and an OIDC identity provider.
+   */
+  export interface Schema$InboundOidcSsoProfile {
+    /**
+     * Immutable. The customer. For example: `customers/C0123abc`.
+     */
+    customer?: string | null;
+    /**
+     * Human-readable name of the OIDC SSO profile.
+     */
+    displayName?: string | null;
+    /**
+     * OIDC identity provider configuration.
+     */
+    idpConfig?: Schema$OidcIdpConfig;
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the OIDC SSO profile.
+     */
+    name?: string | null;
+    /**
+     * OIDC relying party (RP) configuration for this OIDC SSO profile. These are the RP details provided by Google that should be configured on the corresponding identity provider.
+     */
+    rpConfig?: Schema$OidcRpConfig;
+  }
+  /**
    * A [SAML 2.0](https://www.oasis-open.org/standards#samlv2.0) federation between a Google enterprise customer and a SAML identity provider.
    */
   export interface Schema$InboundSamlSsoProfile {
@@ -1091,6 +1133,10 @@ export namespace cloudidentity_v1 {
      * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the Inbound SSO Assignment.
      */
     name?: string | null;
+    /**
+     * OpenID Connect SSO details. Must be set if and only if `sso_mode` is set to `OIDC_SSO`.
+     */
+    oidcSsoInfo?: Schema$OidcSsoInfo;
     /**
      * Must be zero (which is the default value so it can be omitted) for assignments with `target_org_unit` set and must be greater-than-or-equal-to one for assignments with `target_group` set.
      */
@@ -1146,6 +1192,19 @@ export namespace cloudidentity_v1 {
      * The IdpCredentials from the specified InboundSamlSsoProfile.
      */
     idpCredentials?: Schema$IdpCredential[];
+    /**
+     * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+  }
+  /**
+   * Response of the InboundOidcSsoProfilesService.ListInboundOidcSsoProfiles method.
+   */
+  export interface Schema$ListInboundOidcSsoProfilesResponse {
+    /**
+     * List of InboundOidcSsoProfiles.
+     */
+    inboundOidcSsoProfiles?: Schema$InboundOidcSsoProfile[];
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
@@ -1398,6 +1457,45 @@ export namespace cloudidentity_v1 {
      * The `Membership` resource after modifying its `MembershipRole`s.
      */
     membership?: Schema$Membership;
+  }
+  /**
+   * OIDC IDP (identity provider) configuration.
+   */
+  export interface Schema$OidcIdpConfig {
+    /**
+     * The **Change Password URL** of the identity provider. Users will be sent to this URL when changing their passwords at `myaccount.google.com`. This takes precedence over the change password URL configured at customer-level. Must use `HTTPS`.
+     */
+    changePasswordUri?: string | null;
+    /**
+     * Required. The Issuer identifier for the IdP. Must be a URL. The discovery URL will be derived from this as described in Section 4 of [the OIDC specification](https://openid.net/specs/openid-connect-discovery-1_0.html).
+     */
+    issuerUri?: string | null;
+  }
+  /**
+   * OIDC RP (relying party) configuration.
+   */
+  export interface Schema$OidcRpConfig {
+    /**
+     * OAuth2 client ID for OIDC.
+     */
+    clientId?: string | null;
+    /**
+     * Input only. OAuth2 client secret for OIDC.
+     */
+    clientSecret?: string | null;
+    /**
+     * Output only. The URL(s) that this client may use in authentication requests.
+     */
+    redirectUris?: string[] | null;
+  }
+  /**
+   * Details that are applicable when `sso_mode` is set to `OIDC_SSO`.
+   */
+  export interface Schema$OidcSsoInfo {
+    /**
+     * Required. Name of the `InboundOidcSsoProfile` to use. Must be of the form `inboundOidcSsoProfiles/{inbound_oidc_sso_profile\}`.
+     */
+    inboundOidcSsoProfile?: string | null;
   }
   /**
    * This resource represents a long-running operation that is the result of a network API call.
@@ -1661,6 +1759,15 @@ export namespace cloudidentity_v1 {
    * Metadata for UpdateGroup LRO.
    */
   export interface Schema$UpdateGroupMetadata {}
+  /**
+   * LRO response metadata for InboundOidcSsoProfilesService.UpdateInboundOidcSsoProfile.
+   */
+  export interface Schema$UpdateInboundOidcSsoProfileOperationMetadata {
+    /**
+     * State of this Operation Will be "awaiting-multi-party-approval" when the operation is deferred due to the target customer having enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448).
+     */
+    state?: string | null;
+  }
   /**
    * LRO response metadata for InboundSamlSsoProfilesService.UpdateInboundSamlSsoProfile.
    */
@@ -8749,6 +8856,820 @@ export namespace cloudidentity_v1 {
     parent?: string;
   }
 
+  export class Resource$Inboundoidcssoprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates an InboundOidcSsoProfile for a customer. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.inboundOidcSsoProfiles.create({
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customer": "my_customer",
+     *       //   "displayName": "my_displayName",
+     *       //   "idpConfig": {},
+     *       //   "name": "my_name",
+     *       //   "rpConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Inboundoidcssoprofiles$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Inboundoidcssoprofiles$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Inboundoidcssoprofiles$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Inboundoidcssoprofiles$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Inboundoidcssoprofiles$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Inboundoidcssoprofiles$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inboundoidcssoprofiles$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inboundoidcssoprofiles$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/inboundOidcSsoProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes an InboundOidcSsoProfile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.inboundOidcSsoProfiles.delete({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to delete. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
+     *     name: 'inboundOidcSsoProfiles/my-inboundOidcSsoProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Inboundoidcssoprofiles$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Inboundoidcssoprofiles$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Inboundoidcssoprofiles$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Inboundoidcssoprofiles$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Inboundoidcssoprofiles$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Inboundoidcssoprofiles$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inboundoidcssoprofiles$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inboundoidcssoprofiles$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets an InboundOidcSsoProfile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso',
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.inboundOidcSsoProfiles.get({
+     *     // Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to get. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
+     *     name: 'inboundOidcSsoProfiles/my-inboundOidcSsoProfile',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "customer": "my_customer",
+     *   //   "displayName": "my_displayName",
+     *   //   "idpConfig": {},
+     *   //   "name": "my_name",
+     *   //   "rpConfig": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Inboundoidcssoprofiles$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Inboundoidcssoprofiles$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$InboundOidcSsoProfile>>;
+    get(
+      params: Params$Resource$Inboundoidcssoprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Inboundoidcssoprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$InboundOidcSsoProfile>,
+      callback: BodyResponseCallback<Schema$InboundOidcSsoProfile>
+    ): void;
+    get(
+      params: Params$Resource$Inboundoidcssoprofiles$Get,
+      callback: BodyResponseCallback<Schema$InboundOidcSsoProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$InboundOidcSsoProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Inboundoidcssoprofiles$Get
+        | BodyResponseCallback<Schema$InboundOidcSsoProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$InboundOidcSsoProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$InboundOidcSsoProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$InboundOidcSsoProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inboundoidcssoprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inboundoidcssoprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$InboundOidcSsoProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$InboundOidcSsoProfile>(parameters);
+      }
+    }
+
+    /**
+     * Lists InboundOidcSsoProfile objects for a Google enterprise customer.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso',
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso.readonly',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.inboundOidcSsoProfiles.list({
+     *     // A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to. Specifying a filter of `customer==""` will return the global shared OIDC profiles.
+     *     filter: 'placeholder-value',
+     *     // The maximum number of InboundOidcSsoProfiles to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will use a sensible default. This default may change over time. The maximum allowed value is 100. Requests with page_size greater than that will be silently interpreted as having this maximum value.
+     *     pageSize: 'placeholder-value',
+     *     // A page token, received from a previous `ListInboundOidcSsoProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInboundOidcSsoProfiles` must match the call that provided the page token.
+     *     pageToken: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "inboundOidcSsoProfiles": [],
+     *   //   "nextPageToken": "my_nextPageToken"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Inboundoidcssoprofiles$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Inboundoidcssoprofiles$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListInboundOidcSsoProfilesResponse>
+    >;
+    list(
+      params: Params$Resource$Inboundoidcssoprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Inboundoidcssoprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Inboundoidcssoprofiles$List,
+      callback: BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Inboundoidcssoprofiles$List
+        | BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListInboundOidcSsoProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListInboundOidcSsoProfilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inboundoidcssoprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inboundoidcssoprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/inboundOidcSsoProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListInboundOidcSsoProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListInboundOidcSsoProfilesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an InboundOidcSsoProfile. When the target customer has enabled [Multi-party approval for sensitive actions](https://support.google.com/a/answer/13790448), the `Operation` in the response will have `"done": false`, it will not have a response, and the metadata will have `"state": "awaiting-multi-party-approval"`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/cloudidentity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const cloudidentity = google.cloudidentity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: [
+     *       'https://www.googleapis.com/auth/cloud-identity.inboundsso',
+     *       'https://www.googleapis.com/auth/cloud-platform',
+     *     ],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await cloudidentity.inboundOidcSsoProfiles.patch({
+     *     // Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the OIDC SSO profile.
+     *     name: 'inboundOidcSsoProfiles/my-inboundOidcSsoProfile',
+     *     // Required. The list of fields to be updated.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "customer": "my_customer",
+     *       //   "displayName": "my_displayName",
+     *       //   "idpConfig": {},
+     *       //   "name": "my_name",
+     *       //   "rpConfig": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Inboundoidcssoprofiles$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Inboundoidcssoprofiles$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Inboundoidcssoprofiles$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Inboundoidcssoprofiles$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Inboundoidcssoprofiles$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Inboundoidcssoprofiles$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Inboundoidcssoprofiles$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Inboundoidcssoprofiles$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://cloudidentity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Inboundoidcssoprofiles$Create
+    extends StandardParameters {
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InboundOidcSsoProfile;
+  }
+  export interface Params$Resource$Inboundoidcssoprofiles$Delete
+    extends StandardParameters {
+    /**
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to delete. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Inboundoidcssoprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. The [resource name](https://cloud.google.com/apis/design/resource_names) of the InboundOidcSsoProfile to get. Format: `inboundOidcSsoProfiles/{sso_profile_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Inboundoidcssoprofiles$List
+    extends StandardParameters {
+    /**
+     * A [Common Expression Language](https://github.com/google/cel-spec) expression to filter the results. The only supported filter is filtering by customer. For example: `customer=="customers/C0123abc"`. Omitting the filter or specifying a filter of `customer=="customers/my_customer"` will return the profiles for the customer that the caller (authenticated user) belongs to. Specifying a filter of `customer==""` will return the global shared OIDC profiles.
+     */
+    filter?: string;
+    /**
+     * The maximum number of InboundOidcSsoProfiles to return. The service may return fewer than this value. If omitted (or defaulted to zero) the server will use a sensible default. This default may change over time. The maximum allowed value is 100. Requests with page_size greater than that will be silently interpreted as having this maximum value.
+     */
+    pageSize?: number;
+    /**
+     * A page token, received from a previous `ListInboundOidcSsoProfiles` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `ListInboundOidcSsoProfiles` must match the call that provided the page token.
+     */
+    pageToken?: string;
+  }
+  export interface Params$Resource$Inboundoidcssoprofiles$Patch
+    extends StandardParameters {
+    /**
+     * Output only. [Resource name](https://cloud.google.com/apis/design/resource_names) of the OIDC SSO profile.
+     */
+    name?: string;
+    /**
+     * Required. The list of fields to be updated.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$InboundOidcSsoProfile;
+  }
+
   export class Resource$Inboundsamlssoprofiles {
     context: APIRequestContext;
     idpCredentials: Resource$Inboundsamlssoprofiles$Idpcredentials;
@@ -10254,6 +11175,7 @@ export namespace cloudidentity_v1 {
      *       // {
      *       //   "customer": "my_customer",
      *       //   "name": "my_name",
+     *       //   "oidcSsoInfo": {},
      *       //   "rank": 0,
      *       //   "samlSsoInfo": {},
      *       //   "signInBehavior": {},
@@ -10557,6 +11479,7 @@ export namespace cloudidentity_v1 {
      *   // {
      *   //   "customer": "my_customer",
      *   //   "name": "my_name",
+     *   //   "oidcSsoInfo": {},
      *   //   "rank": 0,
      *   //   "samlSsoInfo": {},
      *   //   "signInBehavior": {},
@@ -10863,6 +11786,7 @@ export namespace cloudidentity_v1 {
      *       // {
      *       //   "customer": "my_customer",
      *       //   "name": "my_name",
+     *       //   "oidcSsoInfo": {},
      *       //   "rank": 0,
      *       //   "samlSsoInfo": {},
      *       //   "signInBehavior": {},

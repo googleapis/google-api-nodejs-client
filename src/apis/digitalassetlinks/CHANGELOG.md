@@ -1,5 +1,19 @@
 # Changelog
 
+## [7.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v7.0.2...digitalassetlinks-v7.0.3) (2025-08-13)
+
+
+### Bug Fixes
+
+* **digitalassetlinks:** update the API ([edabc2a](https://github.com/googleapis/google-api-nodejs-client/commit/edabc2a99697d170edf96cb105111f1daae96438))
+
+## [7.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v7.0.1...digitalassetlinks-v7.0.2) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [7.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/digitalassetlinks-v7.0.0...digitalassetlinks-v7.0.1) (2025-07-08)
 
 

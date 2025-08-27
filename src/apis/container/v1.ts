@@ -337,7 +337,12 @@ export namespace container_v1 {
   /**
    * AutoIpamConfig contains all information related to Auto IPAM
    */
-  export interface Schema$AutoIpamConfig {}
+  export interface Schema$AutoIpamConfig {
+    /**
+     * The flag that enables Auto IPAM on this cluster
+     */
+    enabled?: boolean | null;
+  }
   /**
    * AutoMonitoringConfig defines the configuration for GKE Workload Auto-Monitoring.
    */
@@ -355,6 +360,10 @@ export namespace container_v1 {
      * Enable Autopilot
      */
     enabled?: boolean | null;
+    /**
+     * PrivilegedAdmissionConfig is the configuration related to privileged admission control.
+     */
+    privilegedAdmissionConfig?: Schema$PrivilegedAdmissionConfig;
     /**
      * WorkloadPolicyConfig is the configuration related to GCW workload policy
      */
@@ -974,6 +983,10 @@ export namespace container_v1 {
      */
     autoscalingProfile?: string | null;
     /**
+     * Default compute class is a configuration for default compute class.
+     */
+    defaultComputeClassConfig?: Schema$DefaultComputeClassConfig;
+    /**
      * Enables automatic node pool creation and deletion.
      */
     enableNodeAutoprovisioning?: boolean | null;
@@ -1163,6 +1176,10 @@ export namespace container_v1 {
      * The desired network performance config.
      */
     desiredNetworkPerformanceConfig?: Schema$ClusterNetworkPerformanceConfig;
+    /**
+     * The desired network tier configuration for the cluster.
+     */
+    desiredNetworkTierConfig?: Schema$NetworkTierConfig;
     /**
      * The desired node kubelet config for the cluster.
      */
@@ -1511,6 +1528,15 @@ export namespace container_v1 {
     state?: string | null;
   }
   /**
+   * DefaultComputeClassConfig defines default compute class configuration.
+   */
+  export interface Schema$DefaultComputeClassConfig {
+    /**
+     * Enables default compute class.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * DefaultSnatStatus contains the desired state of whether default sNAT should be disabled on the cluster.
    */
   export interface Schema$DefaultSnatStatus {
@@ -1723,6 +1749,10 @@ export namespace container_v1 {
      * Output only. The full resource name of the registered fleet membership of the cluster, in the format `//gkehub.googleapis.com/projects/x/locations/x/memberships/x`.
      */
     membership?: string | null;
+    /**
+     * The type of the cluster's fleet membership.
+     */
+    membershipType?: string | null;
     /**
      * Output only. Whether the cluster has been registered through the fleet API.
      */
@@ -2001,6 +2031,10 @@ export namespace container_v1 {
      */
     ipv6AccessType?: string | null;
     /**
+     * Cluster-level network tier configuration is used to determine the default network tier for external IP addresses on cluster resources, such as node pools and load balancers.
+     */
+    networkTierConfig?: Schema$NetworkTierConfig;
+    /**
      * This field is deprecated, use node_ipv4_cidr_block.
      */
     nodeIpv4Cidr?: string | null;
@@ -2272,7 +2306,7 @@ export namespace container_v1 {
      */
     enabled?: boolean | null;
     /**
-     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988.
+     * If set to true, the Lustre CSI driver will install Lustre kernel modules using port 6988. This serves as a workaround for a port conflict with the gke-metadata-server. This field is required ONLY under the following conditions: 1. The GKE node version is older than 1.33.2-gke.4655000. 2. You're connecting to a Lustre instance that has the 'gke-support-enabled' flag.
      */
     enableLegacyLustrePort?: boolean | null;
   }
@@ -2564,6 +2598,15 @@ export namespace container_v1 {
      * List of network tags.
      */
     tags?: string[] | null;
+  }
+  /**
+   * NetworkTierConfig contains network tier information.
+   */
+  export interface Schema$NetworkTierConfig {
+    /**
+     * Network tier configuration.
+     */
+    networkTier?: string | null;
   }
   /**
    * Specifies the NodeAffinity key, values, and affinity operator according to [shared sole tenant node group affinities](https://{$universe.dns_names.final_documentation_domain\}/compute/docs/nodes/sole-tenant-nodes#node_affinity_and_anti-affinity).
@@ -2923,6 +2966,10 @@ export namespace container_v1 {
      * Network bandwidth tier configuration.
      */
     networkPerformanceConfig?: Schema$NetworkPerformanceConfig;
+    /**
+     * Output only. The network tier configuration for the node pool inherits from the cluster-level configuration and remains immutable throughout the node pool's lifecycle, including during upgrades.
+     */
+    networkTierConfig?: Schema$NetworkTierConfig;
     /**
      * [PRIVATE FIELD] Pod CIDR size overprovisioning config for the nodepool. Pod CIDR size per node depends on max_pods_per_node. By default, the value of max_pods_per_node is rounded off to next power of 2 and we then double that to get the size of pod CIDR block per node. Example: max_pods_per_node of 30 would result in 64 IPs (/26). This config can disable the doubling of IPs (we still round off to next power of 2) Example: max_pods_per_node of 30 will result in 32 IPs (/27) when overprovisioning is disabled.
      */
@@ -3397,6 +3444,15 @@ export namespace container_v1 {
     enabled?: boolean | null;
   }
   /**
+   * PrivilegedAdmissionConfig stores the list of authorized allowlist paths for the cluster.
+   */
+  export interface Schema$PrivilegedAdmissionConfig {
+    /**
+     * The customer allowlist Cloud Storage paths for the cluster. These paths are used with the `--autopilot-privileged-admission` flag to authorize privileged workloads in Autopilot clusters. Paths can be GKE-owned, in the format `gke:////`, or customer-owned, in the format `gs:///`. Wildcards (`*`) are supported to authorize all allowlists under specific paths or directories. Example: `gs://my-bucket/x` will authorize all allowlists under the `my-bucket` bucket.
+     */
+    allowlistPaths?: string[] | null;
+  }
+  /**
    * Pub/Sub specific notification config.
    */
   export interface Schema$PubSub {
@@ -3625,6 +3681,19 @@ export namespace container_v1 {
     zone?: string | null;
   }
   /**
+   * RotationConfig is config for secret manager auto rotation.
+   */
+  export interface Schema$RotationConfig {
+    /**
+     * Whether the rotation is enabled.
+     */
+    enabled?: boolean | null;
+    /**
+     * The interval between two consecutive rotations. Default rotation interval is 2 minutes.
+     */
+    rotationInterval?: string | null;
+  }
+  /**
    * SandboxConfig contains configurations of the sandbox to use for the node.
    */
   export interface Schema$SandboxConfig {
@@ -3658,6 +3727,10 @@ export namespace container_v1 {
      * Enable/Disable Secret Manager Config.
      */
     enabled?: boolean | null;
+    /**
+     * Rotation config for secret manager.
+     */
+    rotationConfig?: Schema$RotationConfig;
   }
   /**
    * SecurityBulletinEvent is a notification sent to customers when a security bulletin has been posted that they are vulnerable to.

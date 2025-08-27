@@ -132,7 +132,7 @@
       }
     }
   },
-  "revision": "20250517",
+  "revision": "20250816",
   "rootUrl": "https://driveactivity.googleapis.com/",
   "schemas": {
     "Action": {
@@ -1135,15 +1135,29 @@
             "DIRECT_SHARING",
             "ITEM_DUPLICATION",
             "DRIVE_FILE_STREAM",
-            "FILE_ORGANIZER_CAN_SHARE_FOLDERS"
+            "FILE_ORGANIZER_CAN_SHARE_FOLDERS",
+            "READERS_CAN_DOWNLOAD",
+            "WRITERS_CAN_DOWNLOAD"
+          ],
+          "enumDeprecated": [
+            false,
+            false,
+            false,
+            true,
+            false,
+            false,
+            false,
+            false
           ],
           "enumDescriptions": [
             "The feature which changed restriction settings was not available.",
             "When restricted, this prevents items from being shared outside the domain.",
             "When restricted, this prevents direct sharing of individual items.",
-            "When restricted, this prevents actions like copy, download, and print that might result in uncontrolled duplicates of items. Now deprecated in favor of READERS_CAN_DOWNLOAD.",
+            "Deprecated: Use READERS_CAN_DOWNLOAD instead.",
             "When restricted, this prevents use of Drive File Stream.",
-            "When restricted, this limits sharing of folders to managers only."
+            "When restricted, this limits sharing of folders to managers only.",
+            "When restricted, this prevents actions like copy, download, and print for readers. Replaces ITEM_DUPLICATION.",
+            "When restricted, this prevents actions like copy, download, and print for writers."
           ],
           "type": "string"
         },

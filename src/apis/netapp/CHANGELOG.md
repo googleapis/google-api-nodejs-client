@@ -1,5 +1,62 @@
 # Changelog
 
+## [3.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v2.0.0...netapp-v3.0.0) (2025-08-25)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **netapp:** update the API ([b912b13](https://github.com/googleapis/google-api-nodejs-client/commit/b912b136a5edf29024fdc5db811712f361935a13))
+* **netapp:** update the API ([c7b5bb9](https://github.com/googleapis/google-api-nodejs-client/commit/c7b5bb9ec219ee74ae956bae7232a1fd16154df6))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([797d878](https://github.com/googleapis/google-api-nodejs-client/commit/797d8784117908c0f6a5ccc681265e7a5067ee67))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [2.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v1.1.0...netapp-v2.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v1.0.0...netapp-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **netapp:** update the API ([b912b13](https://github.com/googleapis/google-api-nodejs-client/commit/b912b136a5edf29024fdc5db811712f361935a13))
+* **netapp:** update the API ([c7b5bb9](https://github.com/googleapis/google-api-nodejs-client/commit/c7b5bb9ec219ee74ae956bae7232a1fd16154df6))
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([797d878](https://github.com/googleapis/google-api-nodejs-client/commit/797d8784117908c0f6a5ccc681265e7a5067ee67))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **netapp:** update the API ([c7b5bb9](https://github.com/googleapis/google-api-nodejs-client/commit/c7b5bb9ec219ee74ae956bae7232a1fd16154df6))
+
+
+### Bug Fixes
+
+* **netapp:** update the API ([797d878](https://github.com/googleapis/google-api-nodejs-client/commit/797d8784117908c0f6a5ccc681265e7a5067ee67))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/netapp-v2.1.0...netapp-v2.2.0) (2025-07-15)
 
 

@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.0.2](https://github.com/googleapis/google-api-nodejs-client/compare/css-v1.0.1...css-v1.0.2) (2025-08-21)
+
+
+### Bug Fixes
+
+* **css:** update the API ([64a02a9](https://github.com/googleapis/google-api-nodejs-client/commit/64a02a981472aca1a5c7c2a1f0987d5e58e8b266))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/css-v1.0.0...css-v1.0.1) (2025-08-13)
+
+
+### Bug Fixes
+
+* **css:** update the API ([64a02a9](https://github.com/googleapis/google-api-nodejs-client/commit/64a02a981472aca1a5c7c2a1f0987d5e58e8b266))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Bug Fixes
+
+* **css:** update the API ([64a02a9](https://github.com/googleapis/google-api-nodejs-client/commit/64a02a981472aca1a5c7c2a1f0987d5e58e8b266))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [2.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/css-v2.0.0...css-v2.0.1) (2025-07-08)
 
 

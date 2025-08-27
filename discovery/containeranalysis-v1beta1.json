@@ -1771,7 +1771,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250813",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2211,7 +2211,7 @@
       "type": "object"
     },
     "BuildStep": {
-      "description": "A step in the build pipeline. Next ID: 22",
+      "description": "A step in the build pipeline. Next ID: 23",
       "id": "BuildStep",
       "properties": {
         "allowExitCodes": {
@@ -2268,6 +2268,10 @@
         "pullTiming": {
           "$ref": "TimeSpan",
           "description": "Output only. Stores timing information for pulling this build step's builder image only."
+        },
+        "remoteConfig": {
+          "description": "Remote configuration for the build step.",
+          "type": "string"
         },
         "results": {
           "items": {
@@ -5586,7 +5590,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`",
           "items": {
             "type": "string"
           },
@@ -5611,7 +5615,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`",
           "items": {
             "type": "string"
           },
@@ -7254,7 +7258,7 @@
           "type": "array"
         },
         "unreachable": {
-          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: projects//locations/",
+          "description": "Unordered list. Unreachable regions. Populated for requests from the global region when `return_partial_success` is set. Format: `projects/[PROJECT_ID]/locations/[LOCATION]`",
           "items": {
             "type": "string"
           },

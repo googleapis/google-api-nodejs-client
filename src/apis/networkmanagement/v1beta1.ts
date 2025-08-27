@@ -445,6 +445,10 @@ export namespace networkmanagement_v1beta1 {
      */
     cause?: string | null;
     /**
+     * Geolocation (region code) of the destination IP address (if relevant).
+     */
+    destinationGeolocationCode?: string | null;
+    /**
      * Destination IP address of the dropped packet (if relevant).
      */
     destinationIp?: string | null;
@@ -456,6 +460,10 @@ export namespace networkmanagement_v1beta1 {
      * URI of the resource that caused the drop.
      */
     resourceUri?: string | null;
+    /**
+     * Geolocation (region code) of the source IP address (if relevant).
+     */
+    sourceGeolocationCode?: string | null;
     /**
      * Source IP address of the dropped packet (if relevant).
      */
@@ -499,7 +507,7 @@ export namespace networkmanagement_v1beta1 {
      */
     cloudSqlInstance?: string | null;
     /**
-     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: projects/{project\}/global/forwardingRules/{id\} or projects/{project\}/regions/{region\}/forwardingRules/{id\}
+     * A forwarding rule and its corresponding IP address represent the frontend configuration of a Google Cloud load balancer. Forwarding rules are also used for protocol forwarding, Private Service Connect and other network services to provide forwarding information in the control plane. Applicable only to destination endpoint. Format: `projects/{project\}/global/forwardingRules/{id\}` or `projects/{project\}/regions/{region\}/forwardingRules/{id\}`
      */
     forwardingRule?: string | null;
     /**
@@ -662,6 +670,10 @@ export namespace networkmanagement_v1beta1 {
      */
     targetTags?: string[] | null;
     /**
+     * Target type of the firewall rule.
+     */
+    targetType?: string | null;
+    /**
      * The URI of the firewall rule. This field is not applicable to implied VPC firewall rules.
      */
     uri?: string | null;
@@ -816,6 +828,31 @@ export namespace networkmanagement_v1beta1 {
     status?: string | null;
     /**
      * URI of a Compute Engine instance.
+     */
+    uri?: string | null;
+  }
+  /**
+   * For display only. Metadata associated with an Interconnect attachment.
+   */
+  export interface Schema$InterconnectAttachmentInfo {
+    /**
+     * URI of the Cloud Router to be used for dynamic routing.
+     */
+    cloudRouterUri?: string | null;
+    /**
+     * Name of an Interconnect attachment.
+     */
+    displayName?: string | null;
+    /**
+     * URI of the Interconnect where the Interconnect attachment is configured.
+     */
+    interconnectUri?: string | null;
+    /**
+     * Name of a Google Cloud region where the Interconnect attachment is configured.
+     */
+    region?: string | null;
+    /**
+     * URI of an Interconnect attachment.
      */
     uri?: string | null;
   }
@@ -1631,6 +1668,10 @@ export namespace networkmanagement_v1beta1 {
      */
     instance?: Schema$InstanceInfo;
     /**
+     * Display information of an interconnect attachment.
+     */
+    interconnectAttachment?: Schema$InterconnectAttachmentInfo;
+    /**
      * Display information of the load balancers. Deprecated in favor of the `load_balancer_backend_info` field, not used in new tests.
      */
     loadBalancer?: Schema$LoadBalancerInfo;
@@ -2090,7 +2131,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.organizations.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2219,7 +2260,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3927,7 +3968,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4056,7 +4097,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

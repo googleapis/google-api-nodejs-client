@@ -720,7 +720,7 @@ export namespace admob_v1beta {
      */
     idfaTargeting?: string | null;
     /**
-     * Describes the platform of the app. Examples: "IOS", "Android".
+     * Describes the platform of the app. Examples: "IOS", "ANDROID".
      */
     platform?: string | null;
     /**

@@ -1,5 +1,54 @@
 # Changelog
 
+## [1.3.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v1.2.0...secretmanager-v1.3.0) (2025-08-25)
+
+
+### Features
+
+* **secretmanager:** update the API ([1e5ca36](https://github.com/googleapis/google-api-nodejs-client/commit/1e5ca364ab49e3bec56ea0dd290154e3080fca9f))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v1.1.0...secretmanager-v1.2.0) (2025-08-21)
+
+
+### Features
+
+* **secretmanager:** update the API ([1e5ca36](https://github.com/googleapis/google-api-nodejs-client/commit/1e5ca364ab49e3bec56ea0dd290154e3080fca9f))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [1.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v1.0.0...secretmanager-v1.1.0) (2025-08-13)
+
+
+### Features
+
+* **secretmanager:** update the API ([1e5ca36](https://github.com/googleapis/google-api-nodejs-client/commit/1e5ca364ab49e3bec56ea0dd290154e3080fca9f))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## 1.0.0 (2025-08-07)
+
+
+### Features
+
+* **secretmanager:** update the API ([1e5ca36](https://github.com/googleapis/google-api-nodejs-client/commit/1e5ca364ab49e3bec56ea0dd290154e3080fca9f))
+
+
+### Bug Fixes
+
+* **secretmanager:** update the API ([77a764e](https://github.com/googleapis/google-api-nodejs-client/commit/77a764ef4376b2daf50c17da6bb654c0434e4354))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [3.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/secretmanager-v3.0.0...secretmanager-v3.1.0) (2025-07-08)
 
 

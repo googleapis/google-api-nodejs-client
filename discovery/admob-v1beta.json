@@ -758,7 +758,7 @@
       }
     }
   },
-  "revision": "20240514",
+  "revision": "20250811",
   "rootUrl": "https://admob.googleapis.com/",
   "schemas": {
     "AdSource": {
@@ -1697,7 +1697,7 @@
           "type": "string"
         },
         "platform": {
-          "description": "Describes the platform of the app. Examples: \"IOS\", \"Android\".",
+          "description": "Describes the platform of the app. Examples: \"IOS\", \"ANDROID\".",
           "type": "string"
         },
         "targetedRegionCodes": {

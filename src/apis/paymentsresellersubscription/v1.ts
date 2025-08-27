@@ -127,7 +127,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Describes the amount unit including the currency code.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount {
+  export interface Schema$Amount {
     /**
      * Required. Amount in micros (1_000_000 micros = 1 currency unit)
      */
@@ -140,7 +140,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Request to cancel a subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest {
+  export interface Schema$CancelSubscriptionRequest {
     /**
      * Optional. If true, Google will cancel the subscription immediately, and may or may not (based on the contract) issue a prorated refund for the remainder of the billing cycle. Otherwise, Google defers the cancelation at renewal_time, and will not issue a refund. - YouTube subscriptions must use this option currently. However, the user will still have access to the subscription until the end of the billing cycle.
      */
@@ -153,16 +153,16 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Response that contains the cancelled subscription resource.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse {
+  export interface Schema$CancelSubscriptionResponse {
     /**
      * The cancelled subscription resource.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
   }
   /**
    * Intent message for creating a Subscription resource.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent {
+  export interface Schema$CreateSubscriptionIntent {
     /**
      * Required. The parent resource name, which is the identifier of the partner.
      */
@@ -170,7 +170,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Required. The Subscription to be created.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
     /**
      * Required. Identifies the subscription resource on the Partner side. The value is restricted to 63 ASCII characters at the maximum. If a subscription was previously created with the same subscription_id, we will directly return that one.
      */
@@ -179,7 +179,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Describes the length of a period of a time.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration {
+  export interface Schema$Duration {
     /**
      * number of duration units to be included.
      */
@@ -192,7 +192,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Intent for entitling the previously provisioned subscription to an end user.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent {
+  export interface Schema$EntitleSubscriptionIntent {
     /**
      * Required. The name of the subscription resource that is entitled to the current end user. It is in the format of "partners/{partner_id\}/subscriptions/{subscriptionId\}".
      */
@@ -201,16 +201,16 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Partner request for entitling the previously provisioned subscription to an end user. The end user identity is inferred from the request OAuth context.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest {
+  export interface Schema$EntitleSubscriptionRequest {
     /**
      * Optional. The line items to be entitled. If unspecified, all line items will be entitled.
      */
-    lineItemEntitlementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails[];
+    lineItemEntitlementDetails?: Schema$EntitleSubscriptionRequestLineItemEntitlementDetails[];
   }
   /**
    * The details of the line item to be entitled.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequestLineItemEntitlementDetails {
+  export interface Schema$EntitleSubscriptionRequestLineItemEntitlementDetails {
     /**
      * Required. The index of the line item to be entitled.
      */
@@ -223,20 +223,20 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Response that contains the entitled subscription resource.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse {
+  export interface Schema$EntitleSubscriptionResponse {
     /**
      * The subscription that has user linked to it.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
   }
   /**
    * Request message for extending a Subscription resource. A new recurrence will be made based on the subscription schedule defined by the original product.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionRequest {
+  export interface Schema$ExtendSubscriptionRequest {
     /**
      * Required. Specifies details of the extension. Currently, the duration of the extension must be exactly one billing cycle of the original subscription.
      */
-    extension?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Extension;
+    extension?: Schema$Extension;
     /**
      * Required. Restricted to 36 ASCII characters. A random UUID is recommended. The idempotency key for the request. The ID generation logic is controlled by the partner. request_id should be the same as on retries of the same request. A different request_id must be used for a extension of a different cycle.
      */
@@ -245,7 +245,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Response that contains the timestamps after the extension.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse {
+  export interface Schema$ExtendSubscriptionResponse {
     /**
      * The time at which the subscription is expected to be extended, in ISO 8061 format. UTC timezone. Example, "cycleEndTime":"2019-08-31T17:28:54.564Z"
      */
@@ -262,11 +262,11 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Describes the details of an extension request.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Extension {
+  export interface Schema$Extension {
     /**
      * Required. Specifies the period of access the subscription should grant.
      */
-    duration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
+    duration?: Schema$Duration;
     /**
      * Required. Identifier of the end-user in partner’s system.
      */
@@ -275,7 +275,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Request to find eligible promotions for the current user.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest {
+  export interface Schema$FindEligiblePromotionsRequest {
     /**
      * Optional. Specifies the filters for the promotion results. The syntax is defined in https://google.aip.dev/160 with the following caveats: 1. Only the following features are supported: - Logical operator `AND` - Comparison operator `=` (no wildcards `*`) - Traversal operator `.` - Has operator `:` (no wildcards `*`) 2. Only the following fields are supported: - `applicableProducts` - `regionCodes` - `youtubePayload.partnerEligibilityId` - `youtubePayload.postalCode` 3. Unless explicitly mentioned above, other features are not supported. Example: `applicableProducts:partners/partner1/products/product1 AND regionCodes:US AND youtubePayload.postalCode=94043 AND youtubePayload.partnerEligibilityId=eligibility-id`
      */
@@ -292,7 +292,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Response containing the found promotions for the current user.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse {
+  export interface Schema$FindEligiblePromotionsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
      */
@@ -300,12 +300,12 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * The promotions for the current user.
      */
-    promotions?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion[];
+    promotions?: Schema$Promotion[];
   }
   /**
    * Details for a subscriptiin line item with finite billing cycles.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails {
+  export interface Schema$FiniteBillingCycleDetails {
     /**
      * Required. The number of a subscription line item billing cycles after which billing will stop automatically.
      */
@@ -314,29 +314,33 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Request to generate a user session.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest {
+  export interface Schema$GenerateUserSessionRequest {
     /**
      * The user intent to generate the user session.
      */
-    intentPayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1IntentPayload;
+    intentPayload?: Schema$IntentPayload;
   }
   /**
    * Response that contains the details for generated user session.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse {
+  export interface Schema$GenerateUserSessionResponse {
     /**
      * The generated user session. The token size is proportional to the size of the intent payload.
      */
-    userSession?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession;
+    userSession?: Schema$UserSession;
   }
   /**
    * Payload specific for Google Home products.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload {
+  export interface Schema$GoogleHomePayload {
     /**
      * Output only. This identifies whether the subscription is attached to a Google Home structure.
      */
     attachedToGoogleStructure?: boolean | null;
+    /**
+     * Optional. Structure identifier on Google side.
+     */
+    googleStructureId?: string | null;
     /**
      * Optional. This identifies the structure ID on partner side that the subscription should be applied to. Only required when the partner requires structure mapping.
      */
@@ -345,7 +349,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Payload specific to Google One products.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload {
+  export interface Schema$GoogleOnePayload {
     /**
      * Campaign attributed to sales of this subscription.
      */
@@ -364,22 +368,35 @@ export namespace paymentsresellersubscription_v1 {
     storeId?: string | null;
   }
   /**
+   * Localized variant of a text in a particular language.
+   */
+  export interface Schema$GoogleTypeLocalizedText {
+    /**
+     * The text's BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
+     */
+    languageCode?: string | null;
+    /**
+     * Localized string in the language corresponding to language_code below.
+     */
+    text?: string | null;
+  }
+  /**
    * The payload that describes the user intent.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1IntentPayload {
+  export interface Schema$IntentPayload {
     /**
      * The request to create a subscription.
      */
-    createIntent?: Schema$GoogleCloudPaymentsResellerSubscriptionV1CreateSubscriptionIntent;
+    createIntent?: Schema$CreateSubscriptionIntent;
     /**
      * The request to entitle a subscription.
      */
-    entitleIntent?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionIntent;
+    entitleIntent?: Schema$EntitleSubscriptionIntent;
   }
   /**
    * Response that contains the products.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse {
+  export interface Schema$ListProductsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
      */
@@ -387,12 +404,12 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * The products for the specified partner.
      */
-    products?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Product[];
+    products?: Schema$Product[];
   }
   /**
    * Response that contains the promotions.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse {
+  export interface Schema$ListPromotionsResponse {
     /**
      * A token, which can be sent as `page_token` to retrieve the next page. If this field is empty, there are no subsequent pages.
      */
@@ -400,12 +417,12 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * The promotions for the specified partner.
      */
-    promotions?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion[];
+    promotions?: Schema$Promotion[];
   }
   /**
    * Describes a location of an end user.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Location {
+  export interface Schema$Location {
     /**
      * The postal code this location refers to. Ex. "94043"
      */
@@ -418,7 +435,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * A Product resource that defines a subscription service that can be resold.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Product {
+  export interface Schema$Product {
     /**
      * Output only. Specifies the details for a bundle product.
      */
@@ -426,7 +443,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely.
      */
-    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
+    finiteBillingCycleDetails?: Schema$FiniteBillingCycleDetails;
     /**
      * Identifier. Response only. Resource name of the product. It will have the format of "partners/{partner_id\}/products/{product_id\}"
      */
@@ -434,7 +451,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Output only. Price configs for the product in the available regions.
      */
-    priceConfigs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig[];
+    priceConfigs?: Schema$ProductPriceConfig[];
     /**
      * Output only. Specifies the type of the product.
      */
@@ -446,16 +463,29 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Output only. Specifies the length of the billing cycle of the subscription.
      */
-    subscriptionBillingCycleDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
+    subscriptionBillingCycleDuration?: Schema$Duration;
     /**
      * Output only. Localized human readable name of the product.
      */
     titles?: Schema$GoogleTypeLocalizedText[];
   }
   /**
+   * Details for a bundle product.
+   */
+  export interface Schema$ProductBundleDetails {
+    /**
+     * The individual products that are included in the bundle.
+     */
+    bundleElements?: Schema$ProductBundleDetailsBundleElement[];
+    /**
+     * The entitlement mode of the bundle product.
+     */
+    entitlementMode?: string | null;
+  }
+  /**
    * The individual product that is included in the bundle.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement {
+  export interface Schema$ProductBundleDetailsBundleElement {
     /**
      * Required. Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
@@ -464,28 +494,28 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Specifies product specific payload.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload {
+  export interface Schema$ProductPayload {
     /**
      * Payload specific to Google Home products.
      */
-    googleHomePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleHomePayload;
+    googleHomePayload?: Schema$GoogleHomePayload;
     /**
      * Product-specific payloads. Payload specific to Google One products.
      */
-    googleOnePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GoogleOnePayload;
+    googleOnePayload?: Schema$GoogleOnePayload;
     /**
      * Payload specific to Youtube products.
      */
-    youtubePayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload;
+    youtubePayload?: Schema$YoutubePayload;
   }
   /**
    * Configs the prices in an available region.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPriceConfig {
+  export interface Schema$ProductPriceConfig {
     /**
      * Output only. The price in the region.
      */
-    amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    amount?: Schema$Amount;
     /**
      * Output only. 2-letter ISO region code where the product is available in. Ex. "US".
      */
@@ -494,7 +524,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * A Promotion resource that defines a promotion for a subscription that can be resold.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Promotion {
+  export interface Schema$Promotion {
     /**
      * Output only. The product ids this promotion can be applied to.
      */
@@ -506,11 +536,11 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Specifies the duration of the free trial of the subscription when promotion_type is PROMOTION_TYPE_FREE_TRIAL
      */
-    freeTrialDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
+    freeTrialDuration?: Schema$Duration;
     /**
      * Optional. Specifies the introductory pricing details when the promotion_type is PROMOTION_TYPE_INTRODUCTORY_PRICING.
      */
-    introductoryPricingDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails;
+    introductoryPricingDetails?: Schema$PromotionIntroductoryPricingDetails;
     /**
      * Identifier. Response only. Resource name of the subscription promotion. It will have the format of "partners/{partner_id\}/promotion/{promotion_id\}"
      */
@@ -535,20 +565,20 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * The details of a introductory pricing promotion.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails {
+  export interface Schema$PromotionIntroductoryPricingDetails {
     /**
      * Output only. Specifies the introductory pricing periods.
      */
-    introductoryPricingSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec[];
+    introductoryPricingSpecs?: Schema$PromotionIntroductoryPricingDetailsIntroductoryPricingSpec[];
   }
   /**
    * The duration of an introductory pricing promotion.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetailsIntroductoryPricingSpec {
+  export interface Schema$PromotionIntroductoryPricingDetailsIntroductoryPricingSpec {
     /**
      * Output only. The discount amount. The value is positive.
      */
-    discountAmount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    discountAmount?: Schema$Amount;
     /**
      * Output only. The discount percentage in micros. For example, 50,000 represents 5%.
      */
@@ -565,20 +595,20 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Request to resume a suspended subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest {}
+  export interface Schema$ResumeSubscriptionRequest {}
   /**
    * Response that contains the resumed subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse {
+  export interface Schema$ResumeSubscriptionResponse {
     /**
      * The resumed subscription resource.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
   }
   /**
    * A description of what time period or moment in time the product or service is being delivered over.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod {
+  export interface Schema$ServicePeriod {
     /**
      * Optional. The end time of the service period. Time is exclusive.
      */
@@ -591,11 +621,11 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * A subscription serves as a central billing entity between an external partner and Google. The underlying Google services rely on the subscription state to grant or revoke the user's service entitlement. It's important to note that the subscription state may not always perfectly align with the user's service entitlement. For example, some Google services may continue providing access to the user until the current billing cycle ends, even if the subscription has been immediately canceled. However, other services may not do the same. To fully understand the specific details, please consult the relevant contract or product policy.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription {
+  export interface Schema$Subscription {
     /**
      * Output only. Describes the details of a cancelled subscription. Only applicable to subscription of state `STATE_CANCELLED`.
      */
-    cancellationDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails;
+    cancellationDetails?: Schema$SubscriptionCancellationDetails;
     /**
      * Output only. System generated timestamp when the subscription is created. UTC timezone.
      */
@@ -615,11 +645,11 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Required. The line items of the subscription.
      */
-    lineItems?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem[];
+    lineItems?: Schema$SubscriptionLineItem[];
     /**
      * Output only. Describes the details of the migrated subscription. Only populated if this subscription is migrated from another system.
      */
-    migrationDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails;
+    migrationDetails?: Schema$SubscriptionMigrationDetails;
     /**
      * Identifier. Resource name of the subscription. It will have the format of "partners/{partner_id\}/subscriptions/{subscription_id\}". This is available for authorizeAddon, but otherwise is response only.
      */
@@ -643,7 +673,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Subscription-level promotions. Only free trial is supported on this level. It determines the first renewal time of the subscription to be the end of the free trial period. Specify the promotion resource name only when used as input.
      */
-    promotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
+    promotionSpecs?: Schema$SubscriptionPromotionSpec[];
     /**
      * Optional. The timestamp when the user transaction was made with the Partner. Specify for the case of "bundle with choice", and it must be before the provision_time (when the user makes a selection).
      */
@@ -659,7 +689,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Required. The location that the service is provided as indicated by the partner.
      */
-    serviceLocation?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Location;
+    serviceLocation?: Schema$Location;
     /**
      * Output only. Describes the state of the subscription. See more details at [the lifecycle of a subscription](/payments/reseller/subscription/reference/index/Receive.Notifications#payments-subscription-lifecycle).
      */
@@ -671,12 +701,12 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Details about the previous subscription that this new subscription upgrades/downgrades from. Only populated if this subscription is an upgrade/downgrade from another subscription.
      */
-    upgradeDowngradeDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails;
+    upgradeDowngradeDetails?: Schema$SubscriptionUpgradeDowngradeDetails;
   }
   /**
    * Describes the details of a cancelled or cancelling subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionCancellationDetails {
+  export interface Schema$SubscriptionCancellationDetails {
     /**
      * Output only. The reason of the cancellation.
      */
@@ -685,11 +715,11 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Individual line item definition of a subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItem {
+  export interface Schema$SubscriptionLineItem {
     /**
      * Output only. The price of the product/service in this line item. The amount could be the wholesale price, or it can include a cost of sale based on the contract.
      */
-    amount?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Amount;
+    amount?: Schema$Amount;
     /**
      * Output only. The bundle details for the line item. Only populated if the line item corresponds to a hard bundle.
      */
@@ -701,7 +731,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Details for a subscription line item with finite billing cycles. If unset, the line item will be charged indefinitely. Used only with LINE_ITEM_RECURRENCE_TYPE_PERIODIC.
      */
-    finiteBillingCycleDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FiniteBillingCycleDetails;
+    finiteBillingCycleDetails?: Schema$FiniteBillingCycleDetails;
     /**
      * Output only. The free trial end time will be populated after the line item is successfully processed. End time of the line item free trial period, in ISO 8061 format. For example, "2019-08-31T17:28:54.564Z". It will be set the same as createTime if no free trial promotion is specified.
      */
@@ -713,11 +743,11 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. The promotions applied on the line item. It can be: - an introductory pricing promotion. - a free trial promotion. This feature is not enabled. If used, the request will be rejected. When used as input in Create or Provision API, specify its resource name only.
      */
-    lineItemPromotionSpecs?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec[];
+    lineItemPromotionSpecs?: Schema$SubscriptionPromotionSpec[];
     /**
      * Output only. Details only set for a ONE_TIME recurrence line item.
      */
-    oneTimeRecurrenceDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails;
+    oneTimeRecurrenceDetails?: Schema$SubscriptionLineItemOneTimeRecurrenceDetails;
     /**
      * Required. Product resource name that identifies one the line item The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
@@ -725,7 +755,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Optional. Product specific payload for this line item.
      */
-    productPayload?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductPayload;
+    productPayload?: Schema$ProductPayload;
     /**
      * Output only. The recurrence type of the line item.
      */
@@ -736,9 +766,18 @@ export namespace paymentsresellersubscription_v1 {
     state?: string | null;
   }
   /**
+   * The bundle details for a line item corresponding to a hard bundle.
+   */
+  export interface Schema$SubscriptionLineItemBundleDetails {
+    /**
+     * Output only. The details for each element in the hard bundle.
+     */
+    bundleElementDetails?: Schema$SubscriptionLineItemBundleDetailsBundleElementDetails[];
+  }
+  /**
    * The details for an element in the hard bundle.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails {
+  export interface Schema$SubscriptionLineItemBundleDetailsBundleElementDetails {
     /**
      * Output only. Product resource name that identifies the bundle element. The format is 'partners/{partner_id\}/products/{product_id\}'.
      */
@@ -751,16 +790,16 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Details for a ONE_TIME recurrence line item.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemOneTimeRecurrenceDetails {
+  export interface Schema$SubscriptionLineItemOneTimeRecurrenceDetails {
     /**
      * Output only. The service period of the ONE_TIME line item.
      */
-    servicePeriod?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ServicePeriod;
+    servicePeriod?: Schema$ServicePeriod;
   }
   /**
    * Describes the details of the migrated subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionMigrationDetails {
+  export interface Schema$SubscriptionMigrationDetails {
     /**
      * Output only. The migrated subscription id in the legacy system.
      */
@@ -769,15 +808,15 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Describes the spec for one promotion.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionPromotionSpec {
+  export interface Schema$SubscriptionPromotionSpec {
     /**
      * Output only. The duration of the free trial if the promotion is of type FREE_TRIAL.
      */
-    freeTrialDuration?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Duration;
+    freeTrialDuration?: Schema$Duration;
     /**
      * Output only. The details of the introductory pricing spec if the promotion is of type INTRODUCTORY_PRICING.
      */
-    introductoryPricingDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1PromotionIntroductoryPricingDetails;
+    introductoryPricingDetails?: Schema$PromotionIntroductoryPricingDetails;
     /**
      * Required. Promotion resource name that identifies a promotion. The format is 'partners/{partner_id\}/promotions/{promotion_id\}'.
      */
@@ -790,46 +829,46 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Details about the previous subscription that this new subscription upgrades/downgrades from.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionUpgradeDowngradeDetails {
+  export interface Schema$SubscriptionUpgradeDowngradeDetails {
     /**
      * Required. Specifies the billing cycle spec for the new upgraded/downgraded subscription.
      */
     billingCycleSpec?: string | null;
     /**
-     * Required. The previous subscription id to be replaced. This is not the full resource name, use the subscription_id segment only.
+     * Required. The previous subscription id to be replaced. The format can be one of the following: 1. `subscription_id`: the old subscription id under the same partner_id. 2. `partners/{partner_id\}/subscriptions/{subscription_id\}`. A different partner_id is allowed. But they must be under the same partner group.
      */
     previousSubscriptionId?: string | null;
   }
   /**
    * Request to suspend a subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest {}
+  export interface Schema$SuspendSubscriptionRequest {}
   /**
    * Response that contains the suspended subscription.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse {
+  export interface Schema$SuspendSubscriptionResponse {
     /**
      * The suspended subscription resource.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
   }
   /**
    * Request to revoke a cancellation request.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest {}
+  export interface Schema$UndoCancelSubscriptionRequest {}
   /**
    * Response that contains the updated subscription resource.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse {
+  export interface Schema$UndoCancelSubscriptionResponse {
     /**
      * The updated subscription resource.
      */
-    subscription?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    subscription?: Schema$Subscription;
   }
   /**
    * A user session contains a short-lived token that includes information required to interact with Google Payments Reseller Platform using the following web endpoints. - A user session token should be generated dynamically for an authenticated user. You should refrain from sharing a token directly with a user in an unauthenticated context, such as SMS, or email. - You can re-generate new session tokens repeatedly for same `generate` request if necessary, regardless of the previous tokens being expired or not. You don't need to worry about multiple sessions resulting in duplicate fulfillments as guaranteed by the same subscription id. Please refer to the [Google Managed Signup](/payments/reseller/subscription/reference/index/User.Signup.Integration/Google.Managed.Signup) documentation for additional integration details.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1UserSession {
+  export interface Schema$UserSession {
     /**
      * Output only. The time at which the user session expires.
      */
@@ -842,7 +881,7 @@ export namespace paymentsresellersubscription_v1 {
   /**
    * Payload specific to Youtube products.
    */
-  export interface Schema$GoogleCloudPaymentsResellerSubscriptionV1YoutubePayload {
+  export interface Schema$YoutubePayload {
     /**
      * Output only. The access expiration time for this line item.
      */
@@ -855,41 +894,6 @@ export namespace paymentsresellersubscription_v1 {
      * Optional. Specifies the plan type offered to the end user by the partner.
      */
     partnerPlanType?: string | null;
-  }
-  /**
-   * Localized variant of a text in a particular language.
-   */
-  export interface Schema$GoogleTypeLocalizedText {
-    /**
-     * The text's BCP-47 language code, such as "en-US" or "sr-Latn". For more information, see http://www.unicode.org/reports/tr35/#Unicode_locale_identifier.
-     */
-    languageCode?: string | null;
-    /**
-     * Localized string in the language corresponding to language_code below.
-     */
-    text?: string | null;
-  }
-  /**
-   * Details for a bundle product.
-   */
-  export interface Schema$ProductBundleDetails {
-    /**
-     * The individual products that are included in the bundle.
-     */
-    bundleElements?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ProductBundleDetailsBundleElement[];
-    /**
-     * The entitlement mode of the bundle product.
-     */
-    entitlementMode?: string | null;
-  }
-  /**
-   * The bundle details for a line item corresponding to a hard bundle.
-   */
-  export interface Schema$SubscriptionLineItemBundleDetails {
-    /**
-     * Output only. The details for each element in the hard bundle.
-     */
-    bundleElementDetails?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SubscriptionLineItemBundleDetailsBundleElementDetails[];
   }
 
   export class Resource$Partners {
@@ -981,9 +985,7 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params?: Params$Resource$Partners$Products$List,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListProductsResponse>>;
     list(
       params: Params$Resource$Partners$Products$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -993,34 +995,30 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Products$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        | BodyResponseCallback<Schema$ListProductsResponse>,
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
     list(
       params: Params$Resource$Partners$Products$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+      callback: BodyResponseCallback<Schema$ListProductsResponse>
     ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
-    ): void;
+    list(callback: BodyResponseCallback<Schema$ListProductsResponse>): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Products$List
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        | BodyResponseCallback<Schema$ListProductsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        | BodyResponseCallback<Schema$ListProductsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
+        | BodyResponseCallback<Schema$ListProductsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListProductsResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Products$List;
@@ -1058,14 +1056,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>(
+        createAPIRequest<Schema$ListProductsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListProductsResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$ListProductsResponse>(parameters);
       }
     }
   }
@@ -1169,9 +1165,7 @@ export namespace paymentsresellersubscription_v1 {
     findEligible(
       params?: Params$Resource$Partners$Promotions$Findeligible,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FindEligiblePromotionsResponse>>;
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1181,34 +1175,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Promotions$Findeligible,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Schema$FindEligiblePromotionsResponse>,
+      callback: BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
     ): void;
     findEligible(
       params: Params$Resource$Partners$Promotions$Findeligible,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+      callback: BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
     ): void;
     findEligible(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+      callback: BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
     ): void;
     findEligible(
       paramsOrCallback?:
         | Params$Resource$Partners$Promotions$Findeligible
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
+        | BodyResponseCallback<Schema$FindEligiblePromotionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$FindEligiblePromotionsResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$Findeligible;
@@ -1246,12 +1238,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>(
+        createAPIRequest<Schema$FindEligiblePromotionsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsResponse>(
+        return createAPIRequest<Schema$FindEligiblePromotionsResponse>(
           parameters
         );
       }
@@ -1325,9 +1317,7 @@ export namespace paymentsresellersubscription_v1 {
     list(
       params?: Params$Resource$Partners$Promotions$List,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>;
     list(
       params: Params$Resource$Partners$Promotions$List,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1337,34 +1327,30 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Promotions$List,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        | BodyResponseCallback<Schema$ListPromotionsResponse>,
+      callback: BodyResponseCallback<Schema$ListPromotionsResponse>
     ): void;
     list(
       params: Params$Resource$Partners$Promotions$List,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+      callback: BodyResponseCallback<Schema$ListPromotionsResponse>
     ): void;
-    list(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
-    ): void;
+    list(callback: BodyResponseCallback<Schema$ListPromotionsResponse>): void;
     list(
       paramsOrCallback?:
         | Params$Resource$Partners$Promotions$List
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        | BodyResponseCallback<Schema$ListPromotionsResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        | BodyResponseCallback<Schema$ListPromotionsResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
+        | BodyResponseCallback<Schema$ListPromotionsResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListPromotionsResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Promotions$List;
@@ -1402,14 +1388,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>(
+        createAPIRequest<Schema$ListPromotionsResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ListPromotionsResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$ListPromotionsResponse>(parameters);
       }
     }
   }
@@ -1424,7 +1408,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1FindEligiblePromotionsRequest;
+    requestBody?: Schema$FindEligiblePromotionsRequest;
   }
   export interface Params$Resource$Partners$Promotions$List
     extends StandardParameters {
@@ -1522,9 +1506,7 @@ export namespace paymentsresellersubscription_v1 {
     cancel(
       params?: Params$Resource$Partners$Subscriptions$Cancel,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$CancelSubscriptionResponse>>;
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1534,34 +1516,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Cancel,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$CancelSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$CancelSubscriptionResponse>
     ): void;
     cancel(
       params: Params$Resource$Partners$Subscriptions$Cancel,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$CancelSubscriptionResponse>
     ): void;
     cancel(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$CancelSubscriptionResponse>
     ): void;
     cancel(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Cancel
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$CancelSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$CancelSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$CancelSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$CancelSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Cancel;
@@ -1596,14 +1576,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>(
+        createAPIRequest<Schema$CancelSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$CancelSubscriptionResponse>(parameters);
       }
     }
 
@@ -1716,9 +1694,7 @@ export namespace paymentsresellersubscription_v1 {
     create(
       params?: Params$Resource$Partners$Subscriptions$Create,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1726,36 +1702,30 @@ export namespace paymentsresellersubscription_v1 {
     ): void;
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
     create(
       params: Params$Resource$Partners$Subscriptions$Create,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
-    create(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    ): void;
+    create(callback: BodyResponseCallback<Schema$Subscription>): void;
     create(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Create
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Create;
@@ -1793,14 +1763,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
+        createAPIRequest<Schema$Subscription>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
-          parameters
-        );
+        return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
 
@@ -1875,9 +1843,7 @@ export namespace paymentsresellersubscription_v1 {
     entitle(
       params?: Params$Resource$Partners$Subscriptions$Entitle,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$EntitleSubscriptionResponse>>;
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -1887,34 +1853,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Entitle,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        | BodyResponseCallback<Schema$EntitleSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$EntitleSubscriptionResponse>
     ): void;
     entitle(
       params: Params$Resource$Partners$Subscriptions$Entitle,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$EntitleSubscriptionResponse>
     ): void;
     entitle(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$EntitleSubscriptionResponse>
     ): void;
     entitle(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Entitle
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        | BodyResponseCallback<Schema$EntitleSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        | BodyResponseCallback<Schema$EntitleSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
+        | BodyResponseCallback<Schema$EntitleSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$EntitleSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Entitle;
@@ -1952,14 +1916,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>(
+        createAPIRequest<Schema$EntitleSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$EntitleSubscriptionResponse>(parameters);
       }
     }
 
@@ -2035,9 +1997,7 @@ export namespace paymentsresellersubscription_v1 {
     extend(
       params?: Params$Resource$Partners$Subscriptions$Extend,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ExtendSubscriptionResponse>>;
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2047,34 +2007,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Extend,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        | BodyResponseCallback<Schema$ExtendSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$ExtendSubscriptionResponse>
     ): void;
     extend(
       params: Params$Resource$Partners$Subscriptions$Extend,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$ExtendSubscriptionResponse>
     ): void;
     extend(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$ExtendSubscriptionResponse>
     ): void;
     extend(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Extend
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        | BodyResponseCallback<Schema$ExtendSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        | BodyResponseCallback<Schema$ExtendSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
+        | BodyResponseCallback<Schema$ExtendSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$ExtendSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Extend;
@@ -2109,14 +2067,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>(
+        createAPIRequest<Schema$ExtendSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$ExtendSubscriptionResponse>(parameters);
       }
     }
 
@@ -2200,9 +2156,7 @@ export namespace paymentsresellersubscription_v1 {
     get(
       params?: Params$Resource$Partners$Subscriptions$Get,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2210,36 +2164,30 @@ export namespace paymentsresellersubscription_v1 {
     ): void;
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
     get(
       params: Params$Resource$Partners$Subscriptions$Get,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
-    get(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    ): void;
+    get(callback: BodyResponseCallback<Schema$Subscription>): void;
     get(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Get
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Get;
@@ -2274,14 +2222,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
+        createAPIRequest<Schema$Subscription>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
-          parameters
-        );
+        return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
 
@@ -2395,9 +2341,7 @@ export namespace paymentsresellersubscription_v1 {
     provision(
       params?: Params$Resource$Partners$Subscriptions$Provision,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>;
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2405,36 +2349,30 @@ export namespace paymentsresellersubscription_v1 {
     ): void;
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      options: MethodOptions | BodyResponseCallback<Schema$Subscription>,
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
     provision(
       params: Params$Resource$Partners$Subscriptions$Provision,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+      callback: BodyResponseCallback<Schema$Subscription>
     ): void;
-    provision(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-    ): void;
+    provision(callback: BodyResponseCallback<Schema$Subscription>): void;
     provision(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Provision
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
+        | BodyResponseCallback<Schema$Subscription>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$Subscription>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Provision;
@@ -2472,14 +2410,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
+        createAPIRequest<Schema$Subscription>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription>(
-          parameters
-        );
+        return createAPIRequest<Schema$Subscription>(parameters);
       }
     }
 
@@ -2550,9 +2486,7 @@ export namespace paymentsresellersubscription_v1 {
     resume(
       params?: Params$Resource$Partners$Subscriptions$Resume,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ResumeSubscriptionResponse>>;
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2562,34 +2496,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Resume,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Schema$ResumeSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$ResumeSubscriptionResponse>
     ): void;
     resume(
       params: Params$Resource$Partners$Subscriptions$Resume,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$ResumeSubscriptionResponse>
     ): void;
     resume(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$ResumeSubscriptionResponse>
     ): void;
     resume(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Resume
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Schema$ResumeSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Schema$ResumeSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
+        | BodyResponseCallback<Schema$ResumeSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$ResumeSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Resume;
@@ -2624,14 +2556,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>(
+        createAPIRequest<Schema$ResumeSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$ResumeSubscriptionResponse>(parameters);
       }
     }
 
@@ -2704,9 +2634,7 @@ export namespace paymentsresellersubscription_v1 {
     suspend(
       params?: Params$Resource$Partners$Subscriptions$Suspend,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$SuspendSubscriptionResponse>>;
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2716,34 +2644,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Suspend,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Schema$SuspendSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$SuspendSubscriptionResponse>
     ): void;
     suspend(
       params: Params$Resource$Partners$Subscriptions$Suspend,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$SuspendSubscriptionResponse>
     ): void;
     suspend(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$SuspendSubscriptionResponse>
     ): void;
     suspend(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Suspend
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Schema$SuspendSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Schema$SuspendSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
+        | BodyResponseCallback<Schema$SuspendSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$SuspendSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Suspend;
@@ -2781,14 +2707,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>(
+        createAPIRequest<Schema$SuspendSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$SuspendSubscriptionResponse>(parameters);
       }
     }
 
@@ -2860,9 +2784,7 @@ export namespace paymentsresellersubscription_v1 {
     undoCancel(
       params?: Params$Resource$Partners$Subscriptions$Undocancel,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$UndoCancelSubscriptionResponse>>;
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -2872,34 +2794,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Subscriptions$Undocancel,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>,
+      callback: BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
     ): void;
     undoCancel(
       params: Params$Resource$Partners$Subscriptions$Undocancel,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
     ): void;
     undoCancel(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+      callback: BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
     ): void;
     undoCancel(
       paramsOrCallback?:
         | Params$Resource$Partners$Subscriptions$Undocancel
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
+        | BodyResponseCallback<Schema$UndoCancelSubscriptionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$UndoCancelSubscriptionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Subscriptions$Undocancel;
@@ -2937,12 +2857,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>(
+        createAPIRequest<Schema$UndoCancelSubscriptionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionResponse>(
+        return createAPIRequest<Schema$UndoCancelSubscriptionResponse>(
           parameters
         );
       }
@@ -2959,7 +2879,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1CancelSubscriptionRequest;
+    requestBody?: Schema$CancelSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Create
     extends StandardParameters {
@@ -2975,7 +2895,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Partners$Subscriptions$Entitle
     extends StandardParameters {
@@ -2987,7 +2907,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1EntitleSubscriptionRequest;
+    requestBody?: Schema$EntitleSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Extend
     extends StandardParameters {
@@ -2999,7 +2919,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ExtendSubscriptionRequest;
+    requestBody?: Schema$ExtendSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Get
     extends StandardParameters {
@@ -3022,7 +2942,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1Subscription;
+    requestBody?: Schema$Subscription;
   }
   export interface Params$Resource$Partners$Subscriptions$Resume
     extends StandardParameters {
@@ -3034,7 +2954,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1ResumeSubscriptionRequest;
+    requestBody?: Schema$ResumeSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Suspend
     extends StandardParameters {
@@ -3046,7 +2966,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1SuspendSubscriptionRequest;
+    requestBody?: Schema$SuspendSubscriptionRequest;
   }
   export interface Params$Resource$Partners$Subscriptions$Undocancel
     extends StandardParameters {
@@ -3058,7 +2978,7 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1UndoCancelSubscriptionRequest;
+    requestBody?: Schema$UndoCancelSubscriptionRequest;
   }
 
   export class Resource$Partners$Usersessions {
@@ -3138,9 +3058,7 @@ export namespace paymentsresellersubscription_v1 {
     generate(
       params?: Params$Resource$Partners$Usersessions$Generate,
       options?: MethodOptions
-    ): Promise<
-      GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
-    >;
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GenerateUserSessionResponse>>;
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
       options: StreamMethodOptions | BodyResponseCallback<Readable>,
@@ -3150,34 +3068,32 @@ export namespace paymentsresellersubscription_v1 {
       params: Params$Resource$Partners$Usersessions$Generate,
       options:
         | MethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Schema$GenerateUserSessionResponse>,
+      callback: BodyResponseCallback<Schema$GenerateUserSessionResponse>
     ): void;
     generate(
       params: Params$Resource$Partners$Usersessions$Generate,
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+      callback: BodyResponseCallback<Schema$GenerateUserSessionResponse>
     ): void;
     generate(
-      callback: BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+      callback: BodyResponseCallback<Schema$GenerateUserSessionResponse>
     ): void;
     generate(
       paramsOrCallback?:
         | Params$Resource$Partners$Usersessions$Generate
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Schema$GenerateUserSessionResponse>
         | BodyResponseCallback<Readable>,
       optionsOrCallback?:
         | MethodOptions
         | StreamMethodOptions
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Schema$GenerateUserSessionResponse>
         | BodyResponseCallback<Readable>,
       callback?:
-        | BodyResponseCallback<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
+        | BodyResponseCallback<Schema$GenerateUserSessionResponse>
         | BodyResponseCallback<Readable>
     ):
       | void
-      | Promise<
-          GaxiosResponseWithHTTP2<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>
-        >
+      | Promise<GaxiosResponseWithHTTP2<Schema$GenerateUserSessionResponse>>
       | Promise<GaxiosResponseWithHTTP2<Readable>> {
       let params = (paramsOrCallback ||
         {}) as Params$Resource$Partners$Usersessions$Generate;
@@ -3215,14 +3131,12 @@ export namespace paymentsresellersubscription_v1 {
         context: this.context,
       };
       if (callback) {
-        createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>(
+        createAPIRequest<Schema$GenerateUserSessionResponse>(
           parameters,
           callback as BodyResponseCallback<unknown>
         );
       } else {
-        return createAPIRequest<Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionResponse>(
-          parameters
-        );
+        return createAPIRequest<Schema$GenerateUserSessionResponse>(parameters);
       }
     }
   }
@@ -3237,6 +3151,6 @@ export namespace paymentsresellersubscription_v1 {
     /**
      * Request body metadata
      */
-    requestBody?: Schema$GoogleCloudPaymentsResellerSubscriptionV1GenerateUserSessionRequest;
+    requestBody?: Schema$GenerateUserSessionRequest;
   }
 }

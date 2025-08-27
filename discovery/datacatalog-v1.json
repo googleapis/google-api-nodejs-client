@@ -2339,7 +2339,7 @@
       }
     }
   },
-  "revision": "20250609",
+  "revision": "20250720",
   "rootUrl": "https://datacatalog.googleapis.com/",
   "schemas": {
     "Binding": {
@@ -3861,7 +3861,6 @@
       "id": "GoogleCloudDatacatalogV1ReconcileTagsRequest",
       "properties": {
         "forceDeleteMissing": {
-          "description": "If set to `true`, deletes entry tags related to a tag template not listed in the tags source from an entry. If set to `false`, unlisted tags are retained.",
           "type": "boolean"
         },
         "tagTemplate": {

@@ -2485,6 +2485,35 @@ export namespace retail_v2 {
     gcsResult?: Schema$GoogleCloudRetailV2GcsOutputResult[];
   }
   /**
+   * Detailed panel information associated with a user event.
+   */
+  export interface Schema$GoogleCloudRetailV2PanelInfo {
+    /**
+     * Optional. The attribution token of the panel.
+     */
+    attributionToken?: string | null;
+    /**
+     * Optional. The display name of the panel.
+     */
+    displayName?: string | null;
+    /**
+     * Required. The panel ID.
+     */
+    panelId?: string | null;
+    /**
+     * Optional. The ordered position of the panel, if shown to the user with other panels. If set, then total_panels must also be set.
+     */
+    panelPosition?: number | null;
+    /**
+     * Optional. The product details associated with the panel.
+     */
+    productDetails?: Schema$GoogleCloudRetailV2ProductDetail[];
+    /**
+     * Optional. The total number of panels, including this one, shown to the user. Must be set if panel_position is set.
+     */
+    totalPanels?: number | null;
+  }
+  /**
    * Request for pausing training of a model.
    */
   export interface Schema$GoogleCloudRetailV2PauseModelRequest {}
@@ -4025,6 +4054,10 @@ export namespace retail_v2 {
      * A unique ID of a web page view. This should be kept the same for all user events triggered from the same pageview. For example, an item detail page view could trigger multiple events as the user is browsing the page. The `pageViewId` property should be kept the same for all these events so that they can be grouped together properly. When using the client side event reporting with JavaScript pixel and Google Tag Manager, this value is filled in automatically.
      */
     pageViewId?: string | null;
+    /**
+     * Optional. List of panels associated with this event. Used for panel-level impression data.
+     */
+    panels?: Schema$GoogleCloudRetailV2PanelInfo[];
     /**
      * The main product details related to the event. This field is optional except for the following event types: * `add-to-cart` * `detail-page-view` * `purchase-complete` In a `search` event, this field represents the products returned to the end user on the current page (the end user may have not finished browsing the whole page yet). When a new page is returned to the end user, after pagination/filtering/ordering even for the same query, a new `search` event with different product_details is desired. The end user may have not finished browsing the whole page yet.
      */
@@ -15497,6 +15530,7 @@ export namespace retail_v2 {
      *       //   "orderBy": "my_orderBy",
      *       //   "pageCategories": [],
      *       //   "pageViewId": "my_pageViewId",
+     *       //   "panels": [],
      *       //   "productDetails": [],
      *       //   "purchaseTransaction": {},
      *       //   "referrerUri": "my_referrerUri",
@@ -15525,6 +15559,7 @@ export namespace retail_v2 {
      *   //   "orderBy": "my_orderBy",
      *   //   "pageCategories": [],
      *   //   "pageViewId": "my_pageViewId",
+     *   //   "panels": [],
      *   //   "productDetails": [],
      *   //   "purchaseTransaction": {},
      *   //   "referrerUri": "my_referrerUri",

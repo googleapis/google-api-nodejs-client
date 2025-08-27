@@ -365,7 +365,7 @@ export namespace workstations_v1beta {
      */
     poolSize?: number | null;
     /**
-     * Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create boost VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size.
+     * Optional. [ReservationAffinity](https://cloud.google.com/compute/docs/instances/reserving-zonal-resources) specifies a reservation that can be consumed to create VM instances. If SPECIFIC_RESERVATION is specified, Cloud Workstations will only create VMs in the zone where the reservation is located. This would affect availability since the service will no longer be resilient to zonal outages. If ANY_RESERVATION is specified, creating reservations in both zones that the config creates VMs in will ensure higher availability. **Important Considerations for Reservation Affinity:** * This feature is intended for advanced users and requires familiarity with Google Compute Engine reservations. * Using reservations incurs charges, regardless of utilization. * The resources in the pool will consume the specified reservation. Take this into account when setting the pool size.
      */
     reservationAffinity?: Schema$ReservationAffinity;
     /**
@@ -775,7 +775,7 @@ export namespace workstations_v1beta {
      */
     key?: string | null;
     /**
-     * Optional. Corresponds to the label values of reservation resources. Valid values are either a name to a reservation in the same project or "projects/{project\}/reservations/{reservation\}" to target a shared reservation in the same zone but in a different project.
+     * Optional. Corresponds to the label values of reservation resources. Valid values are either the name of a reservation in the same project or "projects/{project\}/reservations/{reservation\}" to target a shared reservation in the same zone but in a different project.
      */
     values?: string[] | null;
   }
@@ -967,6 +967,10 @@ export namespace workstations_v1beta {
      * Output only. Boost configuration ID.
      */
     id?: string | null;
+    /**
+     * Output only. Whether or not the current workstation is actively boosted with this id.
+     */
+    running?: boolean | null;
   }
   /**
    * A workstation cluster resource in the Cloud Workstations API. Defines a group of workstations in a particular region and the VPC network they're attached to.

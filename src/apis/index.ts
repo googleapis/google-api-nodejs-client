@@ -629,6 +629,10 @@ import {
   secretmanager,
 } from './secretmanager';
 import {
+  VERSIONS as securesourcemanagerVersions,
+  securesourcemanager,
+} from './securesourcemanager';
+import {
   VERSIONS as securitycenterVersions,
   securitycenter,
 } from './securitycenter';
@@ -1021,6 +1025,7 @@ export const APIS: APIList = {
   searchads360: searchads360Versions,
   searchconsole: searchconsoleVersions,
   secretmanager: secretmanagerVersions,
+  securesourcemanager: securesourcemanagerVersions,
   securitycenter: securitycenterVersions,
   securityposture: securitypostureVersions,
   serviceconsumermanagement: serviceconsumermanagementVersions,
@@ -1338,6 +1343,7 @@ export class GeneratedAPIs {
   searchads360 = searchads360;
   searchconsole = searchconsole;
   secretmanager = secretmanager;
+  securesourcemanager = securesourcemanager;
   securitycenter = securitycenter;
   securityposture = securityposture;
   serviceconsumermanagement = serviceconsumermanagement;

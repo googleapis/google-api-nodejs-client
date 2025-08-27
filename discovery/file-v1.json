@@ -908,7 +908,7 @@
       }
     }
   },
-  "revision": "20250421",
+  "revision": "20250810",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {
@@ -1453,6 +1453,12 @@
       "description": "A Filestore instance.",
       "id": "Instance",
       "properties": {
+        "capacityStepSizeGb": {
+          "description": "Output only. The increase/decrease capacity step size in GB.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time when the instance was created.",
           "format": "google-datetime",
@@ -1497,6 +1503,18 @@
           },
           "description": "Resource labels to represent user provided metadata.",
           "type": "object"
+        },
+        "maxCapacityGb": {
+          "description": "Output only. The max capacity of the instance in GB.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "minCapacityGb": {
+          "description": "Output only. The min capacity of the instance in GB.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "name": {
           "description": "Output only. The resource name of the instance, in the format `projects/{project}/locations/{location}/instances/{instance}`.",
@@ -2114,14 +2132,22 @@
             "CREATING",
             "READY",
             "REMOVING",
-            "FAILED"
+            "FAILED",
+            "PROMOTING",
+            "PAUSING",
+            "PAUSED",
+            "RESUMING"
           ],
           "enumDescriptions": [
             "State not set.",
             "The replica is being created.",
             "The replica is ready.",
             "The replica is being removed.",
-            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object."
+            "The replica is experiencing an issue and might be unusable. You can get further details from the `stateReasons` field of the `ReplicaConfig` object.",
+            "The replica is being promoted.",
+            "The replica is being paused.",
+            "The replica is paused.",
+            "The replica is being resumed."
           ],
           "readOnly": true,
           "type": "string"
@@ -2132,17 +2158,27 @@
             "enum": [
               "STATE_REASON_UNSPECIFIED",
               "PEER_INSTANCE_UNREACHABLE",
-              "REMOVE_FAILED"
+              "REMOVE_FAILED",
+              "PAUSE_FAILED",
+              "RESUME_FAILED"
             ],
             "enumDescriptions": [
               "Reason not specified.",
               "The peer instance is unreachable.",
-              "The remove replica peer instance operation failed."
+              "The remove replica peer instance operation failed.",
+              "The pause replica operation failed.",
+              "The resume replica operation failed."
             ],
             "type": "string"
           },
           "readOnly": true,
           "type": "array"
+        },
+        "stateUpdateTime": {
+          "description": "Output only. The time when the replica state was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

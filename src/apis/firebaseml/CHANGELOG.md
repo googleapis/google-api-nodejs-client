@@ -1,5 +1,49 @@
 # Changelog
 
+## [20.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v19.1.0...firebaseml-v20.0.0) (2025-08-21)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebaseml:** This release has breaking changes.
+
+### Features
+
+* **firebaseml:** update the API ([29a72ba](https://github.com/googleapis/google-api-nodejs-client/commit/29a72ba2db3eb2f908e9100e35502673d1cdbe43))
+
+## [19.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v19.0.1...firebaseml-v19.1.0) (2025-08-13)
+
+
+### Features
+
+* **firebaseml:** update the API ([f5afc5b](https://github.com/googleapis/google-api-nodejs-client/commit/f5afc5be972f978a9df0874fa9edd817a3c2b7fa))
+
+## [19.0.1](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v19.0.0...firebaseml-v19.0.1) (2025-08-07)
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [19.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v18.1.0...firebaseml-v19.0.0) (2025-08-04)
+
+
+### ⚠ BREAKING CHANGES
+
+* **firebaseml:** This release has breaking changes.
+
+### Features
+
+* **firebaseml:** update the API ([786f635](https://github.com/googleapis/google-api-nodejs-client/commit/786f6357f145b04433aee3a79a8c39308ae1baaf))
+* **firebaseml:** update the API ([4f9d063](https://github.com/googleapis/google-api-nodejs-client/commit/4f9d06357d22706d282dba4e57ffc1f01c1bacd8))
+
+## [18.1.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v18.0.0...firebaseml-v18.1.0) (2025-07-25)
+
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+
 ## [18.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/firebaseml-v17.0.0...firebaseml-v18.0.0) (2025-07-22)
 
 

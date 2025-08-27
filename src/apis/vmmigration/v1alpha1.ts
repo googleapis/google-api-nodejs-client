@@ -783,7 +783,7 @@ export namespace vmmigration_v1alpha1 {
      */
     secureBoot?: boolean | null;
     /**
-     * The service account to associate the VM with.
+     * Optional. The service account to associate the VM with.
      */
     serviceAccount?: string | null;
     /**
@@ -2014,7 +2014,7 @@ export namespace vmmigration_v1alpha1 {
      */
     internalIp?: string | null;
     /**
-     * The network to connect the NIC to.
+     * Optional. The network to connect the NIC to.
      */
     network?: string | null;
     /**
@@ -3058,7 +3058,7 @@ export namespace vmmigration_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await vmmigration.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3186,7 +3186,7 @@ export namespace vmmigration_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

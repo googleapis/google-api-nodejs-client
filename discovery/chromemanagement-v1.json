@@ -1181,7 +1181,7 @@
                       "type": "string"
                     },
                     "readMask": {
-                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event - os_crash_event ",
+                      "description": "Required. Read mask to specify which fields to return. Although currently required, this field will become optional, while the filter parameter with an event type will be come required. Supported read_mask paths are: - device - user - audio_severe_underrun_event - usb_peripherals_event - https_latency_change_event - network_state_change_event - wifi_signal_strength_event - vpn_connection_state_change_event - app_install_event - app_uninstall_event - app_launch_event - os_crash_event - external_displays_event ",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1373,11 +1373,43 @@
               }
             }
           }
+        },
+        "thirdPartyProfileUsers": {
+          "methods": {
+            "move": {
+              "description": "Moves a third party chrome profile user to a destination OU. All profiles associated to that user will be moved to the destination OU.",
+              "flatPath": "v1/customers/{customersId}/thirdPartyProfileUsers/{thirdPartyProfileUsersId}:move",
+              "httpMethod": "POST",
+              "id": "chromemanagement.customers.thirdPartyProfileUsers.move",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Format: customers/{customer_id}/thirdPartyProfileUsers/{third_party_profile_user_id}",
+                  "location": "path",
+                  "pattern": "^customers/[^/]+/thirdPartyProfileUsers/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+name}:move",
+              "request": {
+                "$ref": "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest"
+              },
+              "response": {
+                "$ref": "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/chrome.management.profiles"
+              ]
+            }
+          }
         }
       }
     }
   },
-  "revision": "20250710",
+  "revision": "20250820",
   "rootUrl": "https://chromemanagement.googleapis.com/",
   "schemas": {
     "GoogleChromeManagementV1AndroidAppInfo": {
@@ -4521,7 +4553,9 @@
             "APP_INSTALLED",
             "APP_UNINSTALLED",
             "APP_LAUNCHED",
-            "OS_CRASH"
+            "OS_CRASH",
+            "EXTERNAL_DISPLAY_CONNECTED",
+            "EXTERNAL_DISPLAY_DISCONNECTED"
           ],
           "enumDescriptions": [
             "Event type unknown.",
@@ -4536,7 +4570,9 @@
             "Triggered when an app is installed.",
             "Triggered when an app is uninstalled.",
             "Triggered when an app is launched.",
-            "Triggered when a crash occurs."
+            "Triggered when a crash occurs.",
+            "Triggered when an external display is connected.",
+            "Triggered when an external display is disconnected."
           ],
           "type": "string"
         },
@@ -4608,7 +4644,9 @@
               "APP_INSTALLED",
               "APP_UNINSTALLED",
               "APP_LAUNCHED",
-              "OS_CRASH"
+              "OS_CRASH",
+              "EXTERNAL_DISPLAY_CONNECTED",
+              "EXTERNAL_DISPLAY_DISCONNECTED"
             ],
             "enumDescriptions": [
               "Event type unknown.",
@@ -4623,7 +4661,9 @@
               "Triggered when an app is installed.",
               "Triggered when an app is uninstalled.",
               "Triggered when an app is launched.",
-              "Triggered when a crash occurs."
+              "Triggered when a crash occurs.",
+              "Triggered when an external display is connected.",
+              "Triggered when an external display is disconnected."
             ],
             "type": "string"
           },
@@ -5229,6 +5269,16 @@
           "readOnly": true,
           "type": "string"
         },
+        "scepCaConnection": {
+          "$ref": "GoogleChromeManagementVersionsV1ScepCaConnection",
+          "description": "Output only. The CA connection is a SCEP CA connection.",
+          "readOnly": true
+        },
+        "scepProfile": {
+          "$ref": "GoogleChromeManagementVersionsV1ScepProfile",
+          "description": "Output only. The profile is a SCEP certificate provisioning profile.",
+          "readOnly": true
+        },
         "signData": {
           "description": "Output only. The data that the client was asked to sign. This field is only present after the `SignData` operation has been initiated.",
           "format": "byte",
@@ -5245,11 +5295,13 @@
           "description": "Output only. The signature algorithm that the adapter expects the client and backend components to use when processing `sign_data`. This field is only present after the `SignData` operation has been initiated.",
           "enum": [
             "SIGNATURE_ALGORITHM_UNSPECIFIED",
-            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256"
+            "SIGNATURE_ALGORITHM_RSA_PKCS1_V1_5_SHA256",
+            "SIGNATURE_ALGORITHM_ECDSA_SHA256"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
-            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding."
+            "The server-side builds the PKCS#1 DigestInfo, i.e., the SHA256 hash is constructed on the server-side. The client should sign using RSA with PKCS#1 v1.5 padding.",
+            "The PKCS#1 digest info is built by the server-side and sent to the client unhashed. The client is responsible for signing and hashing. Uses the P-256 curve."
           ],
           "readOnly": true,
           "type": "string"
@@ -5672,6 +5724,29 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest": {
+      "description": "Request to MoveThirdPartyProfileUser method.",
+      "id": "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserRequest",
+      "properties": {
+        "destinationOrgUnit": {
+          "description": "Required. Destination organizational unit where the third party chrome profile user will be moved to.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse": {
+      "description": "Response for MoveThirdPartyProfileUser method.",
+      "id": "GoogleChromeManagementVersionsV1MoveThirdPartyProfileUserResponse",
+      "properties": {
+        "thirdPartyProfileUser": {
+          "$ref": "GoogleChromeManagementVersionsV1ThirdPartyProfileUser",
+          "description": "Output only. The moved third party profile user.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1ReportingData": {
       "description": "Reporting data of a Chrome browser profile.",
       "id": "GoogleChromeManagementVersionsV1ReportingData",
@@ -5920,6 +5995,89 @@
       },
       "type": "object"
     },
+    "GoogleChromeManagementVersionsV1ScepCaConnection": {
+      "description": "Describes a SCEP Certificate Authority Connection.",
+      "id": "GoogleChromeManagementVersionsV1ScepCaConnection",
+      "properties": {
+        "caConnectionAdapterConfigReference": {
+          "description": "Output only. A string that references the administrator-provided configuration for the certification authority service. This field can be missing if no configuration was given.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ScepProfile": {
+      "description": "Describes a SCEP certificate provisioning profile.",
+      "id": "GoogleChromeManagementVersionsV1ScepProfile",
+      "properties": {
+        "certificateTemplateName": {
+          "description": "Output only. The certificate template name as defined by the admin on their on-prem infrastructure. This is identifiable by the customer's CA.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "country": {
+          "description": "Output only. The country of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "keyUsages": {
+          "description": "Output only. The allowed key usages for certificate's key.",
+          "items": {
+            "enum": [
+              "KEY_USAGE_UNSPECIFIED",
+              "KEY_USAGE_SIGNING",
+              "KEY_USAGE_KEY_ENCIPHERMENT"
+            ],
+            "enumDescriptions": [
+              "The key usage is unspecified.",
+              "The key can be used for signing.",
+              "The key can be used for key encipherment."
+            ],
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "locality": {
+          "description": "Output only. The locality of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organization": {
+          "description": "Output only. The name of the organization the subject belongs to.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "organizationalUnits": {
+          "description": "Output only. The organizational units of the subject.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "state": {
+          "description": "Output only. The state of the subject.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subjectAltNames": {
+          "description": "Output only. The subject alternative names.",
+          "items": {
+            "$ref": "GoogleChromeManagementVersionsV1SubjectAltName"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "subjectCommonName": {
+          "description": "Output only. The common name of the subject.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleChromeManagementVersionsV1SignDataMetadata": {
       "description": "Metadata for the long-running operation returned by signData.",
       "id": "GoogleChromeManagementVersionsV1SignDataMetadata",
@@ -5941,6 +6099,53 @@
           "$ref": "GoogleChromeManagementVersionsV1CertificateProvisioningProcess",
           "description": "Output only. The certificate provisioning process. The signature generated by the client will be available in the `signature` field of `CertificateProvisioningProcess`.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1SubjectAltName": {
+      "description": "Describes a subject alternative name.",
+      "id": "GoogleChromeManagementVersionsV1SubjectAltName",
+      "properties": {
+        "type": {
+          "description": "Output only. The type of the SubjectAltName extension.",
+          "enum": [
+            "SUBJECT_ALT_NAME_TYPE_UNSPECIFIED",
+            "RFC822_NAME",
+            "DNS_NAME",
+            "OTHER_NAME_USER_PRINCIPAL_NAME",
+            "UNIFORM_RESOURCE_IDENTIFIER"
+          ],
+          "enumDescriptions": [
+            "The subject alternative name type is unspecified.",
+            "The subject alternative name type is an email address adhering to RFC822.",
+            "The subject alternative name type is a a Domain Name System (DNS).",
+            "The subject alternative name type is a User Principal Name (UPN).",
+            "The subject alternative name type is a Uniform Resource Identifier (URI)."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "value": {
+          "description": "Output only. The value of the subject alternative name with respoect to the `type`.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleChromeManagementVersionsV1ThirdPartyProfileUser": {
+      "description": "A representation of non-Google (third party) user that is associated with a managed Chrome profile.",
+      "id": "GoogleChromeManagementVersionsV1ThirdPartyProfileUser",
+      "properties": {
+        "name": {
+          "description": "Identifier. Format: customers/{customer_id}/thirdPartyProfileUsers/{third_party_profile_user_id}",
+          "type": "string"
+        },
+        "orgUnitId": {
+          "description": "Output only. The ID of the organizational unit assigned to the user.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
