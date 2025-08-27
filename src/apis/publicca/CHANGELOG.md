@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v1.0.4...publicca-v1.0.5) (2025-08-27)
+
+
+### Bug Fixes
+
+* **publicca:** update the API ([bcb2103](https://github.com/googleapis/google-api-nodejs-client/commit/bcb210322b4ed5d0595969e6e8c85289a2c50e2c))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.0.4](https://github.com/googleapis/google-api-nodejs-client/compare/publicca-v1.0.3...publicca-v1.0.4) (2025-08-26)
 
 

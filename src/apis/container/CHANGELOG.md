@@ -1,5 +1,27 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v5.0.0...container-v6.0.0) (2025-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* This release has breaking changes.
+* **container:** This release has breaking changes.
+
+### Features
+
+* **container:** update the API ([4d4fd07](https://github.com/googleapis/google-api-nodejs-client/commit/4d4fd07060667210591629ee1b722ded06753899))
+* **container:** update the API ([29665e3](https://github.com/googleapis/google-api-nodejs-client/commit/29665e34a77fa6adc0cd78f3220154a32ad98f46))
+* **container:** update the API ([afd8226](https://github.com/googleapis/google-api-nodejs-client/commit/afd82265a48387319daeded63d00ea5de0bcbbf2))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/container-v4.0.0...container-v5.0.0) (2025-08-26)
 
 
