@@ -270,7 +270,7 @@
   "src/apis/integrations": "4.0.0",
   "src/apis/iamcredentials": "6.0.1",
   "src/apis/resourcesettings": "3.0.1",
-  "src/apis/aiplatform": "21.0.0",
+  "src/apis/aiplatform": "21.0.1",
   "src/apis/webrisk": "3.0.1",
   "src/apis/gkeonprem": "9.1.0",
   "src/apis/blockchainnodeengine": "8.0.1",
