@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v5.0.0...cloudbilling-v6.0.0) (2025-08-27)
+
+
+### ⚠ BREAKING CHANGES
+
+* **cloudbilling:** This release has breaking changes.
+
+### Features
+
+* **cloudbilling:** update the API ([193f4d8](https://github.com/googleapis/google-api-nodejs-client/commit/193f4d83a896478cf7d0c5c91bcffebc496fda33))
+
+
+### Bug Fixes
+
+* **cloudbilling:** update the API ([067888b](https://github.com/googleapis/google-api-nodejs-client/commit/067888b2ba432e1373476634cf201aad2fcc1cd5))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/cloudbilling-v4.0.0...cloudbilling-v5.0.0) (2025-08-26)
 
 
