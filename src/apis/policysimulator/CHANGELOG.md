@@ -1,5 +1,22 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v5.0.0...policysimulator-v6.0.0) (2025-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* **policysimulator:** update the API ([ddd9d5b](https://github.com/googleapis/google-api-nodejs-client/commit/ddd9d5b316f038c4871fe850b416e0dc67208e2a))
+* run the generator ([#3749](https://github.com/googleapis/google-api-nodejs-client/issues/3749)) ([716b41c](https://github.com/googleapis/google-api-nodejs-client/commit/716b41cf75e2983777ae1f40f2ef0e01a85bcce3))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/policysimulator-v4.0.0...policysimulator-v5.0.0) (2025-08-27)
 
 
