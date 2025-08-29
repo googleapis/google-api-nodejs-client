@@ -1,5 +1,22 @@
 # Changelog
 
+## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v6.0.0...datacatalog-v7.0.0) (2025-08-28)
+
+
+### ⚠ BREAKING CHANGES
+
+* **datacatalog:** This release has breaking changes.
+
+### Features
+
+* **datacatalog:** update the API ([1b9280a](https://github.com/googleapis/google-api-nodejs-client/commit/1b9280a79e5c8e7e1279fcab02768b551daf45ca))
+
+
+### Bug Fixes
+
+* **datacatalog:** update the API ([e2999ec](https://github.com/googleapis/google-api-nodejs-client/commit/e2999ec14670cdc078242a0c52ea351e12d999bd))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/datacatalog-v5.0.0...datacatalog-v6.0.0) (2025-08-27)
 
 

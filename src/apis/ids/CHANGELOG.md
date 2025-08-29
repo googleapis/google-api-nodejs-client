@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.6](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v1.0.5...ids-v1.0.6) (2025-08-28)
+
+
+### Bug Fixes
+
+* **ids:** update the API ([3b10121](https://github.com/googleapis/google-api-nodejs-client/commit/3b10121c3a5e08063b250935272e643c8e369ab6))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.0.5](https://github.com/googleapis/google-api-nodejs-client/compare/ids-v1.0.4...ids-v1.0.5) (2025-08-27)
 
 
