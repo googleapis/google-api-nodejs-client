@@ -1,5 +1,24 @@
 # Changelog
 
+## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v7.0.0...appengine-v8.0.0) (2025-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+* **appengine:** This release has breaking changes.
+
+### Features
+
+* **appengine:** update the API ([e4391cf](https://github.com/googleapis/google-api-nodejs-client/commit/e4391cf6ae3cf4f0fd56b94bb289c6cdfcdc1cf1))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* **appengine:** update the API ([b74df93](https://github.com/googleapis/google-api-nodejs-client/commit/b74df9358d6a9f75a00e68a485098ac8206f7bd1))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [7.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/appengine-v6.0.0...appengine-v7.0.0) (2025-08-28)
 
 
