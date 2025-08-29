@@ -1,5 +1,25 @@
 # Changelog
 
+## [6.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v5.0.0...vmmigration-v6.0.0) (2025-08-29)
+
+
+### ⚠ BREAKING CHANGES
+
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3721](https://github.com/googleapis/google-api-nodejs-client/issues/3721)) ([89a253d](https://github.com/googleapis/google-api-nodejs-client/commit/89a253dc14d931865a4a35fb9093a39a8804ec63))
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+* **vmmigration:** update the API ([79271a9](https://github.com/googleapis/google-api-nodejs-client/commit/79271a9986cd491bae626e0a4c0477e408c762d2))
+
+
+### Bug Fixes
+
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+* **vmmigration:** update the API ([b7fcf93](https://github.com/googleapis/google-api-nodejs-client/commit/b7fcf93cf9142a498c5be671fcc14e808206a0c4))
+* **vmmigration:** update the API ([4b6ab8f](https://github.com/googleapis/google-api-nodejs-client/commit/4b6ab8f5c5e5ee1cade5b0ac8f71cd6396449aba))
+
 ## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/vmmigration-v4.0.0...vmmigration-v5.0.0) (2025-08-28)
 
 
