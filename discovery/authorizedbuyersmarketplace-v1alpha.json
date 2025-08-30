@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250828",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -3315,7 +3315,7 @@
         },
         "inventorySizeTargeting": {
           "$ref": "InventorySizeTargeting",
-          "description": "Inventory sizes to be targeted."
+          "description": "Inventory sizes to be targeted. Only PIXEL inventory size type is supported."
         },
         "note": {
           "description": "A message that is sent to the publisher. Maximum length is 1024 characters.",
