@@ -2635,7 +2635,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250823",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -4750,6 +4750,20 @@
           "description": "Optional. Name of the database on which the statement will be executed.",
           "type": "string"
         },
+        "partialResultMode": {
+          "description": "Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.",
+          "enum": [
+            "PARTIAL_RESULT_MODE_UNSPECIFIED",
+            "FAIL_PARTIAL_RESULT",
+            "ALLOW_PARTIAL_RESULT"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode, effectively the same as `FAIL_PARTIAL_RESULT`.",
+            "Throw an error if the result exceeds 10 MB. Don't return the result.",
+            "Return a truncated result and set `partial_result` to true if the result exceeds 10 MB. Don't throw an error."
+          ],
+          "type": "string"
+        },
         "rowLimit": {
           "description": "Optional. The maximum number of rows returned per SQL statement.",
           "format": "int64",
@@ -4757,6 +4771,10 @@
         },
         "sqlStatement": {
           "description": "Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.",
+          "type": "string"
+        },
+        "user": {
+          "description": "Optional. The name of an existing database user to connect to the database. When `auto_iam_authn` is set to true, this field is ignored and the API caller's IAM user is used.",
           "type": "string"
         }
       },
@@ -7471,6 +7489,11 @@
       "description": "Instance get latest recovery time response.",
       "id": "SqlInstancesGetLatestRecoveryTimeResponse",
       "properties": {
+        "earliestRecoveryTime": {
+          "description": "Timestamp, identifies the earliest recovery time of the source instance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "kind": {
           "description": "This is always `sql#getLatestRecoveryTime`.",
           "type": "string"
