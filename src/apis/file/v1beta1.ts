@@ -1069,6 +1069,10 @@ export namespace file_v1beta1 {
     sourceSnapshot?: string | null;
   }
   /**
+   * ResumeReplicaRequest resumes a Filestore standby instance (replica).
+   */
+  export interface Schema$ResumeReplicaRequest {}
+  /**
    * RevertInstanceRequest reverts the given instance's file share to the specified snapshot.
    */
   export interface Schema$RevertInstanceRequest {
@@ -1425,7 +1429,7 @@ export namespace file_v1beta1 {
      *
      *   // Do the magic
      *   const res = await file.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1553,7 +1557,7 @@ export namespace file_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3687,6 +3691,154 @@ export namespace file_v1beta1 {
     }
 
     /**
+     * Resume the standby instance (replica). WARNING: Any data written to the standby instance while paused will be lost when the replica is resumed.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/file.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const file = google.file('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await file.projects.locations.instances.resumeReplica({
+     *     // Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     *     name: 'projects/my-project/locations/my-location/instances/my-instance',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {}
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    resumeReplica(
+      params?: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resumeReplica(
+      params: Params$Resource$Projects$Locations$Instances$Resumereplica,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    resumeReplica(callback: BodyResponseCallback<Schema$Operation>): void;
+    resumeReplica(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Instances$Resumereplica
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Instances$Resumereplica;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Instances$Resumereplica;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://file.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta1/{+name}:resumeReplica').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
      * Revert an existing instance's file system to a specified snapshot.
      * @example
      * ```js
@@ -3944,6 +4096,18 @@ export namespace file_v1beta1 {
      * Request body metadata
      */
     requestBody?: Schema$RestoreInstanceRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Instances$Resumereplica
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the instance, in the format `projects/{project_id\}/locations/{location_id\}/instances/{instance_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$ResumeReplicaRequest;
   }
   export interface Params$Resource$Projects$Locations$Instances$Revert
     extends StandardParameters {
