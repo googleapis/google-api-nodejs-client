@@ -1676,7 +1676,7 @@
       }
     }
   },
-  "revision": "20250403",
+  "revision": "20250822",
   "rootUrl": "https://deploymentmanager.googleapis.com/",
   "schemas": {
     "AsyncOptions": {
@@ -3563,6 +3563,14 @@
             "type": "string"
           },
           "type": "array"
+        },
+        "zoneToIgmIds": {
+          "additionalProperties": {
+            "format": "int64",
+            "type": "string"
+          },
+          "description": "Map of zone to an ID of the zonal IGM belonging to the RMIG.",
+          "type": "object"
         }
       },
       "type": "object"
