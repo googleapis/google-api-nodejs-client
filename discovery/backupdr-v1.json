@@ -1013,11 +1013,123 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "testIamPermissions": {
+                  "description": "Returns the caller's permissions on a BackupVault resource. A caller is not required to have Google IAM permission to make this request.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}:testIamPermissions",
+                  "httpMethod": "POST",
+                  "id": "backupdr.projects.locations.backupVaults.testIamPermissions",
+                  "parameterOrder": [
+                    "resource"
+                  ],
+                  "parameters": {
+                    "resource": {
+                      "description": "REQUIRED: The resource for which the policy detail is being requested. See [Resource names](https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+resource}:testIamPermissions",
+                  "request": {
+                    "$ref": "TestIamPermissionsRequest"
+                  },
+                  "response": {
+                    "$ref": "TestIamPermissionsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
                 "dataSources": {
                   "methods": {
+                    "abandonBackup": {
+                      "description": "Internal only. Abandons a backup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:abandonBackup",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.abandonBackup",
+                      "parameterOrder": [
+                        "dataSource"
+                      ],
+                      "parameters": {
+                        "dataSource": {
+                          "description": "Required. The resource name of the instance, in the format 'projects/*/locations/*/backupVaults/*/dataSources/'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+dataSource}:abandonBackup",
+                      "request": {
+                        "$ref": "AbandonBackupRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "fetchAccessToken": {
+                      "description": "Internal only. Fetch access token for a given data source.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:fetchAccessToken",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.fetchAccessToken",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name for the location for which static IPs should be returned. Must be in the format 'projects/*/locations/*/backupVaults/*/dataSources'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:fetchAccessToken",
+                      "request": {
+                        "$ref": "FetchAccessTokenRequest"
+                      },
+                      "response": {
+                        "$ref": "FetchAccessTokenResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "finalizeBackup": {
+                      "description": "Internal only. Finalize a backup that was started by a call to InitiateBackup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:finalizeBackup",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.finalizeBackup",
+                      "parameterOrder": [
+                        "dataSource"
+                      ],
+                      "parameters": {
+                        "dataSource": {
+                          "description": "Required. The resource name of the instance, in the format 'projects/*/locations/*/backupVaults/*/dataSources/'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+dataSource}:finalizeBackup",
+                      "request": {
+                        "$ref": "FinalizeBackupRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "get": {
                       "description": "Gets details of a DataSource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}",
@@ -1038,6 +1150,34 @@
                       "path": "v1/{+name}",
                       "response": {
                         "$ref": "DataSource"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "initiateBackup": {
+                      "description": "Internal only. Initiates a backup.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:initiateBackup",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.initiateBackup",
+                      "parameterOrder": [
+                        "dataSource"
+                      ],
+                      "parameters": {
+                        "dataSource": {
+                          "description": "Required. The resource name of the instance, in the format 'projects/*/locations/*/backupVaults/*/dataSources/'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+dataSource}:initiateBackup",
+                      "request": {
+                        "$ref": "InitiateBackupRequest"
+                      },
+                      "response": {
+                        "$ref": "InitiateBackupResponse"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -1125,6 +1265,62 @@
                       "path": "v1/{+name}",
                       "request": {
                         "$ref": "DataSource"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "remove": {
+                      "description": "Deletes a DataSource. This is a custom method instead of a standard delete method because external clients will not delete DataSources except for BackupDR backup appliances.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:remove",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.remove",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. Name of the resource.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:remove",
+                      "request": {
+                        "$ref": "RemoveDataSourceRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "setInternalStatus": {
+                      "description": "Sets the internal status of a DataSource.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/backupVaults/{backupVaultsId}/dataSources/{dataSourcesId}:setInternalStatus",
+                      "httpMethod": "POST",
+                      "id": "backupdr.projects.locations.backupVaults.dataSources.setInternalStatus",
+                      "parameterOrder": [
+                        "dataSource"
+                      ],
+                      "parameters": {
+                        "dataSource": {
+                          "description": "Required. The resource name of the instance, in the format 'projects/*/locations/*/backupVaults/*/dataSources/'.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/backupVaults/[^/]+/dataSources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+dataSource}:setInternalStatus",
+                      "request": {
+                        "$ref": "SetInternalStatusRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -1593,6 +1789,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "msComplianceMetadata": {
+                  "description": "Returns the Assured Workloads compliance metadata for a given project.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/managementServers:msComplianceMetadata",
+                  "httpMethod": "POST",
+                  "id": "backupdr.projects.locations.managementServers.msComplianceMetadata",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The project and location to be used to check CSS metadata for target project information, in the format 'projects/{project_id}/locations/{location}'. In Cloud BackupDR, locations map to Google Cloud regions, for example **us-central1**.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/managementServers$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}:msComplianceMetadata",
+                  "request": {
+                    "$ref": "FetchMsComplianceMetadataRequest"
+                  },
+                  "response": {
+                    "$ref": "FetchMsComplianceMetadataResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy. Can return `NOT_FOUND`, `INVALID_ARGUMENT`, and `PERMISSION_DENIED` errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/managementServers/{managementServersId}:setIamPolicy",
@@ -1893,9 +2117,20 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250825",
   "rootUrl": "https://backupdr.googleapis.com/",
   "schemas": {
+    "AbandonBackupRequest": {
+      "description": "request message for AbandonBackup.",
+      "id": "AbandonBackupRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "AcceleratorConfig": {
       "description": "A specification of the type and number of accelerator cards attached to the instance.",
       "id": "AcceleratorConfig",
@@ -4156,6 +4391,42 @@
       },
       "type": "object"
     },
+    "FetchAccessTokenRequest": {
+      "description": "Request message for FetchAccessToken.",
+      "id": "FetchAccessTokenRequest",
+      "properties": {
+        "generationId": {
+          "description": "Required. The generation of the backup to update.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "FetchAccessTokenResponse": {
+      "description": "Response message for FetchAccessToken.",
+      "id": "FetchAccessTokenResponse",
+      "properties": {
+        "expireTime": {
+          "description": "The token is valid until this time.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "readLocation": {
+          "description": "The location in bucket that can be used for reading.",
+          "type": "string"
+        },
+        "token": {
+          "description": "The downscoped token that was created.",
+          "type": "string"
+        },
+        "writeLocation": {
+          "description": "The location in bucket that can be used for writing.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "FetchBackupPlanAssociationsForResourceTypeResponse": {
       "description": "Response for the FetchBackupPlanAssociationsForResourceType method.",
       "id": "FetchBackupPlanAssociationsForResourceTypeResponse",
@@ -4194,6 +4465,28 @@
       },
       "type": "object"
     },
+    "FetchMsComplianceMetadataRequest": {
+      "description": "Request message for GetMsComplianceMetadata",
+      "id": "FetchMsComplianceMetadataRequest",
+      "properties": {
+        "projectId": {
+          "description": "Required. The project id of the target project",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "FetchMsComplianceMetadataResponse": {
+      "description": "Response message for GetMsComplianceMetadata",
+      "id": "FetchMsComplianceMetadataResponse",
+      "properties": {
+        "isAssuredWorkload": {
+          "description": "The ms compliance metadata of the target project, if the project is an assured workloads project, values will be true, otherwise false.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "FetchUsableBackupVaultsResponse": {
       "description": "Response message for fetching usable BackupVaults.",
       "id": "FetchUsableBackupVaultsResponse",
@@ -4215,6 +4508,45 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FinalizeBackupRequest": {
+      "description": "Message for finalizing a Backup.",
+      "id": "FinalizeBackupRequest",
+      "properties": {
+        "backupId": {
+          "description": "Required. Resource ID of the Backup resource to be finalized. This must be the same backup_id that was used in the InitiateBackupRequest.",
+          "type": "string"
+        },
+        "consistencyTime": {
+          "description": "The point in time when this backup was captured from the source. This will be assigned to the consistency_time field of the newly created Backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "description": {
+          "description": "This will be assigned to the description field of the newly created Backup.",
+          "type": "string"
+        },
+        "recoveryRangeEndTime": {
+          "description": "The latest timestamp of data available in this Backup. This will be set on the newly created Backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "recoveryRangeStartTime": {
+          "description": "The earliest timestamp of data available in this Backup. This will set on the newly created Backup.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "retentionDuration": {
+          "description": "The ExpireTime on the backup will be set to FinalizeTime plus this duration. If the resulting ExpireTime is less than EnforcedRetentionEndTime, then ExpireTime is set to EnforcedRetentionEndTime.",
+          "format": "google-duration",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4373,6 +4705,42 @@
         "resourceType": {
           "description": "Required. The resource type to which the default service config will be applied. Examples include, \"compute.googleapis.com/Instance\" and \"storage.googleapis.com/Bucket\".",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InitiateBackupRequest": {
+      "description": "request message for InitiateBackup.",
+      "id": "InitiateBackupRequest",
+      "properties": {
+        "backupId": {
+          "description": "Required. Resource ID of the Backup resource.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "InitiateBackupResponse": {
+      "description": "Response message for InitiateBackup.",
+      "id": "InitiateBackupResponse",
+      "properties": {
+        "backup": {
+          "description": "The name of the backup that was created.",
+          "type": "string"
+        },
+        "baseBackupGenerationId": {
+          "description": "The generation id of the base backup. It is needed for the incremental backups.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "newBackupGenerationId": {
+          "description": "The generation id of the new backup.",
+          "format": "int32",
+          "type": "integer"
         }
       },
       "type": "object"
@@ -5162,6 +5530,17 @@
       },
       "type": "object"
     },
+    "RemoveDataSourceRequest": {
+      "description": "Message for deleting a DataSource.",
+      "id": "RemoveDataSourceRequest",
+      "properties": {
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "ResourceBackupConfig": {
       "description": "ResourceBackupConfig represents a resource along with its backup configurations.",
       "id": "ResourceBackupConfig",
@@ -5442,6 +5821,37 @@
         "updateMask": {
           "description": "OPTIONAL: A FieldMask specifying which fields of the policy to modify. Only the fields in the mask will be modified. If no mask is provided, the following default mask is used: `paths: \"bindings, etag\"`",
           "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetInternalStatusRequest": {
+      "description": "Request message for SetStatusInternal method.",
+      "id": "SetInternalStatusRequest",
+      "properties": {
+        "backupConfigState": {
+          "description": "Required. Output only. The new BackupConfigState to set for the DataSource.",
+          "enum": [
+            "BACKUP_CONFIG_STATE_UNSPECIFIED",
+            "ACTIVE",
+            "PASSIVE"
+          ],
+          "enumDescriptions": [
+            "The possible states of backup configuration. Status not set.",
+            "The data source is actively protected (i.e. there is a BackupPlanAssociation or Appliance SLA pointing to it)",
+            "The data source is no longer protected (but may have backups under it)"
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        },
+        "value": {
+          "description": "Required. The value required for this method to work. This field must be the 32-byte SHA256 hash of the DataSourceID. The DataSourceID used here is only the final piece of the fully qualified resource path for this DataSource (i.e. the part after '.../dataSources/'). This field exists to make this method difficult to call since it is intended for use only by Backup Appliances.",
+          "format": "byte",
           "type": "string"
         }
       },
