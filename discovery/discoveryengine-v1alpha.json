@@ -8480,6 +8480,87 @@
             },
             "notebooks": {
               "methods": {
+                "batchDelete": {
+                  "description": "Batch deletes Notebooks. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:batchDelete",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.notebooks.batchDelete",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent branch resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/notebooks:batchDelete",
+                  "request": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates a notebook. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.notebooks.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource name, such as `projects/{project}/locations/{location}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+parent}/notebooks",
+                  "request": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a notebook. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}",
+                  "httpMethod": "GET",
+                  "id": "discoveryengine.projects.locations.notebooks.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaNotebook"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "listRecentlyViewed": {
                   "description": "Lists the recently viewed notebooks. Needs a side channel with the user's EUC.",
                   "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks:listRecentlyViewed",
@@ -8515,9 +8596,94 @@
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
+                },
+                "share": {
+                  "description": "Shares a notebook to other accounts. Needs a side channel with the user's EUC.",
+                  "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}:share",
+                  "httpMethod": "POST",
+                  "id": "discoveryengine.projects.locations.notebooks.share",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Full resource name of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha/{+name}:share",
+                  "request": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaShareNotebookRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudNotebooklmV1alphaShareNotebookResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
                 }
               },
               "resources": {
+                "audioOverviews": {
+                  "methods": {
+                    "create": {
+                      "description": "Generates a new audio overview. Needs a side channel with the user's EUC.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/audioOverviews",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.notebooks.audioOverviews.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where this notebook will be created. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/audioOverviews",
+                      "request": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes an audio overview. Needs a side channel with the user's EUC.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/audioOverviews/{audioOverviewsId}",
+                      "httpMethod": "DELETE",
+                      "id": "discoveryengine.projects.locations.notebooks.audioOverviews.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The full resource name of the AudioOverview, such as `projects/{project}/locations/{location}/notebooks/{notebook}/audioOverviews/{audio_overview_id}`.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+/audioOverviews/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
                 "sources": {
                   "methods": {
                     "batchCreate": {
@@ -8543,6 +8709,59 @@
                       },
                       "response": {
                         "$ref": "GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "batchDelete": {
+                      "description": "Deletes multiple sources",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources:batchDelete",
+                      "httpMethod": "POST",
+                      "id": "discoveryengine.projects.locations.notebooks.sources.batchDelete",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource where the sources will be deleted. Format: projects/{project}/locations/{location}/notebooks/{notebook}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+parent}/sources:batchDelete",
+                      "request": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleProtobufEmpty"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets a Source.",
+                      "flatPath": "v1alpha/projects/{projectsId}/locations/{locationsId}/notebooks/{notebooksId}/sources/{sourcesId}",
+                      "httpMethod": "GET",
+                      "id": "discoveryengine.projects.locations.notebooks.sources.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The resource name for source Format: projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source}",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/notebooks/[^/]+/sources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha/{+name}",
+                      "response": {
+                        "$ref": "GoogleCloudNotebooklmV1alphaSource"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -9457,7 +9676,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250824",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "ApiservingMediaRequestInfo": {
@@ -10460,6 +10679,21 @@
       "properties": {
         "functionName": {
           "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1AclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -11699,6 +11933,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1Engine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -12028,6 +12274,42 @@
         "totalCount": {
           "description": "The total number of IdentityMappingEntries that were processed.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
         }
       },
@@ -18603,6 +18885,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -26270,6 +26564,21 @@
       },
       "type": "object"
     },
+    "GoogleCloudDiscoveryengineV1betaAclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1betaAclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig": {
       "description": "Configuration data for advance site search.",
       "id": "GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig",
@@ -27341,6 +27650,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1betaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -27760,6 +28081,42 @@
         "totalCount": {
           "description": "The total number of IdentityMappingEntries that were processed.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
         }
       },
@@ -29721,6 +30078,35 @@
       },
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaAccountAndRole": {
+      "description": "Account and role information.",
+      "id": "GoogleCloudNotebooklmV1alphaAccountAndRole",
+      "properties": {
+        "email": {
+          "description": "Required. The email address associated with the account.",
+          "type": "string"
+        },
+        "role": {
+          "description": "Required. The role in the notebook.",
+          "enum": [
+            "PROJECT_ROLE_UNKNOWN",
+            "PROJECT_ROLE_OWNER",
+            "PROJECT_ROLE_WRITER",
+            "PROJECT_ROLE_READER",
+            "PROJECT_ROLE_NOT_SHARED"
+          ],
+          "enumDescriptions": [
+            "Unknown role - do not use.",
+            "The user owns the project.",
+            "The user has writer permissions on the project.",
+            "The user has reader permissions on the project.",
+            "The user has no access to the project."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaAgentspaceMetadata": {
       "description": "Metadata about an agentspace source.",
       "id": "GoogleCloudNotebooklmV1alphaAgentspaceMetadata",
@@ -29734,6 +30120,89 @@
           "description": "Output only. The title of the document.",
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaAudioOverview": {
+      "description": "An audio overview of a notebook. This is a summary of the notebook in audio format.",
+      "id": "GoogleCloudNotebooklmV1alphaAudioOverview",
+      "properties": {
+        "audio": {
+          "description": "The audio overview in wav format. This is only present if the status is AUDIO_OVERVIEW_STATUS_COMPLETE.",
+          "format": "byte",
+          "type": "string"
+        },
+        "audioOverviewId": {
+          "description": "Output only. Unique ID of the audio overview.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The language code of the generated audio overview. Use the BCP 47 language code (e.g. \"en\", \"es\", \"hi\", etc.). Examples: google3/i18n/identifiers/tools/language_code_constants.txt",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the audio overview.",
+          "enum": [
+            "MIME_TYPE_UNKNOWN",
+            "MIME_TYPE_WAV",
+            "MIME_TYPE_MP4"
+          ],
+          "enumDescriptions": [
+            "The mime type has not been set.",
+            "The mime type is audio/wav.",
+            "The mime type is audio/mp4."
+          ],
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The full resource name of the notebook. Format: `projects/{project}/locations/{location}/notebooks/{notebook}/audioOverviews/{audio_overview_id}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        },
+        "playbackUrl": {
+          "description": "The url used to play the audio overview.",
+          "type": "string"
+        },
+        "status": {
+          "description": "The status of the audio overview.",
+          "enum": [
+            "AUDIO_OVERVIEW_STATUS_UNSPECIFIED",
+            "AUDIO_OVERVIEW_STATUS_NOT_STARTED",
+            "AUDIO_OVERVIEW_STATUS_IN_PROGRESS",
+            "AUDIO_OVERVIEW_STATUS_COMPLETE",
+            "AUDIO_OVERVIEW_STATUS_FAILED"
+          ],
+          "enumDescriptions": [
+            "The status has not been set.",
+            "The audio overview has not started being generated.",
+            "The audio overview is in the process of being generated.",
+            "The audio overview has been generated and is available.",
+            "The audio overview failed to be generated."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions": {
+      "description": "Options used during audio overview generation.",
+      "id": "GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions",
+      "properties": {
+        "episodeFocus": {
+          "description": "What the hosts of the show should focus on.",
+          "type": "string"
+        },
+        "languageCode": {
+          "description": "The language that the audio overview was requested in.",
+          "type": "string"
+        },
+        "sourceIds": {
+          "description": "Optional. The sources in which the audio overview is grounded.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaSourceId"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -29766,6 +30235,34 @@
       },
       "type": "object"
     },
+    "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest": {
+      "description": "Request for NotebookService.BatchDeleteNotebooks method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest",
+      "properties": {
+        "names": {
+          "description": "Required. Full resource names of Notebook, such as `projects/{project}/locations/{location}/notebooks/{notebook_id}`.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest": {
+      "description": "Request for SourceService.BatchDeleteSourcesRequest method.",
+      "id": "GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest",
+      "properties": {
+        "names": {
+          "description": "Required. Names of sources to be deleted. Format: projects/{project}/locations/{location}/notebooks/{notebook}/sources/{source}",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudNotebooklmV1alphaCmekConfig": {
       "description": "Customer-managed encryption configuration for Notebooks.",
       "id": "GoogleCloudNotebooklmV1alphaCmekConfig",
@@ -29773,6 +30270,28 @@
         "kmsKey": {
           "description": "Required. KMS key resource name which will be used to encrypt resources `projects/{project}/locations/{location}/keyRings/{keyRing}/cryptoKeys/{keyId}`.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest": {
+      "description": "Request for AudioOverviewService.CreateAudioOverview method.",
+      "id": "GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest",
+      "properties": {
+        "generationOptions": {
+          "$ref": "GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions",
+          "description": "Options for the audio overview generation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse": {
+      "description": "Response for AudioOverviewService.CreateAudioOverview method.",
+      "id": "GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse",
+      "properties": {
+        "audioOverview": {
+          "$ref": "GoogleCloudNotebooklmV1alphaAudioOverview",
+          "description": "The generated audio overview."
         }
       },
       "type": "object"
@@ -29851,6 +30370,30 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaShareNotebookRequest": {
+      "description": "Request for NotebookService.ShareNotebook method.",
+      "id": "GoogleCloudNotebooklmV1alphaShareNotebookRequest",
+      "properties": {
+        "accountAndRoles": {
+          "description": "Required. The list of accounts and roles to share the notebook with.",
+          "items": {
+            "$ref": "GoogleCloudNotebooklmV1alphaAccountAndRole"
+          },
+          "type": "array"
+        },
+        "notifyViaEmail": {
+          "description": "Required. Whether to notify the shared users via email.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaShareNotebookResponse": {
+      "description": "Response for NotebookService.ShareNotebook method.",
+      "id": "GoogleCloudNotebooklmV1alphaShareNotebookResponse",
+      "properties": {},
       "type": "object"
     },
     "GoogleCloudNotebooklmV1alphaSource": {
@@ -29954,6 +30497,22 @@
         "agentspaceContent": {
           "$ref": "GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent",
           "description": "Agentspace content uploaded as source."
+        },
+        "googleDriveContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent",
+          "description": "The content from Google Drive."
+        },
+        "textContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentTextContent",
+          "description": "The text content uploaded as source."
+        },
+        "videoContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentVideoContent",
+          "description": "The video content uploaded as source."
+        },
+        "webContent": {
+          "$ref": "GoogleCloudNotebooklmV1alphaUserContentWebContent",
+          "description": "The web content uploaded as source."
         }
       },
       "type": "object"
@@ -29972,6 +30531,66 @@
         },
         "ideaforgeIdeaName": {
           "description": "Optional. The full idea name for IdeaForge.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent": {
+      "description": "The content from Google Drive.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent",
+      "properties": {
+        "documentId": {
+          "description": "The document id of the selected document.",
+          "type": "string"
+        },
+        "mimeType": {
+          "description": "The mime type of the selected document. This can be used to differentiate type of content selected in the drive picker.",
+          "type": "string"
+        },
+        "sourceName": {
+          "description": "Should track this from Drive Picker.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentTextContent": {
+      "description": "The text content uploaded as source.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentTextContent",
+      "properties": {
+        "content": {
+          "description": "The content of the text source.",
+          "type": "string"
+        },
+        "sourceName": {
+          "description": "The name of the text source.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentVideoContent": {
+      "description": "Video content uploaded as source.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentVideoContent",
+      "properties": {
+        "youtubeUrl": {
+          "description": "The youtube url of the video content.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudNotebooklmV1alphaUserContentWebContent": {
+      "description": "The web content uploaded as source.",
+      "id": "GoogleCloudNotebooklmV1alphaUserContentWebContent",
+      "properties": {
+        "sourceName": {
+          "description": "The name of the web source.",
+          "type": "string"
+        },
+        "url": {
+          "description": "If URL is supplied, will fetch the webpage in the backend.",
           "type": "string"
         }
       },
