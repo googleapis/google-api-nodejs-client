@@ -167,7 +167,7 @@ export namespace androidmanagement_v1 {
      */
     contentProtectionPolicy?: string | null;
     /**
-     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).
+     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated). On personally-owned devices with a work profile, setting this policy will not disable safe boot. In this case, a NonComplianceDetail with ADMIN_TYPE is reported.
      */
     developerSettings?: string | null;
     /**

@@ -1260,7 +1260,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250827",
   "rootUrl": "https://androidmanagement.googleapis.com/",
   "schemas": {
     "AdbShellCommandEvent": {
@@ -1340,7 +1340,7 @@
           "type": "string"
         },
         "developerSettings": {
-          "description": "Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).",
+          "description": "Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated). On personally-owned devices with a work profile, setting this policy will not disable safe boot. In this case, a NonComplianceDetail with ADMIN_TYPE is reported.",
           "enum": [
             "DEVELOPER_SETTINGS_UNSPECIFIED",
             "DEVELOPER_SETTINGS_DISABLED",
