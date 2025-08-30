@@ -206,7 +206,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250827",
   "rootUrl": "https://firebaseml.googleapis.com/",
   "schemas": {
     "Date": {
@@ -875,7 +875,7 @@
             "Default model behavior, model decides to predict either function calls or natural language response.",
             "Model is constrained to always predicting function calls only. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\".",
             "Model will not predict any function calls. Model behavior is same as when not passing any function declarations.",
-            "Model is constrained to predict either function calls or natural language response."
+            "Model is constrained to predict either function calls or natural language response. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\"."
           ],
           "type": "string"
         }
