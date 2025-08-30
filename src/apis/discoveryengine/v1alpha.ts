@@ -866,6 +866,19 @@ export namespace discoveryengine_v1alpha {
     functionName?: string | null;
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig {
@@ -4531,6 +4544,10 @@ export namespace discoveryengine_v1alpha {
    * Metadata that describes the training and serving parameters of an Engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
+    /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
     /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
@@ -10121,6 +10138,19 @@ export namespace discoveryengine_v1alpha {
     userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaAdvancedSiteSearchConfig {
@@ -10878,6 +10908,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEngine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig;
@@ -11160,6 +11194,28 @@ export namespace discoveryengine_v1alpha {
      * The total number of IdentityMappingEntries that were processed.
      */
     totalCount?: string | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -13171,6 +13227,10 @@ export namespace discoveryengine_v1alpha {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Engine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig;
@@ -13394,6 +13454,28 @@ export namespace discoveryengine_v1alpha {
      * The total number of IdentityMappingEntries that were processed.
      */
     totalCount?: string | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -14241,6 +14323,19 @@ export namespace discoveryengine_v1alpha {
     type?: string | null;
   }
   /**
+   * Account and role information.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAccountAndRole {
+    /**
+     * Required. The email address associated with the account.
+     */
+    email?: string | null;
+    /**
+     * Required. The role in the notebook.
+     */
+    role?: string | null;
+  }
+  /**
    * Metadata about an agentspace source.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaAgentspaceMetadata {
@@ -14252,6 +14347,56 @@ export namespace discoveryengine_v1alpha {
      * Output only. The title of the document.
      */
     documentTitle?: string | null;
+  }
+  /**
+   * An audio overview of a notebook. This is a summary of the notebook in audio format.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAudioOverview {
+    /**
+     * The audio overview in wav format. This is only present if the status is AUDIO_OVERVIEW_STATUS_COMPLETE.
+     */
+    audio?: string | null;
+    /**
+     * Output only. Unique ID of the audio overview.
+     */
+    audioOverviewId?: string | null;
+    /**
+     * The language code of the generated audio overview. Use the BCP 47 language code (e.g. "en", "es", "hi", etc.). Examples: google3/i18n/identifiers/tools/language_code_constants.txt
+     */
+    languageCode?: string | null;
+    /**
+     * The mime type of the audio overview.
+     */
+    mimeType?: string | null;
+    /**
+     * Identifier. The full resource name of the notebook. Format: `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+    /**
+     * The url used to play the audio overview.
+     */
+    playbackUrl?: string | null;
+    /**
+     * The status of the audio overview.
+     */
+    status?: string | null;
+  }
+  /**
+   * Options used during audio overview generation.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions {
+    /**
+     * What the hosts of the show should focus on.
+     */
+    episodeFocus?: string | null;
+    /**
+     * The language that the audio overview was requested in.
+     */
+    languageCode?: string | null;
+    /**
+     * Optional. The sources in which the audio overview is grounded.
+     */
+    sourceIds?: Schema$GoogleCloudNotebooklmV1alphaSourceId[];
   }
   /**
    * Request for SourceService.BatchCreateSources method.
@@ -14272,6 +14417,24 @@ export namespace discoveryengine_v1alpha {
     sources?: Schema$GoogleCloudNotebooklmV1alphaSource[];
   }
   /**
+   * Request for NotebookService.BatchDeleteNotebooks method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest {
+    /**
+     * Required. Full resource names of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    names?: string[] | null;
+  }
+  /**
+   * Request for SourceService.BatchDeleteSourcesRequest method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest {
+    /**
+     * Required. Names of sources to be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     */
+    names?: string[] | null;
+  }
+  /**
    * Customer-managed encryption configuration for Notebooks.
    */
   export interface Schema$GoogleCloudNotebooklmV1alphaCmekConfig {
@@ -14279,6 +14442,24 @@ export namespace discoveryengine_v1alpha {
      * Required. KMS key resource name which will be used to encrypt resources `projects/{project\}/locations/{location\}/keyRings/{keyRing\}/cryptoKeys/{keyId\}`.
      */
     kmsKey?: string | null;
+  }
+  /**
+   * Request for AudioOverviewService.CreateAudioOverview method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest {
+    /**
+     * Options for the audio overview generation.
+     */
+    generationOptions?: Schema$GoogleCloudNotebooklmV1alphaAudioOverviewGenerationOptions;
+  }
+  /**
+   * Response for AudioOverviewService.CreateAudioOverview method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse {
+    /**
+     * The generated audio overview.
+     */
+    audioOverview?: Schema$GoogleCloudNotebooklmV1alphaAudioOverview;
   }
   /**
    * Response for NotebookService.ListRecentlyViewedNotebooks method.
@@ -14343,6 +14524,23 @@ export namespace discoveryengine_v1alpha {
      */
     lastViewed?: string | null;
   }
+  /**
+   * Request for NotebookService.ShareNotebook method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaShareNotebookRequest {
+    /**
+     * Required. The list of accounts and roles to share the notebook with.
+     */
+    accountAndRoles?: Schema$GoogleCloudNotebooklmV1alphaAccountAndRole[];
+    /**
+     * Required. Whether to notify the shared users via email.
+     */
+    notifyViaEmail?: boolean | null;
+  }
+  /**
+   * Response for NotebookService.ShareNotebook method.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse {}
   /**
    * Source represents a single source of content.
    */
@@ -14432,6 +14630,22 @@ export namespace discoveryengine_v1alpha {
      * Agentspace content uploaded as source.
      */
     agentspaceContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentAgentspaceContent;
+    /**
+     * The content from Google Drive.
+     */
+    googleDriveContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent;
+    /**
+     * The text content uploaded as source.
+     */
+    textContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentTextContent;
+    /**
+     * The video content uploaded as source.
+     */
+    videoContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentVideoContent;
+    /**
+     * The web content uploaded as source.
+     */
+    webContent?: Schema$GoogleCloudNotebooklmV1alphaUserContentWebContent;
   }
   /**
    * Agentspace content uploaded as source.
@@ -14449,6 +14663,58 @@ export namespace discoveryengine_v1alpha {
      * Optional. The full idea name for IdeaForge.
      */
     ideaforgeIdeaName?: string | null;
+  }
+  /**
+   * The content from Google Drive.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentGoogleDriveContent {
+    /**
+     * The document id of the selected document.
+     */
+    documentId?: string | null;
+    /**
+     * The mime type of the selected document. This can be used to differentiate type of content selected in the drive picker.
+     */
+    mimeType?: string | null;
+    /**
+     * Should track this from Drive Picker.
+     */
+    sourceName?: string | null;
+  }
+  /**
+   * The text content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentTextContent {
+    /**
+     * The content of the text source.
+     */
+    content?: string | null;
+    /**
+     * The name of the text source.
+     */
+    sourceName?: string | null;
+  }
+  /**
+   * Video content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentVideoContent {
+    /**
+     * The youtube url of the video content.
+     */
+    youtubeUrl?: string | null;
+  }
+  /**
+   * The web content uploaded as source.
+   */
+  export interface Schema$GoogleCloudNotebooklmV1alphaUserContentWebContent {
+    /**
+     * The name of the web source.
+     */
+    sourceName?: string | null;
+    /**
+     * If URL is supplied, will fetch the webpage in the backend.
+     */
+    url?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -36107,6 +36373,7 @@ export namespace discoveryengine_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
@@ -36422,6 +36689,7 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -36745,6 +37013,7 @@ export namespace discoveryengine_v1alpha {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
@@ -36768,6 +37037,7 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -36936,6 +37206,7 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -37107,6 +37378,7 @@ export namespace discoveryengine_v1alpha {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -60896,12 +61168,477 @@ export namespace discoveryengine_v1alpha {
 
   export class Resource$Projects$Locations$Notebooks {
     context: APIRequestContext;
+    audioOverviews: Resource$Projects$Locations$Notebooks$Audiooverviews;
     sources: Resource$Projects$Locations$Notebooks$Sources;
     constructor(context: APIRequestContext) {
       this.context = context;
+      this.audioOverviews =
+        new Resource$Projects$Locations$Notebooks$Audiooverviews(this.context);
       this.sources = new Resource$Projects$Locations$Notebooks$Sources(
         this.context
       );
+    }
+
+    /**
+     * Batch deletes Notebooks. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.batchDelete({
+     *     // Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "names": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/notebooks:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Creates a notebook. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.create({
+     *     // Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     *     parent: 'projects/my-project/locations/my-location',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cmekConfig": {},
+     *       //   "emoji": "my_emoji",
+     *       //   "metadata": {},
+     *       //   "name": "my_name",
+     *       //   "notebookId": "my_notebookId",
+     *       //   "title": "my_title"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "emoji": "my_emoji",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "notebookId": "my_notebookId",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Notebooks$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Create
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/notebooks').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Gets a notebook. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.get({
+     *     // Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "cmekConfig": {},
+     *   //   "emoji": "my_emoji",
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "notebookId": "my_notebookId",
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebooks$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Get
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaNotebook>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaNotebook>(
+          parameters
+        );
+      }
     }
 
     /**
@@ -61057,8 +61794,194 @@ export namespace discoveryengine_v1alpha {
         );
       }
     }
+
+    /**
+     * Shares a notebook to other accounts. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.share({
+     *     // Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "accountAndRoles": [],
+     *       //   "notifyViaEmail": false
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    share(
+      params?: Params$Resource$Projects$Locations$Notebooks$Share,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    >;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      params: Params$Resource$Projects$Locations$Notebooks$Share,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+    ): void;
+    share(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Share
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Share;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Share;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}:share').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaShareNotebookResponse>(
+          parameters
+        );
+      }
+    }
   }
 
+  export interface Params$Resource$Projects$Locations$Notebooks$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchDeleteNotebooksRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource name, such as `projects/{project\}/locations/{location\}`.
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaNotebook;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Get
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Notebooks$Listrecentlyviewed
     extends StandardParameters {
     /**
@@ -61073,6 +61996,338 @@ export namespace discoveryengine_v1alpha {
      * Required. The parent branch resource name, such as `projects/{project\}/locations/{location\}`.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Share
+    extends StandardParameters {
+    /**
+     * Required. Full resource name of Notebook, such as `projects/{project\}/locations/{location\}/notebooks/{notebook_id\}`.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaShareNotebookRequest;
+  }
+
+  export class Resource$Projects$Locations$Notebooks$Audiooverviews {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Generates a new audio overview. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.audioOverviews.create({
+     *       // Required. The parent resource where this notebook will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "generationOptions": {}
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "audioOverview": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    >;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/audioOverviews').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes an audio overview. Needs a side channel with the user's EUC.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.audioOverviews.delete({
+     *       // Required. The full resource name of the AudioOverview, such as `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`.
+     *       name: 'projects/my-project/locations/my-location/notebooks/my-notebook/audioOverviews/my-audioOverview',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where this notebook will be created. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaCreateAudioOverviewRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Audiooverviews$Delete
+    extends StandardParameters {
+    /**
+     * Required. The full resource name of the AudioOverview, such as `projects/{project\}/locations/{location\}/notebooks/{notebook\}/audioOverviews/{audio_overview_id\}`.
+     */
+    name?: string;
   }
 
   export class Resource$Projects$Locations$Notebooks$Sources {
@@ -61234,6 +62489,302 @@ export namespace discoveryengine_v1alpha {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Deletes multiple sources
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await discoveryengine.projects.locations.notebooks.sources.batchDelete({
+     *       // Required. The parent resource where the sources will be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     *       parent: 'projects/my-project/locations/my-location/notebooks/my-notebook',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "names": []
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$GoogleProtobufEmpty>,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete,
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      callback: BodyResponseCallback<Schema$GoogleProtobufEmpty>
+    ): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleProtobufEmpty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleProtobufEmpty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+parent}/sources:batchDelete').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleProtobufEmpty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleProtobufEmpty>(parameters);
+      }
+    }
+
+    /**
+     * Gets a Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1alpha');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.notebooks.sources.get({
+     *     // Required. The resource name for source Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     *     name: 'projects/my-project/locations/my-location/notebooks/my-notebook/sources/my-source',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "sourceId": {},
+     *   //   "title": "my_title"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaSource>
+    >;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Notebooks$Sources$Get,
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      callback: BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+    ): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Notebooks$Sources$Get
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudNotebooklmV1alphaSource>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudNotebooklmV1alphaSource>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Notebooks$Sources$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Notebooks$Sources$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaSource>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudNotebooklmV1alphaSource>(
           parameters
         );
       }
@@ -61413,6 +62964,25 @@ export namespace discoveryengine_v1alpha {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchCreateSourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The parent resource where the sources will be deleted. Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudNotebooklmV1alphaBatchDeleteSourcesRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Notebooks$Sources$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name for source Format: projects/{project\}/locations/{location\}/notebooks/{notebook\}/sources/{source\}
+     */
+    name?: string;
   }
   export interface Params$Resource$Projects$Locations$Notebooks$Sources$Uploadfile
     extends StandardParameters {

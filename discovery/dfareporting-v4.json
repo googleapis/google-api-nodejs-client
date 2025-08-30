@@ -10266,7 +10266,7 @@
       }
     }
   },
-  "revision": "20250722",
+  "revision": "20250828",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11053,6 +11053,18 @@
           "description": "Default email address used in sender field for tag emails.",
           "type": "string"
         },
+        "euPoliticalAdsDeclaration": {
+          "description": "Optional. Whether the advertiser plans to serve EU political ads.",
+          "enum": [
+            "ADVERTISER_PLANS_TO_SERVE_EU_POLITICAL_ADS",
+            "ADVERTISER_DOES_NOT_PLAN_TO_SERVE_EU_POLITICAL_ADS"
+          ],
+          "enumDescriptions": [
+            "You'll need to confirm if your campaign contains EU political advertising.",
+            "All new campaigns will have “No” selected for the question that asks if your campaign has EU political ads. You can change this for any campaign at any time."
+          ],
+          "type": "string"
+        },
         "floodlightConfigurationId": {
           "description": "Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: - This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser's original floodlight configuration is not already shared with another advertiser. ",
           "format": "int64",
@@ -11721,6 +11733,18 @@
         },
         "endDate": {
           "format": "date",
+          "type": "string"
+        },
+        "euPoliticalAdsDeclaration": {
+          "description": "Optional. Whether the campaign has EU political ads. Campaign Manager 360 doesn't allow campaigns with EU political ads to serve in the EU. They can still serve in other regions.",
+          "enum": [
+            "CONTAINS_EU_POLITICAL_ADS",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADS"
+          ],
+          "enumDescriptions": [
+            "The campaign contains EU political ads.",
+            "The campaign does not contain EU political ads."
+          ],
           "type": "string"
         },
         "eventTagOverrides": {
@@ -18113,9 +18137,13 @@
             "VPAID_ONLY_BLOCKING",
             "VPAID_ONLY_FILTERING",
             "VPAID_FILTERING",
-            "NON_VPAID_FILTERING"
+            "NON_VPAID_FILTERING",
+            "BLOCKING_FILTERING_VPAID",
+            "BLOCKING_FILTERING_VPAID_ONLY"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
