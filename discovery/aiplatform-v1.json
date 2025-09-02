@@ -1266,6 +1266,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "generateInstanceRubrics": {
+              "description": "Generates rubrics for a given prompt. A rubric represents a single testable criterion for evaluation. One input prompt could have multiple rubrics This RPC allows users to get suggested rubrics based on provided prompt, which can then be reviewed and used for subsequent evaluations.",
+              "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:generateInstanceRubrics",
+              "httpMethod": "POST",
+              "id": "aiplatform.projects.locations.generateInstanceRubrics",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The resource name of the Location to generate rubrics from. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1/{+location}:generateInstanceRubrics",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1GenerateInstanceRubricsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1GenerateInstanceRubricsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "get": {
               "description": "Gets information about a location.",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}",
@@ -1326,7 +1354,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -20291,7 +20319,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250825",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -25366,6 +25394,17 @@
           "$ref": "GoogleCloudAiplatformV1GroundednessInput",
           "description": "Input for groundedness metric."
         },
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstance",
+          "description": "The instance to be evaluated."
+        },
+        "metrics": {
+          "description": "The metrics used for evaluation. Currently, we only support evaluating a single metric. If multiple metrics are provided, only the first one will be evaluated.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Metric"
+          },
+          "type": "array"
+        },
         "metricxInput": {
           "$ref": "GoogleCloudAiplatformV1MetricxInput",
           "description": "Input for Metricx metric."
@@ -25500,6 +25539,13 @@
         "groundednessResult": {
           "$ref": "GoogleCloudAiplatformV1GroundednessResult",
           "description": "Result for groundedness metric."
+        },
+        "metricResults": {
+          "description": "Metric results for each instance. The order of the metric results is guaranteed to be the same as the order of the instances in the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1MetricResult"
+          },
+          "type": "array"
         },
         "metricxResult": {
           "$ref": "GoogleCloudAiplatformV1MetricxResult",
@@ -25694,6 +25740,79 @@
         "gcsSource": {
           "$ref": "GoogleCloudAiplatformV1GcsSource",
           "description": "Cloud storage source holds the dataset. Currently only one Cloud Storage file path is supported."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluationInstance": {
+      "description": "A single instance to be evaluated. Instances are used to specify the input data for evaluation, from simple string comparisons to complex, multi-turn model evaluations",
+      "id": "GoogleCloudAiplatformV1EvaluationInstance",
+      "properties": {
+        "otherData": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstanceMapInstance",
+          "description": "Optional. Other data used to populate placeholders based on their key."
+        },
+        "prompt": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData",
+          "description": "Optional. Data used to populate placeholder `prompt` in a metric prompt template."
+        },
+        "reference": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData",
+          "description": "Optional. Data used to populate placeholder `reference` in a metric prompt template."
+        },
+        "response": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData",
+          "description": "Required. Data used to populate placeholder `response` in a metric prompt template."
+        },
+        "rubricGroups": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1RubricGroup"
+          },
+          "description": "Optional. Named groups of rubrics associated with the prompt. This is used for rubric-based evaluations where rubrics can be referenced by a key. The key could represent versions, associated metrics, etc.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluationInstanceInstanceData": {
+      "description": "Instance data used to populate placeholders in a metric prompt template.",
+      "id": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData",
+      "properties": {
+        "contents": {
+          "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceDataContents",
+          "description": "List of Gemini content data."
+        },
+        "text": {
+          "description": "Text data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluationInstanceInstanceDataContents": {
+      "description": "List of standard Content messages from Gemini API.",
+      "id": "GoogleCloudAiplatformV1EvaluationInstanceInstanceDataContents",
+      "properties": {
+        "contents": {
+          "description": "Optional. Repeated contents.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1EvaluationInstanceMapInstance": {
+      "description": "Instance data specified as a map.",
+      "id": "GoogleCloudAiplatformV1EvaluationInstanceMapInstance",
+      "properties": {
+        "mapInstance": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1EvaluationInstanceInstanceData"
+          },
+          "description": "Optional. Map of instance data.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -28848,6 +28967,43 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1GenerateInstanceRubricsRequest": {
+      "description": "Request message for EvaluationService.GenerateInstanceRubrics.",
+      "id": "GoogleCloudAiplatformV1GenerateInstanceRubricsRequest",
+      "properties": {
+        "contents": {
+          "description": "Required. The prompt to generate rubrics from. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Content"
+          },
+          "type": "array"
+        },
+        "predefinedRubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1PredefinedMetricSpec",
+          "description": "Optional. Specification for using the rubric generation configs of a pre-defined metric, e.g. \"generic_quality_v1\" and \"instruction_following_v1\". Some of the configs may be only used in rubric generation and not supporting evaluation, e.g. \"fully_customized_generic_quality_v1\". If this field is set, the `rubric_generation_spec` field will be ignored."
+        },
+        "rubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1RubricGenerationSpec",
+          "description": "Optional. Specification for how the rubrics should be generated."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1GenerateInstanceRubricsResponse": {
+      "description": "Response message for EvaluationService.GenerateInstanceRubrics.",
+      "id": "GoogleCloudAiplatformV1GenerateInstanceRubricsResponse",
+      "properties": {
+        "generatedRubrics": {
+          "description": "Output only. A list of generated rubrics.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Rubric"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1GenerateVideoResponse": {
       "description": "Generate video response.",
       "id": "GoogleCloudAiplatformV1GenerateVideoResponse",
@@ -31812,9 +31968,36 @@
           "$ref": "GoogleCloudAiplatformV1PointwiseMetricSpec",
           "description": "Spec for pointwise metric."
         },
+        "predefinedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1PredefinedMetricSpec",
+          "description": "The spec for a pre-defined metric."
+        },
         "rougeSpec": {
           "$ref": "GoogleCloudAiplatformV1RougeSpec",
           "description": "Spec for rouge metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1MetricResult": {
+      "description": "Result for a single metric on a single instance.",
+      "id": "GoogleCloudAiplatformV1MetricResult",
+      "properties": {
+        "explanation": {
+          "description": "The explanation for the metric result.",
+          "type": "string"
+        },
+        "rubricVerdicts": {
+          "description": "For rubric-based metrics, the verdicts for each rubric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1RubricVerdict"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "The score for the metric. Please refer to each metric's documentation for the meaning of the score.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -35865,6 +36048,25 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1PredefinedMetricSpec": {
+      "description": "The spec for a pre-defined metric.",
+      "id": "GoogleCloudAiplatformV1PredefinedMetricSpec",
+      "properties": {
+        "metricSpecName": {
+          "description": "Required. The name of a pre-defined metric, such as \"instruction_following_v1\" or \"text_quality_v1\".",
+          "type": "string"
+        },
+        "metricSpecParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The parameters needed to run the pre-defined metric.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1PredefinedSplit": {
       "description": "Assigns input data to training, validation, and test sets based on the value of a provided key. Supported only for tabular Datasets.",
       "id": "GoogleCloudAiplatformV1PredefinedSplit",
@@ -38595,6 +38797,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1Rubric": {
+      "description": "Message representing a single testable criterion for evaluation. One input prompt could have multiple rubrics.",
+      "id": "GoogleCloudAiplatformV1Rubric",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1RubricContent",
+          "description": "Required. The actual testable criteria for the rubric."
+        },
+        "importance": {
+          "description": "Optional. The relative importance of this rubric.",
+          "enum": [
+            "IMPORTANCE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Importance is not specified.",
+            "High importance.",
+            "Medium importance.",
+            "Low importance."
+          ],
+          "type": "string"
+        },
+        "rubricId": {
+          "description": "Unique identifier for the rubric. This ID is used to refer to this rubric, e.g., in RubricVerdict.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. A type designator for the rubric, which can inform how it's evaluated or interpreted by systems or users. It's recommended to use consistent, well-defined, upper snake_case strings. Examples: \"SUMMARIZATION_QUALITY\", \"SAFETY_HARMFUL_CONTENT\", \"INSTRUCTION_ADHERENCE\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1RubricBasedInstructionFollowingInput": {
       "description": "Instance and metric spec for RubricBasedInstructionFollowing metric.",
       "id": "GoogleCloudAiplatformV1RubricBasedInstructionFollowingInput",
@@ -38648,6 +38885,28 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAiplatformV1RubricContent": {
+      "description": "Content of the rubric, defining the testable criteria.",
+      "id": "GoogleCloudAiplatformV1RubricContent",
+      "properties": {
+        "property": {
+          "$ref": "GoogleCloudAiplatformV1RubricContentProperty",
+          "description": "Evaluation criteria based on a specific property."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RubricContentProperty": {
+      "description": "Defines criteria based on a specific property.",
+      "id": "GoogleCloudAiplatformV1RubricContentProperty",
+      "properties": {
+        "description": {
+          "description": "Description of the property being evaluated. Example: \"The model's response is grammatically correct.\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1RubricCritiqueResult": {
       "description": "Rubric critique result.",
       "id": "GoogleCloudAiplatformV1RubricCritiqueResult",
@@ -38660,6 +38919,85 @@
         "verdict": {
           "description": "Output only. Verdict for the rubric - true if the rubric is met, false otherwise.",
           "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RubricGenerationSpec": {
+      "description": "Specification for how rubrics should be generated.",
+      "id": "GoogleCloudAiplatformV1RubricGenerationSpec",
+      "properties": {
+        "modelConfig": {
+          "$ref": "GoogleCloudAiplatformV1AutoraterConfig",
+          "description": "Configuration for the model used in rubric generation. Configs including sampling count and base model can be specified here. Flipping is not supported for rubric generation."
+        },
+        "promptTemplate": {
+          "description": "Template for the prompt used to generate rubrics. The details should be updated based on the most-recent recipe requirements.",
+          "type": "string"
+        },
+        "rubricContentType": {
+          "description": "The type of rubric content to be generated.",
+          "enum": [
+            "RUBRIC_CONTENT_TYPE_UNSPECIFIED",
+            "PROPERTY",
+            "NL_QUESTION_ANSWER",
+            "PYTHON_CODE_ASSERTION"
+          ],
+          "enumDescriptions": [
+            "The content type to generate is not specified.",
+            "Generate rubrics based on properties.",
+            "Generate rubrics in an NL question answer format.",
+            "Generate rubrics in a unit test format."
+          ],
+          "type": "string"
+        },
+        "rubricTypeOntology": {
+          "description": "Optional. An optional, pre-defined list of allowed types for generated rubrics. If this field is provided, it implies `include_rubric_type` should be true, and the generated rubric types should be chosen from this ontology.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RubricGroup": {
+      "description": "A group of rubrics, used for grouping rubrics based on a metric or a version.",
+      "id": "GoogleCloudAiplatformV1RubricGroup",
+      "properties": {
+        "displayName": {
+          "description": "Human-readable name for the group. This should be unique within a given context if used for display or selection. Example: \"Instruction Following V1\", \"Content Quality - Summarization Task\".",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Unique identifier for the group.",
+          "type": "string"
+        },
+        "rubrics": {
+          "description": "Rubrics that are part of this group.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1Rubric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1RubricVerdict": {
+      "description": "Represents the verdict of an evaluation against a single rubric.",
+      "id": "GoogleCloudAiplatformV1RubricVerdict",
+      "properties": {
+        "evaluatedRubric": {
+          "$ref": "GoogleCloudAiplatformV1Rubric",
+          "description": "Required. The full rubric definition that was evaluated. Storing this ensures the verdict is self-contained and understandable, especially if the original rubric definition changes or was dynamically generated."
+        },
+        "reasoning": {
+          "description": "Optional. Human-readable reasoning or explanation for the verdict. This can include specific examples or details from the evaluated content that justify the given verdict.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Required. Outcome of the evaluation against the rubric, represented as a boolean. `true` indicates a \"Pass\", `false` indicates a \"Fail\".",
           "type": "boolean"
         }
       },
