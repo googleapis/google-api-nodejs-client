@@ -879,7 +879,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250820",
   "rootUrl": "https://workloadmanager.googleapis.com/",
   "schemas": {
     "AgentCommand": {
@@ -1255,7 +1255,7 @@
           "readOnly": true
         },
         "kind": {
-          "description": "Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.",
+          "description": "Output only. ",
           "enum": [
             "RESOURCE_KIND_UNSPECIFIED",
             "RESOURCE_KIND_INSTANCE",
@@ -1288,7 +1288,7 @@
           "type": "string"
         },
         "name": {
-          "description": "Output only. resource name",
+          "description": "Output only. resource name Example: compute.googleapis.com/projects/wlm-obs-dev/zones/us-central1-a/instances/sap-pri",
           "readOnly": true,
           "type": "string"
         }
@@ -2185,6 +2185,20 @@
         "revisionId": {
           "description": "Output only. the version of the rule",
           "readOnly": true,
+          "type": "string"
+        },
+        "ruleType": {
+          "description": "The type of the rule.",
+          "enum": [
+            "RULE_TYPE_UNSPECIFIED",
+            "BASELINE",
+            "CUSTOM"
+          ],
+          "enumDescriptions": [
+            "Not specified.",
+            "Baseline rules",
+            "Custom rules"
+          ],
           "type": "string"
         },
         "secondaryCategory": {
