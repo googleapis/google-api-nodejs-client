@@ -368,13 +368,170 @@
                   ]
                 }
               }
+            },
+            "traceScopes": {
+              "methods": {
+                "create": {
+                  "description": "Create a new TraceScope.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/traceScopes",
+                  "httpMethod": "POST",
+                  "id": "observability.projects.locations.traceScopes.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The full resource name of the location where the trace scope should be created projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "traceScopeId": {
+                      "description": "Required. A client-assigned identifier for the trace scope.",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/traceScopes",
+                  "request": {
+                    "$ref": "TraceScope"
+                  },
+                  "response": {
+                    "$ref": "TraceScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a TraceScope.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/traceScopes/{traceScopesId}",
+                  "httpMethod": "DELETE",
+                  "id": "observability.projects.locations.traceScopes.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The full resource name of the trace scope to delete: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/traceScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Empty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Get TraceScope resource.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/traceScopes/{traceScopesId}",
+                  "httpMethod": "GET",
+                  "id": "observability.projects.locations.traceScopes.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The resource name of the trace scope: projects/[PROJECT_ID]/locations/[LOCATION_ID]/traceScopes/[TRACE_SCOPE_ID] For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/traceScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "TraceScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List TraceScopes of a project in a particular location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/traceScopes",
+                  "httpMethod": "GET",
+                  "id": "observability.projects.locations.traceScopes.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "pageSize": {
+                      "description": "Optional. The maximum number of results to return from this request. Non-positive values are ignored. The presence of `next_page_token` in the response indicates that more results might be available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. If present, then retrieve the next batch of results from the preceding call to this method. `page_token` must be the value of `next_page_token` from the previous response. The values of other method parameters should be identical to those in the previous call.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The full resource name of the location to look for trace scopes: projects/[PROJECT_ID]/locations/[LOCATION_ID] For example: projects/my-project/locations/global",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/traceScopes",
+                  "response": {
+                    "$ref": "ListTraceScopesResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Update a TraceScope.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/traceScopes/{traceScopesId}",
+                  "httpMethod": "PATCH",
+                  "id": "observability.projects.locations.traceScopes.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/traceScopes/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "TraceScope"
+                  },
+                  "response": {
+                    "$ref": "TraceScope"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250822",
   "rootUrl": "https://observability.googleapis.com/",
   "schemas": {
     "CancelOperationRequest": {
@@ -419,6 +576,24 @@
           "description": "A list of operations that matches the specified filter in the request.",
           "items": {
             "$ref": "Operation"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListTraceScopesResponse": {
+      "description": "Response for listing TraceScopes.",
+      "id": "ListTraceScopesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Optional. If there might be more results than appear in this response, then `next_page_token` is included. To get the next set of results, call the same method again using the value of `next_page_token` as `page_token`.",
+          "type": "string"
+        },
+        "traceScopes": {
+          "description": "Optional. A list of trace scopes.",
+          "items": {
+            "$ref": "TraceScope"
           },
           "type": "array"
         }
@@ -550,6 +725,10 @@
           "description": "Identifier. Name of the resource. The format is: projects/{project}/locations/{location}/scopes/{scope} The `{location}` field must be set to `global`. The `{scope}` field must be set to `_Default`.",
           "type": "string"
         },
+        "traceScope": {
+          "description": "Required. The resource name of the `TraceScope`. For example: projects/myproject/locations/global/traceScopes/my-trace-scope",
+          "type": "string"
+        },
         "updateTime": {
           "description": "Output only. Update timestamp. Note: The Update timestamp for the default scope is initially unset.",
           "format": "google-datetime",
@@ -581,6 +760,40 @@
         },
         "message": {
           "description": "A developer-facing error message, which should be in English. Any user-facing error message should be localized and sent in the google.rpc.Status.details field, or localized by the client.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "TraceScope": {
+      "description": "A trace scope is a collection of resources whose traces are queried together.",
+      "id": "TraceScope",
+      "properties": {
+        "createTime": {
+          "description": "Output only. The creation timestamp of the trace scope.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "description": {
+          "description": "Optional. Describes this trace scope. The maximum length of the description is 8000 characters.",
+          "type": "string"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the trace scope. For example: projects/my-project/locations/global/traceScopes/my-trace-scope",
+          "type": "string"
+        },
+        "resourceNames": {
+          "description": "Required. Names of the projects that are included in this trace scope. * `projects/[PROJECT_ID]` A trace scope can include a maximum of 20 projects.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The last update timestamp of the trace scope.",
+          "format": "google-datetime",
+          "readOnly": true,
           "type": "string"
         }
       },
