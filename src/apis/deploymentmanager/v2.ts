@@ -815,6 +815,10 @@ export namespace deploymentmanager_v2 {
      * List of zonal IGM IDs part of the RMIG.
      */
     zonalIgmIds?: string[] | null;
+    /**
+     * Map of zone to an ID of the zonal IGM belonging to the RMIG.
+     */
+    zoneToIgmIds?: {[key: string]: string} | null;
   }
   export interface Schema$SetCommonInstanceMetadataOperationMetadata {
     /**
