@@ -338,11 +338,11 @@ export namespace workloadmanager_v1 {
      */
     instanceProperties?: Schema$InstanceProperties;
     /**
-     * Output only. ComputeInstance, ComputeDisk, VPC, Bare Metal server, etc.
+     * Output only.
      */
     kind?: string | null;
     /**
-     * Output only. resource name
+     * Output only. resource name Example: compute.googleapis.com/projects/wlm-obs-dev/zones/us-central1-a/instances/sap-pri
      */
     name?: string | null;
   }
@@ -940,6 +940,10 @@ export namespace workloadmanager_v1 {
      * Output only. the version of the rule
      */
     revisionId?: string | null;
+    /**
+     * The type of the rule.
+     */
+    ruleType?: string | null;
     /**
      * the secondary category
      */
