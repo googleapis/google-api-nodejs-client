@@ -191,6 +191,10 @@ export namespace contactcenteraiplatform_v1alpha1 {
      */
     early?: Schema$Early;
     /**
+     * Optional. Feature configuration to populate the feature flags.
+     */
+    featureConfig?: Schema$FeatureConfig;
+    /**
      * The configuration of this instance, it is currently immutable once created.
      */
     instanceConfig?: Schema$InstanceConfig;
@@ -277,6 +281,12 @@ export namespace contactcenteraiplatform_v1alpha1 {
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
+  export interface Schema$FeatureConfig {
+    /**
+     * Optional. If true - enables the agent desktop feature. Default is false.
+     */
+    agentDesktopEnabled?: boolean | null;
+  }
   /**
    * Represents the metadata of the long-running operation.
    */
@@ -803,7 +813,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await contactcenteraiplatform.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1075,7 +1085,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1160,6 +1170,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
      *         //   "displayName": "my_displayName",
      *         //   "early": {},
+     *         //   "featureConfig": {},
      *         //   "instanceConfig": {},
      *         //   "kmsKey": "my_kmsKey",
      *         //   "labels": {},
@@ -1473,6 +1484,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *   //   "customerDomainPrefix": "my_customerDomainPrefix",
      *   //   "displayName": "my_displayName",
      *   //   "early": {},
+     *   //   "featureConfig": {},
      *   //   "instanceConfig": {},
      *   //   "kmsKey": "my_kmsKey",
      *   //   "labels": {},
@@ -1786,6 +1798,7 @@ export namespace contactcenteraiplatform_v1alpha1 {
      *         //   "customerDomainPrefix": "my_customerDomainPrefix",
      *         //   "displayName": "my_displayName",
      *         //   "early": {},
+     *         //   "featureConfig": {},
      *         //   "instanceConfig": {},
      *         //   "kmsKey": "my_kmsKey",
      *         //   "labels": {},
