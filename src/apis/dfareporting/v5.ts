@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace dfareporting_v4 {
+export namespace dfareporting_v5 {
   export interface Options extends GlobalOptions {
-    version: 'v4';
+    version: 'v5';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace dfareporting_v4 {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const dfareporting = google.dfareporting('v4');
+   * const dfareporting = google.dfareporting('v5');
    * ```
    */
   export class Dfareporting {
@@ -149,20 +149,17 @@ export namespace dfareporting_v4 {
     floodlightActivities: Resource$Floodlightactivities;
     floodlightActivityGroups: Resource$Floodlightactivitygroups;
     floodlightConfigurations: Resource$Floodlightconfigurations;
-    inventoryItems: Resource$Inventoryitems;
     languages: Resource$Languages;
     metros: Resource$Metros;
     mobileApps: Resource$Mobileapps;
     mobileCarriers: Resource$Mobilecarriers;
     operatingSystems: Resource$Operatingsystems;
     operatingSystemVersions: Resource$Operatingsystemversions;
-    orders: Resource$Orders;
     placementGroups: Resource$Placementgroups;
     placements: Resource$Placements;
     placementStrategies: Resource$Placementstrategies;
     platformTypes: Resource$Platformtypes;
     postalCodes: Resource$Postalcodes;
-    projects: Resource$Projects;
     regions: Resource$Regions;
     remarketingLists: Resource$Remarketinglists;
     remarketingListShares: Resource$Remarketinglistshares;
@@ -238,7 +235,6 @@ export namespace dfareporting_v4 {
       this.floodlightConfigurations = new Resource$Floodlightconfigurations(
         this.context
       );
-      this.inventoryItems = new Resource$Inventoryitems(this.context);
       this.languages = new Resource$Languages(this.context);
       this.metros = new Resource$Metros(this.context);
       this.mobileApps = new Resource$Mobileapps(this.context);
@@ -247,13 +243,11 @@ export namespace dfareporting_v4 {
       this.operatingSystemVersions = new Resource$Operatingsystemversions(
         this.context
       );
-      this.orders = new Resource$Orders(this.context);
       this.placementGroups = new Resource$Placementgroups(this.context);
       this.placements = new Resource$Placements(this.context);
       this.placementStrategies = new Resource$Placementstrategies(this.context);
       this.platformTypes = new Resource$Platformtypes(this.context);
       this.postalCodes = new Resource$Postalcodes(this.context);
-      this.projects = new Resource$Projects(this.context);
       this.regions = new Resource$Regions(this.context);
       this.remarketingLists = new Resource$Remarketinglists(this.context);
       this.remarketingListShares = new Resource$Remarketinglistshares(
@@ -757,43 +751,6 @@ export namespace dfareporting_v4 {
      * Pagination token to be used for the next list operation.
      */
     nextPageToken?: string | null;
-  }
-  /**
-   * Ad Slot
-   */
-  export interface Schema$AdSlot {
-    /**
-     * Comment for this ad slot.
-     */
-    comment?: string | null;
-    /**
-     * Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop, mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.
-     */
-    compatibility?: string | null;
-    /**
-     * Height of this ad slot.
-     */
-    height?: string | null;
-    /**
-     * ID of the placement from an external platform that is linked to this ad slot.
-     */
-    linkedPlacementId?: string | null;
-    /**
-     * Name of this ad slot.
-     */
-    name?: string | null;
-    /**
-     * Payment source type of this ad slot.
-     */
-    paymentSourceType?: string | null;
-    /**
-     * Primary ad slot of a roadblock inventory item.
-     */
-    primary?: boolean | null;
-    /**
-     * Width of this ad slot.
-     */
-    width?: string | null;
   }
   /**
    * Contains properties of a Campaign Manager advertiser.
@@ -2135,10 +2092,6 @@ export namespace dfareporting_v4 {
      */
     creativeAssets?: Schema$CreativeAsset[];
     /**
-     * Required if dynamicAssetSelection is true.
-     */
-    creativeAssetSelection?: Schema$CreativeAssetSelection;
-    /**
      * Creative field assignments for this creative. Applicable to all creative types.
      */
     creativeFieldAssignments?: Schema$CreativeFieldAssignment[];
@@ -2146,10 +2099,6 @@ export namespace dfareporting_v4 {
      * Custom key-values for a Rich Media creative. Key-values let you customize the creative settings of a Rich Media ad running on your site without having to contact the advertiser. You can use key-values to dynamically change the look or functionality of a creative. Applicable to the following creative types: all RICH_MEDIA, and all VPAID.
      */
     customKeyValues?: string[] | null;
-    /**
-     * Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.
-     */
-    dynamicAssetSelection?: boolean | null;
     /**
      * List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.
      */
@@ -2565,19 +2514,6 @@ export namespace dfareporting_v4 {
      * Rules validated during code generation that generated a warning. This is a read-only, auto-generated field. Possible values are: - "ADMOB_REFERENCED" - "ASSET_FORMAT_UNSUPPORTED_DCM" - "ASSET_INVALID" - "CLICK_TAG_HARD_CODED" - "CLICK_TAG_INVALID" - "CLICK_TAG_IN_GWD" - "CLICK_TAG_MISSING" - "CLICK_TAG_MORE_THAN_ONE" - "CLICK_TAG_NON_TOP_LEVEL" - "COMPONENT_UNSUPPORTED_DCM" - "ENABLER_UNSUPPORTED_METHOD_DCM" - "EXTERNAL_FILE_REFERENCED" - "FILE_DETAIL_EMPTY" - "FILE_TYPE_INVALID" - "GWD_PROPERTIES_INVALID" - "HTML5_FEATURE_UNSUPPORTED" - "LINKED_FILE_NOT_FOUND" - "MAX_FLASH_VERSION_11" - "MRAID_REFERENCED" - "NOT_SSL_COMPLIANT" - "ORPHANED_ASSET" - "PRIMARY_HTML_MISSING" - "SVG_INVALID" - "ZIP_INVALID"
      */
     warnedValidationRules?: string[] | null;
-  }
-  /**
-   * Encapsulates the list of rules for asset selection and a default asset in case none of the rules match. Applicable to INSTREAM_VIDEO creatives.
-   */
-  export interface Schema$CreativeAssetSelection {
-    /**
-     * A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.
-     */
-    defaultAssetId?: string | null;
-    /**
-     * Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.
-     */
-    rules?: Schema$Rule[];
   }
   /**
    * Creative Assignment.
@@ -3955,21 +3891,6 @@ export namespace dfareporting_v4 {
     nextPageToken?: string | null;
   }
   /**
-   * Flight
-   */
-  export interface Schema$Flight {
-    endDate?: string | null;
-    /**
-     * Rate or cost of this flight.
-     */
-    rateOrCost?: string | null;
-    startDate?: string | null;
-    /**
-     * Units of this flight.
-     */
-    units?: string | null;
-  }
-  /**
    * Floodlight Activity GenerateTag Response
    */
   export interface Schema$FloodlightActivitiesGenerateTagResponse {
@@ -4027,6 +3948,10 @@ export namespace dfareporting_v4 {
      * Code type used for cache busting in the generated tag. Applicable only when floodlightActivityGroupType is COUNTER and countingMethod is STANDARD_COUNTING or UNIQUE_COUNTING.
      */
     cacheBustingType?: string | null;
+    /**
+     * Required. The conversion category of the activity.
+     */
+    conversionCategory?: string | null;
     /**
      * Counting method for conversions for this floodlight activity. This is a required field.
      */
@@ -4452,108 +4377,6 @@ export namespace dfareporting_v4 {
      * Output only. The total number of warnings in the feed.
      */
     numWarningsTotal?: string | null;
-  }
-  /**
-   * Represents a buy from the Planning inventory store.
-   */
-  export interface Schema$InventoryItem {
-    /**
-     * Account ID of this inventory item.
-     */
-    accountId?: string | null;
-    /**
-     * Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.
-     */
-    adSlots?: Schema$AdSlot[];
-    /**
-     * Advertiser ID of this inventory item.
-     */
-    advertiserId?: string | null;
-    /**
-     * Content category ID of this inventory item.
-     */
-    contentCategoryId?: string | null;
-    /**
-     * Estimated click-through rate of this inventory item.
-     */
-    estimatedClickThroughRate?: string | null;
-    /**
-     * Estimated conversion rate of this inventory item.
-     */
-    estimatedConversionRate?: string | null;
-    /**
-     * ID of this inventory item.
-     */
-    id?: string | null;
-    /**
-     * Whether this inventory item is in plan.
-     */
-    inPlan?: boolean | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#inventoryItem".
-     */
-    kind?: string | null;
-    /**
-     * Information about the most recent modification of this inventory item.
-     */
-    lastModifiedInfo?: Schema$LastModifiedInfo;
-    /**
-     * Name of this inventory item. For standalone inventory items, this is the same name as that of its only ad slot. For group inventory items, this can differ from the name of any of its ad slots.
-     */
-    name?: string | null;
-    /**
-     * Negotiation channel ID of this inventory item.
-     */
-    negotiationChannelId?: string | null;
-    /**
-     * Order ID of this inventory item.
-     */
-    orderId?: string | null;
-    /**
-     * Placement strategy ID of this inventory item.
-     */
-    placementStrategyId?: string | null;
-    /**
-     * Pricing of this inventory item.
-     */
-    pricing?: Schema$Pricing;
-    /**
-     * Project ID of this inventory item.
-     */
-    projectId?: string | null;
-    /**
-     * RFP ID of this inventory item.
-     */
-    rfpId?: string | null;
-    /**
-     * ID of the site this inventory item is associated with.
-     */
-    siteId?: string | null;
-    /**
-     * Subaccount ID of this inventory item.
-     */
-    subaccountId?: string | null;
-    /**
-     * Type of inventory item.
-     */
-    type?: string | null;
-  }
-  /**
-   * Inventory item List Response
-   */
-  export interface Schema$InventoryItemsListResponse {
-    /**
-     * Inventory item collection
-     */
-    inventoryItems?: Schema$InventoryItem[];
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#inventoryItemsListResponse".
-     */
-    kind?: string | null;
-    /**
-     * Pagination token to be used for the next list operation.
-     */
-    nextPageToken?: string | null;
   }
   /**
    * Contains information about a single invoice
@@ -5210,133 +5033,6 @@ export namespace dfareporting_v4 {
     weight?: number | null;
   }
   /**
-   * Describes properties of a Planning order.
-   */
-  export interface Schema$Order {
-    /**
-     * Account ID of this order.
-     */
-    accountId?: string | null;
-    /**
-     * Advertiser ID of this order.
-     */
-    advertiserId?: string | null;
-    /**
-     * IDs for users that have to approve documents created for this order.
-     */
-    approverUserProfileIds?: string[] | null;
-    /**
-     * Buyer invoice ID associated with this order.
-     */
-    buyerInvoiceId?: string | null;
-    /**
-     * Name of the buyer organization.
-     */
-    buyerOrganizationName?: string | null;
-    /**
-     * Comments in this order.
-     */
-    comments?: string | null;
-    /**
-     * Contacts for this order.
-     */
-    contacts?: Schema$OrderContact[];
-    /**
-     * ID of this order. This is a read-only, auto-generated field.
-     */
-    id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#order".
-     */
-    kind?: string | null;
-    /**
-     * Information about the most recent modification of this order.
-     */
-    lastModifiedInfo?: Schema$LastModifiedInfo;
-    /**
-     * Name of this order.
-     */
-    name?: string | null;
-    /**
-     * Notes of this order.
-     */
-    notes?: string | null;
-    /**
-     * ID of the terms and conditions template used in this order.
-     */
-    planningTermId?: string | null;
-    /**
-     * Project ID of this order.
-     */
-    projectId?: string | null;
-    /**
-     * Seller order ID associated with this order.
-     */
-    sellerOrderId?: string | null;
-    /**
-     * Name of the seller organization.
-     */
-    sellerOrganizationName?: string | null;
-    /**
-     * Site IDs this order is associated with.
-     */
-    siteId?: string[] | null;
-    /**
-     * Free-form site names this order is associated with.
-     */
-    siteNames?: string[] | null;
-    /**
-     * Subaccount ID of this order.
-     */
-    subaccountId?: string | null;
-    /**
-     * Terms and conditions of this order.
-     */
-    termsAndConditions?: string | null;
-  }
-  /**
-   * Contact of an order.
-   */
-  export interface Schema$OrderContact {
-    /**
-     * Free-form information about this contact. It could be any information related to this contact in addition to type, title, name, and signature user profile ID.
-     */
-    contactInfo?: string | null;
-    /**
-     * Name of this contact.
-     */
-    contactName?: string | null;
-    /**
-     * Title of this contact.
-     */
-    contactTitle?: string | null;
-    /**
-     * Type of this contact.
-     */
-    contactType?: string | null;
-    /**
-     * ID of the user profile containing the signature that will be embedded into order documents.
-     */
-    signatureUserProfileId?: string | null;
-  }
-  /**
-   * Order List Response
-   */
-  export interface Schema$OrdersListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#ordersListResponse".
-     */
-    kind?: string | null;
-    /**
-     * Pagination token to be used for the next list operation.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Order collection.
-     */
-    orders?: Schema$Order[];
-  }
-  /**
    * Represents fields that are compatible to be selected for a report of type "PATH_TO_CONVERSION".
    */
   export interface Schema$PathToConversionReportCompatibleFields {
@@ -5894,26 +5590,6 @@ export namespace dfareporting_v4 {
      */
     postalCodes?: Schema$PostalCode[];
   }
-  export interface Schema$Pricing {
-    /**
-     * Cap cost type of this inventory item.
-     */
-    capCostType?: string | null;
-    endDate?: string | null;
-    /**
-     * Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.
-     */
-    flights?: Schema$Flight[];
-    /**
-     * Group type of this inventory item if it represents a placement group. Is null otherwise. There are two type of placement groups: PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory items that acts as a single pricing point for a group of tags. PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned inventory items to be marked as primary.
-     */
-    groupType?: string | null;
-    /**
-     * Pricing type of this inventory item.
-     */
-    pricingType?: string | null;
-    startDate?: string | null;
-  }
   /**
    * Pricing Schedule
    */
@@ -5960,110 +5636,6 @@ export namespace dfareporting_v4 {
      * Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.
      */
     units?: string | null;
-  }
-  /**
-   * Contains properties of a Planning project.
-   */
-  export interface Schema$Project {
-    /**
-     * Account ID of this project.
-     */
-    accountId?: string | null;
-    /**
-     * Advertiser ID of this project.
-     */
-    advertiserId?: string | null;
-    /**
-     * Audience age group of this project.
-     */
-    audienceAgeGroup?: string | null;
-    /**
-     * Audience gender of this project.
-     */
-    audienceGender?: string | null;
-    /**
-     * Budget of this project in the currency specified by the current account. The value stored in this field represents only the non-fractional amount. For example, for USD, the smallest value that can be represented by this field is 1 US dollar.
-     */
-    budget?: string | null;
-    /**
-     * Client billing code of this project.
-     */
-    clientBillingCode?: string | null;
-    /**
-     * Name of the project client.
-     */
-    clientName?: string | null;
-    endDate?: string | null;
-    /**
-     * ID of this project. This is a read-only, auto-generated field.
-     */
-    id?: string | null;
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#project".
-     */
-    kind?: string | null;
-    /**
-     * Information about the most recent modification of this project.
-     */
-    lastModifiedInfo?: Schema$LastModifiedInfo;
-    /**
-     * Name of this project.
-     */
-    name?: string | null;
-    /**
-     * Overview of this project.
-     */
-    overview?: string | null;
-    startDate?: string | null;
-    /**
-     * Subaccount ID of this project.
-     */
-    subaccountId?: string | null;
-    /**
-     * Number of clicks that the advertiser is targeting.
-     */
-    targetClicks?: string | null;
-    /**
-     * Number of conversions that the advertiser is targeting.
-     */
-    targetConversions?: string | null;
-    /**
-     * CPA that the advertiser is targeting.
-     */
-    targetCpaNanos?: string | null;
-    /**
-     * CPC that the advertiser is targeting.
-     */
-    targetCpcNanos?: string | null;
-    /**
-     * vCPM from Active View that the advertiser is targeting.
-     */
-    targetCpmActiveViewNanos?: string | null;
-    /**
-     * CPM that the advertiser is targeting.
-     */
-    targetCpmNanos?: string | null;
-    /**
-     * Number of impressions that the advertiser is targeting.
-     */
-    targetImpressions?: string | null;
-  }
-  /**
-   * Project List Response
-   */
-  export interface Schema$ProjectsListResponse {
-    /**
-     * Identifies what kind of resource this is. Value: the fixed string "dfareporting#projectsListResponse".
-     */
-    kind?: string | null;
-    /**
-     * Pagination token to be used for the next list operation.
-     */
-    nextPageToken?: string | null;
-    /**
-     * Project collection.
-     */
-    projects?: Schema$Project[];
   }
   /**
    * Contains proximity filter information.
@@ -6302,18 +5874,6 @@ export namespace dfareporting_v4 {
       metricNames?: string[];
     } | null;
     /**
-     * The report criteria for a report of type "CROSS_DIMENSION_REACH".
-     */
-    crossDimensionReachCriteria?: {
-      breakdown?: Schema$SortedDimension[];
-      dateRange?: Schema$DateRange;
-      dimension?: string;
-      dimensionFilters?: Schema$DimensionValue[];
-      metricNames?: string[];
-      overlapMetricNames?: string[];
-      pivoted?: boolean;
-    } | null;
-    /**
      * Optional. The report criteria for a report of type "CROSS_MEDIA_REACH".
      */
     crossMediaReachCriteria?: {
@@ -6412,7 +5972,6 @@ export namespace dfareporting_v4 {
       dateRange?: Schema$DateRange;
       dimensionFilters?: Schema$DimensionValue[];
       dimensions?: Schema$SortedDimension[];
-      enableAllDimensionCombinations?: boolean;
       metricNames?: string[];
       reachByFrequencyMetricNames?: string[];
     } | null;
@@ -6534,23 +6093,6 @@ export namespace dfareporting_v4 {
      * ID for the override to refer to a specific exit in the creative.
      */
     exitId?: string | null;
-  }
-  /**
-   * A rule associates an asset with a targeting template for asset-level targeting. Applicable to INSTREAM_VIDEO creatives.
-   */
-  export interface Schema$Rule {
-    /**
-     * A creativeAssets[].id. This should refer to one of the parent assets in this creative. This is a required field.
-     */
-    assetId?: string | null;
-    /**
-     * A user-friendly name for this rule. This is a required field.
-     */
-    name?: string | null;
-    /**
-     * A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.
-     */
-    targetingTemplateId?: string | null;
   }
   /**
    * Contains a list of field filters that the given custom rule will apply.
@@ -7630,7 +7172,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7736,7 +7278,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountActiveAdSummaries/{+summaryAccountId}'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountActiveAdSummaries/{+summaryAccountId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -7794,7 +7336,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -7898,7 +7440,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissionGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountPermissionGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -7937,7 +7479,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8044,7 +7586,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissionGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountPermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8111,7 +7653,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8216,7 +7758,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissions/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountPermissions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8255,7 +7797,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8358,7 +7900,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountPermissions'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountPermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8425,7 +7967,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8542,7 +8084,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accounts/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/accounts/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8581,7 +8123,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8695,7 +8237,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -8734,7 +8276,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -8876,7 +8418,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -8915,7 +8457,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9055,7 +8597,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/accounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/accounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -9172,7 +8714,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9287,7 +8829,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/accountUserProfiles/{+id}'
+              '/dfareporting/v5/userprofiles/{profileId}/accountUserProfiles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -9326,7 +8868,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9462,7 +9004,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -9501,7 +9043,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9623,7 +9165,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -9664,7 +9206,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9802,7 +9344,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -9841,7 +9383,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -9977,7 +9519,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/accountUserProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/accountUserProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -10118,7 +9660,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10254,7 +9796,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads/{+id}'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -10293,7 +9835,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10473,7 +10015,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -10512,7 +10054,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10656,7 +10198,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -10695,7 +10237,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -10877,7 +10419,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -10916,7 +10458,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11096,7 +10638,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/ads'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/ads'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -11288,7 +10830,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11381,7 +10923,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -11420,7 +10962,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11523,7 +11065,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -11562,7 +11104,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11674,7 +11216,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -11713,7 +11255,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11829,7 +11371,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -11870,7 +11412,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -11984,7 +11526,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -12023,7 +11565,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12135,7 +11677,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -12275,7 +11817,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12387,7 +11929,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertisers/{+advertiserId}/invoices'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertisers/{+advertiserId}/invoices'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -12459,7 +12001,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12565,7 +12107,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -12604,7 +12146,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12722,7 +12264,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -12761,7 +12303,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -12889,7 +12431,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -12930,7 +12472,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13050,7 +12592,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -13089,7 +12631,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13207,7 +12749,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertiserLandingPages'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertiserLandingPages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -13352,7 +12894,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13467,7 +13009,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/advertisers/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/advertisers/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -13506,7 +13048,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13643,7 +13185,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -13682,7 +13224,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13806,7 +13348,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -13845,7 +13387,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -13984,7 +13526,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -14023,7 +13565,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14160,7 +13702,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/advertisers'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/advertisers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -14311,7 +13853,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14427,7 +13969,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -14466,7 +14008,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14571,7 +14113,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingAssignments'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -14647,7 +14189,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14759,7 +14301,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -14798,7 +14340,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -14922,7 +14464,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -14961,7 +14503,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15091,7 +14633,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -15208,7 +14750,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15312,7 +14854,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingRates'
+              '/dfareporting/v5/userprofiles/{+profileId}/billingProfiles/{+billingProfileId}/billingRates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -15370,7 +14912,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15469,7 +15011,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/browsers'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/browsers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -15522,7 +15064,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15636,7 +15178,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -15675,7 +15217,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -15791,7 +15333,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
+              '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+campaignId}/campaignCreativeAssociations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -15879,7 +15421,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16005,7 +15547,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/campaigns/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/campaigns/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -16044,7 +15586,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16202,7 +15744,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -16241,7 +15783,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16367,7 +15909,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -16406,7 +15948,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16566,7 +16108,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -16605,7 +16147,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -16763,7 +16305,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/campaigns'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/campaigns'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -16915,7 +16457,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17027,7 +16569,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/changeLogs/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/changeLogs/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -17066,7 +16608,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17186,7 +16728,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/changeLogs'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/changeLogs'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -17289,7 +16831,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17394,7 +16936,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/cities'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/cities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -17463,7 +17005,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17565,7 +17107,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/connectionTypes/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/connectionTypes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -17604,7 +17146,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17707,7 +17249,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/connectionTypes'
+              '/dfareporting/v5/userprofiles/{+profileId}/connectionTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -17772,7 +17314,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -17865,7 +17407,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -17904,7 +17446,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18007,7 +17549,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -18046,7 +17588,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18158,7 +17700,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -18197,7 +17739,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18313,7 +17855,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -18354,7 +17896,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18468,7 +18010,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -18507,7 +18049,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18619,7 +18161,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/contentCategories'
+              '/dfareporting/v5/userprofiles/{+profileId}/contentCategories'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -18759,7 +18301,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -18873,7 +18415,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/conversions/batchinsert'
+              '/dfareporting/v5/userprofiles/{profileId}/conversions/batchinsert'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -18914,7 +18456,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19028,7 +18570,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/conversions/batchupdate'
+              '/dfareporting/v5/userprofiles/{profileId}/conversions/batchupdate'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -19101,7 +18643,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19204,7 +18746,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/countries/{+dartId}'
+              '/dfareporting/v5/userprofiles/{+profileId}/countries/{+dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -19243,7 +18785,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19342,7 +18884,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/countries'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/countries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -19405,7 +18947,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19539,7 +19081,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -19549,7 +19091,7 @@ export namespace dfareporting_v4 {
         params,
         mediaUrl: (
           rootUrl +
-          '/upload/dfareporting/v4/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
+          '/upload/dfareporting/v5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets'
         ).replace(/([^:]\/)\/+/g, '$1'),
         requiredParams: ['profileId', 'advertiserId'],
         pathParams: ['advertiserId', 'profileId'],
@@ -19621,7 +19163,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19714,7 +19256,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -19753,7 +19295,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -19859,7 +19401,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -19898,7 +19440,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20016,7 +19558,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -20055,7 +19597,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20173,7 +19715,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -20212,7 +19754,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20332,7 +19874,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -20371,7 +19913,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20489,7 +20031,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -20633,7 +20175,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20728,7 +20270,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -20767,7 +20309,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -20871,7 +20413,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -20910,7 +20452,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21022,7 +20564,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -21061,7 +20603,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21179,7 +20721,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -21220,7 +20762,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21334,7 +20876,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -21373,7 +20915,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21485,7 +21027,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeFields/{+creativeFieldId}/creativeFieldValues'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -21649,7 +21191,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21756,7 +21298,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -21795,7 +21337,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -21915,7 +21457,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -21954,7 +21496,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22074,7 +21616,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -22113,7 +21655,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22235,7 +21777,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -22274,7 +21816,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22394,7 +21936,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creativeGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/creativeGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -22531,7 +22073,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22577,11 +22119,9 @@ export namespace dfareporting_v4 {
      *   //   "compatibility": [],
      *   //   "convertFlashToHtml5": false,
      *   //   "counterCustomEvents": [],
-     *   //   "creativeAssetSelection": {},
      *   //   "creativeAssets": [],
      *   //   "creativeFieldAssignments": [],
      *   //   "customKeyValues": [],
-     *   //   "dynamicAssetSelection": false,
      *   //   "exitCustomEvents": [],
      *   //   "fsCommand": {},
      *   //   "htmlCode": "my_htmlCode",
@@ -22694,7 +22234,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/creatives/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/creatives/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -22733,7 +22273,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -22777,11 +22317,9 @@ export namespace dfareporting_v4 {
      *       //   "compatibility": [],
      *       //   "convertFlashToHtml5": false,
      *       //   "counterCustomEvents": [],
-     *       //   "creativeAssetSelection": {},
      *       //   "creativeAssets": [],
      *       //   "creativeFieldAssignments": [],
      *       //   "customKeyValues": [],
-     *       //   "dynamicAssetSelection": false,
      *       //   "exitCustomEvents": [],
      *       //   "fsCommand": {},
      *       //   "htmlCode": "my_htmlCode",
@@ -22849,11 +22387,9 @@ export namespace dfareporting_v4 {
      *   //   "compatibility": [],
      *   //   "convertFlashToHtml5": false,
      *   //   "counterCustomEvents": [],
-     *   //   "creativeAssetSelection": {},
      *   //   "creativeAssets": [],
      *   //   "creativeFieldAssignments": [],
      *   //   "customKeyValues": [],
-     *   //   "dynamicAssetSelection": false,
      *   //   "exitCustomEvents": [],
      *   //   "fsCommand": {},
      *   //   "htmlCode": "my_htmlCode",
@@ -22965,7 +22501,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -23004,7 +22540,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23136,7 +22672,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -23175,7 +22711,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23221,11 +22757,9 @@ export namespace dfareporting_v4 {
      *       //   "compatibility": [],
      *       //   "convertFlashToHtml5": false,
      *       //   "counterCustomEvents": [],
-     *       //   "creativeAssetSelection": {},
      *       //   "creativeAssets": [],
      *       //   "creativeFieldAssignments": [],
      *       //   "customKeyValues": [],
-     *       //   "dynamicAssetSelection": false,
      *       //   "exitCustomEvents": [],
      *       //   "fsCommand": {},
      *       //   "htmlCode": "my_htmlCode",
@@ -23293,11 +22827,9 @@ export namespace dfareporting_v4 {
      *   //   "compatibility": [],
      *   //   "convertFlashToHtml5": false,
      *   //   "counterCustomEvents": [],
-     *   //   "creativeAssetSelection": {},
      *   //   "creativeAssets": [],
      *   //   "creativeFieldAssignments": [],
      *   //   "customKeyValues": [],
-     *   //   "dynamicAssetSelection": false,
      *   //   "exitCustomEvents": [],
      *   //   "fsCommand": {},
      *   //   "htmlCode": "my_htmlCode",
@@ -23409,7 +22941,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -23448,7 +22980,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23492,11 +23024,9 @@ export namespace dfareporting_v4 {
      *       //   "compatibility": [],
      *       //   "convertFlashToHtml5": false,
      *       //   "counterCustomEvents": [],
-     *       //   "creativeAssetSelection": {},
      *       //   "creativeAssets": [],
      *       //   "creativeFieldAssignments": [],
      *       //   "customKeyValues": [],
-     *       //   "dynamicAssetSelection": false,
      *       //   "exitCustomEvents": [],
      *       //   "fsCommand": {},
      *       //   "htmlCode": "my_htmlCode",
@@ -23564,11 +23094,9 @@ export namespace dfareporting_v4 {
      *   //   "compatibility": [],
      *   //   "convertFlashToHtml5": false,
      *   //   "counterCustomEvents": [],
-     *   //   "creativeAssetSelection": {},
      *   //   "creativeAssets": [],
      *   //   "creativeFieldAssignments": [],
      *   //   "customKeyValues": [],
-     *   //   "dynamicAssetSelection": false,
      *   //   "exitCustomEvents": [],
      *   //   "fsCommand": {},
      *   //   "htmlCode": "my_htmlCode",
@@ -23680,7 +23208,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/creatives'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/creatives'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -23844,7 +23372,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -23961,7 +23489,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/dimensionvalues/query'
+              '/dfareporting/v5/userprofiles/{profileId}/dimensionvalues/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -24028,7 +23556,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24136,7 +23664,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/directorySites/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/directorySites/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -24175,7 +23703,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24297,7 +23825,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/directorySites'
+              '/dfareporting/v5/userprofiles/{+profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -24336,7 +23864,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24462,7 +23990,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/directorySites'
+              '/dfareporting/v5/userprofiles/{+profileId}/directorySites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -24583,7 +24111,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24689,7 +24217,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/studio/dynamicFeeds/{+dynamicFeedId}'
+              rootUrl + '/dfareporting/v5/studio/dynamicFeeds/{+dynamicFeedId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -24728,7 +24256,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -24840,7 +24368,7 @@ export namespace dfareporting_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v4/studio/dynamicFeeds').replace(
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicFeeds').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -24902,7 +24430,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25010,7 +24538,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/studio/dynamicProfiles/{+dynamicProfileId}'
+              '/dfareporting/v5/studio/dynamicProfiles/{+dynamicProfileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -25049,7 +24577,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25170,7 +24698,7 @@ export namespace dfareporting_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v4/studio/dynamicProfiles').replace(
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -25211,7 +24739,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25332,7 +24860,7 @@ export namespace dfareporting_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v4/studio/dynamicProfiles').replace(
+            url: (rootUrl + '/dfareporting/v5/studio/dynamicProfiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -25402,7 +24930,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25499,7 +25027,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys/{+objectId}'
+              '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys/{+objectId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -25538,7 +25066,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25650,7 +25178,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys'
+              '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -25689,7 +25217,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25804,7 +25332,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/dynamicTargetingKeys'
+              '/dfareporting/v5/userprofiles/{+profileId}/dynamicTargetingKeys'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -25907,7 +25435,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -25999,7 +25527,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/eventTags/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/eventTags/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -26038,7 +25566,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26154,7 +25682,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/eventTags/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/eventTags/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -26193,7 +25721,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26331,7 +25859,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -26370,7 +25898,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26489,7 +26017,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -26528,7 +26056,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26668,7 +26196,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -26707,7 +26235,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -26845,7 +26373,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/eventTags'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/eventTags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -26995,7 +26523,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27102,7 +26630,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/reports/{reportId}/files/{fileId}'
+              rootUrl + '/dfareporting/v5/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -27141,7 +26669,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27250,7 +26778,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/files'
+              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -27333,7 +26861,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27426,7 +26954,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -27465,7 +26993,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27575,7 +27103,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/generatetag'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/generatetag'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -27616,7 +27144,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27644,6 +27172,7 @@ export namespace dfareporting_v4 {
      *   //   "advertiserIdDimensionValue": {},
      *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "conversionCategory": "my_conversionCategory",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
      *   //   "expectedUrl": "my_expectedUrl",
@@ -27744,7 +27273,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -27783,7 +27312,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -27809,6 +27338,7 @@ export namespace dfareporting_v4 {
      *       //   "advertiserIdDimensionValue": {},
      *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "conversionCategory": "my_conversionCategory",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
      *       //   "expectedUrl": "my_expectedUrl",
@@ -27845,6 +27375,7 @@ export namespace dfareporting_v4 {
      *   //   "advertiserIdDimensionValue": {},
      *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "conversionCategory": "my_conversionCategory",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
      *   //   "expectedUrl": "my_expectedUrl",
@@ -27945,7 +27476,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -27984,7 +27515,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28118,7 +27649,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -28159,7 +27690,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28187,6 +27718,7 @@ export namespace dfareporting_v4 {
      *       //   "advertiserIdDimensionValue": {},
      *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "conversionCategory": "my_conversionCategory",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
      *       //   "expectedUrl": "my_expectedUrl",
@@ -28223,6 +27755,7 @@ export namespace dfareporting_v4 {
      *   //   "advertiserIdDimensionValue": {},
      *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "conversionCategory": "my_conversionCategory",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
      *   //   "expectedUrl": "my_expectedUrl",
@@ -28323,7 +27856,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -28362,7 +27895,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28388,6 +27921,7 @@ export namespace dfareporting_v4 {
      *       //   "advertiserIdDimensionValue": {},
      *       //   "attributionEnabled": false,
      *       //   "cacheBustingType": "my_cacheBustingType",
+     *       //   "conversionCategory": "my_conversionCategory",
      *       //   "countingMethod": "my_countingMethod",
      *       //   "defaultTags": [],
      *       //   "expectedUrl": "my_expectedUrl",
@@ -28424,6 +27958,7 @@ export namespace dfareporting_v4 {
      *   //   "advertiserIdDimensionValue": {},
      *   //   "attributionEnabled": false,
      *   //   "cacheBustingType": "my_cacheBustingType",
+     *   //   "conversionCategory": "my_conversionCategory",
      *   //   "countingMethod": "my_countingMethod",
      *   //   "defaultTags": [],
      *   //   "expectedUrl": "my_expectedUrl",
@@ -28524,7 +28059,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivities'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivities'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -28703,7 +28238,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28816,7 +28351,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -28855,7 +28390,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -28987,7 +28522,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -29026,7 +28561,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29152,7 +28687,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -29193,7 +28728,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29325,7 +28860,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -29364,7 +28899,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29496,7 +29031,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightActivityGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightActivityGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -29637,7 +29172,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29756,7 +29291,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -29795,7 +29330,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -29904,7 +29439,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -29945,7 +29480,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30089,7 +29624,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -30128,7 +29663,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30272,7 +29807,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/floodlightConfigurations'
+              '/dfareporting/v5/userprofiles/{+profileId}/floodlightConfigurations'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -30346,399 +29881,6 @@ export namespace dfareporting_v4 {
     requestBody?: Schema$FloodlightConfiguration;
   }
 
-  export class Resource$Inventoryitems {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets one inventory item by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.inventoryItems.get({
-     *     // Inventory item ID.
-     *     id: '[^/]+',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *     // Project ID for order documents.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "adSlots": [],
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "contentCategoryId": "my_contentCategoryId",
-     *   //   "estimatedClickThroughRate": "my_estimatedClickThroughRate",
-     *   //   "estimatedConversionRate": "my_estimatedConversionRate",
-     *   //   "id": "my_id",
-     *   //   "inPlan": false,
-     *   //   "kind": "my_kind",
-     *   //   "lastModifiedInfo": {},
-     *   //   "name": "my_name",
-     *   //   "negotiationChannelId": "my_negotiationChannelId",
-     *   //   "orderId": "my_orderId",
-     *   //   "placementStrategyId": "my_placementStrategyId",
-     *   //   "pricing": {},
-     *   //   "projectId": "my_projectId",
-     *   //   "rfpId": "my_rfpId",
-     *   //   "siteId": "my_siteId",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Inventoryitems$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Inventoryitems$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$InventoryItem>>;
-    get(
-      params: Params$Resource$Inventoryitems$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Inventoryitems$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$InventoryItem>,
-      callback: BodyResponseCallback<Schema$InventoryItem>
-    ): void;
-    get(
-      params: Params$Resource$Inventoryitems$Get,
-      callback: BodyResponseCallback<Schema$InventoryItem>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$InventoryItem>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Inventoryitems$Get
-        | BodyResponseCallback<Schema$InventoryItem>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$InventoryItem>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$InventoryItem>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$InventoryItem>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Inventoryitems$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventoryitems$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/inventoryItems/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId', 'id'],
-        pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$InventoryItem>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$InventoryItem>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a list of inventory items, possibly filtered. This method supports paging.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.inventoryItems.list({
-     *     // Select only inventory items with these IDs.
-     *     ids: 'placeholder-value',
-     *     // Select only inventory items that are in plan.
-     *     inPlan: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Select only inventory items that belong to specified orders.
-     *     orderId: 'placeholder-value',
-     *     // Value of the nextPageToken from the previous result page.
-     *     pageToken: 'placeholder-value',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *     // Project ID for order documents.
-     *     projectId: 'placeholder-value',
-     *     // Select only inventory items that are associated with these sites.
-     *     siteId: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     sortField: 'placeholder-value',
-     *     // Order of sorted results.
-     *     sortOrder: 'placeholder-value',
-     *     // Select only inventory items with this type.
-     *     type: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "inventoryItems": [],
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Inventoryitems$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Inventoryitems$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$InventoryItemsListResponse>>;
-    list(
-      params: Params$Resource$Inventoryitems$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Inventoryitems$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$InventoryItemsListResponse>,
-      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Inventoryitems$List,
-      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
-    ): void;
-    list(
-      callback: BodyResponseCallback<Schema$InventoryItemsListResponse>
-    ): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Inventoryitems$List
-        | BodyResponseCallback<Schema$InventoryItemsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$InventoryItemsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$InventoryItemsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$InventoryItemsListResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback ||
-        {}) as Params$Resource$Inventoryitems$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Inventoryitems$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/inventoryItems'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId'],
-        pathParams: ['profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$InventoryItemsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$InventoryItemsListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Inventoryitems$Get
-    extends StandardParameters {
-    /**
-     * Inventory item ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for order documents.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Inventoryitems$List
-    extends StandardParameters {
-    /**
-     * Select only inventory items with these IDs.
-     */
-    ids?: string[];
-    /**
-     * Select only inventory items that are in plan.
-     */
-    inPlan?: boolean;
-    /**
-     * Maximum number of results to return.
-     */
-    maxResults?: number;
-    /**
-     * Select only inventory items that belong to specified orders.
-     */
-    orderId?: string[];
-    /**
-     * Value of the nextPageToken from the previous result page.
-     */
-    pageToken?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for order documents.
-     */
-    projectId?: string;
-    /**
-     * Select only inventory items that are associated with these sites.
-     */
-    siteId?: string[];
-    /**
-     * Field by which to sort the list.
-     */
-    sortField?: string;
-    /**
-     * Order of sorted results.
-     */
-    sortOrder?: string;
-    /**
-     * Select only inventory items with this type.
-     */
-    type?: string;
-  }
-
   export class Resource$Languages {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -30762,7 +29904,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -30861,7 +30003,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/languages'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/languages'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -30914,7 +30056,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31011,7 +30153,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/metros'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/metros'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31064,7 +30206,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31167,7 +30309,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/mobileApps/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/mobileApps/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31206,7 +30348,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31316,7 +30458,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/mobileApps'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/mobileApps'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31399,7 +30541,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31503,7 +30645,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/mobileCarriers/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/mobileCarriers/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31542,7 +30684,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31645,7 +30787,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/mobileCarriers'
+              '/dfareporting/v5/userprofiles/{+profileId}/mobileCarriers'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31710,7 +30852,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31814,7 +30956,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystems/{+dartId}'
+              '/dfareporting/v5/userprofiles/{+profileId}/operatingSystems/{+dartId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -31853,7 +30995,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -31956,7 +31098,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystems'
+              '/dfareporting/v5/userprofiles/{+profileId}/operatingSystems'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -32023,7 +31165,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32130,7 +31272,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystemVersions/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/operatingSystemVersions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -32169,7 +31311,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32276,7 +31418,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/operatingSystemVersions'
+              '/dfareporting/v5/userprofiles/{+profileId}/operatingSystemVersions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -32320,379 +31462,6 @@ export namespace dfareporting_v4 {
     profileId?: string;
   }
 
-  export class Resource$Orders {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets one order by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.orders.get({
-     *     // Order ID.
-     *     id: '[^/]+',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *     // Project ID for orders.
-     *     projectId: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "approverUserProfileIds": [],
-     *   //   "buyerInvoiceId": "my_buyerInvoiceId",
-     *   //   "buyerOrganizationName": "my_buyerOrganizationName",
-     *   //   "comments": "my_comments",
-     *   //   "contacts": [],
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifiedInfo": {},
-     *   //   "name": "my_name",
-     *   //   "notes": "my_notes",
-     *   //   "planningTermId": "my_planningTermId",
-     *   //   "projectId": "my_projectId",
-     *   //   "sellerOrderId": "my_sellerOrderId",
-     *   //   "sellerOrganizationName": "my_sellerOrganizationName",
-     *   //   "siteId": [],
-     *   //   "siteNames": [],
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "termsAndConditions": "my_termsAndConditions"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Orders$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Orders$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Order>>;
-    get(
-      params: Params$Resource$Orders$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Orders$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Order>,
-      callback: BodyResponseCallback<Schema$Order>
-    ): void;
-    get(
-      params: Params$Resource$Orders$Get,
-      callback: BodyResponseCallback<Schema$Order>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Order>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Orders$Get
-        | BodyResponseCallback<Schema$Order>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Order>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Order>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Order>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Orders$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orders$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/orders/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId', 'id'],
-        pathParams: ['id', 'profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Order>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Order>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a list of orders, possibly filtered. This method supports paging.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.orders.list({
-     *     // Select only orders with these IDs.
-     *     ids: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Value of the nextPageToken from the previous result page.
-     *     pageToken: 'placeholder-value',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *     // Project ID for orders.
-     *     projectId: 'placeholder-value',
-     *     // Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
-     *     searchString: 'placeholder-value',
-     *     // Select only orders that are associated with these site IDs.
-     *     siteId: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     sortField: 'placeholder-value',
-     *     // Order of sorted results.
-     *     sortOrder: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "orders": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Orders$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Orders$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$OrdersListResponse>>;
-    list(
-      params: Params$Resource$Orders$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Orders$List,
-      options: MethodOptions | BodyResponseCallback<Schema$OrdersListResponse>,
-      callback: BodyResponseCallback<Schema$OrdersListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Orders$List,
-      callback: BodyResponseCallback<Schema$OrdersListResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$OrdersListResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Orders$List
-        | BodyResponseCallback<Schema$OrdersListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$OrdersListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$OrdersListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$OrdersListResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Orders$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Orders$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/projects/{projectId}/orders'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'projectId'],
-        pathParams: ['profileId', 'projectId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$OrdersListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$OrdersListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Orders$Get extends StandardParameters {
-    /**
-     * Order ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for orders.
-     */
-    projectId?: string;
-  }
-  export interface Params$Resource$Orders$List extends StandardParameters {
-    /**
-     * Select only orders with these IDs.
-     */
-    ids?: string[];
-    /**
-     * Maximum number of results to return.
-     */
-    maxResults?: number;
-    /**
-     * Value of the nextPageToken from the previous result page.
-     */
-    pageToken?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Project ID for orders.
-     */
-    projectId?: string;
-    /**
-     * Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, "order*2015" will return orders with names like "order June 2015", "order April 2015", or simply "order 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "order" will match orders with name "my order", "order 2015", or simply "order".
-     */
-    searchString?: string;
-    /**
-     * Select only orders that are associated with these site IDs.
-     */
-    siteId?: string[];
-    /**
-     * Field by which to sort the list.
-     */
-    sortField?: string;
-    /**
-     * Order of sorted results.
-     */
-    sortOrder?: string;
-  }
-
   export class Resource$Placementgroups {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -32716,7 +31485,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -32841,7 +31610,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -32880,7 +31649,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33036,7 +31805,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -33075,7 +31844,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33217,7 +31986,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -33256,7 +32025,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33414,7 +32183,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -33453,7 +32222,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33609,7 +32378,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -33790,7 +32559,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -33899,7 +32668,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placements/generatetags'
+              '/dfareporting/v5/userprofiles/{+profileId}/placements/generatetags'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -33940,7 +32709,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34084,7 +32853,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placements/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/placements/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -34123,7 +32892,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34318,7 +33087,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -34357,7 +33126,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34501,7 +33270,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -34540,7 +33309,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34736,7 +33505,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -34775,7 +33544,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -34970,7 +33739,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/placements'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/placements'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -35179,7 +33948,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35272,7 +34041,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -35311,7 +34080,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35414,7 +34183,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -35453,7 +34222,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35565,7 +34334,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -35604,7 +34373,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35720,7 +34489,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -35761,7 +34530,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -35875,7 +34644,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -35914,7 +34683,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36026,7 +34795,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/placementStrategies'
+              '/dfareporting/v5/userprofiles/{+profileId}/placementStrategies'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -36166,7 +34935,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36268,7 +35037,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/platformTypes/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/platformTypes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -36307,7 +35076,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36410,7 +35179,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/platformTypes'
+              '/dfareporting/v5/userprofiles/{+profileId}/platformTypes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -36475,7 +35244,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36578,7 +35347,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/postalCodes/{+code}'
+              '/dfareporting/v5/userprofiles/{+profileId}/postalCodes/{+code}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -36617,7 +35386,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -36716,7 +35485,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/postalCodes'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/postalCodes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -36756,370 +35525,6 @@ export namespace dfareporting_v4 {
     profileId?: string;
   }
 
-  export class Resource$Projects {
-    context: APIRequestContext;
-    constructor(context: APIRequestContext) {
-      this.context = context;
-    }
-
-    /**
-     * Gets one project by ID.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.projects.get({
-     *     // Project ID.
-     *     id: '[^/]+',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "advertiserId": "my_advertiserId",
-     *   //   "audienceAgeGroup": "my_audienceAgeGroup",
-     *   //   "audienceGender": "my_audienceGender",
-     *   //   "budget": "my_budget",
-     *   //   "clientBillingCode": "my_clientBillingCode",
-     *   //   "clientName": "my_clientName",
-     *   //   "endDate": "my_endDate",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifiedInfo": {},
-     *   //   "name": "my_name",
-     *   //   "overview": "my_overview",
-     *   //   "startDate": "my_startDate",
-     *   //   "subaccountId": "my_subaccountId",
-     *   //   "targetClicks": "my_targetClicks",
-     *   //   "targetConversions": "my_targetConversions",
-     *   //   "targetCpaNanos": "my_targetCpaNanos",
-     *   //   "targetCpcNanos": "my_targetCpcNanos",
-     *   //   "targetCpmActiveViewNanos": "my_targetCpmActiveViewNanos",
-     *   //   "targetCpmNanos": "my_targetCpmNanos",
-     *   //   "targetImpressions": "my_targetImpressions"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    get(
-      params: Params$Resource$Projects$Get,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    get(
-      params?: Params$Resource$Projects$Get,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Project>>;
-    get(
-      params: Params$Resource$Projects$Get,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Get,
-      options: MethodOptions | BodyResponseCallback<Schema$Project>,
-      callback: BodyResponseCallback<Schema$Project>
-    ): void;
-    get(
-      params: Params$Resource$Projects$Get,
-      callback: BodyResponseCallback<Schema$Project>
-    ): void;
-    get(callback: BodyResponseCallback<Schema$Project>): void;
-    get(
-      paramsOrCallback?:
-        | Params$Resource$Projects$Get
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Project>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Project>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Projects$Get;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$Get;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/projects/{+id}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'id'],
-        pathParams: ['id', 'profileId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Project>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Project>(parameters);
-      }
-    }
-
-    /**
-     * Retrieves a list of projects, possibly filtered. This method supports paging .
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfatrafficking'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.projects.list({
-     *     // Select only projects with these advertiser IDs.
-     *     advertiserIds: 'placeholder-value',
-     *     // Select only projects with these IDs.
-     *     ids: 'placeholder-value',
-     *     // Maximum number of results to return.
-     *     maxResults: 'placeholder-value',
-     *     // Value of the nextPageToken from the previous result page.
-     *     pageToken: 'placeholder-value',
-     *     // User profile ID associated with this request.
-     *     profileId: '[^/]+',
-     *     // Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
-     *     searchString: 'placeholder-value',
-     *     // Field by which to sort the list.
-     *     sortField: 'placeholder-value',
-     *     // Order of sorted results.
-     *     sortOrder: 'placeholder-value',
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "kind": "my_kind",
-     *   //   "nextPageToken": "my_nextPageToken",
-     *   //   "projects": []
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    list(
-      params: Params$Resource$Projects$List,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    list(
-      params?: Params$Resource$Projects$List,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$ProjectsListResponse>>;
-    list(
-      params: Params$Resource$Projects$List,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    list(
-      params: Params$Resource$Projects$List,
-      options:
-        | MethodOptions
-        | BodyResponseCallback<Schema$ProjectsListResponse>,
-      callback: BodyResponseCallback<Schema$ProjectsListResponse>
-    ): void;
-    list(
-      params: Params$Resource$Projects$List,
-      callback: BodyResponseCallback<Schema$ProjectsListResponse>
-    ): void;
-    list(callback: BodyResponseCallback<Schema$ProjectsListResponse>): void;
-    list(
-      paramsOrCallback?:
-        | Params$Resource$Projects$List
-        | BodyResponseCallback<Schema$ProjectsListResponse>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$ProjectsListResponse>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$ProjectsListResponse>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$ProjectsListResponse>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Projects$List;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Projects$List;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/projects'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'GET',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId'],
-        pathParams: ['profileId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$ProjectsListResponse>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$ProjectsListResponse>(parameters);
-      }
-    }
-  }
-
-  export interface Params$Resource$Projects$Get extends StandardParameters {
-    /**
-     * Project ID.
-     */
-    id?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-  }
-  export interface Params$Resource$Projects$List extends StandardParameters {
-    /**
-     * Select only projects with these advertiser IDs.
-     */
-    advertiserIds?: string[];
-    /**
-     * Select only projects with these IDs.
-     */
-    ids?: string[];
-    /**
-     * Maximum number of results to return.
-     */
-    maxResults?: number;
-    /**
-     * Value of the nextPageToken from the previous result page.
-     */
-    pageToken?: string;
-    /**
-     * User profile ID associated with this request.
-     */
-    profileId?: string;
-    /**
-     * Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, "project*2015" will return projects with names like "project June 2015", "project April 2015", or simply "project 2015". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of "project" will match projects with name "my project", "project 2015", or simply "project".
-     */
-    searchString?: string;
-    /**
-     * Field by which to sort the list.
-     */
-    sortField?: string;
-    /**
-     * Order of sorted results.
-     */
-    sortOrder?: string;
-  }
-
   export class Resource$Regions {
     context: APIRequestContext;
     constructor(context: APIRequestContext) {
@@ -37143,7 +35548,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37240,7 +35645,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/regions'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/regions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -37293,7 +35698,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37405,7 +35810,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -37444,7 +35849,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37574,7 +35979,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -37613,7 +36018,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37733,7 +36138,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -37774,7 +36179,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -37906,7 +36311,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -37945,7 +36350,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38075,7 +36480,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingLists'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -38212,7 +36617,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38317,7 +36722,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares/{+remarketingListId}'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares/{+remarketingListId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -38356,7 +36761,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38472,7 +36877,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -38511,7 +36916,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38625,7 +37030,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/remarketingListShares'
+              '/dfareporting/v5/userprofiles/{+profileId}/remarketingListShares'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -38717,7 +37122,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38809,7 +37214,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -38848,7 +37253,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -38873,7 +37278,6 @@ export namespace dfareporting_v4 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "criteria": {},
-     *   //   "crossDimensionReachCriteria": {},
      *   //   "crossMediaReachCriteria": {},
      *   //   "delivery": {},
      *   //   "etag": "my_etag",
@@ -38965,7 +37369,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -39004,7 +37408,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39027,7 +37431,6 @@ export namespace dfareporting_v4 {
      *       // {
      *       //   "accountId": "my_accountId",
      *       //   "criteria": {},
-     *       //   "crossDimensionReachCriteria": {},
      *       //   "crossMediaReachCriteria": {},
      *       //   "delivery": {},
      *       //   "etag": "my_etag",
@@ -39053,7 +37456,6 @@ export namespace dfareporting_v4 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "criteria": {},
-     *   //   "crossDimensionReachCriteria": {},
      *   //   "crossMediaReachCriteria": {},
      *   //   "delivery": {},
      *   //   "etag": "my_etag",
@@ -39144,7 +37546,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -39183,7 +37585,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39292,7 +37694,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}/reports'
+              rootUrl + '/dfareporting/v5/userprofiles/{profileId}/reports'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -39315,188 +37717,6 @@ export namespace dfareporting_v4 {
     }
 
     /**
-     * Updates an existing report. This method supports patch semantics.
-     * @example
-     * ```js
-     * // Before running the sample:
-     * // - Enable the API at:
-     * //   https://console.developers.google.com/apis/api/dfareporting.googleapis.com
-     * // - Login into gcloud by running:
-     * //   ```sh
-     * //   $ gcloud auth application-default login
-     * //   ```
-     * // - Install the npm module by running:
-     * //   ```sh
-     * //   $ npm install googleapis
-     * //   ```
-     *
-     * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
-     *
-     * async function main() {
-     *   const auth = new google.auth.GoogleAuth({
-     *     // Scopes can be specified either as an array or as a single, space-delimited string.
-     *     scopes: ['https://www.googleapis.com/auth/dfareporting'],
-     *   });
-     *
-     *   // Acquire an auth client, and bind it to all future calls
-     *   const authClient = await auth.getClient();
-     *   google.options({auth: authClient});
-     *
-     *   // Do the magic
-     *   const res = await dfareporting.reports.patch({
-     *     // The Campaign Manager 360 user profile ID.
-     *     profileId: 'placeholder-value',
-     *     // The ID of the report.
-     *     reportId: 'placeholder-value',
-     *
-     *     // Request body metadata
-     *     requestBody: {
-     *       // request body parameters
-     *       // {
-     *       //   "accountId": "my_accountId",
-     *       //   "criteria": {},
-     *       //   "crossDimensionReachCriteria": {},
-     *       //   "crossMediaReachCriteria": {},
-     *       //   "delivery": {},
-     *       //   "etag": "my_etag",
-     *       //   "fileName": "my_fileName",
-     *       //   "floodlightCriteria": {},
-     *       //   "format": "my_format",
-     *       //   "id": "my_id",
-     *       //   "kind": "my_kind",
-     *       //   "lastModifiedTime": "my_lastModifiedTime",
-     *       //   "name": "my_name",
-     *       //   "ownerProfileId": "my_ownerProfileId",
-     *       //   "pathToConversionCriteria": {},
-     *       //   "reachCriteria": {},
-     *       //   "schedule": {},
-     *       //   "subAccountId": "my_subAccountId",
-     *       //   "type": "my_type"
-     *       // }
-     *     },
-     *   });
-     *   console.log(res.data);
-     *
-     *   // Example response
-     *   // {
-     *   //   "accountId": "my_accountId",
-     *   //   "criteria": {},
-     *   //   "crossDimensionReachCriteria": {},
-     *   //   "crossMediaReachCriteria": {},
-     *   //   "delivery": {},
-     *   //   "etag": "my_etag",
-     *   //   "fileName": "my_fileName",
-     *   //   "floodlightCriteria": {},
-     *   //   "format": "my_format",
-     *   //   "id": "my_id",
-     *   //   "kind": "my_kind",
-     *   //   "lastModifiedTime": "my_lastModifiedTime",
-     *   //   "name": "my_name",
-     *   //   "ownerProfileId": "my_ownerProfileId",
-     *   //   "pathToConversionCriteria": {},
-     *   //   "reachCriteria": {},
-     *   //   "schedule": {},
-     *   //   "subAccountId": "my_subAccountId",
-     *   //   "type": "my_type"
-     *   // }
-     * }
-     *
-     * main().catch(e => {
-     *   console.error(e);
-     *   throw e;
-     * });
-     *
-     * ```
-     *
-     * @param params - Parameters for request
-     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
-     * @param callback - Optional callback that handles the response.
-     * @returns A promise if used with async/await, or void if used with a callback.
-     */
-    patch(
-      params: Params$Resource$Reports$Patch,
-      options: StreamMethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
-    patch(
-      params?: Params$Resource$Reports$Patch,
-      options?: MethodOptions
-    ): Promise<GaxiosResponseWithHTTP2<Schema$Report>>;
-    patch(
-      params: Params$Resource$Reports$Patch,
-      options: StreamMethodOptions | BodyResponseCallback<Readable>,
-      callback: BodyResponseCallback<Readable>
-    ): void;
-    patch(
-      params: Params$Resource$Reports$Patch,
-      options: MethodOptions | BodyResponseCallback<Schema$Report>,
-      callback: BodyResponseCallback<Schema$Report>
-    ): void;
-    patch(
-      params: Params$Resource$Reports$Patch,
-      callback: BodyResponseCallback<Schema$Report>
-    ): void;
-    patch(callback: BodyResponseCallback<Schema$Report>): void;
-    patch(
-      paramsOrCallback?:
-        | Params$Resource$Reports$Patch
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>,
-      optionsOrCallback?:
-        | MethodOptions
-        | StreamMethodOptions
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>,
-      callback?:
-        | BodyResponseCallback<Schema$Report>
-        | BodyResponseCallback<Readable>
-    ):
-      | void
-      | Promise<GaxiosResponseWithHTTP2<Schema$Report>>
-      | Promise<GaxiosResponseWithHTTP2<Readable>> {
-      let params = (paramsOrCallback || {}) as Params$Resource$Reports$Patch;
-      let options = (optionsOrCallback || {}) as MethodOptions;
-
-      if (typeof paramsOrCallback === 'function') {
-        callback = paramsOrCallback;
-        params = {} as Params$Resource$Reports$Patch;
-        options = {};
-      }
-
-      if (typeof optionsOrCallback === 'function') {
-        callback = optionsOrCallback;
-        options = {};
-      }
-
-      const rootUrl = options.rootUrl || 'https://dfareporting.googleapis.com/';
-      const parameters = {
-        options: Object.assign(
-          {
-            url: (
-              rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
-            ).replace(/([^:]\/)\/+/g, '$1'),
-            method: 'PATCH',
-            apiVersion: '',
-          },
-          options
-        ),
-        params,
-        requiredParams: ['profileId', 'reportId'],
-        pathParams: ['profileId', 'reportId'],
-        context: this.context,
-      };
-      if (callback) {
-        createAPIRequest<Schema$Report>(
-          parameters,
-          callback as BodyResponseCallback<unknown>
-        );
-      } else {
-        return createAPIRequest<Schema$Report>(parameters);
-      }
-    }
-
-    /**
      * Runs a report.
      * @example
      * ```js
@@ -39513,7 +37733,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39623,7 +37843,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/run'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/run'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -39662,7 +37882,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39687,7 +37907,6 @@ export namespace dfareporting_v4 {
      *       // {
      *       //   "accountId": "my_accountId",
      *       //   "criteria": {},
-     *       //   "crossDimensionReachCriteria": {},
      *       //   "crossMediaReachCriteria": {},
      *       //   "delivery": {},
      *       //   "etag": "my_etag",
@@ -39713,7 +37932,6 @@ export namespace dfareporting_v4 {
      *   // {
      *   //   "accountId": "my_accountId",
      *   //   "criteria": {},
-     *   //   "crossDimensionReachCriteria": {},
      *   //   "crossMediaReachCriteria": {},
      *   //   "delivery": {},
      *   //   "etag": "my_etag",
@@ -39805,7 +38023,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -39885,21 +38103,6 @@ export namespace dfareporting_v4 {
      */
     sortOrder?: string;
   }
-  export interface Params$Resource$Reports$Patch extends StandardParameters {
-    /**
-     * The Campaign Manager 360 user profile ID.
-     */
-    profileId?: string;
-    /**
-     * The ID of the report.
-     */
-    reportId?: string;
-
-    /**
-     * Request body metadata
-     */
-    requestBody?: Schema$Report;
-  }
   export interface Params$Resource$Reports$Run extends StandardParameters {
     /**
      * The Campaign Manager 360 user profile ID.
@@ -39953,7 +38156,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -39976,7 +38179,6 @@ export namespace dfareporting_v4 {
      *       // {
      *       //   "accountId": "my_accountId",
      *       //   "criteria": {},
-     *       //   "crossDimensionReachCriteria": {},
      *       //   "crossMediaReachCriteria": {},
      *       //   "delivery": {},
      *       //   "etag": "my_etag",
@@ -40083,7 +38285,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/compatiblefields/query'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/compatiblefields/query'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -40142,7 +38344,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40253,7 +38455,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/files/{fileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -40292,7 +38494,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40403,7 +38605,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{profileId}/reports/{reportId}/files'
+              '/dfareporting/v5/userprofiles/{profileId}/reports/{reportId}/files'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -40492,7 +38694,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40603,7 +38805,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites/{+id}'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -40642,7 +38844,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40772,7 +38974,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -40811,7 +39013,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -40939,7 +39141,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -40978,7 +39180,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41110,7 +39312,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -41149,7 +39351,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41279,7 +39481,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sites'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sites'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -41439,7 +39641,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41541,7 +39743,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes/{+id}'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -41580,7 +39782,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41692,7 +39894,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -41731,7 +39933,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -41836,7 +40038,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/sizes'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/sizes'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -41926,7 +40128,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42029,7 +40231,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/subaccounts/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/subaccounts/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -42068,7 +40270,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42181,7 +40383,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -42220,7 +40422,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42332,7 +40534,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -42371,7 +40573,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42486,7 +40688,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -42525,7 +40727,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42638,7 +40840,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/subaccounts'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/subaccounts'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -42765,7 +40967,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -42878,7 +41080,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetableRemarketingLists/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetableRemarketingLists/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -42917,7 +41119,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43039,7 +41241,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetableRemarketingLists'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetableRemarketingLists'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -43134,7 +41336,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43246,7 +41448,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -43285,7 +41487,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43415,7 +41617,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -43454,7 +41656,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43572,7 +41774,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -43613,7 +41815,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43745,7 +41947,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -43784,7 +41986,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -43914,7 +42116,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/targetingTemplates'
+              '/dfareporting/v5/userprofiles/{+profileId}/targetingTemplates'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -44047,7 +42249,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44151,7 +42353,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/tvCampaignDetails/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/tvCampaignDetails/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -44213,7 +42415,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44320,7 +42522,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/tvCampaignSummaries'
+              '/dfareporting/v5/userprofiles/{+profileId}/tvCampaignSummaries'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -44384,7 +42586,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44491,7 +42693,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{profileId}'
+              rootUrl + '/dfareporting/v5/userprofiles/{profileId}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -44530,7 +42732,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44629,7 +42831,7 @@ export namespace dfareporting_v4 {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/dfareporting/v4/userprofiles').replace(
+            url: (rootUrl + '/dfareporting/v5/userprofiles').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -44686,7 +42888,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44790,7 +42992,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissionGroups/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissionGroups/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -44829,7 +43031,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -44936,7 +43138,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissionGroups'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissionGroups'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -45003,7 +43205,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45107,7 +43309,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissions/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissions/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -45146,7 +43348,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45251,7 +43453,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRolePermissions'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRolePermissions'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -45322,7 +43524,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45414,7 +43616,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRoles/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRoles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'DELETE',
             apiVersion: '',
@@ -45453,7 +43655,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45559,7 +43761,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/userRoles/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/userRoles/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -45598,7 +43800,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45716,7 +43918,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'POST',
             apiVersion: '',
@@ -45755,7 +43957,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -45871,7 +44073,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -45910,7 +44112,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -46030,7 +44232,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PATCH',
             apiVersion: '',
@@ -46069,7 +44271,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -46187,7 +44389,7 @@ export namespace dfareporting_v4 {
         options: Object.assign(
           {
             url: (
-              rootUrl + '/dfareporting/v4/userprofiles/{+profileId}/userRoles'
+              rootUrl + '/dfareporting/v5/userprofiles/{+profileId}/userRoles'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'PUT',
             apiVersion: '',
@@ -46329,7 +44531,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -46432,7 +44634,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/videoFormats/{+id}'
+              '/dfareporting/v5/userprofiles/{+profileId}/videoFormats/{+id}'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
@@ -46471,7 +44673,7 @@ export namespace dfareporting_v4 {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const dfareporting = google.dfareporting('v4');
+     * const dfareporting = google.dfareporting('v5');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -46572,7 +44774,7 @@ export namespace dfareporting_v4 {
           {
             url: (
               rootUrl +
-              '/dfareporting/v4/userprofiles/{+profileId}/videoFormats'
+              '/dfareporting/v5/userprofiles/{+profileId}/videoFormats'
             ).replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
