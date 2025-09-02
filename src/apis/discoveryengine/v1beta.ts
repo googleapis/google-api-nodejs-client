@@ -772,6 +772,19 @@ export namespace discoveryengine_v1beta {
     functionName?: string | null;
   }
   /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1AclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
+  }
+  /**
    * Configuration data for advance site search.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1AdvancedSiteSearchConfig {
@@ -2455,6 +2468,10 @@ export namespace discoveryengine_v1beta {
    * Metadata that describes the training and serving parameters of an Engine.
    */
   export interface Schema$GoogleCloudDiscoveryengineV1alphaEngine {
+    /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
     /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
@@ -4850,6 +4867,19 @@ export namespace discoveryengine_v1beta {
      * UserLicenses successfully updated.
      */
     userLicenses?: Schema$GoogleCloudDiscoveryengineV1UserLicense[];
+  }
+  /**
+   * Access Control Configuration.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaAclConfig {
+    /**
+     * Identity provider config.
+     */
+    idpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfig;
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string | null;
   }
   /**
    * Request message for CompletionService.AdvancedCompleteQuery method. .
@@ -7900,6 +7930,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1betaEngine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig;
@@ -8352,6 +8386,28 @@ export namespace discoveryengine_v1beta {
      * Immutable. The full resource name of the identity mapping store. Format: `projects/{project\}/locations/{location\}/identityMappingStores/{identity_mapping_store\}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
      */
     name?: string | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -12456,6 +12512,10 @@ export namespace discoveryengine_v1beta {
    */
   export interface Schema$GoogleCloudDiscoveryengineV1Engine {
     /**
+     * Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.
+     */
+    appType?: string | null;
+    /**
      * Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT.
      */
     chatEngineConfig?: Schema$GoogleCloudDiscoveryengineV1EngineChatEngineConfig;
@@ -12679,6 +12739,28 @@ export namespace discoveryengine_v1beta {
      * The total number of IdentityMappingEntries that were processed.
      */
     totalCount?: string | null;
+  }
+  /**
+   * Identity Provider Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfig {
+    /**
+     * External Identity provider config.
+     */
+    externalIdpConfig?: Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig;
+    /**
+     * Identity provider type configured.
+     */
+    idpType?: string | null;
+  }
+  /**
+   * Third party IDP Config.
+   */
+  export interface Schema$GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig {
+    /**
+     * Workforce pool name. Example: "locations/global/workforcePools/pool_id"
+     */
+    workforcePoolName?: string | null;
   }
   /**
    * Metadata related to the progress of the ImportCompletionSuggestions operation. This will be returned by the google.longrunning.Operation.metadata field.
@@ -14172,6 +14254,152 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Gets the AclConfig.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.getAclConfig({
+     *     // Required. Resource name of AclConfig, such as `projects/x/locations/x/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     *     name: 'projects/my-project/locations/my-location/aclConfig',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "idpConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAclConfig(
+      params?: Params$Resource$Projects$Locations$Getaclconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    >;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    getAclConfig(
+      params: Params$Resource$Projects$Locations$Getaclconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    getAclConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    getAclConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Getaclconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Getaclconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Getaclconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Gets the CmekConfig.
      * @example
      * ```js
@@ -14795,6 +15023,161 @@ export namespace discoveryengine_v1beta {
     }
 
     /**
+     * Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/discoveryengine.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const discoveryengine = google.discoveryengine('v1beta');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await discoveryengine.projects.locations.updateAclConfig({
+     *     // Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     *     name: 'projects/my-project/locations/my-location/aclConfig',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "idpConfig": {},
+     *       //   "name": "my_name"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "idpConfig": {},
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    updateAclConfig(
+      params?: Params$Resource$Projects$Locations$Updateaclconfig,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    >;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    updateAclConfig(
+      params: Params$Resource$Projects$Locations$Updateaclconfig,
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    updateAclConfig(
+      callback: BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+    ): void;
+    updateAclConfig(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Updateaclconfig
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Updateaclconfig;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Updateaclconfig;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://discoveryengine.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1beta/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudDiscoveryengineV1betaAclConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Provisions a CMEK key for use in a location of a customer's project. This method will also conduct location validation on the provided cmekConfig to make sure the key is valid and can be used in the selected location.
      * @example
      * ```js
@@ -14955,6 +15338,13 @@ export namespace discoveryengine_v1beta {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Getaclconfig
+    extends StandardParameters {
+    /**
+     * Required. Resource name of AclConfig, such as `projects/x/locations/x/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.
+     */
+    name?: string;
+  }
   export interface Params$Resource$Projects$Locations$Getcmekconfig
     extends StandardParameters {
     /**
@@ -14997,6 +15387,18 @@ export namespace discoveryengine_v1beta {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudDiscoveryengineV1betaSetDedicatedCrawlRateRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Updateaclconfig
+    extends StandardParameters {
+    /**
+     * Immutable. The full resource name of the acl configuration. Format: `projects/{project\}/locations/{location\}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudDiscoveryengineV1betaAclConfig;
   }
   export interface Params$Resource$Projects$Locations$Updatecmekconfig
     extends StandardParameters {
@@ -30939,6 +31341,7 @@ export namespace discoveryengine_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
@@ -31252,6 +31655,7 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -31573,6 +31977,7 @@ export namespace discoveryengine_v1beta {
      *       requestBody: {
      *         // request body parameters
      *         // {
+     *         //   "appType": "my_appType",
      *         //   "chatEngineConfig": {},
      *         //   "chatEngineMetadata": {},
      *         //   "commonConfig": {},
@@ -31594,6 +31999,7 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -31760,6 +32166,7 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},
@@ -31929,6 +32336,7 @@ export namespace discoveryengine_v1beta {
      *
      *   // Example response
      *   // {
+     *   //   "appType": "my_appType",
      *   //   "chatEngineConfig": {},
      *   //   "chatEngineMetadata": {},
      *   //   "commonConfig": {},

@@ -210,6 +210,31 @@
       "resources": {
         "locations": {
           "methods": {
+            "getAclConfig": {
+              "description": "Gets the AclConfig.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/aclConfig",
+              "httpMethod": "GET",
+              "id": "discoveryengine.projects.locations.getAclConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Required. Resource name of AclConfig, such as `projects/*/locations/*/aclConfig`. If the caller does not have permission to access the AclConfig, regardless of whether or not it exists, a PERMISSION_DENIED error is returned.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/aclConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "getCmekConfig": {
               "description": "Gets the CmekConfig.",
               "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/cmekConfig",
@@ -314,6 +339,34 @@
               },
               "response": {
                 "$ref": "GoogleLongrunningOperation"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
+            "updateAclConfig": {
+              "description": "Default ACL configuration for use in a location of a customer's project. Updates will only reflect to new data stores. Existing data stores will still use the old value.",
+              "flatPath": "v1beta/projects/{projectsId}/locations/{locationsId}/aclConfig",
+              "httpMethod": "PATCH",
+              "id": "discoveryengine.projects.locations.updateAclConfig",
+              "parameterOrder": [
+                "name"
+              ],
+              "parameters": {
+                "name": {
+                  "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+/aclConfig$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta/{+name}",
+              "request": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
+              },
+              "response": {
+                "$ref": "GoogleCloudDiscoveryengineV1betaAclConfig"
               },
               "scopes": [
                 "https://www.googleapis.com/auth/cloud-platform"
@@ -8147,7 +8200,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250824",
   "rootUrl": "https://discoveryengine.googleapis.com/",
   "schemas": {
     "GdataBlobstore2Info": {
@@ -8988,6 +9041,21 @@
       "properties": {
         "functionName": {
           "description": "Human-readable name of a function or method—for example, `google.cloud.discoveryengine.v1alpha.RecommendationService.Recommend`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1AclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1AclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -10227,6 +10295,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1Engine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1EngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -10556,6 +10636,42 @@
         "totalCount": {
           "description": "The total number of IdentityMappingEntries that were processed.",
           "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1IdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
         }
       },
@@ -14348,6 +14464,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1alphaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1alphaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -17639,6 +17767,21 @@
             "Workspace Data Store contains Keep data",
             "Workspace Data Store contains People data"
           ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaAclConfig": {
+      "description": "Access Control Configuration.",
+      "id": "GoogleCloudDiscoveryengineV1betaAclConfig",
+      "properties": {
+        "idpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+          "description": "Identity provider config."
+        },
+        "name": {
+          "description": "Immutable. The full resource name of the acl configuration. Format: `projects/{project}/locations/{location}/aclConfig`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
           "type": "string"
         }
       },
@@ -22005,6 +22148,18 @@
       "description": "Metadata that describes the training and serving parameters of an Engine.",
       "id": "GoogleCloudDiscoveryengineV1betaEngine",
       "properties": {
+        "appType": {
+          "description": "Optional. Immutable. This the application type which this engine resource represents. NOTE: this is a new concept independ of existing industry vertical or solution type.",
+          "enum": [
+            "APP_TYPE_UNSPECIFIED",
+            "APP_TYPE_INTRANET"
+          ],
+          "enumDescriptions": [
+            "All non specified apps.",
+            "App type for intranet search and Agentspace."
+          ],
+          "type": "string"
+        },
         "chatEngineConfig": {
           "$ref": "GoogleCloudDiscoveryengineV1betaEngineChatEngineConfig",
           "description": "Configurations for the Chat Engine. Only applicable if solution_type is SOLUTION_TYPE_CHAT."
@@ -22635,6 +22790,42 @@
         },
         "name": {
           "description": "Immutable. The full resource name of the identity mapping store. Format: `projects/{project}/locations/{location}/identityMappingStores/{identity_mapping_store}`. This field must be a UTF-8 encoded string with a length limit of 1024 characters.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfig": {
+      "description": "Identity Provider Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfig",
+      "properties": {
+        "externalIdpConfig": {
+          "$ref": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+          "description": "External Identity provider config."
+        },
+        "idpType": {
+          "description": "Identity provider type configured.",
+          "enum": [
+            "IDP_TYPE_UNSPECIFIED",
+            "GSUITE",
+            "THIRD_PARTY"
+          ],
+          "enumDescriptions": [
+            "Default value. ACL search not enabled.",
+            "Google 1P provider.",
+            "Third party provider."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig": {
+      "description": "Third party IDP Config.",
+      "id": "GoogleCloudDiscoveryengineV1betaIdpConfigExternalIdpConfig",
+      "properties": {
+        "workforcePoolName": {
+          "description": "Workforce pool name. Example: \"locations/global/workforcePools/pool_id\"",
           "type": "string"
         }
       },
