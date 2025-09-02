@@ -478,11 +478,11 @@ export namespace networksecurity_v1 {
    */
   export interface Schema$AuthzPolicyTarget {
     /**
-     * Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
+     * Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `INTERNAL_SELF_MANAGED`, and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).
      */
     loadBalancingScheme?: string | null;
     /**
-     * Required. A list of references to the Forwarding Rules on which this policy will be applied.
+     * Required. A list of references to the Forwarding Rules on which this policy will be applied. For policies created for Cloudrun, this field will reference the Cloud Run services.
      */
     resources?: string[] | null;
   }
@@ -679,6 +679,10 @@ export namespace networksecurity_v1 {
      */
     description?: string | null;
     /**
+     * Optional. Settings for the endpoint.
+     */
+    endpointSettings?: Schema$FirewallEndpointEndpointSettings;
+    /**
      * Optional. Labels as key value pairs
      */
     labels?: {[key: string]: string} | null;
@@ -765,6 +769,10 @@ export namespace networksecurity_v1 {
      */
     network?: string | null;
   }
+  /**
+   * Settings for the endpoint.
+   */
+  export interface Schema$FirewallEndpointEndpointSettings {}
   /**
    * The GatewaySecurityPolicy resource contains a collection of GatewaySecurityPolicyRules and associated metadata.
    */
@@ -3895,6 +3903,7 @@ export namespace networksecurity_v1 {
      *         //   "billingProjectId": "my_billingProjectId",
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "endpointSettings": {},
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "reconciling": false,
@@ -4201,6 +4210,7 @@ export namespace networksecurity_v1 {
      *   //   "billingProjectId": "my_billingProjectId",
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
+     *   //   "endpointSettings": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
      *   //   "reconciling": false,
@@ -4509,6 +4519,7 @@ export namespace networksecurity_v1 {
      *         //   "billingProjectId": "my_billingProjectId",
      *         //   "createTime": "my_createTime",
      *         //   "description": "my_description",
+     *         //   "endpointSettings": {},
      *         //   "labels": {},
      *         //   "name": "my_name",
      *         //   "reconciling": false,
@@ -7251,7 +7262,7 @@ export namespace networksecurity_v1 {
      *
      *   // Do the magic
      *   const res = await networksecurity.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -7380,7 +7391,7 @@ export namespace networksecurity_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
