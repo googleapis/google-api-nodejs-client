@@ -891,7 +891,7 @@
       }
     }
   },
-  "revision": "20250623",
+  "revision": "20250824",
   "rootUrl": "https://script.googleapis.com/",
   "schemas": {
     "Content": {
@@ -1083,7 +1083,7 @@
       "id": "File",
       "properties": {
         "createTime": {
-          "description": "Creation date timestamp. This read-only field is only visible to users who have WRITER permission for the script project.",
+          "description": "Creation date timestamp.",
           "format": "google-datetime",
           "type": "string"
         },
@@ -1093,7 +1093,7 @@
         },
         "lastModifyUser": {
           "$ref": "GoogleAppsScriptTypeUser",
-          "description": "The user who modified the file most recently. This read-only field is only visible to users who have WRITER permission for the script project."
+          "description": "The user who modified the file most recently. The details visible in this object are controlled by the profile visibility settings of the last modifying user."
         },
         "name": {
           "description": "The name of the file. The file extension is not part of the file name, which can be identified from the type field.",
@@ -1120,7 +1120,7 @@
           "type": "string"
         },
         "updateTime": {
-          "description": "Last modified date timestamp. This read-only field is only visible to users who have WRITER permission for the script project.",
+          "description": "Last modified date timestamp.",
           "format": "google-datetime",
           "type": "string"
         }
