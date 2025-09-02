@@ -470,7 +470,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2302,7 +2302,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3889,7 +3889,7 @@
           ],
           "parameters": {
             "extraLocationTypes": {
-              "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+              "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
               "location": "query",
               "repeated": true,
               "type": "string"
@@ -5132,7 +5132,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -6940,7 +6940,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -8962,7 +8962,7 @@
       }
     }
   },
-  "revision": "20250704",
+  "revision": "20250822",
   "rootUrl": "https://logging.googleapis.com/",
   "schemas": {
     "AppHub": {
@@ -11038,7 +11038,8 @@
           "description": "Logging query that can be executed in Logs Explorer or via Logging API."
         },
         "name": {
-          "description": "Optional. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
+          "description": "Output only. Resource name of the recent query.In the format: \"projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]\" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.",
+          "readOnly": true,
           "type": "string"
         },
         "opsAnalyticsQuery": {

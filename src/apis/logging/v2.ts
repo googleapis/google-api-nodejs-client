@@ -1568,7 +1568,7 @@ export namespace logging_v2 {
      */
     loggingQuery?: Schema$LoggingQuery;
     /**
-     * Optional. Resource name of the recent query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.
+     * Output only. Resource name of the recent query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.
      */
     name?: string | null;
     /**
@@ -3304,7 +3304,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3432,7 +3432,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -12286,7 +12286,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -12414,7 +12414,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -19801,7 +19801,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -19926,7 +19926,7 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Locations$List extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -25902,7 +25902,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -26030,7 +26030,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -34589,7 +34589,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -34717,7 +34717,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**
