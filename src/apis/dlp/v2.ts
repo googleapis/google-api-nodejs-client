@@ -1296,7 +1296,7 @@ export namespace dlp_v2 {
      */
     publishToChronicle?: Schema$GooglePrivacyDlpV2PublishToChronicle;
     /**
-     * Publishes a portion of each profile to Dataplex Catalog with the aspect type Sensitive Data Protection Profile.
+     * Publishes a portion of each profile to Dataplex Universal Catalog with the aspect type Sensitive Data Protection Profile.
      */
     publishToDataplexCatalog?: Schema$GooglePrivacyDlpV2PublishToDataplexCatalog;
     /**
@@ -4108,11 +4108,11 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2PublishToChronicle {}
   /**
-   * Create Dataplex Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
+   * Create Dataplex Universal Catalog aspects for profiled resources with the aspect type Sensitive Data Protection Profile. To learn more about aspects, see https://cloud.google.com/sensitive-data-protection/docs/add-aspects.
    */
   export interface Schema$GooglePrivacyDlpV2PublishToDataplexCatalog {
     /**
-     * Whether creating a Dataplex Catalog aspect for a profiled resource should lower the risk of the profile for that resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
+     * Whether creating a Dataplex Universal Catalog aspect for a profiled resource should lower the risk of the profile for that resource. This also lowers the data risk of resources at the lower levels of the resource hierarchy. For example, reducing the data risk of a table data profile also reduces the data risk of the constituent column data profiles.
      */
     lowerDataRiskToLow?: boolean | null;
   }
@@ -4984,7 +4984,7 @@ export namespace dlp_v2 {
      */
     key?: string | null;
     /**
-     * The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod". This is only set for Google Cloud resources.
+     * The namespaced name for the tag value to attach to Google Cloud resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod" for an organization parent, or "my-project/environment/prod" for a project parent. This is only set for Google Cloud resources.
      */
     namespacedTagValue?: string | null;
     /**
@@ -5048,7 +5048,7 @@ export namespace dlp_v2 {
    */
   export interface Schema$GooglePrivacyDlpV2TagValue {
     /**
-     * The namespaced name for the tag value to attach to resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod".
+     * The namespaced name for the tag value to attach to resources. Must be in the format `{parent_id\}/{tag_key_short_name\}/{short_name\}`, for example, "123456/environment/prod" for an organization parent, or "my-project/environment/prod" for a project parent.
      */
     namespacedValue?: string | null;
   }
