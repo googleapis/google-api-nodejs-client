@@ -402,7 +402,7 @@ export namespace redis_v1 {
    */
   export interface Schema$Cluster {
     /**
-     * Optional. Immutable. Allows customers to specify if they are okay with deploying a multi-zone cluster in less than 3 zones. Once set, if there is a zonal outage during the cluster creation, the cluster will only be deployed in 2 zones, and stay within the 2 zones for its lifecycle.
+     * Optional. Immutable. Deprecated, do not use.
      */
     allowFewerZonesDeployment?: boolean | null;
     /**
