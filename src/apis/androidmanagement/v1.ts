@@ -167,7 +167,7 @@ export namespace androidmanagement_v1 {
      */
     contentProtectionPolicy?: string | null;
     /**
-     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated).
+     * Controls access to developer settings: developer options and safe boot. Replaces safeBootDisabled (deprecated) and debuggingFeaturesAllowed (deprecated). On personally-owned devices with a work profile, setting this policy will not disable safe boot. In this case, a NonComplianceDetail with MANAGEMENT_MODE is reported.
      */
     developerSettings?: string | null;
     /**
@@ -455,6 +455,10 @@ export namespace androidmanagement_v1 {
      */
     credentialProviderPolicy?: string | null;
     /**
+     * Optional. Configuration for this custom app.install_type must be set to CUSTOM for this to be set.
+     */
+    customAppConfig?: Schema$CustomAppConfig;
+    /**
      * The default policy for all permissions requested by the app. If specified, this overrides the policy-level default_permission_policy which applies to all apps. It does not override the permission_grants which applies to all apps.
      */
     defaultPermissionPolicy?: string | null;
@@ -467,7 +471,7 @@ export namespace androidmanagement_v1 {
      */
     disabled?: boolean | null;
     /**
-     * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.The signing key certificate fingerprint of the app on the device must match one of the entries in signingKeyFingerprintsSha256 or the signing key certificate fingerprints obtained from Play Store for the app to be able to communicate with Android Device Policy. If the app is not on Play Store and signingKeyFingerprintsSha256 is not set, a NonComplianceDetail with INVALID_VALUE is reported.
+     * Configuration to enable this app as an extension app, with the capability of interacting with Android Device Policy offline.This field can be set for at most one app.The signing key certificate fingerprint of the app on the device must match one of the entries in ApplicationPolicy.signingKeyCerts or ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) or the signing key certificate fingerprints obtained from Play Store for the app to be able to communicate with Android Device Policy. If the app is not on Play Store and if ApplicationPolicy.signingKeyCerts and ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) are not set, a NonComplianceDetail with INVALID_VALUE is reported.
      */
     extensionConfig?: Schema$ExtensionConfig;
     /**
@@ -510,6 +514,10 @@ export namespace androidmanagement_v1 {
      * Optional. ID of the preferential network the application uses. There must be a configuration for the specified network ID in preferentialNetworkServiceConfigs. If set to PREFERENTIAL_NETWORK_ID_UNSPECIFIED, the application will use the default network ID specified in defaultPreferentialNetworkId. See the documentation of defaultPreferentialNetworkId for the list of apps excluded from this defaulting. This applies on both work profiles and fully managed devices on Android 13 and above.
      */
     preferentialNetworkId?: string | null;
+    /**
+     * Optional. Signing key certificates of the app.This field is required in the following cases: The app has installType set to CUSTOM (i.e. a custom app). The app has extensionConfig set (i.e. an extension app) but ExtensionConfig.signingKeyFingerprintsSha256 (deprecated) is not set and the app does not exist on the Play Store.If this field is not set for a custom app, the policy is rejected. If it is not set when required for a non-custom app, a NonComplianceDetail with INVALID_VALUE is reported.For other cases, this field is optional and the signing key certificates obtained from Play Store are used.See following policy settings to see how this field is used: choosePrivateKeyRules ApplicationPolicy.InstallType.CUSTOM ApplicationPolicy.extensionConfig
+     */
+    signingKeyCerts?: Schema$ApplicationSigningKeyCert[];
     /**
      * Optional. Specifies whether user control is permitted for the app. User control includes user actions like force-stopping and clearing app data. Certain types of apps have special treatment, see USER_CONTROL_SETTINGS_UNSPECIFIED and USER_CONTROL_ALLOWED for more details.
      */
@@ -593,6 +601,15 @@ export namespace androidmanagement_v1 {
      * Whether removed apps are included in application reports.
      */
     includeRemovedApps?: boolean | null;
+  }
+  /**
+   * The application signing key certificate.
+   */
+  export interface Schema$ApplicationSigningKeyCert {
+    /**
+     * Required. The SHA-256 hash value of the signing key certificate of the app. This must be a valid SHA-256 hash value, i.e. 32 bytes. Otherwise, the policy is rejected.
+     */
+    signingKeyCertFingerprintSha256?: string | null;
   }
   /**
    * Information about a process. It contains process name, start time, app Uid, app Pid, seinfo tag, hash of the base APK.
@@ -769,7 +786,7 @@ export namespace androidmanagement_v1 {
    */
   export interface Schema$ChoosePrivateKeyRule {
     /**
-     * The package names to which this rule applies. The hash of the signing certificate for each app is verified against the hash provided by Play. If no package names are specified, then the alias is provided to all apps that call KeyChain.choosePrivateKeyAlias (https://developer.android.com/reference/android/security/KeyChain#choosePrivateKeyAlias%28android.app.Activity,%20android.security.KeyChainAliasCallback,%20java.lang.String[],%20java.security.Principal[],%20java.lang.String,%20int,%20java.lang.String%29) or any overloads (but not without calling KeyChain.choosePrivateKeyAlias, even on Android 11 and above). Any app with the same Android UID as a package specified here will have access when they call KeyChain.choosePrivateKeyAlias.
+     * The package names to which this rule applies. The signing key certificate fingerprint of the app is verified against the signing key certificate fingerprints provided by Play Store and ApplicationPolicy.signingKeyCerts . If no package names are specified, then the alias is provided to all apps that call KeyChain.choosePrivateKeyAlias (https://developer.android.com/reference/android/security/KeyChain#choosePrivateKeyAlias%28android.app.Activity,%20android.security.KeyChainAliasCallback,%20java.lang.String[],%20java.security.Principal[],%20java.lang.String,%20int,%20java.lang.String%29) or any overloads (but not without calling KeyChain.choosePrivateKeyAlias, even on Android 11 and above). Any app with the same Android UID as a package specified here will have access when they call KeyChain.choosePrivateKeyAlias.
      */
     packageNames?: string[] | null;
     /**
@@ -1018,6 +1035,15 @@ export namespace androidmanagement_v1 {
      * Whether the test succeeded.
      */
     success?: boolean | null;
+  }
+  /**
+   * Configuration for a custom app.
+   */
+  export interface Schema$CustomAppConfig {
+    /**
+     * Optional. User uninstall settings of the custom app.
+     */
+    userUninstallSettings?: string | null;
   }
   /**
    * Represents a whole or partial calendar date, such as a birthday. The time of day and time zone are either specified elsewhere or are insignificant. The date is relative to the Gregorian Calendar. This can represent one of the following: A full date, with non-zero year, month, and day values. A month and day, with a zero year (for example, an anniversary). A year on its own, with a zero month and a zero day. A year and month, with a zero day (for example, a credit card expiration date).Related types: google.type.TimeOfDay google.type.DateTime google.protobuf.Timestamp
