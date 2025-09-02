@@ -2887,7 +2887,7 @@
       }
     }
   },
-  "revision": "20250818",
+  "revision": "20250822",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "Addressable": {
@@ -6174,7 +6174,7 @@
           "type": "object"
         },
         "runtimeClassName": {
-          "description": "Runtime. Leave unset for default.",
+          "description": "Optional. Runtime. Leave unset for default.",
           "type": "string"
         },
         "serviceAccountName": {

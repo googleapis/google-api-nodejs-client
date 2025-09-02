@@ -2518,7 +2518,7 @@ export namespace run_v1 {
      */
     nodeSelector?: {[key: string]: string} | null;
     /**
-     * Runtime. Leave unset for default.
+     * Optional. Runtime. Leave unset for default.
      */
     runtimeClassName?: string | null;
     /**
