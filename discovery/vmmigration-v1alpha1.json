@@ -903,6 +903,62 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "fetchStorageInventory": {
+                  "description": "List remote source's inventory of storage resources. The remote source is another cloud vendor (e.g. AWS, Azure). The inventory describes the list of existing storage resources in that source. Note that this operation lists the resources on the remote source, as opposed to listing the MigratingVms resources in the vmmigration service.",
+                  "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}:fetchStorageInventory",
+                  "httpMethod": "GET",
+                  "id": "vmmigration.projects.locations.sources.fetchStorageInventory",
+                  "parameterOrder": [
+                    "source"
+                  ],
+                  "parameters": {
+                    "forceRefresh": {
+                      "description": "Optional. If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.",
+                      "location": "query",
+                      "type": "boolean"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of VMs to return. The service may return fewer than this value.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `FetchStorageInventory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchStorageInventory` must match the call that provided the page token.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "source": {
+                      "description": "Required. The name of the Source.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "type": {
+                      "description": "Required. The type of the storage inventory to fetch.",
+                      "enum": [
+                        "STORAGE_TYPE_UNSPECIFIED",
+                        "DISKS",
+                        "SNAPSHOTS"
+                      ],
+                      "enumDescriptions": [
+                        "The type is unspecified.",
+                        "The type is disks.",
+                        "The type is snapshots."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1alpha1/{+source}:fetchStorageInventory",
+                  "response": {
+                    "$ref": "FetchStorageInventoryResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "get": {
                   "description": "Gets details of a single Source.",
                   "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}",
@@ -1176,6 +1232,239 @@
                       "path": "v1alpha1/{+datacenterConnector}:upgradeAppliance",
                       "request": {
                         "$ref": "UpgradeApplianceRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    }
+                  }
+                },
+                "diskMigrationJobs": {
+                  "methods": {
+                    "cancel": {
+                      "description": "Cancels the disk migration job.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:cancel",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.cancel",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}:cancel",
+                      "request": {
+                        "$ref": "CancelDiskMigrationJobRequest"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "create": {
+                      "description": "Creates a new disk migration job in a given Source.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.create",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "diskMigrationJobId": {
+                          "description": "Required. The DiskMigrationJob identifier. The maximum length of this value is 63 characters. Valid characters are lower case Latin letters, digits and hyphen. It must start with a Latin letter and must not end with a hyphen.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The DiskMigrationJob's parent.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+parent}/diskMigrationJobs",
+                      "request": {
+                        "$ref": "DiskMigrationJob"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "delete": {
+                      "description": "Deletes a single DiskMigrationJob.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}",
+                      "httpMethod": "DELETE",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.delete",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}",
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "get": {
+                      "description": "Gets details of a single DiskMigrationJob.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}",
+                      "httpMethod": "GET",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.get",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}",
+                      "response": {
+                        "$ref": "DiskMigrationJob"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "list": {
+                      "description": "Lists DiskMigrationJobs in a given Source.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs",
+                      "httpMethod": "GET",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.list",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "filter": {
+                          "description": "Optional. The filter request (according to AIP-160).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "orderBy": {
+                          "description": "Optional. Ordering of the result list.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "pageSize": {
+                          "description": "Optional. The maximum number of disk migration jobs to return. The service may return fewer than this value. If unspecified, at most 500 disk migration jobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.",
+                          "format": "int32",
+                          "location": "query",
+                          "type": "integer"
+                        },
+                        "pageToken": {
+                          "description": "Optional. A page token, received from a previous `ListDiskMigrationJobs` call. Provide this to retrieve the subsequent page. When paginating, all parameters provided to `ListDiskMigrationJobs` except `page_size` must match the call that provided the page token.",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "parent": {
+                          "description": "Required. The parent, which owns this collection of DiskMigrationJobs.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+parent}/diskMigrationJobs",
+                      "response": {
+                        "$ref": "ListDiskMigrationJobsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "patch": {
+                      "description": "Updates the parameters of a single DiskMigrationJob.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}",
+                      "httpMethod": "PATCH",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.patch",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Output only. Identifier. The identifier of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        },
+                        "requestId": {
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "location": "query",
+                          "type": "string"
+                        },
+                        "updateMask": {
+                          "description": "Optional. Field mask is used to specify the fields to be overwritten in the DiskMigrationJob resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, then a mask equivalent to all fields that are populated (have a non-empty value), will be implied.",
+                          "format": "google-fieldmask",
+                          "location": "query",
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}",
+                      "request": {
+                        "$ref": "DiskMigrationJob"
+                      },
+                      "response": {
+                        "$ref": "Operation"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "run": {
+                      "description": "Runs the disk migration job.",
+                      "flatPath": "v1alpha1/projects/{projectsId}/locations/{locationsId}/sources/{sourcesId}/diskMigrationJobs/{diskMigrationJobsId}:run",
+                      "httpMethod": "POST",
+                      "id": "vmmigration.projects.locations.sources.diskMigrationJobs.run",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the DiskMigrationJob.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/sources/[^/]+/diskMigrationJobs/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1alpha1/{+name}:run",
+                      "request": {
+                        "$ref": "RunDiskMigrationJobRequest"
                       },
                       "response": {
                         "$ref": "Operation"
@@ -2254,7 +2543,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250824",
   "rootUrl": "https://vmmigration.googleapis.com/",
   "schemas": {
     "AccessKeyCredentials": {
@@ -2455,6 +2744,56 @@
             "The source exists and its credentials were verified."
           ],
           "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsSourceDiskDetails": {
+      "description": "Represents the source AWS Disk details.",
+      "id": "AwsSourceDiskDetails",
+      "properties": {
+        "diskType": {
+          "description": "Optional. Output only. Disk type.",
+          "enum": [
+            "TYPE_UNSPECIFIED",
+            "GP2",
+            "GP3",
+            "IO1",
+            "IO2",
+            "ST1",
+            "SC1",
+            "STANDARD"
+          ],
+          "enumDescriptions": [
+            "Unspecified AWS disk type. Should not be used.",
+            "GP2 disk type.",
+            "GP3 disk type.",
+            "IO1 disk type.",
+            "IO2 disk type.",
+            "ST1 disk type.",
+            "SC1 disk type.",
+            "Standard disk type."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "sizeGib": {
+          "description": "Output only. Size in GiB.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Output only. A map of AWS volume tags.",
+          "readOnly": true,
+          "type": "object"
+        },
+        "volumeId": {
+          "description": "Required. AWS volume ID.",
           "type": "string"
         }
       },
@@ -2986,6 +3325,12 @@
       "properties": {},
       "type": "object"
     },
+    "CancelDiskMigrationJobRequest": {
+      "description": "Request message for 'CancelDiskMigrationJob' request.",
+      "id": "CancelDiskMigrationJobRequest",
+      "properties": {},
+      "type": "object"
+    },
     "CancelImageImportJobRequest": {
       "description": "Request message for 'CancelImageImportJob' request.",
       "id": "CancelImageImportJobRequest",
@@ -3131,6 +3476,46 @@
         "startTime": {
           "description": "The time the step has started.",
           "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "ComputeEngineDisk": {
+      "description": "Compute Engine disk target details.",
+      "id": "ComputeEngineDisk",
+      "properties": {
+        "diskId": {
+          "description": "Optional. Target Compute Engine Disk ID. This is the resource ID segment of the Compute Engine Disk to create. In the resource name compute/v1/projects/{project}/zones/{zone}/disks/disk1 \"disk1\" is the resource ID for the disk.",
+          "type": "string"
+        },
+        "diskType": {
+          "description": "Required. The disk type to use.",
+          "enum": [
+            "COMPUTE_ENGINE_DISK_TYPE_UNSPECIFIED",
+            "COMPUTE_ENGINE_DISK_TYPE_STANDARD",
+            "COMPUTE_ENGINE_DISK_TYPE_SSD",
+            "COMPUTE_ENGINE_DISK_TYPE_BALANCED",
+            "COMPUTE_ENGINE_DISK_TYPE_HYPERDISK_BALANCED"
+          ],
+          "enumDescriptions": [
+            "An unspecified disk type. Will be used as STANDARD.",
+            "A Standard disk type.",
+            "SSD hard disk type.",
+            "An alternative to SSD persistent disks that balance performance and cost.",
+            "Hyperdisk balanced disk type."
+          ],
+          "type": "string"
+        },
+        "replicaZones": {
+          "description": "Optional. Replication zones of the regional disk. Should be of the form: projects/{target-project}/locations/{replica-zone} Currently only one replica zone is supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "zone": {
+          "description": "Required. The Compute Engine zone in which to create the disk. Should be of the form: projects/{target-project}/locations/{zone}",
           "type": "string"
         }
       },
@@ -3563,9 +3948,21 @@
       },
       "type": "object"
     },
+    "CopyingSourceDiskSnapshotStep": {
+      "description": "CopyingSourceDiskSnapshotStep contains specific step details.",
+      "id": "CopyingSourceDiskSnapshotStep",
+      "properties": {},
+      "type": "object"
+    },
     "CreatingImageStep": {
       "description": "CreatingImageStep contains specific step details.",
       "id": "CreatingImageStep",
+      "properties": {},
+      "type": "object"
+    },
+    "CreatingSourceDiskSnapshotStep": {
+      "description": "CreatingSourceDiskSnapshotStep contains specific step details.",
+      "id": "CreatingSourceDiskSnapshotStep",
       "properties": {},
       "type": "object"
     },
@@ -3938,6 +4335,134 @@
       },
       "type": "object"
     },
+    "DiskMigrationJob": {
+      "description": "Describes the disk which will be migrated from the source environment. The source disk has to be unattached.",
+      "id": "DiskMigrationJob",
+      "properties": {
+        "awsSourceDiskDetails": {
+          "$ref": "AwsSourceDiskDetails",
+          "description": "Details of the unattached AWS source disk."
+        },
+        "createTime": {
+          "description": "Output only. The time the DiskMigrationJob resource was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "errors": {
+          "description": "Output only. Provides details on the errors that led to the disk migration job's state in case of an error.",
+          "items": {
+            "$ref": "Status"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. Identifier. The identifier of the DiskMigrationJob.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. State of the DiskMigrationJob.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "READY",
+            "RUNNING",
+            "SUCCEEDED",
+            "CANCELLING",
+            "CANCELLED",
+            "FAILED"
+          ],
+          "enumDescriptions": [
+            "The state is unspecified. This is not in use.",
+            "The initial state of the disk migration. In this state the customers can update the target details.",
+            "The migration is active, and it's running or scheduled to run.",
+            "The migration completed successfully.",
+            "Migration cancellation was initiated.",
+            "The migration was cancelled.",
+            "The migration process encountered an unrecoverable error and was aborted."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "steps": {
+          "description": "Output only. The disk migration steps list representing its progress.",
+          "items": {
+            "$ref": "DiskMigrationStep"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "targetDetails": {
+          "$ref": "DiskMigrationJobTargetDetails",
+          "description": "Required. Details of the target Disk in Compute Engine."
+        },
+        "updateTime": {
+          "description": "Output only. The last time the DiskMigrationJob resource was updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskMigrationJobTargetDetails": {
+      "description": "Details of the target disk in Compute Engine.",
+      "id": "DiskMigrationJobTargetDetails",
+      "properties": {
+        "encryption": {
+          "$ref": "Encryption",
+          "description": "Optional. The encryption to apply to the disk. If the DiskMigrationJob parent Source resource has an encryption, this field must be set to the same encryption key."
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. A map of labels to associate with the disk.",
+          "type": "object"
+        },
+        "targetDisk": {
+          "$ref": "ComputeEngineDisk",
+          "description": "Required. The target disk."
+        },
+        "targetProject": {
+          "description": "Required. The name of the resource of type TargetProject which represents the Compute Engine project in which to create the disk. Should be of the form: projects/{project}/locations/global/targetProjects/{target-project}",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "DiskMigrationStep": {
+      "description": "DiskMigrationStep holds information about the disk migration step progress.",
+      "id": "DiskMigrationStep",
+      "properties": {
+        "copyingSourceDiskSnapshot": {
+          "$ref": "CopyingSourceDiskSnapshotStep",
+          "description": "Copying source disk snapshot step."
+        },
+        "creatingSourceDiskSnapshot": {
+          "$ref": "CreatingSourceDiskSnapshotStep",
+          "description": "Creating source disk snapshot step."
+        },
+        "endTime": {
+          "description": "Output only. The time the step has ended.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "provisioningTargetDisk": {
+          "$ref": "ProvisioningTargetDiskStep",
+          "description": "Creating target disk step."
+        },
+        "startTime": {
+          "description": "Output only. The time the step has started.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "DisksMigrationDisksTargetDefaults": {
       "description": "Details for a disk only migration.",
       "id": "DisksMigrationDisksTargetDefaults",
@@ -4121,6 +4646,31 @@
         "vmwareVms": {
           "$ref": "VmwareVmsDetails",
           "description": "The description of the VMs in a Source of type Vmware."
+        }
+      },
+      "type": "object"
+    },
+    "FetchStorageInventoryResponse": {
+      "description": "Response message for fetchStorageInventory.",
+      "id": "FetchStorageInventoryResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "resources": {
+          "description": "The list of storage resources in the source.",
+          "items": {
+            "$ref": "SourceStorageResource"
+          },
+          "type": "array"
+        },
+        "updateTime": {
+          "description": "Output only. The timestamp when the source was last queried (if the result is from the cache).",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -4490,6 +5040,34 @@
         },
         "nextPageToken": {
           "description": "Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "unreachable": {
+          "description": "Output only. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListDiskMigrationJobsResponse": {
+      "description": "Response message for 'ListDiskMigrationJobs' request.",
+      "id": "ListDiskMigrationJobsResponse",
+      "properties": {
+        "diskMigrationJobs": {
+          "description": "Output only. The list of the disk migration jobs.",
+          "items": {
+            "$ref": "DiskMigrationJob"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "Optional. Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "readOnly": true,
           "type": "string"
         },
@@ -5101,7 +5679,8 @@
             "CUTOVER_ERROR",
             "UTILIZATION_REPORT_ERROR",
             "APPLIANCE_UPGRADE_ERROR",
-            "IMAGE_IMPORT_ERROR"
+            "IMAGE_IMPORT_ERROR",
+            "DISK_MIGRATION_ERROR"
           ],
           "enumDescriptions": [
             "Default value. This value is not used.",
@@ -5114,7 +5693,8 @@
             "Migrate to Virtual Machines encountered an error in cutover operation.",
             "Migrate to Virtual Machines encountered an error during utilization report creation.",
             "Migrate to Virtual Machines encountered an error during appliance upgrade.",
-            "Migrate to Virtual Machines encountered an error in image import operation."
+            "Migrate to Virtual Machines encountered an error in image import operation.",
+            "Migrate to Virtual Machines encountered an error in disk migration operation."
           ],
           "readOnly": true,
           "type": "string"
@@ -5425,6 +6005,12 @@
       "properties": {},
       "type": "object"
     },
+    "ProvisioningTargetDiskStep": {
+      "description": "ProvisioningTargetDiskStep contains specific step details.",
+      "id": "ProvisioningTargetDiskStep",
+      "properties": {},
+      "type": "object"
+    },
     "RemoveGroupMigrationRequest": {
       "description": "Request message for 'RemoveMigration' request.",
       "id": "RemoveGroupMigrationRequest",
@@ -5559,6 +6145,12 @@
     "ResumeMigrationRequest": {
       "description": "Request message for 'ResumeMigration' request.",
       "id": "ResumeMigrationRequest",
+      "properties": {},
+      "type": "object"
+    },
+    "RunDiskMigrationJobRequest": {
+      "description": "Request message for 'RunDiskMigrationJobRequest' request.",
+      "id": "RunDiskMigrationJobRequest",
       "properties": {},
       "type": "object"
     },
@@ -5722,6 +6314,17 @@
         "vmware": {
           "$ref": "VmwareSourceDetails",
           "description": "Vmware type source details."
+        }
+      },
+      "type": "object"
+    },
+    "SourceStorageResource": {
+      "description": "SourceStorageResource describes a storage resource in the source.",
+      "id": "SourceStorageResource",
+      "properties": {
+        "awsDiskDetails": {
+          "$ref": "AwsSourceDiskDetails",
+          "description": "Source AWS volume details."
         }
       },
       "type": "object"

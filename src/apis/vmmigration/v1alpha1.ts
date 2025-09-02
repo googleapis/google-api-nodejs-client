@@ -269,6 +269,27 @@ export namespace vmmigration_v1alpha1 {
     state?: string | null;
   }
   /**
+   * Represents the source AWS Disk details.
+   */
+  export interface Schema$AwsSourceDiskDetails {
+    /**
+     * Optional. Output only. Disk type.
+     */
+    diskType?: string | null;
+    /**
+     * Output only. Size in GiB.
+     */
+    sizeGib?: string | null;
+    /**
+     * Optional. Output only. A map of AWS volume tags.
+     */
+    tags?: {[key: string]: string} | null;
+    /**
+     * Required. AWS volume ID.
+     */
+    volumeId?: string | null;
+  }
+  /**
    * Represent the source AWS VM details.
    */
   export interface Schema$AwsSourceVmDetails {
@@ -562,6 +583,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$CancelCutoverJobRequest {}
   /**
+   * Request message for 'CancelDiskMigrationJob' request.
+   */
+  export interface Schema$CancelDiskMigrationJobRequest {}
+  /**
    * Request message for 'CancelImageImportJob' request.
    */
   export interface Schema$CancelImageImportJobRequest {}
@@ -659,6 +684,27 @@ export namespace vmmigration_v1alpha1 {
      * The time the step has started.
      */
     startTime?: string | null;
+  }
+  /**
+   * Compute Engine disk target details.
+   */
+  export interface Schema$ComputeEngineDisk {
+    /**
+     * Optional. Target Compute Engine Disk ID. This is the resource ID segment of the Compute Engine Disk to create. In the resource name compute/v1/projects/{project\}/zones/{zone\}/disks/disk1 "disk1" is the resource ID for the disk.
+     */
+    diskId?: string | null;
+    /**
+     * Required. The disk type to use.
+     */
+    diskType?: string | null;
+    /**
+     * Optional. Replication zones of the regional disk. Should be of the form: projects/{target-project\}/locations/{replica-zone\} Currently only one replica zone is supported.
+     */
+    replicaZones?: string[] | null;
+    /**
+     * Required. The Compute Engine zone in which to create the disk. Should be of the form: projects/{target-project\}/locations/{zone\}
+     */
+    zone?: string | null;
   }
   /**
    * ComputeEngineDisksTargetDefaults is a collection of details for creating Persistent Disks in a target Compute Engine project.
@@ -919,9 +965,17 @@ export namespace vmmigration_v1alpha1 {
     restartType?: string | null;
   }
   /**
+   * CopyingSourceDiskSnapshotStep contains specific step details.
+   */
+  export interface Schema$CopyingSourceDiskSnapshotStep {}
+  /**
    * CreatingImageStep contains specific step details.
    */
   export interface Schema$CreatingImageStep {}
+  /**
+   * CreatingSourceDiskSnapshotStep contains specific step details.
+   */
+  export interface Schema$CreatingSourceDiskSnapshotStep {}
   /**
    * CutoverForecast holds information about future CutoverJobs of a MigratingVm.
    */
@@ -1187,6 +1241,89 @@ export namespace vmmigration_v1alpha1 {
     targetProject?: string | null;
   }
   /**
+   * Describes the disk which will be migrated from the source environment. The source disk has to be unattached.
+   */
+  export interface Schema$DiskMigrationJob {
+    /**
+     * Details of the unattached AWS source disk.
+     */
+    awsSourceDiskDetails?: Schema$AwsSourceDiskDetails;
+    /**
+     * Output only. The time the DiskMigrationJob resource was created.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Provides details on the errors that led to the disk migration job's state in case of an error.
+     */
+    errors?: Schema$Status[];
+    /**
+     * Output only. Identifier. The identifier of the DiskMigrationJob.
+     */
+    name?: string | null;
+    /**
+     * Output only. State of the DiskMigrationJob.
+     */
+    state?: string | null;
+    /**
+     * Output only. The disk migration steps list representing its progress.
+     */
+    steps?: Schema$DiskMigrationStep[];
+    /**
+     * Required. Details of the target Disk in Compute Engine.
+     */
+    targetDetails?: Schema$DiskMigrationJobTargetDetails;
+    /**
+     * Output only. The last time the DiskMigrationJob resource was updated.
+     */
+    updateTime?: string | null;
+  }
+  /**
+   * Details of the target disk in Compute Engine.
+   */
+  export interface Schema$DiskMigrationJobTargetDetails {
+    /**
+     * Optional. The encryption to apply to the disk. If the DiskMigrationJob parent Source resource has an encryption, this field must be set to the same encryption key.
+     */
+    encryption?: Schema$Encryption;
+    /**
+     * Optional. A map of labels to associate with the disk.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Required. The target disk.
+     */
+    targetDisk?: Schema$ComputeEngineDisk;
+    /**
+     * Required. The name of the resource of type TargetProject which represents the Compute Engine project in which to create the disk. Should be of the form: projects/{project\}/locations/global/targetProjects/{target-project\}
+     */
+    targetProject?: string | null;
+  }
+  /**
+   * DiskMigrationStep holds information about the disk migration step progress.
+   */
+  export interface Schema$DiskMigrationStep {
+    /**
+     * Copying source disk snapshot step.
+     */
+    copyingSourceDiskSnapshot?: Schema$CopyingSourceDiskSnapshotStep;
+    /**
+     * Creating source disk snapshot step.
+     */
+    creatingSourceDiskSnapshot?: Schema$CreatingSourceDiskSnapshotStep;
+    /**
+     * Output only. The time the step has ended.
+     */
+    endTime?: string | null;
+    /**
+     * Creating target disk step.
+     */
+    provisioningTargetDisk?: Schema$ProvisioningTargetDiskStep;
+    /**
+     * Output only. The time the step has started.
+     */
+    startTime?: string | null;
+  }
+  /**
    * Details for a disk only migration.
    */
   export interface Schema$DisksMigrationDisksTargetDefaults {}
@@ -1330,6 +1467,23 @@ export namespace vmmigration_v1alpha1 {
      * The description of the VMs in a Source of type Vmware.
      */
     vmwareVms?: Schema$VmwareVmsDetails;
+  }
+  /**
+   * Response message for fetchStorageInventory.
+   */
+  export interface Schema$FetchStorageInventoryResponse {
+    /**
+     * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of storage resources in the source.
+     */
+    resources?: Schema$SourceStorageResource[];
+    /**
+     * Output only. The timestamp when the source was last queried (if the result is from the cache).
+     */
+    updateTime?: string | null;
   }
   /**
    * Request message for 'FinalizeMigration' request.
@@ -1561,6 +1715,23 @@ export namespace vmmigration_v1alpha1 {
     datacenterConnectors?: Schema$DatacenterConnector[];
     /**
      * Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Output only. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Response message for 'ListDiskMigrationJobs' request.
+   */
+  export interface Schema$ListDiskMigrationJobsResponse {
+    /**
+     * Output only. The list of the disk migration jobs.
+     */
+    diskMigrationJobs?: Schema$DiskMigrationJob[];
+    /**
+     * Optional. Output only. A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.
      */
     nextPageToken?: string | null;
     /**
@@ -2177,6 +2348,10 @@ export namespace vmmigration_v1alpha1 {
    */
   export interface Schema$PreparingVMDisksStep {}
   /**
+   * ProvisioningTargetDiskStep contains specific step details.
+   */
+  export interface Schema$ProvisioningTargetDiskStep {}
+  /**
    * Request message for 'RemoveMigration' request.
    */
   export interface Schema$RemoveGroupMigrationRequest {
@@ -2268,6 +2443,10 @@ export namespace vmmigration_v1alpha1 {
    * Request message for 'ResumeMigration' request.
    */
   export interface Schema$ResumeMigrationRequest {}
+  /**
+   * Request message for 'RunDiskMigrationJobRequest' request.
+   */
+  export interface Schema$RunDiskMigrationJobRequest {}
   /**
    * A policy for scheduling replications.
    */
@@ -2380,6 +2559,15 @@ export namespace vmmigration_v1alpha1 {
      * Vmware type source details.
      */
     vmware?: Schema$VmwareSourceDetails;
+  }
+  /**
+   * SourceStorageResource describes a storage resource in the source.
+   */
+  export interface Schema$SourceStorageResource {
+    /**
+     * Source AWS volume details.
+     */
+    awsDiskDetails?: Schema$AwsSourceDiskDetails;
   }
   /**
    * Request message for 'StartMigrationRequest' request.
@@ -6135,6 +6323,7 @@ export namespace vmmigration_v1alpha1 {
   export class Resource$Projects$Locations$Sources {
     context: APIRequestContext;
     datacenterConnectors: Resource$Projects$Locations$Sources$Datacenterconnectors;
+    diskMigrationJobs: Resource$Projects$Locations$Sources$Diskmigrationjobs;
     migratingVms: Resource$Projects$Locations$Sources$Migratingvms;
     utilizationReports: Resource$Projects$Locations$Sources$Utilizationreports;
     constructor(context: APIRequestContext) {
@@ -6143,6 +6332,8 @@ export namespace vmmigration_v1alpha1 {
         new Resource$Projects$Locations$Sources$Datacenterconnectors(
           this.context
         );
+      this.diskMigrationJobs =
+        new Resource$Projects$Locations$Sources$Diskmigrationjobs(this.context);
       this.migratingVms = new Resource$Projects$Locations$Sources$Migratingvms(
         this.context
       );
@@ -6603,6 +6794,160 @@ export namespace vmmigration_v1alpha1 {
         );
       } else {
         return createAPIRequest<Schema$FetchInventoryResponse>(parameters);
+      }
+    }
+
+    /**
+     * List remote source's inventory of storage resources. The remote source is another cloud vendor (e.g. AWS, Azure). The inventory describes the list of existing storage resources in that source. Note that this operation lists the resources on the remote source, as opposed to listing the MigratingVms resources in the vmmigration service.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.fetchStorageInventory({
+     *       // Optional. If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.
+     *       forceRefresh: 'placeholder-value',
+     *       // Optional. The maximum number of VMs to return. The service may return fewer than this value.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `FetchStorageInventory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchStorageInventory` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The name of the Source.
+     *       source: 'projects/my-project/locations/my-location/sources/my-source',
+     *       // Required. The type of the storage inventory to fetch.
+     *       type: 'placeholder-value',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "resources": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    fetchStorageInventory(
+      params: Params$Resource$Projects$Locations$Sources$Fetchstorageinventory,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    fetchStorageInventory(
+      params?: Params$Resource$Projects$Locations$Sources$Fetchstorageinventory,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$FetchStorageInventoryResponse>>;
+    fetchStorageInventory(
+      params: Params$Resource$Projects$Locations$Sources$Fetchstorageinventory,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    fetchStorageInventory(
+      params: Params$Resource$Projects$Locations$Sources$Fetchstorageinventory,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$FetchStorageInventoryResponse>,
+      callback: BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+    ): void;
+    fetchStorageInventory(
+      params: Params$Resource$Projects$Locations$Sources$Fetchstorageinventory,
+      callback: BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+    ): void;
+    fetchStorageInventory(
+      callback: BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+    ): void;
+    fetchStorageInventory(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Fetchstorageinventory
+        | BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$FetchStorageInventoryResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$FetchStorageInventoryResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Fetchstorageinventory;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Fetchstorageinventory;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/v1alpha1/{+source}:fetchStorageInventory'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['source'],
+        pathParams: ['source'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$FetchStorageInventoryResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$FetchStorageInventoryResponse>(
+          parameters
+        );
       }
     }
 
@@ -7105,6 +7450,29 @@ export namespace vmmigration_v1alpha1 {
      * Required. The name of the Source.
      */
     source?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Fetchstorageinventory
+    extends StandardParameters {
+    /**
+     * Optional. If this flag is set to true, the source will be queried instead of using cached results. Using this flag will make the call slower.
+     */
+    forceRefresh?: boolean;
+    /**
+     * Optional. The maximum number of VMs to return. The service may return fewer than this value.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `FetchStorageInventory` call. Provide this to retrieve the subsequent page. When paginating, all other parameters provided to `FetchStorageInventory` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The name of the Source.
+     */
+    source?: string;
+    /**
+     * Required. The type of the storage inventory to fetch.
+     */
+    type?: string;
   }
   export interface Params$Resource$Projects$Locations$Sources$Get
     extends StandardParameters {
@@ -8007,6 +8375,1172 @@ export namespace vmmigration_v1alpha1 {
      * Request body metadata
      */
     requestBody?: Schema$UpgradeApplianceRequest;
+  }
+
+  export class Resource$Projects$Locations$Sources$Diskmigrationjobs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Cancels the disk migration job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.cancel({
+     *       // Required. The name of the DiskMigrationJob.
+     *       name: 'projects/my-project/locations/my-location/sources/my-source/diskMigrationJobs/my-diskMigrationJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    cancel(callback: BodyResponseCallback<Schema$Operation>): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:cancel').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Creates a new disk migration job in a given Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.create({
+     *       // Required. The DiskMigrationJob identifier. The maximum length of this value is 63 characters. Valid characters are lower case Latin letters, digits and hyphen. It must start with a Latin letter and must not end with a hyphen.
+     *       diskMigrationJobId: 'placeholder-value',
+     *       // Required. The DiskMigrationJob's parent.
+     *       parent: 'projects/my-project/locations/my-location/sources/my-source',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "awsSourceDiskDetails": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "errors": [],
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "steps": [],
+     *         //   "targetDetails": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/diskMigrationJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single DiskMigrationJob.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.delete({
+     *       // Required. The name of the DiskMigrationJob.
+     *       name: 'projects/my-project/locations/my-location/sources/my-source/diskMigrationJobs/my-diskMigrationJob',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single DiskMigrationJob.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.get({
+     *       // Required. The name of the DiskMigrationJob.
+     *       name: 'projects/my-project/locations/my-location/sources/my-source/diskMigrationJobs/my-diskMigrationJob',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "awsSourceDiskDetails": {},
+     *   //   "createTime": "my_createTime",
+     *   //   "errors": [],
+     *   //   "name": "my_name",
+     *   //   "state": "my_state",
+     *   //   "steps": [],
+     *   //   "targetDetails": {},
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$DiskMigrationJob>>;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$DiskMigrationJob>,
+      callback: BodyResponseCallback<Schema$DiskMigrationJob>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get,
+      callback: BodyResponseCallback<Schema$DiskMigrationJob>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$DiskMigrationJob>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get
+        | BodyResponseCallback<Schema$DiskMigrationJob>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$DiskMigrationJob>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$DiskMigrationJob>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$DiskMigrationJob>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$DiskMigrationJob>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$DiskMigrationJob>(parameters);
+      }
+    }
+
+    /**
+     * Lists DiskMigrationJobs in a given Source.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.list({
+     *       // Optional. The filter request (according to AIP-160).
+     *       filter: 'placeholder-value',
+     *       // Optional. Ordering of the result list.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. The maximum number of disk migration jobs to return. The service may return fewer than this value. If unspecified, at most 500 disk migration jobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A page token, received from a previous `ListDiskMigrationJobs` call. Provide this to retrieve the subsequent page. When paginating, all parameters provided to `ListDiskMigrationJobs` except `page_size` must match the call that provided the page token.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent, which owns this collection of DiskMigrationJobs.
+     *       parent: 'projects/my-project/locations/my-location/sources/my-source',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "diskMigrationJobs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListDiskMigrationJobsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>,
+      callback: BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List,
+      callback: BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List
+        | BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListDiskMigrationJobsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListDiskMigrationJobsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+parent}/diskMigrationJobs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListDiskMigrationJobsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListDiskMigrationJobsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates the parameters of a single DiskMigrationJob.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.patch({
+     *       // Output only. Identifier. The identifier of the DiskMigrationJob.
+     *       name: 'projects/my-project/locations/my-location/sources/my-source/diskMigrationJobs/my-diskMigrationJob',
+     *       // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *       requestId: 'placeholder-value',
+     *       // Optional. Field mask is used to specify the fields to be overwritten in the DiskMigrationJob resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, then a mask equivalent to all fields that are populated (have a non-empty value), will be implied.
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "awsSourceDiskDetails": {},
+     *         //   "createTime": "my_createTime",
+     *         //   "errors": [],
+     *         //   "name": "my_name",
+     *         //   "state": "my_state",
+     *         //   "steps": [],
+     *         //   "targetDetails": {},
+     *         //   "updateTime": "my_updateTime"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Runs the disk migration job.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/vmmigration.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const vmmigration = google.vmmigration('v1alpha1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await vmmigration.projects.locations.sources.diskMigrationJobs.run({
+     *       // Required. The name of the DiskMigrationJob.
+     *       name: 'projects/my-project/locations/my-location/sources/my-source/diskMigrationJobs/my-diskMigrationJob',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {}
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    run(
+      params?: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(
+      params: Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    run(callback: BodyResponseCallback<Schema$Operation>): void;
+    run(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://vmmigration.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1alpha1/{+name}:run').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelDiskMigrationJobRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Create
+    extends StandardParameters {
+    /**
+     * Required. The DiskMigrationJob identifier. The maximum length of this value is 63 characters. Valid characters are lower case Latin letters, digits and hyphen. It must start with a Latin letter and must not end with a hyphen.
+     */
+    diskMigrationJobId?: string;
+    /**
+     * Required. The DiskMigrationJob's parent.
+     */
+    parent?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiskMigrationJob;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Get
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$List
+    extends StandardParameters {
+    /**
+     * Optional. The filter request (according to AIP-160).
+     */
+    filter?: string;
+    /**
+     * Optional. Ordering of the result list.
+     */
+    orderBy?: string;
+    /**
+     * Optional. The maximum number of disk migration jobs to return. The service may return fewer than this value. If unspecified, at most 500 disk migration jobs will be returned. The maximum value is 1000; values above 1000 will be coerced to 1000.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A page token, received from a previous `ListDiskMigrationJobs` call. Provide this to retrieve the subsequent page. When paginating, all parameters provided to `ListDiskMigrationJobs` except `page_size` must match the call that provided the page token.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent, which owns this collection of DiskMigrationJobs.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Patch
+    extends StandardParameters {
+    /**
+     * Output only. Identifier. The identifier of the DiskMigrationJob.
+     */
+    name?: string;
+    /**
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request timed out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the DiskMigrationJob resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask, then a mask equivalent to all fields that are populated (have a non-empty value), will be implied.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$DiskMigrationJob;
+  }
+  export interface Params$Resource$Projects$Locations$Sources$Diskmigrationjobs$Run
+    extends StandardParameters {
+    /**
+     * Required. The name of the DiskMigrationJob.
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$RunDiskMigrationJobRequest;
   }
 
   export class Resource$Projects$Locations$Sources$Migratingvms {
