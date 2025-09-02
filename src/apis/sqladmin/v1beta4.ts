@@ -1142,6 +1142,10 @@ export namespace sqladmin_v1beta4 {
      */
     database?: string | null;
     /**
+     * Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.
+     */
+    partialResultMode?: string | null;
+    /**
      * Optional. The maximum number of rows returned per SQL statement.
      */
     rowLimit?: string | null;
@@ -1149,6 +1153,10 @@ export namespace sqladmin_v1beta4 {
      * Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.
      */
     sqlStatement?: string | null;
+    /**
+     * Optional. The name of an existing database user to connect to the database. When `auto_iam_authn` is set to true, this field is ignored and the API caller's IAM user is used.
+     */
+    user?: string | null;
   }
   /**
    * Database instance export context.
@@ -2636,6 +2644,10 @@ export namespace sqladmin_v1beta4 {
    * Instance get latest recovery time response.
    */
   export interface Schema$SqlInstancesGetLatestRecoveryTimeResponse {
+    /**
+     * Timestamp, identifies the earliest recovery time of the source instance.
+     */
+    earliestRecoveryTime?: string | null;
     /**
      * This is always `sql#getLatestRecoveryTime`.
      */
@@ -7544,8 +7556,10 @@ export namespace sqladmin_v1beta4 {
      *       // {
      *       //   "autoIamAuthn": false,
      *       //   "database": "my_database",
+     *       //   "partialResultMode": "my_partialResultMode",
      *       //   "rowLimit": "my_rowLimit",
-     *       //   "sqlStatement": "my_sqlStatement"
+     *       //   "sqlStatement": "my_sqlStatement",
+     *       //   "user": "my_user"
      *       // }
      *     },
      *   });
@@ -12727,6 +12741,7 @@ export namespace sqladmin_v1beta4 {
      *
      *   // Example response
      *   // {
+     *   //   "earliestRecoveryTime": "my_earliestRecoveryTime",
      *   //   "kind": "my_kind",
      *   //   "latestRecoveryTime": "my_latestRecoveryTime"
      *   // }
