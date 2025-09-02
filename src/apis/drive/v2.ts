@@ -597,19 +597,19 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A comment on a file in Google Drive. Some resource methods (such as `comments.update`) require a `commentId`. Use the `comments.list` method to retrieve the ID for a comment in a file.
+   * A comment on a file in Google Drive.
    */
   export interface Schema$Comment {
     /**
-     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Add comments and replies](https://developers.google.com/workspace/drive/api/v2/manage-comments).
+     * A region of the document represented as a JSON string. For details on defining anchor properties, refer to [Manage comments and replies](https://developers.google.com/workspace/drive/api/v3/manage-comments).
      */
     anchor?: string | null;
     /**
-     * Output only. The author of the comment. The author's email address and permission ID will not be populated.
+     * The user who wrote this comment.
      */
     author?: Schema$User;
     /**
-     * Output only. The ID of the comment.
+     * The ID of the comment.
      */
     commentId?: string | null;
     /**
@@ -617,7 +617,7 @@ export namespace drive_v2 {
      */
     content?: string | null;
     /**
-     * The context of the file which is being commented on.
+     * Context of a file which is being commented on.
      */
     context?: {type?: string; value?: string} | null;
     /**
@@ -625,23 +625,23 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * Output only. Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
+     * Whether this comment has been deleted. If a comment has been deleted the content will be cleared and this will only represent a comment that once existed.
      */
     deleted?: boolean | null;
     /**
-     * Output only. The file which this comment is addressing.
+     * The file which this comment is addressing.
      */
     fileId?: string | null;
     /**
-     * Output only. The title of the file which this comment is addressing.
+     * The title of the file which this comment is addressing.
      */
     fileTitle?: string | null;
     /**
-     * Output only. HTML formatted content for this comment.
+     * HTML formatted content for this comment.
      */
     htmlContent?: string | null;
     /**
-     * Output only. This is always `drive#comment`.
+     * This is always drive#comment.
      */
     kind?: string | null;
     /**
@@ -649,15 +649,15 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * Output only. Replies to this post.
+     * Replies to this post.
      */
     replies?: Schema$CommentReply[];
     /**
-     * Output only. A link back to this comment.
+     * A link back to this comment.
      */
     selfLink?: string | null;
     /**
-     * Output only. The status of this comment. Status can be changed by posting a reply to a comment with the desired status. * `open` - The comment is still open. * `resolved` - The comment has been resolved by one of its replies.
+     * The status of this comment. Status can be changed by posting a reply to a comment with the desired status. Possible values are: * `open` - The comment is still open. * `resolved` - The comment has been resolved by one of its replies.
      */
     status?: string | null;
   }
@@ -670,7 +670,7 @@ export namespace drive_v2 {
      */
     items?: Schema$Comment[];
     /**
-     * This is always `drive#commentList`.
+     * This is always drive#commentList.
      */
     kind?: string | null;
     /**
@@ -687,11 +687,11 @@ export namespace drive_v2 {
     selfLink?: string | null;
   }
   /**
-   * A comment on a file in Google Drive. Some resource methods (such as `replies.update`) require a `replyId`. Use the `replies.list` method to retrieve the ID for a reply.
+   * A reply to a comment on a file in Google Drive.
    */
   export interface Schema$CommentReply {
     /**
-     * Output only. The author of the reply. The author's email address and permission ID will not be populated.
+     * The user who wrote this reply.
      */
     author?: Schema$User;
     /**
@@ -703,15 +703,15 @@ export namespace drive_v2 {
      */
     createdDate?: string | null;
     /**
-     * Output only. Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
+     * Whether this reply has been deleted. If a reply has been deleted the content will be cleared and this will only represent a reply that once existed.
      */
     deleted?: boolean | null;
     /**
-     * Output only. HTML formatted content for this reply.
+     * HTML formatted content for this reply.
      */
     htmlContent?: string | null;
     /**
-     * Output only. This is always `drive#commentReply`.
+     * This is always drive#commentReply.
      */
     kind?: string | null;
     /**
@@ -719,11 +719,11 @@ export namespace drive_v2 {
      */
     modifiedDate?: string | null;
     /**
-     * Output only. The ID of the reply.
+     * The ID of the reply.
      */
     replyId?: string | null;
     /**
-     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform to the parent comment. Possible values are: * `resolve` - To resolve a comment. * `reopen` - To reopen (un-resolve) a comment.
+     * The action this reply performed to the parent comment. When creating a new reply this is the action to be perform tSo the parent comment. Possible values are: * `resolve` - To resolve a comment. * `reopen` - To reopen (un-resolve) a comment.
      */
     verb?: string | null;
   }
