@@ -1543,7 +1543,7 @@
             "multicloudDataTransferConfigs": {
               "methods": {
                 "create": {
-                  "description": "Creates a MulticloudDataTransferConfig in a given project and location.",
+                  "description": "Creates a `MulticloudDataTransferConfig` resource in a specified project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs",
                   "httpMethod": "POST",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.create",
@@ -1552,19 +1552,19 @@
                   ],
                   "parameters": {
                     "multicloudDataTransferConfigId": {
-                      "description": "Required. The ID to use for the MulticloudDataTransferConfig, which will become the final component of the MulticloudDataTransferConfig's resource name.",
+                      "description": "Required. The ID to use for the `MulticloudDataTransferConfig` resource, which becomes the final component of the `MulticloudDataTransferConfig` resource name.",
                       "location": "query",
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name",
+                      "description": "Required. The name of the parent resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1581,7 +1581,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes a single MulticloudDataTransferConfig.",
+                  "description": "Deletes a `MulticloudDataTransferConfig` resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}",
                   "httpMethod": "DELETE",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.delete",
@@ -1590,19 +1590,19 @@
                   ],
                   "parameters": {
                     "etag": {
-                      "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                      "description": "Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.",
                       "location": "query",
                       "type": "string"
                     },
                     "name": {
-                      "description": "Required. The name of the MulticloudDataTransferConfig resource to delete.",
+                      "description": "Required. The name of the `MulticloudDataTransferConfig` resource to delete.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                       "location": "query",
                       "type": "string"
                     }
@@ -1616,7 +1616,7 @@
                   ]
                 },
                 "get": {
-                  "description": "Gets details of a single MulticloudDataTransferConfig.",
+                  "description": "Gets the details of a `MulticloudDataTransferConfig` resource.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.get",
@@ -1625,7 +1625,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Required. Name of the MulticloudDataTransferConfig to get.",
+                      "description": "Required. The name of the `MulticloudDataTransferConfig` resource to get.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+$",
                       "required": true,
@@ -1641,7 +1641,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists MulticloudDataTransferConfigs in a given project and location.",
+                  "description": "Lists the `MulticloudDataTransferConfig` resources in a specified project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.list",
@@ -1650,17 +1650,17 @@
                   ],
                   "parameters": {
                     "filter": {
-                      "description": "Optional. A filter expression that filters the results listed in the response.",
+                      "description": "Optional. An expression that filters the results listed in the response.",
                       "location": "query",
                       "type": "string"
                     },
                     "orderBy": {
-                      "description": "Optional. Sort the results by a certain order.",
+                      "description": "Optional. The sort order of the results.",
                       "location": "query",
                       "type": "string"
                     },
                     "pageSize": {
-                      "description": "Optional. The maximum number of results per page that should be returned.",
+                      "description": "Optional. The maximum number of results listed per page.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1671,14 +1671,14 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name",
+                      "description": "Required. The name of the parent resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "returnPartialSuccess": {
-                      "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                      "description": "Optional. If `true`, allows partial responses for multi-regional aggregated list requests.",
                       "location": "query",
                       "type": "boolean"
                     }
@@ -1692,7 +1692,7 @@
                   ]
                 },
                 "patch": {
-                  "description": "Updates a MulticloudDataTransferConfig in a given project and location.",
+                  "description": "Updates a `MulticloudDataTransferConfig` resource in a specified project and location.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}",
                   "httpMethod": "PATCH",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.patch",
@@ -1701,19 +1701,19 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The name of the MulticloudDataTransferConfig resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}`.",
+                      "description": "Identifier. The name of the `MulticloudDataTransferConfig` resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+$",
                       "required": true,
                       "type": "string"
                     },
                     "requestId": {
-                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                       "location": "query",
                       "type": "string"
                     },
                     "updateMask": {
-                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the MulticloudDataTransferConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                      "description": "Optional. `FieldMask` is used to specify the fields in the `MulticloudDataTransferConfig` resource to be overwritten by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.",
                       "format": "google-fieldmask",
                       "location": "query",
                       "type": "string"
@@ -1735,7 +1735,7 @@
                 "destinations": {
                   "methods": {
                     "create": {
-                      "description": "Creates a Destination in a given project and location.",
+                      "description": "Creates a `Destination` resource in a specified project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}/destinations",
                       "httpMethod": "POST",
                       "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.create",
@@ -1744,19 +1744,19 @@
                       ],
                       "parameters": {
                         "destinationId": {
-                          "description": "Required. The ID to use for the Destination, which will become the final component of the Destination's resource name.",
+                          "description": "Required. The ID to use for the `Destination` resource, which becomes the final component of the `Destination` resource name.",
                           "location": "query",
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource's name",
+                          "description": "Required. The name of the parent resource.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate Destinations. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `Destination` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1773,7 +1773,7 @@
                       ]
                     },
                     "delete": {
-                      "description": "Deletes a single Destination.",
+                      "description": "Deletes a `Destination` resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}/destinations/{destinationsId}",
                       "httpMethod": "DELETE",
                       "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.delete",
@@ -1782,19 +1782,19 @@
                       ],
                       "parameters": {
                         "etag": {
-                          "description": "Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+                          "description": "Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.",
                           "location": "query",
                           "type": "string"
                         },
                         "name": {
-                          "description": "Required. The name of the Destination resource to delete.",
+                          "description": "Required. The name of the `Destination` resource to delete.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+/destinations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                           "location": "query",
                           "type": "string"
                         }
@@ -1808,7 +1808,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets details of a single Destination.",
+                      "description": "Gets the details of a `Destination` resource.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}/destinations/{destinationsId}",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.get",
@@ -1817,7 +1817,7 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Required. Name of the Destination to get.",
+                          "description": "Required. The name of the `Destination` resource to get.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+/destinations/[^/]+$",
                           "required": true,
@@ -1833,7 +1833,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Destinations in a given project and location.",
+                      "description": "Lists the `Destination` resources in a specified project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}/destinations",
                       "httpMethod": "GET",
                       "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.list",
@@ -1842,17 +1842,17 @@
                       ],
                       "parameters": {
                         "filter": {
-                          "description": "Optional. A filter expression that filters the results listed in the response.",
+                          "description": "Optional. An expression that filters the results listed in the response.",
                           "location": "query",
                           "type": "string"
                         },
                         "orderBy": {
-                          "description": "Optional. Sort the results by a certain order.",
+                          "description": "Optional. The sort order of the results.",
                           "location": "query",
                           "type": "string"
                         },
                         "pageSize": {
-                          "description": "Optional. The maximum number of results per page that should be returned.",
+                          "description": "Optional. The maximum number of results listed per page.",
                           "format": "int32",
                           "location": "query",
                           "type": "integer"
@@ -1863,14 +1863,14 @@
                           "type": "string"
                         },
                         "parent": {
-                          "description": "Required. The parent resource's name",
+                          "description": "Required. The name of the parent resource.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "returnPartialSuccess": {
-                          "description": "Optional. If true, allow partial responses for multi-regional Aggregated List requests.",
+                          "description": "Optional. If `true`, allow partial responses for multi-regional aggregated list requests.",
                           "location": "query",
                           "type": "boolean"
                         }
@@ -1884,7 +1884,7 @@
                       ]
                     },
                     "patch": {
-                      "description": "Updates a Destination in a given project and location.",
+                      "description": "Updates a `Destination` resource in a specified project and location.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferConfigs/{multicloudDataTransferConfigsId}/destinations/{destinationsId}",
                       "httpMethod": "PATCH",
                       "id": "networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.patch",
@@ -1893,19 +1893,19 @@
                       ],
                       "parameters": {
                         "name": {
-                          "description": "Identifier. The name of the Destination resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}/destinations/{destination}`.",
+                          "description": "Identifier. The name of the `Destination` resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}/destinations/{destination}`.",
                           "location": "path",
                           "pattern": "^projects/[^/]+/locations/[^/]+/multicloudDataTransferConfigs/[^/]+/destinations/[^/]+$",
                           "required": true,
                           "type": "string"
                         },
                         "requestId": {
-                          "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                          "description": "Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.",
                           "location": "query",
                           "type": "string"
                         },
                         "updateMask": {
-                          "description": "Optional. Field mask is used to specify the fields to be overwritten in the Destination resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.",
+                          "description": "Optional. `FieldMask is used to specify the fields to be overwritten in the `Destination` resource by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.",
                           "format": "google-fieldmask",
                           "location": "query",
                           "type": "string"
@@ -1929,7 +1929,7 @@
             "multicloudDataTransferSupportedServices": {
               "methods": {
                 "get": {
-                  "description": "Gets details of a single MulticloudDataTransferSupportedServices.",
+                  "description": "Gets the details of a service that is supported for Data Transfer Essentials.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferSupportedServices/{multicloudDataTransferSupportedServicesId}",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferSupportedServices.get",
@@ -1954,7 +1954,7 @@
                   ]
                 },
                 "list": {
-                  "description": "Lists the supported services for Multicloud Data Transfer. This is a passthrough method.",
+                  "description": "Lists the services in the project for a region that are supported for Data Transfer Essentials.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/multicloudDataTransferSupportedServices",
                   "httpMethod": "GET",
                   "id": "networkconnectivity.projects.locations.multicloudDataTransferSupportedServices.list",
@@ -1963,7 +1963,7 @@
                   ],
                   "parameters": {
                     "pageSize": {
-                      "description": "Optional. The maximum number of results per page that should be returned.",
+                      "description": "Optional. The maximum number of results listed per page.",
                       "format": "int32",
                       "location": "query",
                       "type": "integer"
@@ -1974,7 +1974,7 @@
                       "type": "string"
                     },
                     "parent": {
-                      "description": "Required. The parent resource's name",
+                      "description": "Required. The name of the parent resource.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/locations/[^/]+$",
                       "required": true,
@@ -2250,6 +2250,81 @@
                   "path": "v1/{+parent}/regionalEndpoints",
                   "response": {
                     "$ref": "ListRegionalEndpointsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
+            },
+            "remoteTransportProfiles": {
+              "methods": {
+                "get": {
+                  "description": "Gets details of a single RemoteTransportProfile.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/remoteTransportProfiles/{remoteTransportProfilesId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.remoteTransportProfiles.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/remoteTransportProfiles/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "RemoteTransportProfile"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists RemoteTransportProfiles in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/remoteTransportProfiles",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.remoteTransportProfiles.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListRemoteTransportProfilesRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/remoteTransportProfiles",
+                  "response": {
+                    "$ref": "ListRemoteTransportProfilesResponse"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -2778,6 +2853,34 @@
                     "parent"
                   ],
                   "parameters": {
+                    "autoSubnetworkConfig.allocRangeSpace": {
+                      "description": "Optional. The space where we search for a free range to create a subnetwork. It can be narrow down or pick a different space. This is in standard CIDR format. If not specified, “10.0.0.0/8” is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "autoSubnetworkConfig.ipStack": {
+                      "description": "Optional. The requested IP stack for the subnetwork. If not specified, IPv4 is used.",
+                      "enum": [
+                        "SUBNET_IP_STACK_UNSPECIFIED",
+                        "IPV4_ONLY",
+                        "IPV6_ONLY",
+                        "IPV4_IPV6"
+                      ],
+                      "enumDescriptions": [
+                        "Default value. Will create an IPV4_ONLY subnetwork by default.",
+                        "Will create an IPV4_ONLY subnetwork.",
+                        "Will create an IPV6_ONLY subnetwork.",
+                        "Will use IPv4 and IPv6 (dual stack)."
+                      ],
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "autoSubnetworkConfig.prefixLength": {
+                      "description": "Optional. The desired prefix length for the subnet's IP address range. E.g., 24 for a /24. The actual range is allocated from available space. If not specified, 24 is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
                     "parent": {
                       "description": "Required. The parent resource's name of the ServiceConnectionPolicy. ex. projects/123/locations/us-east1",
                       "location": "path",
@@ -2792,6 +2895,21 @@
                     },
                     "serviceConnectionPolicyId": {
                       "description": "Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/serviceConnectionPolicies/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "subnetworkMode": {
+                      "description": "Optional. If this field is not set, USER_PROVIDED is the inferred value to use.",
+                      "enum": [
+                        "SUBNETWORK_MODE_UNSPECIFIED",
+                        "USER_PROVIDED",
+                        "AUTO_CREATED"
+                      ],
+                      "enumDescriptions": [
+                        "The default value if the enum is unset. Note user is not allowed to set the subnetwork mode to this value.",
+                        "Subnetworks are provided from the user input.",
+                        "Subnetwork list is empty from the user input. A subnetwork will be created automatically."
+                      ],
                       "location": "query",
                       "type": "string"
                     }
@@ -3457,13 +3575,195 @@
                   ]
                 }
               }
+            },
+            "transports": {
+              "methods": {
+                "create": {
+                  "description": "Creates a new Transport in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transports",
+                  "httpMethod": "POST",
+                  "id": "networkconnectivity.projects.locations.transports.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. Value for parent.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "transportId": {
+                      "description": "Required. Id of the requesting object",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/transports",
+                  "request": {
+                    "$ref": "Transport"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes a single Transport.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transports/{transportsId}",
+                  "httpMethod": "DELETE",
+                  "id": "networkconnectivity.projects.locations.transports.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/transports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets details of a single Transport.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transports/{transportsId}",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.transports.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. Name of the resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/transports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "Transport"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Transports in a given project and location.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transports",
+                  "httpMethod": "GET",
+                  "id": "networkconnectivity.projects.locations.transports.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filtering results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. Hint for how to order the results",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A token identifying a page of results the server should return.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. Parent value for ListTransportsRequest",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/transports",
+                  "response": {
+                    "$ref": "ListTransportsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates the parameters of a single Transport.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/transports/{transportsId}",
+                  "httpMethod": "PATCH",
+                  "id": "networkconnectivity.projects.locations.transports.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. name of resource",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/transports/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "requestId": {
+                      "description": "Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. Field mask is used to specify the fields to be overwritten in the Transport resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "Transport"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              }
             }
           }
         }
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250829",
   "rootUrl": "https://networkconnectivity.googleapis.com/",
   "schemas": {
     "AcceptHubSpokeRequest": {
@@ -3599,6 +3899,33 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "AutoCreatedSubnetworkInfo": {
+      "description": "Information for the automatically created subnetwork and its associated IR.",
+      "id": "AutoCreatedSubnetworkInfo",
+      "properties": {
+        "internalRange": {
+          "description": "Output only. URI of the automatically created Internal Range. Only set if the subnetwork mode is AUTO_CREATED during creation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "internalRangeRef": {
+          "description": "Output only. URI of the automatically created Internal Range reference. Only set if the subnetwork mode is AUTO_CREATED during creation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetwork": {
+          "description": "Output only. URI of the automatically created subnetwork. Only set if the subnetwork mode is AUTO_CREATED during creation.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "subnetworkRef": {
+          "description": "Output only. URI of the automatically created subnetwork reference. Only set if the subnetwork mode is AUTO_CREATED during creation.",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -3817,32 +4144,32 @@
       "type": "object"
     },
     "Destination": {
-      "description": "The Destination resource.",
+      "description": "The `Destination` resource. It specifies the IP prefix and the associated autonomous system numbers (ASN) that you want to include in a `MulticloudDataTransferConfig` resource.",
       "id": "Destination",
       "properties": {
         "createTime": {
-          "description": "Output only. Time when the Destination was created.",
+          "description": "Output only. Time when the `Destination` resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Optional. An optional field to provide a description of this resource.",
+          "description": "Optional. A description of this resource.",
           "type": "string"
         },
         "endpoints": {
-          "description": "Required. Unordered list. The list of Endpoints configured for the IP Prefix.",
+          "description": "Required. Unordered list. The list of `DestinationEndpoint` resources configured for the IP prefix.",
           "items": {
             "$ref": "DestinationEndpoint"
           },
           "type": "array"
         },
         "etag": {
-          "description": "The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "ipPrefix": {
-          "description": "Required. Immutable. Remote IP Prefix in the remote CSP, where the customer's workload is located",
+          "description": "Required. Immutable. The IP prefix that represents your workload on another CSP.",
           "type": "string"
         },
         "labels": {
@@ -3853,21 +4180,21 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. The name of the Destination resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}/destinations/{destination}`.",
+          "description": "Identifier. The name of the `Destination` resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}/destinations/{destination}`.",
           "type": "string"
         },
         "stateTimeline": {
           "$ref": "StateTimeline",
-          "description": "Output only. The timeline of the expected Destination states or the current rest state. If a state change is expected, the value will be the list of ADDING, DELETING or SUSPENDING statesdepending on the actions taken. Example: \"state_timeline\": { \"states\": [ { \"state\": \"ADDING\", // The time when the Destination will be activated. \"effective_time\": \"2024-12-01T08:00:00Z\" }, { \"state\": \"SUSPENDING\", // The time when the Destination will be suspended. \"effective_time\": \"2024-12-01T20:00:00Z\" } ] }",
+          "description": "Output only. The timeline of the expected `Destination` states or the current rest state. If a state change is expected, the value is `ADDING`, `DELETING` or `SUSPENDING`, depending on the action specified. Example: \"state_timeline\": { \"states\": [ { // The time when the `Destination` resource will be activated. \"effectiveTime\": \"2024-12-01T08:00:00Z\", \"state\": \"ADDING\" }, { // The time when the `Destination` resource will be suspended. \"effectiveTime\": \"2024-12-01T20:00:00Z\", \"state\": \"SUSPENDING\" } ] }",
           "readOnly": true
         },
         "uid": {
-          "description": "Output only. The Google-generated UUID for the destination. This value is unique across all destination resources. If a destination is deleted and another with the same name is created, the new destination is assigned a different uid.",
+          "description": "Output only. The Google-generated unique ID for the `Destination` resource. This value is unique across all `Destination` resources. If a resource is deleted and another with the same name is created, the new resource is assigned a different and unique ID.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when the Destination was updated.",
+          "description": "Output only. Time when the `Destination` resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -3876,35 +4203,35 @@
       "type": "object"
     },
     "DestinationEndpoint": {
-      "description": "The metadata for a DestinationEndpoint.",
+      "description": "The metadata for a `DestinationEndpoint` resource.",
       "id": "DestinationEndpoint",
       "properties": {
         "asn": {
-          "description": "Required. The ASN of the remote IP Prefix.",
+          "description": "Required. The ASN of the remote IP prefix.",
           "format": "int64",
           "type": "string"
         },
         "csp": {
-          "description": "Required. The name of the CSP of the remote IP Prefix.",
+          "description": "Required. The CSP of the remote IP prefix.",
           "type": "string"
         },
         "state": {
-          "description": "Output only. The state of the Endpoint.",
+          "description": "Output only. The state of the `DestinationEndpoint` resource.",
           "enum": [
             "STATE_UNSPECIFIED",
             "VALID",
             "INVALID"
           ],
           "enumDescriptions": [
-            "An invalid state as the default case.",
-            "The Endpoint is valid.",
-            "The Endpoint is invalid."
+            "An invalid state, which is the default case.",
+            "The `DestinationEndpoint` resource is valid.",
+            "The `DestinationEndpoint` resource is invalid."
           ],
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when the DestinationEndpoint was updated.",
+          "description": "Output only. Time when the `DestinationEndpoint` resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -4631,11 +4958,11 @@
       "type": "object"
     },
     "ListDestinationsResponse": {
-      "description": "Response message for ListDestinations.",
+      "description": "Response message to list `Destination` resources.",
       "id": "ListDestinationsResponse",
       "properties": {
         "destinations": {
-          "description": "Destinations to be returned.",
+          "description": "The list of `Destination` resources to be listed.",
           "items": {
             "$ref": "Destination"
           },
@@ -4774,11 +5101,11 @@
       "type": "object"
     },
     "ListMulticloudDataTransferConfigsResponse": {
-      "description": "Response message for ListMulticloudDataTransferConfigs.",
+      "description": "Response message to list `MulticloudDataTransferConfig` resources.",
       "id": "ListMulticloudDataTransferConfigsResponse",
       "properties": {
         "multicloudDataTransferConfigs": {
-          "description": "MulticloudDataTransferConfigs to be returned.",
+          "description": "The list of `MulticloudDataTransferConfig` resources to be listed.",
           "items": {
             "$ref": "MulticloudDataTransferConfig"
           },
@@ -4799,7 +5126,7 @@
       "type": "object"
     },
     "ListMulticloudDataTransferSupportedServicesResponse": {
-      "description": "Response message for ListMulticloudDataTransferSupportedServices.",
+      "description": "Response message to list the services in your project in regions that are eligible for Data Transfer Essentials configuration.",
       "id": "ListMulticloudDataTransferSupportedServicesResponse",
       "properties": {
         "multicloudDataTransferSupportedServices": {
@@ -4858,6 +5185,31 @@
         },
         "unreachable": {
           "description": "Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "ListRemoteTransportProfilesResponse": {
+      "description": "Message for response to listing RemoteTransportProfiles",
+      "id": "ListRemoteTransportProfilesResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "remoteTransportProfiles": {
+          "description": "The list of RemoteTransportProfiles",
+          "items": {
+            "$ref": "RemoteTransportProfile"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
           "items": {
             "type": "string"
           },
@@ -5041,6 +5393,31 @@
       },
       "type": "object"
     },
+    "ListTransportsResponse": {
+      "description": "Message for response to listing Transports",
+      "id": "ListTransportsResponse",
+      "properties": {
+        "nextPageToken": {
+          "description": "A token identifying a page of results the server should return.",
+          "type": "string"
+        },
+        "transports": {
+          "description": "The list of Transport",
+          "items": {
+            "$ref": "Transport"
+          },
+          "type": "array"
+        },
+        "unreachable": {
+          "description": "Unordered list. Locations that could not be reached.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "Location": {
       "description": "A resource that represents a Google Cloud location.",
       "id": "Location",
@@ -5117,33 +5494,33 @@
       "type": "object"
     },
     "MulticloudDataTransferConfig": {
-      "description": "The MulticloudDataTransferConfig resource. This lists the services for which customer is opting in for Multicloud Data Transfer.",
+      "description": "The `MulticloudDataTransferConfig` resource. It lists the services that you configure for Data Transfer Essentials billing and metering.",
       "id": "MulticloudDataTransferConfig",
       "properties": {
         "createTime": {
-          "description": "Output only. Time when the MulticloudDataTransferConfig was created.",
+          "description": "Output only. Time when the `MulticloudDataTransferConfig` resource was created.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
         },
         "description": {
-          "description": "Optional. An optional field to provide a description of this resource.",
+          "description": "Optional. A description of this resource.",
           "type": "string"
         },
         "destinationsActiveCount": {
-          "description": "Output only. The number of Destinations in use under the MulticloudDataTransferConfig resource.",
+          "description": "Output only. The number of `Destination` resources in use with the `MulticloudDataTransferConfig` resource.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "destinationsCount": {
-          "description": "Output only. The number of Destinations configured under the MulticloudDataTransferConfig resource.",
+          "description": "Output only. The number of `Destination` resources configured for the `MulticloudDataTransferConfig` resource.",
           "format": "int32",
           "readOnly": true,
           "type": "integer"
         },
         "etag": {
-          "description": "The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.",
+          "description": "The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.",
           "type": "string"
         },
         "labels": {
@@ -5154,23 +5531,23 @@
           "type": "object"
         },
         "name": {
-          "description": "Identifier. The name of the MulticloudDataTransferConfig resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}`.",
+          "description": "Identifier. The name of the `MulticloudDataTransferConfig` resource. Format: `projects/{project}/locations/{location}/multicloudDataTransferConfigs/{multicloud_data_transfer_config}`.",
           "type": "string"
         },
         "services": {
           "additionalProperties": {
             "$ref": "StateTimeline"
           },
-          "description": "Optional. This map services to either their current or planned states. Service names are keys, and the associated values describe the service's state. If a state change is expected, the value will be the list of ADDING or DELETING states depending on the actions taken. Example: \"services\": { \"big-query\": { \"states\": [ { \"state\": \"ADDING\", \"effective_time\": \"2024-12-12T08:00:00Z\" }, ] }, \"cloud-storage\": { \"states\": [ { \"state\": \"ACTIVE\", } ] } }",
+          "description": "Optional. Maps services to their current or planned states. Service names are keys, and the associated values describe the state of the service. If a state change is expected, the value is either `ADDING` or `DELETING`, depending on the actions taken. Sample output: \"services\": { \"big-query\": { \"states\": [ { \"effectiveTime\": \"2024-12-12T08:00:00Z\" \"state\": \"ADDING\", }, ] }, \"cloud-storage\": { \"states\": [ { \"state\": \"ACTIVE\", } ] } }",
           "type": "object"
         },
         "uid": {
-          "description": "Output only. The Google-generated UUID for the MulticloudDataTransferConfig. This value is unique across all MulticloudDataTransferConfig resources. If a MulticloudDataTransferConfig is deleted and another with the same name is created, the new MulticloudDataTransferConfig is assigned a different uid.",
+          "description": "Output only. The Google-generated unique ID for the `MulticloudDataTransferConfig` resource. This value is unique across all `MulticloudDataTransferConfig` resources. If a resource is deleted and another with the same name is created, the new resource is assigned a different and unique ID.",
           "readOnly": true,
           "type": "string"
         },
         "updateTime": {
-          "description": "Output only. Time when the MulticloudDataTransferConfig was updated.",
+          "description": "Output only. Time when the `MulticloudDataTransferConfig` resource was updated.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -5179,7 +5556,7 @@
       "type": "object"
     },
     "MulticloudDataTransferSupportedService": {
-      "description": "The supported service for Multicloud Data Transfer.",
+      "description": "A service in your project in a region that is eligible for Data Transfer Essentials configuration.",
       "id": "MulticloudDataTransferSupportedService",
       "properties": {
         "name": {
@@ -5187,7 +5564,7 @@
           "type": "string"
         },
         "serviceConfigs": {
-          "description": "Output only. The network service tiers supported for the service.",
+          "description": "Output only. The network service tier or regional endpoint supported for the service.",
           "items": {
             "$ref": "ServiceConfig"
           },
@@ -5804,6 +6181,36 @@
       },
       "type": "object"
     },
+    "RemoteTransportProfile": {
+      "description": "Message describing RemoteTransportProfile object",
+      "id": "RemoteTransportProfile",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. name of resource",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Route": {
       "description": "A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.",
       "id": "Route",
@@ -6070,11 +6477,11 @@
       "type": "object"
     },
     "ServiceConfig": {
-      "description": "Specifies the Multicloud Data Transfer supported services configuration. This includes either the network tier or the request endpoint. If end of support for multicloud data transfer is planned for a service's network tier or request endpoint, the end time will be provided.",
+      "description": "Specifies eligibility information for the service.",
       "id": "ServiceConfig",
       "properties": {
         "eligibilityCriteria": {
-          "description": "Output only. The eligibility criteria for the service. The user has to meet the eligibility criteria specified here for the service to qualify for multicloud data transfer.",
+          "description": "Output only. The eligibility criteria for the service.",
           "enum": [
             "ELIGIBILITY_CRITERIA_UNSPECIFIED",
             "NETWORK_SERVICE_TIER_PREMIUM_ONLY",
@@ -6082,16 +6489,16 @@
             "REQUEST_ENDPOINT_REGIONAL_ENDPOINT_ONLY"
           ],
           "enumDescriptions": [
-            "An invalid eligibility criteria as the default case.",
-            "The service is eligible for multicloud data transfer only for the premium network tier.",
-            "The service is eligible for multicloud data transfer only for the standard network tier.",
-            "The service is eligible for multicloud data transfer only for the regional endpoint."
+            "The service is not eligible for Data Transfer Essentials configuration. This is the default case.",
+            "The service is eligible for Data Transfer Essentials configuration only for Premium Tier.",
+            "The service is eligible for Data Transfer Essentials configuration only for Standard Tier.",
+            "The service is eligible for Data Transfer Essentials configuration only for the regional endpoint."
           ],
           "readOnly": true,
           "type": "string"
         },
         "supportEndTime": {
-          "description": "Output only. The eligibility criteria support end time. If the end time is not specified, no planned end time is available.",
+          "description": "Output only. The end time for eligibility criteria support. If not specified, no planned end time is set.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6164,7 +6571,7 @@
           "type": "array"
         },
         "serviceClass": {
-          "description": "The service class identifier this ServiceConnectionMap is for. The user of ServiceConnectionMap create API needs to have networkconnecitivty.serviceclasses.use iam permission for the service class.",
+          "description": "The service class identifier this ServiceConnectionMap is for. The user of ServiceConnectionMap create API needs to have networkconnectivity.serviceClasses.use IAM permission for the service class.",
           "type": "string"
         },
         "serviceClassUri": {
@@ -6189,6 +6596,11 @@
       "description": "The ServiceConnectionPolicy resource.",
       "id": "ServiceConnectionPolicy",
       "properties": {
+        "autoCreatedSubnetInfo": {
+          "$ref": "AutoCreatedSubnetworkInfo",
+          "description": "Output only. Information for the automatically created subnetwork and its associated IR.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. Time when the ServiceConnectionPolicy was created.",
           "format": "google-datetime",
@@ -6611,7 +7023,7 @@
       "id": "StateMetadata",
       "properties": {
         "effectiveTime": {
-          "description": "Output only. This field will be accompanied only with transient states (PENDING_ADD, PENDING_DELETE, PENDING_SUSPENSION) and denotes the time when the transient state of the resource will be effective. For instance, if the state is \"ADDING,\" this field will show the time the resource transitions to \"ACTIVE.\" Similarly, if the state is \"PENDING_DELETE,\" it will show the deletion time.",
+          "description": "Output only. Accompanies only the transient states, which include `ADDING`, `DELETING`, and `SUSPENDING`, to denote the time until which the transient state of the resource will be effective. For instance, if the state is `ADDING`, this field shows the time when the resource state transitions to `ACTIVE`.",
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
@@ -6627,12 +7039,12 @@
             "SUSPENDED"
           ],
           "enumDescriptions": [
-            "An invalid state as the default case.",
+            "An invalid state, which is the default case.",
             "The resource is being added.",
             "The resource is in use.",
             "The resource is being deleted.",
             "The resource is being suspended.",
-            "The resource is not in use for billing and is suspended."
+            "The resource is suspended and not in use."
           ],
           "readOnly": true,
           "type": "string"
@@ -6680,7 +7092,7 @@
       "type": "object"
     },
     "StateTimeline": {
-      "description": "The timeline of pending states for a resource.",
+      "description": "The timeline of the pending states for a resource.",
       "id": "StateTimeline",
       "properties": {
         "states": {
@@ -6718,6 +7130,36 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "Transport": {
+      "description": "Message describing Transport object",
+      "id": "Transport",
+      "properties": {
+        "createTime": {
+          "description": "Output only. [Output only] Create time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels as key value pairs",
+          "type": "object"
+        },
+        "name": {
+          "description": "Identifier. name of resource",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. [Output only] Update time stamp",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
