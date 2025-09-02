@@ -2685,7 +2685,7 @@
       }
     }
   },
-  "revision": "20250812",
+  "revision": "20250819",
   "rootUrl": "https://container.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -3188,6 +3188,12 @@
       },
       "type": "object"
     },
+    "AutoscaledRolloutPolicy": {
+      "description": "Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.",
+      "id": "AutoscaledRolloutPolicy",
+      "properties": {},
+      "type": "object"
+    },
     "AvailableVersion": {
       "deprecated": true,
       "description": "Deprecated.",
@@ -3327,6 +3333,10 @@
       "description": "Settings for blue-green upgrade.",
       "id": "BlueGreenSettings",
       "properties": {
+        "autoscaledRolloutPolicy": {
+          "$ref": "AutoscaledRolloutPolicy",
+          "description": "Autoscaled policy for cluster autoscaler enabled blue-green upgrade."
+        },
         "nodePoolSoakDuration": {
           "description": "Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.",
           "format": "google-duration",
