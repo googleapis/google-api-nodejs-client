@@ -890,7 +890,7 @@ export namespace bigquery_v2 {
     dataMaskingApplied?: boolean | null;
   }
   /**
-   * Data policy option proto, it currently supports name only, will support precedence later.
+   * Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).
    */
   export interface Schema$DataPolicyOption {
     /**
@@ -2234,6 +2234,10 @@ export namespace bigquery_v2 {
      * [Pick one] Configures a load job.
      */
     load?: Schema$JobConfigurationLoad;
+    /**
+     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate.
+     */
+    maxSlots?: number | null;
     /**
      * [Pick one] Configures a query job.
      */
@@ -3713,6 +3717,10 @@ export namespace bigquery_v2 {
      */
     maxResults?: number | null;
     /**
+     * Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate. This limit is best effort.
+     */
+    maxSlots?: number | null;
+    /**
      * GoogleSQL only. Set to POSITIONAL to use positional (?) query parameters or to NAMED to use named (@myparam) query parameters in this query.
      */
     parameterMode?: string | null;
@@ -4014,7 +4022,7 @@ export namespace bigquery_v2 {
      */
     dataGovernanceType?: string | null;
     /**
-     * Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks.
+     * Required. The body of the routine. For functions, this is the expression in the AS clause. If `language = "SQL"`, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, "\n", y))` The definition_body is `concat(x, "\n", y)` (\n is not replaced with linebreak). If `language="JAVASCRIPT"`, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return "\n";\n'` The definition_body is `return "\n";\n` Note that both \n are replaced with linebreaks. If `definition_body` references another routine, then that routine must be fully qualified with its project ID.
      */
     definitionBody?: string | null;
     /**
@@ -4887,7 +4895,7 @@ export namespace bigquery_v2 {
      */
     collation?: string | null;
     /**
-     * Optional. Data policy options, will replace the data_policies.
+     * Optional. Data policies attached to this field, used for field-level access control.
      */
     dataPolicies?: Schema$DataPolicyOption[];
     /**
@@ -8024,6 +8032,7 @@ export namespace bigquery_v2 {
      *       //   "labels": {},
      *       //   "location": "my_location",
      *       //   "maxResults": 0,
+     *       //   "maxSlots": 0,
      *       //   "maximumBytesBilled": "my_maximumBytesBilled",
      *       //   "parameterMode": "my_parameterMode",
      *       //   "preserveNulls": false,
@@ -10797,7 +10806,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -10944,7 +10952,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -11391,7 +11398,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *
@@ -11863,7 +11869,6 @@ export namespace bigquery_v2 {
      *     scopes: [
      *       'https://www.googleapis.com/auth/bigquery',
      *       'https://www.googleapis.com/auth/cloud-platform',
-     *       'https://www.googleapis.com/auth/cloud-platform.read-only',
      *     ],
      *   });
      *

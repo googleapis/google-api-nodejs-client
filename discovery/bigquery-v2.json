@@ -1537,8 +1537,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "delete": {
@@ -1590,8 +1589,7 @@
           "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}",
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "get": {
@@ -1717,8 +1715,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "list": {
@@ -1855,8 +1852,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -2379,7 +2375,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250816",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2588,7 +2584,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2597,7 +2594,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2656,7 +2654,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2665,7 +2664,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2728,7 +2728,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2737,7 +2738,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2784,7 +2786,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2793,7 +2796,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -3566,7 +3570,7 @@
       "type": "object"
     },
     "DataPolicyOption": {
-      "description": "Data policy option proto, it currently supports name only, will support precedence later.",
+      "description": "Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).",
       "id": "DataPolicyOption",
       "properties": {
         "name": {
@@ -5456,6 +5460,11 @@
         "load": {
           "$ref": "JobConfigurationLoad",
           "description": "[Pick one] Configures a load job."
+        },
+        "maxSlots": {
+          "description": "Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate.",
+          "format": "int32",
+          "type": "integer"
         },
         "query": {
           "$ref": "JobConfigurationQuery",
@@ -7790,6 +7799,11 @@
           "format": "uint32",
           "type": "integer"
         },
+        "maxSlots": {
+          "description": "Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate. This limit is best effort.",
+          "format": "int32",
+          "type": "integer"
+        },
         "maximumBytesBilled": {
           "description": "Optional. Limits the bytes billed for this query. Queries with bytes billed above this limit will fail (without incurring a charge). If unspecified, the project default is used.",
           "format": "int64",
@@ -8235,7 +8249,7 @@
           "type": "string"
         },
         "definitionBody": {
-          "description": "Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))` The definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'` The definition_body is `return \"\\n\";\\n` Note that both \\n are replaced with linebreaks.",
+          "description": "Required. The body of the routine. For functions, this is the expression in the AS clause. If `language = \"SQL\"`, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))` The definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with linebreak). If `language=\"JAVASCRIPT\"`, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'` The definition_body is `return \"\\n\";\\n` Note that both \\n are replaced with linebreaks. If `definition_body` references another routine, then that routine must be fully qualified with its project ID.",
           "type": "string"
         },
         "description": {
@@ -9608,7 +9622,7 @@
           "type": "string"
         },
         "dataPolicies": {
-          "description": "Optional. Data policy options, will replace the data_policies.",
+          "description": "Optional. Data policies attached to this field, used for field-level access control.",
           "items": {
             "$ref": "DataPolicyOption"
           },
