@@ -1349,6 +1349,34 @@
                 "https://www.googleapis.com/auth/cloud-platform"
               ]
             },
+            "generateInstanceRubrics": {
+              "description": "Generates rubrics for a given prompt. A rubric represents a single testable criterion for evaluation. One input prompt could have multiple rubrics This RPC allows users to get suggested rubrics based on provided prompt, which can then be reviewed and used for subsequent evaluations.",
+              "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}:generateInstanceRubrics",
+              "httpMethod": "POST",
+              "id": "aiplatform.projects.locations.generateInstanceRubrics",
+              "parameterOrder": [
+                "location"
+              ],
+              "parameters": {
+                "location": {
+                  "description": "Required. The resource name of the Location to generate rubrics from. Format: `projects/{project}/locations/{location}`",
+                  "location": "path",
+                  "pattern": "^projects/[^/]+/locations/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "v1beta1/{+location}:generateInstanceRubrics",
+              "request": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsRequest"
+              },
+              "response": {
+                "$ref": "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/cloud-platform"
+              ]
+            },
             "generateSyntheticData": {
               "description": "Generates synthetic data based on the provided configuration.",
               "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}:generateSyntheticData",
@@ -1437,7 +1465,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5813,6 +5841,132 @@
               }
             },
             "evaluationItems": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Evaluation Item.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationItems",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.evaluationItems.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the Evaluation Item in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationItems",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationItem"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationItem"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an Evaluation Item.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationItems/{evaluationItemsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.evaluationItems.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationItem resource to be deleted. Format: `projects/{project}/locations/{location}/evaluationItems/{evaluation_item}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationItems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Evaluation Item.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationItems/{evaluationItemsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationItems.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationItem resource. Format: `projects/{project}/locations/{location}/evaluationItems/{evaluation_item}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationItems/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationItem"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Evaluation Items.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationItems",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationItems.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression that matches a subset of the EvaluationItems to show. For field names both snake_case and camelCase are supported. For more information about filter syntax, see [AIP-160](https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order by default. Use `desc` after a field name for descending.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of Evaluation Items to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListEvaluationItems` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the Evaluation Items. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationItems",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListEvaluationItemsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -5943,6 +6097,160 @@
               }
             },
             "evaluationRuns": {
+              "methods": {
+                "cancel": {
+                  "description": "Cancels an Evaluation Run. Attempts to cancel a running Evaluation Run asynchronously. Status of run can be checked via GetEvaluationRun.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationRuns/{evaluationRunsId}:cancel",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.evaluationRuns.cancel",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationRun resource to be cancelled. Format: `projects/{project}/locations/{location}/evaluationRuns/{evaluation_run}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationRuns/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}:cancel",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1CancelEvaluationRunRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleProtobufEmpty"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "create": {
+                  "description": "Creates an Evaluation Run.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationRuns",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.evaluationRuns.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the Evaluation Run in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationRuns",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationRun"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationRun"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an Evaluation Run.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationRuns/{evaluationRunsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.evaluationRuns.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationRun resource to be deleted. Format: `projects/{project}/locations/{location}/evaluationRuns/{evaluation_run}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationRuns/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Evaluation Run.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationRuns/{evaluationRunsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationRuns.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationRun resource. Format: `projects/{project}/locations/{location}/evaluationRuns/{evaluation_run}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationRuns/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationRun"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Evaluation Runs.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationRuns",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationRuns.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression that matches a subset of the EvaluationRuns to show. For field names both snake_case and camelCase are supported. For more information about filter syntax, see [AIP-160](https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order by default. Use `desc` after a field name for descending.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of Evaluation Runs to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListEvaluationRuns` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the Evaluation Runs. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationRuns",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListEvaluationRunsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -6073,6 +6381,166 @@
               }
             },
             "evaluationSets": {
+              "methods": {
+                "create": {
+                  "description": "Creates an Evaluation Set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationSets",
+                  "httpMethod": "POST",
+                  "id": "aiplatform.projects.locations.evaluationSets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The resource name of the Location to create the Evaluation Set in. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationSets",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Deletes an Evaluation Set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationSets/{evaluationSetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "aiplatform.projects.locations.evaluationSets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationSet resource to be deleted. Format: `projects/{project}/locations/{location}/evaluationSets/{evaluation_set}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets an Evaluation Set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationSets/{evaluationSetsId}",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationSets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the EvaluationSet resource. Format: `projects/{project}/locations/{location}/evaluationSets/{evaluation_set}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "Lists Evaluation Sets.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationSets",
+                  "httpMethod": "GET",
+                  "id": "aiplatform.projects.locations.evaluationSets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. Filter expression that matches a subset of the EvaluationSets to show. For field names both snake_case and camelCase are supported. For more information about filter syntax, see [AIP-160](https://google.aip.dev/160).",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "orderBy": {
+                      "description": "Optional. A comma-separated list of fields to order by, sorted in ascending order by default. Use `desc` after a field name for descending.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of Evaluation Sets to return.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. A page token, received from a previous `ListEvaluationSets` call. Provide this to retrieve the subsequent page.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The resource name of the Location from which to list the Evaluation Sets. Format: `projects/{project}/locations/{location}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+parent}/evaluationSets",
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1ListEvaluationSetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates an Evaluation Set.",
+                  "flatPath": "v1beta1/projects/{projectsId}/locations/{locationsId}/evaluationSets/{evaluationSetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "aiplatform.projects.locations.evaluationSets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Identifier. The resource name of the EvaluationSet. Format: `projects/{project}/locations/{location}/evaluationSets/{evaluation_set}`",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/evaluationSets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The update mask applies to the resource. For the `FieldMask` definition, see google.protobuf.FieldMask.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1beta1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                }
+              },
               "resources": {
                 "operations": {
                   "methods": {
@@ -25558,7 +26026,7 @@
       }
     }
   },
-  "revision": "20250816",
+  "revision": "20250825",
   "rootUrl": "https://aiplatform.googleapis.com/",
   "schemas": {
     "CloudAiLargeModelsVisionGenerateVideoResponse": {
@@ -26109,6 +26577,81 @@
         "measurement": {
           "$ref": "GoogleCloudAiplatformV1beta1Measurement",
           "description": "Required. The measurement to be added to a Trial."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AggregationOutput": {
+      "description": "The aggregation result for the entire dataset and all metrics.",
+      "id": "GoogleCloudAiplatformV1beta1AggregationOutput",
+      "properties": {
+        "aggregationResults": {
+          "description": "One AggregationResult per metric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1AggregationResult"
+          },
+          "type": "array"
+        },
+        "dataset": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationDataset",
+          "description": "The dataset used for evaluation & aggregation."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1AggregationResult": {
+      "description": "The aggregation result for a single metric.",
+      "id": "GoogleCloudAiplatformV1beta1AggregationResult",
+      "properties": {
+        "aggregationMetric": {
+          "description": "Aggregation metric.",
+          "enum": [
+            "AGGREGATION_METRIC_UNSPECIFIED",
+            "AVERAGE",
+            "MODE",
+            "STANDARD_DEVIATION",
+            "VARIANCE",
+            "MINIMUM",
+            "MAXIMUM",
+            "MEDIAN",
+            "PERCENTILE_P90",
+            "PERCENTILE_P95",
+            "PERCENTILE_P99"
+          ],
+          "enumDescriptions": [
+            "Unspecified aggregation metric.",
+            "Average aggregation metric. Not supported for Pairwise metric.",
+            "Mode aggregation metric.",
+            "Standard deviation aggregation metric. Not supported for pairwise metric.",
+            "Variance aggregation metric. Not supported for pairwise metric.",
+            "Minimum aggregation metric. Not supported for pairwise metric.",
+            "Maximum aggregation metric. Not supported for pairwise metric.",
+            "Median aggregation metric. Not supported for pairwise metric.",
+            "90th percentile aggregation metric. Not supported for pairwise metric.",
+            "95th percentile aggregation metric. Not supported for pairwise metric.",
+            "99th percentile aggregation metric. Not supported for pairwise metric."
+          ],
+          "type": "string"
+        },
+        "bleuMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1beta1BleuMetricValue",
+          "description": "Results for bleu metric."
+        },
+        "exactMatchMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1beta1ExactMatchMetricValue",
+          "description": "Results for exact match metric."
+        },
+        "pairwiseMetricResult": {
+          "$ref": "GoogleCloudAiplatformV1beta1PairwiseMetricResult",
+          "description": "Result for pairwise metric."
+        },
+        "pointwiseMetricResult": {
+          "$ref": "GoogleCloudAiplatformV1beta1PointwiseMetricResult",
+          "description": "Result for pointwise metric."
+        },
+        "rougeMetricValue": {
+          "$ref": "GoogleCloudAiplatformV1beta1RougeMetricValue",
+          "description": "Results for rouge metric."
         }
       },
       "type": "object"
@@ -27472,6 +28015,65 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1BigQueryRequestSet": {
+      "description": "The request set for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1BigQueryRequestSet",
+      "properties": {
+        "candidateResponseColumns": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Map of candidate name to candidate response column name. The column will be in evaluation_item.CandidateResponse format.",
+          "type": "object"
+        },
+        "promptColumn": {
+          "description": "Optional. The name of the column that contains the requests to evaluate. This will be in evaluation_item.EvalPrompt format.",
+          "type": "string"
+        },
+        "rubricsColumn": {
+          "description": "Optional. The name of the column that contains the rubrics. This will be in evaluation_rubric.RubricGroup format (cl/762595858).",
+          "type": "string"
+        },
+        "samplingConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryRequestSetSamplingConfig",
+          "description": "Optional. The sampling config for the bigquery resource."
+        },
+        "uri": {
+          "description": "Required. The URI of a BigQuery table. e.g. bq://projectId.bqDatasetId.bqTableId",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1BigQueryRequestSetSamplingConfig": {
+      "description": "The sampling config.",
+      "id": "GoogleCloudAiplatformV1beta1BigQueryRequestSetSamplingConfig",
+      "properties": {
+        "samplingCount": {
+          "description": "Optional. The total number of logged data to import. If available data is less than the sampling count, all data will be imported. Default is 100.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "samplingDuration": {
+          "description": "Optional. How long to wait before sampling data from the BigQuery table. If not specified, defaults to 0.",
+          "format": "google-duration",
+          "type": "string"
+        },
+        "samplingMethod": {
+          "description": "Optional. The sampling method to use.",
+          "enum": [
+            "SAMPLING_METHOD_UNSPECIFIED",
+            "RANDOM"
+          ],
+          "enumDescriptions": [
+            "Unspecified sampling method.",
+            "Random sampling."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1BigQuerySource": {
       "description": "The BigQuery location for the input content.",
       "id": "GoogleCloudAiplatformV1beta1BigQuerySource",
@@ -27738,6 +28340,12 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1CancelEvaluationRunRequest": {
+      "description": "Request message for EvaluationManagementService.CancelEvaluationRun.",
+      "id": "GoogleCloudAiplatformV1beta1CancelEvaluationRunRequest",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1CancelHyperparameterTuningJobRequest": {
       "description": "Request message for JobService.CancelHyperparameterTuningJob.",
       "id": "GoogleCloudAiplatformV1beta1CancelHyperparameterTuningJobRequest",
@@ -27862,6 +28470,60 @@
           "$ref": "GoogleCloudAiplatformV1beta1UrlContextMetadata",
           "description": "Output only. Metadata related to url context retrieval tool.",
           "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CandidateResponse": {
+      "description": "Responses from model or agent.",
+      "id": "GoogleCloudAiplatformV1beta1CandidateResponse",
+      "properties": {
+        "candidate": {
+          "description": "Required. The name of the candidate that produced the response.",
+          "type": "string"
+        },
+        "text": {
+          "description": "Text response.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Fields and values that can be used to populate the response template.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1CandidateResult": {
+      "description": "Result for a single candidate.",
+      "id": "GoogleCloudAiplatformV1beta1CandidateResult",
+      "properties": {
+        "additionalResults": {
+          "description": "Optional. Additional results for the metric.",
+          "type": "any"
+        },
+        "candidate": {
+          "description": "Required. The candidate that is being evaluated. The value is the same as the candidate name in the EvaluationRequest.",
+          "type": "string"
+        },
+        "explanation": {
+          "description": "Optional. The explanation for the metric.",
+          "type": "string"
+        },
+        "metric": {
+          "description": "Required. The metric that was evaluated.",
+          "type": "string"
+        },
+        "rubricVerdicts": {
+          "description": "Optional. The rubric verdicts for the metric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RubricVerdict"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "Optional. The score for the metric.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -31167,6 +31829,23 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse": {
+      "description": "Response in LRO for EvaluationService.EvaluateDataset.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse",
+      "properties": {
+        "aggregationOutput": {
+          "$ref": "GoogleCloudAiplatformV1beta1AggregationOutput",
+          "description": "Output only. Aggregation statistics derived from results of EvaluationService.EvaluateDataset.",
+          "readOnly": true
+        },
+        "outputInfo": {
+          "$ref": "GoogleCloudAiplatformV1beta1OutputInfo",
+          "description": "Output only. Output info for EvaluationService.EvaluateDataset.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1EvaluateDatasetRun": {
       "description": "Evaluate Dataset Run Result for Tuning Job.",
       "id": "GoogleCloudAiplatformV1beta1EvaluateDatasetRun",
@@ -31179,6 +31858,11 @@
         "error": {
           "$ref": "GoogleRpcStatus",
           "description": "Output only. The error of the evaluation run if any.",
+          "readOnly": true
+        },
+        "evaluateDatasetResponse": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluateDatasetResponse",
+          "description": "Output only. Results for EvaluationService.EvaluateDataset.",
           "readOnly": true
         },
         "operationName": {
@@ -31224,6 +31908,17 @@
         "groundednessInput": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundednessInput",
           "description": "Input for groundedness metric."
+        },
+        "instance": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstance",
+          "description": "The instance to be evaluated."
+        },
+        "metrics": {
+          "description": "The metrics used for evaluation. Currently, we only support evaluating a single metric. If multiple metrics are provided, only the first one will be evaluated.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Metric"
+          },
+          "type": "array"
         },
         "metricxInput": {
           "$ref": "GoogleCloudAiplatformV1beta1MetricxInput",
@@ -31359,6 +32054,13 @@
         "groundednessResult": {
           "$ref": "GoogleCloudAiplatformV1beta1GroundednessResult",
           "description": "Result for groundedness metric."
+        },
+        "metricResults": {
+          "description": "Metric results for each instance. The order of the metric results is guaranteed to be the same as the order of the instances in the request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1MetricResult"
+          },
+          "type": "array"
         },
         "metricxResult": {
           "$ref": "GoogleCloudAiplatformV1beta1MetricxResult",
@@ -31575,6 +32277,712 @@
         "gcsSource": {
           "$ref": "GoogleCloudAiplatformV1beta1GcsSource",
           "description": "Cloud storage source holds the dataset. Currently only one Cloud Storage file path is supported."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationInstance": {
+      "description": "A single instance to be evaluated. Instances are used to specify the input data for evaluation, from simple string comparisons to complex, multi-turn model evaluations",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationInstance",
+      "properties": {
+        "otherData": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceMapInstance",
+          "description": "Optional. Other data used to populate placeholders based on their key."
+        },
+        "prompt": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData",
+          "description": "Optional. Data used to populate placeholder `prompt` in a metric prompt template."
+        },
+        "reference": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData",
+          "description": "Optional. Data used to populate placeholder `reference` in a metric prompt template."
+        },
+        "response": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData",
+          "description": "Required. Data used to populate placeholder `response` in a metric prompt template."
+        },
+        "rubricGroups": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1RubricGroup"
+          },
+          "description": "Optional. Named groups of rubrics associated with the prompt. This is used for rubric-based evaluations where rubrics can be referenced by a key. The key could represent versions, associated metrics, etc.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData": {
+      "description": "Instance data used to populate placeholders in a metric prompt template.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData",
+      "properties": {
+        "contents": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceDataContents",
+          "description": "List of Gemini content data."
+        },
+        "text": {
+          "description": "Text data.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceDataContents": {
+      "description": "List of standard Content messages from Gemini API.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceDataContents",
+      "properties": {
+        "contents": {
+          "description": "Optional. Repeated contents.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationInstanceMapInstance": {
+      "description": "Instance data specified as a map.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationInstanceMapInstance",
+      "properties": {
+        "mapInstance": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationInstanceInstanceData"
+          },
+          "description": "Optional. Map of instance data.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationItem": {
+      "description": "EvaluationItem is a single evaluation request or result. The content of an EvaluationItem is immutable - it cannot be updated once created. EvaluationItems can be deleted when no longer needed.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationItem",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this item was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the EvaluationItem.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. Error for the evaluation item.",
+          "readOnly": true
+        },
+        "evaluationItemType": {
+          "description": "Required. The type of the EvaluationItem.",
+          "enum": [
+            "EVALUATION_ITEM_TYPE_UNSPECIFIED",
+            "REQUEST",
+            "RESULT"
+          ],
+          "enumDescriptions": [
+            "The default value. This value is unused.",
+            "The EvaluationItem is a request to evaluate.",
+            "The EvaluationItem is the result of evaluation."
+          ],
+          "type": "string"
+        },
+        "evaluationRequest": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRequest",
+          "description": "The request to evaluate."
+        },
+        "evaluationResponse": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationResult",
+          "description": "Output only. The response from evaluation.",
+          "readOnly": true
+        },
+        "gcsUri": {
+          "description": "The GCS object where the request or response is stored.",
+          "type": "string"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for the EvaluationItem.",
+          "type": "object"
+        },
+        "metadata": {
+          "description": "Optional. Metadata for the EvaluationItem.",
+          "type": "any"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the EvaluationItem. Format: `projects/{project}/locations/{location}/evaluationItems/{evaluation_item}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationPrompt": {
+      "description": "Prompt to be evaluated.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationPrompt",
+      "properties": {
+        "promptTemplateData": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationPromptPromptTemplateData",
+          "description": "Prompt template data."
+        },
+        "text": {
+          "description": "Text prompt.",
+          "type": "string"
+        },
+        "value": {
+          "description": "Fields and values that can be used to populate the prompt template.",
+          "type": "any"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationPromptPromptTemplateData": {
+      "description": "Message to hold a prompt template and the values to populate the template.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationPromptPromptTemplateData",
+      "properties": {
+        "values": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "description": "The values for fields in the prompt template.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRequest": {
+      "description": "Single evaluation request.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRequest",
+      "properties": {
+        "candidateResponses": {
+          "description": "Optional. Responses from model under test and other baseline models for comparison.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1CandidateResponse"
+          },
+          "type": "array"
+        },
+        "goldenResponse": {
+          "$ref": "GoogleCloudAiplatformV1beta1CandidateResponse",
+          "description": "Optional. The Ideal response or ground truth."
+        },
+        "prompt": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationPrompt",
+          "description": "Required. The request/prompt to evaluate."
+        },
+        "rubrics": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1RubricGroup"
+          },
+          "description": "Optional. Named groups of rubrics associated with this prompt. The key is a user-defined name for the rubric group.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationResult": {
+      "description": "Evaluation result.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationResult",
+      "properties": {
+        "candidateResults": {
+          "description": "Optional. The results for the metric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1CandidateResult"
+          },
+          "type": "array"
+        },
+        "evaluationRequest": {
+          "description": "Required. The request item that was evaluated. Format: projects/{project}/locations/{location}/evaluationItems/{evaluation_item}",
+          "type": "string"
+        },
+        "evaluationRun": {
+          "description": "Required. The evaluation run that was used to generate the result. Format: projects/{project}/locations/{location}/evaluationRuns/{evaluation_run}",
+          "type": "string"
+        },
+        "metadata": {
+          "description": "Optional. Metadata about the evaluation result.",
+          "type": "any"
+        },
+        "metric": {
+          "description": "Required. The metric that was evaluated.",
+          "type": "string"
+        },
+        "request": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRequest",
+          "description": "Required. The request that was evaluated."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationResults": {
+      "description": "The results of the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationResults",
+      "properties": {
+        "evaluationSet": {
+          "description": "The evaluation set where item level results are stored.",
+          "type": "string"
+        },
+        "summaryMetrics": {
+          "$ref": "GoogleCloudAiplatformV1beta1SummaryMetrics",
+          "description": "Optional. The summary metrics for the evaluation run."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRubricConfig": {
+      "description": "Configuration for a rubric group to be generated/saved for evaluation.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRubricConfig",
+      "properties": {
+        "predefinedRubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricPredefinedMetricSpec",
+          "description": "Dynamically generate rubrics using a predefined spec."
+        },
+        "rubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricGenerationSpec",
+          "description": "Dynamically generate rubrics using this specification."
+        },
+        "rubricGroupKey": {
+          "description": "Required. The key used to save the generated rubrics. If a generation spec is provided, this key will be used for the name of the generated rubric group. Otherwise, this key will be used to look up the existing rubric group on the evaluation item. Note that if a rubric group key is specified on both a rubric config and an evaluation metric, the key from the metric will be used to select the rubrics for evaluation.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRun": {
+      "description": "EvaluationRun is a resource that represents a single evaluation run, which includes a set of prompts, model responses, evaluation configuration and the resulting metrics.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRun",
+      "properties": {
+        "completionTime": {
+          "description": "Output only. Time when the evaluation run was completed.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "createTime": {
+          "description": "Output only. Time when the evaluation run was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "dataSource": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunDataSource",
+          "description": "Required. The data source for the evaluation run."
+        },
+        "displayName": {
+          "description": "Required. The display name of the Evaluation Run.",
+          "type": "string"
+        },
+        "error": {
+          "$ref": "GoogleRpcStatus",
+          "description": "Output only. Only populated when the evaluation run's state is FAILED or CANCELLED.",
+          "readOnly": true
+        },
+        "evaluationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfig",
+          "description": "Required. The configuration used for the evaluation."
+        },
+        "evaluationResults": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationResults",
+          "description": "Output only. The results of the evaluation run. Only populated when the evaluation run's state is SUCCEEDED.",
+          "readOnly": true
+        },
+        "evaluationSetSnapshot": {
+          "description": "Output only. The specific evaluation set of the evaluation run. For runs with an evaluation set input, this will be that same set. For runs with BigQuery input, it's the sampled BigQuery dataset.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "inferenceConfigs": {
+          "additionalProperties": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunInferenceConfig"
+          },
+          "description": "Optional. The candidate to inference config map for the evaluation run. The candidate can be up to 128 characters long and can consist of any UTF-8 characters.",
+          "type": "object"
+        },
+        "labels": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Optional. Labels for the evaluation run.",
+          "type": "object"
+        },
+        "metadata": {
+          "description": "Optional. Metadata about the evaluation run, can be used by the caller to store additional tracking information about the evaluation run.",
+          "type": "any"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the EvaluationRun. This is a unique identifier. Format: `projects/{project}/locations/{location}/evaluationRuns/{evaluation_run}`",
+          "type": "string"
+        },
+        "state": {
+          "description": "Output only. The state of the evaluation run.",
+          "enum": [
+            "STATE_UNSPECIFIED",
+            "PENDING",
+            "RUNNING",
+            "SUCCEEDED",
+            "FAILED",
+            "CANCELLED",
+            "INFERENCE",
+            "GENERATING_RUBRICS"
+          ],
+          "enumDescriptions": [
+            "Unspecified state.",
+            "The evaluation run is pending.",
+            "The evaluation run is running.",
+            "The evaluation run has succeeded.",
+            "The evaluation run has failed.",
+            "The evaluation run has been cancelled.",
+            "The evaluation run is performing inference.",
+            "The evaluation run is performing rubric generation."
+          ],
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunDataSource": {
+      "description": "The data source for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunDataSource",
+      "properties": {
+        "bigqueryRequestSet": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryRequestSet",
+          "description": "Evaluation data in bigquery."
+        },
+        "evaluationSet": {
+          "description": "The EvaluationSet resource name. Format: `projects/{project}/locations/{location}/evaluationSets/{evaluation_set}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfig": {
+      "description": "The Evalution configuration used for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfig",
+      "properties": {
+        "autoraterConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig",
+          "description": "Optional. The autorater config for the evaluation run."
+        },
+        "metrics": {
+          "description": "Required. The metrics to be calculated in the evaluation run.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetric"
+          },
+          "type": "array"
+        },
+        "outputConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigOutputConfig",
+          "description": "Optional. The output config for the evaluation run."
+        },
+        "promptTemplate": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigPromptTemplate",
+          "description": "The prompt template used for inference. The values for variables in the prompt template are defined in EvaluationItem.EvaluationPrompt.PromptTemplateData.values."
+        },
+        "rubricConfigs": {
+          "description": "Optional. The rubric configs for the evaluation run. They are used to generate rubrics which can be used by rubric-based metrics. Multiple rubric configs can be specified for rubric generation but only one rubric config can be used for a rubric-based metric. If more than one rubric config is provided, the evaluation metric must specify a rubric group key. Note that if a generation spec is specified on both a rubric config and an evaluation metric, the rubrics generated for the metric will be used for evaluation.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationRubricConfig"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig": {
+      "description": "The autorater config used for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig",
+      "properties": {
+        "autoraterModel": {
+          "description": "Optional. The fully qualified name of the publisher model or tuned autorater endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Tuned model endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "type": "string"
+        },
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
+          "description": "Optional. Configuration options for model generation and outputs."
+        },
+        "sampleCount": {
+          "description": "Optional. Number of samples for each instance in the dataset. If not specified, the default is 4. Minimum value is 1, maximum value is 32.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigOutputConfig": {
+      "description": "The output config for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigOutputConfig",
+      "properties": {
+        "bigqueryDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1BigQueryDestination",
+          "description": "BigQuery destination for evaluation output."
+        },
+        "gcsDestination": {
+          "$ref": "GoogleCloudAiplatformV1beta1GcsDestination",
+          "description": "Cloud Storage destination for evaluation output."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigPromptTemplate": {
+      "description": "Prompt template used for inference.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigPromptTemplate",
+      "properties": {
+        "gcsUri": {
+          "description": "Prompt template stored in Cloud Storage. Format: \"gs://my-bucket/file-name.txt\".",
+          "type": "string"
+        },
+        "promptTemplate": {
+          "description": "Inline prompt template. Template variables should be in the format \"{var_name}\". Example: \"Translate the following from {source_lang} to {target_lang}: {text}\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunInferenceConfig": {
+      "description": "An inference config used for model inference during the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunInferenceConfig",
+      "properties": {
+        "generationConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1GenerationConfig",
+          "description": "Optional. Generation config."
+        },
+        "model": {
+          "description": "Required. The fully qualified name of the publisher model or endpoint to use. Publisher model format: `projects/{project}/locations/{location}/publishers/*/models/*` Endpoint format: `projects/{project}/locations/{location}/endpoints/{endpoint}`",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetric": {
+      "description": "The metric used for evaluation runs.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetric",
+      "properties": {
+        "computationBasedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricComputationBasedMetricSpec",
+          "description": "Spec for a computation based metric."
+        },
+        "llmBasedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricLLMBasedMetricSpec",
+          "description": "Spec for an LLM based metric."
+        },
+        "metric": {
+          "description": "Required. The name of the metric.",
+          "type": "string"
+        },
+        "predefinedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricPredefinedMetricSpec",
+          "description": "Spec for a pre-defined metric."
+        },
+        "rubricBasedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpec",
+          "description": "Spec for rubric based metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricComputationBasedMetricSpec": {
+      "description": "Specification for a computation based metric.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricComputationBasedMetricSpec",
+      "properties": {
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. A map of parameters for the metric, e.g. {\"rouge_type\": \"rougeL\"}.",
+          "type": "object"
+        },
+        "type": {
+          "description": "Required. The type of the computation based metric.",
+          "enum": [
+            "COMPUTATION_BASED_METRIC_TYPE_UNSPECIFIED",
+            "EXACT_MATCH",
+            "BLEU",
+            "ROUGE"
+          ],
+          "enumDescriptions": [
+            "Unspecified computation based metric type.",
+            "Exact match metric.",
+            "BLEU metric.",
+            "ROUGE metric."
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricLLMBasedMetricSpec": {
+      "description": "Specification for an LLM based metric.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricLLMBasedMetricSpec",
+      "properties": {
+        "additionalConfig": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Optional additional configuration for the metric.",
+          "type": "object"
+        },
+        "judgeAutoraterConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig",
+          "description": "Optional. Optional configuration for the judge LLM (Autorater)."
+        },
+        "metricPromptTemplate": {
+          "description": "Required. Template for the prompt sent to the judge model.",
+          "type": "string"
+        },
+        "predefinedRubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricPredefinedMetricSpec",
+          "description": "Dynamically generate rubrics using a predefined spec."
+        },
+        "rubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricGenerationSpec",
+          "description": "Dynamically generate rubrics using this specification."
+        },
+        "rubricGroupKey": {
+          "description": "Use a pre-defined group of rubrics associated with the input. Refers to a key in the rubric_groups map of EvaluationInstance.",
+          "type": "string"
+        },
+        "systemInstruction": {
+          "description": "Optional. System instructions for the judge model.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricPredefinedMetricSpec": {
+      "description": "Specification for a pre-defined metric.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricPredefinedMetricSpec",
+      "properties": {
+        "metricSpecName": {
+          "description": "Required. The name of a pre-defined metric, such as \"instruction_following_v1\" or \"text_quality_v1\".",
+          "type": "string"
+        },
+        "parameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The parameters needed to run the pre-defined metric.",
+          "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpec": {
+      "description": "Specification for a metric that is based on rubrics.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpec",
+      "properties": {
+        "inlineRubrics": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpecRepeatedRubrics",
+          "description": "Use rubrics provided directly in the spec."
+        },
+        "judgeAutoraterConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig",
+          "description": "Optional. Optional configuration for the judge LLM (Autorater). The definition of AutoraterConfig needs to be provided."
+        },
+        "metricPromptTemplate": {
+          "description": "Optional. Template for the prompt used by the judge model to evaluate against rubrics.",
+          "type": "string"
+        },
+        "rubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricGenerationSpec",
+          "description": "Dynamically generate rubrics for evaluation using this specification."
+        },
+        "rubricGroupKey": {
+          "description": "Use a pre-defined group of rubrics associated with the input content. This refers to a key in the `rubric_groups` map of `RubricEnhancedContents`.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpecRepeatedRubrics": {
+      "description": "Defines a list of rubrics, used when providing rubrics inline.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricBasedMetricSpecRepeatedRubrics",
+      "properties": {
+        "rubrics": {
+          "description": "The list of rubrics.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Rubric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricGenerationSpec": {
+      "description": "Specification for how rubrics should be generated.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationRunMetricRubricGenerationSpec",
+      "properties": {
+        "modelConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1EvaluationRunEvaluationConfigAutoraterConfig",
+          "description": "Optional. Configuration for the model used in rubric generation. Configs including sampling count and base model can be specified here. Flipping is not supported for rubric generation."
+        },
+        "promptTemplate": {
+          "description": "Optional. Template for the prompt used to generate rubrics. The details should be updated based on the most-recent recipe requirements.",
+          "type": "string"
+        },
+        "rubricContentType": {
+          "description": "Optional. The type of rubric content to be generated.",
+          "enum": [
+            "RUBRIC_CONTENT_TYPE_UNSPECIFIED",
+            "PROPERTY",
+            "NL_QUESTION_ANSWER",
+            "PYTHON_CODE_ASSERTION"
+          ],
+          "enumDescriptions": [
+            "The content type to generate is not specified.",
+            "Generate rubrics based on properties.",
+            "Generate rubrics in an NL question answer format.",
+            "Generate rubrics in a unit test format."
+          ],
+          "type": "string"
+        },
+        "rubricTypeOntology": {
+          "description": "Optional. An optional, pre-defined list of allowed types for generated rubrics. If this field is provided, it implies `include_rubric_type` should be true, and the generated rubric types should be chosen from this ontology.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1EvaluationSet": {
+      "description": "EvaluationSet is a collection of related EvaluationItems that are evaluated together.",
+      "id": "GoogleCloudAiplatformV1beta1EvaluationSet",
+      "properties": {
+        "createTime": {
+          "description": "Output only. Timestamp when this item was created.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Required. The display name of the EvaluationSet.",
+          "type": "string"
+        },
+        "evaluationItems": {
+          "description": "Required. The EvaluationItems that are part of this dataset.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "metadata": {
+          "description": "Optional. Metadata for the EvaluationSet.",
+          "type": "any"
+        },
+        "name": {
+          "description": "Identifier. The resource name of the EvaluationSet. Format: `projects/{project}/locations/{location}/evaluationSets/{evaluation_set}`",
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Output only. Timestamp when this item was last updated.",
+          "format": "google-datetime",
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"
@@ -35220,13 +36628,15 @@
             "MODE_UNSPECIFIED",
             "AUTO",
             "ANY",
-            "NONE"
+            "NONE",
+            "VALIDATED"
           ],
           "enumDescriptions": [
             "Unspecified function calling mode. This value should not be used.",
             "Default model behavior, model decides to predict either function calls or natural language response.",
             "Model is constrained to always predicting function calls only. If \"allowed_function_names\" are set, the predicted function calls will be limited to any one of \"allowed_function_names\", else the predicted function calls will be any one of the provided \"function_declarations\".",
-            "Model will not predict any function calls. Model behavior is same as when not passing any function declarations."
+            "Model will not predict any function calls. Model behavior is same as when not passing any function declarations.",
+            "Model is constrained to predict either function calls or natural language response."
           ],
           "type": "string"
         }
@@ -35726,6 +37136,43 @@
           ],
           "readOnly": true,
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsRequest": {
+      "description": "Request message for EvaluationService.GenerateInstanceRubrics.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsRequest",
+      "properties": {
+        "contents": {
+          "description": "Required. The prompt to generate rubrics from. For single-turn queries, this is a single instance. For multi-turn queries, this is a repeated field that contains conversation history + latest request.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Content"
+          },
+          "type": "array"
+        },
+        "predefinedRubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1PredefinedMetricSpec",
+          "description": "Optional. Specification for using the rubric generation configs of a pre-defined metric, e.g. \"generic_quality_v1\" and \"instruction_following_v1\". Some of the configs may be only used in rubric generation and not supporting evaluation, e.g. \"fully_customized_generic_quality_v1\". If this field is set, the `rubric_generation_spec` field will be ignored."
+        },
+        "rubricGenerationSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1RubricGenerationSpec",
+          "description": "Optional. Specification for how the rubrics should be generated."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsResponse": {
+      "description": "Response message for EvaluationService.GenerateInstanceRubrics.",
+      "id": "GoogleCloudAiplatformV1beta1GenerateInstanceRubricsResponse",
+      "properties": {
+        "generatedRubrics": {
+          "description": "Output only. A list of generated rubrics.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Rubric"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -37974,6 +39421,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1ListEvaluationItemsResponse": {
+      "description": "Response message for EvaluationManagementService.ListEvaluationItems.",
+      "id": "GoogleCloudAiplatformV1beta1ListEvaluationItemsResponse",
+      "properties": {
+        "evaluationItems": {
+          "description": "List of EvaluationItems in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationItem"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListEvaluationRunsResponse": {
+      "description": "Response message for EvaluationManagementService.ListEvaluationRuns.",
+      "id": "GoogleCloudAiplatformV1beta1ListEvaluationRunsResponse",
+      "properties": {
+        "evaluationRuns": {
+          "description": "List of EvaluationRuns in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationRun"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1ListEvaluationSetsResponse": {
+      "description": "Response message for EvaluationManagementService.ListEvaluationSets.",
+      "id": "GoogleCloudAiplatformV1beta1ListEvaluationSetsResponse",
+      "properties": {
+        "evaluationSets": {
+          "description": "List of EvaluationSets in the requested page.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1EvaluationSet"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token to retrieve the next page of results.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1ListEventsResponse": {
       "description": "Response message for SessionService.ListEvents.",
       "id": "GoogleCloudAiplatformV1beta1ListEventsResponse",
@@ -39033,6 +40534,10 @@
           ],
           "type": "string"
         },
+        "gpuPartitionSize": {
+          "description": "Optional. Immutable. The Nvidia GPU partition size. When specified, the requested accelerators will be partitioned into smaller GPU partitions. For example, if the request is for 8 units of NVIDIA A100 GPUs, and gpu_partition_size=\"1g.10gb\", the service will create 8 * 7 = 56 partitioned MIG instances. The partition size must be a value supported by the requested accelerator. Refer to [Nvidia GPU Partitioning](https://cloud.google.com/kubernetes-engine/docs/how-to/gpus-multi#multi-instance_gpu_partitions) for the available partition sizes. If set, the accelerator_count should be set to 1.",
+          "type": "string"
+        },
         "machineType": {
           "description": "Immutable. The type of the machine. See the [list of machine types supported for prediction](https://cloud.google.com/vertex-ai/docs/predictions/configure-compute#machine-types) See the [list of machine types supported for custom training](https://cloud.google.com/vertex-ai/docs/training/configure-compute#machine-types). For DeployedModel this field is optional, and the default value is `n1-standard-2`. For BatchPredictionJob or as part of WorkerPoolSpec this field is required.",
           "type": "string"
@@ -39491,9 +40996,36 @@
           "$ref": "GoogleCloudAiplatformV1beta1PointwiseMetricSpec",
           "description": "Spec for pointwise metric."
         },
+        "predefinedMetricSpec": {
+          "$ref": "GoogleCloudAiplatformV1beta1PredefinedMetricSpec",
+          "description": "The spec for a pre-defined metric."
+        },
         "rougeSpec": {
           "$ref": "GoogleCloudAiplatformV1beta1RougeSpec",
           "description": "Spec for rouge metric."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1MetricResult": {
+      "description": "Result for a single metric on a single instance.",
+      "id": "GoogleCloudAiplatformV1beta1MetricResult",
+      "properties": {
+        "explanation": {
+          "description": "The explanation for the metric result.",
+          "type": "string"
+        },
+        "rubricVerdicts": {
+          "description": "For rubric-based metrics, the verdicts for each rubric.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1RubricVerdict"
+          },
+          "type": "array"
+        },
+        "score": {
+          "description": "The score for the metric. Please refer to each metric's documentation for the meaning of the score.",
+          "format": "float",
+          "type": "number"
         }
       },
       "type": "object"
@@ -43256,6 +44788,18 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1OutputInfo": {
+      "description": "Describes the info for output of EvaluationService.EvaluateDataset.",
+      "id": "GoogleCloudAiplatformV1beta1OutputInfo",
+      "properties": {
+        "gcsOutputDirectory": {
+          "description": "Output only. The full path of the Cloud Storage directory created, into which the evaluation results and aggregation results are written.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1PSCAutomationConfig": {
       "description": "PSC config that is used to automatically create PSC endpoints in the user projects.",
       "id": "GoogleCloudAiplatformV1beta1PSCAutomationConfig",
@@ -44539,6 +46083,25 @@
         "voiceName": {
           "description": "The name of the preset voice to use.",
           "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1PredefinedMetricSpec": {
+      "description": "The spec for a pre-defined metric.",
+      "id": "GoogleCloudAiplatformV1beta1PredefinedMetricSpec",
+      "properties": {
+        "metricSpecName": {
+          "description": "Required. The name of a pre-defined metric, such as \"instruction_following_v1\" or \"text_quality_v1\".",
+          "type": "string"
+        },
+        "metricSpecParameters": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. The parameters needed to run the pre-defined metric.",
+          "type": "object"
         }
       },
       "type": "object"
@@ -47378,7 +48941,7 @@
           "type": "string"
         },
         "generateUpdatedTtl": {
-          "description": "Optional. The TTL duration for memories updated via GenerateMemories (GenerateMemoriesResponse.GeneratedMemory.Action.CREATED). In the case of an UPDATE action, the `expire_time` of the existing memory will be updated to the new value (now + TTL).",
+          "description": "Optional. The TTL duration for memories updated via GenerateMemories (GenerateMemoriesResponse.GeneratedMemory.Action.UPDATED). In the case of an UPDATE action, the `expire_time` of the existing memory will be updated to the new value (now + TTL).",
           "format": "google-duration",
           "type": "string"
         }
@@ -47423,6 +48986,20 @@
       "description": "The specification of a Reasoning Engine deployment.",
       "id": "GoogleCloudAiplatformV1beta1ReasoningEngineSpecDeploymentSpec",
       "properties": {
+        "agentServerMode": {
+          "description": "The agent server mode.",
+          "enum": [
+            "AGENT_SERVER_MODE_UNSPECIFIED",
+            "STABLE",
+            "EXPERIMENTAL"
+          ],
+          "enumDescriptions": [
+            "Unspecified agent server mode. Do not use.",
+            "Stable agent server mode. This mode has everything stable and well-tested features agent engine offers.",
+            "Experimental agent server mode. This mode contains experimental features."
+          ],
+          "type": "string"
+        },
         "containerConcurrency": {
           "description": "Optional. Concurrency for each container and agent server. Recommended value: 2 * cpu + 1. Defaults to 9.",
           "format": "int32",
@@ -48285,6 +49862,41 @@
       },
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1Rubric": {
+      "description": "Message representing a single testable criterion for evaluation. One input prompt could have multiple rubrics.",
+      "id": "GoogleCloudAiplatformV1beta1Rubric",
+      "properties": {
+        "content": {
+          "$ref": "GoogleCloudAiplatformV1beta1RubricContent",
+          "description": "Required. The actual testable criteria for the rubric."
+        },
+        "importance": {
+          "description": "Optional. The relative importance of this rubric.",
+          "enum": [
+            "IMPORTANCE_UNSPECIFIED",
+            "HIGH",
+            "MEDIUM",
+            "LOW"
+          ],
+          "enumDescriptions": [
+            "Importance is not specified.",
+            "High importance.",
+            "Medium importance.",
+            "Low importance."
+          ],
+          "type": "string"
+        },
+        "rubricId": {
+          "description": "Unique identifier for the rubric. This ID is used to refer to this rubric, e.g., in RubricVerdict.",
+          "type": "string"
+        },
+        "type": {
+          "description": "Optional. A type designator for the rubric, which can inform how it's evaluated or interpreted by systems or users. It's recommended to use consistent, well-defined, upper snake_case strings. Examples: \"SUMMARIZATION_QUALITY\", \"SAFETY_HARMFUL_CONTENT\", \"INSTRUCTION_ADHERENCE\".",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RubricBasedInstructionFollowingInput": {
       "description": "Instance and metric spec for RubricBasedInstructionFollowing metric.",
       "id": "GoogleCloudAiplatformV1beta1RubricBasedInstructionFollowingInput",
@@ -48338,6 +49950,28 @@
       "properties": {},
       "type": "object"
     },
+    "GoogleCloudAiplatformV1beta1RubricContent": {
+      "description": "Content of the rubric, defining the testable criteria.",
+      "id": "GoogleCloudAiplatformV1beta1RubricContent",
+      "properties": {
+        "property": {
+          "$ref": "GoogleCloudAiplatformV1beta1RubricContentProperty",
+          "description": "Evaluation criteria based on a specific property."
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RubricContentProperty": {
+      "description": "Defines criteria based on a specific property.",
+      "id": "GoogleCloudAiplatformV1beta1RubricContentProperty",
+      "properties": {
+        "description": {
+          "description": "Description of the property being evaluated. Example: \"The model's response is grammatically correct.\"",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "GoogleCloudAiplatformV1beta1RubricCritiqueResult": {
       "description": "Rubric critique result.",
       "id": "GoogleCloudAiplatformV1beta1RubricCritiqueResult",
@@ -48350,6 +49984,85 @@
         "verdict": {
           "description": "Output only. Verdict for the rubric - true if the rubric is met, false otherwise.",
           "readOnly": true,
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RubricGenerationSpec": {
+      "description": "Specification for how rubrics should be generated.",
+      "id": "GoogleCloudAiplatformV1beta1RubricGenerationSpec",
+      "properties": {
+        "modelConfig": {
+          "$ref": "GoogleCloudAiplatformV1beta1AutoraterConfig",
+          "description": "Configuration for the model used in rubric generation. Configs including sampling count and base model can be specified here. Flipping is not supported for rubric generation."
+        },
+        "promptTemplate": {
+          "description": "Template for the prompt used to generate rubrics. The details should be updated based on the most-recent recipe requirements.",
+          "type": "string"
+        },
+        "rubricContentType": {
+          "description": "The type of rubric content to be generated.",
+          "enum": [
+            "RUBRIC_CONTENT_TYPE_UNSPECIFIED",
+            "PROPERTY",
+            "NL_QUESTION_ANSWER",
+            "PYTHON_CODE_ASSERTION"
+          ],
+          "enumDescriptions": [
+            "The content type to generate is not specified.",
+            "Generate rubrics based on properties.",
+            "Generate rubrics in an NL question answer format.",
+            "Generate rubrics in a unit test format."
+          ],
+          "type": "string"
+        },
+        "rubricTypeOntology": {
+          "description": "Optional. An optional, pre-defined list of allowed types for generated rubrics. If this field is provided, it implies `include_rubric_type` should be true, and the generated rubric types should be chosen from this ontology.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RubricGroup": {
+      "description": "A group of rubrics, used for grouping rubrics based on a metric or a version.",
+      "id": "GoogleCloudAiplatformV1beta1RubricGroup",
+      "properties": {
+        "displayName": {
+          "description": "Human-readable name for the group. This should be unique within a given context if used for display or selection. Example: \"Instruction Following V1\", \"Content Quality - Summarization Task\".",
+          "type": "string"
+        },
+        "groupId": {
+          "description": "Unique identifier for the group.",
+          "type": "string"
+        },
+        "rubrics": {
+          "description": "Rubrics that are part of this group.",
+          "items": {
+            "$ref": "GoogleCloudAiplatformV1beta1Rubric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1RubricVerdict": {
+      "description": "Represents the verdict of an evaluation against a single rubric.",
+      "id": "GoogleCloudAiplatformV1beta1RubricVerdict",
+      "properties": {
+        "evaluatedRubric": {
+          "$ref": "GoogleCloudAiplatformV1beta1Rubric",
+          "description": "Required. The full rubric definition that was evaluated. Storing this ensures the verdict is self-contained and understandable, especially if the original rubric definition changes or was dynamically generated."
+        },
+        "reasoning": {
+          "description": "Optional. Human-readable reasoning or explanation for the verdict. This can include specific examples or details from the evaluated content that justify the given verdict.",
+          "type": "string"
+        },
+        "verdict": {
+          "description": "Required. Outcome of the evaluation against the rubric, represented as a boolean. `true` indicates a \"Pass\", `false` indicates a \"Fail\".",
           "type": "boolean"
         }
       },
@@ -55397,6 +57110,30 @@
         },
         "version": {
           "description": "Optional. Which version to use for evaluation.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudAiplatformV1beta1SummaryMetrics": {
+      "description": "The summary metrics for the evaluation run.",
+      "id": "GoogleCloudAiplatformV1beta1SummaryMetrics",
+      "properties": {
+        "failedItems": {
+          "description": "Optional. The number of items that failed to be evaluated.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "metrics": {
+          "additionalProperties": {
+            "type": "any"
+          },
+          "description": "Optional. Map of metric name to metric value.",
+          "type": "object"
+        },
+        "totalItems": {
+          "description": "Optional. The total number of items that were evaluated.",
           "format": "int32",
           "type": "integer"
         }
