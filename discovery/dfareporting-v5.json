@@ -14,8 +14,8 @@
       }
     }
   },
-  "basePath": "/dfareporting/v4/",
-  "baseUrl": "https://dfareporting.googleapis.com/dfareporting/v4/",
+  "basePath": "/dfareporting/v5/",
+  "baseUrl": "https://dfareporting.googleapis.com/dfareporting/v5/",
   "batchPath": "batch",
   "canonicalName": "Dfareporting",
   "description": "Build applications to efficiently manage large or complex trafficking, reporting, and attribution workflows for Campaign Manager 360.",
@@ -26,7 +26,7 @@
     "x16": "http://www.google.com/images/icons/product/search-16.gif",
     "x32": "http://www.google.com/images/icons/product/search-32.gif"
   },
-  "id": "dfareporting:v4",
+  "id": "dfareporting:v5",
   "kind": "discovery#restDescription",
   "mtlsRootUrl": "https://dfareporting.mtls.googleapis.com/",
   "name": "dfareporting",
@@ -3273,7 +3273,7 @@
             "protocols": {
               "simple": {
                 "multipart": true,
-                "path": "/upload/dfareporting/v4/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets"
+                "path": "/upload/dfareporting/v5/userprofiles/{+profileId}/creativeAssets/{+advertiserId}/creativeAssets"
               }
             }
           },
@@ -5989,166 +5989,6 @@
         }
       }
     },
-    "inventoryItems": {
-      "methods": {
-        "get": {
-          "description": "Gets one inventory item by ID.",
-          "flatPath": "userprofiles/{userprofilesId}/projects/{projectId}/inventoryItems/{inventoryItemsId}",
-          "httpMethod": "GET",
-          "id": "dfareporting.inventoryItems.get",
-          "parameterOrder": [
-            "profileId",
-            "projectId",
-            "id"
-          ],
-          "parameters": {
-            "id": {
-              "description": "Inventory item ID.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Project ID for order documents.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects/{projectId}/inventoryItems/{+id}",
-          "response": {
-            "$ref": "InventoryItem"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        },
-        "list": {
-          "description": "Retrieves a list of inventory items, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{userprofilesId}/projects/{projectId}/inventoryItems",
-          "httpMethod": "GET",
-          "id": "dfareporting.inventoryItems.list",
-          "parameterOrder": [
-            "profileId",
-            "projectId"
-          ],
-          "parameters": {
-            "ids": {
-              "description": "Select only inventory items with these IDs.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "inPlan": {
-              "description": "Select only inventory items that are in plan.",
-              "location": "query",
-              "type": "boolean"
-            },
-            "maxResults": {
-              "default": "1000",
-              "description": "Maximum number of results to return.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "orderId": {
-              "description": "Select only inventory items that belong to specified orders.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "pageToken": {
-              "description": "Value of the nextPageToken from the previous result page.",
-              "location": "query",
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Project ID for order documents.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "siteId": {
-              "description": "Select only inventory items that are associated with these sites.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "sortField": {
-              "default": "ID",
-              "description": "Field by which to sort the list.",
-              "enum": [
-                "ID",
-                "NAME"
-              ],
-              "enumDescriptions": [
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "sortOrder": {
-              "default": "ASCENDING",
-              "description": "Order of sorted results.",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ],
-              "enumDescriptions": [
-                "Ascending order.",
-                "Descending order."
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "type": {
-              "description": "Select only inventory items with this type.",
-              "enum": [
-                "PLANNING_PLACEMENT_TYPE_REGULAR",
-                "PLANNING_PLACEMENT_TYPE_CREDIT"
-              ],
-              "enumDescriptions": [
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects/{projectId}/inventoryItems",
-          "response": {
-            "$ref": "InventoryItemsListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        }
-      }
-    },
     "languages": {
       "methods": {
         "list": {
@@ -6516,146 +6356,6 @@
           "path": "userprofiles/{+profileId}/operatingSystems",
           "response": {
             "$ref": "OperatingSystemsListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        }
-      }
-    },
-    "orders": {
-      "methods": {
-        "get": {
-          "description": "Gets one order by ID.",
-          "flatPath": "userprofiles/{userprofilesId}/projects/{projectId}/orders/{ordersId}",
-          "httpMethod": "GET",
-          "id": "dfareporting.orders.get",
-          "parameterOrder": [
-            "profileId",
-            "projectId",
-            "id"
-          ],
-          "parameters": {
-            "id": {
-              "description": "Order ID.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Project ID for orders.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects/{projectId}/orders/{+id}",
-          "response": {
-            "$ref": "Order"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        },
-        "list": {
-          "description": "Retrieves a list of orders, possibly filtered. This method supports paging.",
-          "flatPath": "userprofiles/{userprofilesId}/projects/{projectId}/orders",
-          "httpMethod": "GET",
-          "id": "dfareporting.orders.list",
-          "parameterOrder": [
-            "profileId",
-            "projectId"
-          ],
-          "parameters": {
-            "ids": {
-              "description": "Select only orders with these IDs.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "maxResults": {
-              "default": "1000",
-              "description": "Maximum number of results to return.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Value of the nextPageToken from the previous result page.",
-              "location": "query",
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "projectId": {
-              "description": "Project ID for orders.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "searchString": {
-              "description": "Allows searching for orders by name or ID. Wildcards (*) are allowed. For example, \"order*2015\" will return orders with names like \"order June 2015\", \"order April 2015\", or simply \"order 2015\". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of \"order\" will match orders with name \"my order\", \"order 2015\", or simply \"order\".",
-              "location": "query",
-              "type": "string"
-            },
-            "siteId": {
-              "description": "Select only orders that are associated with these site IDs.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "sortField": {
-              "default": "ID",
-              "description": "Field by which to sort the list.",
-              "enum": [
-                "ID",
-                "NAME"
-              ],
-              "enumDescriptions": [
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "sortOrder": {
-              "default": "ASCENDING",
-              "description": "Order of sorted results.",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ],
-              "enumDescriptions": [
-                "Ascending order.",
-                "Descending order."
-              ],
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects/{projectId}/orders",
-          "response": {
-            "$ref": "OrdersListResponse"
           },
           "scopes": [
             "https://www.googleapis.com/auth/dfatrafficking"
@@ -7819,130 +7519,6 @@
         }
       }
     },
-    "projects": {
-      "methods": {
-        "get": {
-          "description": "Gets one project by ID.",
-          "flatPath": "userprofiles/{userprofilesId}/projects/{projectsId}",
-          "httpMethod": "GET",
-          "id": "dfareporting.projects.get",
-          "parameterOrder": [
-            "profileId",
-            "id"
-          ],
-          "parameters": {
-            "id": {
-              "description": "Project ID.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects/{+id}",
-          "response": {
-            "$ref": "Project"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        },
-        "list": {
-          "description": "Retrieves a list of projects, possibly filtered. This method supports paging .",
-          "flatPath": "userprofiles/{userprofilesId}/projects",
-          "httpMethod": "GET",
-          "id": "dfareporting.projects.list",
-          "parameterOrder": [
-            "profileId"
-          ],
-          "parameters": {
-            "advertiserIds": {
-              "description": "Select only projects with these advertiser IDs.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "ids": {
-              "description": "Select only projects with these IDs.",
-              "format": "int64",
-              "location": "query",
-              "repeated": true,
-              "type": "string"
-            },
-            "maxResults": {
-              "default": "1000",
-              "description": "Maximum number of results to return.",
-              "format": "int32",
-              "location": "query",
-              "type": "integer"
-            },
-            "pageToken": {
-              "description": "Value of the nextPageToken from the previous result page.",
-              "location": "query",
-              "type": "string"
-            },
-            "profileId": {
-              "description": "User profile ID associated with this request.",
-              "format": "int64",
-              "location": "path",
-              "pattern": "^[^/]+$",
-              "required": true,
-              "type": "string"
-            },
-            "searchString": {
-              "description": "Allows searching for projects by name or ID. Wildcards (*) are allowed. For example, \"project*2015\" will return projects with names like \"project June 2015\", \"project April 2015\", or simply \"project 2015\". Most of the searches also add wildcards implicitly at the start and the end of the search string. For example, a search string of \"project\" will match projects with name \"my project\", \"project 2015\", or simply \"project\".",
-              "location": "query",
-              "type": "string"
-            },
-            "sortField": {
-              "default": "ID",
-              "description": "Field by which to sort the list.",
-              "enum": [
-                "ID",
-                "NAME"
-              ],
-              "enumDescriptions": [
-                "",
-                ""
-              ],
-              "location": "query",
-              "type": "string"
-            },
-            "sortOrder": {
-              "default": "ASCENDING",
-              "description": "Order of sorted results.",
-              "enum": [
-                "ASCENDING",
-                "DESCENDING"
-              ],
-              "enumDescriptions": [
-                "Ascending order.",
-                "Descending order."
-              ],
-              "location": "query",
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{+profileId}/projects",
-          "response": {
-            "$ref": "ProjectsListResponse"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfatrafficking"
-          ]
-        }
-      }
-    },
     "regions": {
       "methods": {
         "list": {
@@ -8471,42 +8047,6 @@
           "path": "userprofiles/{profileId}/reports",
           "response": {
             "$ref": "ReportList"
-          },
-          "scopes": [
-            "https://www.googleapis.com/auth/dfareporting"
-          ]
-        },
-        "patch": {
-          "description": "Updates an existing report. This method supports patch semantics.",
-          "flatPath": "userprofiles/{profileId}/reports/{reportId}",
-          "httpMethod": "PATCH",
-          "id": "dfareporting.reports.patch",
-          "parameterOrder": [
-            "profileId",
-            "reportId"
-          ],
-          "parameters": {
-            "profileId": {
-              "description": "The Campaign Manager 360 user profile ID.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            },
-            "reportId": {
-              "description": "The ID of the report.",
-              "format": "int64",
-              "location": "path",
-              "required": true,
-              "type": "string"
-            }
-          },
-          "path": "userprofiles/{profileId}/reports/{reportId}",
-          "request": {
-            "$ref": "Report"
-          },
-          "response": {
-            "$ref": "Report"
           },
           "scopes": [
             "https://www.googleapis.com/auth/dfareporting"
@@ -10938,72 +10478,6 @@
       },
       "type": "object"
     },
-    "AdSlot": {
-      "description": "Ad Slot",
-      "id": "AdSlot",
-      "properties": {
-        "comment": {
-          "description": "Comment for this ad slot.",
-          "type": "string"
-        },
-        "compatibility": {
-          "description": "Ad slot compatibility. DISPLAY and DISPLAY_INTERSTITIAL refer to rendering either on desktop, mobile devices or in mobile apps for regular or interstitial ads respectively. APP and APP_INTERSTITIAL are for rendering in mobile apps. IN_STREAM_VIDEO refers to rendering in in-stream video ads developed with the VAST standard.",
-          "enum": [
-            "DISPLAY",
-            "DISPLAY_INTERSTITIAL",
-            "APP",
-            "APP_INTERSTITIAL",
-            "IN_STREAM_VIDEO",
-            "IN_STREAM_AUDIO"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "Deprecated enum value. No longer supported.",
-            "Deprecated enum value. No longer supported.",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "height": {
-          "description": "Height of this ad slot.",
-          "format": "int64",
-          "type": "string"
-        },
-        "linkedPlacementId": {
-          "description": "ID of the placement from an external platform that is linked to this ad slot.",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "Name of this ad slot.",
-          "type": "string"
-        },
-        "paymentSourceType": {
-          "description": "Payment source type of this ad slot.",
-          "enum": [
-            "PLANNING_PAYMENT_SOURCE_TYPE_AGENCY_PAID",
-            "PLANNING_PAYMENT_SOURCE_TYPE_PUBLISHER_PAID"
-          ],
-          "enumDescriptions": [
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "primary": {
-          "description": "Primary ad slot of a roadblock inventory item.",
-          "type": "boolean"
-        },
-        "width": {
-          "description": "Width of this ad slot.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "AdsListResponse": {
       "description": "Ad List Response",
       "id": "AdsListResponse",
@@ -12999,10 +12473,6 @@
           },
           "type": "array"
         },
-        "creativeAssetSelection": {
-          "$ref": "CreativeAssetSelection",
-          "description": "Required if dynamicAssetSelection is true."
-        },
         "creativeAssets": {
           "description": "Assets associated with a creative. Applicable to all but the following creative types: INTERNAL_REDIRECT, INTERSTITIAL_INTERNAL_REDIRECT, and REDIRECT",
           "items": {
@@ -13023,10 +12493,6 @@
             "type": "string"
           },
           "type": "array"
-        },
-        "dynamicAssetSelection": {
-          "description": "Set this to true to enable the use of rules to target individual assets in this creative. When set to true creativeAssetSelection must be set. This also controls asset-level companions. When this is true, companion creatives should be assigned to creative assets. Learn more. Applicable to INSTREAM_VIDEO creatives.",
-          "type": "boolean"
         },
         "exitCustomEvents": {
           "description": "List of exit events configured for the creative. For DISPLAY and DISPLAY_IMAGE_GALLERY creatives, these are read-only and auto-generated from clickTags, For DISPLAY, an event is also created from the backupImageReportingLabel. Applicable to the following creative types: DISPLAY_IMAGE_GALLERY, all RICH_MEDIA, and all VPAID. Applicable to DISPLAY when the primary asset type is not HTML_IMAGE.",
@@ -14047,25 +13513,6 @@
               "Rich media primary asset is missing the Enabler reference."
             ],
             "type": "string"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
-    "CreativeAssetSelection": {
-      "description": "Encapsulates the list of rules for asset selection and a default asset in case none of the rules match. Applicable to INSTREAM_VIDEO creatives.",
-      "id": "CreativeAssetSelection",
-      "properties": {
-        "defaultAssetId": {
-          "description": "A creativeAssets[].id. This should refer to one of the parent assets in this creative, and will be served if none of the rules match. This is a required field.",
-          "format": "int64",
-          "type": "string"
-        },
-        "rules": {
-          "description": "Rules determine which asset will be served to a viewer. Rules will be evaluated in the order in which they are stored in this list. This list must contain at least one rule. Applicable to INSTREAM_VIDEO creatives.",
-          "items": {
-            "$ref": "Rule"
           },
           "type": "array"
         }
@@ -16562,31 +16009,6 @@
       },
       "type": "object"
     },
-    "Flight": {
-      "description": "Flight",
-      "id": "Flight",
-      "properties": {
-        "endDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "rateOrCost": {
-          "description": "Rate or cost of this flight.",
-          "format": "int64",
-          "type": "string"
-        },
-        "startDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "units": {
-          "description": "Units of this flight.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "FloodlightActivitiesGenerateTagResponse": {
       "description": "Floodlight Activity GenerateTag Response",
       "id": "FloodlightActivitiesGenerateTagResponse",
@@ -16665,6 +16087,66 @@
             "",
             "",
             ""
+          ],
+          "type": "string"
+        },
+        "conversionCategory": {
+          "description": "Required. The conversion category of the activity.",
+          "enum": [
+            "CONVERSION_CATEGORY_DEFAULT",
+            "CONVERSION_CATEGORY_PURCHASE",
+            "CONVERSION_CATEGORY_SIGNUP",
+            "CONVERSION_CATEGORY_PAGE_VIEW",
+            "CONVERSION_CATEGORY_DOWNLOAD",
+            "CONVERSION_CATEGORY_BOOM_EVENT",
+            "CONVERSION_CATEGORY_ADD_TO_CART",
+            "CONVERSION_CATEGORY_BEGIN_CHECKOUT",
+            "CONVERSION_CATEGORY_SUBSCRIBE_PAID",
+            "CONVERSION_CATEGORY_SUBSCRIBE_FREE",
+            "CONVERSION_CATEGORY_PHONE_CALL_LEAD",
+            "CONVERSION_CATEGORY_IMPORTED_LEAD",
+            "CONVERSION_CATEGORY_SUBMIT_LEAD_FORM",
+            "CONVERSION_CATEGORY_BOOK_APPOINTMENT",
+            "CONVERSION_CATEGORY_REQUEST_QUOTE",
+            "CONVERSION_CATEGORY_GET_DIRECTIONS",
+            "CONVERSION_CATEGORY_OUTBOUND_CLICK",
+            "CONVERSION_CATEGORY_CONTACT",
+            "CONVERSION_CATEGORY_VIEW_KEY_PAGE",
+            "CONVERSION_CATEGORY_ENGAGEMENT",
+            "CONVERSION_CATEGORY_STORE_VISIT",
+            "CONVERSION_CATEGORY_STORE_SALE",
+            "CONVERSION_CATEGORY_QUALIFIED_LEAD",
+            "CONVERSION_CATEGORY_CONVERTED_LEAD",
+            "CONVERSION_CATEGORY_IN_APP_AD_REVENUE",
+            "CONVERSION_CATEGORY_MESSAGE_LEAD"
+          ],
+          "enumDescriptions": [
+            "Unspecified category (called \"Other\" externally).",
+            "Purchase, sales, or \"order placed\" event.",
+            "Signup user action.",
+            "User visiting a page.",
+            "Software download action (as for an app). A conversion type that is created as a download type may not have its category changed.",
+            "Boom event (for user list creation). This is an internal-only category.",
+            "The following are conversion categories added as part of go/new-categories-prd. The addition of items to a shopping cart or bag on an advertiser site.",
+            "When someone enters the checkout flow on an advertiser site.",
+            "The start of a paid subscription for a product or service.",
+            "The start of a free subscription for a product or service.",
+            "A call to indicate interesting in an advertiser's offering. Note: this is different from support calls.",
+            "A lead conversion imported from an external source into Google Ads.",
+            "A submission of a form on an advertiser site indicating business interest.",
+            "A booking of an appointment with an advertiser's business.",
+            "A quote or price estimate request.",
+            "A search for an advertiser's business location.",
+            "A click to an advertiser's partner site, e.g. a referral.",
+            "A call, SMS, email, chat or other type of contact to an advertiser.",
+            "Key page views (ex: product page, article).",
+            "A website engagement event such as long site time or a GA Smart Goal, intended to be used for GA, Firebase, GA Gold goal imports. This will also be used for YouTube Hosted engagements like Add To Playlist, Likes etc. See go/add-to-playlist-conversion-buyside",
+            "A visit to a physical store location.",
+            "A sale occurring in a physical store.",
+            "End of new conversion categories from go/new-categories-prd. A lead conversion imported from an external source into Google Ads, that has been further qualified by the advertiser.",
+            "A lead conversion imported from an external source into Google Ads, that has further completed a desired stage as defined by the lead gen advertiser.",
+            "Conversion event that provides the revenue value of impressions that were shown in-app to users. See go/ad-impression-type.",
+            "Message exchanges which indicate an interest in an advertiser's offering."
           ],
           "type": "string"
         },
@@ -17489,139 +16971,6 @@
           "description": "Output only. The total number of warnings in the feed.",
           "format": "int64",
           "readOnly": true,
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InventoryItem": {
-      "description": "Represents a buy from the Planning inventory store.",
-      "id": "InventoryItem",
-      "properties": {
-        "accountId": {
-          "description": "Account ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "adSlots": {
-          "description": "Ad slots of this inventory item. If this inventory item represents a standalone placement, there will be exactly one ad slot. If this inventory item represents a placement group, there will be more than one ad slot, each representing one child placement in that placement group.",
-          "items": {
-            "$ref": "AdSlot"
-          },
-          "type": "array"
-        },
-        "advertiserId": {
-          "description": "Advertiser ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "contentCategoryId": {
-          "description": "Content category ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "estimatedClickThroughRate": {
-          "description": "Estimated click-through rate of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "estimatedConversionRate": {
-          "description": "Estimated conversion rate of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "id": {
-          "description": "ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "inPlan": {
-          "description": "Whether this inventory item is in plan.",
-          "type": "boolean"
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#inventoryItem\".",
-          "type": "string"
-        },
-        "lastModifiedInfo": {
-          "$ref": "LastModifiedInfo",
-          "description": "Information about the most recent modification of this inventory item."
-        },
-        "name": {
-          "description": "Name of this inventory item. For standalone inventory items, this is the same name as that of its only ad slot. For group inventory items, this can differ from the name of any of its ad slots.",
-          "type": "string"
-        },
-        "negotiationChannelId": {
-          "description": "Negotiation channel ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "orderId": {
-          "description": "Order ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "placementStrategyId": {
-          "description": "Placement strategy ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "pricing": {
-          "$ref": "Pricing",
-          "description": "Pricing of this inventory item."
-        },
-        "projectId": {
-          "description": "Project ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "rfpId": {
-          "description": "RFP ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "siteId": {
-          "description": "ID of the site this inventory item is associated with.",
-          "format": "int64",
-          "type": "string"
-        },
-        "subaccountId": {
-          "description": "Subaccount ID of this inventory item.",
-          "format": "int64",
-          "type": "string"
-        },
-        "type": {
-          "description": "Type of inventory item.",
-          "enum": [
-            "PLANNING_PLACEMENT_TYPE_REGULAR",
-            "PLANNING_PLACEMENT_TYPE_CREDIT"
-          ],
-          "enumDescriptions": [
-            "",
-            ""
-          ],
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "InventoryItemsListResponse": {
-      "description": "Inventory item List Response",
-      "id": "InventoryItemsListResponse",
-      "properties": {
-        "inventoryItems": {
-          "description": "Inventory item collection",
-          "items": {
-            "$ref": "InventoryItem"
-          },
-          "type": "array"
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#inventoryItemsListResponse\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "Pagination token to be used for the next list operation.",
           "type": "string"
         }
       },
@@ -18617,173 +17966,6 @@
       },
       "type": "object"
     },
-    "Order": {
-      "description": "Describes properties of a Planning order.",
-      "id": "Order",
-      "properties": {
-        "accountId": {
-          "description": "Account ID of this order.",
-          "format": "int64",
-          "type": "string"
-        },
-        "advertiserId": {
-          "description": "Advertiser ID of this order.",
-          "format": "int64",
-          "type": "string"
-        },
-        "approverUserProfileIds": {
-          "description": "IDs for users that have to approve documents created for this order.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "buyerInvoiceId": {
-          "description": "Buyer invoice ID associated with this order.",
-          "type": "string"
-        },
-        "buyerOrganizationName": {
-          "description": "Name of the buyer organization.",
-          "type": "string"
-        },
-        "comments": {
-          "description": "Comments in this order.",
-          "type": "string"
-        },
-        "contacts": {
-          "description": "Contacts for this order.",
-          "items": {
-            "$ref": "OrderContact"
-          },
-          "type": "array"
-        },
-        "id": {
-          "description": "ID of this order. This is a read-only, auto-generated field.",
-          "format": "int64",
-          "type": "string"
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#order\".",
-          "type": "string"
-        },
-        "lastModifiedInfo": {
-          "$ref": "LastModifiedInfo",
-          "description": "Information about the most recent modification of this order."
-        },
-        "name": {
-          "description": "Name of this order.",
-          "type": "string"
-        },
-        "notes": {
-          "description": "Notes of this order.",
-          "type": "string"
-        },
-        "planningTermId": {
-          "description": "ID of the terms and conditions template used in this order.",
-          "format": "int64",
-          "type": "string"
-        },
-        "projectId": {
-          "description": "Project ID of this order.",
-          "format": "int64",
-          "type": "string"
-        },
-        "sellerOrderId": {
-          "description": "Seller order ID associated with this order.",
-          "type": "string"
-        },
-        "sellerOrganizationName": {
-          "description": "Name of the seller organization.",
-          "type": "string"
-        },
-        "siteId": {
-          "description": "Site IDs this order is associated with.",
-          "items": {
-            "format": "int64",
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "siteNames": {
-          "description": "Free-form site names this order is associated with.",
-          "items": {
-            "type": "string"
-          },
-          "type": "array"
-        },
-        "subaccountId": {
-          "description": "Subaccount ID of this order.",
-          "format": "int64",
-          "type": "string"
-        },
-        "termsAndConditions": {
-          "description": "Terms and conditions of this order.",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OrderContact": {
-      "description": "Contact of an order.",
-      "id": "OrderContact",
-      "properties": {
-        "contactInfo": {
-          "description": "Free-form information about this contact. It could be any information related to this contact in addition to type, title, name, and signature user profile ID.",
-          "type": "string"
-        },
-        "contactName": {
-          "description": "Name of this contact.",
-          "type": "string"
-        },
-        "contactTitle": {
-          "description": "Title of this contact.",
-          "type": "string"
-        },
-        "contactType": {
-          "description": "Type of this contact.",
-          "enum": [
-            "PLANNING_ORDER_CONTACT_BUYER_CONTACT",
-            "PLANNING_ORDER_CONTACT_BUYER_BILLING_CONTACT",
-            "PLANNING_ORDER_CONTACT_SELLER_CONTACT"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "signatureUserProfileId": {
-          "description": "ID of the user profile containing the signature that will be embedded into order documents.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "OrdersListResponse": {
-      "description": "Order List Response",
-      "id": "OrdersListResponse",
-      "properties": {
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#ordersListResponse\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "Pagination token to be used for the next list operation.",
-          "type": "string"
-        },
-        "orders": {
-          "description": "Order collection.",
-          "items": {
-            "$ref": "Order"
-          },
-          "type": "array"
-        }
-      },
-      "type": "object"
-    },
     "PathToConversionReportCompatibleFields": {
       "description": "Represents fields that are compatible to be selected for a report of type \"PATH_TO_CONVERSION\".",
       "id": "PathToConversionReportCompatibleFields",
@@ -19600,77 +18782,6 @@
       },
       "type": "object"
     },
-    "Pricing": {
-      "id": "Pricing",
-      "properties": {
-        "capCostType": {
-          "description": "Cap cost type of this inventory item.",
-          "enum": [
-            "PLANNING_PLACEMENT_CAP_COST_TYPE_NONE",
-            "PLANNING_PLACEMENT_CAP_COST_TYPE_MONTHLY",
-            "PLANNING_PLACEMENT_CAP_COST_TYPE_CUMULATIVE"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "endDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "flights": {
-          "description": "Flights of this inventory item. A flight (a.k.a. pricing period) represents the inventory item pricing information for a specific period of time.",
-          "items": {
-            "$ref": "Flight"
-          },
-          "type": "array"
-        },
-        "groupType": {
-          "description": "Group type of this inventory item if it represents a placement group. Is null otherwise. There are two type of placement groups: PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE is a simple group of inventory items that acts as a single pricing point for a group of tags. PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK is a group of inventory items that not only acts as a single pricing point, but also assumes that all the tags in it will be served at the same time. A roadblock requires one of its assigned inventory items to be marked as primary.",
-          "enum": [
-            "PLANNING_PLACEMENT_GROUP_TYPE_PACKAGE",
-            "PLANNING_PLACEMENT_GROUP_TYPE_ROADBLOCK"
-          ],
-          "enumDescriptions": [
-            "A placement package represents \"package pricing\": Pricing and flight information is defined on the package, not on its child placements. The placements in a package do not need to be on the same page.",
-            "A roadblock represents a set of placements that are all the same page. One of the child placements is designated as the \"primary\" placement for reporting purposes."
-          ],
-          "type": "string"
-        },
-        "pricingType": {
-          "description": "Pricing type of this inventory item.",
-          "enum": [
-            "PLANNING_PLACEMENT_PRICING_TYPE_IMPRESSIONS",
-            "PLANNING_PLACEMENT_PRICING_TYPE_CPM",
-            "PLANNING_PLACEMENT_PRICING_TYPE_CLICKS",
-            "PLANNING_PLACEMENT_PRICING_TYPE_CPC",
-            "PLANNING_PLACEMENT_PRICING_TYPE_CPA",
-            "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_IMPRESSIONS",
-            "PLANNING_PLACEMENT_PRICING_TYPE_FLAT_RATE_CLICKS",
-            "PLANNING_PLACEMENT_PRICING_TYPE_CPM_ACTIVEVIEW"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "startDate": {
-          "format": "date",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
     "PricingSchedule": {
       "description": "Pricing Schedule",
       "id": "PricingSchedule",
@@ -19765,161 +18876,6 @@
           "description": "Units of this pricing period. Acceptable values are 0 to 10000000000, inclusive.",
           "format": "int64",
           "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Project": {
-      "description": "Contains properties of a Planning project.",
-      "id": "Project",
-      "properties": {
-        "accountId": {
-          "description": "Account ID of this project.",
-          "format": "int64",
-          "type": "string"
-        },
-        "advertiserId": {
-          "description": "Advertiser ID of this project.",
-          "format": "int64",
-          "type": "string"
-        },
-        "audienceAgeGroup": {
-          "description": "Audience age group of this project.",
-          "enum": [
-            "PLANNING_AUDIENCE_AGE_18_24",
-            "PLANNING_AUDIENCE_AGE_25_34",
-            "PLANNING_AUDIENCE_AGE_35_44",
-            "PLANNING_AUDIENCE_AGE_45_54",
-            "PLANNING_AUDIENCE_AGE_55_64",
-            "PLANNING_AUDIENCE_AGE_65_OR_MORE",
-            "PLANNING_AUDIENCE_AGE_UNKNOWN"
-          ],
-          "enumDescriptions": [
-            "",
-            "",
-            "",
-            "",
-            "",
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "audienceGender": {
-          "description": "Audience gender of this project.",
-          "enum": [
-            "PLANNING_AUDIENCE_GENDER_MALE",
-            "PLANNING_AUDIENCE_GENDER_FEMALE"
-          ],
-          "enumDescriptions": [
-            "",
-            ""
-          ],
-          "type": "string"
-        },
-        "budget": {
-          "description": "Budget of this project in the currency specified by the current account. The value stored in this field represents only the non-fractional amount. For example, for USD, the smallest value that can be represented by this field is 1 US dollar.",
-          "format": "int64",
-          "type": "string"
-        },
-        "clientBillingCode": {
-          "description": "Client billing code of this project.",
-          "type": "string"
-        },
-        "clientName": {
-          "description": "Name of the project client.",
-          "type": "string"
-        },
-        "endDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "id": {
-          "description": "ID of this project. This is a read-only, auto-generated field.",
-          "format": "int64",
-          "type": "string"
-        },
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#project\".",
-          "type": "string"
-        },
-        "lastModifiedInfo": {
-          "$ref": "LastModifiedInfo",
-          "description": "Information about the most recent modification of this project."
-        },
-        "name": {
-          "description": "Name of this project.",
-          "type": "string"
-        },
-        "overview": {
-          "description": "Overview of this project.",
-          "type": "string"
-        },
-        "startDate": {
-          "format": "date",
-          "type": "string"
-        },
-        "subaccountId": {
-          "description": "Subaccount ID of this project.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetClicks": {
-          "description": "Number of clicks that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetConversions": {
-          "description": "Number of conversions that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetCpaNanos": {
-          "description": "CPA that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetCpcNanos": {
-          "description": "CPC that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetCpmActiveViewNanos": {
-          "description": "vCPM from Active View that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetCpmNanos": {
-          "description": "CPM that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        },
-        "targetImpressions": {
-          "description": "Number of impressions that the advertiser is targeting.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "ProjectsListResponse": {
-      "description": "Project List Response",
-      "id": "ProjectsListResponse",
-      "properties": {
-        "kind": {
-          "description": "Identifies what kind of resource this is. Value: the fixed string \"dfareporting#projectsListResponse\".",
-          "type": "string"
-        },
-        "nextPageToken": {
-          "description": "Pagination token to be used for the next list operation.",
-          "type": "string"
-        },
-        "projects": {
-          "description": "Project collection.",
-          "items": {
-            "$ref": "Project"
-          },
-          "type": "array"
         }
       },
       "type": "object"
@@ -20312,64 +19268,6 @@
           },
           "type": "object"
         },
-        "crossDimensionReachCriteria": {
-          "description": "The report criteria for a report of type \"CROSS_DIMENSION_REACH\".",
-          "properties": {
-            "breakdown": {
-              "description": "The list of dimensions the report should include.",
-              "items": {
-                "$ref": "SortedDimension"
-              },
-              "type": "array"
-            },
-            "dateRange": {
-              "$ref": "DateRange",
-              "description": "The date range this report should be run for."
-            },
-            "dimension": {
-              "description": "The dimension option.",
-              "enum": [
-                "ADVERTISER",
-                "CAMPAIGN",
-                "SITE_BY_ADVERTISER",
-                "SITE_BY_CAMPAIGN"
-              ],
-              "enumDescriptions": [
-                "",
-                "",
-                "",
-                ""
-              ],
-              "type": "string"
-            },
-            "dimensionFilters": {
-              "description": "The list of filters on which dimensions are filtered.",
-              "items": {
-                "$ref": "DimensionValue"
-              },
-              "type": "array"
-            },
-            "metricNames": {
-              "description": "The list of names of metrics the report should include.",
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "overlapMetricNames": {
-              "description": "The list of names of overlap metrics the report should include.",
-              "items": {
-                "type": "string"
-              },
-              "type": "array"
-            },
-            "pivoted": {
-              "description": "Whether the report is pivoted or not. Defaults to true.",
-              "type": "boolean"
-            }
-          },
-          "type": "object"
-        },
         "crossMediaReachCriteria": {
           "description": "Optional. The report criteria for a report of type \"CROSS_MEDIA_REACH\".",
           "properties": {
@@ -20669,10 +19567,6 @@
               },
               "type": "array"
             },
-            "enableAllDimensionCombinations": {
-              "description": "Whether to enable all reach dimension combinations in the report. Defaults to false. If enabled, the date range of the report should be within the last 42 days.",
-              "type": "boolean"
-            },
             "metricNames": {
               "description": "The list of names of metrics the report should include.",
               "items": {
@@ -20769,12 +19663,10 @@
             "STANDARD",
             "REACH",
             "PATH_TO_CONVERSION",
-            "CROSS_DIMENSION_REACH",
             "FLOODLIGHT",
             "CROSS_MEDIA_REACH"
           ],
           "enumDescriptions": [
-            "",
             "",
             "",
             "",
@@ -20912,27 +19804,6 @@
         },
         "exitId": {
           "description": "ID for the override to refer to a specific exit in the creative.",
-          "format": "int64",
-          "type": "string"
-        }
-      },
-      "type": "object"
-    },
-    "Rule": {
-      "description": "A rule associates an asset with a targeting template for asset-level targeting. Applicable to INSTREAM_VIDEO creatives.",
-      "id": "Rule",
-      "properties": {
-        "assetId": {
-          "description": "A creativeAssets[].id. This should refer to one of the parent assets in this creative. This is a required field.",
-          "format": "int64",
-          "type": "string"
-        },
-        "name": {
-          "description": "A user-friendly name for this rule. This is a required field.",
-          "type": "string"
-        },
-        "targetingTemplateId": {
-          "description": "A targeting template ID. The targeting from the targeting template will be used to determine whether this asset should be served. This is a required field.",
           "format": "int64",
           "type": "string"
         }
@@ -22672,7 +21543,7 @@
       "type": "object"
     }
   },
-  "servicePath": "dfareporting/v4/",
+  "servicePath": "dfareporting/v5/",
   "title": "Campaign Manager 360 API",
-  "version": "v4"
+  "version": "v5"
 }
