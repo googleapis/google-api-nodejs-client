@@ -807,7 +807,7 @@
       }
     }
   },
-  "revision": "20250822",
+  "revision": "20250825",
   "rootUrl": "https://firebaseappdistribution.googleapis.com/",
   "schemas": {
     "AndroidxCrawlerOutputPoint": {
@@ -1000,6 +1000,11 @@
         },
         "successCriteria": {
           "description": "Optional. A description of criteria the agent should use to determine if the goal has been successfully completed",
+          "type": "string"
+        },
+        "testCase": {
+          "description": "Output only. The test case that contained this step. Note: The test case may have changed or been deleted since this step was created. Format: `projects/{project_number}/apps/{app}/testCases/{test_case}`",
+          "readOnly": true,
           "type": "string"
         }
       },
@@ -1809,7 +1814,7 @@
       "type": "object"
     },
     "GoogleFirebaseAppdistroV1alphaReleaseTest": {
-      "description": "The results of running an automated test on a release.",
+      "description": "Instance of an automated test for a release.",
       "id": "GoogleFirebaseAppdistroV1alphaReleaseTest",
       "properties": {
         "aiInstructions": {

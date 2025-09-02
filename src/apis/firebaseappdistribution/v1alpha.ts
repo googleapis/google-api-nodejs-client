@@ -185,6 +185,10 @@ export namespace firebaseappdistribution_v1alpha {
      * Optional. A description of criteria the agent should use to determine if the goal has been successfully completed
      */
     successCriteria?: string | null;
+    /**
+     * Output only. The test case that contained this step. Note: The test case may have changed or been deleted since this step was created. Format: `projects/{project_number\}/apps/{app\}/testCases/{test_case\}`
+     */
+    testCase?: string | null;
   }
   /**
    * Captures the results of an AiStep
@@ -690,7 +694,7 @@ export namespace firebaseappdistribution_v1alpha {
     releaseNotes?: string | null;
   }
   /**
-   * The results of running an automated test on a release.
+   * Instance of an automated test for a release.
    */
   export interface Schema$GoogleFirebaseAppdistroV1alphaReleaseTest {
     /**
