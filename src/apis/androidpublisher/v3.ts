@@ -24951,7 +24951,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
+     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.
      * @example
      * ```js
      * // Before running the sample:

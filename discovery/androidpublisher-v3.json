@@ -4795,7 +4795,7 @@
               ]
             },
             "cancel": {
-              "description": "Cancels a user's subscription purchase. The subscription remains valid until its expiration time.",
+              "description": "Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.",
               "flatPath": "androidpublisher/v3/applications/{packageName}/purchases/subscriptions/{subscriptionId}/tokens/{token}:cancel",
               "httpMethod": "POST",
               "id": "androidpublisher.purchases.subscriptions.cancel",
@@ -5521,7 +5521,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20250828",
   "rootUrl": "https://androidpublisher.googleapis.com/",
   "schemas": {
     "Abi": {
