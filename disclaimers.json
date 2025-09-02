@@ -840,6 +840,10 @@
     "package": "@google-cloud/saasservicemgmt"
   },
   {
+    "api": "cloudsecuritycompliance",
+    "package": "@google-cloud/cloudsecuritycompliance"
+  },
+  {
     "api": "solar",
     "package": "@googlemaps/solar"
   },
