@@ -745,7 +745,7 @@ export namespace oracledatabase_v1 {
      */
     entitlementId?: string | null;
     /**
-     * Optional. Google Cloud Platform location where Oracle Exadata is hosted.
+     * Optional. The GCP Oracle zone where Oracle Exadata Infrastructure is hosted. Example: us-east4-b-r2. If not specified, the system will pick a zone based on availability.
      */
     gcpOracleZone?: string | null;
     /**
@@ -915,7 +915,7 @@ export namespace oracledatabase_v1 {
      */
     exadataInfrastructure?: string | null;
     /**
-     * Output only. Google Cloud Platform location where Oracle Exadata is hosted. It is same as Google Cloud Platform Oracle zone of Exadata infrastructure.
+     * Output only. The GCP Oracle zone where Oracle CloudVmCluster is hosted. This will be the same as the gcp_oracle_zone of the CloudExadataInfrastructure. Example: us-east4-b-r2.
      */
     gcpOracleZone?: string | null;
     /**

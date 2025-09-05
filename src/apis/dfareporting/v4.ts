@@ -820,6 +820,10 @@ export namespace dfareporting_v4 {
      */
     defaultEmail?: string | null;
     /**
+     * Optional. Whether the advertiser plans to serve EU political ads.
+     */
+    euPoliticalAdsDeclaration?: string | null;
+    /**
      * Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: - This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser's original floodlight configuration is not already shared with another advertiser.
      */
     floodlightConfigurationId?: string | null;
@@ -1279,6 +1283,10 @@ export namespace dfareporting_v4 {
      */
     defaultLandingPageId?: string | null;
     endDate?: string | null;
+    /**
+     * Optional. Whether the campaign has EU political ads. Campaign Manager 360 doesn't allow campaigns with EU political ads to serve in the EU. They can still serve in other regions.
+     */
+    euPoliticalAdsDeclaration?: string | null;
     /**
      * Overrides that can be used to activate or deactivate advertiser event tags.
      */
@@ -13372,6 +13380,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -13523,6 +13532,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -13546,6 +13556,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -13862,6 +13873,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -13885,6 +13897,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -14036,6 +14049,7 @@ export namespace dfareporting_v4 {
      *       //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *       //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *       //   "defaultEmail": "my_defaultEmail",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *       //   "floodlightConfigurationIdDimensionValue": {},
      *       //   "id": "my_id",
@@ -14059,6 +14073,7 @@ export namespace dfareporting_v4 {
      *   //   "clickThroughUrlSuffix": "my_clickThroughUrlSuffix",
      *   //   "defaultClickThroughEventTagId": "my_defaultClickThroughEventTagId",
      *   //   "defaultEmail": "my_defaultEmail",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "floodlightConfigurationId": "my_floodlightConfigurationId",
      *   //   "floodlightConfigurationIdDimensionValue": {},
      *   //   "id": "my_id",
@@ -15904,6 +15919,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16066,6 +16082,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16100,6 +16117,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16428,6 +16446,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16462,6 +16481,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",
@@ -16623,6 +16643,7 @@ export namespace dfareporting_v4 {
      *       //   "defaultClickThroughEventTagProperties": {},
      *       //   "defaultLandingPageId": "my_defaultLandingPageId",
      *       //   "endDate": "my_endDate",
+     *       //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *       //   "eventTagOverrides": [],
      *       //   "externalId": "my_externalId",
      *       //   "id": "my_id",
@@ -16657,6 +16678,7 @@ export namespace dfareporting_v4 {
      *   //   "defaultClickThroughEventTagProperties": {},
      *   //   "defaultLandingPageId": "my_defaultLandingPageId",
      *   //   "endDate": "my_endDate",
+     *   //   "euPoliticalAdsDeclaration": "my_euPoliticalAdsDeclaration",
      *   //   "eventTagOverrides": [],
      *   //   "externalId": "my_externalId",
      *   //   "id": "my_id",

@@ -1141,7 +1141,7 @@ export namespace authorizedbuyersmarketplace_v1 {
      */
     geoTargeting?: Schema$CriteriaTargeting;
     /**
-     * Inventory sizes to be targeted.
+     * Inventory sizes to be targeted. Only PIXEL inventory size type is supported.
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
     /**

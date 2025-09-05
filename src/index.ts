@@ -219,6 +219,7 @@ export {dfareporting_v3_3} from './apis/dfareporting/v3.3';
 export {dfareporting_v3_4} from './apis/dfareporting/v3.4';
 export {dfareporting_v3_5} from './apis/dfareporting/v3.5';
 export {dfareporting_v4} from './apis/dfareporting/v4';
+export {dfareporting_v5} from './apis/dfareporting/v5';
 export {dialogflow_v2} from './apis/dialogflow/v2';
 export {dialogflow_v2beta1} from './apis/dialogflow/v2beta1';
 export {dialogflow_v3} from './apis/dialogflow/v3';

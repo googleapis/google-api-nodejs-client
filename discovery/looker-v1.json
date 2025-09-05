@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -710,7 +710,7 @@
       }
     }
   },
-  "revision": "20250721",
+  "revision": "20250824",
   "rootUrl": "https://looker.googleapis.com/",
   "schemas": {
     "AdminSettings": {
@@ -1521,6 +1521,11 @@
             "Issue with target service attachment, e.g. NAT subnet is exhausted.",
             "Target service attachment does not exist. This status is a terminal state."
           ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "failureReason": {
+          "description": "Output only. Reason the service attachment creation failed. This value will only be populated if the service attachment encounters an issue during provisioning.",
           "readOnly": true,
           "type": "string"
         },

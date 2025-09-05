@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -908,7 +908,7 @@
       }
     }
   },
-  "revision": "20250810",
+  "revision": "20250819",
   "rootUrl": "https://file.googleapis.com/",
   "schemas": {
     "Backup": {

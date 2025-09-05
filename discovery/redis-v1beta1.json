@@ -1073,7 +1073,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250825",
   "rootUrl": "https://redis.googleapis.com/",
   "schemas": {
     "AOFConfig": {
@@ -1519,7 +1519,8 @@
       "id": "Cluster",
       "properties": {
         "allowFewerZonesDeployment": {
-          "description": "Optional. Immutable. Allows customers to specify if they are okay with deploying a multi-zone cluster in less than 3 zones. Once set, if there is a zonal outage during the cluster creation, the cluster will only be deployed in 2 zones, and stay within the 2 zones for its lifecycle.",
+          "deprecated": true,
+          "description": "Optional. Immutable. Deprecated, do not use.",
           "type": "boolean"
         },
         "asyncClusterEndpointsDeletionEnabled": {
