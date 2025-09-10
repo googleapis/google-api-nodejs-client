@@ -132,7 +132,7 @@ function cleanupLibrariesNotInIndexJSON(
   );
   const clientFilesToDelete = discoveryDocsToDelete.map(x => {
     const apiName = x.split('-')[0];
-    const versionName = apiName[1].split('.')[0];
+    const versionName = x.substring(x.indexOf('-') + 1, x.lastIndexOf('.'));
     return path.join(srcPath, apiName, `${versionName}.ts`);
   });
   discoveryDocsToDelete.forEach(x =>
