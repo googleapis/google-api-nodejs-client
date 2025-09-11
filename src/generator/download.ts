@@ -123,22 +123,25 @@ function cleanupLibrariesNotInIndexJSON(
   const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
   const apisReplaced = apis.map(
-    x => x.id.toString().replace(':', '-') + '.json',
+    api => api.id.toString().replace(':', '-') + '.json'
   );
   // So that we don't delete index.json
   apisReplaced.push('index.json');
   const discoveryDocsToDelete = discoveryDirectory.filter(
-    x => !apisReplaced.includes(x),
+    fileName => !apisReplaced.includes(fileName)
   );
-  const clientFilesToDelete = discoveryDocsToDelete.map(x => {
-    const apiName = x.split('-')[0];
-    const versionName = x.substring(x.indexOf('-') + 1, x.lastIndexOf('.'));
+  const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
+    const apiName = docFileName.split('-')[0];
+    const versionName = docFileName.substring(
+      docFileName.indexOf('-') + 1,
+      docFileName.lastIndexOf('.')
+    );
     return path.join(srcPath, apiName, `${versionName}.ts`);
   });
-  discoveryDocsToDelete.forEach(x =>
-    fs.unlinkSync(path.join(options.downloadPath, x)),
+  discoveryDocsToDelete.forEach(docFileName =>
+    fs.unlinkSync(path.join(options.downloadPath, docFileName))
   );
-  clientFilesToDelete.forEach(x => fs.unlinkSync(x));
+  clientFilesToDelete.forEach(clientFile => fs.unlinkSync(clientFile));
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
