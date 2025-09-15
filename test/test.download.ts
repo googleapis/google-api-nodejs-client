@@ -279,4 +279,9 @@ describe(__filename, () => {
     assert.throws(() => dn.validateDiscoveryDocFileName('api_name-v1.json'));
     assert.throws(() => dn.validateDiscoveryDocFileName('apiname-v1.js'));
   });
+
+  it('should parse discovery doc file names', () => {
+    const result = dn.getApiData('apiname-v1.2.json');
+    assert.deepStrictEqual(result, {name: 'apiname', version: 'v1.2'});
+  });
 });

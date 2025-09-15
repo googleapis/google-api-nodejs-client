@@ -128,6 +128,26 @@ export function validateDiscoveryDocFileName(fileName: string) {
   }
 }
 
+export interface ApiData {
+  name: string;
+  version: string;
+}
+
+/**
+ * Parses a discovery doc file name and returns the API name and version.
+ * @param fileName The file name to parse.
+ * @returns The API data (name and version).
+ */
+export function getApiData(fileName: string): ApiData {
+  validateDiscoveryDocFileName(fileName);
+  const name = fileName.split('-')[0];
+  const version = fileName.substring(
+    fileName.indexOf('-') + 1,
+    fileName.lastIndexOf('.')
+  );
+  return {name, version};
+}
+
 // These are libraries we should no longer support because
 // they are not present in the index.json
 // example: b/148605368
@@ -138,24 +158,19 @@ function cleanupLibrariesNotInIndexJSON(
   const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
   const apisReplaced = apis.map(
-    api => api.id.toString().replace(':', '-') + '.json',
+    api => api.id.toString().replace(':', '-') + '.json'
   );
   // So that we don't delete index.json
   apisReplaced.push('index.json');
   const discoveryDocsToDelete = discoveryDirectory.filter(
-    fileName => !apisReplaced.includes(fileName),
+    fileName => !apisReplaced.includes(fileName)
   );
   const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
-    validateDiscoveryDocFileName(docFileName);
-    const apiName = docFileName.split('-')[0];
-    const versionName = docFileName.substring(
-      docFileName.indexOf('-') + 1,
-      docFileName.lastIndexOf('.'),
-    );
-    return path.join(srcPath, apiName, `${versionName}.ts`);
+    const api = getApiData(docFileName);
+    return path.join(srcPath, api.name, `${api.version}.ts`);
   });
   discoveryDocsToDelete.forEach(docFileName =>
-    fs.unlinkSync(path.join(options.downloadPath, docFileName)),
+    fs.unlinkSync(path.join(options.downloadPath, docFileName))
   );
   clientFilesToDelete.forEach(clientFile => fs.unlinkSync(clientFile));
 }
