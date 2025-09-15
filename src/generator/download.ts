@@ -113,6 +113,21 @@ export async function downloadDiscoveryDocs(
   return changes;
 }
 
+/**
+ * Checks that a discovery doc file name is in the expected format of
+ * [NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json.
+ * Throws an error if the file name is not in the expected format.
+ * @param fileName The file name to validate
+ */
+export function validateDiscoveryDocFileName(fileName: string) {
+  const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9_.]+\.json$/;
+  if (!regex.test(fileName)) {
+    throw new Error(
+      `Discovery doc file name '${fileName}' is not in the expected format of '[NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json'.`
+    );
+  }
+}
+
 // These are libraries we should no longer support because
 // they are not present in the index.json
 // example: b/148605368
@@ -131,6 +146,7 @@ function cleanupLibrariesNotInIndexJSON(
     fileName => !apisReplaced.includes(fileName),
   );
   const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
+    validateDiscoveryDocFileName(docFileName);
     const apiName = docFileName.split('-')[0];
     const versionName = docFileName.substring(
       docFileName.indexOf('-') + 1,
