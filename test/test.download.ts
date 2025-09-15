@@ -176,8 +176,9 @@ describe(__filename, () => {
         ),
     ];
     await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
-    assert(unlinkSync.calledWith(path.join(downloadPath, 'blogger-v2.json')));
-    const expected = path.join(__dirname, '../../src/apis/blogger/v2.ts');
+    assert(unlinkSync.calledWith('build/test/temp/blogger-v2.json'));
+    const projectRoot = path.resolve(__dirname, '../..');
+    const expected = path.join(projectRoot, 'src/apis/blogger/v2.ts');
     assert(unlinkSync.calledWith(expected));
     scopes.forEach(s => s.done());
   });
