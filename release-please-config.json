@@ -315,6 +315,6 @@
     "src/apis/appengine": {},
     "src/apis/dlp": {},
     "src/apis/css": {},
-    "src/apis/policysimulator": {},
+    "src/apis/policysimulator": {}
   }
 }
