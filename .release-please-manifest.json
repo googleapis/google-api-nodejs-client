@@ -204,7 +204,7 @@
   "src/apis/compute": "30.0.0",
   "src/apis/analyticsreporting": "4.0.0",
   "src/apis/merchantapi": "12.0.0",
-  "src/apis/paymentsresellersubscription": "16.0.0",
+  "src/apis/paymentsresellersubscription": "17.0.0",
   "src/apis/oauth2": "4.0.0",
   "src/apis/firebase": "11.0.0",
   "src/apis/networksecurity": "12.0.0",
