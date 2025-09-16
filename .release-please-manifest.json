@@ -1,3 +1,4 @@
+{
   "src/apis/kmsinventory": "6.0.1",
   "src/apis/cloudbilling": "7.0.0",
   "src/apis/mybusinessaccountmanagement": "5.0.1",
@@ -314,5 +315,4 @@
   "src/apis/sheets": "11.1.0",
   "src/apis/monitoring": "11.1.1",
   ".": "159.0.0"
-
 }
