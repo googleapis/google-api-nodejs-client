@@ -1,5 +1,18 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v4.0.1...admob-v5.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Bug Fixes
+
+* **admob:** update the API ([e9c8c64](https://github.com/googleapis/google-api-nodejs-client/commit/e9c8c64b284c95f33ee7fc38c38aa8950957eeb3))
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [4.0.3](https://github.com/googleapis/google-api-nodejs-client/compare/admob-v4.0.2...admob-v4.0.3) (2025-08-13)
 
 
