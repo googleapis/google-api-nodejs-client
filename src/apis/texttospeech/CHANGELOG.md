@@ -1,5 +1,22 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v4.0.1...texttospeech-v5.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Features
+
+* **texttospeech:** update the API ([3fd1c3b](https://github.com/googleapis/google-api-nodejs-client/commit/3fd1c3b3cdf5fdf1c4a283e92be042e603c4384b))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.6.0](https://github.com/googleapis/google-api-nodejs-client/compare/texttospeech-v1.5.0...texttospeech-v1.6.0) (2025-08-28)
 
 
