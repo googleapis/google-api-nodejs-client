@@ -1,5 +1,23 @@
 # Changelog
 
+## [15.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v14.1.0...alloydb-v15.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Features
+
+* **alloydb:** update the API ([71ff84c](https://github.com/googleapis/google-api-nodejs-client/commit/71ff84c9df4e8b2d5a116605a118061fb8d91075))
+* **alloydb:** update the API ([9dfd79d](https://github.com/googleapis/google-api-nodejs-client/commit/9dfd79d8662b575047a108b5154d4aaa8857647a))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [1.2.0](https://github.com/googleapis/google-api-nodejs-client/compare/alloydb-v1.1.0...alloydb-v1.2.0) (2025-08-21)
 
 
