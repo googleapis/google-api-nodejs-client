@@ -267,15 +267,17 @@ describe(__filename, () => {
 
   it('should validate discovery doc file names', () => {
     assert.doesNotThrow(() =>
-      dn.validateDiscoveryDocFileName('apiname-v1.json')
+      dn.validateDiscoveryDocFileName('apiname-v1.json'),
     );
     assert.doesNotThrow(() =>
-      dn.validateDiscoveryDocFileName('apiname-v1.1.json')
+      dn.validateDiscoveryDocFileName('apiname-v1.1.json'),
     );
     assert.doesNotThrow(() =>
-      dn.validateDiscoveryDocFileName('apiname-v1_beta.json')
+      dn.validateDiscoveryDocFileName('apiname-v1_beta.json'),
     );
-    assert.throws(() => dn.validateDiscoveryDocFileName('apiname-v1-extra.json'));
+    assert.throws(() =>
+      dn.validateDiscoveryDocFileName('apiname-v1-extra.json'),
+    );
     assert.throws(() => dn.validateDiscoveryDocFileName('api_name-v1.json'));
     assert.throws(() => dn.validateDiscoveryDocFileName('apiname-v1.js'));
   });

@@ -123,7 +123,7 @@ export function validateDiscoveryDocFileName(fileName: string) {
   const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9_.]+\.json$/;
   if (!regex.test(fileName)) {
     throw new Error(
-      `Discovery doc file name '${fileName}' is not in the expected format of '[NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json'.`
+      `Discovery doc file name '${fileName}' is not in the expected format of '[NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json'.`,
     );
   }
 }
@@ -157,19 +157,19 @@ function cleanupLibrariesNotInIndexJSON(
   const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
   const apisReplaced = apis.map(
-    api => api.id.toString().replace(':', '-') + '.json'
+    api => api.id.toString().replace(':', '-') + '.json',
   );
   // So that we don't delete index.json
   apisReplaced.push('index.json');
   const discoveryDocsToDelete = discoveryDirectory.filter(
-    fileName => !apisReplaced.includes(fileName)
+    fileName => !apisReplaced.includes(fileName),
   );
   const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
     const api = getApiData(docFileName);
     return path.join(srcPath, api.name, `${api.version}.ts`);
   });
   discoveryDocsToDelete.forEach(docFileName =>
-    fs.unlinkSync(path.join(options.downloadPath, docFileName))
+    fs.unlinkSync(path.join(options.downloadPath, docFileName)),
   );
   clientFilesToDelete.forEach(clientFile => fs.unlinkSync(clientFile));
 }
