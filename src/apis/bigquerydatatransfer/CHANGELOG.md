@@ -1,5 +1,16 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v4.0.0...bigquerydatatransfer-v5.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/bigquerydatatransfer-v3.0.1...bigquerydatatransfer-v4.0.0) (2025-09-16)
 
 
