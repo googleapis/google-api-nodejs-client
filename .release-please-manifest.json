@@ -83,7 +83,7 @@
   "src/apis/managedidentities": "5.0.1",
   "src/apis/datamigration": "9.2.0",
   "src/apis/accessapproval": "1.0.3",
-  "src/apis/siteverification": "4.0.1",
+  "src/apis/siteVerification": "4.0.1",
   "src/apis/netapp": "2.2.0",
   "src/apis/gkehub": "21.0.0",
   "src/apis/mybusinessnotifications": "3.0.1",
