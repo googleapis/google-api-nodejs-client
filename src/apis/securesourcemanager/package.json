@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/securesourcemanager",
-  "version": "1.0.1",
+  "version": "0.1.0",
   "description": "securesourcemanager",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/keep",
-  "version": "2.0.2",
+  "version": "2.0.1",
   "description": "keep",
   "main": "build/index.js",
   "types": "build/index.d.ts",

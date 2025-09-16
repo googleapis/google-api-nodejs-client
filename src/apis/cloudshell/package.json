@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/cloudshell",
-  "version": "1.0.1",
+  "version": "4.0.1",
   "description": "cloudshell",
   "main": "build/index.js",
   "types": "build/index.d.ts",
