@@ -1,5 +1,23 @@
 # Changelog
 
+## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v9.1.0...gkeonprem-v10.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [10.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/gkeonprem-v9.1.1...gkeonprem-v10.0.0) (2025-08-25)
 
 

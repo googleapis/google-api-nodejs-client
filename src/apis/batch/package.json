@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/batch",
-  "version": "11.0.1",
+  "version": "12.0.0",
   "description": "batch",
   "main": "build/index.js",
   "types": "build/index.d.ts",
