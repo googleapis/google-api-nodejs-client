@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/billingbudgets",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "billingbudgets",
   "main": "build/index.js",
   "types": "build/index.d.ts",

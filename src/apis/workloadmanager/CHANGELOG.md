@@ -1,5 +1,37 @@
 # Changelog
 
+## [27.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v26.0.0...workloadmanager-v27.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+
+## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v25.0.0...workloadmanager-v26.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+* **workloadmanager:** update the API ([6e4890a](https://github.com/googleapis/google-api-nodejs-client/commit/6e4890ac875000a09e75f24d4e9dbf64cb4e86fb))
+* **workloadmanager:** update the API ([6c5ce85](https://github.com/googleapis/google-api-nodejs-client/commit/6c5ce8503d2d2742a5b04f1e22980e19853ca4f5))
+* **workloadmanager:** update the API ([23a2f26](https://github.com/googleapis/google-api-nodejs-client/commit/23a2f2679e9cfa3c2659c4f4a7340572075eed02))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [26.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/workloadmanager-v25.2.0...workloadmanager-v26.0.0) (2025-08-25)
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/firestore",
-  "version": "14.1.0",
+  "version": "16.0.0",
   "description": "firestore",
   "main": "build/index.js",
   "types": "build/index.d.ts",

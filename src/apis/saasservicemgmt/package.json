@@ -1,6 +1,6 @@
 {
   "name": "@googleapis/saasservicemgmt",
-  "version": "1.0.1",
+  "version": "3.0.0",
   "description": "saasservicemgmt",
   "main": "build/index.js",
   "types": "build/index.d.ts",

@@ -1,5 +1,47 @@
 # Changelog
 
+## [25.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v24.0.0...run-v25.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+* This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+* **run:** update the API ([f0b6380](https://github.com/googleapis/google-api-nodejs-client/commit/f0b63802ed7c0d78b67c417d1c3537728d5e242d))
+* **run:** update the API ([d10033f](https://github.com/googleapis/google-api-nodejs-client/commit/d10033fb9caaae9117867a5acc10a3c861b67d49))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
+## [24.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v23.0.0...run-v24.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+* This release has breaking changes.
+* **run:** This release has breaking changes.
+
+### Features
+
+* run the generator ([#3751](https://github.com/googleapis/google-api-nodejs-client/issues/3751)) ([4eedfd2](https://github.com/googleapis/google-api-nodejs-client/commit/4eedfd211682fc3560fc76319aa66a7988165c24))
+* **run:** update the API ([f0b6380](https://github.com/googleapis/google-api-nodejs-client/commit/f0b63802ed7c0d78b67c417d1c3537728d5e242d))
+* **run:** update the API ([d10033f](https://github.com/googleapis/google-api-nodejs-client/commit/d10033fb9caaae9117867a5acc10a3c861b67d49))
+* **run:** update the API ([bbcd7aa](https://github.com/googleapis/google-api-nodejs-client/commit/bbcd7aa901dd2bc73ded2258ea9a4d57d9627483))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [8.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/run-v7.0.0...run-v8.0.0) (2025-08-29)
 
 
