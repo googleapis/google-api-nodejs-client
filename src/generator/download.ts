@@ -140,10 +140,10 @@ export interface ApiData {
  */
 export function getApiData(fileName: string): ApiData {
   validateDiscoveryDocFileName(fileName);
-  const firstHyphen = fileName.indexOf('-');
-  const lastDot = fileName.lastIndexOf('.');
-  const name = fileName.substring(0, firstHyphen);
-  const version = fileName.substring(firstHyphen + 1, lastDot);
+  const firstHyphenIndex = fileName.indexOf('-');
+  const lastDotIndex = fileName.lastIndexOf('.');
+  const name = fileName.substring(0, firstHyphenIndex);
+  const version = fileName.substring(firstHyphenIndex + 1, lastDotIndex);
   return {name, version};
 }
 
