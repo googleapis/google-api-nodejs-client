@@ -316,10 +316,6 @@
     "src/apis/dlp": {},
     "src/apis/css": {},
     "src/apis/policysimulator": {},
-    "src/apis/apigateway": {},
-    "src/apis/siteverification": {},
-    "src/apis/gamesconfiguration": {},
-    "src/apis/gamesmanagement": {},
-    "src/apis/youtubeanalytics": {}
+    "src/apis/apigateway": {}
   }
 }

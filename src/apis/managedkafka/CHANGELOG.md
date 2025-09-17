@@ -1,5 +1,35 @@
 # Changelog
 
+## [5.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v4.0.0...managedkafka-v5.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+
+## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v3.0.0...managedkafka-v4.0.0) (2025-09-16)
+
+
+### ⚠ BREAKING CHANGES
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769))
+* This release has breaking changes.
+
+### Features
+
+* **managedkafka:** update the API ([a740fd8](https://github.com/googleapis/google-api-nodejs-client/commit/a740fd8b6b4f207ab930841daa4b973e6fa18abe))
+* run the generator ([#3753](https://github.com/googleapis/google-api-nodejs-client/issues/3753)) ([de822b3](https://github.com/googleapis/google-api-nodejs-client/commit/de822b3677f26b6923accb2dcde943b3165e5dde))
+
+
+### Bug Fixes
+
+* releasing for our libraries ([#3769](https://github.com/googleapis/google-api-nodejs-client/issues/3769)) ([27f5cf0](https://github.com/googleapis/google-api-nodejs-client/commit/27f5cf0a0190a5e8e8bf970f7a7cf77c409f093e))
+* upgrade googleapis-common to 8.0.0  ([#3731](https://github.com/googleapis/google-api-nodejs-client/issues/3731)) ([c9fdf4b](https://github.com/googleapis/google-api-nodejs-client/commit/c9fdf4b34d6c9bcf608eee35dd281d4680be9797))
+
 ## [4.0.0](https://github.com/googleapis/google-api-nodejs-client/compare/managedkafka-v3.1.0...managedkafka-v4.0.0) (2025-08-26)
 
 
