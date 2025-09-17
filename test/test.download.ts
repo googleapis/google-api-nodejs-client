@@ -153,6 +153,35 @@ describe(__filename, () => {
     scopes.forEach(s => s.done());
   });
 
+  it('should clean up old files', async () => {
+    const readdirSync = sandbox.stub(fs, 'readdirSync');
+    const unlinkSync = sandbox.stub(fs, 'unlinkSync');
+    const downloadPath = 'build/test/temp';
+    readdirSync.returns(['a-v1.json', 'blogger-v2.json'] as any);
+    const scopes = [
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
+      )
+        .get('/index.json')
+        .reply(200, JSON.stringify(fs.readFileSync(fakeIndexPath, 'utf8')), {
+          'Content-Type': 'application/json',
+        }),
+      nock(
+        'https://raw.githubusercontent.com/googleapis/discovery-artifact-manager/master/discoveries',
+      )
+        .get('/fake.v1.json')
+        .reply(
+          200,
+          '{"id": "fake:v1","discoveryRestUrl": "http://localhost:3030/path","name": "fake","version": "v1"}',
+        ),
+    ];
+    await dn.downloadDiscoveryDocs({discoveryUrl, downloadPath});
+    assert(unlinkSync.calledWith(path.join(downloadPath, 'blogger-v2.json')));
+    const expected = path.join(__dirname, '../../src/apis/blogger/v2.ts');
+    assert(unlinkSync.calledWith(expected));
+    scopes.forEach(s => s.done());
+  });
+
   it('should be invokable from the CLI', async () => {
     const port = 3030;
     const server = http
@@ -234,5 +263,27 @@ describe(__filename, () => {
     ];
     const result = dn.getDiffs(oldDoc, newDoc);
     assert.deepStrictEqual(result, expected);
+  });
+
+  it('should validate discovery doc file names', () => {
+    assert.doesNotThrow(() =>
+      dn.validateDiscoveryDocFileName('apiname-v1.json'),
+    );
+    assert.doesNotThrow(() =>
+      dn.validateDiscoveryDocFileName('apiname-v1.1.json'),
+    );
+    assert.doesNotThrow(() =>
+      dn.validateDiscoveryDocFileName('apiname-v1_beta.json'),
+    );
+    assert.throws(() =>
+      dn.validateDiscoveryDocFileName('apiname-v1-extra.json'),
+    );
+    assert.throws(() => dn.validateDiscoveryDocFileName('api_name-v1.json'));
+    assert.throws(() => dn.validateDiscoveryDocFileName('apiname-v1.js'));
+  });
+
+  it('should parse discovery doc file names', () => {
+    const result = dn.getApiData('apiname-v1.2.json');
+    assert.deepStrictEqual(result, {name: 'apiname', version: 'v1.2'});
   });
 });

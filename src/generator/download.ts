@@ -113,6 +113,40 @@ export async function downloadDiscoveryDocs(
   return changes;
 }
 
+/**
+ * Checks that a discovery doc file name is in the expected format of
+ * [NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json.
+ * Throws an error if the file name is not in the expected format.
+ * @param fileName The file name to validate
+ */
+export function validateDiscoveryDocFileName(fileName: string) {
+  const regex = /^[a-zA-Z0-9]+-[a-zA-Z0-9_.]+\.json$/;
+  if (!regex.test(fileName)) {
+    throw new Error(
+      `Discovery doc file name '${fileName}' is not in the expected format of '[NAME(alphanumeric)]-[VERSION(alphanumeric, _, .)].json'.`,
+    );
+  }
+}
+
+export interface ApiData {
+  name: string;
+  version: string;
+}
+
+/**
+ * Parses a discovery doc file name and returns the API name and version.
+ * @param fileName The file name to parse.
+ * @returns The API data (name and version).
+ */
+export function getApiData(fileName: string): ApiData {
+  validateDiscoveryDocFileName(fileName);
+  const firstHyphenIndex = fileName.indexOf('-');
+  const lastDotIndex = fileName.lastIndexOf('.');
+  const name = fileName.substring(0, firstHyphenIndex);
+  const version = fileName.substring(firstHyphenIndex + 1, lastDotIndex);
+  return {name, version};
+}
+
 // These are libraries we should no longer support because
 // they are not present in the index.json
 // example: b/148605368
@@ -123,22 +157,21 @@ function cleanupLibrariesNotInIndexJSON(
   const srcPath = path.join(__dirname, '../../../src', 'apis');
   const discoveryDirectory = fs.readdirSync(options.downloadPath);
   const apisReplaced = apis.map(
-    x => x.id.toString().replace(':', '-') + '.json',
+    api => api.id.toString().replace(':', '-') + '.json',
   );
   // So that we don't delete index.json
   apisReplaced.push('index.json');
   const discoveryDocsToDelete = discoveryDirectory.filter(
-    x => !apisReplaced.includes(x),
+    fileName => !apisReplaced.includes(fileName),
   );
-  const clientFilesToDelete = discoveryDocsToDelete.map(x => {
-    const apiName = x.split('-')[0];
-    const versionName = apiName[1].split('.')[0];
-    return path.join(srcPath, apiName, `${versionName}.ts`);
+  const clientFilesToDelete = discoveryDocsToDelete.map(docFileName => {
+    const api = getApiData(docFileName);
+    return path.join(srcPath, api.name, `${api.version}.ts`);
   });
-  discoveryDocsToDelete.forEach(x =>
-    fs.unlinkSync(path.join(options.downloadPath, x)),
+  discoveryDocsToDelete.forEach(docFileName =>
+    fs.unlinkSync(path.join(options.downloadPath, docFileName)),
   );
-  clientFilesToDelete.forEach(x => fs.unlinkSync(x));
+  clientFilesToDelete.forEach(clientFile => fs.unlinkSync(clientFile));
 }
 
 const ignoreLines = /^\s+"(?:etag|revision)": ".+"/;
