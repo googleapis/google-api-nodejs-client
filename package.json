@@ -17,7 +17,7 @@
   "scripts": {
     "pretest": "npm run build-test",
     "prepare": "npm run compile",
-    "test": "c8 mocha build/test",
+    "test": "cross-env NODE_OPTIONS=--max-old-space-size=8192 c8 mocha build/test",
     "predocs": "npm run build-tools",
     "precompile": "rimraf build",
     "prebuild-test": "rimraf build",
