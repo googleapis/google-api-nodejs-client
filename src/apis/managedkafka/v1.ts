@@ -301,6 +301,10 @@ export namespace managedkafka_v1 {
      */
     tlsConfig?: Schema$TlsConfig;
     /**
+     * Optional. UpdateOptions represents options that control how updates to the cluster are applied.
+     */
+    updateOptions?: Schema$UpdateOptions;
+    /**
      * Output only. The time when the cluster was last updated.
      */
     updateTime?: string | null;
@@ -1015,6 +1019,15 @@ export namespace managedkafka_v1 {
     casConfigs?: Schema$CertificateAuthorityServiceConfig[];
   }
   /**
+   * UpdateOptions specifies options that influence how a cluster update is applied. These options control the behavior of the update process, rather than defining the desired end-state of a cluster.
+   */
+  export interface Schema$UpdateOptions {
+    /**
+     * Optional. If true, allows an update operation that increases the total vCPU and/or memory allocation of the cluster to significantly decrease the per-broker vCPU and/or memory allocation. This can result in reduced performance and availability. By default, the update operation will fail if an upscale request results in a vCPU or memory allocation for the brokers that is smaller than 90% of the current broker size.
+     */
+    allowBrokerDownscaleOnClusterUpscale?: boolean | null;
+  }
+  /**
    * Request for updating schema config. On a SchemaSubject-level SchemaConfig, an unset field will be removed from the SchemaConfig.
    */
   export interface Schema$UpdateSchemaConfigRequest {
@@ -1235,7 +1248,7 @@ export namespace managedkafka_v1 {
      *
      *   // Do the magic
      *   const res = await managedkafka.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1363,7 +1376,7 @@ export namespace managedkafka_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1451,6 +1464,7 @@ export namespace managedkafka_v1 {
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "tlsConfig": {},
+     *       //   "updateOptions": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
@@ -1750,6 +1764,7 @@ export namespace managedkafka_v1 {
      *   //   "satisfiesPzs": false,
      *   //   "state": "my_state",
      *   //   "tlsConfig": {},
+     *   //   "updateOptions": {},
      *   //   "updateTime": "my_updateTime"
      *   // }
      * }
@@ -2047,6 +2062,7 @@ export namespace managedkafka_v1 {
      *       //   "satisfiesPzs": false,
      *       //   "state": "my_state",
      *       //   "tlsConfig": {},
+     *       //   "updateOptions": {},
      *       //   "updateTime": "my_updateTime"
      *       // }
      *     },
