@@ -680,7 +680,7 @@
               ]
             },
             "lookup": {
-              "description": "Looks up resource names of the DeviceUsers associated with the caller's credentials, as well as the properties provided in the request. This method must be called with end-user credentials with the scope: https://www.googleapis.com/auth/cloud-identity.devices.lookup If multiple properties are provided, only DeviceUsers having all of these properties are considered as matches - i.e. the query behaves like an AND. Different platforms require different amounts of information from the caller to ensure that the DeviceUser is uniquely identified. - iOS: No properties need to be passed, the caller's credentials are sufficient to identify the corresponding DeviceUser. - Android: Specifying the 'android_id' field is required. - Desktop: Specifying the 'raw_resource_id' field is required.",
+              "description": "Looks up resource names of the DeviceUsers associated with the caller's credentials, as well as the properties provided in the request. This method must be called with end-user credentials with the scope: https://www.googleapis.com/auth/cloud-identity.devices.lookup If multiple properties are provided, only DeviceUsers having all of these properties are considered as matches - i.e. the query behaves like an AND. Different platforms require different amounts of information from the caller to ensure that the DeviceUser is uniquely identified. - iOS: Specifying the 'partner' and 'ios_device_id' fields is required. - Android: Specifying the 'android_id' field is required. - Desktop: Specifying the 'raw_resource_id' field is required.",
               "flatPath": "v1beta1/devices/{devicesId}/deviceUsers:lookup",
               "httpMethod": "GET",
               "id": "cloudidentity.devices.deviceUsers.lookup",
@@ -690,6 +690,11 @@
               "parameters": {
                 "androidId": {
                   "description": "Android Id returned by [Settings.Secure#ANDROID_ID](https://developer.android.com/reference/android/provider/Settings.Secure.html#ANDROID_ID).",
+                  "location": "query",
+                  "type": "string"
+                },
+                "iosDeviceId": {
+                  "description": "Optional. The partner-specified device identifier assigned to the iOS device that initiated the Lookup API call. This string must match the value of the iosDeviceId key in the app config dictionary provided to Google Workspace apps.",
                   "location": "query",
                   "type": "string"
                 },
@@ -709,6 +714,11 @@
                   "location": "path",
                   "pattern": "^devices/[^/]+/deviceUsers$",
                   "required": true,
+                  "type": "string"
+                },
+                "partner": {
+                  "description": "Optional. The partner ID of the calling iOS app. This string must match the value of the partner key within the app configuration dictionary provided to Google Workspace apps.",
+                  "location": "query",
                   "type": "string"
                 },
                 "rawResourceId": {
@@ -2268,7 +2278,7 @@
       }
     }
   },
-  "revision": "20250805",
+  "revision": "20250916",
   "rootUrl": "https://cloudidentity.googleapis.com/",
   "schemas": {
     "AddIdpCredentialOperationMetadata": {
