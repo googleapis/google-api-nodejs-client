@@ -2859,7 +2859,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250911",
   "rootUrl": "https://retail.googleapis.com/",
   "schemas": {
     "GoogleApiHttpBody": {
@@ -4700,9 +4700,9 @@
           ],
           "enumDescriptions": [
             "Default value.",
-            "Disable Conversational Filtering.",
-            "Enabled Conversational Filtering with default Conversational Search.",
-            "Enabled Conversational Filtering without default Conversational Search."
+            "Disables Conversational Filtering when using Conversational Search.",
+            "Enables Conversational Filtering when using Conversational Search.",
+            "Enables Conversational Filtering without Conversational Search."
           ],
           "type": "string"
         },
@@ -4810,7 +4810,7 @@
           "type": "string"
         },
         "userQueryTypes": {
-          "description": "LINT.IfChange(query_types_proto) The types Retail classifies the search query as. Supported values are: - \"ADVERSARIAL\" - \"CHITCHAT\" - \"JAILBREAK\" - \"ORDER_SUPPORT\" - \"SIMPLE_PRODUCT_SEARCH\" - \"INTENT_REFINEMENT\" - \"PRODUCT_DETAILS\" - \"PRODUCT_COMPARISON\" - \"DEALS_AND_COUPONS\" - \"STORE_RELEVANT\" - \"BLOCKLISTED\" - \"BEST_PRODUCT\" - \"RETAIL_SUPPORT\" - \"DISABLED\" LINT.ThenChange(//depot/google3/cloud/console/web/ai/retail/service/conversational_search_customization_config.ts:intent_types_ts)",
+          "description": "The types Retail classifies the search query as. Supported values are: - \"ORDER_SUPPORT\" - \"SIMPLE_PRODUCT_SEARCH\" - \"INTENT_REFINEMENT\" - \"PRODUCT_DETAILS\" - \"PRODUCT_COMPARISON\" - \"DEALS_AND_COUPONS\" - \"STORE_RELEVANT\" - \"BLOCKLISTED\" - \"BEST_PRODUCT\" - \"RETAIL_SUPPORT\" - \"DISABLED\"",
           "items": {
             "type": "string"
           },
