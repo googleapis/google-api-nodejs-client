@@ -1268,7 +1268,7 @@ export namespace logging_v2 {
      */
     name?: string | null;
     /**
-     * Required. Names of one or more parent resources: projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 5 projects and a maximum of 100 resources in total.
+     * Required. Names of one or more parent resources (organizations and folders are not supported.): projects/[PROJECT_ID]May alternatively be one or more views: projects/[PROJECT_ID]/locations/[LOCATION_ID]/buckets/[BUCKET_ID]/views/[VIEW_ID]A log scope can include a maximum of 5 projects and a maximum of 100 resources in total.
      */
     resourceNames?: string[] | null;
     /**
@@ -1568,7 +1568,7 @@ export namespace logging_v2 {
      */
     loggingQuery?: Schema$LoggingQuery;
     /**
-     * Optional. Resource name of the recent query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.
+     * Output only. Resource name of the recent query.In the format: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/recentQueries/[QUERY_ID]" For a list of supported locations, see Supported Regions (https://cloud.google.com/logging/docs/region-support)The QUERY_ID is a system generated alphanumeric ID.
      */
     name?: string | null;
     /**
@@ -3304,7 +3304,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.billingAccounts.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3432,7 +3432,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Billingaccounts$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -12286,7 +12286,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -12414,7 +12414,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -15961,7 +15961,7 @@ export namespace logging_v2 {
      *   const res = await logging.folders.locations.logScopes.create({
      *     // Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      *     logScopeId: 'placeholder-value',
-     *     // Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     // Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      *     parent: 'folders/my-folder/locations/my-location',
      *
      *     // Request body metadata
@@ -16117,7 +16117,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.logScopes.delete({
-     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'folders/my-folder/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -16254,7 +16254,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.folders.locations.logScopes.get({
-     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'folders/my-folder/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -16673,7 +16673,7 @@ export namespace logging_v2 {
      */
     logScopeId?: string;
     /**
-     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     * Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      */
     parent?: string;
 
@@ -16685,14 +16685,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Folders$Locations$Logscopes$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
   export interface Params$Resource$Folders$Locations$Logscopes$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
@@ -19801,7 +19801,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -19926,7 +19926,7 @@ export namespace logging_v2 {
   }
   export interface Params$Resource$Locations$List extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -25902,7 +25902,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -26030,7 +26030,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -29597,7 +29597,7 @@ export namespace logging_v2 {
      *   const res = await logging.organizations.locations.logScopes.create({
      *     // Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      *     logScopeId: 'placeholder-value',
-     *     // Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     // Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      *     parent: 'organizations/my-organization/locations/my-location',
      *
      *     // Request body metadata
@@ -29753,7 +29753,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.logScopes.delete({
-     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'organizations/my-organization/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -29890,7 +29890,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.organizations.locations.logScopes.get({
-     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'organizations/my-organization/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -30309,7 +30309,7 @@ export namespace logging_v2 {
      */
     logScopeId?: string;
     /**
-     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     * Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      */
     parent?: string;
 
@@ -30321,14 +30321,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Organizations$Locations$Logscopes$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
   export interface Params$Resource$Organizations$Locations$Logscopes$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
@@ -34589,7 +34589,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like "displayName=tokyo", and is documented in more detail in AIP-160 (https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -34717,7 +34717,7 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -38266,7 +38266,7 @@ export namespace logging_v2 {
      *   const res = await logging.projects.locations.logScopes.create({
      *     // Required. A client-assigned identifier such as "log-scope". Identifiers are limited to 100 characters and can include only letters, digits, underscores, hyphens, and periods. First character has to be alphanumeric.
      *     logScopeId: 'placeholder-value',
-     *     // Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     *     // Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      *     parent: 'projects/my-project/locations/my-location',
      *
      *     // Request body metadata
@@ -38422,7 +38422,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.logScopes.delete({
-     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'projects/my-project/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -38559,7 +38559,7 @@ export namespace logging_v2 {
      *
      *   // Do the magic
      *   const res = await logging.projects.locations.logScopes.get({
-     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     *     // Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      *     name: 'projects/my-project/locations/my-location/logScopes/my-logScope',
      *   });
      *   console.log(res.data);
@@ -38978,7 +38978,7 @@ export namespace logging_v2 {
      */
     logScopeId?: string;
     /**
-     * Required. The parent project in which to create the log scope "projects/[PROJECT_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
+     * Required. The parent resource in which to create the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global"
      */
     parent?: string;
 
@@ -38990,14 +38990,14 @@ export namespace logging_v2 {
   export interface Params$Resource$Projects$Locations$Logscopes$Delete
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope to delete: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Logscopes$Get
     extends StandardParameters {
     /**
-     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]/logScopes/[LOG_SCOPE_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
+     * Required. The resource name of the log scope: "projects/[PROJECT_ID]/locations/[LOCATION_ID]" "organizations/[ORGANIZATION_ID]/locations/[LOCATION_ID]" "folders/[FOLDER_ID]/locations/[LOCATION_ID]" For example:"projects/my-project/locations/global/logScopes/my-log-scope"
      */
     name?: string;
   }
