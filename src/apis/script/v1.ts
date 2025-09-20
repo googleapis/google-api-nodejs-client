@@ -273,7 +273,7 @@ export namespace script_v1 {
    */
   export interface Schema$File {
     /**
-     * Creation date timestamp. This read-only field is only visible to users who have WRITER permission for the script project.
+     * Creation date timestamp.
      */
     createTime?: string | null;
     /**
@@ -281,7 +281,7 @@ export namespace script_v1 {
      */
     functionSet?: Schema$GoogleAppsScriptTypeFunctionSet;
     /**
-     * The user who modified the file most recently. This read-only field is only visible to users who have WRITER permission for the script project.
+     * The user who modified the file most recently. The details visible in this object are controlled by the profile visibility settings of the last modifying user.
      */
     lastModifyUser?: Schema$GoogleAppsScriptTypeUser;
     /**
@@ -297,7 +297,7 @@ export namespace script_v1 {
      */
     type?: string | null;
     /**
-     * Last modified date timestamp. This read-only field is only visible to users who have WRITER permission for the script project.
+     * Last modified date timestamp.
      */
     updateTime?: string | null;
   }
