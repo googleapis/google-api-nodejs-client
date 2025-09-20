@@ -479,6 +479,63 @@ export namespace networkmanagement_v1 {
     metropolitanArea?: string | null;
   }
   /**
+   * A configuration to generate a response for GetEffectiveVpcFlowLogsConfig request.
+   */
+  export interface Schema$EffectiveVpcFlowLogsConfig {
+    /**
+     * The aggregation interval for the logs. Default value is INTERVAL_5_SEC.
+     */
+    aggregationInterval?: string | null;
+    /**
+     * Determines whether to include cross project annotations in the logs. This field is available only for organization configurations. If not specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     */
+    crossProjectMetadata?: string | null;
+    /**
+     * Export filter used to define which VPC Flow Logs should be logged.
+     */
+    filterExpr?: string | null;
+    /**
+     * The value of the field must be in (0, 1]. The sampling rate of VPC Flow Logs where 1.0 means all collected logs are reported. Setting the sampling rate to 0.0 is not allowed. If you want to disable VPC Flow Logs, use the state field instead. Default value is 1.0.
+     */
+    flowSampling?: number | null;
+    /**
+     * Traffic will be logged from the Interconnect Attachment. Format: projects/{project_id\}/regions/{region\}/interconnectAttachments/{name\}
+     */
+    interconnectAttachment?: string | null;
+    /**
+     * Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default value is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string | null;
+    /**
+     * Custom metadata fields to include in the reported VPC flow logs. Can only be specified if "metadata" was set to CUSTOM_METADATA.
+     */
+    metadataFields?: string[] | null;
+    /**
+     * Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For a Compute config, the name will be the path of the subnet: `projects/{project_id\}/regions/{region\}/subnetworks/{subnet_id\}`
+     */
+    name?: string | null;
+    /**
+     * Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments within the network. Format: projects/{project_id\}/global/networks/{name\}
+     */
+    network?: string | null;
+    /**
+     * Specifies the scope of the config (e.g., SUBNET, NETWORK, ORGANIZATION..).
+     */
+    scope?: string | null;
+    /**
+     * The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled. Setting state=DISABLED will pause the log generation for this config.
+     */
+    state?: string | null;
+    /**
+     * Traffic will be logged from VMs within the subnetwork. Format: projects/{project_id\}/regions/{region\}/subnetworks/{name\}
+     */
+    subnet?: string | null;
+    /**
+     * Traffic will be logged from the VPN Tunnel. Format: projects/{project_id\}/regions/{region\}/vpnTunnels/{name\}
+     */
+    vpnTunnel?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -829,6 +886,23 @@ export namespace networkmanagement_v1 {
     os?: string | null;
   }
   /**
+   * For display only. Metadata associated with a hybrid subnet.
+   */
+  export interface Schema$HybridSubnetInfo {
+    /**
+     * Name of a hybrid subnet.
+     */
+    displayName?: string | null;
+    /**
+     * Name of a Google Cloud region where the hybrid subnet is configured.
+     */
+    region?: string | null;
+    /**
+     * URI of a hybrid subnet.
+     */
+    uri?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Compute Engine instance.
    */
   export interface Schema$InstanceInfo {
@@ -894,9 +968,17 @@ export namespace networkmanagement_v1 {
      */
     interconnectUri?: string | null;
     /**
+     * Appliance IP address that was matched for L2_DEDICATED attachments.
+     */
+    l2AttachmentMatchedIpAddress?: string | null;
+    /**
      * Name of a Google Cloud region where the Interconnect attachment is configured.
      */
     region?: string | null;
+    /**
+     * The type of interconnect attachment this is.
+     */
+    type?: string | null;
     /**
      * URI of an Interconnect attachment.
      */
@@ -1637,6 +1719,23 @@ export namespace networkmanagement_v1 {
     subnetUri?: string | null;
   }
   /**
+   * Response for the `QueryVpcFlowLogsConfigs` method.
+   */
+  export interface Schema$QueryOrgVpcFlowLogsConfigsResponse {
+    /**
+     * Page token to fetch the next set of configurations.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached (when querying all locations with `-`).
+     */
+    unreachable?: string[] | null;
+    /**
+     * List of VPC Flow Log configurations.
+     */
+    vpcFlowLogsConfigs?: Schema$VpcFlowLogsConfig[];
+  }
+  /**
    * Results of the configuration analysis from the last run of the test.
    */
   export interface Schema$ReachabilityDetails {
@@ -1852,6 +1951,23 @@ export namespace networkmanagement_v1 {
     updateMask?: string | null;
   }
   /**
+   * Response for the `ShowEffectiveFlowLogsConfigs` method.
+   */
+  export interface Schema$ShowEffectiveFlowLogsConfigsResponse {
+    /**
+     * List of Effective Vpc Flow Logs configurations.
+     */
+    effectiveFlowLogsConfigs?: Schema$EffectiveVpcFlowLogsConfig[];
+    /**
+     * Page token to fetch the next set of configurations.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached (when querying all locations with `-`).
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Probing results for a single edge device.
    */
   export interface Schema$SingleEdgeResponse {
@@ -1965,6 +2081,10 @@ export namespace networkmanagement_v1 {
      * Display information of a Google service
      */
     googleService?: Schema$GoogleServiceInfo;
+    /**
+     * Display information of a hybrid subnet.
+     */
+    hybridSubnet?: Schema$HybridSubnetInfo;
     /**
      * Display information of a Compute Engine instance.
      */
@@ -2112,6 +2232,10 @@ export namespace networkmanagement_v1 {
      */
     createTime?: string | null;
     /**
+     * Optional. Determines whether to include cross project annotations in the logs. This field is available only for organization configurations. If not specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     */
+    crossProjectMetadata?: string | null;
+    /**
      * Optional. The user-supplied description of the VPC Flow Logs configuration. Maximum of 512 characters.
      */
     description?: string | null;
@@ -2144,9 +2268,17 @@ export namespace networkmanagement_v1 {
      */
     name?: string | null;
     /**
+     * Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments within the network. Format: projects/{project_id\}/global/networks/{name\}
+     */
+    network?: string | null;
+    /**
      * Optional. The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled. Setting state=DISABLED will pause the log generation for this config.
      */
     state?: string | null;
+    /**
+     * Traffic will be logged from VMs within the subnetwork. Format: projects/{project_id\}/regions/{region\}/subnetworks/{name\}
+     */
+    subnet?: string | null;
     /**
      * Output only. Describes the state of the configured target resource for diagnostic purposes.
      */
@@ -2308,11 +2440,14 @@ export namespace networkmanagement_v1 {
   export class Resource$Organizations$Locations {
     context: APIRequestContext;
     operations: Resource$Organizations$Locations$Operations;
+    vpcFlowLogsConfigs: Resource$Organizations$Locations$Vpcflowlogsconfigs;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.operations = new Resource$Organizations$Locations$Operations(
         this.context
       );
+      this.vpcFlowLogsConfigs =
+        new Resource$Organizations$Locations$Vpcflowlogsconfigs(this.context);
     }
 
     /**
@@ -2485,7 +2620,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.organizations.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2614,7 +2749,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3252,6 +3387,870 @@ export namespace networkmanagement_v1 {
     pageToken?: string;
   }
 
+  export class Resource$Organizations$Locations$Vpcflowlogsconfigs {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Creating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - creating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.create({
+     *       // Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     *       parent: 'organizations/my-organization/locations/my-location',
+     *       // Required. ID of the `VpcFlowLogsConfig`.
+     *       vpcFlowLogsConfigId: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "createTime": "my_createTime",
+     *         //   "crossProjectMetadata": "my_crossProjectMetadata",
+     *         //   "description": "my_description",
+     *         //   "filterExpr": "my_filterExpr",
+     *         //   "flowSampling": {},
+     *         //   "interconnectAttachment": "my_interconnectAttachment",
+     *         //   "labels": {},
+     *         //   "metadata": "my_metadata",
+     *         //   "metadataFields": [],
+     *         //   "name": "my_name",
+     *         //   "network": "my_network",
+     *         //   "state": "my_state",
+     *         //   "subnet": "my_subnet",
+     *         //   "targetResourceState": "my_targetResourceState",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "vpnTunnel": "my_vpnTunnel"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    create(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    create(callback: BodyResponseCallback<Schema$Operation>): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/vpcFlowLogsConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a specific `VpcFlowLogsConfig`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.delete({
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    delete(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    delete(callback: BodyResponseCallback<Schema$Operation>): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+
+    /**
+     * Gets the details of a specific `VpcFlowLogsConfig`.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.get({
+     *       // Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "aggregationInterval": "my_aggregationInterval",
+     *   //   "createTime": "my_createTime",
+     *   //   "crossProjectMetadata": "my_crossProjectMetadata",
+     *   //   "description": "my_description",
+     *   //   "filterExpr": "my_filterExpr",
+     *   //   "flowSampling": {},
+     *   //   "interconnectAttachment": "my_interconnectAttachment",
+     *   //   "labels": {},
+     *   //   "metadata": "my_metadata",
+     *   //   "metadataFields": [],
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "state": "my_state",
+     *   //   "subnet": "my_subnet",
+     *   //   "targetResourceState": "my_targetResourceState",
+     *   //   "updateTime": "my_updateTime",
+     *   //   "vpnTunnel": "my_vpnTunnel"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$VpcFlowLogsConfig>>;
+    get(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$VpcFlowLogsConfig>,
+      callback: BodyResponseCallback<Schema$VpcFlowLogsConfig>
+    ): void;
+    get(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get,
+      callback: BodyResponseCallback<Schema$VpcFlowLogsConfig>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$VpcFlowLogsConfig>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get
+        | BodyResponseCallback<Schema$VpcFlowLogsConfig>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$VpcFlowLogsConfig>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$VpcFlowLogsConfig>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$VpcFlowLogsConfig>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$VpcFlowLogsConfig>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$VpcFlowLogsConfig>(parameters);
+      }
+    }
+
+    /**
+     * Lists all `VpcFlowLogsConfigs` in a given organization.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.list({
+     *       // Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     *       filter: 'placeholder-value',
+     *       // Optional. Field to use to sort the list.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Number of `VpcFlowLogsConfigs` to return.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. Page token from an earlier query, as returned in `next_page_token`.
+     *       pageToken: 'placeholder-value',
+     *       // Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     *       parent: 'organizations/my-organization/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vpcFlowLogsConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListVpcFlowLogsConfigsResponse>>;
+    list(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List,
+      callback: BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List
+        | BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListVpcFlowLogsConfigsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/vpcFlowLogsConfigs').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListVpcFlowLogsConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListVpcFlowLogsConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Updates an existing `VpcFlowLogsConfig`. If a configuration with the exact same settings already exists (even if the ID is different), the creation fails. Notes: 1. Updating a configuration with `state=DISABLED` will fail 2. The following fields are not considered as settings for the purpose of the check mentioned above, therefore - updating another configuration with the same fields but different values for the following fields will fail as well: * name * create_time * update_time * labels * description
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.organizations.locations.vpcFlowLogsConfigs.patch({
+     *       // Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     *       name: 'organizations/my-organization/locations/my-location/vpcFlowLogsConfigs/my-vpcFlowLogsConfig',
+     *       // Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
+     *       updateMask: 'placeholder-value',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "aggregationInterval": "my_aggregationInterval",
+     *         //   "createTime": "my_createTime",
+     *         //   "crossProjectMetadata": "my_crossProjectMetadata",
+     *         //   "description": "my_description",
+     *         //   "filterExpr": "my_filterExpr",
+     *         //   "flowSampling": {},
+     *         //   "interconnectAttachment": "my_interconnectAttachment",
+     *         //   "labels": {},
+     *         //   "metadata": "my_metadata",
+     *         //   "metadataFields": [],
+     *         //   "name": "my_name",
+     *         //   "network": "my_network",
+     *         //   "state": "my_state",
+     *         //   "subnet": "my_subnet",
+     *         //   "targetResourceState": "my_targetResourceState",
+     *         //   "updateTime": "my_updateTime",
+     *         //   "vpnTunnel": "my_vpnTunnel"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Operation>>;
+    patch(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch,
+      options: MethodOptions | BodyResponseCallback<Schema$Operation>,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(
+      params: Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch,
+      callback: BodyResponseCallback<Schema$Operation>
+    ): void;
+    patch(callback: BodyResponseCallback<Schema$Operation>): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Operation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Operation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Operation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Operation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Create
+    extends StandardParameters {
+    /**
+     * Required. The parent resource of the VpcFlowLogsConfig to create, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     */
+    parent?: string;
+    /**
+     * Required. ID of the `VpcFlowLogsConfig`.
+     */
+    vpcFlowLogsConfigId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VpcFlowLogsConfig;
+  }
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Delete
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For a project-level resource: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For an organization-level resource: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Get
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the VpcFlowLogsConfig, in one of the following formats: - For project-level resources: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level resources: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$List
+    extends StandardParameters {
+    /**
+     * Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     */
+    filter?: string;
+    /**
+     * Optional. Field to use to sort the list.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Number of `VpcFlowLogsConfigs` to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from an earlier query, as returned in `next_page_token`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the VpcFlowLogsConfig, in one of the following formats: - For project-level resourcs: `projects/{project_id\}/locations/global` - For organization-level resources: `organizations/{organization_id\}/locations/global`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Organizations$Locations$Vpcflowlogsconfigs$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}`
+     */
+    name?: string;
+    /**
+     * Required. Mask of fields to update. At least one path must be supplied in this field. For example, to change the state of the configuration to ENABLED, specify `update_mask` = `"state"`, and the `vpc_flow_logs_config` would be: `vpc_flow_logs_config = { name = "projects/my-project/locations/global/vpcFlowLogsConfigs/my-config" state = "ENABLED" \}`
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$VpcFlowLogsConfig;
+  }
+
   export class Resource$Projects {
     context: APIRequestContext;
     locations: Resource$Projects$Locations;
@@ -3447,7 +4446,7 @@ export namespace networkmanagement_v1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3576,7 +4575,7 @@ export namespace networkmanagement_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -7466,6 +8465,7 @@ export namespace networkmanagement_v1 {
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
      *         //   "createTime": "my_createTime",
+     *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",
      *         //   "filterExpr": "my_filterExpr",
      *         //   "flowSampling": {},
@@ -7474,7 +8474,9 @@ export namespace networkmanagement_v1 {
      *         //   "metadata": "my_metadata",
      *         //   "metadataFields": [],
      *         //   "name": "my_name",
+     *         //   "network": "my_network",
      *         //   "state": "my_state",
+     *         //   "subnet": "my_subnet",
      *         //   "targetResourceState": "my_targetResourceState",
      *         //   "updateTime": "my_updateTime",
      *         //   "vpnTunnel": "my_vpnTunnel"
@@ -7773,6 +8775,7 @@ export namespace networkmanagement_v1 {
      *   // {
      *   //   "aggregationInterval": "my_aggregationInterval",
      *   //   "createTime": "my_createTime",
+     *   //   "crossProjectMetadata": "my_crossProjectMetadata",
      *   //   "description": "my_description",
      *   //   "filterExpr": "my_filterExpr",
      *   //   "flowSampling": {},
@@ -7781,7 +8784,9 @@ export namespace networkmanagement_v1 {
      *   //   "metadata": "my_metadata",
      *   //   "metadataFields": [],
      *   //   "name": "my_name",
+     *   //   "network": "my_network",
      *   //   "state": "my_state",
+     *   //   "subnet": "my_subnet",
      *   //   "targetResourceState": "my_targetResourceState",
      *   //   "updateTime": "my_updateTime",
      *   //   "vpnTunnel": "my_vpnTunnel"
@@ -8081,6 +9086,7 @@ export namespace networkmanagement_v1 {
      *         // {
      *         //   "aggregationInterval": "my_aggregationInterval",
      *         //   "createTime": "my_createTime",
+     *         //   "crossProjectMetadata": "my_crossProjectMetadata",
      *         //   "description": "my_description",
      *         //   "filterExpr": "my_filterExpr",
      *         //   "flowSampling": {},
@@ -8089,7 +9095,9 @@ export namespace networkmanagement_v1 {
      *         //   "metadata": "my_metadata",
      *         //   "metadataFields": [],
      *         //   "name": "my_name",
+     *         //   "network": "my_network",
      *         //   "state": "my_state",
+     *         //   "subnet": "my_subnet",
      *         //   "targetResourceState": "my_targetResourceState",
      *         //   "updateTime": "my_updateTime",
      *         //   "vpnTunnel": "my_vpnTunnel"
@@ -8201,6 +9209,328 @@ export namespace networkmanagement_v1 {
         return createAPIRequest<Schema$Operation>(parameters);
       }
     }
+
+    /**
+     * QueryOrgVpcFlowLogsConfigs returns a list of all organization-level VPC Flow Logs configurations applicable to the specified project.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.queryOrgVpcFlowLogsConfigs(
+     *       {
+     *         // Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     *         filter: 'placeholder-value',
+     *         // Optional. Number of `VpcFlowLogsConfigs` to return.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Page token from an earlier query, as returned in `next_page_token`.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     *         parent: 'projects/my-project/locations/my-location',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": [],
+     *   //   "vpcFlowLogsConfigs": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    queryOrgVpcFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    queryOrgVpcFlowLogsConfigs(
+      params?: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+    >;
+    queryOrgVpcFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    queryOrgVpcFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>,
+      callback: BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+    ): void;
+    queryOrgVpcFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs,
+      callback: BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+    ): void;
+    queryOrgVpcFlowLogsConfigs(
+      callback: BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+    ): void;
+    queryOrgVpcFlowLogsConfigs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs
+        | BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$QueryOrgVpcFlowLogsConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/vpcFlowLogsConfigs:queryOrgVpcFlowLogsConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$QueryOrgVpcFlowLogsConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$QueryOrgVpcFlowLogsConfigsResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs configurations applicable to a specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.showEffectiveFlowLogsConfigs(
+     *       {
+     *         // Optional. Lists the `EffectiveVpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     *         filter: 'placeholder-value',
+     *         // Optional. Number of `EffectiveVpcFlowLogsConfigs` to return. Default is 30.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Page token from an earlier query, as returned in `next_page_token`.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Required. The resource to get the effective VPC Flow Logs configuration for. The resource must belong to the same project as the parent. The resource must be a network, subnetwork, interconnect attachment, VPN tunnel, or a project.
+     *         resource: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveFlowLogsConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    showEffectiveFlowLogsConfigs(
+      params?: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    >;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1/{+parent}/vpcFlowLogsConfigs:showEffectiveFlowLogsConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveFlowLogsConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveFlowLogsConfigsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create
@@ -8271,5 +9601,47 @@ export namespace networkmanagement_v1 {
      * Request body metadata
      */
     requestBody?: Schema$VpcFlowLogsConfig;
+  }
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Queryorgvpcflowlogsconfigs
+    extends StandardParameters {
+    /**
+     * Optional. Lists the `VpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     */
+    filter?: string;
+    /**
+     * Optional. Number of `VpcFlowLogsConfigs` to return.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from an earlier query, as returned in `next_page_token`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs
+    extends StandardParameters {
+    /**
+     * Optional. Lists the `EffectiveVpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     */
+    filter?: string;
+    /**
+     * Optional. Number of `EffectiveVpcFlowLogsConfigs` to return. Default is 30.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from an earlier query, as returned in `next_page_token`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     */
+    parent?: string;
+    /**
+     * Required. The resource to get the effective VPC Flow Logs configuration for. The resource must belong to the same project as the parent. The resource must be a network, subnetwork, interconnect attachment, VPN tunnel, or a project.
+     */
+    resource?: string;
   }
 }
