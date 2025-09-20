@@ -518,6 +518,18 @@ export namespace firebaseappcheck_v1 {
    */
   export interface Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfig {
     /**
+     * Specifies account requirements for Android devices running your app. These settings correspond to requirements on the [**account details** field](https://developer.android.com/google/play/integrity/verdicts#account-details-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.
+     */
+    accountDetails?: Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails;
+    /**
+     * Specifies application integrity requirements for Android devices running your app. These settings correspond to requirements on the [**application integrity** field](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.
+     */
+    appIntegrity?: Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity;
+    /**
+     * Specifies device integrity requirements for Android devices running your app. These settings correspond to requirements on the [**device integrity** field](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. Warning: There are also [conditional](https://developer.android.com/google/play/integrity/setup#conditional) as well as [optional](https://developer.android.com/google/play/integrity/setup#optional_device_information) responses that you can receive, but requires additional explicit opt-in from you. The App Check API is **not** responsible for any such opt-ins. The default values for these settings work for most apps, and are recommended.
+     */
+    deviceIntegrity?: Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity;
+    /**
      * Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/playIntegrityConfig ```
      */
     name?: string | null;
@@ -525,6 +537,33 @@ export namespace firebaseappcheck_v1 {
      * Specifies the duration for which App Check tokens exchanged from Play Integrity tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.
      */
     tokenTtl?: string | null;
+  }
+  /**
+   * A settings object specifying account requirements for Android devices running your app. These settings correspond to requirements on the [**account details** field](https://developer.android.com/google/play/integrity/verdicts#account-details-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails {
+    /**
+     * Specifies whether the caller must have received the [`LICENSED` verdict](https://developer.android.com/google/play/integrity/verdicts#account-details-field). For additional details about scenarios where your users will receive this `LICENSED` label, see [the default responses table](https://developer.android.com/google/play/integrity/setup#default). If set to `true`, apps without the `LICENSED` app licensing verdict will be rejected. If set to `false`, any app licensing verdict is allowed. The default value is `false`.
+     */
+    requireLicensed?: boolean | null;
+  }
+  /**
+   * A settings object specifying application integrity requirements for Android devices running your app. These settings correspond to requirements on the [**application integrity** field](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity {
+    /**
+     * Specifies whether your running app is allowed to have the `UNRECOGNIZED_VERSION` [app recognition verdict](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field). Note that the app recognition verdict `PLAY_RECOGNIZED` is a strong, comprehensive integrity signal that takes into account various other signals, including conditional and optional device integrity responses that you have opted into. If your app is published off-Play, this field should be set to `true` to allow instances of your app installed from off-Play sources to function. If set to `false`, only `PLAY_RECOGNIZED` verdicts are allowed, and both `UNRECOGNIZED_VERSION` and `UNEVALUATED` will be rejected. If set to `true`, any app recognition verdict is allowed. The default value is `false`.
+     */
+    allowUnrecognizedVersion?: boolean | null;
+  }
+  /**
+   * A settings object specifying device integrity requirements for Android devices running your app. These settings correspond to requirements on the [**device integrity** field](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. Warning: There are also [conditional](https://developer.android.com/google/play/integrity/setup#conditional) as well as [optional](https://developer.android.com/google/play/integrity/setup#optional_device_information) responses that you can receive, but requires additional explicit opt-in from you. The App Check API is **not** responsible for any such opt-ins. The default values for these settings work for most apps, and are recommended.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity {
+    /**
+     * Specifies the minimum device integrity level in order for the device to be considered valid. Any device with a device recognition verdict lower than this level will be rejected. If this is unspecified, the default level is `NO_INTEGRITY`.
+     */
+    minDeviceRecognitionLevel?: string | null;
   }
   /**
    * A JWK as specified by [section 4 of RFC 7517](https://tools.ietf.org/html/rfc7517#section-4) and [section 6.3.1 of RFC 7518](https://tools.ietf.org/html/rfc7518#section-6.3.1).
@@ -573,6 +612,10 @@ export namespace firebaseappcheck_v1 {
      */
     name?: string | null;
     /**
+     * Specifies risk tolerance and requirements for your application. These settings correspond to requirements on the [**`riskAnalysis`**](https://cloud.google.com/recaptcha/docs/interpret-assessment-website#interpret_assessment) tuple in the assessment obtained from reCAPTCHA Enterprise. The default values for these settings work for most apps, and are recommended.
+     */
+    riskAnalysis?: Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis;
+    /**
      * The score-based site key [created in reCAPTCHA Enterprise](https://cloud.google.com/recaptcha-enterprise/docs/create-key#creating_a_site_key) used to [invoke reCAPTCHA and generate the reCAPTCHA tokens](https://cloud.google.com/recaptcha-enterprise/docs/instrument-web-pages) for your application. Important: This is *not* the `site_secret` (as it is in reCAPTCHA v3), but rather your score-based reCAPTCHA Enterprise site key.
      */
     siteKey?: string | null;
@@ -582,9 +625,22 @@ export namespace firebaseappcheck_v1 {
     tokenTtl?: string | null;
   }
   /**
+   * A settings object specifying risk tolerance and requirements for your application. These settings correspond to requirements on the [**`riskAnalysis`**](https://cloud.google.com/recaptcha/docs/interpret-assessment-website#interpret_assessment) tuple in the assessment obtained from reCAPTCHA Enterprise. The default values for these settings work for most apps, and are recommended.
+   */
+  export interface Schema$GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis {
+    /**
+     * Specifies a minimum score required for a reCAPTCHA token to be considered valid. If its score is greater than or equal to this value, it will be accepted; otherwise, it will be rejected. The value must be between 0.0 and 1.0. The default value is 0.5.
+     */
+    minValidScore?: number | null;
+  }
+  /**
    * An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaV3Token to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.
    */
   export interface Schema$GoogleFirebaseAppcheckV1RecaptchaV3Config {
+    /**
+     * Specifies a minimum score required for a reCAPTCHA token to be considered valid. If its score is greater than or equal to this value, it will be accepted; otherwise, it will be rejected. The value must be between 0.0 and 1.0. The default value is 0.5.
+     */
+    minValidScore?: number | null;
     /**
      * Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number\}/apps/{app_id\}/recaptchaV3Config ```
      */
@@ -5550,6 +5606,9 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountDetails": {},
+     *   //   "appIntegrity": {},
+     *   //   "deviceIntegrity": {},
      *   //   "name": "my_name",
      *   //   "tokenTtl": "my_tokenTtl"
      *   // }
@@ -5701,6 +5760,9 @@ export namespace firebaseappcheck_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "accountDetails": {},
+     *       //   "appIntegrity": {},
+     *       //   "deviceIntegrity": {},
      *       //   "name": "my_name",
      *       //   "tokenTtl": "my_tokenTtl"
      *       // }
@@ -5710,6 +5772,9 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "accountDetails": {},
+     *   //   "appIntegrity": {},
+     *   //   "deviceIntegrity": {},
      *   //   "name": "my_name",
      *   //   "tokenTtl": "my_tokenTtl"
      *   // }
@@ -6058,6 +6123,7 @@ export namespace firebaseappcheck_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
+     *   //   "riskAnalysis": {},
      *   //   "siteKey": "my_siteKey",
      *   //   "tokenTtl": "my_tokenTtl"
      *   // }
@@ -6212,6 +6278,7 @@ export namespace firebaseappcheck_v1 {
      *         // request body parameters
      *         // {
      *         //   "name": "my_name",
+     *         //   "riskAnalysis": {},
      *         //   "siteKey": "my_siteKey",
      *         //   "tokenTtl": "my_tokenTtl"
      *         // }
@@ -6222,6 +6289,7 @@ export namespace firebaseappcheck_v1 {
      *   // Example response
      *   // {
      *   //   "name": "my_name",
+     *   //   "riskAnalysis": {},
      *   //   "siteKey": "my_siteKey",
      *   //   "tokenTtl": "my_tokenTtl"
      *   // }
@@ -6566,6 +6634,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "minValidScore": {},
      *   //   "name": "my_name",
      *   //   "siteSecret": "my_siteSecret",
      *   //   "siteSecretSet": false,
@@ -6719,6 +6788,7 @@ export namespace firebaseappcheck_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "minValidScore": {},
      *       //   "name": "my_name",
      *       //   "siteSecret": "my_siteSecret",
      *       //   "siteSecretSet": false,
@@ -6730,6 +6800,7 @@ export namespace firebaseappcheck_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "minValidScore": {},
      *   //   "name": "my_name",
      *   //   "siteSecret": "my_siteSecret",
      *   //   "siteSecretSet": false,

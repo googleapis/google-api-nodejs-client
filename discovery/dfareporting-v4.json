@@ -10266,7 +10266,7 @@
       }
     }
   },
-  "revision": "20250722",
+  "revision": "20250902",
   "rootUrl": "https://dfareporting.googleapis.com/",
   "schemas": {
     "Account": {
@@ -11053,6 +11053,18 @@
           "description": "Default email address used in sender field for tag emails.",
           "type": "string"
         },
+        "euPoliticalAdsDeclaration": {
+          "description": "Optional. Whether the advertiser plans to serve EU political ads.",
+          "enum": [
+            "ADVERTISER_PLANS_TO_SERVE_EU_POLITICAL_ADS",
+            "ADVERTISER_DOES_NOT_PLAN_TO_SERVE_EU_POLITICAL_ADS"
+          ],
+          "enumDescriptions": [
+            "You'll need to confirm if your campaign contains EU political advertising.",
+            "All new campaigns will have “No” selected for the question that asks if your campaign has EU political ads. You can change this for any campaign at any time."
+          ],
+          "type": "string"
+        },
         "floodlightConfigurationId": {
           "description": "Floodlight configuration ID of this advertiser. The floodlight configuration ID will be created automatically, so on insert this field should be left blank. This field can be set to another advertiser's floodlight configuration ID in order to share that advertiser's floodlight configuration with this advertiser, so long as: - This advertiser's original floodlight configuration is not already associated with floodlight activities or floodlight activity groups. - This advertiser's original floodlight configuration is not already shared with another advertiser. ",
           "format": "int64",
@@ -11721,6 +11733,18 @@
         },
         "endDate": {
           "format": "date",
+          "type": "string"
+        },
+        "euPoliticalAdsDeclaration": {
+          "description": "Optional. Whether the campaign has EU political ads. Campaign Manager 360 doesn't allow campaigns with EU political ads to serve in the EU. They can still serve in other regions.",
+          "enum": [
+            "CONTAINS_EU_POLITICAL_ADS",
+            "DOES_NOT_CONTAIN_EU_POLITICAL_ADS"
+          ],
+          "enumDescriptions": [
+            "The campaign contains EU political ads.",
+            "The campaign does not contain EU political ads."
+          ],
           "type": "string"
         },
         "eventTagOverrides": {
@@ -18113,9 +18137,13 @@
             "VPAID_ONLY_BLOCKING",
             "VPAID_ONLY_FILTERING",
             "VPAID_FILTERING",
-            "NON_VPAID_FILTERING"
+            "NON_VPAID_FILTERING",
+            "BLOCKING_FILTERING_VPAID",
+            "BLOCKING_FILTERING_VPAID_ONLY"
           ],
           "enumDescriptions": [
+            "",
+            "",
             "",
             "",
             "",
@@ -18847,6 +18875,10 @@
           "$ref": "DimensionValue",
           "description": "Dimension value for the ID of the advertiser. This is a read-only, auto-generated field."
         },
+        "allowOnYoutube": {
+          "description": "Optional. Whether the placement is enabled for YouTube integration.",
+          "type": "boolean"
+        },
         "campaignId": {
           "description": "Campaign ID of this placement. This field is a required field on insertion.",
           "format": "int64",
@@ -19109,6 +19141,10 @@
         "wrappingOptOut": {
           "description": "Whether this placement opts out of tag wrapping.",
           "type": "boolean"
+        },
+        "youtubeSettings": {
+          "$ref": "YoutubeSettings",
+          "description": "Optional. YouTube settings for the placement. The placement must be enabled for YouTube to use this field."
         }
       },
       "type": "object"
@@ -22639,6 +22675,105 @@
         "transcodeSettings": {
           "$ref": "TranscodeSetting",
           "description": "Settings for the transcodes of video creatives served to this placement. If this object is provided, the creative-level transcode settings will be overridden."
+        }
+      },
+      "type": "object"
+    },
+    "YoutubeSettings": {
+      "description": "Contains the YouTube settings.",
+      "id": "YoutubeSettings",
+      "properties": {
+        "businessLogoCreativeIds": {
+          "description": "Optional. The IDs of the creatives to use for the business logo. Currently only one creative is supported.",
+          "items": {
+            "format": "int64",
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "businessName": {
+          "description": "Optional. The business name.",
+          "type": "string"
+        },
+        "callToActions": {
+          "description": "Optional. The call to actions. Currently only one call to action is supported.",
+          "items": {
+            "enum": [
+              "CALL_TO_ACTION_UNKNOWN",
+              "CALL_TO_ACTION_LEARN_MORE",
+              "CALL_TO_ACTION_GET_QUOTE",
+              "CALL_TO_ACTION_APPLY_NOW",
+              "CALL_TO_ACTION_SIGN_UP",
+              "CALL_TO_ACTION_CONTACT_US",
+              "CALL_TO_ACTION_SUBSCRIBE",
+              "CALL_TO_ACTION_DOWNLOAD",
+              "CALL_TO_ACTION_BOOK_NOW",
+              "CALL_TO_ACTION_GET_OFFER",
+              "CALL_TO_ACTION_SHOP_NOW",
+              "CALL_TO_ACTION_VISIT_STORE",
+              "CALL_TO_ACTION_CALL_NOW",
+              "CALL_TO_ACTION_VIEW_MENU",
+              "CALL_TO_ACTION_TEST_DRIVE",
+              "CALL_TO_ACTION_SCHEDULE_NOW",
+              "CALL_TO_ACTION_BUY_NOW",
+              "CALL_TO_ACTION_DONATE_NOW",
+              "CALL_TO_ACTION_ORDER_NOW",
+              "CALL_TO_ACTION_PLAY_NOW",
+              "CALL_TO_ACTION_SEE_MORE",
+              "CALL_TO_ACTION_START_NOW",
+              "CALL_TO_ACTION_VISIT_SITE",
+              "CALL_TO_ACTION_WATCH_NOW"
+            ],
+            "enumDescriptions": [
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              "",
+              ""
+            ],
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "descriptions": {
+          "description": "Optional. The descriptions. Currently only one description is supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "headlines": {
+          "description": "Optional. The headlines associated with the call to actions. Currently only one headline is supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
+        "longHeadlines": {
+          "description": "Optional. The long headlines. Currently only one long headline is supported.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"

@@ -169,7 +169,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2554,7 +2554,7 @@
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250917",
   "rootUrl": "https://migrationcenter.googleapis.com/",
   "schemas": {
     "AddAssetsToGroupRequest": {
@@ -2785,6 +2785,51 @@
           "description": "Generic asset attributes.",
           "type": "object"
         },
+        "awsCloudFrontDistributionDetails": {
+          "$ref": "AwsCloudFrontDistributionDetails",
+          "description": "Output only. Asset information specific for AWS CloudFront distributions.",
+          "readOnly": true
+        },
+        "awsEcsClusterDetails": {
+          "$ref": "AwsEcsClusterDetails",
+          "description": "Output only. Asset information specific for AWS ECS clusters.",
+          "readOnly": true
+        },
+        "awsEfsFileSystemDetails": {
+          "$ref": "AwsEfsFileSystemDetails",
+          "description": "Output only. Asset information specific for AWS EFS file systems.",
+          "readOnly": true
+        },
+        "awsEksClusterDetails": {
+          "$ref": "AwsEksClusterDetails",
+          "description": "Output only. Asset information specific for AWS EKS clusters.",
+          "readOnly": true
+        },
+        "awsElbLoadBalancerDetails": {
+          "$ref": "AwsElbLoadBalancerDetails",
+          "description": "Output only. Asset information specific for AWS Load Balancers.",
+          "readOnly": true
+        },
+        "awsLambdaFunctionDetails": {
+          "$ref": "AwsLambdaFunctionDetails",
+          "description": "Output only. Asset information specific for AWS Lambda functions.",
+          "readOnly": true
+        },
+        "awsRedshiftDetails": {
+          "$ref": "AwsRedshiftDetails",
+          "description": "Output only. Asset information specific for AWS Redshift",
+          "readOnly": true
+        },
+        "awsS3BucketDetails": {
+          "$ref": "AwsS3BucketDetails",
+          "description": "Output only. Asset information specific for AWS S3 buckets.",
+          "readOnly": true
+        },
+        "awsVpcDetails": {
+          "$ref": "AwsVpcDetails",
+          "description": "Output only. Asset information specific for AWS VPCs.",
+          "readOnly": true
+        },
         "createTime": {
           "description": "Output only. The timestamp when the asset was created.",
           "format": "google-datetime",
@@ -2814,6 +2859,11 @@
           "format": "google-datetime",
           "readOnly": true,
           "type": "string"
+        },
+        "hostingProviderDetails": {
+          "$ref": "HostingProviderDetails",
+          "description": "Output only. Details about the hosting provider of the asset.",
+          "readOnly": true
         },
         "insightList": {
           "$ref": "InsightList",
@@ -2849,6 +2899,14 @@
           "readOnly": true,
           "type": "array"
         },
+        "structuredAttributes": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Generic structured asset attributes.",
+          "type": "object"
+        },
         "title": {
           "description": "Output only. Server generated human readable name of the asset.",
           "readOnly": true,
@@ -2879,6 +2937,42 @@
           "description": "Generic asset attributes.",
           "type": "object"
         },
+        "awsCloudFrontDistributionDetails": {
+          "$ref": "AwsCloudFrontDistributionDetails",
+          "description": "Asset information specific for AWS CloudFront distributions."
+        },
+        "awsEcsClusterDetails": {
+          "$ref": "AwsEcsClusterDetails",
+          "description": "Asset information specific for AWS ECS clusters."
+        },
+        "awsEfsFileSystemDetails": {
+          "$ref": "AwsEfsFileSystemDetails",
+          "description": "Asset information specific for AWS EFS file systems."
+        },
+        "awsEksClusterDetails": {
+          "$ref": "AwsEksClusterDetails",
+          "description": "Asset information specific for AWS EKS clusters."
+        },
+        "awsElbLoadBalancerDetails": {
+          "$ref": "AwsElbLoadBalancerDetails",
+          "description": "Asset information specific for AWS Load Balancers."
+        },
+        "awsLambdaFunctionDetails": {
+          "$ref": "AwsLambdaFunctionDetails",
+          "description": "Asset information specific for AWS Lambda functions."
+        },
+        "awsRedshiftDetails": {
+          "$ref": "AwsRedshiftDetails",
+          "description": "Asset information specific for AWS Redshift clusters."
+        },
+        "awsS3BucketDetails": {
+          "$ref": "AwsS3BucketDetails",
+          "description": "Asset information specific for AWS S3 buckets."
+        },
+        "awsVpcDetails": {
+          "$ref": "AwsVpcDetails",
+          "description": "Asset information specific for AWS VPCs."
+        },
         "collectionType": {
           "description": "Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.",
           "enum": [
@@ -2907,6 +3001,10 @@
           "$ref": "DatabaseDetails",
           "description": "Asset information specific for logical databases."
         },
+        "hostingProviderDetails": {
+          "$ref": "HostingProviderDetails",
+          "description": "Optional. Details about the hosting provider of the asset."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -2929,6 +3027,14 @@
           "description": "The time the data was reported.",
           "format": "google-datetime",
           "type": "string"
+        },
+        "structuredAttributes": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Optional. Generic structured asset attributes.",
+          "type": "object"
         },
         "traceToken": {
           "description": "Optional. Trace token is optionally provided to assist with debugging and traceability.",
@@ -3136,6 +3242,12 @@
       },
       "type": "object"
     },
+    "AwsCloudFrontDistributionDetails": {
+      "description": "Details of an AWS CloudFront distribution.",
+      "id": "AwsCloudFrontDistributionDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsEc2PlatformDetails": {
       "description": "AWS EC2 specific details.",
       "id": "AwsEc2PlatformDetails",
@@ -3165,9 +3277,147 @@
       },
       "type": "object"
     },
+    "AwsEcsClusterDetails": {
+      "description": "Details of an AWS ECS cluster.",
+      "id": "AwsEcsClusterDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsEfsFileSystemDetails": {
+      "description": "Details of an AWS EFS file system.",
+      "id": "AwsEfsFileSystemDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsEksClusterDetails": {
+      "description": "Asset information specific for AWS EKS clusters.",
+      "id": "AwsEksClusterDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsElbLoadBalancerDetails": {
+      "description": "Asset information specific for AWS Load Balancers.",
+      "id": "AwsElbLoadBalancerDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsLambdaFunctionDetails": {
+      "description": "Asset information specific for AWS Lambda functions.",
+      "id": "AwsLambdaFunctionDetails",
+      "properties": {},
+      "type": "object"
+    },
     "AwsRds": {
       "description": "Specific details for an AWS RDS database deployment.",
       "id": "AwsRds",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsRedshiftDetails": {
+      "description": "Details of an AWS Redshift cluster.",
+      "id": "AwsRedshiftDetails",
+      "properties": {},
+      "type": "object"
+    },
+    "AwsS3BucketDetails": {
+      "description": "Asset information specific for AWS S3 buckets.",
+      "id": "AwsS3BucketDetails",
+      "properties": {
+        "objectsMetadata": {
+          "$ref": "AwsS3BucketDetailsObjectsMetadata",
+          "description": "Optional. The metadata of the objects in the bucket."
+        },
+        "storageClasses": {
+          "description": "Optional. The storage classes in the bucket.",
+          "items": {
+            "$ref": "AwsS3BucketDetailsStorageClass"
+          },
+          "type": "array"
+        },
+        "versioning": {
+          "$ref": "AwsS3BucketDetailsVersioning",
+          "description": "Optional. Versioning configuration of the bucket."
+        }
+      },
+      "type": "object"
+    },
+    "AwsS3BucketDetailsObjectsMetadata": {
+      "description": "The metadata of the objects in the bucket.",
+      "id": "AwsS3BucketDetailsObjectsMetadata",
+      "properties": {
+        "totalObjects": {
+          "$ref": "AwsS3BucketDetailsObjectsMetadataTotalObjects",
+          "description": "Optional. The total number of objects in the bucket."
+        }
+      },
+      "type": "object"
+    },
+    "AwsS3BucketDetailsObjectsMetadataTotalObjects": {
+      "description": "Information about the total number of objects in the bucket.",
+      "id": "AwsS3BucketDetailsObjectsMetadataTotalObjects",
+      "properties": {
+        "value": {
+          "description": "Optional. The total number of objects in the bucket.",
+          "format": "int32",
+          "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "AwsS3BucketDetailsStorageClass": {
+      "description": "Details about storage class.",
+      "id": "AwsS3BucketDetailsStorageClass",
+      "properties": {
+        "totalBytes": {
+          "description": "Optional. The total size of the storage class in bytes.",
+          "format": "int64",
+          "type": "string"
+        },
+        "type": {
+          "description": "Required. Type of the storage class.",
+          "enum": [
+            "STORAGE_CLASS_TYPE_UNSPECIFIED",
+            "STANDARD",
+            "INTELLIGENT_TIERING",
+            "STANDARD_IA",
+            "ONE_ZONE_IA",
+            "GLACIER",
+            "DEEP_ARCHIVE",
+            "GLACIER_IR",
+            "REDUCED_REDUNDANCY",
+            "EXPRESS_ONEZONE"
+          ],
+          "enumDescriptions": [
+            "Unspecified storage class type.",
+            "General Purpose",
+            "Represents Intelligent-Tiering's auto-tiering",
+            "Standard-Infrequent Access",
+            "One Zone-Infrequent Access",
+            "S3 Glacier Flexible Retrieval",
+            "S3 Glacier Deep Archive",
+            "S3 Glacier Instant Retrieval",
+            "S3 Reduced Redundancy Storage (Legacy)",
+            "S3 Express One Zone"
+          ],
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "AwsS3BucketDetailsVersioning": {
+      "description": "Versioning configuration of the bucket.",
+      "id": "AwsS3BucketDetailsVersioning",
+      "properties": {
+        "enabled": {
+          "description": "Optional. Whether versioning is enabled.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "AwsVpcDetails": {
+      "description": "Asset information specific for AWS VPCs.",
+      "id": "AwsVpcDetails",
       "properties": {},
       "type": "object"
     },
@@ -3277,8 +3527,25 @@
           "description": "BIOS version.",
           "type": "string"
         },
+        "id": {
+          "description": "BIOS ID.",
+          "type": "string"
+        },
+        "manufacturer": {
+          "description": "BIOS manufacturer.",
+          "type": "string"
+        },
+        "releaseTime": {
+          "description": "BIOS release date.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "smbiosUuid": {
           "description": "SMBIOS UUID.",
+          "type": "string"
+        },
+        "version": {
+          "description": "BIOS version.",
           "type": "string"
         }
       },
@@ -4610,12 +4877,22 @@
       "description": "Single disk entry.",
       "id": "DiskEntry",
       "properties": {
+        "capacityBytes": {
+          "description": "Disk capacity.",
+          "format": "int64",
+          "type": "string"
+        },
         "diskLabel": {
           "description": "Disk label.",
           "type": "string"
         },
         "diskLabelType": {
           "description": "Disk label type (e.g. BIOS/GPT)",
+          "type": "string"
+        },
+        "freeSpaceBytes": {
+          "description": "Disk free space.",
+          "format": "int64",
           "type": "string"
         },
         "hwAddress": {
@@ -5117,6 +5394,22 @@
         "selinux": {
           "$ref": "Selinux",
           "description": "SELinux details."
+        },
+        "selinuxMode": {
+          "description": "Security-Enhanced Linux (SELinux) mode.",
+          "enum": [
+            "SE_LINUX_MODE_UNSPECIFIED",
+            "SE_LINUX_MODE_DISABLED",
+            "SE_LINUX_MODE_PERMISSIVE",
+            "SE_LINUX_MODE_ENFORCING"
+          ],
+          "enumDescriptions": [
+            "SELinux mode unknown or unspecified.",
+            "SELinux is disabled.",
+            "SELinux permissive mode.",
+            "SELinux enforcing mode."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -5125,6 +5418,15 @@
       "description": "Guest installed application information.",
       "id": "GuestInstalledApplication",
       "properties": {
+        "applicationName": {
+          "description": "Installed application name.",
+          "type": "string"
+        },
+        "installTime": {
+          "description": "The time when the application was installed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "licenses": {
           "description": "License strings associated with the installed application.",
           "items": {
@@ -5177,9 +5479,33 @@
           "$ref": "GuestConfigDetails",
           "description": "OS and app configuration."
         },
+        "family": {
+          "description": "What family the OS belong to, if known.",
+          "enum": [
+            "OS_FAMILY_UNKNOWN",
+            "OS_FAMILY_WINDOWS",
+            "OS_FAMILY_LINUX",
+            "OS_FAMILY_UNIX"
+          ],
+          "enumDescriptions": [
+            "",
+            "Microsoft Windows Server and Desktop.",
+            "Various Linux flavors.",
+            "Non-Linux Unix flavors."
+          ],
+          "type": "string"
+        },
+        "osName": {
+          "description": "The name of the operating system.",
+          "type": "string"
+        },
         "runtime": {
           "$ref": "GuestRuntimeDetails",
           "description": "Runtime information."
+        },
+        "version": {
+          "description": "The version of the operating system.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5195,6 +5521,11 @@
         "installedApps": {
           "$ref": "GuestInstalledApplicationList",
           "description": "Installed applications information."
+        },
+        "lastBootTime": {
+          "description": "Last time the OS was booted.",
+          "format": "google-datetime",
+          "type": "string"
         },
         "lastUptime": {
           "$ref": "Date",
@@ -5219,6 +5550,45 @@
         "services": {
           "$ref": "RunningServiceList",
           "description": "Running background services."
+        }
+      },
+      "type": "object"
+    },
+    "HostingProviderDetails": {
+      "description": "Details about the hosting platform of the asset.",
+      "id": "HostingProviderDetails",
+      "properties": {
+        "aws": {
+          "$ref": "HostingProviderDetailsAws",
+          "description": "Optional. The AWS platform details."
+        },
+        "createTime": {
+          "description": "Optional. The timestamp when resource was created in the hosting provider.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "displayName": {
+          "description": "Optional. Display name of the asset.",
+          "type": "string"
+        },
+        "location": {
+          "$ref": "ResourceLocation",
+          "description": "Optional. Location of the asset."
+        },
+        "originalId": {
+          "description": "Optional. Unique identifier for the asset in the hosting provider.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "HostingProviderDetailsAws": {
+      "description": "Details for AWS platform.",
+      "id": "HostingProviderDetailsAws",
+      "properties": {
+        "owningAccountId": {
+          "description": "Optional. The AWS account ID owning the resource represented by this asset.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -6522,6 +6892,13 @@
       "description": "List of network adapters.",
       "id": "NetworkAdapterList",
       "properties": {
+        "entries": {
+          "description": "Network adapter entries.",
+          "items": {
+            "$ref": "NetworkAdapterDetails"
+          },
+          "type": "array"
+        },
         "networkAdapters": {
           "description": "Network adapter descriptions.",
           "items": {
@@ -6574,6 +6951,13 @@
       "id": "NetworkAddressList",
       "properties": {
         "addresses": {
+          "description": "Network address entries.",
+          "items": {
+            "$ref": "NetworkAddress"
+          },
+          "type": "array"
+        },
+        "entries": {
           "description": "Network address entries.",
           "items": {
             "$ref": "NetworkAddress"
@@ -7722,7 +8106,8 @@
           "type": "string"
         },
         "allocatedDiskTypes": {
-          "description": "Set of disk types allocated to assets.",
+          "deprecated": true,
+          "description": "@deprecated. Use storage_allocations instead. Set of disk types allocated to assets.",
           "items": {
             "enum": [
               "PERSISTENT_DISK_TYPE_UNSPECIFIED",
@@ -7895,6 +8280,17 @@
       },
       "type": "object"
     },
+    "ResourceLocation": {
+      "description": "Location of a resource.",
+      "id": "ResourceLocation",
+      "properties": {
+        "region": {
+          "description": "Optional. The name of the region.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "RunAssetsExportJobRequest": {
       "description": "A request to run an assets export job.",
       "id": "RunAssetsExportJobRequest",
@@ -7964,6 +8360,13 @@
       "description": "List of running guest OS processes.",
       "id": "RunningProcessList",
       "properties": {
+        "entries": {
+          "description": "Running process entries.",
+          "items": {
+            "$ref": "RunningProcess"
+          },
+          "type": "array"
+        },
         "processes": {
           "description": "Running process entries.",
           "items": {
@@ -7995,6 +8398,10 @@
           "format": "int64",
           "type": "string"
         },
+        "serviceName": {
+          "description": "Service name.",
+          "type": "string"
+        },
         "startMode": {
           "description": "Service start mode (raw, OS-agnostic).",
           "type": "string"
@@ -8014,6 +8421,13 @@
       "description": "List of running guest OS services.",
       "id": "RunningServiceList",
       "properties": {
+        "entries": {
+          "description": "Running service entries.",
+          "items": {
+            "$ref": "RunningService"
+          },
+          "type": "array"
+        },
         "services": {
           "description": "Running service entries.",
           "items": {
@@ -8039,6 +8453,15 @@
         "netstatTime": {
           "$ref": "DateTime",
           "description": "Netstat time collected."
+        },
+        "rawScanResult": {
+          "description": "Raw network scan result. This field is intended for human inspection. The format of this field may be netstat output or any another raw output. The exact format may change without notice and should not be relied upon.",
+          "type": "string"
+        },
+        "scanTime": {
+          "description": "Time of the last network scan.",
+          "format": "google-datetime",
+          "type": "string"
         }
       },
       "type": "object"
@@ -9028,8 +9451,20 @@
           "description": "VMware os enum - https://vdc-repo.vmware.com/vmwb-repository/dcr-public/da47f910-60ac-438b-8b9b-6122f4d14524/16b7274a-bf8b-4b4c-a05e-746f2aa93c8c/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html.",
           "type": "string"
         },
+        "vcenterFolder": {
+          "description": "Folder name in vCenter where asset resides.",
+          "type": "string"
+        },
+        "vcenterUri": {
+          "description": "vCenter URI used in collection.",
+          "type": "string"
+        },
         "vcenterVersion": {
           "description": "vCenter version.",
+          "type": "string"
+        },
+        "vcenterVmId": {
+          "description": "vCenter VM ID.",
           "type": "string"
         }
       },

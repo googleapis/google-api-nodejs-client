@@ -839,7 +839,7 @@ export namespace admin_directory_v1 {
      */
     osVersion?: string | null;
     /**
-     * Output only. Compliance status of the OS version.
+     * Output only. Device policy compliance status of the OS version.
      */
     osVersionCompliance?: string | null;
     /**
@@ -10107,7 +10107,7 @@ export namespace admin_directory_v1 {
      *     orderBy: 'placeholder-value',
      *     // Token to specify next page in the list
      *     pageToken: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-groups
      *     query: 'placeholder-value',
      *     // Whether to return results in ascending or descending order. Only of use when orderBy is also used
      *     sortOrder: 'placeholder-value',
@@ -10584,7 +10584,7 @@ export namespace admin_directory_v1 {
      */
     pageToken?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups
+     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-groups
      */
     query?: string;
     /**
@@ -22162,7 +22162,7 @@ export namespace admin_directory_v1 {
      *     pageToken: 'placeholder-value',
      *     // What subset of fields to fetch for this user.
      *     projection: 'placeholder-value',
-     *     // Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     *     // Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-users
      *     query: 'placeholder-value',
      *     // If set to true, retrieves the list of deleted users. (Default: false)
      *     showDeleted: 'placeholder-value',
@@ -22469,7 +22469,7 @@ export namespace admin_directory_v1 {
      */
     projection?: string;
     /**
-     * Query string search. Should be of the form "". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users
+     * Query string search. Should be of the form "". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-users
      */
     query?: string;
     /**

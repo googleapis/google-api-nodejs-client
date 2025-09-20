@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1098,7 +1098,7 @@
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250904",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -2385,7 +2385,7 @@
           "type": "object"
         },
         "build": {
-          "description": "Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.",
+          "description": "Required. Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.",
           "type": "string"
         },
         "createTime": {

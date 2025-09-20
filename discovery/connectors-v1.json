@@ -2757,7 +2757,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250826",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -3214,7 +3214,7 @@
           "type": "string"
         },
         "locationType": {
-          "description": "Optional. Location Tyep denotes where this value should be sent in BYOC connections.",
+          "description": "Optional. Location Type denotes where this value should be sent in BYOC connections.",
           "enum": [
             "LOCATION_TYPE_UNSPECIFIED",
             "HEADER",

@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -300,7 +300,7 @@
                   ]
                 },
                 "delete": {
-                  "description": "Deletes the API hub instance.",
+                  "description": "Deletes the API hub instance. Deleting the API hub instance will also result in the removal of all associated runtime project attachments and the host project registration.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/apiHubInstances/{apiHubInstancesId}",
                   "httpMethod": "DELETE",
                   "id": "apihub.projects.locations.apiHubInstances.delete",
@@ -2741,6 +2741,34 @@
                         "https://www.googleapis.com/auth/cloud-platform"
                       ]
                     },
+                    "manageSourceData": {
+                      "description": "Manages data for a given plugin instance.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/plugins/{pluginsId}/instances/{instancesId}:manageSourceData",
+                      "httpMethod": "POST",
+                      "id": "apihub.projects.locations.plugins.instances.manageSourceData",
+                      "parameterOrder": [
+                        "name"
+                      ],
+                      "parameters": {
+                        "name": {
+                          "description": "Required. The name of the plugin instance for which data needs to be managed. Format: `projects/{project}/locations/{location}/plugins/{plugin}/instances/{instance}`",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/plugins/[^/]+/instances/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+name}:manageSourceData",
+                      "request": {
+                        "$ref": "GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
                     "patch": {
                       "description": "Updates a plugin instance in the API hub. The following fields in the plugin_instance can be updated currently: * display_name * schedule_cron_expression The update_mask should be used to specify the fields being updated. To update the auth_config and additional_config of the plugin instance, use the ApplyPluginInstanceConfig method.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/plugins/{pluginsId}/instances/{instancesId}",
@@ -2946,7 +2974,7 @@
       }
     }
   },
-  "revision": "20250731",
+  "revision": "20250912",
   "rootUrl": "https://apihub.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -5140,6 +5168,60 @@
       },
       "type": "object"
     },
+    "GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest": {
+      "description": "The ManagePluginInstanceSourceData method's request.",
+      "id": "GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest",
+      "properties": {
+        "action": {
+          "description": "Required. Action to be performed.",
+          "enum": [
+            "ACTION_UNSPECIFIED",
+            "UPLOAD",
+            "DELETE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified action.",
+            "Upload or upsert data.",
+            "Delete data."
+          ],
+          "type": "string"
+        },
+        "data": {
+          "description": "Required. Data to be managed.",
+          "format": "byte",
+          "type": "string"
+        },
+        "dataType": {
+          "description": "Required. Type of data to be managed.",
+          "enum": [
+            "DATA_TYPE_UNSPECIFIED",
+            "PROXY_DEPLOYMENT_MANIFEST",
+            "ENVIRONMENT_MANIFEST",
+            "PROXY_BUNDLE",
+            "SHARED_FLOW_BUNDLE"
+          ],
+          "enumDescriptions": [
+            "Default unspecified type.",
+            "Proxy deployment manifest.",
+            "Environment manifest.",
+            "Proxy bundle.",
+            "Shared flow bundle."
+          ],
+          "type": "string"
+        },
+        "relativePath": {
+          "description": "Required. Relative path of data being managed for a given plugin instance.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse": {
+      "description": "The ManagePluginInstanceSourceData method's response.",
+      "id": "GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudApihubV1MatchResult": {
       "description": "MatchResult represents the result of matching a discovered API operation with a catalog API operation.",
       "id": "GoogleCloudApihubV1MatchResult",
@@ -5378,7 +5460,7 @@
       "id": "GoogleCloudApihubV1Plugin",
       "properties": {
         "actionsConfig": {
-          "description": "Required. The configuration of actions supported by the plugin.",
+          "description": "Optional. The configuration of actions supported by the plugin. **REQUIRED**: This field must be provided when creating or updating a Plugin. The server will reject requests if this field is missing.",
           "items": {
             "$ref": "GoogleCloudApihubV1PluginActionConfig"
           },

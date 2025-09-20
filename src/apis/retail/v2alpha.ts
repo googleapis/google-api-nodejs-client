@@ -1104,7 +1104,7 @@ export namespace retail_v2alpha {
      */
     state?: string | null;
     /**
-     * LINT.IfChange(query_types_proto) The types Retail classifies the search query as. Supported values are: - "ADVERSARIAL" - "CHITCHAT" - "JAILBREAK" - "ORDER_SUPPORT" - "SIMPLE_PRODUCT_SEARCH" - "INTENT_REFINEMENT" - "PRODUCT_DETAILS" - "PRODUCT_COMPARISON" - "DEALS_AND_COUPONS" - "STORE_RELEVANT" - "BLOCKLISTED" - "BEST_PRODUCT" - "RETAIL_SUPPORT" - "DISABLED" LINT.ThenChange(//depot/google3/cloud/console/web/ai/retail/service/conversational_search_customization_config.ts:intent_types_ts)
+     * The types Retail classifies the search query as. Supported values are: - "ORDER_SUPPORT" - "SIMPLE_PRODUCT_SEARCH" - "INTENT_REFINEMENT" - "PRODUCT_DETAILS" - "PRODUCT_COMPARISON" - "DEALS_AND_COUPONS" - "STORE_RELEVANT" - "BLOCKLISTED" - "BEST_PRODUCT" - "RETAIL_SUPPORT" - "DISABLED"
      */
     userQueryTypes?: string[] | null;
   }

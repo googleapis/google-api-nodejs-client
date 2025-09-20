@@ -180,6 +180,21 @@
             "https://www.googleapis.com/auth/content"
           ]
         },
+        "getAccountForGcpRegistration": {
+          "description": "Retrieves the merchant account that the calling GCP is registered with.",
+          "flatPath": "accounts/v1/accounts:getAccountForGcpRegistration",
+          "httpMethod": "GET",
+          "id": "merchantapi.accounts.getAccountForGcpRegistration",
+          "parameterOrder": [],
+          "parameters": {},
+          "path": "accounts/v1/accounts:getAccountForGcpRegistration",
+          "response": {
+            "$ref": "GetAccountForGcpRegistrationResponse"
+          },
+          "scopes": [
+            "https://www.googleapis.com/auth/content"
+          ]
+        },
         "list": {
           "description": "Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.",
           "flatPath": "accounts/v1/accounts",
@@ -1505,6 +1520,90 @@
         },
         "regions": {
           "methods": {
+            "batchCreate": {
+              "description": "Creates one or more regions in your Merchant Center account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions:batchCreate",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.regions.batchCreate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account to create one or more regions for. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1/{+parent}/regions:batchCreate",
+              "request": {
+                "$ref": "BatchCreateRegionsRequest"
+              },
+              "response": {
+                "$ref": "BatchCreateRegionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "batchDelete": {
+              "description": "Deletes multiple regions by name from your Merchant Center account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions:batchDelete",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.regions.batchDelete",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account to delete one or more regions from. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1/{+parent}/regions:batchDelete",
+              "request": {
+                "$ref": "BatchDeleteRegionsRequest"
+              },
+              "response": {
+                "$ref": "Empty"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
+            "batchUpdate": {
+              "description": "Updates one or more regions in your Merchant Center account. Executing this method requires admin access.",
+              "flatPath": "accounts/v1/accounts/{accountsId}/regions:batchUpdate",
+              "httpMethod": "POST",
+              "id": "merchantapi.accounts.regions.batchUpdate",
+              "parameterOrder": [
+                "parent"
+              ],
+              "parameters": {
+                "parent": {
+                  "description": "Required. The account to update one or more regions for. Format: `accounts/{account}`",
+                  "location": "path",
+                  "pattern": "^accounts/[^/]+$",
+                  "required": true,
+                  "type": "string"
+                }
+              },
+              "path": "accounts/v1/{+parent}/regions:batchUpdate",
+              "request": {
+                "$ref": "BatchUpdateRegionsRequest"
+              },
+              "response": {
+                "$ref": "BatchUpdateRegionsResponse"
+              },
+              "scopes": [
+                "https://www.googleapis.com/auth/content"
+              ]
+            },
             "create": {
               "description": "Creates a region definition in your Merchant Center account. Executing this method requires admin access.",
               "flatPath": "accounts/v1/accounts/{accountsId}/regions",
@@ -2277,7 +2376,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250909",
   "rootUrl": "https://merchantapi.googleapis.com/",
   "schemas": {
     "About": {
@@ -2689,6 +2788,76 @@
       },
       "type": "object"
     },
+    "BatchCreateRegionsRequest": {
+      "description": "Request message for the `BatchCreateRegions` method.",
+      "id": "BatchCreateRegionsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The region(s) to create. The maximum number of regions that can be created in a batch is 100.",
+          "items": {
+            "$ref": "CreateRegionRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchCreateRegionsResponse": {
+      "description": "Response message for the `BatchCreateRegions` method.",
+      "id": "BatchCreateRegionsResponse",
+      "properties": {
+        "regions": {
+          "description": "The created region(s).",
+          "items": {
+            "$ref": "Region"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchDeleteRegionsRequest": {
+      "description": "Request message for the `BatchDeleteRegions` method.",
+      "id": "BatchDeleteRegionsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The names of the regions to delete. A maximum of 100 regions can be deleted in a batch.",
+          "items": {
+            "$ref": "DeleteRegionRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateRegionsRequest": {
+      "description": "Request message for the `BatchUpdateRegions` method.",
+      "id": "BatchUpdateRegionsRequest",
+      "properties": {
+        "requests": {
+          "description": "Required. The region(s) to update. The maximum number of regions that can be updated in a batch is 100.",
+          "items": {
+            "$ref": "UpdateRegionRequest"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "BatchUpdateRegionsResponse": {
+      "description": "Response message for the `BatchUpdateRegions` method.",
+      "id": "BatchUpdateRegionsResponse",
+      "properties": {
+        "regions": {
+          "description": "The updated region(s).",
+          "items": {
+            "$ref": "Region"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "BusinessDayConfig": {
       "description": "Business days of the warehouse.",
       "id": "BusinessDayConfig",
@@ -3009,6 +3178,25 @@
       },
       "type": "object"
     },
+    "CreateRegionRequest": {
+      "description": "Request message for the `CreateRegion` method.",
+      "id": "CreateRegionRequest",
+      "properties": {
+        "parent": {
+          "description": "Required. The account to create a region for. Format: `accounts/{account}`",
+          "type": "string"
+        },
+        "region": {
+          "$ref": "Region",
+          "description": "Required. The region to create."
+        },
+        "regionId": {
+          "description": "Required. The identifier for the region, unique over all regions of the same account.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "CustomerService": {
       "description": "Customer service information.",
       "id": "CustomerService",
@@ -3087,6 +3275,17 @@
           "description": "Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.",
           "format": "int32",
           "type": "integer"
+        }
+      },
+      "type": "object"
+    },
+    "DeleteRegionRequest": {
+      "description": "Request message for the `DeleteRegion` method.",
+      "id": "DeleteRegionRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The name of the region to delete. Format: `accounts/{account}/regions/{region}`",
+          "type": "string"
         }
       },
       "type": "object"
@@ -3298,6 +3497,17 @@
             "type": "string"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GetAccountForGcpRegistrationResponse": {
+      "description": "Response message for the GetAccountForGcpRegistration method.",
+      "id": "GetAccountForGcpRegistrationResponse",
+      "properties": {
+        "name": {
+          "description": "The name of the merchant account id that the GCP is registered with.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -4569,7 +4779,7 @@
       "type": "object"
     },
     "Program": {
-      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
+      "description": "Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`",
       "id": "Program",
       "properties": {
         "activeRegionCodes": {
@@ -4710,7 +4920,7 @@
       "id": "RegisterGcpRequest",
       "properties": {
         "developerEmail": {
-          "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference",
+          "description": "Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have \"API developer\" access type and the email preference corresponding to that user will be updated to have the new \"API notifications\" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new \"API notifications\" preference. Make sure the email used is associated with a Google Account (Google Workspace account or Gmail account) and is not a service account as service accounts can't receive emails.",
           "type": "string"
         }
       },
@@ -5211,6 +5421,22 @@
       "description": "Request message for the UnregisterGCP method.",
       "id": "UnregisterGcpRequest",
       "properties": {},
+      "type": "object"
+    },
+    "UpdateRegionRequest": {
+      "description": "Request message for the `UpdateRegion` method.",
+      "id": "UpdateRegionRequest",
+      "properties": {
+        "region": {
+          "$ref": "Region",
+          "description": "Required. The updated region."
+        },
+        "updateMask": {
+          "description": "Optional. The comma-separated field mask indicating the fields to update. Example: `\"displayName,postalCodeArea.regionCode\"`.",
+          "format": "google-fieldmask",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "UriSettings": {

@@ -198,7 +198,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1048,7 +1048,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20250914",
   "rootUrl": "https://documentai.googleapis.com/",
   "schemas": {
     "CloudAiDocumentaiLabHifiaToolsValidationValidatorInput": {
@@ -4754,6 +4754,10 @@
       "description": "The first-class citizen for Document AI. Each processor defines how to extract structural information from a document.",
       "id": "GoogleCloudDocumentaiV1Processor",
       "properties": {
+        "activeSchemaVersion": {
+          "description": "Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project}/locations/{location}/schemas/{schema}/schemaVersions/{schema_version}",
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. The time the processor was created.",
           "format": "google-datetime",
@@ -5308,7 +5312,7 @@
       "id": "GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions",
       "properties": {
         "trainingMethod": {
-          "description": "Training method to use for CDE training.",
+          "description": "Optional. Training method to use for CDE training.",
           "enum": [
             "TRAINING_METHOD_UNSPECIFIED",
             "MODEL_BASED",

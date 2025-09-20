@@ -1771,7 +1771,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250905",
   "rootUrl": "https://containeranalysis.googleapis.com/",
   "schemas": {
     "AliasContext": {
@@ -2912,7 +2912,7 @@
       "id": "ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage",
       "properties": {
         "packagePath": {
-          "description": "Path to the package.json. e.g. workspace/path/to/package",
+          "description": "Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.",
           "type": "string"
         },
         "repository": {
@@ -4458,7 +4458,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -4475,7 +4476,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         }
@@ -4742,6 +4744,17 @@
             "$ref": "Hash"
           },
           "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "FileLocation": {
+      "description": "Indicates the location at which a package was found.",
+      "id": "FileLocation",
+      "properties": {
+        "filePath": {
+          "description": "For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.",
+          "type": "string"
         }
       },
       "type": "object"
@@ -5698,7 +5711,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -5715,7 +5729,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5752,6 +5767,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceNote",
           "description": "A note describing an SBOM reference."
+        },
+        "secret": {
+          "$ref": "SecretNote",
+          "description": "A note describing a secret."
         },
         "shortDescription": {
           "description": "A one sentence description of this note.",
@@ -5843,7 +5862,8 @@
             "SPDX_FILE",
             "SPDX_RELATIONSHIP",
             "VULNERABILITY_ASSESSMENT",
-            "SBOM_REFERENCE"
+            "SBOM_REFERENCE",
+            "SECRET"
           ],
           "enumDescriptions": [
             "Default value. This value is unused.",
@@ -5860,7 +5880,8 @@
             "This represents an SPDX File.",
             "This represents an SPDX Relationship.",
             "This represents a Vulnerability Assessment.",
-            "This represents an SBOM Reference."
+            "This represents an SBOM Reference.",
+            "This represents a secret."
           ],
           "type": "string"
         },
@@ -5887,6 +5908,10 @@
         "sbomReference": {
           "$ref": "SBOMReferenceOccurrence",
           "description": "Describes a specific SBOM reference occurrences."
+        },
+        "secret": {
+          "$ref": "SecretOccurrence",
+          "description": "Describes a secret."
         },
         "spdxFile": {
           "$ref": "FileOccurrence",
@@ -6765,6 +6790,90 @@
         },
         "referrerId": {
           "description": "The person or system referring this predicate to the consumer.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SecretLocation": {
+      "description": "The location of the secret.",
+      "id": "SecretLocation",
+      "properties": {
+        "fileLocation": {
+          "$ref": "FileLocation",
+          "description": "The secret is found from a file."
+        }
+      },
+      "type": "object"
+    },
+    "SecretNote": {
+      "description": "The note representing a secret.",
+      "id": "SecretNote",
+      "properties": {},
+      "type": "object"
+    },
+    "SecretOccurrence": {
+      "description": "The occurrence provides details of a secret.",
+      "id": "SecretOccurrence",
+      "properties": {
+        "kind": {
+          "description": "Required. Type of secret.",
+          "enum": [
+            "SECRET_KIND_UNSPECIFIED",
+            "SECRET_KIND_UNKNOWN",
+            "SECRET_KIND_GCP_SERVICE_ACCOUNT_KEY"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The secret kind is unknown.",
+            "A GCP service account key per: https://cloud.google.com/iam/docs/creating-managing-service-account-keys"
+          ],
+          "type": "string"
+        },
+        "locations": {
+          "description": "Optional. Locations where the secret is detected.",
+          "items": {
+            "$ref": "SecretLocation"
+          },
+          "type": "array"
+        },
+        "statuses": {
+          "description": "Optional. Status of the secret.",
+          "items": {
+            "$ref": "SecretStatus"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "SecretStatus": {
+      "description": "The status of the secret with a timestamp.",
+      "id": "SecretStatus",
+      "properties": {
+        "message": {
+          "description": "Optional. Optional message about the status code.",
+          "type": "string"
+        },
+        "status": {
+          "description": "Optional. The status of the secret.",
+          "enum": [
+            "STATUS_UNSPECIFIED",
+            "UNKNOWN",
+            "VALID",
+            "INVALID"
+          ],
+          "enumDescriptions": [
+            "Unspecified",
+            "The status of the secret is unknown.",
+            "The secret is valid.",
+            "The secret is invalid."
+          ],
+          "type": "string"
+        },
+        "updateTime": {
+          "description": "Optional. The time the secret status was last updated.",
+          "format": "google-datetime",
           "type": "string"
         }
       },

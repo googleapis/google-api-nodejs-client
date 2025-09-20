@@ -1585,6 +1585,31 @@ export namespace apihub_v1 {
     runtimeProjectAttachment?: Schema$GoogleCloudApihubV1RuntimeProjectAttachment;
   }
   /**
+   * The ManagePluginInstanceSourceData method's request.
+   */
+  export interface Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest {
+    /**
+     * Required. Action to be performed.
+     */
+    action?: string | null;
+    /**
+     * Required. Data to be managed.
+     */
+    data?: string | null;
+    /**
+     * Required. Type of data to be managed.
+     */
+    dataType?: string | null;
+    /**
+     * Required. Relative path of data being managed for a given plugin instance.
+     */
+    relativePath?: string | null;
+  }
+  /**
+   * The ManagePluginInstanceSourceData method's response.
+   */
+  export interface Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse {}
+  /**
    * MatchResult represents the result of matching a discovered API operation with a catalog API operation.
    */
   export interface Schema$GoogleCloudApihubV1MatchResult {
@@ -1748,7 +1773,7 @@ export namespace apihub_v1 {
    */
   export interface Schema$GoogleCloudApihubV1Plugin {
     /**
-     * Required. The configuration of actions supported by the plugin.
+     * Optional. The configuration of actions supported by the plugin. **REQUIRED**: This field must be provided when creating or updating a Plugin. The server will reject requests if this field is missing.
      */
     actionsConfig?: Schema$GoogleCloudApihubV1PluginActionConfig[];
     /**
@@ -2883,7 +2908,7 @@ export namespace apihub_v1 {
      *
      *   // Do the magic
      *   const res = await apihub.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -3337,7 +3362,7 @@ export namespace apihub_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3547,7 +3572,7 @@ export namespace apihub_v1 {
     }
 
     /**
-     * Deletes the API hub instance.
+     * Deletes the API hub instance. Deleting the API hub instance will also result in the removal of all associated runtime project attachments and the host project registration.
      * @example
      * ```js
      * // Before running the sample:
@@ -16491,6 +16516,164 @@ export namespace apihub_v1 {
     }
 
     /**
+     * Manages data for a given plugin instance.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/apihub.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const apihub = google.apihub('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await apihub.projects.locations.plugins.instances.manageSourceData({
+     *       // Required. The name of the plugin instance for which data needs to be managed. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
+     *       name: 'projects/my-project/locations/my-location/plugins/my-plugin/instances/my-instance',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "action": "my_action",
+     *         //   "data": "my_data",
+     *         //   "dataType": "my_dataType",
+     *         //   "relativePath": "my_relativePath"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    manageSourceData(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    manageSourceData(
+      params?: Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+    >;
+    manageSourceData(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    manageSourceData(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+    ): void;
+    manageSourceData(
+      params: Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata,
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+    ): void;
+    manageSourceData(
+      callback: BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+    ): void;
+    manageSourceData(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://apihub.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}:manageSourceData').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Updates a plugin instance in the API hub. The following fields in the plugin_instance can be updated currently: * display_name * schedule_cron_expression The update_mask should be used to specify the fields being updated. To update the auth_config and additional_config of the plugin instance, use the ApplyPluginInstanceConfig method.
      * @example
      * ```js
@@ -16748,6 +16931,18 @@ export namespace apihub_v1 {
      * Required. The parent resource where this plugin will be created. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}`. To list plugin instances for multiple plugins, use the - character instead of the plugin ID.
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Plugins$Instances$Managesourcedata
+    extends StandardParameters {
+    /**
+     * Required. The name of the plugin instance for which data needs to be managed. Format: `projects/{project\}/locations/{location\}/plugins/{plugin\}/instances/{instance\}`
+     */
+    name?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudApihubV1ManagePluginInstanceSourceDataRequest;
   }
   export interface Params$Resource$Projects$Locations$Plugins$Instances$Patch
     extends StandardParameters {

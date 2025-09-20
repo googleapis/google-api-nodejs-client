@@ -479,6 +479,63 @@ export namespace networkmanagement_v1beta1 {
     metropolitanArea?: string | null;
   }
   /**
+   * A configuration to generate a response for GetEffectiveVpcFlowLogsConfig request.
+   */
+  export interface Schema$EffectiveVpcFlowLogsConfig {
+    /**
+     * The aggregation interval for the logs. Default value is INTERVAL_5_SEC.
+     */
+    aggregationInterval?: string | null;
+    /**
+     * Determines whether to include cross project annotations in the logs. This field is available only for organization configurations. If not specified in org configs will be set to CROSS_PROJECT_METADATA_ENABLED.
+     */
+    crossProjectMetadata?: string | null;
+    /**
+     * Export filter used to define which VPC Flow Logs should be logged.
+     */
+    filterExpr?: string | null;
+    /**
+     * The value of the field must be in (0, 1]. The sampling rate of VPC Flow Logs where 1.0 means all collected logs are reported. Setting the sampling rate to 0.0 is not allowed. If you want to disable VPC Flow Logs, use the state field instead. Default value is 1.0.
+     */
+    flowSampling?: number | null;
+    /**
+     * Traffic will be logged from the Interconnect Attachment. Format: projects/{project_id\}/regions/{region\}/interconnectAttachments/{name\}
+     */
+    interconnectAttachment?: string | null;
+    /**
+     * Configures whether all, none or a subset of metadata fields should be added to the reported VPC flow logs. Default value is INCLUDE_ALL_METADATA.
+     */
+    metadata?: string | null;
+    /**
+     * Custom metadata fields to include in the reported VPC flow logs. Can only be specified if "metadata" was set to CUSTOM_METADATA.
+     */
+    metadataFields?: string[] | null;
+    /**
+     * Unique name of the configuration. The name can have one of the following forms: - For project-level configurations: `projects/{project_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For organization-level configurations: `organizations/{organization_id\}/locations/global/vpcFlowLogsConfigs/{vpc_flow_logs_config_id\}` - For a Compute config, the name will be the path of the subnet: `projects/{project_id\}/regions/{region\}/subnetworks/{subnet_id\}`
+     */
+    name?: string | null;
+    /**
+     * Traffic will be logged from VMs, VPN tunnels and Interconnect Attachments within the network. Format: projects/{project_id\}/global/networks/{name\}
+     */
+    network?: string | null;
+    /**
+     * Specifies the scope of the config (e.g., SUBNET, NETWORK, ORGANIZATION..).
+     */
+    scope?: string | null;
+    /**
+     * The state of the VPC Flow Log configuration. Default value is ENABLED. When creating a new configuration, it must be enabled. Setting state=DISABLED will pause the log generation for this config.
+     */
+    state?: string | null;
+    /**
+     * Traffic will be logged from VMs within the subnetwork. Format: projects/{project_id\}/regions/{region\}/subnetworks/{name\}
+     */
+    subnet?: string | null;
+    /**
+     * Traffic will be logged from the VPN Tunnel. Format: projects/{project_id\}/regions/{region\}/vpnTunnels/{name\}
+     */
+    vpnTunnel?: string | null;
+  }
+  /**
    * A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); \}
    */
   export interface Schema$Empty {}
@@ -522,6 +579,10 @@ export namespace networkmanagement_v1beta1 {
      * A cluster URI for [Google Kubernetes Engine cluster control plane](https://cloud.google.com/kubernetes-engine/docs/concepts/cluster-architecture).
      */
     gkeMasterCluster?: string | null;
+    /**
+     * A [GKE Pod](https://cloud.google.com/kubernetes-engine/docs/concepts/pod) URI.
+     */
+    gkePod?: string | null;
     /**
      * A Compute Engine instance URI.
      */
@@ -783,6 +844,23 @@ export namespace networkmanagement_v1beta1 {
     sourceIp?: string | null;
   }
   /**
+   * For display only. Metadata associated with a hybrid subnet.
+   */
+  export interface Schema$HybridSubnetInfo {
+    /**
+     * Name of a hybrid subnet.
+     */
+    displayName?: string | null;
+    /**
+     * Name of a Google Cloud region where the hybrid subnet is configured.
+     */
+    region?: string | null;
+    /**
+     * URI of a hybrid subnet.
+     */
+    uri?: string | null;
+  }
+  /**
    * For display only. Metadata associated with a Compute Engine instance.
    */
   export interface Schema$InstanceInfo {
@@ -848,9 +926,17 @@ export namespace networkmanagement_v1beta1 {
      */
     interconnectUri?: string | null;
     /**
+     * Appliance IP address that was matched for L2_DEDICATED attachments.
+     */
+    l2AttachmentMatchedIpAddress?: string | null;
+    /**
      * Name of a Google Cloud region where the Interconnect attachment is configured.
      */
     region?: string | null;
+    /**
+     * The type of interconnect attachment this is.
+     */
+    type?: string | null;
     /**
      * URI of an Interconnect attachment.
      */
@@ -1550,6 +1636,23 @@ export namespace networkmanagement_v1beta1 {
     updateMask?: string | null;
   }
   /**
+   * Response for the `ShowEffectiveFlowLogsConfigs` method.
+   */
+  export interface Schema$ShowEffectiveFlowLogsConfigsResponse {
+    /**
+     * List of Effective Vpc Flow Logs configurations.
+     */
+    effectiveFlowLogsConfigs?: Schema$EffectiveVpcFlowLogsConfig[];
+    /**
+     * Page token to fetch the next set of configurations.
+     */
+    nextPageToken?: string | null;
+    /**
+     * Locations that could not be reached (when querying all locations with `-`).
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * Probing results for a single edge device.
    */
   export interface Schema$SingleEdgeResponse {
@@ -1663,6 +1766,10 @@ export namespace networkmanagement_v1beta1 {
      * Display information of a Google service
      */
     googleService?: Schema$GoogleServiceInfo;
+    /**
+     * Display information of a hybrid subnet.
+     */
+    hybridSubnet?: Schema$HybridSubnetInfo;
     /**
      * Display information of a Compute Engine instance.
      */
@@ -2131,7 +2238,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.organizations.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2260,7 +2367,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Organizations$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -3968,7 +4075,7 @@ export namespace networkmanagement_v1beta1 {
      *
      *   // Do the magic
      *   const res = await networkmanagement.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4097,7 +4204,7 @@ export namespace networkmanagement_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -7219,6 +7326,168 @@ export namespace networkmanagement_v1beta1 {
         );
       }
     }
+
+    /**
+     * ShowEffectiveFlowLogsConfigs returns a list of all VPC Flow Logs configurations applicable to a specified resource.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkmanagement.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkmanagement = google.networkmanagement('v1beta1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkmanagement.projects.locations.vpcFlowLogsConfigs.showEffectiveFlowLogsConfigs(
+     *       {
+     *         // Optional. Lists the `EffectiveVpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     *         filter: 'placeholder-value',
+     *         // Optional. Number of `EffectiveVpcFlowLogsConfigs` to return. Default is 30.
+     *         pageSize: 'placeholder-value',
+     *         // Optional. Page token from an earlier query, as returned in `next_page_token`.
+     *         pageToken: 'placeholder-value',
+     *         // Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     *         parent: 'projects/my-project/locations/my-location',
+     *         // Required. The resource to get the effective VPC Flow Logs configuration for. The resource must belong to the same project as the parent. The resource must be a network, subnetwork, interconnect attachment, VPN tunnel, or a project.
+     *         resource: 'placeholder-value',
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "effectiveFlowLogsConfigs": [],
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    showEffectiveFlowLogsConfigs(
+      params?: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    >;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>,
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      params: Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs,
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      callback: BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+    ): void;
+    showEffectiveFlowLogsConfigs(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ShowEffectiveFlowLogsConfigsResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkmanagement.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/v1beta1/{+parent}/vpcFlowLogsConfigs:showEffectiveFlowLogsConfigs'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ShowEffectiveFlowLogsConfigsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ShowEffectiveFlowLogsConfigsResponse>(
+          parameters
+        );
+      }
+    }
   }
 
   export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Create
@@ -7308,5 +7577,28 @@ export namespace networkmanagement_v1beta1 {
      * Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
      */
     parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Vpcflowlogsconfigs$Showeffectiveflowlogsconfigs
+    extends StandardParameters {
+    /**
+     * Optional. Lists the `EffectiveVpcFlowLogsConfigs` that match the filter expression. A filter expression must use the supported [CEL logic operators] (https://cloud.google.com/vpc/docs/about-flow-logs-records#supported_cel_logic_operators).
+     */
+    filter?: string;
+    /**
+     * Optional. Number of `EffectiveVpcFlowLogsConfigs` to return. Default is 30.
+     */
+    pageSize?: number;
+    /**
+     * Optional. Page token from an earlier query, as returned in `next_page_token`.
+     */
+    pageToken?: string;
+    /**
+     * Required. The parent resource of the VpcFlowLogsConfig, specified in the following format: `projects/{project_id\}/locations/global`
+     */
+    parent?: string;
+    /**
+     * Required. The resource to get the effective VPC Flow Logs configuration for. The resource must belong to the same project as the parent. The resource must be a network, subnetwork, interconnect attachment, VPN tunnel, or a project.
+     */
+    resource?: string;
   }
 }

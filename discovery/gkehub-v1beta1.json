@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -718,7 +718,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250907",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "ApplianceCluster": {
@@ -1527,8 +1527,12 @@
           "description": "Optional. The Connect agent version to use for connect_resources. Defaults to the latest GKE Connect version. The version must be a currently supported version, obsolete versions will be rejected.",
           "type": "string"
         },
+        "k8sGitVersion": {
+          "description": "Optional. Git version of the Kubernetes cluster. This is only used to gate the Connect Agent migration to svc.id.goog on GDC-SO 1.33.100 patch and above.",
+          "type": "string"
+        },
         "k8sVersion": {
-          "description": "Optional. Major version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
+          "description": "Optional. Major and minor version of the Kubernetes cluster. This is only used to determine which version to use for the CustomResourceDefinition resources, `apiextensions/v1beta1` or`apiextensions/v1`.",
           "type": "string"
         },
         "v1beta1Crd": {

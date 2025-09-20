@@ -955,6 +955,10 @@ export namespace connectors_v2 {
    */
   export interface Schema$Tool {
     /**
+     * List of tool names that this tool depends on.
+     */
+    dependsOn?: string[] | null;
+    /**
      * Description of the tool.
      */
     description?: string | null;

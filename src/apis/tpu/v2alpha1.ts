@@ -220,6 +220,10 @@ export namespace tpu_v2alpha1 {
      * Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.
      */
     sourceImage?: string | null;
+    /**
+     * Optional. The storage pool in which the boot disk is created. You can provide this as a partial or full URL to the resource.
+     */
+    storagePool?: string | null;
   }
   /**
    * Further data for the creating state.
@@ -1476,7 +1480,7 @@ export namespace tpu_v2alpha1 {
      *
      *   // Do the magic
      *   const res = await tpu.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1616,7 +1620,7 @@ export namespace tpu_v2alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**

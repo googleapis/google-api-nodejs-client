@@ -660,6 +660,10 @@
     "package": "@google-cloud/clientconnectorservices"
   },
   {
+    "api": "capacityplanner",
+    "package": "@google-cloud/capacityplanner"
+  },
+  {
     "api": "chronicle",
     "package": "@google-cloud/chronicle"
   },
@@ -760,6 +764,10 @@
     "package": "@googlemaps/fleetengine"
   },
   {
+    "api": "cloudlocationfinder",
+    "package": "@google-cloud/locationfinder"
+  },
+  {
     "api": "maintenance",
     "package": "@google-cloud/maintenance-api"
   },
@@ -838,6 +846,10 @@
   {
     "api": "saasservicemgmt",
     "package": "@google-cloud/saasservicemgmt"
+  },
+  {
+    "api": "cloudsecuritycompliance",
+    "package": "@google-cloud/cloudsecuritycompliance"
   },
   {
     "api": "solar",

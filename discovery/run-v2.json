@@ -188,6 +188,11 @@
     },
     {
       "description": "Locational Endpoint",
+      "endpointUrl": "https://us-central2-run.googleapis.com/",
+      "location": "us-central2"
+    },
+    {
+      "description": "Locational Endpoint",
       "endpointUrl": "https://us-east1-run.googleapis.com/",
       "location": "us-east1"
     },
@@ -200,6 +205,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://us-east5-run.googleapis.com/",
       "location": "us-east5"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-east7-run.googleapis.com/",
+      "location": "us-east7"
     },
     {
       "description": "Locational Endpoint",
@@ -225,6 +235,11 @@
       "description": "Locational Endpoint",
       "endpointUrl": "https://us-west4-run.googleapis.com/",
       "location": "us-west4"
+    },
+    {
+      "description": "Locational Endpoint",
+      "endpointUrl": "https://us-west8-run.googleapis.com/",
+      "location": "us-west8"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -1922,7 +1937,7 @@
       }
     }
   },
-  "revision": "20250818",
+  "revision": "20250905",
   "rootUrl": "https://run.googleapis.com/",
   "schemas": {
     "GoogleCloudRunV2BinaryAuthorization": {
@@ -3762,7 +3777,7 @@
           "type": "integer"
         },
         "items": {
-          "description": "If unspecified, the volume will expose a file whose name is the secret, relative to VolumeMount.mount_path. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a path and a version.",
+          "description": "If unspecified, the volume will expose a file whose name is the secret, relative to VolumeMount.mount_path + VolumeMount.sub_path. If specified, the key will be used as the version to fetch from Cloud Secret Manager and the path will be the name of the file exposed in the volume. When items are defined, they must specify a path and a version.",
           "items": {
             "$ref": "GoogleCloudRunV2VersionToPath"
           },
@@ -5920,7 +5935,7 @@
       "id": "GoogleDevtoolsCloudbuildV1NpmPackage",
       "properties": {
         "packagePath": {
-          "description": "Path to the package.json. e.g. workspace/path/to/package",
+          "description": "Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.",
           "type": "string"
         },
         "repository": {

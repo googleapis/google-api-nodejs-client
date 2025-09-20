@@ -305,7 +305,7 @@ export namespace bigqueryreservation_v1 {
    */
   export interface Schema$FailoverReservationRequest {
     /**
-     * Optional. failover mode for the failover operation.
+     * Optional. A parameter that determines how writes that are pending replication are handled after a failover is initiated. If not specified, HARD failover mode is used by default.
      */
     failoverMode?: string | null;
   }

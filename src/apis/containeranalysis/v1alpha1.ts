@@ -755,7 +755,7 @@ export namespace containeranalysis_v1alpha1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage {
     /**
-     * Path to the package.json. e.g. workspace/path/to/package
+     * Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.
      */
     packagePath?: string | null;
     /**

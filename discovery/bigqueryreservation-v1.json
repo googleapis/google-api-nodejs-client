@@ -1267,7 +1267,7 @@
       }
     }
   },
-  "revision": "20250620",
+  "revision": "20250907",
   "rootUrl": "https://bigqueryreservation.googleapis.com/",
   "schemas": {
     "Assignment": {
@@ -1290,7 +1290,10 @@
             "QUERY",
             "ML_EXTERNAL",
             "BACKGROUND",
-            "CONTINUOUS"
+            "CONTINUOUS",
+            "BACKGROUND_CHANGE_DATA_CAPTURE",
+            "BACKGROUND_COLUMN_METADATA_INDEX",
+            "BACKGROUND_SEARCH_INDEX_REFRESH"
           ],
           "enumDescriptions": [
             "Invalid type. Requests with this value will be rejected with error code `google.rpc.Code.INVALID_ARGUMENT`.",
@@ -1298,7 +1301,10 @@
             "Query jobs from the project will use the reservation.",
             "BigQuery ML jobs that use services external to BigQuery for model training. These jobs will not utilize idle slots from other reservations.",
             "Background jobs that BigQuery runs for the customers in the background.",
-            "Continuous SQL jobs will use this reservation. Reservations with continuous assignments cannot be mixed with non-continuous assignments."
+            "Continuous SQL jobs will use this reservation. Reservations with continuous assignments cannot be mixed with non-continuous assignments.",
+            "Finer granularity background jobs for capturing changes in a source database and streaming them into BigQuery. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists).",
+            "Finer granularity background jobs for refreshing cached metadata for BigQuery tables. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists).",
+            "Finer granularity background jobs for refreshing search indexes upon BigQuery table columns. Reservations with this job type take priority over a default BACKGROUND reservation assignment (if it exists)."
           ],
           "type": "string"
         },
@@ -1633,7 +1639,7 @@
       "id": "FailoverReservationRequest",
       "properties": {
         "failoverMode": {
-          "description": "Optional. failover mode for the failover operation.",
+          "description": "Optional. A parameter that determines how writes that are pending replication are handled after a failover is initiated. If not specified, HARD failover mode is used by default.",
           "enum": [
             "FAILOVER_MODE_UNSPECIFIED",
             "SOFT",
@@ -1641,7 +1647,7 @@
           ],
           "enumDescriptions": [
             "Invalid value.",
-            "When customers initiate a soft failover, BigQuery will wait until all committed writes are replicated to the secondary.",
+            "When customers initiate a soft failover, BigQuery will wait until all committed writes are replicated to the secondary. This mode requires both regions to be available for the failover to succeed and prevents data loss.",
             "When customers initiate a hard failover, BigQuery will not wait until all committed writes are replicated to the secondary. There can be data loss for hard failover."
           ],
           "type": "string"

@@ -494,6 +494,14 @@ export namespace eventarc_v1 {
      */
     name?: string | null;
     /**
+     * Optional. Config to enable subscribing to events from all projects in the GoogleApiSource's org.
+     */
+    organizationSubscription?: Schema$OrganizationSubscription;
+    /**
+     * Optional. Config to enable subscribing to all events from a list of projects. All the projects must be in the same org as the GoogleApiSource.
+     */
+    projectSubscriptions?: Schema$ProjectSubscriptions;
+    /**
      * Output only. Server assigned unique identifier for the channel. The value is a UUID4 string and guaranteed to remain unchanged until the resource is deleted.
      */
     uid?: string | null;
@@ -528,7 +536,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$GoogleCloudEventarcV1PipelineDestination {
     /**
-     * Optional. An authentication config used to authenticate message requests, such that destinations can verify the source. For example, this can be used with private GCP destinations that require GCP credentials to access like Cloud Run. This field is optional and should be set only by users interested in authenticated push
+     * Optional. An authentication config used to authenticate message requests, such that destinations can verify the source. For example, this can be used with private Google Cloud destinations that require Google Cloud credentials for access like Cloud Run. This field is optional and should be set only by users interested in authenticated push.
      */
     authenticationConfig?: Schema$GoogleCloudEventarcV1PipelineDestinationAuthenticationConfig;
     /**
@@ -561,7 +569,7 @@ export namespace eventarc_v1 {
    */
   export interface Schema$GoogleCloudEventarcV1PipelineDestinationAuthenticationConfig {
     /**
-     * Optional. This authenticate method will apply Google OIDC tokens signed by a GCP service account to the requests.
+     * Optional. This authenticate method will apply Google OIDC tokens signed by a Google Cloud service account to the requests.
      */
     googleOidc?: Schema$GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOidcToken;
     /**
@@ -583,7 +591,7 @@ export namespace eventarc_v1 {
     serviceAccount?: string | null;
   }
   /**
-   * Represents a config used to authenticate with a Google OIDC token using a GCP service account. Use this authentication method to invoke your Cloud Run and Cloud Functions destinations or HTTP endpoints that support Google OIDC.
+   * Represents a config used to authenticate with a Google OIDC token using a Google Cloud service account. Use this authentication method to invoke your Cloud Run and Cloud Functions destinations or HTTP endpoints that support Google OIDC.
    */
   export interface Schema$GoogleCloudEventarcV1PipelineDestinationAuthenticationConfigOidcToken {
     /**
@@ -1047,6 +1055,15 @@ export namespace eventarc_v1 {
     verb?: string | null;
   }
   /**
+   * Config to enabled subscribing to events from other projects in the org.
+   */
+  export interface Schema$OrganizationSubscription {
+    /**
+     * Required. Enable org level subscription.
+     */
+    enabled?: boolean | null;
+  }
+  /**
    * A representation of the Pipeline resource.
    */
   export interface Schema$Pipeline {
@@ -1131,6 +1148,15 @@ export namespace eventarc_v1 {
      * Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).
      */
     version?: number | null;
+  }
+  /**
+   * Config to enable subscribing to all events from a list of projects.
+   */
+  export interface Schema$ProjectSubscriptions {
+    /**
+     * Required. A list of projects to receive events from. All the projects must be in the same org. The listed projects should have the format project/{identifier\} where identifier can be either the project id for project number. A single list may contain both formats. At most 100 projects can be listed.
+     */
+    list?: string[] | null;
   }
   /**
    * A representation of the Provider resource.
@@ -1632,7 +1658,7 @@ export namespace eventarc_v1 {
      *
      *   // Do the magic
      *   const res = await eventarc.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1920,7 +1946,7 @@ export namespace eventarc_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5832,6 +5858,8 @@ export namespace eventarc_v1 {
      *       //   "labels": {},
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
+     *       //   "organizationSubscription": {},
+     *       //   "projectSubscriptions": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }
@@ -6145,6 +6173,8 @@ export namespace eventarc_v1 {
      *   //   "labels": {},
      *   //   "loggingConfig": {},
      *   //   "name": "my_name",
+     *   //   "organizationSubscription": {},
+     *   //   "projectSubscriptions": {},
      *   //   "uid": "my_uid",
      *   //   "updateTime": "my_updateTime"
      *   // }
@@ -6592,6 +6622,8 @@ export namespace eventarc_v1 {
      *       //   "labels": {},
      *       //   "loggingConfig": {},
      *       //   "name": "my_name",
+     *       //   "organizationSubscription": {},
+     *       //   "projectSubscriptions": {},
      *       //   "uid": "my_uid",
      *       //   "updateTime": "my_updateTime"
      *       // }

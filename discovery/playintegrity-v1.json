@@ -198,7 +198,7 @@
       }
     }
   },
-  "revision": "20250818",
+  "revision": "20250828",
   "rootUrl": "https://playintegrity.googleapis.com/",
   "schemas": {
     "AccountActivity": {
@@ -562,6 +562,17 @@
       },
       "type": "object"
     },
+    "PcTestingDetails": {
+      "description": "Contains additional information generated for testing responses.",
+      "id": "PcTestingDetails",
+      "properties": {
+        "isTestingResponse": {
+          "description": "Indicates that the information contained in this payload is a testing response that is statically overridden for a tester.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
     "PcTokenPayloadExternal": {
       "description": "Contains PC device attestation details.",
       "id": "PcTokenPayloadExternal",
@@ -577,6 +588,10 @@
         "requestDetails": {
           "$ref": "PcRequestDetails",
           "description": "Required. Details about the integrity request."
+        },
+        "testingDetails": {
+          "$ref": "PcTestingDetails",
+          "description": "Indicates that this payload is generated for testing purposes and contains any additional data that is linked with testing status."
         }
       },
       "type": "object"

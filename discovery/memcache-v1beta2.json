@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -618,7 +618,7 @@
       }
     }
   },
-  "revision": "20250505",
+  "revision": "20250821",
   "rootUrl": "https://memcache.googleapis.com/",
   "schemas": {
     "ApplyParametersRequest": {
@@ -724,6 +724,39 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "GetTagsRequest": {
+      "description": "Request message for GetTags.",
+      "id": "GetTagsRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The full One Platform resource name of the service resource.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GetTagsResponse": {
+      "description": "Response message for GetTags.",
+      "id": "GetTagsResponse",
+      "properties": {
+        "name": {
+          "description": "Required. The full One Platform resource name of the service resource.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
+        },
+        "tagsEtag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudMemcacheV1beta2LocationMetadata": {
@@ -1746,6 +1779,54 @@
         "startTime": {
           "$ref": "TimeOfDay",
           "description": "Time within the window to start the operations."
+        }
+      },
+      "type": "object"
+    },
+    "SetTagsRequest": {
+      "description": "Request message for SetTags.",
+      "id": "SetTagsRequest",
+      "properties": {
+        "name": {
+          "description": "Required. The full One Platform resource name of the service resource.",
+          "type": "string"
+        },
+        "requestId": {
+          "description": "Optional. A unique identifier for this request. Must be a valid UUID. This request is only idempotent if a `request_id` is provided.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. These bindings will override any bindings previously set and will be effective immediately. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
+        },
+        "tagsEtag": {
+          "description": "Optional. A checksum based on the current bindings which can be passed to prevent race conditions. If not passed, etag check would be skipped.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "SetTagsResponse": {
+      "description": "Response message for SetTags.",
+      "id": "SetTagsResponse",
+      "properties": {
+        "name": {
+          "description": "Required. The full One Platform resource name of the service resource.",
+          "type": "string"
+        },
+        "tags": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "description": "Required. Tag keys/values directly bound to this resource. Each item in the map must be expressed as \" : \". For example: \"123/environment\" : \"production\", \"123/costCenter\" : \"marketing\"",
+          "type": "object"
+        },
+        "tagsEtag": {
+          "description": "A checksum based on the current bindings. This field is always set in server responses.",
+          "type": "string"
         }
       },
       "type": "object"

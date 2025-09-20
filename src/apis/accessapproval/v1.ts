@@ -154,11 +154,11 @@ export namespace accessapproval_v1 {
      */
     ancestorHasActiveKeyVersion?: boolean | null;
     /**
-     * Optional. Policy for approval. This contains all policies.
+     * Optional. Policy configuration for Access Approval that sets the operating mode. The available policies are Transparency, Streamlined Support, and Approval Required.
      */
     approvalPolicy?: Schema$CustomerApprovalApprovalPolicy;
     /**
-     * Output only. Policy for approval included inherited settings to understand the exact policy applied to this resource. This is a read-only field.
+     * Output only. Effective policy applied for Access Approval, inclusive of inheritance.
      */
     effectiveApprovalPolicy?: Schema$CustomerApprovalApprovalPolicy;
     /**
@@ -166,7 +166,7 @@ export namespace accessapproval_v1 {
      */
     enrolledAncestor?: boolean | null;
     /**
-     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis. If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded. A maximum of 10 enrolled services will be enforced, to be expanded as the set of supported services is expanded.
+     * A list of Google Cloud Services for which the given resource has Access Approval enrolled. Access requests for the resource given by name against any of these services contained here will be required to have explicit approval. If name refers to an organization, enrollment can be done for individual services. If name refers to a folder or project, enrollment can only be done on an all or nothing basis. If a cloud_product is repeated in this list, the first entry will be honored and all following entries will be discarded.
      */
     enrolledServices?: Schema$EnrolledService[];
     /**
@@ -182,36 +182,36 @@ export namespace accessapproval_v1 {
      */
     notificationEmails?: string[] | null;
     /**
-     * Optional. A pubsub topic to which notifications relating to approval requests should be sent.
+     * Optional. A pubsub topic that notifications relating to access approval are published to. Notifications include pre-approved accesses.
      */
     notificationPubsubTopic?: string | null;
     /**
-     * This preference is communicated to Google personnel when sending an approval request but can be overridden if necessary.
+     * This field is used to set a preference for granularity of an access approval request. If true, Google personnel will be asked to send resource-level requests when possible. If false, Google personnel will be asked to send requests at the project level.
      */
     preferNoBroadApprovalRequests?: boolean | null;
     /**
-     * This preference is shared with Google personnel, but can be overridden if said personnel deems necessary. The approver ultimately can set the expiration at approval time.
+     * Set the default access approval request expiration time. This value is able to be set directly by the customer at the time of approval, overriding this suggested value. We recommend setting this value to 30 days.
      */
     preferredRequestExpirationDays?: number | null;
     /**
-     * Optional. A setting to indicate the maximum width of an Access Approval request.
+     * Optional. A setting that indicates the maximum scope of an Access Approval request: either organization, folder, or project. Google administrators will be asked to send requests no broader than the configured scope.
      */
     requestScopeMaxWidthPreference?: string | null;
     /**
-     * Optional. A setting to require approval request justifications to be customer visible.
+     * Optional. When enabled, Google will only be able to send approval requests for access reasons with a customer accessible case ID in the reason detail. Also known as "Require customer initiated support case justification"
      */
     requireCustomerVisibleJustification?: boolean | null;
   }
   /**
-   * Home office and physical location of the principal.
+   * Physical assigned office and physical location of the Google administrator performing the access.
    */
   export interface Schema$AccessLocations {
     /**
-     * The "home office" location of the principal. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
+     * The "home office" location of the Google administrator. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
      */
     principalOfficeCountry?: string | null;
     /**
-     * Physical location of the principal at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
+     * Physical location of the Google administrator at the time of the access. A two-letter country code (ISO 3166-1 alpha-2), such as "US", "DE" or "GB" or a region code. In some limited situations Google systems may refer refer to a region code instead of a country code. Possible Region Codes: * ASI: Asia * EUR: Europe * OCE: Oceania * AFR: Africa * NAM: North America * SAM: South America * ANT: Antarctica * ANY: Any location
      */
     principalPhysicalLocationCountry?: string | null;
   }
@@ -221,7 +221,7 @@ export namespace accessapproval_v1 {
      */
     detail?: string | null;
     /**
-     * Type of access justification.
+     * Type of access reason.
      */
     type?: string | null;
   }
@@ -258,7 +258,7 @@ export namespace accessapproval_v1 {
      */
     requestedLocations?: Schema$AccessLocations;
     /**
-     * The justification for which approval is being requested.
+     * The access reason for which approval is being requested.
      */
     requestedReason?: Schema$AccessReason;
     /**
@@ -313,7 +313,7 @@ export namespace accessapproval_v1 {
     signatureInfo?: Schema$SignatureInfo;
   }
   /**
-   * This field contains the augmented information of the request.
+   * This field contains the augmented information of the request. Requires augmented administrative access to be enabled.
    */
   export interface Schema$AugmentedInfo {
     /**
@@ -356,7 +356,7 @@ export namespace accessapproval_v1 {
    */
   export interface Schema$EnrolledService {
     /**
-     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * GA * App Engine * Artifact Registry * BigQuery * Certificate Authority Service * Cloud Bigtable * Cloud Key Management Service * Compute Engine * Cloud Composer * Cloud Dataflow * Cloud Dataproc * Cloud DLP * Cloud EKM * Cloud Firestore * Cloud HSM * Cloud Identity and Access Management * Cloud Logging * Cloud NAT * Cloud Pub/Sub * Cloud Spanner * Cloud SQL * Cloud Storage * Eventarc * Google Kubernetes Engine * Organization Policy Serivice * Persistent Disk * Resource Manager * Secret Manager * Speaker ID Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * ga-only * appengine.googleapis.com * artifactregistry.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * container.googleapis.com * cloudkms.googleapis.com * cloudresourcemanager.googleapis.com * cloudsql.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * dataproc.googleapis.com * dlp.googleapis.com * iam.googleapis.com * logging.googleapis.com * orgpolicy.googleapis.com * pubsub.googleapis.com * spanner.googleapis.com * secretmanager.googleapis.com * speakerid.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all' or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
+     * The product for which Access Approval will be enrolled. Allowed values are listed below (case-sensitive): * all * GA * Access Context Manager * Anthos Identity Service * AlloyDB for PostgreSQL * Apigee * Application Integration * App Hub * Artifact Registry * Anthos Service Mesh * Access Transparency * BigQuery * Certificate Authority Service * Cloud Bigtable * CCAI Assist and Knowledge * Cloud Dataflow * Cloud Dataproc * CEP Security Gateway * Compliance Evaluation Service * Cloud Firestore * Cloud Healthcare API * Chronicle * Cloud AI Companion Gateway - Titan * Google Cloud Armor * Cloud Asset Inventory * Cloud Asset Search * Cloud Deploy * Cloud DNS * Cloud Latency * Cloud Memorystore for Redis * CloudNet Control * Cloud Riptide * Cloud Tasks * Cloud Trace * Cloud Data Transfer * Cloud Composer * Integration Connectors * Contact Center AI Insights * Cloud Pub/Sub * Cloud Run * Resource Manager * Cloud Spanner * Database Center * Cloud Dataform * Cloud Data Fusion * Dataplex * Dialogflow Customer Experience Edition * Cloud DLP * Document AI * Edge Container * Edge Network * Cloud EKM * Eventarc * Firebase Data Connect * Firebase Rules * App Engine * Cloud Build * Compute Engine * Cloud Functions (2nd Gen) * Cloud Filestore * Cloud Interconnect * Cloud NetApp Volumes * Cloud Storage * Generative AI App Builder * Google Kubernetes Engine * Backup for GKE API * GKE Connect * GKE Hub * Hoverboard * Cloud HSM * Cloud Identity and Access Management * Cloud Identity-Aware Proxy * Infrastructure Manager * Identity Storage Service * Key Access Justifications * Cloud Key Management Service * Cloud Logging * Looker (Google Cloud core) * Looker Studio * Management Hub * Model Armor * Cloud Monitoring * Cloud NAT * Connectivity Hub * External passthrough Network Load Balancer * OIDC One * Organization Policy Service * Org Lifecycle * Persistent Disk * Parameter Manager * Private Services Access * Regional Internal Application Load Balancer * Storage Batch Operations * Cloud Security Command Center * Secure Source Manager * Seeker * Service Provisioning * Speaker ID * Secret Manager * Cloud SQL * Cloud Speech-to-Text * Traffic Director * Cloud Text-to-Speech * USPS Andromeda * Vertex AI * Virtual Private Cloud (VPC) * VPC Access * VPC Service Controls Troubleshooter * VPC virtnet * Cloud Workstations * Web Risk Note: These values are supported as input for legacy purposes, but will not be returned from the API. * all * ga-only * appengine.googleapis.com * artifactregistry.googleapis.com * bigquery.googleapis.com * bigtable.googleapis.com * container.googleapis.com * cloudkms.googleapis.com * cloudresourcemanager.googleapis.com * cloudsql.googleapis.com * compute.googleapis.com * dataflow.googleapis.com * dataproc.googleapis.com * dlp.googleapis.com * iam.googleapis.com * logging.googleapis.com * orgpolicy.googleapis.com * pubsub.googleapis.com * spanner.googleapis.com * secretmanager.googleapis.com * speakerid.googleapis.com * storage.googleapis.com Calls to UpdateAccessApprovalSettings using 'all' or any of the XXX.googleapis.com will be translated to the associated product name ('all', 'App Engine', etc.). Note: 'all' will enroll the resource in all products supported at both 'GA' and 'Preview' levels. More information about levels of support is available at https://cloud.google.com/access-approval/docs/supported-services
      */
     cloudProduct?: string | null;
     /**
@@ -427,7 +427,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the resource. Access Approval may remain active based on parent resource settings. To confirm the effective settings, call GetAccessApprovalSettings and verify effective setting is disabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -562,7 +562,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Gets the settings associated with a project, folder, or organization.
+     * Gets the Access Approval settings associated with a project, folder, or organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -1232,7 +1232,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: When a request is dismissed, it is considered ignored. Dismissing a request does not prevent access granted by other Access Approval requests. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * ```js
      * // Before running the sample:
@@ -1531,7 +1531,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This action revokes Google access based on this approval request. If the resource has other active approvals, access will remain granted. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
      * @example
      * ```js
      * // Before running the sample:
@@ -1910,7 +1910,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the resource. Access Approval may remain active based on parent resource settings. To confirm the effective settings, call GetAccessApprovalSettings and verify effective setting is disabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -2046,7 +2046,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Gets the settings associated with a project, folder, or organization.
+     * Gets the Access Approval settings associated with a project, folder, or organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -2717,7 +2717,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: When a request is dismissed, it is considered ignored. Dismissing a request does not prevent access granted by other Access Approval requests. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * ```js
      * // Before running the sample:
@@ -3016,7 +3016,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This action revokes Google access based on this approval request. If the resource has other active approvals, access will remain granted. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
      * @example
      * ```js
      * // Before running the sample:
@@ -3396,7 +3396,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the project, folder, or organization, but only if all ancestors also have Access Approval disabled. If Access Approval is enabled at a higher level of the hierarchy, then Access Approval will still be enabled at this level as the settings are inherited.
+     * Deletes the settings associated with a project, folder, or organization. This will have the effect of disabling Access Approval for the resource. Access Approval may remain active based on parent resource settings. To confirm the effective settings, call GetAccessApprovalSettings and verify effective setting is disabled.
      * @example
      * ```js
      * // Before running the sample:
@@ -3531,7 +3531,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Gets the settings associated with a project, folder, or organization.
+     * Gets the Access Approval settings associated with a project, folder, or organization.
      * @example
      * ```js
      * // Before running the sample:
@@ -4201,7 +4201,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It is equivalent in effect to ignoring the request altogether. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
+     * Dismisses a request. Returns the updated ApprovalRequest. NOTE: When a request is dismissed, it is considered ignored. Dismissing a request does not prevent access granted by other Access Approval requests. Returns NOT_FOUND if the request does not exist. Returns FAILED_PRECONDITION if the request exists but is not in a pending state.
      * @example
      * ```js
      * // Before running the sample:
@@ -4500,7 +4500,7 @@ export namespace accessapproval_v1 {
     }
 
     /**
-     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This does not deny access to the resource if another request has been made and approved. It only invalidates a single approval. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
+     * Invalidates an existing ApprovalRequest. Returns the updated ApprovalRequest. NOTE: This action revokes Google access based on this approval request. If the resource has other active approvals, access will remain granted. Returns FAILED_PRECONDITION if the request exists but is not in an approved state.
      * @example
      * ```js
      * // Before running the sample:

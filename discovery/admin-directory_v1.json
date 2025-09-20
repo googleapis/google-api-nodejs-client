@@ -1659,7 +1659,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Query string search. Should be of the form \"\". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-groups",
+              "description": "Query string search. Should be of the form \"\". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-groups",
               "location": "query",
               "type": "string"
             },
@@ -4298,7 +4298,7 @@
               "type": "string"
             },
             "query": {
-              "description": "Query string search. Should be of the form \"\". Complete documentation is at https: //developers.google.com/admin-sdk/directory/v1/guides/search-users",
+              "description": "Query string search. Should be of the form \"\". Complete documentation is at https://developers.google.com/workspace/admin/directory/v1/guides/search-users",
               "location": "query",
               "type": "string"
             },
@@ -4671,7 +4671,7 @@
       }
     }
   },
-  "revision": "20250804",
+  "revision": "20250916",
   "rootUrl": "https://admin.googleapis.com/",
   "schemas": {
     "Alias": {
@@ -5841,7 +5841,7 @@
           "type": "string"
         },
         "osVersionCompliance": {
-          "description": "Output only. Compliance status of the OS version.",
+          "description": "Output only. Device policy compliance status of the OS version.",
           "enum": [
             "complianceUnspecified",
             "compliant",

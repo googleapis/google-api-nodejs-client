@@ -2003,7 +2003,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250915",
   "rootUrl": "https://securitycenter.googleapis.com/",
   "schemas": {
     "Access": {
@@ -2128,12 +2128,16 @@
           "enum": [
             "DEPLOYMENT_PLATFORM_UNSPECIFIED",
             "VERTEX_AI",
-            "GKE"
+            "GKE",
+            "GCE",
+            "FINE_TUNED_MODEL"
           ],
           "enumDescriptions": [
             "Unspecified deployment platform.",
             "Vertex AI.",
-            "Google Kubernetes Engine."
+            "Google Kubernetes Engine.",
+            "Google Compute Engine.",
+            "Fine tuned model."
           ],
           "type": "string"
         },
@@ -3215,11 +3219,15 @@
           "description": "Type of the DRD event.",
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
-            "EVENT_TYPE_MAX_TTL_EXCEEDED"
+            "EVENT_TYPE_MAX_TTL_EXCEEDED",
+            "EVENT_TYPE_MAX_TTL_FROM_CREATION",
+            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION"
           ],
           "enumDescriptions": [
             "Unspecified event type.",
-            "The maximum retention time has been exceeded."
+            "The maximum retention time has been exceeded.",
+            "Max TTL from the asset's creation time.",
+            "Max TTL from the asset's last modification time."
           ],
           "type": "string"
         },
@@ -5122,12 +5130,16 @@
           "enum": [
             "DEPLOYMENT_PLATFORM_UNSPECIFIED",
             "VERTEX_AI",
-            "GKE"
+            "GKE",
+            "GCE",
+            "FINE_TUNED_MODEL"
           ],
           "enumDescriptions": [
             "Unspecified deployment platform.",
             "Vertex AI.",
-            "Google Kubernetes Engine."
+            "Google Kubernetes Engine.",
+            "Google Compute Engine.",
+            "Fine tuned model."
           ],
           "type": "string"
         },
@@ -6205,11 +6217,15 @@
           "description": "Type of the DRD event.",
           "enum": [
             "EVENT_TYPE_UNSPECIFIED",
-            "EVENT_TYPE_MAX_TTL_EXCEEDED"
+            "EVENT_TYPE_MAX_TTL_EXCEEDED",
+            "EVENT_TYPE_MAX_TTL_FROM_CREATION",
+            "EVENT_TYPE_MAX_TTL_FROM_LAST_MODIFICATION"
           ],
           "enumDescriptions": [
             "Unspecified event type.",
-            "The maximum retention time has been exceeded."
+            "The maximum retention time has been exceeded.",
+            "Max TTL from the asset's creation time.",
+            "Max TTL from the asset's last modification time."
           ],
           "type": "string"
         },
@@ -6563,7 +6579,7 @@
           "description": "Fields related to Backup and DR findings."
         },
         "canonicalName": {
-          "description": "Output only. The canonical name of the finding. The following list shows some examples: + `organizations/{organization_id}/sources/{source_id}/findings/{finding_id}` + `organizations/{organization_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` The prefix is the closest CRM ancestor of the resource associated with the finding.",
+          "description": "Output only. The canonical name of the finding. The following list shows some examples: + `organizations/{organization_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `folders/{folder_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` + `projects/{project_id}/sources/{source_id}/locations/{location_id}/findings/{finding_id}` The prefix is the closest CRM ancestor of the resource associated with the finding.",
           "readOnly": true,
           "type": "string"
         },
@@ -7401,6 +7417,10 @@
       "description": "A resource associated with the an issue.",
       "id": "GoogleCloudSecuritycenterV2IssueResource",
       "properties": {
+        "application": {
+          "$ref": "GoogleCloudSecuritycenterV2IssueResourceApplication",
+          "description": "The AppHub application associated with the resource, if any. Only populated for the primary resource."
+        },
         "awsMetadata": {
           "$ref": "GoogleCloudSecuritycenterV2IssueResourceAwsMetadata",
           "description": "The AWS metadata of the resource associated with the issue. Only populated for AWS resources."
@@ -7439,6 +7459,17 @@
         },
         "type": {
           "description": "The type of the resource associated with the issue.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudSecuritycenterV2IssueResourceApplication": {
+      "description": "The AppHub application associated with the resource, if any.",
+      "id": "GoogleCloudSecuritycenterV2IssueResourceApplication",
+      "properties": {
+        "name": {
+          "description": "The resource name of an Application. Format: `projects/{host-project-id}/locations/{location}/applications/{application-id}`",
           "type": "string"
         }
       },

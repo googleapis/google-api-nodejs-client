@@ -771,7 +771,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -809,7 +809,7 @@
               ]
             },
             "lookupEntry": {
-              "description": "Looks up an entry by name using the permission on the source system.",
+              "description": "Looks up an entry by name using the permission on the source system. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.lookupEntry",
@@ -1472,37 +1472,6 @@
             },
             "dataProducts": {
               "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "dataplex.projects.locations.dataProducts.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}:setIamPolicy",
@@ -1563,37 +1532,6 @@
               "resources": {
                 "dataAssets": {
                   "methods": {
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}:getIamPolicy",
-                      "httpMethod": "GET",
-                      "id": "dataplex.projects.locations.dataProducts.dataAssets.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "options.requestedPolicyVersion": {
-                          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+/dataAssets/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+resource}:getIamPolicy",
-                      "response": {
-                        "$ref": "GoogleIamV1Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}:setIamPolicy",
@@ -2987,7 +2925,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets an Entry.",
+                      "description": "Gets an Entry. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.get",
@@ -3043,7 +2981,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Entries within an EntryGroup.",
+                      "description": "Lists Entries within an EntryGroup. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.list",
@@ -7211,7 +7149,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20250915",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -9818,12 +9756,14 @@
           "enum": [
             "TRIGGER_UNSPECIFIED",
             "ON_DEMAND",
-            "SCHEDULE"
+            "SCHEDULE",
+            "ONE_TIME"
           ],
           "enumDescriptions": [
             "An unspecified trigger type.",
             "Data scan triggers on demand.",
-            "Data scan triggers as per schedule."
+            "Data scan triggers as per schedule.",
+            "Data scan is run one time on creation."
           ],
           "type": "string"
         },
@@ -12633,7 +12573,7 @@
           "type": "array"
         },
         "entryGroups": {
-          "description": "Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.",
+          "description": "Required. The entry groups that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries and aspects that belong to the specified entry groups are affected by the job.The entry groups and the job must be in the same location.",
           "items": {
             "type": "string"
           },

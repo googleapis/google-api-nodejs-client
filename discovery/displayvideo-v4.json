@@ -9302,7 +9302,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250909",
   "rootUrl": "https://displayvideo.googleapis.com/",
   "schemas": {
     "ActiveViewVideoViewabilityMetricConfig": {
@@ -10905,7 +10905,8 @@
             "APP_PLATFORM_ANDROID_TV",
             "APP_PLATFORM_GENERIC_CTV",
             "APP_PLATFORM_LG_TV",
-            "APP_PLATFORM_VIZIO_TV"
+            "APP_PLATFORM_VIZIO_TV",
+            "APP_PLATFORM_VIDAA"
           ],
           "enumDescriptions": [
             "Default value when app platform is not specified in this version. This enum is a placeholder for default value and does not represent a real platform option.",
@@ -10920,7 +10921,8 @@
             "The app platform is Android TV.",
             "The app platform is a CTV platform that is not explicitly listed elsewhere.",
             "The app platform is LG TV.",
-            "The app platform is VIZIO TV."
+            "The app platform is VIZIO TV.",
+            "The app platform is Vidaa."
           ],
           "type": "string"
         },

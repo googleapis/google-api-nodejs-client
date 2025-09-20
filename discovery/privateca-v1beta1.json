@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -586,7 +586,7 @@
       }
     }
   },
-  "revision": "20250326",
+  "revision": "20250910",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AuditConfig": {
@@ -826,37 +826,6 @@
           "description": "Specifies the format of the policy. Valid values are `0`, `1`, and `3`. Requests that specify an invalid value are rejected. Any operation that affects conditional role bindings must specify version `3`. This requirement applies to the following operations: * Getting a policy that includes a conditional role binding * Adding a conditional role binding to a policy * Changing a conditional role binding in a policy * Removing any role binding, with or without a condition, from a policy that includes conditions **Important:** If you use IAM Conditions, you must include the `etag` field whenever you call `setIamPolicy`. If you omit this field, then IAM allows you to overwrite a version `3` policy with a version `1` policy, and all of the conditions in the version `3` policy are lost. If a policy does not include any conditions, operations on that policy may specify any valid version or leave the field unset. To learn which resources support conditions in their IAM policies, see the [IAM documentation](https://cloud.google.com/iam/help/conditions/resource-policies).",
           "format": "int32",
           "type": "integer"
-        }
-      },
-      "type": "object"
-    },
-    "ReconciliationOperationMetadata": {
-      "description": "Operation metadata returned by the CLH during resource state reconciliation.",
-      "id": "ReconciliationOperationMetadata",
-      "properties": {
-        "deleteResource": {
-          "deprecated": true,
-          "description": "DEPRECATED. Use exclusive_action instead.",
-          "type": "boolean"
-        },
-        "exclusiveAction": {
-          "description": "Excluisive action returned by the CLH.",
-          "enum": [
-            "UNKNOWN_REPAIR_ACTION",
-            "DELETE",
-            "RETRY"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
-          ],
-          "enumDescriptions": [
-            "Unknown repair action.",
-            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel.",
-            "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
-          ],
-          "type": "string"
         }
       },
       "type": "object"

@@ -1491,19 +1491,19 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$MaterializedView {
     /**
-     * Set to true to make the MaterializedView protected against deletion.
+     * Set to true to make the MaterializedView protected against deletion. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     deletionProtection?: boolean | null;
     /**
-     * Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.
+     * Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     etag?: string | null;
     /**
-     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     name?: string | null;
     /**
-     * Required. Immutable. The materialized view's select query.
+     * Required. Immutable. The materialized view's select query. Views: `SCHEMA_VIEW`, `FULL`.
      */
     query?: string | null;
   }
@@ -9835,7 +9835,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.materializedViews.patch({
-     *     // Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     *     // Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      *     name: 'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
      *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
@@ -10344,7 +10344,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Materializedviews$Patch
     extends StandardParameters {
     /**
-     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     name?: string;
     /**
@@ -15546,7 +15546,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -15668,7 +15668,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
      */
     extraLocationTypes?: string[];
     /**

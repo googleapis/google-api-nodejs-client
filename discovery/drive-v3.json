@@ -158,7 +158,7 @@
     "accessproposals": {
       "methods": {
         "get": {
-          "description": "Retrieves an AccessProposal by ID.",
+          "description": "Retrieves an access proposal by ID. For more information, see [Manage pending access proposals](https://developers.google.com/workspace/drive/api/guides/pending-access).",
           "flatPath": "files/{fileId}/accessproposals/{proposalId}",
           "httpMethod": "GET",
           "id": "drive.accessproposals.get",
@@ -168,13 +168,13 @@
           ],
           "parameters": {
             "fileId": {
-              "description": "Required. The id of the item the request is on.",
+              "description": "Required. The ID of the item the request is on.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "proposalId": {
-              "description": "Required. The id of the access proposal to resolve.",
+              "description": "Required. The ID of the access proposal to resolve.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -193,7 +193,7 @@
           ]
         },
         "list": {
-          "description": "List the AccessProposals on a file. Note: Only approvers are able to list AccessProposals on a file. If the user is not an approver, returns a 403.",
+          "description": "List the access proposals on a file. For more information, see [Manage pending access proposals](https://developers.google.com/workspace/drive/api/guides/pending-access). Note: Only approvers are able to list access proposals on a file. If the user isn't an approver, a 403 error is returned.",
           "flatPath": "files/{fileId}/accessproposals",
           "httpMethod": "GET",
           "id": "drive.accessproposals.list",
@@ -202,13 +202,13 @@
           ],
           "parameters": {
             "fileId": {
-              "description": "Required. The id of the item the request is on.",
+              "description": "Required. The ID of the item the request is on.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "pageSize": {
-              "description": "Optional. The number of results per page",
+              "description": "Optional. The number of results per page.",
               "format": "int32",
               "location": "query",
               "type": "integer"
@@ -232,7 +232,7 @@
           ]
         },
         "resolve": {
-          "description": "Used to approve or deny an Access Proposal.",
+          "description": "Approves or denies an access proposal. For more information, see [Manage pending access proposals](https://developers.google.com/workspace/drive/api/guides/pending-access).",
           "flatPath": "files/{fileId}/accessproposals/{proposalId}:resolve",
           "httpMethod": "POST",
           "id": "drive.accessproposals.resolve",
@@ -242,13 +242,13 @@
           ],
           "parameters": {
             "fileId": {
-              "description": "Required. The id of the item the request is on.",
+              "description": "Required. The ID of the item the request is on.",
               "location": "path",
               "required": true,
               "type": "string"
             },
             "proposalId": {
-              "description": "Required. The id of the access proposal to resolve.",
+              "description": "Required. The ID of the access proposal to resolve.",
               "location": "path",
               "required": true,
               "type": "string"
@@ -1047,7 +1047,7 @@
     "files": {
       "methods": {
         "copy": {
-          "description": "Creates a copy of a file and applies any requested updates with patch semantics.",
+          "description": "Creates a copy of a file and applies any requested updates with patch semantics. For more information, see [Create and manage files](https://developers.google.com/workspace/drive/api/guides/create-file).",
           "flatPath": "files/{fileId}/copy",
           "httpMethod": "POST",
           "id": "drive.files.copy",
@@ -1057,7 +1057,8 @@
           "parameters": {
             "enforceSingleParent": {
               "default": "false",
-              "description": "Deprecated. Copying files into multiple folders is no longer supported. Use shortcuts instead.",
+              "deprecated": true,
+              "description": "Deprecated: Copying files into multiple folders is no longer supported. Use shortcuts instead.",
               "location": "query",
               "type": "boolean"
             },
@@ -1079,13 +1080,13 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
             "keepRevisionForever": {
               "default": "false",
-              "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
+              "description": "Whether to set the `keepForever` field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
               "location": "query",
               "type": "boolean"
             },
@@ -1123,7 +1124,7 @@
           ]
         },
         "create": {
-          "description": " Creates a new file. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with `files.create` must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `\"name\": \"cat.jpg\"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `title` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the title. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.",
+          "description": " Creates a file. For more information, see [Create and manage files](/workspace/drive/api/guides/create-file). This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:* `*/*` (Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information, see [Google Workspace and Google Drive supported MIME types](/workspace/drive/api/guides/mime-types).) For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads). Apps creating shortcuts with the `create` method must specify the MIME type `application/vnd.google-apps.shortcut`. Apps should specify a file extension in the `name` property when inserting files with the API. For example, an operation to insert a JPEG file should specify something like `\"name\": \"cat.jpg\"` in the metadata. Subsequent `GET` requests include the read-only `fileExtension` property populated with the extension originally specified in the `name` property. When a Google Drive user requests to download a file, or when the file is downloaded through the sync client, Drive builds a full filename (with extension) based on the name. In cases where the extension is missing, Drive attempts to determine the extension based on the file's MIME type.",
           "flatPath": "files",
           "httpMethod": "POST",
           "id": "drive.files.create",
@@ -1147,7 +1148,8 @@
           "parameters": {
             "enforceSingleParent": {
               "default": "false",
-              "description": "Deprecated. Creating files in multiple folders is no longer supported.",
+              "deprecated": true,
+              "description": "Deprecated: Creating files in multiple folders is no longer supported.",
               "location": "query",
               "type": "boolean"
             },
@@ -1163,13 +1165,13 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
             "keepRevisionForever": {
               "default": "false",
-              "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
+              "description": "Whether to set the `keepForever` field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
               "location": "query",
               "type": "boolean"
             },
@@ -1213,7 +1215,7 @@
           "supportsMediaUpload": true
         },
         "delete": {
-          "description": "Permanently deletes a file owned by the user without moving it to the trash. If the file belongs to a shared drive, the user must be an `organizer` on the parent folder. If the target is a folder, all descendants owned by the user are also deleted.",
+          "description": "Permanently deletes a file owned by the user without moving it to the trash. For more information, see [Trash or delete files and folders](https://developers.google.com/workspace/drive/api/guides/delete). If the file belongs to a shared drive, the user must be an `organizer` on the parent folder. If the target is a folder, all descendants owned by the user are also deleted.",
           "flatPath": "files/{fileId}",
           "httpMethod": "DELETE",
           "id": "drive.files.delete",
@@ -1224,7 +1226,7 @@
             "enforceSingleParent": {
               "default": "false",
               "deprecated": true,
-              "description": "Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
+              "description": "Deprecated: If an item isn't in a shared drive and its last parent is deleted but the item itself isn't, the item will be placed under its owner's root.",
               "location": "query",
               "type": "boolean"
             },
@@ -1256,7 +1258,7 @@
           ]
         },
         "download": {
-          "description": "Downloads content of a file. Operations are valid for 24 hours from the time of creation.",
+          "description": "Downloads the content of a file. For more information, see [Download and export files](https://developers.google.com/workspace/drive/api/guides/manage-downloads). Operations are valid for 24 hours from the time of creation.",
           "flatPath": "files/{fileId}/download",
           "httpMethod": "POST",
           "id": "drive.files.download",
@@ -1271,7 +1273,7 @@
               "type": "string"
             },
             "mimeType": {
-              "description": "Optional. The MIME type the file should be downloaded as. This field can only be set when downloading Google Workspace documents. See [Export MIME types for Google Workspace documents](/drive/api/guides/ref-export-formats) for the list of supported MIME types. If not set, a Google Workspace document is downloaded with a default MIME type. The default MIME type might change in the future.",
+              "description": "Optional. The MIME type the file should be downloaded as. This field can only be set when downloading Google Workspace documents. For a list of supported MIME types, see [Export MIME types for Google Workspace documents](/workspace/drive/api/guides/ref-export-formats). If not set, a Google Workspace document is downloaded with a default MIME type. The default MIME type might change in the future.",
               "location": "query",
               "type": "string"
             },
@@ -1292,7 +1294,7 @@
           ]
         },
         "emptyTrash": {
-          "description": "Permanently deletes all of the user's trashed files.",
+          "description": "Permanently deletes all of the user's trashed files. For more information, see [Trash or delete files and folders](https://developers.google.com/workspace/drive/api/guides/delete).",
           "flatPath": "files/trash",
           "httpMethod": "DELETE",
           "id": "drive.files.emptyTrash",
@@ -1306,7 +1308,7 @@
             "enforceSingleParent": {
               "default": "false",
               "deprecated": true,
-              "description": "Deprecated: If an item is not in a shared drive and its last parent is deleted but the item itself is not, the item will be placed under its owner's root.",
+              "description": "Deprecated: If an item isn't in a shared drive and its last parent is deleted but the item itself isn't, the item will be placed under its owner's root.",
               "location": "query",
               "type": "boolean"
             }
@@ -1317,7 +1319,7 @@
           ]
         },
         "export": {
-          "description": "Exports a Google Workspace document to the requested MIME type and returns exported byte content. Note that the exported content is limited to 10MB.",
+          "description": "Exports a Google Workspace document to the requested MIME type and returns exported byte content. For more information, see [Download and export files](https://developers.google.com/workspace/drive/api/guides/manage-downloads). Note that the exported content is limited to 10 MB.",
           "flatPath": "files/{fileId}/export",
           "httpMethod": "GET",
           "id": "drive.files.export",
@@ -1333,7 +1335,7 @@
               "type": "string"
             },
             "mimeType": {
-              "description": "Required. The MIME type of the format requested for this export.",
+              "description": "Required. The MIME type of the format requested for this export. For a list of supported MIME types, see [Export MIME types for Google Workspace documents](/workspace/drive/api/guides/ref-export-formats).",
               "location": "query",
               "required": true,
               "type": "string"
@@ -1350,7 +1352,7 @@
           "useMediaDownloadService": true
         },
         "generateIds": {
-          "description": "Generates a set of file IDs which can be provided in create or copy requests.",
+          "description": "Generates a set of file IDs which can be provided in create or copy requests. For more information, see [Create and manage files](https://developers.google.com/workspace/drive/api/guides/create-file).",
           "flatPath": "files/generateIds",
           "httpMethod": "GET",
           "id": "drive.files.generateIds",
@@ -1367,13 +1369,13 @@
             },
             "space": {
               "default": "drive",
-              "description": "The space in which the IDs can be used to create new files. Supported values are 'drive' and 'appDataFolder'. (Default: 'drive')",
+              "description": "The space in which the IDs can be used to create files. Supported values are `drive` and `appDataFolder`. (Default: `drive`.) For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization).",
               "location": "query",
               "type": "string"
             },
             "type": {
               "default": "files",
-              "description": "The type of items which the IDs can be used for. Supported values are 'files' and 'shortcuts'. Note that 'shortcuts' are only supported in the `drive` 'space'. (Default: 'files')",
+              "description": "The type of items which the IDs can be used for. Supported values are `files` and `shortcuts`. Note that `shortcuts` are only supported in the `drive` `space`. (Default: `files`.) For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization).",
               "location": "query",
               "type": "string"
             }
@@ -1389,7 +1391,7 @@
           ]
         },
         "get": {
-          "description": " Gets a file's metadata or content by ID. If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download & export files](/workspace/drive/api/guides/manage-downloads).",
+          "description": " Gets a file's metadata or content by ID. For more information, see [Search for files and folders](/workspace/drive/api/guides/search-files). If you provide the URL parameter `alt=media`, then the response includes the file contents in the response body. Downloading content with `alt=media` only works if the file is stored in Drive. To download Google Docs, Sheets, and Slides use [`files.export`](/workspace/drive/api/reference/rest/v3/files/export) instead. For more information, see [Download and export files](/workspace/drive/api/guides/manage-downloads).",
           "flatPath": "files/{fileId}",
           "httpMethod": "GET",
           "id": "drive.files.get",
@@ -1415,7 +1417,7 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
@@ -1452,20 +1454,20 @@
           "useMediaDownloadService": true
         },
         "list": {
-          "description": " Lists the user's files. This method accepts the `q` parameter, which is a search query combining one or more search terms. For more information, see the [Search for files & folders](/workspace/drive/api/guides/search-files) guide. *Note:* This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
+          "description": " Lists the user's files. For more information, see [Search for files and folders](/workspace/drive/api/guides/search-files). This method accepts the `q` parameter, which is a search query combining one or more search terms. This method returns *all* files by default, including trashed files. If you don't want trashed files to appear in the list, use the `trashed=false` query parameter to remove trashed files from the results.",
           "flatPath": "files",
           "httpMethod": "GET",
           "id": "drive.files.list",
           "parameterOrder": [],
           "parameters": {
             "corpora": {
-              "description": "Bodies of items (files/documents) to which the query applies. Supported bodies are 'user', 'domain', 'drive', and 'allDrives'. Prefer 'user' or 'drive' to 'allDrives' for efficiency. By default, corpora is set to 'user'. However, this can change depending on the filter set through the 'q' parameter.",
+              "description": "Bodies of items (files or documents) to which the query applies. Supported bodies are: * `user` * `domain` * `drive` * `allDrives` Prefer `user` or `drive` to `allDrives` for efficiency. By default, corpora is set to `user`. However, this can change depending on the filter set through the `q` parameter. For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization).",
               "location": "query",
               "type": "string"
             },
             "corpus": {
               "deprecated": true,
-              "description": "Deprecated: The source of files to list. Use 'corpora' instead.",
+              "description": "Deprecated: The source of files to list. Use `corpora` instead.",
               "enum": [
                 "domain",
                 "user"
@@ -1494,7 +1496,7 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
@@ -1506,7 +1508,7 @@
               "type": "boolean"
             },
             "orderBy": {
-              "description": "A comma-separated list of sort keys. Valid keys are: * `createdTime`: When the file was created. * `folder`: The folder ID. This field is sorted using alphabetical ordering. * `modifiedByMeTime`: The last time the file was modified by the user. * `modifiedTime`: The last time the file was modified by anyone. * `name`: The name of the file. This field is sorted using alphabetical ordering, so 1, 12, 2, 22. * `name_natural`: The name of the file. This field is sorted using natural sort ordering, so 1, 2, 12, 22. * `quotaBytesUsed`: The number of storage quota bytes used by the file. * `recency`: The most recent timestamp from the file's date-time fields. * `sharedWithMeTime`: When the file was shared with the user, if applicable. * `starred`: Whether the user has starred the file. * `viewedByMeTime`: The last time the file was viewed by the user. Each key sorts ascending by default, but can be reversed with the 'desc' modifier. Example usage: `?orderBy=folder,modifiedTime desc,name`.",
+              "description": "A comma-separated list of sort keys. Valid keys are: * `createdTime`: When the file was created. * `folder`: The folder ID. This field is sorted using alphabetical ordering. * `modifiedByMeTime`: The last time the file was modified by the user. * `modifiedTime`: The last time the file was modified by anyone. * `name`: The name of the file. This field is sorted using alphabetical ordering, so 1, 12, 2, 22. * `name_natural`: The name of the file. This field is sorted using natural sort ordering, so 1, 2, 12, 22. * `quotaBytesUsed`: The number of storage quota bytes used by the file. * `recency`: The most recent timestamp from the file's date-time fields. * `sharedWithMeTime`: When the file was shared with the user, if applicable. * `starred`: Whether the user has starred the file. * `viewedByMeTime`: The last time the file was viewed by the user. Each key sorts ascending by default, but can be reversed with the `desc` modifier. Example usage: `?orderBy=folder,modifiedTime desc,name`.",
               "location": "query",
               "type": "string"
             },
@@ -1520,18 +1522,18 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
+              "description": "The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.",
               "location": "query",
               "type": "string"
             },
             "q": {
-              "description": "A query for filtering the file results. See the \"Search for files & folders\" guide for supported syntax.",
+              "description": "A query for filtering the file results. For supported syntax, see [Search for files and folders](/workspace/drive/api/guides/search-files).",
               "location": "query",
               "type": "string"
             },
             "spaces": {
               "default": "drive",
-              "description": "A comma-separated list of spaces to query within the corpora. Supported values are 'drive' and 'appDataFolder'.",
+              "description": "A comma-separated list of spaces to query within the corpora. Supported values are `drive` and `appDataFolder`. For more information, see [File organization](https://developers.google.com/workspace/drive/api/guides/about-files#file-organization).",
               "location": "query",
               "type": "string"
             },
@@ -1571,7 +1573,7 @@
           ]
         },
         "listLabels": {
-          "description": "Lists the labels on a file.",
+          "description": "Lists the labels on a file. For more information, see [List labels on a file](https://developers.google.com/workspace/drive/api/guides/list-labels).",
           "flatPath": "files/{fileId}/listLabels",
           "httpMethod": "GET",
           "id": "drive.files.listLabels",
@@ -1595,7 +1597,7 @@
               "type": "integer"
             },
             "pageToken": {
-              "description": "The token for continuing a previous list request on the next page. This should be set to the value of 'nextPageToken' from the previous response.",
+              "description": "The token for continuing a previous list request on the next page. This should be set to the value of `nextPageToken` from the previous response.",
               "location": "query",
               "type": "string"
             }
@@ -1614,7 +1616,7 @@
           ]
         },
         "modifyLabels": {
-          "description": "Modifies the set of labels applied to a file. Returns a list of the labels that were added or modified.",
+          "description": "Modifies the set of labels applied to a file. For more information, see [Set a label field on a file](https://developers.google.com/workspace/drive/api/guides/set-label). Returns a list of the labels that were added or modified.",
           "flatPath": "files/{fileId}/modifyLabels",
           "httpMethod": "POST",
           "id": "drive.files.modifyLabels",
@@ -1643,7 +1645,7 @@
           ]
         },
         "update": {
-          "description": " Updates a file's metadata and/or content. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:*`*/*` Note: Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).",
+          "description": " Updates a file's metadata, content, or both. When calling this method, only populate fields in the request that you want to modify. When updating fields, some fields might be changed automatically, such as `modifiedDate`. This method supports patch semantics. This method supports an */upload* URI and accepts uploaded media with the following characteristics: - *Maximum file size:* 5,120 GB - *Accepted Media MIME types:* `*/*` (Specify a valid MIME type, rather than the literal `*/*` value. The literal `*/*` is only used to indicate that any valid MIME type can be uploaded. For more information, see [Google Workspace and Google Drive supported MIME types](/workspace/drive/api/guides/mime-types).) For more information on uploading files, see [Upload file data](/workspace/drive/api/guides/manage-uploads).",
           "flatPath": "files/{fileId}",
           "httpMethod": "PATCH",
           "id": "drive.files.update",
@@ -1691,13 +1693,13 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
             "keepRevisionForever": {
               "default": "false",
-              "description": "Whether to set the 'keepForever' field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
+              "description": "Whether to set the `keepForever` field in the new head revision. This is only applicable to files with binary content in Google Drive. Only 200 revisions for the file can be kept forever. If the limit is reached, try deleting pinned revisions.",
               "location": "query",
               "type": "boolean"
             },
@@ -1748,7 +1750,7 @@
           "supportsMediaUpload": true
         },
         "watch": {
-          "description": "Subscribes to changes to a file.",
+          "description": "Subscribes to changes to a file. For more information, see [Notifications for resource changes](https://developers.google.com/workspace/drive/api/guides/push).",
           "flatPath": "files/{fileId}/watch",
           "httpMethod": "POST",
           "id": "drive.files.watch",
@@ -1774,7 +1776,7 @@
               "type": "string"
             },
             "includePermissionsForView": {
-              "description": "Specifies which additional view's permissions to include in the response. Only 'published' is supported.",
+              "description": "Specifies which additional view's permissions to include in the response. Only `published` is supported.",
               "location": "query",
               "type": "string"
             },
@@ -1887,7 +1889,7 @@
               "type": "boolean"
             },
             "sendNotificationEmail": {
-              "description": "Whether to send a notification email when sharing to users or groups. This defaults to true for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.",
+              "description": "Whether to send a notification email when sharing to users or groups. This defaults to `true` for users and groups, and is not allowed for other requests. It must not be disabled for ownership transfers.",
               "location": "query",
               "type": "boolean"
             },
@@ -2718,7 +2720,7 @@
       }
     }
   },
-  "revision": "20250819",
+  "revision": "20250910",
   "rootUrl": "https://www.googleapis.com/",
   "schemas": {
     "About": {
@@ -2863,36 +2865,36 @@
       "type": "object"
     },
     "AccessProposal": {
-      "description": "The Access Proposal resource for outstanding access proposals on a file",
+      "description": "Manage outstanding access proposals on a file.",
       "id": "AccessProposal",
       "properties": {
         "createTime": {
-          "description": "The creation time",
+          "description": "The creation time.",
           "format": "google-datetime",
           "type": "string"
         },
         "fileId": {
-          "description": "The file id that the proposal for access is on",
+          "description": "The file ID that the proposal for access is on.",
           "type": "string"
         },
         "proposalId": {
-          "description": "The id of the access proposal",
+          "description": "The ID of the access proposal.",
           "type": "string"
         },
         "recipientEmailAddress": {
-          "description": "The email address of the user that will receive permissions if accepted",
+          "description": "The email address of the user that will receive permissions, if accepted.",
           "type": "string"
         },
         "requestMessage": {
-          "description": "The message that the requester added to the proposal",
+          "description": "The message that the requester added to the proposal.",
           "type": "string"
         },
         "requesterEmailAddress": {
-          "description": "The email address of the requesting user",
+          "description": "The email address of the requesting user.",
           "type": "string"
         },
         "rolesAndViews": {
-          "description": "A wrapper for the role and view of an access proposal.",
+          "description": "A wrapper for the role and view of an access proposal. For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles).",
           "items": {
             "$ref": "AccessProposalRoleAndView"
           },
@@ -2902,15 +2904,15 @@
       "type": "object"
     },
     "AccessProposalRoleAndView": {
-      "description": "A wrapper for the role and view of an access proposal.",
+      "description": "A wrapper for the role and view of an access proposal. For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles).",
       "id": "AccessProposalRoleAndView",
       "properties": {
         "role": {
-          "description": "The role that was proposed by the requester New values may be added in the future, but the following are currently possible: * `writer` * `commenter` * `reader`",
+          "description": "The role that was proposed by the requester. The supported values are: * `writer` * `commenter` * `reader`",
           "type": "string"
         },
         "view": {
-          "description": "Indicates the view for this access proposal. Only populated for proposals that belong to a view. `published` is the only supported value.",
+          "description": "Indicates the view for this access proposal. Only populated for proposals that belong to a view. Only `published` is supported.",
           "type": "string"
         }
       },
@@ -3337,7 +3339,7 @@
         },
         "restrictingUser": {
           "$ref": "User",
-          "description": "Output only. The user who set the content restriction. Only populated if `readOnly` is true."
+          "description": "Output only. The user who set the content restriction. Only populated if `readOnly=true`."
         },
         "restrictionTime": {
           "description": "The time at which the content restriction was set (formatted RFC 3339 timestamp). Only populated if readOnly is true.",
@@ -3364,7 +3366,7 @@
           "type": "boolean"
         },
         "restrictedForWriters": {
-          "description": "Whether download and copy is restricted for writers. If true, download is also restricted for readers.",
+          "description": "Whether download and copy is restricted for writers. If `true`, download is also restricted for readers.",
           "type": "boolean"
         }
       },
@@ -3380,7 +3382,7 @@
         },
         "itemDownloadRestriction": {
           "$ref": "DownloadRestriction",
-          "description": "The download restriction of the file applied directly by the owner or organizer. This does not take into account shared drive settings or DLP rules."
+          "description": "The download restriction of the file applied directly by the owner or organizer. This doesn't take into account shared drive settings or DLP rules."
         }
       },
       "type": "object"
@@ -3610,18 +3612,18 @@
           "type": "object"
         },
         "capabilities": {
-          "description": "Output only. Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take.",
+          "description": "Output only. Capabilities the current user has on this file. Each capability corresponds to a fine-grained action that a user may take. For more information, see [Understand file capabilities](https://developers.google.com/workspace/drive/api/guides/manage-sharing#capabilities).",
           "properties": {
             "canAcceptOwnership": {
               "description": "Output only. Whether the current user is the pending owner of the file. Not populated for shared drive files.",
               "type": "boolean"
             },
             "canAddChildren": {
-              "description": "Output only. Whether the current user can add children to this folder. This is always false when the item is not a folder.",
+              "description": "Output only. Whether the current user can add children to this folder. This is always `false` when the item isn't a folder.",
               "type": "boolean"
             },
             "canAddFolderFromAnotherDrive": {
-              "description": "Output only. Whether the current user can add a folder from another drive (different shared drive or My Drive) to this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Output only. Whether the current user can add a folder from another drive (different shared drive or My Drive) to this folder. This is `false` when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canAddMyDriveParent": {
@@ -3637,7 +3639,7 @@
               "type": "boolean"
             },
             "canChangeSecurityUpdateEnabled": {
-              "description": "Output only. Whether the current user can change the securityUpdateEnabled field on link share metadata.",
+              "description": "Output only. Whether the current user can change the `securityUpdateEnabled` field on link share metadata.",
               "type": "boolean"
             },
             "canChangeViewersCanCopyContent": {
@@ -3650,7 +3652,7 @@
               "type": "boolean"
             },
             "canCopy": {
-              "description": "Output only. Whether the current user can copy this file. For an item in a shared drive, whether the current user can copy non-folder descendants of this item, or this item itself if it is not a folder.",
+              "description": "Output only. Whether the current user can copy this file. For an item in a shared drive, whether the current user can copy non-folder descendants of this item, or this item if it's not a folder.",
               "type": "boolean"
             },
             "canDelete": {
@@ -3658,7 +3660,7 @@
               "type": "boolean"
             },
             "canDeleteChildren": {
-              "description": "Output only. Whether the current user can delete children of this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Output only. Whether the current user can delete children of this folder. This is `false` when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canDisableInheritedPermissions": {
@@ -3678,7 +3680,7 @@
               "type": "boolean"
             },
             "canListChildren": {
-              "description": "Output only. Whether the current user can list the children of this folder. This is always false when the item is not a folder.",
+              "description": "Output only. Whether the current user can list the children of this folder. This is always `false` when the item isn't a folder.",
               "type": "boolean"
             },
             "canModifyContent": {
@@ -3687,7 +3689,7 @@
             },
             "canModifyContentRestriction": {
               "deprecated": true,
-              "description": "Deprecated: Output only. Use one of `canModifyEditorContentRestriction`, `canModifyOwnerContentRestriction` or `canRemoveContentRestriction`.",
+              "description": "Deprecated: Output only. Use one of `canModifyEditorContentRestriction`, `canModifyOwnerContentRestriction`, or `canRemoveContentRestriction`.",
               "type": "boolean"
             },
             "canModifyEditorContentRestriction": {
@@ -3703,7 +3705,7 @@
               "type": "boolean"
             },
             "canMoveChildrenOutOfDrive": {
-              "description": "Output only. Whether the current user can move children of this folder outside of the shared drive. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Output only. Whether the current user can move children of this folder outside of the shared drive. This is `false` when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canMoveChildrenOutOfTeamDrive": {
@@ -3712,7 +3714,7 @@
               "type": "boolean"
             },
             "canMoveChildrenWithinDrive": {
-              "description": "Output only. Whether the current user can move children of this folder within this drive. This is false when the item is not a folder. Note that a request to move the child may still fail depending on the current user's access to the child and to the destination folder.",
+              "description": "Output only. Whether the current user can move children of this folder within this drive. This is `false` when the item isn't a folder. Note that a request to move the child may still fail depending on the current user's access to the child and to the destination folder.",
               "type": "boolean"
             },
             "canMoveChildrenWithinTeamDrive": {
@@ -3726,7 +3728,7 @@
               "type": "boolean"
             },
             "canMoveItemOutOfDrive": {
-              "description": "Output only. Whether the current user can move this item outside of this drive by changing its parent. Note that a request to change the parent of the item may still fail depending on the new parent that is being added.",
+              "description": "Output only. Whether the current user can move this item outside of this drive by changing its parent. Note that a request to change the parent of the item may still fail depending on the new parent that's being added.",
               "type": "boolean"
             },
             "canMoveItemOutOfTeamDrive": {
@@ -3735,7 +3737,7 @@
               "type": "boolean"
             },
             "canMoveItemWithinDrive": {
-              "description": "Output only. Whether the current user can move this item within this drive. Note that a request to change the parent of the item may still fail depending on the new parent that is being added and the parent that is being removed.",
+              "description": "Output only. Whether the current user can move this item within this drive. Note that a request to change the parent of the item may still fail depending on the new parent that's being added and the parent that is being removed.",
               "type": "boolean"
             },
             "canMoveItemWithinTeamDrive": {
@@ -3757,7 +3759,7 @@
               "type": "boolean"
             },
             "canReadRevisions": {
-              "description": "Output only. Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item itself if it is not a folder, can be read.",
+              "description": "Output only. Whether the current user can read the revisions resource of this file. For a shared drive item, whether revisions of non-folder descendants of this item, or this item if it's not a folder, can be read.",
               "type": "boolean"
             },
             "canReadTeamDrive": {
@@ -3766,11 +3768,11 @@
               "type": "boolean"
             },
             "canRemoveChildren": {
-              "description": "Output only. Whether the current user can remove children from this folder. This is always false when the item is not a folder. For a folder in a shared drive, use `canDeleteChildren` or `canTrashChildren` instead.",
+              "description": "Output only. Whether the current user can remove children from this folder. This is always `false` when the item isn't a folder. For a folder in a shared drive, use `canDeleteChildren` or `canTrashChildren` instead.",
               "type": "boolean"
             },
             "canRemoveContentRestriction": {
-              "description": "Output only. Whether there is a content restriction on the file that can be removed by the current user.",
+              "description": "Output only. Whether there's a content restriction on the file that can be removed by the current user.",
               "type": "boolean"
             },
             "canRemoveMyDriveParent": {
@@ -3790,7 +3792,7 @@
               "type": "boolean"
             },
             "canTrashChildren": {
-              "description": "Output only. Whether the current user can trash children of this folder. This is false when the item is not a folder. Only populated for items in shared drives.",
+              "description": "Output only. Whether the current user can trash children of this folder. This is `false` when the item isn't a folder. Only populated for items in shared drives.",
               "type": "boolean"
             },
             "canUntrash": {
@@ -3804,14 +3806,14 @@
           "description": "Additional information about the content of the file. These fields are never populated in responses.",
           "properties": {
             "indexableText": {
-              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128KB in length and may contain HTML elements.",
+              "description": "Text to be indexed for the file to improve fullText queries. This is limited to 128 KB in length and may contain HTML elements.",
               "type": "string"
             },
             "thumbnail": {
               "description": "A thumbnail for the file. This will only be used if Google Drive cannot generate a standard thumbnail.",
               "properties": {
                 "image": {
-                  "description": "The thumbnail data encoded with URL-safe Base64 (RFC 4648 section 5).",
+                  "description": "The thumbnail data encoded with URL-safe Base64 ([RFC 4648 section 5](https://datatracker.ietf.org/doc/html/rfc4648#section-5)).",
                   "format": "byte",
                   "type": "string"
                 },
@@ -3833,7 +3835,7 @@
           "type": "array"
         },
         "copyRequiresWriterPermission": {
-          "description": "Whether the options to copy, print, or download this file, should be disabled for readers and commenters.",
+          "description": "Whether the options to copy, print, or download this file should be disabled for readers and commenters.",
           "type": "boolean"
         },
         "createdTime": {
@@ -3870,11 +3872,11 @@
           "type": "string"
         },
         "folderColorRgb": {
-          "description": "The color for a folder or a shortcut to a folder as an RGB hex string. The supported colors are published in the `folderColorPalette` field of the About resource. If an unsupported color is specified, the closest color in the palette is used instead.",
+          "description": "The color for a folder or a shortcut to a folder as an RGB hex string. The supported colors are published in the `folderColorPalette` field of the [`about`](/workspace/drive/api/reference/rest/v3/about) resource. If an unsupported color is specified, the closest color in the palette is used instead.",
           "type": "string"
         },
         "fullFileExtension": {
-          "description": "Output only. The full file extension extracted from the `name` field. May contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive. This is automatically updated when the `name` field changes, however it is not cleared if the new name does not contain a valid extension.",
+          "description": "Output only. The full file extension extracted from the `name` field. May contain multiple concatenated extensions, such as \"tar.gz\". This is only available for files with binary content in Google Drive. This is automatically updated when the `name` field changes, however it's not cleared if the new name doesn't contain a valid extension.",
           "type": "string"
         },
         "hasAugmentedPermissions": {
@@ -3882,7 +3884,7 @@
           "type": "boolean"
         },
         "hasThumbnail": {
-          "description": "Output only. Whether this file has a thumbnail. This does not indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.",
+          "description": "Output only. Whether this file has a thumbnail. This doesn't indicate whether the requesting app has access to the thumbnail. To check access, look for the presence of the thumbnailLink field.",
           "type": "boolean"
         },
         "headRevisionId": {
@@ -4063,7 +4065,7 @@
           "type": "string"
         },
         "mimeType": {
-          "description": "The MIME type of the file. Google Drive attempts to automatically detect an appropriate value from uploaded content, if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content is imported, if possible. The supported import formats are published in the About resource.",
+          "description": "The MIME type of the file. Google Drive attempts to automatically detect an appropriate value from uploaded content, if no value is provided. The value cannot be changed unless a new revision is uploaded. If a file is created with a Google Doc MIME type, the uploaded content is imported, if possible. The supported import formats are published in the [`about`](/workspace/drive/api/reference/rest/v3/about) resource.",
           "type": "string"
         },
         "modifiedByMe": {
@@ -4081,7 +4083,7 @@
           "type": "string"
         },
         "name": {
-          "description": "The name of the file. This is not necessarily unique within a folder. Note that for immutable items such as the top level folders of shared drives, My Drive root folder, and Application Data folder the name is constant.",
+          "description": "The name of the file. This isn't necessarily unique within a folder. Note that for immutable items such as the top-level folders of shared drives, the My Drive root folder, and the Application Data folder, the name is constant.",
           "type": "string"
         },
         "originalFilename": {
@@ -4137,11 +4139,11 @@
           "type": "string"
         },
         "sha1Checksum": {
-          "description": "Output only. The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+          "description": "Output only. The SHA1 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "sha256Checksum": {
-          "description": "Output only. The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it is not populated for Docs Editors or shortcut files.",
+          "description": "Output only. The SHA256 checksum associated with this file, if available. This field is only populated for files with content stored in Google Drive; it's not populated for Docs Editors or shortcut files.",
           "type": "string"
         },
         "shared": {
@@ -4169,19 +4171,19 @@
               "type": "string"
             },
             "targetResourceKey": {
-              "description": "Output only. The ResourceKey for the target file.",
+              "description": "Output only. The `resourceKey` for the target file.",
               "type": "string"
             }
           },
           "type": "object"
         },
         "size": {
-          "description": "Output only. Size in bytes of blobs and first party editor files. Won't be populated for files that have no size, like shortcuts and folders.",
+          "description": "Output only. Size in bytes of blobs and Google Workspace editor files. Won't be populated for files that have no size, like shortcuts and folders.",
           "format": "int64",
           "type": "string"
         },
         "spaces": {
-          "description": "Output only. The list of spaces which contain the file. The currently supported values are 'drive', 'appDataFolder' and 'photos'.",
+          "description": "Output only. The list of spaces which contain the file. The currently supported values are `drive`, `appDataFolder`, and `photos`.",
           "items": {
             "type": "string"
           },
@@ -4197,7 +4199,7 @@
           "type": "string"
         },
         "thumbnailLink": {
-          "description": "Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Not intended for direct usage on web applications due to [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies, consider using a proxy server. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `Files.thumbnailLink` must be fetched using a credentialed request.",
+          "description": "Output only. A short-lived link to the file's thumbnail, if available. Typically lasts on the order of hours. Not intended for direct usage on web applications due to [Cross-Origin Resource Sharing (CORS)](https://developer.mozilla.org/en-US/docs/Web/HTTP/CORS) policies. Consider using a proxy server. Only populated when the requesting app can access the file's content. If the file isn't shared publicly, the URL returned in `files.thumbnailLink` must be fetched using a credentialed request.",
           "type": "string"
         },
         "thumbnailVersion": {
@@ -4278,14 +4280,14 @@
       "id": "FileList",
       "properties": {
         "files": {
-          "description": "The list of files. If nextPageToken is populated, then this list may be incomplete and an additional page of results should be fetched.",
+          "description": "The list of files. If `nextPageToken` is populated, then this list may be incomplete and an additional page of results should be fetched.",
           "items": {
             "$ref": "File"
           },
           "type": "array"
         },
         "incompleteSearch": {
-          "description": "Whether the search process was incomplete. If true, then some search results might be missing, since all documents were not searched. This can occur when searching multiple drives with the 'allDrives' corpora, but all corpora couldn't be searched. When this happens, it's suggested that clients narrow their query by choosing a different corpus such as 'user' or 'drive'.",
+          "description": "Whether the search process was incomplete. If true, then some search results might be missing, since all documents were not searched. This can occur when searching multiple drives with the `allDrives` corpora, but all corpora couldn't be searched. When this happens, it's suggested that clients narrow their query by choosing a different corpus such as `user` or `drive`.",
           "type": "boolean"
         },
         "kind": {
@@ -4414,7 +4416,7 @@
           "type": "string"
         },
         "kind": {
-          "description": "This is always drive#labelFieldModification.",
+          "description": "This is always `\"drive#labelFieldModification\"`.",
           "type": "string"
         },
         "setDateValues": {
@@ -4448,7 +4450,7 @@
           "type": "array"
         },
         "setUserValues": {
-          "description": "Replaces a `user` field with these new values. The values must be valid email addresses.",
+          "description": "Replaces a `user` field with these new values. The values must be a valid email addresses.",
           "items": {
             "type": "string"
           },
@@ -4466,7 +4468,7 @@
       "id": "LabelList",
       "properties": {
         "kind": {
-          "description": "This is always drive#labelList",
+          "description": "This is always `\"drive#labelList\"`.",
           "type": "string"
         },
         "labels": {
@@ -4484,7 +4486,7 @@
       "type": "object"
     },
     "LabelModification": {
-      "description": "A modification to a label on a file. A LabelModification can be used to apply a label to a file, update an existing label on a file, or remove a label from a file.",
+      "description": "A modification to a label on a file. A `LabelModification` can be used to apply a label to a file, update an existing label on a file, or remove a label from a file.",
       "id": "LabelModification",
       "properties": {
         "fieldModifications": {
@@ -4495,7 +4497,7 @@
           "type": "array"
         },
         "kind": {
-          "description": "This is always drive#labelModification.",
+          "description": "This is always `\"drive#labelModification\"`.",
           "type": "string"
         },
         "labelId": {
@@ -4515,11 +4517,11 @@
       "type": "object"
     },
     "ListAccessProposalsResponse": {
-      "description": "The response to an Access Proposal list request.",
+      "description": "The response to an access proposal list request.",
       "id": "ListAccessProposalsResponse",
       "properties": {
         "accessProposals": {
-          "description": "The list of Access Proposals. This field is only populated in v3 and v3beta.",
+          "description": "The list of access proposals. This field is only populated in Drive API v3.",
           "items": {
             "$ref": "AccessProposal"
           },
@@ -4537,7 +4539,7 @@
       "id": "ModifyLabelsRequest",
       "properties": {
         "kind": {
-          "description": "This is always drive#modifyLabelsRequest.",
+          "description": "This is always `\"drive#modifyLabelsRequest\"`.",
           "type": "string"
         },
         "labelModifications": {
@@ -4551,11 +4553,11 @@
       "type": "object"
     },
     "ModifyLabelsResponse": {
-      "description": "Response to a ModifyLabels request. This contains only those labels which were added or updated by the request.",
+      "description": "Response to a `ModifyLabels` request. This contains only those labels which were added or updated by the request.",
       "id": "ModifyLabelsResponse",
       "properties": {
         "kind": {
-          "description": "This is always drive#modifyLabelsResponse",
+          "description": "This is always `\"drive#modifyLabelsResponse\"`.",
           "type": "string"
         },
         "modifiedLabels": {
@@ -4837,7 +4839,7 @@
       "id": "ResolveAccessProposalRequest",
       "properties": {
         "action": {
-          "description": "Required. The action to take on the AccessProposal.",
+          "description": "Required. The action to take on the access proposal.",
           "enum": [
             "ACTION_UNSPECIFIED",
             "ACCEPT",
@@ -4845,24 +4847,24 @@
           ],
           "enumDescriptions": [
             "Unspecified action",
-            "The user accepts the proposal. Note: If this action is used, the `role` field must have at least one value.",
-            "The user denies the proposal"
+            "The user accepts the access proposal. Note: If this action is used, the `role` field must have at least one value.",
+            "The user denies the access proposal."
           ],
           "type": "string"
         },
         "role": {
-          "description": "Optional. The roles the approver has allowed, if any. Note: This field is required for the `ACCEPT` action.",
+          "description": "Optional. The roles that the approver has allowed, if any. For more information, see [Roles and permissions](https://developers.google.com/workspace/drive/api/guides/ref-roles). Note: This field is required for the `ACCEPT` action.",
           "items": {
             "type": "string"
           },
           "type": "array"
         },
         "sendNotification": {
-          "description": "Optional. Whether to send an email to the requester when the AccessProposal is denied or accepted.",
+          "description": "Optional. Whether to send an email to the requester when the access proposal is denied or accepted.",
           "type": "boolean"
         },
         "view": {
-          "description": "Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. `published` is the only supported value.",
+          "description": "Optional. Indicates the view for this access proposal. This should only be set when the proposal belongs to a view. Only `published` is supported.",
           "type": "string"
         }
       },
