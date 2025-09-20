@@ -189,6 +189,10 @@ import {VERSIONS as cloudbillingVersions, cloudbilling} from './cloudbilling';
 import {VERSIONS as cloudbuildVersions, cloudbuild} from './cloudbuild';
 import {VERSIONS as cloudchannelVersions, cloudchannel} from './cloudchannel';
 import {
+  VERSIONS as cloudcommerceprocurementVersions,
+  cloudcommerceprocurement,
+} from './cloudcommerceprocurement';
+import {
   VERSIONS as cloudcontrolspartnerVersions,
   cloudcontrolspartner,
 } from './cloudcontrolspartner';
@@ -837,6 +841,7 @@ export const APIS: APIList = {
   cloudbilling: cloudbillingVersions,
   cloudbuild: cloudbuildVersions,
   cloudchannel: cloudchannelVersions,
+  cloudcommerceprocurement: cloudcommerceprocurementVersions,
   cloudcontrolspartner: cloudcontrolspartnerVersions,
   clouddebugger: clouddebuggerVersions,
   clouddeploy: clouddeployVersions,
@@ -1155,6 +1160,7 @@ export class GeneratedAPIs {
   cloudbilling = cloudbilling;
   cloudbuild = cloudbuild;
   cloudchannel = cloudchannel;
+  cloudcommerceprocurement = cloudcommerceprocurement;
   cloudcontrolspartner = cloudcontrolspartner;
   clouddebugger = clouddebugger;
   clouddeploy = clouddeploy;

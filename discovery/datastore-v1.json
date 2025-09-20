@@ -22,6 +22,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://datastore.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-datastore.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -661,7 +666,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250830",
   "rootUrl": "https://datastore.googleapis.com/",
   "schemas": {
     "Aggregation": {
