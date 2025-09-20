@@ -1661,7 +1661,7 @@
       }
     }
   },
-  "revision": "20240930",
+  "revision": "20250901",
   "rootUrl": "https://firebaseappcheck.googleapis.com/",
   "schemas": {
     "GoogleFirebaseAppcheckV1AppAttestConfig": {
@@ -2174,6 +2174,18 @@
       "description": "An app's Play Integrity configuration object. This configuration controls certain properties of the `AppCheckToken` returned by ExchangePlayIntegrityToken, such as its ttl. Note that your registered SHA-256 certificate fingerprints are used to validate tokens issued by the Play Integrity API; please register them via the Firebase Console or programmatically via the [Firebase Management Service](https://firebase.google.com/docs/projects/api/reference/rest/v1beta1/projects.androidApps.sha/create).",
       "id": "GoogleFirebaseAppcheckV1PlayIntegrityConfig",
       "properties": {
+        "accountDetails": {
+          "$ref": "GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails",
+          "description": "Specifies account requirements for Android devices running your app. These settings correspond to requirements on the [**account details** field](https://developer.android.com/google/play/integrity/verdicts#account-details-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended."
+        },
+        "appIntegrity": {
+          "$ref": "GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity",
+          "description": "Specifies application integrity requirements for Android devices running your app. These settings correspond to requirements on the [**application integrity** field](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended."
+        },
+        "deviceIntegrity": {
+          "$ref": "GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity",
+          "description": "Specifies device integrity requirements for Android devices running your app. These settings correspond to requirements on the [**device integrity** field](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. Warning: There are also [conditional](https://developer.android.com/google/play/integrity/setup#conditional) as well as [optional](https://developer.android.com/google/play/integrity/setup#optional_device_information) responses that you can receive, but requires additional explicit opt-in from you. The App Check API is **not** responsible for any such opt-ins. The default values for these settings work for most apps, and are recommended."
+        },
         "name": {
           "description": "Required. The relative resource name of the Play Integrity configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/playIntegrityConfig ```",
           "type": "string"
@@ -2181,6 +2193,53 @@
         "tokenTtl": {
           "description": "Specifies the duration for which App Check tokens exchanged from Play Integrity tokens will be valid. If unset, a default value of 1 hour is assumed. Must be between 30 minutes and 7 days, inclusive.",
           "format": "google-duration",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails": {
+      "description": "A settings object specifying account requirements for Android devices running your app. These settings correspond to requirements on the [**account details** field](https://developer.android.com/google/play/integrity/verdicts#account-details-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.",
+      "id": "GoogleFirebaseAppcheckV1PlayIntegrityConfigAccountDetails",
+      "properties": {
+        "requireLicensed": {
+          "description": "Specifies whether the caller must have received the [`LICENSED` verdict](https://developer.android.com/google/play/integrity/verdicts#account-details-field). For additional details about scenarios where your users will receive this `LICENSED` label, see [the default responses table](https://developer.android.com/google/play/integrity/setup#default). If set to `true`, apps without the `LICENSED` app licensing verdict will be rejected. If set to `false`, any app licensing verdict is allowed. The default value is `false`.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity": {
+      "description": "A settings object specifying application integrity requirements for Android devices running your app. These settings correspond to requirements on the [**application integrity** field](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. The default values for these settings work for most apps, and are recommended.",
+      "id": "GoogleFirebaseAppcheckV1PlayIntegrityConfigAppIntegrity",
+      "properties": {
+        "allowUnrecognizedVersion": {
+          "description": "Specifies whether your running app is allowed to have the `UNRECOGNIZED_VERSION` [app recognition verdict](https://developer.android.com/google/play/integrity/verdicts#application-integrity-field). Note that the app recognition verdict `PLAY_RECOGNIZED` is a strong, comprehensive integrity signal that takes into account various other signals, including conditional and optional device integrity responses that you have opted into. If your app is published off-Play, this field should be set to `true` to allow instances of your app installed from off-Play sources to function. If set to `false`, only `PLAY_RECOGNIZED` verdicts are allowed, and both `UNRECOGNIZED_VERSION` and `UNEVALUATED` will be rejected. If set to `true`, any app recognition verdict is allowed. The default value is `false`.",
+          "type": "boolean"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity": {
+      "description": "A settings object specifying device integrity requirements for Android devices running your app. These settings correspond to requirements on the [**device integrity** field](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field) obtained from the Play Integrity API. See the [default responses table](https://developer.android.com/google/play/integrity/setup#default) for a quick summary. Warning: There are also [conditional](https://developer.android.com/google/play/integrity/setup#conditional) as well as [optional](https://developer.android.com/google/play/integrity/setup#optional_device_information) responses that you can receive, but requires additional explicit opt-in from you. The App Check API is **not** responsible for any such opt-ins. The default values for these settings work for most apps, and are recommended.",
+      "id": "GoogleFirebaseAppcheckV1PlayIntegrityConfigDeviceIntegrity",
+      "properties": {
+        "minDeviceRecognitionLevel": {
+          "description": "Specifies the minimum device integrity level in order for the device to be considered valid. Any device with a device recognition verdict lower than this level will be rejected. If this is unspecified, the default level is `NO_INTEGRITY`.",
+          "enum": [
+            "DEVICE_RECOGNITION_LEVEL_UNSPECIFIED",
+            "NO_INTEGRITY",
+            "MEETS_BASIC_INTEGRITY",
+            "MEETS_DEVICE_INTEGRITY",
+            "MEETS_STRONG_INTEGRITY"
+          ],
+          "enumDescriptions": [
+            "Default value. Do not specify this value directly. When this default value is detected in a configuration, the `NO_INTEGRITY` default level takes effect.",
+            "If this level is set, no explicit device integrity label requirements will be checked. However, because Play Integrity's other features may perform (and require) their own intrinsic device integrity checks, your `app_integrity` and `account_details` settings may still cause some device integrity checks to be performed.",
+            "This level corresponds to the `MEETS_BASIC_INTEGRITY` [optional device recognition label](https://developer.android.com/google/play/integrity/verdicts#optional-device-labels). This value represents the most basic level of device integrity, and is the minimum allowed in App Check's standard implementation of Play Integrity. Warning: Because this is an optional response, you **must** first explicitly [opt in your app in the Play Console](https://developer.android.com/google/play/integrity/setup#optional) in order to receive this label. Without this opt-in, **your app may break** for any user whose device is eligible for `MEETS_BASIC_INTEGRITY` but not `MEETS_DEVICE_INTEGRITY`. This API is **not** responsible for any such opt-ins.",
+            "This level corresponds to the `MEETS_DEVICE_INTEGRITY` [device recognition verdict](https://developer.android.com/google/play/integrity/verdicts#device-integrity-field). Any app integrated with Play Integrity will automatically be eligible to receive this label without any additional action from you. At this level, devices that have the `MEETS_BASIC_INTEGRITY` label but **not** the `MEETS_DEVICE_INTEGRITY` label will be rejected.",
+            "This level corresponds to the `MEETS_STRONG_INTEGRITY` [optional device recognition label](https://developer.android.com/google/play/integrity/verdicts#optional-device-labels). This value represents the highest level of device integrity. At this level, devices that have the `MEETS_BASIC_INTEGRITY` or `MEETS_DEVICE_INTEGRITY` but **not** the `MEETS_STRONG_INTEGRITY` label will be rejected. Warning: Because this is an optional response, you **must** first explicitly [opt in your app in the Play Console](https://developer.android.com/google/play/integrity/setup#optional) in order to receive this label. Without this opt-in, **your app may break** for any user whose device is eligible for `MEETS_STRONG_INTEGRITY`. This API is **not** responsible for any such opt-ins."
+          ],
           "type": "string"
         }
       },
@@ -2239,6 +2298,10 @@
           "description": "Required. The relative resource name of the reCAPTCHA Enterprise configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaEnterpriseConfig ```",
           "type": "string"
         },
+        "riskAnalysis": {
+          "$ref": "GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis",
+          "description": "Specifies risk tolerance and requirements for your application. These settings correspond to requirements on the [**`riskAnalysis`**](https://cloud.google.com/recaptcha/docs/interpret-assessment-website#interpret_assessment) tuple in the assessment obtained from reCAPTCHA Enterprise. The default values for these settings work for most apps, and are recommended."
+        },
         "siteKey": {
           "description": "The score-based site key [created in reCAPTCHA Enterprise](https://cloud.google.com/recaptcha-enterprise/docs/create-key#creating_a_site_key) used to [invoke reCAPTCHA and generate the reCAPTCHA tokens](https://cloud.google.com/recaptcha-enterprise/docs/instrument-web-pages) for your application. Important: This is *not* the `site_secret` (as it is in reCAPTCHA v3), but rather your score-based reCAPTCHA Enterprise site key.",
           "type": "string"
@@ -2251,10 +2314,27 @@
       },
       "type": "object"
     },
+    "GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis": {
+      "description": "A settings object specifying risk tolerance and requirements for your application. These settings correspond to requirements on the [**`riskAnalysis`**](https://cloud.google.com/recaptcha/docs/interpret-assessment-website#interpret_assessment) tuple in the assessment obtained from reCAPTCHA Enterprise. The default values for these settings work for most apps, and are recommended.",
+      "id": "GoogleFirebaseAppcheckV1RecaptchaEnterpriseConfigRiskAnalysis",
+      "properties": {
+        "minValidScore": {
+          "description": "Specifies a minimum score required for a reCAPTCHA token to be considered valid. If its score is greater than or equal to this value, it will be accepted; otherwise, it will be rejected. The value must be between 0.0 and 1.0. The default value is 0.5.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "GoogleFirebaseAppcheckV1RecaptchaV3Config": {
       "description": "An app's reCAPTCHA v3 configuration object. This configuration is used by ExchangeRecaptchaV3Token to validate reCAPTCHA tokens issued to apps by reCAPTCHA v3. It also controls certain properties of the returned `AppCheckToken`, such as its ttl.",
       "id": "GoogleFirebaseAppcheckV1RecaptchaV3Config",
       "properties": {
+        "minValidScore": {
+          "description": "Specifies a minimum score required for a reCAPTCHA token to be considered valid. If its score is greater than or equal to this value, it will be accepted; otherwise, it will be rejected. The value must be between 0.0 and 1.0. The default value is 0.5.",
+          "format": "float",
+          "type": "number"
+        },
         "name": {
           "description": "Required. The relative resource name of the reCAPTCHA v3 configuration object, in the format: ``` projects/{project_number}/apps/{app_id}/recaptchaV3Config ```",
           "type": "string"
