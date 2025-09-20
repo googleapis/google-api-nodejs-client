@@ -128,7 +128,7 @@
       }
     }
   },
-  "revision": "20230711",
+  "revision": "20250908",
   "rootUrl": "https://trafficdirector.googleapis.com/",
   "schemas": {
     "Address": {
@@ -918,7 +918,7 @@
       "type": "object"
     },
     "ValueMatcher": {
-      "description": "Specifies the way to match a ProtobufWkt::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 7]",
+      "description": "Specifies the way to match a Protobuf::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 7]",
       "id": "ValueMatcher",
       "properties": {
         "boolMatch": {

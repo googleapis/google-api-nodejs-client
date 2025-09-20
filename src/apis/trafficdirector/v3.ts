@@ -727,7 +727,7 @@ export namespace trafficdirector_v3 {
      */
     namedPort?: string | null;
     /**
-     * Filepath that specifies the Linux network namespace this socket will be created in (see ``man 7 network_namespaces``). If this field is set, Envoy will create the socket in the specified network namespace. .. note:: Setting this parameter requires Envoy to run with the ``CAP_NET_ADMIN`` capability. .. note:: Currently only used for Listener sockets. .. attention:: Network namespaces are only configurable on Linux. Otherwise, this field has no effect.
+     * Filepath that specifies the Linux network namespace this socket will be created in (see ``man 7 network_namespaces``). If this field is set, Envoy will create the socket in the specified network namespace. .. note:: Setting this parameter requires Envoy to run with the ``CAP_NET_ADMIN`` capability. .. attention:: Network namespaces are only configurable on Linux. Otherwise, this field has no effect.
      */
     networkNamespaceFilepath?: string | null;
     portValue?: number | null;
@@ -861,7 +861,7 @@ export namespace trafficdirector_v3 {
     versionInfo?: string | null;
   }
   /**
-   * Specifies the way to match a ProtobufWkt::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 8]
+   * Specifies the way to match a Protobuf::Value. Primitive values and ListValue are supported. StructValue is not supported and is always not matched. [#next-free-field: 8]
    */
   export interface Schema$ValueMatcher {
     /**
