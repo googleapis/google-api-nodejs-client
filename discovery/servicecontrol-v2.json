@@ -139,7 +139,7 @@
           ]
         },
         "report": {
-          "description": "This method provides telemetry reporting for services that are integrated with [Service Infrastructure](https://cloud.google.com/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](https://cloud.google.com/service-infrastructure/docs/telemetry-reporting). NOTE: The telemetry reporting has a hard limit of 1000 operations and 1MB per Report call. It is recommended to have no more than 100 operations per call. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).",
+          "description": "This method provides telemetry reporting for services that are integrated with [Service Infrastructure](https://cloud.google.com/service-infrastructure). It reports a list of operations that have occurred on a service. It must be called after the operations have been executed. For more information, see [Telemetry Reporting](https://cloud.google.com/service-infrastructure/docs/telemetry-reporting). NOTE: The telemetry reporting has a hard limit of 100 operations and 1MB per Report call. This method requires the `servicemanagement.services.report` permission on the specified service. For more information, see [Service Control API Access Control](https://cloud.google.com/service-infrastructure/docs/service-control/access-control).",
           "flatPath": "v2/services/{serviceName}:report",
           "httpMethod": "POST",
           "id": "servicecontrol.services.report",
@@ -169,7 +169,7 @@
       }
     }
   },
-  "revision": "20250425",
+  "revision": "20250820",
   "rootUrl": "https://servicecontrol.googleapis.com/",
   "schemas": {
     "Api": {
@@ -359,6 +359,10 @@
           "description": "Structured claims presented with the credential. JWTs include `{key: value}` pairs for standard and private claims. The following is a subset of the standard required and optional claims that would typically be presented for a Google-based JWT: {'iss': 'accounts.google.com', 'sub': '113289723416554971153', 'aud': ['123456789012', 'pubsub.googleapis.com'], 'azp': '123456789012.apps.googleusercontent.com', 'email': 'jsmith@example.com', 'iat': 1353601026, 'exp': 1353604926} SAML assertions are similarly specified, but with an identity provider dependent structure.",
           "type": "object"
         },
+        "oauth": {
+          "$ref": "Oauth",
+          "description": "Attributes of the OAuth token associated with the request."
+        },
         "presenter": {
           "description": "The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: \"123456789012.apps.googleusercontent.com\".",
           "type": "string"
@@ -377,6 +381,18 @@
         "authoritySelector": {
           "description": "The authority selector specified by the requestor, if any. It is not guaranteed that the principal was allowed to use this authority.",
           "type": "string"
+        },
+        "loggableShortLivedCredential": {
+          "additionalProperties": {
+            "description": "Properties of the object.",
+            "type": "any"
+          },
+          "description": "Converted from \"identity_cloudgaia.AuditLoggableShortLivedCredential\" proto. This message will be used by security, detection and response team. For context please refer to go/cg:short-lived-credential-logging. When the JSON object represented here has a proto equivalent, the proto name will be indicated in the `@type` property.",
+          "type": "object"
+        },
+        "oauthInfo": {
+          "$ref": "OAuthInfo",
+          "description": "OAuth authentication information such as the OAuth client ID."
         },
         "principalEmail": {
           "description": "The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).",
@@ -520,6 +536,28 @@
           },
           "description": "Metadata about the service that uses the service account. .",
           "type": "object"
+        }
+      },
+      "type": "object"
+    },
+    "OAuthInfo": {
+      "description": "OAuth related information about the request.",
+      "id": "OAuthInfo",
+      "properties": {
+        "oauthClientId": {
+          "description": "The OAuth client ID of the 1P or 3P application acting on behalf of the user.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "Oauth": {
+      "description": "This message defines attributes associated with OAuth credentials.",
+      "id": "Oauth",
+      "properties": {
+        "clientId": {
+          "description": "The optional OAuth client ID. This is the unique public identifier issued by an authorization server to a registered client application. Empty string is equivalent to no oauth client id. WARNING: This is for MCP tools/call and tools/list authorization and not for general use.",
+          "type": "string"
         }
       },
       "type": "object"

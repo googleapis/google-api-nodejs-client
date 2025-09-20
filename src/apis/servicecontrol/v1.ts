@@ -280,6 +280,10 @@ export namespace servicecontrol_v1 {
      */
     claims?: {[key: string]: any} | null;
     /**
+     * Attributes of the OAuth token associated with the request.
+     */
+    oauth?: Schema$Oauth;
+    /**
      * The authorized presenter of the credential. Reflects the optional Authorized Presenter (`azp`) claim within a JWT or the OAuth client id. For example, a Google Cloud Platform client id looks as follows: "123456789012.apps.googleusercontent.com".
      */
     presenter?: string | null;
@@ -296,6 +300,14 @@ export namespace servicecontrol_v1 {
      * The authority selector specified by the requestor, if any. It is not guaranteed that the principal was allowed to use this authority.
      */
     authoritySelector?: string | null;
+    /**
+     * Converted from "identity_cloudgaia.AuditLoggableShortLivedCredential" proto. This message will be used by security, detection and response team. For context please refer to go/cg:short-lived-credential-logging. When the JSON object represented here has a proto equivalent, the proto name will be indicated in the `@type` property.
+     */
+    loggableShortLivedCredential?: {[key: string]: any} | null;
+    /**
+     * OAuth authentication information such as the OAuth client ID.
+     */
+    oauthInfo?: Schema$OAuthInfo;
     /**
      * The email address of the authenticated user (or service account on behalf of third party principal) making the request. For third party identity callers, the `principal_subject` field is populated instead of this field. For privacy reasons, the principal email address is sometimes redacted. For more information, see [Caller identities in audit logs](https://cloud.google.com/logging/docs/audit#user-id).
      */
@@ -379,6 +391,10 @@ export namespace servicecontrol_v1 {
      * Consumer info of this check.
      */
     consumerInfo?: Schema$ConsumerInfo;
+    /**
+     * Whether or not the api key should be ignored in the credential_id during reporting.
+     */
+    ignoreApiKeyUidAsCredentialId?: boolean | null;
     /**
      * A list of fields and label keys that are ignored by the server. The client doesn't need to send them for following requests to improve performance and allow better aggregation.
      */
@@ -795,6 +811,24 @@ export namespace servicecontrol_v1 {
      * The whole units of the amount. For example if `currencyCode` is `"USD"`, then 1 unit is one US dollar.
      */
     units?: string | null;
+  }
+  /**
+   * This message defines attributes associated with OAuth credentials.
+   */
+  export interface Schema$Oauth {
+    /**
+     * The optional OAuth client ID. This is the unique public identifier issued by an authorization server to a registered client application. Empty string is equivalent to no oauth client id. WARNING: This is for MCP tools/call and tools/list authorization and not for general use.
+     */
+    clientId?: string | null;
+  }
+  /**
+   * OAuth related information about the request.
+   */
+  export interface Schema$OAuthInfo {
+    /**
+     * The OAuth client ID of the 1P or 3P application acting on behalf of the user.
+     */
+    oauthClientId?: string | null;
   }
   /**
    * Represents information regarding an operation.
