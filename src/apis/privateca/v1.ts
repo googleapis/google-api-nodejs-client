@@ -249,6 +249,10 @@ export namespace privateca_v1 {
    */
   export interface Schema$CaPool {
     /**
+     * Optional. When EncryptionSpec is provided, the Subject, SubjectAltNames, and the PEM-encoded certificate fields will be encrypted at rest.
+     */
+    encryptionSpec?: Schema$EncryptionSpec;
+    /**
      * Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool.
      */
     issuancePolicy?: Schema$IssuancePolicy;
@@ -651,6 +655,15 @@ export namespace privateca_v1 {
      * Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      */
     requestId?: string | null;
+  }
+  /**
+   * The configuration used for encrypting data at rest.
+   */
+  export interface Schema$EncryptionSpec {
+    /**
+     * The resource name for a Cloud KMS key in the format `projects/x/locations/x/keyRings/x/cryptoKeys/x`.
+     */
+    cloudKmsKey?: string | null;
   }
   /**
    * Represents a textual expression in the Common Expression Language (CEL) syntax. CEL is a C-like expression language. The syntax and semantics of CEL are documented at https://github.com/google/cel-spec. Example (Comparison): title: "Summary size limit" description: "Determines if a summary is less than 100 chars" expression: "document.summary.size() < 100" Example (Equality): title: "Requestor is owner" description: "Determines if requestor is the document owner" expression: "document.owner == request.auth.claims.email" Example (Logic): title: "Public documents" description: "Determine whether the document should be publicly visible" expression: "document.type != 'private' && document.type != 'internal'" Example (Data Manipulation): title: "Notification string" description: "Create a notification string with a timestamp." expression: "'New message received at ' + string(document.create_time)" The exact variables and functions that may be referenced within an expression are determined by the service that evaluates it. See the service documentation for additional information.
@@ -1149,19 +1162,6 @@ export namespace privateca_v1 {
      * Optional. When true, publishes each CertificateAuthority's CRL and includes its URL in the "CRL Distribution Points" X.509 extension in all issued Certificates. If this is false, CRLs will not be published and the corresponding X.509 extension will not be written in issued certificates. CRLs will expire 7 days from their creation. However, we will rebuild daily. CRLs are also rebuilt shortly after a certificate is revoked.
      */
     publishCrl?: boolean | null;
-  }
-  /**
-   * Operation metadata returned by the CLH during resource state reconciliation.
-   */
-  export interface Schema$ReconciliationOperationMetadata {
-    /**
-     * DEPRECATED. Use exclusive_action instead.
-     */
-    deleteResource?: boolean | null;
-    /**
-     * Excluisive action returned by the CLH.
-     */
-    exclusiveAction?: string | null;
   }
   /**
    * RelativeDistinguishedName specifies a relative distinguished name which will be used to build a distinguished name.
@@ -1668,7 +1668,7 @@ export namespace privateca_v1 {
      *
      *   // Do the magic
      *   const res = await privateca.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -1796,7 +1796,7 @@ export namespace privateca_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -1874,6 +1874,7 @@ export namespace privateca_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "encryptionSpec": {},
      *       //   "issuancePolicy": {},
      *       //   "labels": {},
      *       //   "name": "my_name",
@@ -2318,6 +2319,7 @@ export namespace privateca_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "encryptionSpec": {},
      *   //   "issuancePolicy": {},
      *   //   "labels": {},
      *   //   "name": "my_name",
@@ -2749,6 +2751,7 @@ export namespace privateca_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "encryptionSpec": {},
      *       //   "issuancePolicy": {},
      *       //   "labels": {},
      *       //   "name": "my_name",

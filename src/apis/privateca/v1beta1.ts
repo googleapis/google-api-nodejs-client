@@ -294,19 +294,6 @@ export namespace privateca_v1beta1 {
     version?: number | null;
   }
   /**
-   * Operation metadata returned by the CLH during resource state reconciliation.
-   */
-  export interface Schema$ReconciliationOperationMetadata {
-    /**
-     * DEPRECATED. Use exclusive_action instead.
-     */
-    deleteResource?: boolean | null;
-    /**
-     * Excluisive action returned by the CLH.
-     */
-    exclusiveAction?: string | null;
-  }
-  /**
    * Request message for `SetIamPolicy` method.
    */
   export interface Schema$SetIamPolicyRequest {
@@ -550,7 +537,7 @@ export namespace privateca_v1beta1 {
      *
      *   // Do the magic
      *   const res = await privateca.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -678,7 +665,7 @@ export namespace privateca_v1beta1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**

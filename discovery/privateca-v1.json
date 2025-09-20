@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1611,7 +1611,7 @@
       }
     }
   },
-  "revision": "20250528",
+  "revision": "20250910",
   "rootUrl": "https://privateca.googleapis.com/",
   "schemas": {
     "AccessUrls": {
@@ -1797,6 +1797,10 @@
       "description": "A CaPool represents a group of CertificateAuthorities that form a trust anchor. A CaPool can be used to manage issuance policies for one or more CertificateAuthority resources and to rotate CA certificates in and out of the trust anchor.",
       "id": "CaPool",
       "properties": {
+        "encryptionSpec": {
+          "$ref": "EncryptionSpec",
+          "description": "Optional. When EncryptionSpec is provided, the Subject, SubjectAltNames, and the PEM-encoded certificate fields will be encrypted at rest."
+        },
         "issuancePolicy": {
           "$ref": "IssuancePolicy",
           "description": "Optional. The IssuancePolicy to control how Certificates will be issued from this CaPool."
@@ -2418,6 +2422,17 @@
       "properties": {
         "requestId": {
           "description": "Optional. An ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "EncryptionSpec": {
+      "description": "The configuration used for encrypting data at rest.",
+      "id": "EncryptionSpec",
+      "properties": {
+        "cloudKmsKey": {
+          "description": "The resource name for a Cloud KMS key in the format `projects/*/locations/*/keyRings/*/cryptoKeys/*`.",
           "type": "string"
         }
       },
@@ -3118,37 +3133,6 @@
         "publishCrl": {
           "description": "Optional. When true, publishes each CertificateAuthority's CRL and includes its URL in the \"CRL Distribution Points\" X.509 extension in all issued Certificates. If this is false, CRLs will not be published and the corresponding X.509 extension will not be written in issued certificates. CRLs will expire 7 days from their creation. However, we will rebuild daily. CRLs are also rebuilt shortly after a certificate is revoked.",
           "type": "boolean"
-        }
-      },
-      "type": "object"
-    },
-    "ReconciliationOperationMetadata": {
-      "description": "Operation metadata returned by the CLH during resource state reconciliation.",
-      "id": "ReconciliationOperationMetadata",
-      "properties": {
-        "deleteResource": {
-          "deprecated": true,
-          "description": "DEPRECATED. Use exclusive_action instead.",
-          "type": "boolean"
-        },
-        "exclusiveAction": {
-          "description": "Excluisive action returned by the CLH.",
-          "enum": [
-            "UNKNOWN_REPAIR_ACTION",
-            "DELETE",
-            "RETRY"
-          ],
-          "enumDeprecated": [
-            false,
-            true,
-            false
-          ],
-          "enumDescriptions": [
-            "Unknown repair action.",
-            "The resource has to be deleted. When using this bit, the CLH should fail the operation. DEPRECATED. Instead use DELETE_RESOURCE OperationSignal in SideChannel.",
-            "This resource could not be repaired but the repair should be tried again at a later time. This can happen if there is a dependency that needs to be resolved first- e.g. if a parent resource must be repaired before a child resource."
-          ],
-          "type": "string"
         }
       },
       "type": "object"
