@@ -23,6 +23,11 @@
       "description": "Regional Endpoint",
       "endpointUrl": "https://firestore.us-east7.rep.googleapis.com/",
       "location": "us-east7"
+    },
+    {
+      "description": "Regional Endpoint",
+      "endpointUrl": "https://batch-firestore.us-east7.rep.googleapis.com/",
+      "location": "us-east7"
     }
   ],
   "fullyEncodeReservedExpansion": true,
@@ -957,7 +962,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250830",
   "rootUrl": "https://firestore.googleapis.com/",
   "schemas": {
     "Aggregation": {
