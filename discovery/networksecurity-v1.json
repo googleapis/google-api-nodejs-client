@@ -1078,7 +1078,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5070,7 +5070,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20250822",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5632,7 +5632,7 @@
       "id": "AuthzPolicyTarget",
       "properties": {
         "loadBalancingScheme": {
-          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `INTERNAL_SELF_MANAGED`, and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -5648,7 +5648,7 @@
           "type": "string"
         },
         "resources": {
-          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied.",
+          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied. For policies created for Cloudrun, this field will reference the Cloud Run services.",
           "items": {
             "type": "string"
           },
@@ -5918,6 +5918,10 @@
           "description": "Optional. Description of the firewall endpoint. Max length 2048 characters.",
           "type": "string"
         },
+        "endpointSettings": {
+          "$ref": "FirewallEndpointEndpointSettings",
+          "description": "Optional. Settings for the endpoint."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -6059,6 +6063,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "FirewallEndpointEndpointSettings": {
+      "description": "Settings for the endpoint.",
+      "id": "FirewallEndpointEndpointSettings",
+      "properties": {},
       "type": "object"
     },
     "GatewaySecurityPolicy": {
