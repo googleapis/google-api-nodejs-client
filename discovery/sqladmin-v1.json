@@ -1565,6 +1565,21 @@
               "required": true,
               "type": "string"
             },
+            "mode": {
+              "description": "Optional. Reset SSL mode to use.",
+              "enum": [
+                "RESET_SSL_MODE_UNSPECIFIED",
+                "ALL",
+                "SYNC_FROM_PRIMARY"
+              ],
+              "enumDescriptions": [
+                "Reset SSL mode is not specified.",
+                "Refresh all TLS configs. This is the default behaviour.",
+                "Refreshes the replication-related TLS configuration settings provided by the primary instance. Not applicable to on-premises replication instances."
+              ],
+              "location": "query",
+              "type": "string"
+            },
             "project": {
               "description": "Project ID of the project that contains the instance.",
               "location": "path",
@@ -2635,7 +2650,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250908",
   "rootUrl": "https://sqladmin.googleapis.com/",
   "schemas": {
     "AclEntry": {
@@ -2751,7 +2766,7 @@
       "type": "object"
     },
     "Backup": {
-      "description": "A backup resource. Next ID: 30",
+      "description": "A backup resource.",
       "id": "Backup",
       "properties": {
         "backupInterval": {
@@ -4750,6 +4765,20 @@
           "description": "Optional. Name of the database on which the statement will be executed.",
           "type": "string"
         },
+        "partialResultMode": {
+          "description": "Optional. Controls how the API should respond when the SQL execution result exceeds 10 MB. The default mode is to throw an error.",
+          "enum": [
+            "PARTIAL_RESULT_MODE_UNSPECIFIED",
+            "FAIL_PARTIAL_RESULT",
+            "ALLOW_PARTIAL_RESULT"
+          ],
+          "enumDescriptions": [
+            "Unspecified mode, effectively the same as `FAIL_PARTIAL_RESULT`.",
+            "Throw an error if the result exceeds 10 MB. Don't return the result.",
+            "Return a truncated result and set `partial_result` to true if the result exceeds 10 MB. Don't throw an error."
+          ],
+          "type": "string"
+        },
         "rowLimit": {
           "description": "Optional. The maximum number of rows returned per SQL statement.",
           "format": "int64",
@@ -4757,6 +4786,10 @@
         },
         "sqlStatement": {
           "description": "Required. SQL statements to run on the database. It can be a single statement or a sequence of statements separated by semicolons.",
+          "type": "string"
+        },
+        "user": {
+          "description": "Optional. The name of an existing database user to connect to the database. When `auto_iam_authn` is set to true, this field is ignored and the API caller's IAM user is used.",
           "type": "string"
         }
       },
@@ -6029,6 +6062,21 @@
       },
       "type": "object"
     },
+    "Message": {
+      "description": "Represents a notice or warning message from the database.",
+      "id": "Message",
+      "properties": {
+        "message": {
+          "description": "The full message string. For PostgreSQL, this is a formatted string that may include severity, code, and the notice/warning message. For MySQL, this contains the warning message.",
+          "type": "string"
+        },
+        "severity": {
+          "description": "The severity of the message (e.g., \"NOTICE\" for PostgreSQL, \"WARNING\" for MySQL).",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "Metadata": {
       "description": "The additional metadata information regarding the execution of the SQL statements.",
       "id": "Metadata",
@@ -6808,6 +6856,38 @@
       },
       "type": "object"
     },
+    "ReadPoolAutoScaleConfig": {
+      "description": "The read pool auto-scale configuration.",
+      "id": "ReadPoolAutoScaleConfig",
+      "properties": {
+        "disableScaleIn": {
+          "description": "Indicates whether read pool auto scaling supports scale in operations (removing nodes).",
+          "type": "boolean"
+        },
+        "enabled": {
+          "description": "Indicates whether read pool auto scaling is enabled.",
+          "type": "boolean"
+        },
+        "maxNodeCount": {
+          "description": "Maximum number of read pool nodes to be maintained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "minNodeCount": {
+          "description": "Minimum number of read pool nodes to be maintained.",
+          "format": "int32",
+          "type": "integer"
+        },
+        "targetMetrics": {
+          "description": "Optional. Target metrics for read pool auto scaling.",
+          "items": {
+            "$ref": "TargetMetric"
+          },
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
     "ReplicaConfiguration": {
       "description": "Read-replica configuration for connecting to the primary instance.",
       "id": "ReplicaConfiguration",
@@ -7175,6 +7255,10 @@
           ],
           "type": "string"
         },
+        "readPoolAutoScaleConfig": {
+          "$ref": "ReadPoolAutoScaleConfig",
+          "description": "Optional. The read pool auto-scale configuration for the instance."
+        },
         "replicationLagMaxSeconds": {
           "description": "Optional. Configuration value for recreation of replica after certain replication lag",
           "format": "int32",
@@ -7351,7 +7435,8 @@
             "PSC_ONLY_INSTANCE_WITH_NO_NETWORK_ATTACHMENT_URI",
             "SELECTED_OBJECTS_REFERENCE_UNSELECTED_OBJECTS",
             "PROMPT_DELETE_EXISTING",
-            "WILL_DELETE_EXISTING"
+            "WILL_DELETE_EXISTING",
+            "PG_DDL_REPLICATION_INSUFFICIENT_PRIVILEGE"
           ],
           "enumDescriptions": [
             "",
@@ -7411,7 +7496,8 @@
             "PSC only destination instance does not have a network attachment URI.",
             "Selected objects reference unselected objects. Based on their object type (foreign key constraint or view), selected objects will fail during migration.",
             "The migration will delete existing data in the replica; set replica_overwrite_enabled in the request to acknowledge this. This is an error. MySQL only.",
-            "The migration will delete existing data in the replica; replica_overwrite_enabled was set in the request acknowledging this. This is a warning rather than an error. MySQL only."
+            "The migration will delete existing data in the replica; replica_overwrite_enabled was set in the request acknowledging this. This is a warning rather than an error. MySQL only.",
+            "The replication user is missing specific privileges to setup DDL replication. (e.g. CREATE EVENT TRIGGER, CREATE SCHEMA) for PostgreSQL."
           ],
           "type": "string"
         }
@@ -7433,6 +7519,13 @@
       "description": "Execute SQL statements response.",
       "id": "SqlInstancesExecuteSqlResponse",
       "properties": {
+        "messages": {
+          "description": "A list of notices and warnings generated during query execution. For PostgreSQL, this includes all notices and warnings. For MySQL, this includes warnings generated by the last executed statement. To retrieve all warnings for a multi-statement query, `SHOW WARNINGS` must be executed after each statement.",
+          "items": {
+            "$ref": "Message"
+          },
+          "type": "array"
+        },
         "metadata": {
           "$ref": "Metadata",
           "description": "The additional metadata information regarding the execution of the SQL statements."
@@ -7471,6 +7564,11 @@
       "description": "Instance get latest recovery time response.",
       "id": "SqlInstancesGetLatestRecoveryTimeResponse",
       "properties": {
+        "earliestRecoveryTime": {
+          "description": "Timestamp, identifies the earliest recovery time of the source instance.",
+          "format": "google-datetime",
+          "type": "string"
+        },
         "kind": {
           "description": "This is always `sql#getLatestRecoveryTime`.",
           "type": "string"
@@ -7946,6 +8044,22 @@
       },
       "type": "object"
     },
+    "TargetMetric": {
+      "description": "Target metric for read pool auto scaling.",
+      "id": "TargetMetric",
+      "properties": {
+        "metric": {
+          "description": "The metric name to be used for auto scaling.",
+          "type": "string"
+        },
+        "targetValue": {
+          "description": "The target value for the metric.",
+          "format": "float",
+          "type": "number"
+        }
+      },
+      "type": "object"
+    },
     "Tier": {
       "description": "A Google Cloud SQL service tier resource.",
       "id": "Tier",
@@ -8037,6 +8151,20 @@
         },
         "host": {
           "description": "Optional. The host from which the user can connect. For `insert` operations, host defaults to an empty string. For `update` operations, host is specified as part of the request URL. The host name cannot be updated after insertion. For a MySQL instance, it's required; for a PostgreSQL or SQL Server instance, it's optional.",
+          "type": "string"
+        },
+        "iamStatus": {
+          "description": "Indicates if a group is active or inactive for IAM database authentication.",
+          "enum": [
+            "IAM_STATUS_UNSPECIFIED",
+            "INACTIVE",
+            "ACTIVE"
+          ],
+          "enumDescriptions": [
+            "The default value for users that are not of type CLOUD_IAM_GROUP. Only CLOUD_IAM_GROUP users will be inactive or active. Users with an IamStatus of IAM_STATUS_UNSPECIFIED will not display whether they are active or inactive as that is not applicable to them.",
+            "INACTIVE indicates a group is not available for IAM database authentication.",
+            "ACTIVE indicates a group is available for IAM database authentication."
+          ],
           "type": "string"
         },
         "instance": {
