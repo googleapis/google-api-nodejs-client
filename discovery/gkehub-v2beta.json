@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -477,7 +477,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250907",
   "rootUrl": "https://gkehub.googleapis.com/",
   "schemas": {
     "AppDevExperienceState": {
@@ -626,8 +626,7 @@
             "IN_PROGRESS",
             "SOAKING",
             "FORCED_SOAKING",
-            "COMPLETE",
-            "FORCED_COMPLETE"
+            "COMPLETE"
           ],
           "enumDescriptions": [
             "Required by https://linter.aip.dev/126/unspecified.",
@@ -636,8 +635,7 @@
             "The upgrade is in progress. At the scope level, this means the upgrade is in progress for at least one cluster in the scope.",
             "The upgrade has finished and is soaking until the soaking time is up. At the scope level, this means at least one cluster is in soaking while the rest are either soaking or complete.",
             "A cluster will be forced to enter soaking if an upgrade doesn't finish within a certain limit, despite it's actual status.",
-            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status.",
-            "The upgrade was forced into soaking and the soaking time has passed. This is the equivalent of COMPLETE status for upgrades that were forced into soaking."
+            "The upgrade has passed all post conditions (soaking). At the scope level, this means all eligible clusters are in COMPLETE status."
           ],
           "type": "string"
         },
