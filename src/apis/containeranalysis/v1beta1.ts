@@ -673,7 +673,7 @@ export namespace containeranalysis_v1beta1 {
    */
   export interface Schema$ContaineranalysisGoogleDevtoolsCloudbuildV1ArtifactsNpmPackage {
     /**
-     * Path to the package.json. e.g. workspace/path/to/package
+     * Optional. Path to the package.json. e.g. workspace/path/to/package Only one of `archive` or `package_path` can be specified.
      */
     packagePath?: string | null;
     /**
@@ -1942,6 +1942,15 @@ export namespace containeranalysis_v1beta1 {
     fileHash?: Schema$Hash[];
   }
   /**
+   * Indicates the location at which a package was found.
+   */
+  export interface Schema$FileLocation {
+    /**
+     * For jars that are contained inside .war files, this filepath can indicate the path to war file combined with the path to jar file.
+     */
+    filePath?: string | null;
+  }
+  /**
    * FileNote represents an SPDX File Information section: https://spdx.github.io/spdx-spec/4-file-information/
    */
   export interface Schema$FileNote {
@@ -2551,6 +2560,10 @@ export namespace containeranalysis_v1beta1 {
      */
     sbomReference?: Schema$SBOMReferenceNote;
     /**
+     * A note describing a secret.
+     */
+    secret?: Schema$SecretNote;
+    /**
      * A one sentence description of this note.
      */
     shortDescription?: string | null;
@@ -2647,6 +2660,10 @@ export namespace containeranalysis_v1beta1 {
      * Describes a specific SBOM reference occurrences.
      */
     sbomReference?: Schema$SBOMReferenceOccurrence;
+    /**
+     * Describes a secret.
+     */
+    secret?: Schema$SecretOccurrence;
     /**
      * Describes a specific SPDX File.
      */
@@ -3147,6 +3164,53 @@ export namespace containeranalysis_v1beta1 {
      * The progress of the SBOM generation.
      */
     sbomState?: string | null;
+  }
+  /**
+   * The location of the secret.
+   */
+  export interface Schema$SecretLocation {
+    /**
+     * The secret is found from a file.
+     */
+    fileLocation?: Schema$FileLocation;
+  }
+  /**
+   * The note representing a secret.
+   */
+  export interface Schema$SecretNote {}
+  /**
+   * The occurrence provides details of a secret.
+   */
+  export interface Schema$SecretOccurrence {
+    /**
+     * Required. Type of secret.
+     */
+    kind?: string | null;
+    /**
+     * Optional. Locations where the secret is detected.
+     */
+    locations?: Schema$SecretLocation[];
+    /**
+     * Optional. Status of the secret.
+     */
+    statuses?: Schema$SecretStatus[];
+  }
+  /**
+   * The status of the secret with a timestamp.
+   */
+  export interface Schema$SecretStatus {
+    /**
+     * Optional. Optional message about the status code.
+     */
+    message?: string | null;
+    /**
+     * Optional. The status of the secret.
+     */
+    status?: string | null;
+    /**
+     * Optional. The time the secret status was last updated.
+     */
+    updateTime?: string | null;
   }
   /**
    * Request message for `SetIamPolicy` method.
@@ -3753,6 +3817,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -3783,6 +3848,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -4076,6 +4142,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -4531,6 +4598,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -4561,6 +4629,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -5475,6 +5544,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "resource": {},
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -5503,6 +5573,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -5794,6 +5865,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -6100,6 +6172,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -6564,6 +6637,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "resource": {},
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -6592,6 +6666,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -7677,6 +7752,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -7707,6 +7783,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -8000,6 +8077,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -8455,6 +8533,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "relatedUrl": [],
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "shortDescription": "my_shortDescription",
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
@@ -8485,6 +8564,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -9392,6 +9472,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "resource": {},
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -9420,6 +9501,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -9711,6 +9793,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
@@ -10014,6 +10097,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "relatedUrl": [],
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "shortDescription": "my_shortDescription",
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
@@ -10476,6 +10560,7 @@ export namespace containeranalysis_v1beta1 {
      *       //   "resource": {},
      *       //   "sbom": {},
      *       //   "sbomReference": {},
+     *       //   "secret": {},
      *       //   "spdxFile": {},
      *       //   "spdxPackage": {},
      *       //   "spdxRelationship": {},
@@ -10504,6 +10589,7 @@ export namespace containeranalysis_v1beta1 {
      *   //   "resource": {},
      *   //   "sbom": {},
      *   //   "sbomReference": {},
+     *   //   "secret": {},
      *   //   "spdxFile": {},
      *   //   "spdxPackage": {},
      *   //   "spdxRelationship": {},
