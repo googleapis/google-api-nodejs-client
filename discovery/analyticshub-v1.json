@@ -1247,7 +1247,7 @@
       }
     }
   },
-  "revision": "20250807",
+  "revision": "20250901",
   "rootUrl": "https://analyticshub.googleapis.com/",
   "schemas": {
     "ApproveQueryTemplateRequest": {
@@ -1357,6 +1357,21 @@
         "dataset": {
           "description": "Optional. Resource name of the dataset source for this listing. e.g. `projects/myproject/datasets/123`",
           "type": "string"
+        },
+        "effectiveReplicas": {
+          "description": "Output only. Server-owned effective state of replicas. Contains both primary and secondary replicas. Each replica includes a system-computed (output-only) state and primary designation.",
+          "items": {
+            "$ref": "Replica"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "replicaLocations": {
+          "description": "Optional. A list of regions where the publisher has created shared dataset replicas.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "restrictedExportPolicy": {
           "$ref": "RestrictedExportPolicy",
@@ -1585,6 +1600,13 @@
         "location": {
           "description": "Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.",
           "type": "string"
+        },
+        "replicaLocations": {
+          "description": "Optional. The geographic locations where the dataset should be replicated. See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) for supported locations.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         }
       },
       "type": "object"
@@ -2434,6 +2456,46 @@
         "subscription": {
           "$ref": "Subscription",
           "description": "The refreshed subscription resource."
+        }
+      },
+      "type": "object"
+    },
+    "Replica": {
+      "description": "Represents the state of a replica of a shared dataset. It includes the geographic location of the replica and system-computed, output-only fields indicating its replication state and whether it is the primary replica.",
+      "id": "Replica",
+      "properties": {
+        "location": {
+          "description": "Output only. The geographic location where the replica resides. See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) for supported locations. Eg. \"us-central1\".",
+          "readOnly": true,
+          "type": "string"
+        },
+        "primaryState": {
+          "description": "Output only. Indicates that this replica is the primary replica.",
+          "enum": [
+            "PRIMARY_STATE_UNSPECIFIED",
+            "PRIMARY_REPLICA"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The replica is the primary replica."
+          ],
+          "readOnly": true,
+          "type": "string"
+        },
+        "replicaState": {
+          "description": "Output only. Assigned by Analytics Hub based on real BigQuery replication state.",
+          "enum": [
+            "REPLICA_STATE_UNSPECIFIED",
+            "READY_TO_USE",
+            "UNAVAILABLE"
+          ],
+          "enumDescriptions": [
+            "Default value. This value is unused.",
+            "The replica is backfilled and ready to use.",
+            "The replica is unavailable, does not exist, or has not been backfilled yet."
+          ],
+          "readOnly": true,
+          "type": "string"
         }
       },
       "type": "object"

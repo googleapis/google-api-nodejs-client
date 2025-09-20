@@ -207,6 +207,14 @@ export namespace analyticshub_v1 {
      */
     dataset?: string | null;
     /**
+     * Output only. Server-owned effective state of replicas. Contains both primary and secondary replicas. Each replica includes a system-computed (output-only) state and primary designation.
+     */
+    effectiveReplicas?: Schema$Replica[];
+    /**
+     * Optional. A list of regions where the publisher has created shared dataset replicas.
+     */
+    replicaLocations?: string[] | null;
+    /**
      * Optional. If set, restricted export policy will be propagated and enforced on the linked dataset.
      */
     restrictedExportPolicy?: Schema$RestrictedExportPolicy;
@@ -389,6 +397,10 @@ export namespace analyticshub_v1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
+    /**
+     * Optional. The geographic locations where the dataset should be replicated. See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) for supported locations.
+     */
+    replicaLocations?: string[] | null;
   }
   export interface Schema$DestinationDatasetReference {
     /**
@@ -989,6 +1001,23 @@ export namespace analyticshub_v1 {
      * The refreshed subscription resource.
      */
     subscription?: Schema$Subscription;
+  }
+  /**
+   * Represents the state of a replica of a shared dataset. It includes the geographic location of the replica and system-computed, output-only fields indicating its replication state and whether it is the primary replica.
+   */
+  export interface Schema$Replica {
+    /**
+     * Output only. The geographic location where the replica resides. See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) for supported locations. Eg. "us-central1".
+     */
+    location?: string | null;
+    /**
+     * Output only. Indicates that this replica is the primary replica.
+     */
+    primaryState?: string | null;
+    /**
+     * Output only. Assigned by Analytics Hub based on real BigQuery replication state.
+     */
+    replicaState?: string | null;
   }
   /**
    * Restricted export config, used to configure restricted export on linked dataset.
