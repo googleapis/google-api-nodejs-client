@@ -1786,7 +1786,7 @@
                   ],
                   "parameters": {
                     "name": {
-                      "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+                      "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
                       "location": "path",
                       "pattern": "^projects/[^/]+/instances/[^/]+/materializedViews/[^/]+$",
                       "required": true,
@@ -3029,7 +3029,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -3077,7 +3077,7 @@
       }
     }
   },
-  "revision": "20250811",
+  "revision": "20250828",
   "rootUrl": "https://bigtableadmin.googleapis.com/",
   "schemas": {
     "AppProfile": {
@@ -4941,19 +4941,19 @@
       "id": "MaterializedView",
       "properties": {
         "deletionProtection": {
-          "description": "Set to true to make the MaterializedView protected against deletion.",
+          "description": "Set to true to make the MaterializedView protected against deletion. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "boolean"
         },
         "etag": {
-          "description": "Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.",
+          "description": "Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "string"
         },
         "name": {
-          "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}`",
+          "description": "Identifier. The unique name of the materialized view. Format: `projects/{project}/instances/{instance}/materializedViews/{materialized_view}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.",
           "type": "string"
         },
         "query": {
-          "description": "Required. Immutable. The materialized view's select query.",
+          "description": "Required. Immutable. The materialized view's select query. Views: `SCHEMA_VIEW`, `FULL`.",
           "type": "string"
         }
       },
