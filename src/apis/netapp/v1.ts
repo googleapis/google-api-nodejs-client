@@ -1145,6 +1145,10 @@ export namespace netapp_v1 {
      */
     allowedClients?: string | null;
     /**
+     * Optional. An integer representing the anonymous user ID. Range is 0 to 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.
+     */
+    anonUid?: string | null;
+    /**
      * Whether Unix root access will be granted.
      */
     hasRootAccess?: string | null;
@@ -1180,6 +1184,10 @@ export namespace netapp_v1 {
      * NFS V4 protocol.
      */
     nfsv4?: boolean | null;
+    /**
+     * Optional. Defines how user identity squashing is applied for this export rule. This field is the preferred way to configure squashing behavior and takes precedence over `has_root_access` if both are provided.
+     */
+    squashMode?: string | null;
   }
   /**
    * Snapshot is a point-in-time version of a Volume's content.
@@ -1286,6 +1294,10 @@ export namespace netapp_v1 {
      */
     capacityGib?: string | null;
     /**
+     * Output only. Total cold tier data rounded down to the nearest GiB used by the storage pool.
+     */
+    coldTierSizeUsedGib?: string | null;
+    /**
      * Output only. Create time of the storage pool
      */
     createTime?: string | null;
@@ -1313,6 +1325,10 @@ export namespace netapp_v1 {
      * Optional. Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.
      */
     hotTierSizeGib?: string | null;
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by the storage pool.
+     */
+    hotTierSizeUsedGib?: string | null;
     /**
      * Optional. Specifies the KMS config to be used for volume encryption.
      */
@@ -1527,6 +1543,10 @@ export namespace netapp_v1 {
      * Output only. Indicates whether the volume is part of a replication relationship.
      */
     hasReplication?: boolean | null;
+    /**
+     * Output only. Total hot tier data rounded down to the nearest GiB used by the Volume. This field is only used for flex Service Level
+     */
+    hotTierSizeUsedGib?: string | null;
     /**
      * Optional. The Hybrid Replication parameters for the volume.
      */
@@ -1879,7 +1899,7 @@ export namespace netapp_v1 {
      *
      *   // Do the magic
      *   const res = await netapp.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2007,7 +2027,7 @@ export namespace netapp_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -7192,6 +7212,7 @@ export namespace netapp_v1 {
      *       //   "allowAutoTiering": false,
      *       //   "availableThroughputMibps": {},
      *       //   "capacityGib": "my_capacityGib",
+     *       //   "coldTierSizeUsedGib": "my_coldTierSizeUsedGib",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceEnabled": false,
      *       //   "description": "my_description",
@@ -7199,6 +7220,7 @@ export namespace netapp_v1 {
      *       //   "encryptionType": "my_encryptionType",
      *       //   "globalAccessAllowed": false,
      *       //   "hotTierSizeGib": "my_hotTierSizeGib",
+     *       //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *       //   "kmsConfig": "my_kmsConfig",
      *       //   "labels": {},
      *       //   "ldapEnabled": false,
@@ -7507,6 +7529,7 @@ export namespace netapp_v1 {
      *   //   "allowAutoTiering": false,
      *   //   "availableThroughputMibps": {},
      *   //   "capacityGib": "my_capacityGib",
+     *   //   "coldTierSizeUsedGib": "my_coldTierSizeUsedGib",
      *   //   "createTime": "my_createTime",
      *   //   "customPerformanceEnabled": false,
      *   //   "description": "my_description",
@@ -7514,6 +7537,7 @@ export namespace netapp_v1 {
      *   //   "encryptionType": "my_encryptionType",
      *   //   "globalAccessAllowed": false,
      *   //   "hotTierSizeGib": "my_hotTierSizeGib",
+     *   //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *   //   "kmsConfig": "my_kmsConfig",
      *   //   "labels": {},
      *   //   "ldapEnabled": false,
@@ -7820,6 +7844,7 @@ export namespace netapp_v1 {
      *       //   "allowAutoTiering": false,
      *       //   "availableThroughputMibps": {},
      *       //   "capacityGib": "my_capacityGib",
+     *       //   "coldTierSizeUsedGib": "my_coldTierSizeUsedGib",
      *       //   "createTime": "my_createTime",
      *       //   "customPerformanceEnabled": false,
      *       //   "description": "my_description",
@@ -7827,6 +7852,7 @@ export namespace netapp_v1 {
      *       //   "encryptionType": "my_encryptionType",
      *       //   "globalAccessAllowed": false,
      *       //   "hotTierSizeGib": "my_hotTierSizeGib",
+     *       //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *       //   "kmsConfig": "my_kmsConfig",
      *       //   "labels": {},
      *       //   "ldapEnabled": false,
@@ -8411,6 +8437,7 @@ export namespace netapp_v1 {
      *       //   "encryptionType": "my_encryptionType",
      *       //   "exportPolicy": {},
      *       //   "hasReplication": false,
+     *       //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *       //   "hybridReplicationParameters": {},
      *       //   "kerberosEnabled": false,
      *       //   "kmsConfig": "my_kmsConfig",
@@ -8738,6 +8765,7 @@ export namespace netapp_v1 {
      *   //   "encryptionType": "my_encryptionType",
      *   //   "exportPolicy": {},
      *   //   "hasReplication": false,
+     *   //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *   //   "hybridReplicationParameters": {},
      *   //   "kerberosEnabled": false,
      *   //   "kmsConfig": "my_kmsConfig",
@@ -9059,6 +9087,7 @@ export namespace netapp_v1 {
      *       //   "encryptionType": "my_encryptionType",
      *       //   "exportPolicy": {},
      *       //   "hasReplication": false,
+     *       //   "hotTierSizeUsedGib": "my_hotTierSizeUsedGib",
      *       //   "hybridReplicationParameters": {},
      *       //   "kerberosEnabled": false,
      *       //   "kmsConfig": "my_kmsConfig",

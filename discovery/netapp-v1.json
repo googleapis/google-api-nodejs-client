@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -2270,7 +2270,7 @@
       }
     }
   },
-  "revision": "20250817",
+  "revision": "20250908",
   "rootUrl": "https://netapp.googleapis.com/",
   "schemas": {
     "ActiveDirectory": {
@@ -3900,6 +3900,11 @@
           "description": "Comma separated list of allowed clients IP addresses",
           "type": "string"
         },
+        "anonUid": {
+          "description": "Optional. An integer representing the anonymous user ID. Range is 0 to 4294967295. Required when squash_mode is ROOT_SQUASH or ALL_SQUASH.",
+          "format": "int64",
+          "type": "string"
+        },
         "hasRootAccess": {
           "description": "Whether Unix root access will be granted.",
           "type": "string"
@@ -3935,6 +3940,22 @@
         "nfsv4": {
           "description": "NFS V4 protocol.",
           "type": "boolean"
+        },
+        "squashMode": {
+          "description": "Optional. Defines how user identity squashing is applied for this export rule. This field is the preferred way to configure squashing behavior and takes precedence over `has_root_access` if both are provided.",
+          "enum": [
+            "SQUASH_MODE_UNSPECIFIED",
+            "NO_ROOT_SQUASH",
+            "ROOT_SQUASH",
+            "ALL_SQUASH"
+          ],
+          "enumDescriptions": [
+            "Defaults to NO_ROOT_SQUASH.",
+            "The root user (UID 0) retains full access. Other users are unaffected.",
+            "The root user (UID 0) is squashed to anonymous user ID. Other users are unaffected.",
+            "All users are squashed to anonymous user ID."
+          ],
+          "type": "string"
         }
       },
       "type": "object"
@@ -4089,6 +4110,12 @@
           "format": "int64",
           "type": "string"
         },
+        "coldTierSizeUsedGib": {
+          "description": "Output only. Total cold tier data rounded down to the nearest GiB used by the storage pool.",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
+        },
         "createTime": {
           "description": "Output only. Create time of the storage pool",
           "format": "google-datetime",
@@ -4130,6 +4157,12 @@
         "hotTierSizeGib": {
           "description": "Optional. Total hot tier capacity for the Storage Pool. It is applicable only to Flex service level. It should be less than the minimum storage pool size and cannot be more than the current storage pool size. It cannot be decreased once set.",
           "format": "int64",
+          "type": "string"
+        },
+        "hotTierSizeUsedGib": {
+          "description": "Output only. Total hot tier data rounded down to the nearest GiB used by the storage pool.",
+          "format": "int64",
+          "readOnly": true,
           "type": "string"
         },
         "kmsConfig": {
@@ -4471,6 +4504,12 @@
           "description": "Output only. Indicates whether the volume is part of a replication relationship.",
           "readOnly": true,
           "type": "boolean"
+        },
+        "hotTierSizeUsedGib": {
+          "description": "Output only. Total hot tier data rounded down to the nearest GiB used by the Volume. This field is only used for flex Service Level",
+          "format": "int64",
+          "readOnly": true,
+          "type": "string"
         },
         "hybridReplicationParameters": {
           "$ref": "HybridReplicationParameters",
