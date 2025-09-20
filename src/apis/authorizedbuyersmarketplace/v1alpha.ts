@@ -359,7 +359,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
    */
   export interface Schema$DataSegment {
     /**
-     * Required. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed.
+     * Optional. A fixed fee charged per thousand impressions. Once set, the currency code cannot be changed.
      */
     cpmFee?: Schema$Money;
     /**
@@ -1187,7 +1187,7 @@ export namespace authorizedbuyersmarketplace_v1alpha {
      */
     geoTargeting?: Schema$CriteriaTargeting;
     /**
-     * Inventory sizes to be targeted.
+     * Inventory sizes to be targeted. Only PIXEL inventory size type is supported.
      */
     inventorySizeTargeting?: Schema$InventorySizeTargeting;
     /**

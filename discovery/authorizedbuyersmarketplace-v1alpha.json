@@ -1550,7 +1550,7 @@
       }
     }
   },
-  "revision": "20250616",
+  "revision": "20250910",
   "rootUrl": "https://authorizedbuyersmarketplace.googleapis.com/",
   "schemas": {
     "AcceptProposalRequest": {
@@ -1974,7 +1974,7 @@
       "properties": {
         "cpmFee": {
           "$ref": "Money",
-          "description": "Required. This will be charged when other accounts use this data segment. For example, when other accounts add this data segment to a deal or auction package. Once set, the currency code cannot be changed."
+          "description": "Optional. A fixed fee charged per thousand impressions. Once set, the currency code cannot be changed."
         },
         "createTime": {
           "description": "Output only. Time the data segment was created.",
@@ -3315,7 +3315,7 @@
         },
         "inventorySizeTargeting": {
           "$ref": "InventorySizeTargeting",
-          "description": "Inventory sizes to be targeted."
+          "description": "Inventory sizes to be targeted. Only PIXEL inventory size type is supported."
         },
         "note": {
           "description": "A message that is sent to the publisher. Maximum length is 1024 characters.",
