@@ -2345,7 +2345,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250826",
   "rootUrl": "https://datamigration.googleapis.com/",
   "schemas": {
     "AlloyDbConnectionProfile": {
@@ -6482,9 +6482,18 @@
           "description": "If the source is a Cloud SQL database, use this field to provide the Cloud SQL instance ID of the source.",
           "type": "string"
         },
+        "cloudSqlProjectId": {
+          "description": "Optional. The project id of the Cloud SQL instance. If not provided, the project id of the connection profile will be used.",
+          "type": "string"
+        },
         "database": {
           "description": "Required. The name of the specific database within the host.",
           "type": "string"
+        },
+        "dbmPort": {
+          "description": "Optional. The Database Mirroring (DBM) port of the source SQL Server instance.",
+          "format": "int32",
+          "type": "integer"
         },
         "forwardSshConnectivity": {
           "$ref": "ForwardSshTunnelConnectivity",
@@ -6531,6 +6540,21 @@
       },
       "type": "object"
     },
+    "SqlServerDagConfig": {
+      "description": "Configuration for distributed availability group (DAG) for the SQL Server homogeneous migration.",
+      "id": "SqlServerDagConfig",
+      "properties": {
+        "linkedServer": {
+          "description": "Required. The name of the linked server that points to the source SQL Server instance. Only used by DAG migrations.",
+          "type": "string"
+        },
+        "sourceAg": {
+          "description": "Required. The name of the source availability group. Only used by DAG migrations.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "SqlServerDatabaseBackup": {
       "description": "Specifies the backup details for a single database in Cloud Storage for homogeneous migration to Cloud SQL for SQL Server.",
       "id": "SqlServerDatabaseBackup",
@@ -6572,6 +6596,10 @@
         "backupFilePattern": {
           "description": "Required. Pattern that describes the default backup naming strategy. The specified pattern should ensure lexicographical order of backups. The pattern must define one of the following capture group sets: Capture group set #1 yy/yyyy - year, 2 or 4 digits mm - month number, 1-12 dd - day of month, 1-31 hh - hour of day, 00-23 mi - minutes, 00-59 ss - seconds, 00-59 Example: For backup file TestDB_20230802_155400.trn, use pattern: (?.*)_backup_(?\\d{4})(?\\d{2})(?\\d{2})_(?\\d{2})(?\\d{2})(?\\d{2}).trn Capture group set #2 timestamp - unix timestamp Example: For backup file TestDB.1691448254.trn, use pattern: (?.*)\\.(?\\d*).trn or (?.*)\\.(?\\d*).trn",
           "type": "string"
+        },
+        "dagConfig": {
+          "$ref": "SqlServerDagConfig",
+          "description": "Optional. Configuration for distributed availability group (DAG) for the SQL Server homogeneous migration."
         },
         "databaseBackups": {
           "description": "Required. Backup details per database in Cloud Storage.",
