@@ -446,6 +446,51 @@ export namespace merchantapi_accounts_v1 {
     allowShippingImprovements?: boolean | null;
   }
   /**
+   * Request message for the `BatchCreateRegions` method.
+   */
+  export interface Schema$BatchCreateRegionsRequest {
+    /**
+     * Required. The region(s) to create. The maximum number of regions that can be created in a batch is 100.
+     */
+    requests?: Schema$CreateRegionRequest[];
+  }
+  /**
+   * Response message for the `BatchCreateRegions` method.
+   */
+  export interface Schema$BatchCreateRegionsResponse {
+    /**
+     * The created region(s).
+     */
+    regions?: Schema$Region[];
+  }
+  /**
+   * Request message for the `BatchDeleteRegions` method.
+   */
+  export interface Schema$BatchDeleteRegionsRequest {
+    /**
+     * Required. The names of the regions to delete. A maximum of 100 regions can be deleted in a batch.
+     */
+    requests?: Schema$DeleteRegionRequest[];
+  }
+  /**
+   * Request message for the `BatchUpdateRegions` method.
+   */
+  export interface Schema$BatchUpdateRegionsRequest {
+    /**
+     * Required. The region(s) to update. The maximum number of regions that can be updated in a batch is 100.
+     */
+    requests?: Schema$UpdateRegionRequest[];
+  }
+  /**
+   * Response message for the `BatchUpdateRegions` method.
+   */
+  export interface Schema$BatchUpdateRegionsResponse {
+    /**
+     * The updated region(s).
+     */
+    regions?: Schema$Region[];
+  }
+  /**
    * Business days of the warehouse.
    */
   export interface Schema$BusinessDayConfig {
@@ -613,6 +658,23 @@ export namespace merchantapi_accounts_v1 {
     user?: Schema$AddUser[];
   }
   /**
+   * Request message for the `CreateRegion` method.
+   */
+  export interface Schema$CreateRegionRequest {
+    /**
+     * Required. The account to create a region for. Format: `accounts/{account\}`
+     */
+    parent?: string | null;
+    /**
+     * Required. The region to create.
+     */
+    region?: Schema$Region;
+    /**
+     * Required. The identifier for the region, unique over all regions of the same account.
+     */
+    regionId?: string | null;
+  }
+  /**
    * Customer service information.
    */
   export interface Schema$CustomerService {
@@ -679,6 +741,15 @@ export namespace merchantapi_accounts_v1 {
      * Year of the date. Must be from 1 to 9999, or 0 to specify a date without a year.
      */
     year?: number | null;
+  }
+  /**
+   * Request message for the `DeleteRegion` method.
+   */
+  export interface Schema$DeleteRegionRequest {
+    /**
+     * Required. The name of the region to delete. Format: `accounts/{account\}/regions/{region\}`
+     */
+    name?: string | null;
   }
   /**
    * Time spent in various aspects from order to the delivery of the product.
@@ -818,6 +889,15 @@ export namespace merchantapi_accounts_v1 {
      * Required. A non-empty list of [location IDs](https://developers.google.com/adwords/api/docs/appendix/geotargeting). They must all be of the same location type (for example, state).
      */
     geotargetCriteriaIds?: string[] | null;
+  }
+  /**
+   * Response message for the GetAccountForGcpRegistration method.
+   */
+  export interface Schema$GetAccountForGcpRegistrationResponse {
+    /**
+     * The name of the merchant account id that the GCP is registered with.
+     */
+    name?: string | null;
   }
   /**
    * The current status of establishing of the service. (for example, pending approval or approved).
@@ -1560,7 +1640,7 @@ export namespace merchantapi_accounts_v1 {
     resourceType?: string | null;
   }
   /**
-   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
+   * Defines participation in a given program for the specified account. Programs provide a mechanism for adding functionality to a Merchant Center accounts. A typical example of this is the [Free product listings](https://support.google.com/merchants/answer/13889434) program, which enables products from a business's store to be shown across Google for free. The following list is the available set of program resource IDs accessible through the API: * `checkout` * `free-listings` * `shopping-ads` * `youtube-shopping-checkout`
    */
   export interface Schema$Program {
     /**
@@ -1660,7 +1740,7 @@ export namespace merchantapi_accounts_v1 {
    */
   export interface Schema$RegisterGcpRequest {
     /**
-     * Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have "API developer" access type and the email preference corresponding to that user will be updated to have the new "API notifications" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new "API notifications" preference
+     * Immutable. If the developer email provided is associated with a user in the merchant account provided, the user will be updated to have "API developer" access type and the email preference corresponding to that user will be updated to have the new "API notifications" preference. If the developer email provided is not associated with any user we will just add it as a contact. The email preference corresponding to that contact will have the new "API notifications" preference. Make sure the email used is associated with a Google Account (Google Workspace account or Gmail account) and is not a service account as service accounts can't receive emails.
      */
     developerEmail?: string | null;
   }
@@ -2016,6 +2096,19 @@ export namespace merchantapi_accounts_v1 {
    * Request message for the UnregisterGCP method.
    */
   export interface Schema$UnregisterGcpRequest {}
+  /**
+   * Request message for the `UpdateRegion` method.
+   */
+  export interface Schema$UpdateRegionRequest {
+    /**
+     * Required. The updated region.
+     */
+    region?: Schema$Region;
+    /**
+     * Optional. The comma-separated field mask indicating the fields to update. Example: `"displayName,postalCodeArea.regionCode"`.
+     */
+    updateMask?: string | null;
+  }
   /**
    * URL settings for cart or checkout URL.
    */
@@ -2628,6 +2721,149 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
+     * Retrieves the merchant account that the calling GCP is registered with.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.getAccountForGcpRegistration({});
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "name": "my_name"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Getaccountforgcpregistration,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    getAccountForGcpRegistration(
+      params?: Params$Resource$Accounts$Getaccountforgcpregistration,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
+    >;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Getaccountforgcpregistration,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Getaccountforgcpregistration,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>,
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      params: Params$Resource$Accounts$Getaccountforgcpregistration,
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      callback: BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+    ): void;
+    getAccountForGcpRegistration(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Getaccountforgcpregistration
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GetAccountForGcpRegistrationResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GetAccountForGcpRegistrationResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Getaccountforgcpregistration;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Getaccountforgcpregistration;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1/accounts:getAccountForGcpRegistration'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: [],
+        pathParams: [],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GetAccountForGcpRegistrationResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Note: For the `accounts.list` method, quota and limits usage are charged for each user, and not for the Merchant Center ID or the advanced account ID. To list several sub-accounts, you should use the `accounts.listSubaccounts` method, which is more suitable for advanced accounts use case.
      * @example
      * ```js
@@ -3098,6 +3334,8 @@ export namespace merchantapi_accounts_v1 {
      */
     name?: string;
   }
+  export interface Params$Resource$Accounts$Getaccountforgcpregistration
+    extends StandardParameters {}
   export interface Params$Resource$Accounts$List extends StandardParameters {
     /**
      * Optional. Returns only accounts that match the [filter](https://developers.google.com/merchant/api/guides/accounts/filter). For more details, see the [filter syntax reference](https://developers.google.com/merchant/api/guides/accounts/filter-syntax).
@@ -9570,6 +9808,444 @@ export namespace merchantapi_accounts_v1 {
     }
 
     /**
+     * Creates one or more regions in your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.batchCreate({
+     *     // Required. The account to create one or more regions for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchCreate(
+      params: Params$Resource$Accounts$Regions$Batchcreate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchCreate(
+      params?: Params$Resource$Accounts$Regions$Batchcreate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateRegionsResponse>>;
+    batchCreate(
+      params: Params$Resource$Accounts$Regions$Batchcreate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Accounts$Regions$Batchcreate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchCreateRegionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+    ): void;
+    batchCreate(
+      params: Params$Resource$Accounts$Regions$Batchcreate,
+      callback: BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+    ): void;
+    batchCreate(
+      callback: BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+    ): void;
+    batchCreate(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Regions$Batchcreate
+        | BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchCreateRegionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchCreateRegionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Regions$Batchcreate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Regions$Batchcreate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1/{+parent}/regions:batchCreate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchCreateRegionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchCreateRegionsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Deletes multiple regions by name from your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.batchDelete({
+     *     // Required. The account to delete one or more regions from. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchDelete(
+      params: Params$Resource$Accounts$Regions$Batchdelete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchDelete(
+      params?: Params$Resource$Accounts$Regions$Batchdelete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Empty>>;
+    batchDelete(
+      params: Params$Resource$Accounts$Regions$Batchdelete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Accounts$Regions$Batchdelete,
+      options: MethodOptions | BodyResponseCallback<Schema$Empty>,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    batchDelete(
+      params: Params$Resource$Accounts$Regions$Batchdelete,
+      callback: BodyResponseCallback<Schema$Empty>
+    ): void;
+    batchDelete(callback: BodyResponseCallback<Schema$Empty>): void;
+    batchDelete(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Regions$Batchdelete
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Empty>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Empty>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Regions$Batchdelete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Regions$Batchdelete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1/{+parent}/regions:batchDelete'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Empty>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Empty>(parameters);
+      }
+    }
+
+    /**
+     * Updates one or more regions in your Merchant Center account. Executing this method requires admin access.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/merchantapi.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const merchantapi = google.merchantapi('accounts_v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/content'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await merchantapi.accounts.regions.batchUpdate({
+     *     // Required. The account to update one or more regions for. Format: `accounts/{account\}`
+     *     parent: 'accounts/my-account',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "requests": []
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "regions": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    batchUpdate(
+      params: Params$Resource$Accounts$Regions$Batchupdate,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    batchUpdate(
+      params?: Params$Resource$Accounts$Regions$Batchupdate,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateRegionsResponse>>;
+    batchUpdate(
+      params: Params$Resource$Accounts$Regions$Batchupdate,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Accounts$Regions$Batchupdate,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateRegionsResponse>,
+      callback: BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+    ): void;
+    batchUpdate(
+      params: Params$Resource$Accounts$Regions$Batchupdate,
+      callback: BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+    ): void;
+    batchUpdate(
+      callback: BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+    ): void;
+    batchUpdate(
+      paramsOrCallback?:
+        | Params$Resource$Accounts$Regions$Batchupdate
+        | BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$BatchUpdateRegionsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$BatchUpdateRegionsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Accounts$Regions$Batchupdate;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Accounts$Regions$Batchupdate;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://merchantapi.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl + '/accounts/v1/{+parent}/regions:batchUpdate'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$BatchUpdateRegionsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$BatchUpdateRegionsResponse>(parameters);
+      }
+    }
+
+    /**
      * Creates a region definition in your Merchant Center account. Executing this method requires admin access.
      * @example
      * ```js
@@ -10303,6 +10979,42 @@ export namespace merchantapi_accounts_v1 {
     }
   }
 
+  export interface Params$Resource$Accounts$Regions$Batchcreate
+    extends StandardParameters {
+    /**
+     * Required. The account to create one or more regions for. Format: `accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchCreateRegionsRequest;
+  }
+  export interface Params$Resource$Accounts$Regions$Batchdelete
+    extends StandardParameters {
+    /**
+     * Required. The account to delete one or more regions from. Format: `accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchDeleteRegionsRequest;
+  }
+  export interface Params$Resource$Accounts$Regions$Batchupdate
+    extends StandardParameters {
+    /**
+     * Required. The account to update one or more regions for. Format: `accounts/{account\}`
+     */
+    parent?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$BatchUpdateRegionsRequest;
+  }
   export interface Params$Resource$Accounts$Regions$Create
     extends StandardParameters {
     /**
