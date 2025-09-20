@@ -608,6 +608,10 @@ export namespace androidpublisher_v3 {
      */
     priceChangeDetails?: Schema$SubscriptionItemPriceChangeDetails;
     /**
+     * The information of the latest price step-up consent.
+     */
+    priceStepUpConsentDetails?: Schema$PriceStepUpConsentDetails;
+    /**
      * The current recurring price of the auto renewing plan. Note that the price does not take into account discounts and does not include taxes for tax-exclusive pricing, please call orders.get API instead if transaction details are needed.
      */
     recurringPrice?: Schema$Money;
@@ -975,6 +979,15 @@ export namespace androidpublisher_v3 {
     userInitiatedCancellation?: Schema$UserInitiatedCancellation;
   }
   /**
+   * Cancellation context of the purchases.subscriptionsv2.cancel API.
+   */
+  export interface Schema$CancellationContext {
+    /**
+     * Required. The type of cancellation for the purchased subscription.
+     */
+    cancellationType?: string | null;
+  }
+  /**
    * Details of when the order was canceled.
    */
   export interface Schema$CancellationEvent {
@@ -1008,6 +1021,19 @@ export namespace androidpublisher_v3 {
      */
     purchaseOptionId?: string | null;
   }
+  /**
+   * Request for the purchases.subscriptionsv2.cancel API.
+   */
+  export interface Schema$CancelSubscriptionPurchaseRequest {
+    /**
+     * Required. Additional details around the subscription revocation.
+     */
+    cancellationContext?: Schema$CancellationContext;
+  }
+  /**
+   * Response for the purchases.subscriptionsv2.cancel API.
+   */
+  export interface Schema$CancelSubscriptionPurchaseResponse {}
   /**
    * Result of the cancel survey when the subscription was canceled by the user.
    */
@@ -3163,6 +3189,23 @@ export namespace androidpublisher_v3 {
      * Price in 1/million of the currency base unit, represented as a string.
      */
     priceMicros?: string | null;
+  }
+  /**
+   * Information related to a price step-up that requires user consent.
+   */
+  export interface Schema$PriceStepUpConsentDetails {
+    /**
+     * The deadline by which the user must provide consent. If consent is not provided by this time, the subscription will be canceled.
+     */
+    consentDeadlineTime?: string | null;
+    /**
+     * The new price which requires user consent.
+     */
+    newPrice?: Schema$Money;
+    /**
+     * Output only. The state of the price step-up consent.
+     */
+    state?: string | null;
   }
   /**
    * Details of when the order was processed.
@@ -24951,7 +24994,7 @@ export namespace androidpublisher_v3 {
     }
 
     /**
-     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time.
+     * Cancels a user's subscription purchase. The subscription remains valid until its expiration time. Newer version is available at purchases.subscriptionsv2.cancel for better client library support.
      * @example
      * ```js
      * // Before running the sample:
@@ -25796,6 +25839,162 @@ export namespace androidpublisher_v3 {
     }
 
     /**
+     * Cancel a subscription purchase for the user.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/androidpublisher.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const androidpublisher = google.androidpublisher('v3');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/androidpublisher'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await androidpublisher.purchases.subscriptionsv2.cancel({
+     *     // Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     *     packageName: 'placeholder-value',
+     *     // Required. The token provided to the user's device when the subscription was purchased.
+     *     token: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "cancellationContext": {}
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {}
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    cancel(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancel,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    cancel(
+      params?: Params$Resource$Purchases$Subscriptionsv2$Cancel,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$CancelSubscriptionPurchaseResponse>
+    >;
+    cancel(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancel,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    cancel(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancel,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>,
+      callback: BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+    ): void;
+    cancel(
+      params: Params$Resource$Purchases$Subscriptionsv2$Cancel,
+      callback: BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+    ): void;
+    cancel(
+      callback: BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+    ): void;
+    cancel(
+      paramsOrCallback?:
+        | Params$Resource$Purchases$Subscriptionsv2$Cancel
+        | BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$CancelSubscriptionPurchaseResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$CancelSubscriptionPurchaseResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Purchases$Subscriptionsv2$Cancel;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Purchases$Subscriptionsv2$Cancel;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://androidpublisher.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (
+              rootUrl +
+              '/androidpublisher/v3/applications/{packageName}/purchases/subscriptionsv2/tokens/{token}:cancel'
+            ).replace(/([^:]\/)\/+/g, '$1'),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['packageName', 'token'],
+        pathParams: ['packageName', 'token'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$CancelSubscriptionPurchaseResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$CancelSubscriptionPurchaseResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Get metadata about a subscription
      * @example
      * ```js
@@ -26106,6 +26305,22 @@ export namespace androidpublisher_v3 {
     }
   }
 
+  export interface Params$Resource$Purchases$Subscriptionsv2$Cancel
+    extends StandardParameters {
+    /**
+     * Required. The package of the application for which this subscription was purchased (for example, 'com.some.thing').
+     */
+    packageName?: string;
+    /**
+     * Required. The token provided to the user's device when the subscription was purchased.
+     */
+    token?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$CancelSubscriptionPurchaseRequest;
+  }
   export interface Params$Resource$Purchases$Subscriptionsv2$Get
     extends StandardParameters {
     /**
