@@ -280,6 +280,42 @@ export namespace migrationcenter_v1alpha1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * Output only. Asset information specific for AWS CloudFront distributions.
+     */
+    awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
+    /**
+     * Output only. Asset information specific for AWS ECS clusters.
+     */
+    awsEcsClusterDetails?: Schema$AwsEcsClusterDetails;
+    /**
+     * Output only. Asset information specific for AWS EFS file systems.
+     */
+    awsEfsFileSystemDetails?: Schema$AwsEfsFileSystemDetails;
+    /**
+     * Output only. Asset information specific for AWS EKS clusters.
+     */
+    awsEksClusterDetails?: Schema$AwsEksClusterDetails;
+    /**
+     * Output only. Asset information specific for AWS Load Balancers.
+     */
+    awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
+    /**
+     * Output only. Asset information specific for AWS Lambda functions.
+     */
+    awsLambdaFunctionDetails?: Schema$AwsLambdaFunctionDetails;
+    /**
+     * Output only. Asset information specific for AWS Redshift
+     */
+    awsRedshiftDetails?: Schema$AwsRedshiftDetails;
+    /**
+     * Output only. Asset information specific for AWS S3 buckets.
+     */
+    awsS3BucketDetails?: Schema$AwsS3BucketDetails;
+    /**
+     * Output only. Asset information specific for AWS VPCs.
+     */
+    awsVpcDetails?: Schema$AwsVpcDetails;
+    /**
      * Output only. The timestamp when the asset was created.
      */
     createTime?: string | null;
@@ -303,6 +339,10 @@ export namespace migrationcenter_v1alpha1 {
      * Output only. The timestamp when the asset was marked as hidden.
      */
     hideTime?: string | null;
+    /**
+     * Output only. Details about the hosting provider of the asset.
+     */
+    hostingProviderDetails?: Schema$HostingProviderDetails;
     /**
      * Output only. The list of insights associated with the asset.
      */
@@ -328,6 +368,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     sources?: string[] | null;
     /**
+     * Optional. Generic structured asset attributes.
+     */
+    structuredAttributes?: {[key: string]: any} | null;
+    /**
      * Output only. Server generated human readable name of the asset.
      */
     title?: string | null;
@@ -349,6 +393,42 @@ export namespace migrationcenter_v1alpha1 {
      */
     attributes?: {[key: string]: string} | null;
     /**
+     * Asset information specific for AWS CloudFront distributions.
+     */
+    awsCloudFrontDistributionDetails?: Schema$AwsCloudFrontDistributionDetails;
+    /**
+     * Asset information specific for AWS ECS clusters.
+     */
+    awsEcsClusterDetails?: Schema$AwsEcsClusterDetails;
+    /**
+     * Asset information specific for AWS EFS file systems.
+     */
+    awsEfsFileSystemDetails?: Schema$AwsEfsFileSystemDetails;
+    /**
+     * Asset information specific for AWS EKS clusters.
+     */
+    awsEksClusterDetails?: Schema$AwsEksClusterDetails;
+    /**
+     * Asset information specific for AWS Load Balancers.
+     */
+    awsElbLoadBalancerDetails?: Schema$AwsElbLoadBalancerDetails;
+    /**
+     * Asset information specific for AWS Lambda functions.
+     */
+    awsLambdaFunctionDetails?: Schema$AwsLambdaFunctionDetails;
+    /**
+     * Asset information specific for AWS Redshift clusters.
+     */
+    awsRedshiftDetails?: Schema$AwsRedshiftDetails;
+    /**
+     * Asset information specific for AWS S3 buckets.
+     */
+    awsS3BucketDetails?: Schema$AwsS3BucketDetails;
+    /**
+     * Asset information specific for AWS VPCs.
+     */
+    awsVpcDetails?: Schema$AwsVpcDetails;
+    /**
      * Optional. Frame collection type, if not specified the collection type will be based on the source type of the source the frame was reported on.
      */
     collectionType?: string | null;
@@ -360,6 +440,10 @@ export namespace migrationcenter_v1alpha1 {
      * Asset information specific for logical databases.
      */
     databaseDetails?: Schema$DatabaseDetails;
+    /**
+     * Optional. Details about the hosting provider of the asset.
+     */
+    hostingProviderDetails?: Schema$HostingProviderDetails;
     /**
      * Labels as key value pairs.
      */
@@ -376,6 +460,10 @@ export namespace migrationcenter_v1alpha1 {
      * The time the data was reported.
      */
     reportTime?: string | null;
+    /**
+     * Optional. Generic structured asset attributes.
+     */
+    structuredAttributes?: {[key: string]: any} | null;
     /**
      * Optional. Trace token is optionally provided to assist with debugging and traceability.
      */
@@ -530,6 +618,10 @@ export namespace migrationcenter_v1alpha1 {
     maxDays?: number | null;
   }
   /**
+   * Details of an AWS CloudFront distribution.
+   */
+  export interface Schema$AwsCloudFrontDistributionDetails {}
+  /**
    * AWS EC2 specific details.
    */
   export interface Schema$AwsEc2PlatformDetails {
@@ -547,9 +639,94 @@ export namespace migrationcenter_v1alpha1 {
     machineTypeLabel?: string | null;
   }
   /**
+   * Details of an AWS ECS cluster.
+   */
+  export interface Schema$AwsEcsClusterDetails {}
+  /**
+   * Details of an AWS EFS file system.
+   */
+  export interface Schema$AwsEfsFileSystemDetails {}
+  /**
+   * Asset information specific for AWS EKS clusters.
+   */
+  export interface Schema$AwsEksClusterDetails {}
+  /**
+   * Asset information specific for AWS Load Balancers.
+   */
+  export interface Schema$AwsElbLoadBalancerDetails {}
+  /**
+   * Asset information specific for AWS Lambda functions.
+   */
+  export interface Schema$AwsLambdaFunctionDetails {}
+  /**
    * Specific details for an AWS RDS database deployment.
    */
   export interface Schema$AwsRds {}
+  /**
+   * Details of an AWS Redshift cluster.
+   */
+  export interface Schema$AwsRedshiftDetails {}
+  /**
+   * Asset information specific for AWS S3 buckets.
+   */
+  export interface Schema$AwsS3BucketDetails {
+    /**
+     * Optional. The metadata of the objects in the bucket.
+     */
+    objectsMetadata?: Schema$AwsS3BucketDetailsObjectsMetadata;
+    /**
+     * Optional. The storage classes in the bucket.
+     */
+    storageClasses?: Schema$AwsS3BucketDetailsStorageClass[];
+    /**
+     * Optional. Versioning configuration of the bucket.
+     */
+    versioning?: Schema$AwsS3BucketDetailsVersioning;
+  }
+  /**
+   * The metadata of the objects in the bucket.
+   */
+  export interface Schema$AwsS3BucketDetailsObjectsMetadata {
+    /**
+     * Optional. The total number of objects in the bucket.
+     */
+    totalObjects?: Schema$AwsS3BucketDetailsObjectsMetadataTotalObjects;
+  }
+  /**
+   * Information about the total number of objects in the bucket.
+   */
+  export interface Schema$AwsS3BucketDetailsObjectsMetadataTotalObjects {
+    /**
+     * Optional. The total number of objects in the bucket.
+     */
+    value?: number | null;
+  }
+  /**
+   * Details about storage class.
+   */
+  export interface Schema$AwsS3BucketDetailsStorageClass {
+    /**
+     * Optional. The total size of the storage class in bytes.
+     */
+    totalBytes?: string | null;
+    /**
+     * Required. Type of the storage class.
+     */
+    type?: string | null;
+  }
+  /**
+   * Versioning configuration of the bucket.
+   */
+  export interface Schema$AwsS3BucketDetailsVersioning {
+    /**
+     * Optional. Whether versioning is enabled.
+     */
+    enabled?: boolean | null;
+  }
+  /**
+   * Asset information specific for AWS VPCs.
+   */
+  export interface Schema$AwsVpcDetails {}
   /**
    * Azure VM specific details.
    */
@@ -627,9 +804,25 @@ export namespace migrationcenter_v1alpha1 {
      */
     biosVersion?: string | null;
     /**
+     * BIOS ID.
+     */
+    id?: string | null;
+    /**
+     * BIOS manufacturer.
+     */
+    manufacturer?: string | null;
+    /**
+     * BIOS release date.
+     */
+    releaseTime?: string | null;
+    /**
      * SMBIOS UUID.
      */
     smbiosUuid?: string | null;
+    /**
+     * BIOS version.
+     */
+    version?: string | null;
   }
   /**
    * The request message for Operations.CancelOperation.
@@ -1437,6 +1630,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$DiskEntry {
     /**
+     * Disk capacity.
+     */
+    capacityBytes?: string | null;
+    /**
      * Disk label.
      */
     diskLabel?: string | null;
@@ -1444,6 +1641,10 @@ export namespace migrationcenter_v1alpha1 {
      * Disk label type (e.g. BIOS/GPT)
      */
     diskLabelType?: string | null;
+    /**
+     * Disk free space.
+     */
+    freeSpaceBytes?: string | null;
     /**
      * Disk hardware address (e.g. 0:1 for SCSI).
      */
@@ -1790,11 +1991,23 @@ export namespace migrationcenter_v1alpha1 {
      * SELinux details.
      */
     selinux?: Schema$Selinux;
+    /**
+     * Security-Enhanced Linux (SELinux) mode.
+     */
+    selinuxMode?: string | null;
   }
   /**
    * Guest installed application information.
    */
   export interface Schema$GuestInstalledApplication {
+    /**
+     * Installed application name.
+     */
+    applicationName?: string | null;
+    /**
+     * The time when the application was installed.
+     */
+    installTime?: string | null;
     /**
      * License strings associated with the installed application.
      */
@@ -1838,9 +2051,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     config?: Schema$GuestConfigDetails;
     /**
+     * What family the OS belong to, if known.
+     */
+    family?: string | null;
+    /**
+     * The name of the operating system.
+     */
+    osName?: string | null;
+    /**
      * Runtime information.
      */
     runtime?: Schema$GuestRuntimeDetails;
+    /**
+     * The version of the operating system.
+     */
+    version?: string | null;
   }
   /**
    * Guest OS runtime information.
@@ -1854,6 +2079,10 @@ export namespace migrationcenter_v1alpha1 {
      * Installed applications information.
      */
     installedApps?: Schema$GuestInstalledApplicationList;
+    /**
+     * Last time the OS was booted.
+     */
+    lastBootTime?: string | null;
     /**
      * Date since last booted (last uptime date).
      */
@@ -1878,6 +2107,40 @@ export namespace migrationcenter_v1alpha1 {
      * Running background services.
      */
     services?: Schema$RunningServiceList;
+  }
+  /**
+   * Details about the hosting platform of the asset.
+   */
+  export interface Schema$HostingProviderDetails {
+    /**
+     * Optional. The AWS platform details.
+     */
+    aws?: Schema$HostingProviderDetailsAws;
+    /**
+     * Optional. The timestamp when resource was created in the hosting provider.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Display name of the asset.
+     */
+    displayName?: string | null;
+    /**
+     * Optional. Location of the asset.
+     */
+    location?: Schema$ResourceLocation;
+    /**
+     * Optional. Unique identifier for the asset in the hosting provider.
+     */
+    originalId?: string | null;
+  }
+  /**
+   * Details for AWS platform.
+   */
+  export interface Schema$HostingProviderDetailsAws {
+    /**
+     * Optional. The AWS account ID owning the resource represented by this asset.
+     */
+    owningAccountId?: string | null;
   }
   /**
    * Single /etc/hosts entry.
@@ -2729,6 +2992,10 @@ export namespace migrationcenter_v1alpha1 {
    */
   export interface Schema$NetworkAdapterList {
     /**
+     * Network adapter entries.
+     */
+    entries?: Schema$NetworkAdapterDetails[];
+    /**
      * Network adapter descriptions.
      */
     networkAdapters?: Schema$NetworkAdapterDetails[];
@@ -2766,6 +3033,10 @@ export namespace migrationcenter_v1alpha1 {
      * Network address entries.
      */
     addresses?: Schema$NetworkAddress[];
+    /**
+     * Network address entries.
+     */
+    entries?: Schema$NetworkAddress[];
   }
   export interface Schema$NetworkConnection {
     /**
@@ -3607,7 +3878,7 @@ export namespace migrationcenter_v1alpha1 {
      */
     allocatedAssetCount?: string | null;
     /**
-     * Set of disk types allocated to assets.
+     * @deprecated. Use storage_allocations instead. Set of disk types allocated to assets.
      */
     allocatedDiskTypes?: string[] | null;
     /**
@@ -3723,6 +3994,15 @@ export namespace migrationcenter_v1alpha1 {
     vmwareNode?: Schema$ReportSummaryVMWareNode;
   }
   /**
+   * Location of a resource.
+   */
+  export interface Schema$ResourceLocation {
+    /**
+     * Optional. The name of the region.
+     */
+    region?: string | null;
+  }
+  /**
    * A request to run an assets export job.
    */
   export interface Schema$RunAssetsExportJobRequest {
@@ -3781,6 +4061,10 @@ export namespace migrationcenter_v1alpha1 {
     /**
      * Running process entries.
      */
+    entries?: Schema$RunningProcess[];
+    /**
+     * Running process entries.
+     */
     processes?: Schema$RunningProcess[];
   }
   /**
@@ -3804,6 +4088,10 @@ export namespace migrationcenter_v1alpha1 {
      */
     pid?: string | null;
     /**
+     * Service name.
+     */
+    serviceName?: string | null;
+    /**
      * Service start mode (raw, OS-agnostic).
      */
     startMode?: string | null;
@@ -3820,6 +4108,10 @@ export namespace migrationcenter_v1alpha1 {
    * List of running guest OS services.
    */
   export interface Schema$RunningServiceList {
+    /**
+     * Running service entries.
+     */
+    entries?: Schema$RunningService[];
     /**
      * Running service entries.
      */
@@ -3841,6 +4133,14 @@ export namespace migrationcenter_v1alpha1 {
      * Netstat time collected.
      */
     netstatTime?: Schema$DateTime;
+    /**
+     * Raw network scan result. This field is intended for human inspection. The format of this field may be netstat output or any another raw output. The exact format may change without notice and should not be relied upon.
+     */
+    rawScanResult?: string | null;
+    /**
+     * Time of the last network scan.
+     */
+    scanTime?: string | null;
   }
   /**
    * SELinux details.
@@ -4473,9 +4773,21 @@ export namespace migrationcenter_v1alpha1 {
      */
     osid?: string | null;
     /**
+     * Folder name in vCenter where asset resides.
+     */
+    vcenterFolder?: string | null;
+    /**
+     * vCenter URI used in collection.
+     */
+    vcenterUri?: string | null;
+    /**
      * vCenter version.
      */
     vcenterVersion?: string | null;
+    /**
+     * vCenter VM ID.
+     */
+    vcenterVmId?: string | null;
   }
   /**
    * Contains a single output file of type XLSX.
@@ -4842,7 +5154,7 @@ export namespace migrationcenter_v1alpha1 {
      *
      *   // Do the magic
      *   const res = await migrationcenter.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -5132,7 +5444,7 @@ export namespace migrationcenter_v1alpha1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5806,18 +6118,29 @@ export namespace migrationcenter_v1alpha1 {
      *   // {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
+     *   //   "awsCloudFrontDistributionDetails": {},
+     *   //   "awsEcsClusterDetails": {},
+     *   //   "awsEfsFileSystemDetails": {},
+     *   //   "awsEksClusterDetails": {},
+     *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsLambdaFunctionDetails": {},
+     *   //   "awsRedshiftDetails": {},
+     *   //   "awsS3BucketDetails": {},
+     *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseDeploymentDetails": {},
      *   //   "databaseDetails": {},
      *   //   "hidden": false,
      *   //   "hideReason": "my_hideReason",
      *   //   "hideTime": "my_hideTime",
+     *   //   "hostingProviderDetails": {},
      *   //   "insightList": {},
      *   //   "labels": {},
      *   //   "machineDetails": {},
      *   //   "name": "my_name",
      *   //   "performanceData": {},
      *   //   "sources": [],
+     *   //   "structuredAttributes": {},
      *   //   "title": "my_title",
      *   //   "updateTime": "my_updateTime",
      *   //   "virtualMachineDetails": {}
@@ -6113,18 +6436,29 @@ export namespace migrationcenter_v1alpha1 {
      *       // {
      *       //   "assignedGroups": [],
      *       //   "attributes": {},
+     *       //   "awsCloudFrontDistributionDetails": {},
+     *       //   "awsEcsClusterDetails": {},
+     *       //   "awsEfsFileSystemDetails": {},
+     *       //   "awsEksClusterDetails": {},
+     *       //   "awsElbLoadBalancerDetails": {},
+     *       //   "awsLambdaFunctionDetails": {},
+     *       //   "awsRedshiftDetails": {},
+     *       //   "awsS3BucketDetails": {},
+     *       //   "awsVpcDetails": {},
      *       //   "createTime": "my_createTime",
      *       //   "databaseDeploymentDetails": {},
      *       //   "databaseDetails": {},
      *       //   "hidden": false,
      *       //   "hideReason": "my_hideReason",
      *       //   "hideTime": "my_hideTime",
+     *       //   "hostingProviderDetails": {},
      *       //   "insightList": {},
      *       //   "labels": {},
      *       //   "machineDetails": {},
      *       //   "name": "my_name",
      *       //   "performanceData": {},
      *       //   "sources": [],
+     *       //   "structuredAttributes": {},
      *       //   "title": "my_title",
      *       //   "updateTime": "my_updateTime",
      *       //   "virtualMachineDetails": {}
@@ -6137,18 +6471,29 @@ export namespace migrationcenter_v1alpha1 {
      *   // {
      *   //   "assignedGroups": [],
      *   //   "attributes": {},
+     *   //   "awsCloudFrontDistributionDetails": {},
+     *   //   "awsEcsClusterDetails": {},
+     *   //   "awsEfsFileSystemDetails": {},
+     *   //   "awsEksClusterDetails": {},
+     *   //   "awsElbLoadBalancerDetails": {},
+     *   //   "awsLambdaFunctionDetails": {},
+     *   //   "awsRedshiftDetails": {},
+     *   //   "awsS3BucketDetails": {},
+     *   //   "awsVpcDetails": {},
      *   //   "createTime": "my_createTime",
      *   //   "databaseDeploymentDetails": {},
      *   //   "databaseDetails": {},
      *   //   "hidden": false,
      *   //   "hideReason": "my_hideReason",
      *   //   "hideTime": "my_hideTime",
+     *   //   "hostingProviderDetails": {},
      *   //   "insightList": {},
      *   //   "labels": {},
      *   //   "machineDetails": {},
      *   //   "name": "my_name",
      *   //   "performanceData": {},
      *   //   "sources": [],
+     *   //   "structuredAttributes": {},
      *   //   "title": "my_title",
      *   //   "updateTime": "my_updateTime",
      *   //   "virtualMachineDetails": {}
