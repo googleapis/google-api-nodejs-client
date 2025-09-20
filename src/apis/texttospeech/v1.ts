@@ -322,6 +322,10 @@ export namespace texttospeech_v1 {
      */
     multiSpeakerMarkup?: Schema$MultiSpeakerMarkup;
     /**
+     * This is system instruction supported only for controllable voice models. If used, we will pass text to Flash TTS as is. Can only used with Flash TTS. What AI Studio calls Style Instructions.
+     */
+    prompt?: string | null;
+    /**
      * The SSML document to be synthesized. The SSML document must be valid and well-formed. Otherwise the RPC will fail and return google.rpc.Code.INVALID_ARGUMENT. For more information, see [SSML](https://cloud.google.com/text-to-speech/docs/ssml).
      */
     ssml?: string | null;
