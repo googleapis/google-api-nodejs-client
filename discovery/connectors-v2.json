@@ -769,7 +769,7 @@
       }
     }
   },
-  "revision": "20250813",
+  "revision": "20250826",
   "rootUrl": "https://connectors.googleapis.com/",
   "schemas": {
     "AccessCredentials": {
@@ -2710,6 +2710,13 @@
       "description": "Message representing a single tool.",
       "id": "Tool",
       "properties": {
+        "dependsOn": {
+          "description": "List of tool names that this tool depends on.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
+        },
         "description": {
           "description": "Description of the tool.",
           "type": "string"

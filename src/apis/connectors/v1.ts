@@ -433,7 +433,7 @@ export namespace connectors_v1 {
      */
     key?: string | null;
     /**
-     * Optional. Location Tyep denotes where this value should be sent in BYOC connections.
+     * Optional. Location Type denotes where this value should be sent in BYOC connections.
      */
     locationType?: string | null;
     /**
