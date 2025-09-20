@@ -212,6 +212,27 @@ export namespace networkconnectivity_v1 {
     autoAcceptProjects?: string[] | null;
   }
   /**
+   * Information for the automatically created subnetwork and its associated IR.
+   */
+  export interface Schema$AutoCreatedSubnetworkInfo {
+    /**
+     * Output only. URI of the automatically created Internal Range. Only set if the subnetwork mode is AUTO_CREATED during creation.
+     */
+    internalRange?: string | null;
+    /**
+     * Output only. URI of the automatically created Internal Range reference. Only set if the subnetwork mode is AUTO_CREATED during creation.
+     */
+    internalRangeRef?: string | null;
+    /**
+     * Output only. URI of the automatically created subnetwork. Only set if the subnetwork mode is AUTO_CREATED during creation.
+     */
+    subnetwork?: string | null;
+    /**
+     * Output only. URI of the automatically created subnetwork reference. Only set if the subnetwork mode is AUTO_CREATED during creation.
+     */
+    subnetworkRef?: string | null;
+  }
+  /**
    * Associates `members`, or principals, with a `role`.
    */
   export interface Schema$Binding {
@@ -335,27 +356,27 @@ export namespace networkconnectivity_v1 {
     state?: string | null;
   }
   /**
-   * The Destination resource.
+   * The `Destination` resource. It specifies the IP prefix and the associated autonomous system numbers (ASN) that you want to include in a `MulticloudDataTransferConfig` resource.
    */
   export interface Schema$Destination {
     /**
-     * Output only. Time when the Destination was created.
+     * Output only. Time when the `Destination` resource was created.
      */
     createTime?: string | null;
     /**
-     * Optional. An optional field to provide a description of this resource.
+     * Optional. A description of this resource.
      */
     description?: string | null;
     /**
-     * Required. Unordered list. The list of Endpoints configured for the IP Prefix.
+     * Required. Unordered list. The list of `DestinationEndpoint` resources configured for the IP prefix.
      */
     endpoints?: Schema$DestinationEndpoint[];
     /**
-     * The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
-     * Required. Immutable. Remote IP Prefix in the remote CSP, where the customer's workload is located
+     * Required. Immutable. The IP prefix that represents your workload on another CSP.
      */
     ipPrefix?: string | null;
     /**
@@ -363,40 +384,40 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. The name of the Destination resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
+     * Identifier. The name of the `Destination` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
      */
     name?: string | null;
     /**
-     * Output only. The timeline of the expected Destination states or the current rest state. If a state change is expected, the value will be the list of ADDING, DELETING or SUSPENDING statesdepending on the actions taken. Example: "state_timeline": { "states": [ { "state": "ADDING", // The time when the Destination will be activated. "effective_time": "2024-12-01T08:00:00Z" \}, { "state": "SUSPENDING", // The time when the Destination will be suspended. "effective_time": "2024-12-01T20:00:00Z" \} ] \}
+     * Output only. The timeline of the expected `Destination` states or the current rest state. If a state change is expected, the value is `ADDING`, `DELETING` or `SUSPENDING`, depending on the action specified. Example: "state_timeline": { "states": [ { // The time when the `Destination` resource will be activated. "effectiveTime": "2024-12-01T08:00:00Z", "state": "ADDING" \}, { // The time when the `Destination` resource will be suspended. "effectiveTime": "2024-12-01T20:00:00Z", "state": "SUSPENDING" \} ] \}
      */
     stateTimeline?: Schema$StateTimeline;
     /**
-     * Output only. The Google-generated UUID for the destination. This value is unique across all destination resources. If a destination is deleted and another with the same name is created, the new destination is assigned a different uid.
+     * Output only. The Google-generated unique ID for the `Destination` resource. This value is unique across all `Destination` resources. If a resource is deleted and another with the same name is created, the new resource is assigned a different and unique ID.
      */
     uid?: string | null;
     /**
-     * Output only. Time when the Destination was updated.
+     * Output only. Time when the `Destination` resource was updated.
      */
     updateTime?: string | null;
   }
   /**
-   * The metadata for a DestinationEndpoint.
+   * The metadata for a `DestinationEndpoint` resource.
    */
   export interface Schema$DestinationEndpoint {
     /**
-     * Required. The ASN of the remote IP Prefix.
+     * Required. The ASN of the remote IP prefix.
      */
     asn?: string | null;
     /**
-     * Required. The name of the CSP of the remote IP Prefix.
+     * Required. The CSP of the remote IP prefix.
      */
     csp?: string | null;
     /**
-     * Output only. The state of the Endpoint.
+     * Output only. The state of the `DestinationEndpoint` resource.
      */
     state?: string | null;
     /**
-     * Output only. Time when the DestinationEndpoint was updated.
+     * Output only. Time when the `DestinationEndpoint` resource was updated.
      */
     updateTime?: string | null;
   }
@@ -846,11 +867,11 @@ export namespace networkconnectivity_v1 {
     vpcNetwork?: string | null;
   }
   /**
-   * Response message for ListDestinations.
+   * Response message to list `Destination` resources.
    */
   export interface Schema$ListDestinationsResponse {
     /**
-     * Destinations to be returned.
+     * The list of `Destination` resources to be listed.
      */
     destinations?: Schema$Destination[];
     /**
@@ -944,11 +965,11 @@ export namespace networkconnectivity_v1 {
     nextPageToken?: string | null;
   }
   /**
-   * Response message for ListMulticloudDataTransferConfigs.
+   * Response message to list `MulticloudDataTransferConfig` resources.
    */
   export interface Schema$ListMulticloudDataTransferConfigsResponse {
     /**
-     * MulticloudDataTransferConfigs to be returned.
+     * The list of `MulticloudDataTransferConfig` resources to be listed.
      */
     multicloudDataTransferConfigs?: Schema$MulticloudDataTransferConfig[];
     /**
@@ -961,7 +982,7 @@ export namespace networkconnectivity_v1 {
     unreachable?: string[] | null;
   }
   /**
-   * Response message for ListMulticloudDataTransferSupportedServices.
+   * Response message to list the services in your project in regions that are eligible for Data Transfer Essentials configuration.
    */
   export interface Schema$ListMulticloudDataTransferSupportedServicesResponse {
     /**
@@ -1004,6 +1025,23 @@ export namespace networkconnectivity_v1 {
     regionalEndpoints?: Schema$RegionalEndpoint[];
     /**
      * Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
+   * Message for response to listing RemoteTransportProfiles
+   */
+  export interface Schema$ListRemoteTransportProfilesResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of RemoteTransportProfiles.
+     */
+    remoteTransportProfiles?: Schema$RemoteTransportProfile[];
+    /**
+     * Unordered list. Locations that could not be reached.
      */
     unreachable?: string[] | null;
   }
@@ -1127,6 +1165,23 @@ export namespace networkconnectivity_v1 {
     unreachable?: string[] | null;
   }
   /**
+   * Message for response to listing Transports.
+   */
+  export interface Schema$ListTransportsResponse {
+    /**
+     * A token identifying a page of results the server should return.
+     */
+    nextPageToken?: string | null;
+    /**
+     * The list of Transport.
+     */
+    transports?: Schema$Transport[];
+    /**
+     * Unordered list. Locations that could not be reached.
+     */
+    unreachable?: string[] | null;
+  }
+  /**
    * A resource that represents a Google Cloud location.
    */
   export interface Schema$Location {
@@ -1174,27 +1229,27 @@ export namespace networkconnectivity_v1 {
     target?: string | null;
   }
   /**
-   * The MulticloudDataTransferConfig resource. This lists the services for which customer is opting in for Multicloud Data Transfer.
+   * The `MulticloudDataTransferConfig` resource. It lists the services that you configure for Data Transfer Essentials billing and metering.
    */
   export interface Schema$MulticloudDataTransferConfig {
     /**
-     * Output only. Time when the MulticloudDataTransferConfig was created.
+     * Output only. Time when the `MulticloudDataTransferConfig` resource was created.
      */
     createTime?: string | null;
     /**
-     * Optional. An optional field to provide a description of this resource.
+     * Optional. A description of this resource.
      */
     description?: string | null;
     /**
-     * Output only. The number of Destinations in use under the MulticloudDataTransferConfig resource.
+     * Output only. The number of `Destination` resources in use with the `MulticloudDataTransferConfig` resource.
      */
     destinationsActiveCount?: number | null;
     /**
-     * Output only. The number of Destinations configured under the MulticloudDataTransferConfig resource.
+     * Output only. The number of `Destination` resources configured for the `MulticloudDataTransferConfig` resource.
      */
     destinationsCount?: number | null;
     /**
-     * The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      */
     etag?: string | null;
     /**
@@ -1202,24 +1257,24 @@ export namespace networkconnectivity_v1 {
      */
     labels?: {[key: string]: string} | null;
     /**
-     * Identifier. The name of the MulticloudDataTransferConfig resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
+     * Identifier. The name of the `MulticloudDataTransferConfig` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
      */
     name?: string | null;
     /**
-     * Optional. This map services to either their current or planned states. Service names are keys, and the associated values describe the service's state. If a state change is expected, the value will be the list of ADDING or DELETING states depending on the actions taken. Example: "services": { "big-query": { "states": [ { "state": "ADDING", "effective_time": "2024-12-12T08:00:00Z" \}, ] \}, "cloud-storage": { "states": [ { "state": "ACTIVE", \} ] \} \}
+     * Optional. Maps services to their current or planned states. Service names are keys, and the associated values describe the state of the service. If a state change is expected, the value is either `ADDING` or `DELETING`, depending on the actions taken. Sample output: "services": { "big-query": { "states": [ { "effectiveTime": "2024-12-12T08:00:00Z" "state": "ADDING", \}, ] \}, "cloud-storage": { "states": [ { "state": "ACTIVE", \} ] \} \}
      */
     services?: {[key: string]: Schema$StateTimeline} | null;
     /**
-     * Output only. The Google-generated UUID for the MulticloudDataTransferConfig. This value is unique across all MulticloudDataTransferConfig resources. If a MulticloudDataTransferConfig is deleted and another with the same name is created, the new MulticloudDataTransferConfig is assigned a different uid.
+     * Output only. The Google-generated unique ID for the `MulticloudDataTransferConfig` resource. This value is unique across all `MulticloudDataTransferConfig` resources. If a resource is deleted and another with the same name is created, the new resource is assigned a different and unique ID.
      */
     uid?: string | null;
     /**
-     * Output only. Time when the MulticloudDataTransferConfig was updated.
+     * Output only. Time when the `MulticloudDataTransferConfig` resource was updated.
      */
     updateTime?: string | null;
   }
   /**
-   * The supported service for Multicloud Data Transfer.
+   * A service in your project in a region that is eligible for Data Transfer Essentials configuration.
    */
   export interface Schema$MulticloudDataTransferSupportedService {
     /**
@@ -1227,7 +1282,7 @@ export namespace networkconnectivity_v1 {
      */
     name?: string | null;
     /**
-     * Output only. The network service tiers supported for the service.
+     * Output only. The network service tier or regional endpoint supported for the service.
      */
     serviceConfigs?: Schema$ServiceConfig[];
   }
@@ -1658,6 +1713,59 @@ export namespace networkconnectivity_v1 {
     spokeUri?: string | null;
   }
   /**
+   * Message describing RemoteTransportProfile object.
+   */
+  export interface Schema$RemoteTransportProfile {
+    /**
+     * Output only. [Output only] Create time stamp.
+     */
+    createTime?: string | null;
+    /**
+     * Output only. Description of the profile.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output only] Type of provisioning flows supported by this profile.
+     */
+    flow?: string | null;
+    /**
+     * Output only. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Identifier. Name of the resource in the format of $provider-$site.
+     */
+    name?: string | null;
+    /**
+     * Output only. [Output only] Order state for this profile.
+     */
+    orderState?: string | null;
+    /**
+     * Output only. Name of the provider on the other end of this profile. E.g. “Amazon Web Services” or “Microsoft Azure”.
+     */
+    provider?: string | null;
+    /**
+     * Output only. If the profile is a Cloud Service Provider with compute resources, this is populated with the region where connectivity is being established. If the profile provides facility-level selection, this is an identity of the facility any connections on this profile are going through.
+     */
+    providerSite?: string | null;
+    /**
+     * Output only. GCP Region where this profile is available.
+     */
+    region?: string | null;
+    /**
+     * Output only. [Output only] Availability class that will be configured for this particular RemoteTransportProfile.
+     */
+    sla?: string | null;
+    /**
+     * Output only. List of bandwidth enum values that are supported by this profile.
+     */
+    supportedBandwidths?: string[] | null;
+    /**
+     * Output only. [Output only] Update time stamp.
+     */
+    updateTime?: string | null;
+  }
+  /**
    * A route defines a path from VM instances within a spoke to a specific destination resource. Only VPC spokes have routes.
    */
   export interface Schema$Route {
@@ -1820,15 +1928,15 @@ export namespace networkconnectivity_v1 {
     updateTime?: string | null;
   }
   /**
-   * Specifies the Multicloud Data Transfer supported services configuration. This includes either the network tier or the request endpoint. If end of support for multicloud data transfer is planned for a service's network tier or request endpoint, the end time will be provided.
+   * Specifies eligibility information for the service.
    */
   export interface Schema$ServiceConfig {
     /**
-     * Output only. The eligibility criteria for the service. The user has to meet the eligibility criteria specified here for the service to qualify for multicloud data transfer.
+     * Output only. The eligibility criteria for the service.
      */
     eligibilityCriteria?: string | null;
     /**
-     * Output only. The eligibility criteria support end time. If the end time is not specified, no planned end time is available.
+     * Output only. The end time for eligibility criteria support. If not specified, no planned end time is set.
      */
     supportEndTime?: string | null;
   }
@@ -1873,7 +1981,7 @@ export namespace networkconnectivity_v1 {
      */
     producerPscConfigs?: Schema$ProducerPscConfig[];
     /**
-     * The service class identifier this ServiceConnectionMap is for. The user of ServiceConnectionMap create API needs to have networkconnecitivty.serviceclasses.use iam permission for the service class.
+     * The service class identifier this ServiceConnectionMap is for. The user of ServiceConnectionMap create API needs to have networkconnectivity.serviceClasses.use IAM permission for the service class.
      */
     serviceClass?: string | null;
     /**
@@ -1893,6 +2001,10 @@ export namespace networkconnectivity_v1 {
    * The ServiceConnectionPolicy resource.
    */
   export interface Schema$ServiceConnectionPolicy {
+    /**
+     * Output only. Information for the automatically created subnetwork and its associated IR.
+     */
+    autoCreatedSubnetInfo?: Schema$AutoCreatedSubnetworkInfo;
     /**
      * Output only. Time when the ServiceConnectionPolicy was created.
      */
@@ -2130,7 +2242,7 @@ export namespace networkconnectivity_v1 {
    */
   export interface Schema$StateMetadata {
     /**
-     * Output only. This field will be accompanied only with transient states (PENDING_ADD, PENDING_DELETE, PENDING_SUSPENSION) and denotes the time when the transient state of the resource will be effective. For instance, if the state is "ADDING," this field will show the time the resource transitions to "ACTIVE." Similarly, if the state is "PENDING_DELETE," it will show the deletion time.
+     * Output only. Accompanies only the transient states, which include `ADDING`, `DELETING`, and `SUSPENDING`, to denote the time until which the transient state of the resource will be effective. For instance, if the state is `ADDING`, this field shows the time when the resource state transitions to `ACTIVE`.
      */
     effectiveTime?: string | null;
     /**
@@ -2156,7 +2268,7 @@ export namespace networkconnectivity_v1 {
     userDetails?: string | null;
   }
   /**
-   * The timeline of pending states for a resource.
+   * The timeline of the pending states for a resource.
    */
   export interface Schema$StateTimeline {
     /**
@@ -2181,6 +2293,75 @@ export namespace networkconnectivity_v1 {
      * A subset of `TestPermissionsRequest.permissions` that the caller is allowed.
      */
     permissions?: string[] | null;
+  }
+  /**
+   * Message describing Transport object.
+   */
+  export interface Schema$Transport {
+    /**
+     * Optional. Administrative state of the underlying connectivity. If set to true (default), connectivity should be available between your environments. If set to false, the connectivity over these links is disabled. Disabling your Transport does not affect billing, and retains the underlying network bandwidth associated with the connectivity.
+     */
+    adminEnabled?: boolean | null;
+    /**
+     * Optional. [Preview only] List of IP Prefixes that will be advertised to the remote provider. Both IPv4 and IPv6 addresses are supported.
+     */
+    advertisedRoutes?: string | null;
+    /**
+     * Required. Bandwidth of the Transport. This must be one of the supported bandwidths for the remote profile.
+     */
+    bandwidth?: string | null;
+    /**
+     * Output only. [Output only] Create time stamp.
+     */
+    createTime?: string | null;
+    /**
+     * Optional. Description of the Transport.
+     */
+    description?: string | null;
+    /**
+     * Output only. [Output only] Google-generated activation key. This is only output if the selected profile supports an OUTPUT key flow. Inputting this to the provider is only valid while the resource is in a PENDING_KEY state. Once the provider has accepted the key, the resource will move to the CONFIGURING state.
+     */
+    generatedActivationKey?: string | null;
+    /**
+     * Optional. Labels as key value pairs.
+     */
+    labels?: {[key: string]: string} | null;
+    /**
+     * Output only. [Output only] The maximum transmission unit (MTU) of a packet that can be sent over this transport.
+     */
+    mtuLimit?: number | null;
+    /**
+     * Identifier. Name of the resource, see google.aip.dev/122 for resource naming.
+     */
+    name?: string | null;
+    /**
+     * Required. [Preview only] Resource URL of the Network that will be peered with this Transport. This field must be provided during resource creation and cannot be changed.
+     */
+    network?: string | null;
+    /**
+     * Optional. Key used for establishing a connection with the remote transport. This key can only be provided if the profile supports an INPUT key flow and the resource is in the PENDING_KEY state.
+     */
+    providedActivationKey?: string | null;
+    /**
+     * Required. GCP Region where this Transport is located.
+     */
+    region?: string | null;
+    /**
+     * Required. Resource URL of the remoteTransportProfile that this Transport is connecting to. Format: projects/{project\}/locations/{location\}/remoteTransportProfiles/{remote_transport_profile\}
+     */
+    remoteProfile?: string | null;
+    /**
+     * Optional. IP version stack for the established connectivity.
+     */
+    stackType?: string | null;
+    /**
+     * Output only. [Output only] State of the underlying connectivity.
+     */
+    state?: string | null;
+    /**
+     * Output only. [Output only] Update time stamp.
+     */
+    updateTime?: string | null;
   }
   /**
    * VM instances that this policy-based route applies to.
@@ -2226,11 +2407,13 @@ export namespace networkconnectivity_v1 {
     multicloudDataTransferSupportedServices: Resource$Projects$Locations$Multiclouddatatransfersupportedservices;
     operations: Resource$Projects$Locations$Operations;
     regionalEndpoints: Resource$Projects$Locations$Regionalendpoints;
+    remoteTransportProfiles: Resource$Projects$Locations$Remotetransportprofiles;
     serviceClasses: Resource$Projects$Locations$Serviceclasses;
     serviceConnectionMaps: Resource$Projects$Locations$Serviceconnectionmaps;
     serviceConnectionPolicies: Resource$Projects$Locations$Serviceconnectionpolicies;
     serviceConnectionTokens: Resource$Projects$Locations$Serviceconnectiontokens;
     spokes: Resource$Projects$Locations$Spokes;
+    transports: Resource$Projects$Locations$Transports;
     constructor(context: APIRequestContext) {
       this.context = context;
       this.global = new Resource$Projects$Locations$Global(this.context);
@@ -2250,6 +2433,8 @@ export namespace networkconnectivity_v1 {
       );
       this.regionalEndpoints =
         new Resource$Projects$Locations$Regionalendpoints(this.context);
+      this.remoteTransportProfiles =
+        new Resource$Projects$Locations$Remotetransportprofiles(this.context);
       this.serviceClasses = new Resource$Projects$Locations$Serviceclasses(
         this.context
       );
@@ -2260,6 +2445,9 @@ export namespace networkconnectivity_v1 {
       this.serviceConnectionTokens =
         new Resource$Projects$Locations$Serviceconnectiontokens(this.context);
       this.spokes = new Resource$Projects$Locations$Spokes(this.context);
+      this.transports = new Resource$Projects$Locations$Transports(
+        this.context
+      );
     }
 
     /**
@@ -2432,7 +2620,7 @@ export namespace networkconnectivity_v1 {
      *
      *   // Do the magic
      *   const res = await networkconnectivity.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -2561,7 +2749,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -9274,7 +9462,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Creates a MulticloudDataTransferConfig in a given project and location.
+     * Creates a `MulticloudDataTransferConfig` resource in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -9306,11 +9494,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.create(
      *       {
-     *         // Required. The ID to use for the MulticloudDataTransferConfig, which will become the final component of the MulticloudDataTransferConfig's resource name.
+     *         // Required. The ID to use for the `MulticloudDataTransferConfig` resource, which becomes the final component of the `MulticloudDataTransferConfig` resource name.
      *         multicloudDataTransferConfigId: 'placeholder-value',
-     *         // Required. The parent resource's name
+     *         // Required. The name of the parent resource.
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -9444,7 +9632,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Deletes a single MulticloudDataTransferConfig.
+     * Deletes a `MulticloudDataTransferConfig` resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -9476,11 +9664,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.delete(
      *       {
-     *         // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *         // Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      *         etag: 'placeholder-value',
-     *         // Required. The name of the MulticloudDataTransferConfig resource to delete.
+     *         // Required. The name of the `MulticloudDataTransferConfig` resource to delete.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
      *       },
      *     );
@@ -9595,7 +9783,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details of a single MulticloudDataTransferConfig.
+     * Gets the details of a `MulticloudDataTransferConfig` resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -9627,7 +9815,7 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.get(
      *       {
-     *         // Required. Name of the MulticloudDataTransferConfig to get.
+     *         // Required. The name of the `MulticloudDataTransferConfig` resource to get.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig',
      *       },
      *     );
@@ -9749,7 +9937,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists MulticloudDataTransferConfigs in a given project and location.
+     * Lists the `MulticloudDataTransferConfig` resources in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -9781,17 +9969,17 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.list(
      *       {
-     *         // Optional. A filter expression that filters the results listed in the response.
+     *         // Optional. An expression that filters the results listed in the response.
      *         filter: 'placeholder-value',
-     *         // Optional. Sort the results by a certain order.
+     *         // Optional. The sort order of the results.
      *         orderBy: 'placeholder-value',
-     *         // Optional. The maximum number of results per page that should be returned.
+     *         // Optional. The maximum number of results listed per page.
      *         pageSize: 'placeholder-value',
      *         // Optional. The page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent resource's name
+     *         // Required. The name of the parent resource.
      *         parent: 'projects/my-project/locations/my-location',
-     *         // Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     *         // Optional. If `true`, allows partial responses for multi-regional aggregated list requests.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -9912,7 +10100,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Updates a MulticloudDataTransferConfig in a given project and location.
+     * Updates a `MulticloudDataTransferConfig` resource in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -9944,11 +10132,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.patch(
      *       {
-     *         // Identifier. The name of the MulticloudDataTransferConfig resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
+     *         // Identifier. The name of the `MulticloudDataTransferConfig` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
-     *         // Optional. Field mask is used to specify the fields to be overwritten in the MulticloudDataTransferConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *         // Optional. `FieldMask` is used to specify the fields in the `MulticloudDataTransferConfig` resource to be overwritten by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -10083,15 +10271,15 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the MulticloudDataTransferConfig, which will become the final component of the MulticloudDataTransferConfig's resource name.
+     * Required. The ID to use for the `MulticloudDataTransferConfig` resource, which becomes the final component of the `MulticloudDataTransferConfig` resource name.
      */
     multicloudDataTransferConfigId?: string;
     /**
-     * Required. The parent resource's name
+     * Required. The name of the parent resource.
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
 
@@ -10103,37 +10291,37 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Delete
     extends StandardParameters {
     /**
-     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      */
     etag?: string;
     /**
-     * Required. The name of the MulticloudDataTransferConfig resource to delete.
+     * Required. The name of the `MulticloudDataTransferConfig` resource to delete.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Get
     extends StandardParameters {
     /**
-     * Required. Name of the MulticloudDataTransferConfig to get.
+     * Required. The name of the `MulticloudDataTransferConfig` resource to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$List
     extends StandardParameters {
     /**
-     * Optional. A filter expression that filters the results listed in the response.
+     * Optional. An expression that filters the results listed in the response.
      */
     filter?: string;
     /**
-     * Optional. Sort the results by a certain order.
+     * Optional. The sort order of the results.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of results per page that should be returned.
+     * Optional. The maximum number of results listed per page.
      */
     pageSize?: number;
     /**
@@ -10141,26 +10329,26 @@ export namespace networkconnectivity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource's name
+     * Required. The name of the parent resource.
      */
     parent?: string;
     /**
-     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     * Optional. If `true`, allows partial responses for multi-regional aggregated list requests.
      */
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Patch
     extends StandardParameters {
     /**
-     * Identifier. The name of the MulticloudDataTransferConfig resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
+     * Identifier. The name of the `MulticloudDataTransferConfig` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}`.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate MulticloudDataTransferConfigs. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `MulticloudDataTransferConfig` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the MulticloudDataTransferConfig resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. `FieldMask` is used to specify the fields in the `MulticloudDataTransferConfig` resource to be overwritten by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.
      */
     updateMask?: string;
 
@@ -10177,7 +10365,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Creates a Destination in a given project and location.
+     * Creates a `Destination` resource in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -10209,12 +10397,12 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.create(
      *       {
-     *         // Required. The ID to use for the Destination, which will become the final component of the Destination's resource name.
+     *         // Required. The ID to use for the `Destination` resource, which becomes the final component of the `Destination` resource name.
      *         destinationId: 'placeholder-value',
-     *         // Required. The parent resource's name
+     *         // Required. The name of the parent resource.
      *         parent:
      *           'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate Destinations. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `Destination` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
      *
      *         // Request body metadata
@@ -10349,7 +10537,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Deletes a single Destination.
+     * Deletes a `Destination` resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -10381,11 +10569,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.delete(
      *       {
-     *         // Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     *         // Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      *         etag: 'placeholder-value',
-     *         // Required. The name of the Destination resource to delete.
+     *         // Required. The name of the `Destination` resource to delete.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig/destinations/my-destination',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
      *       },
      *     );
@@ -10500,7 +10688,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details of a single Destination.
+     * Gets the details of a `Destination` resource.
      * @example
      * ```js
      * // Before running the sample:
@@ -10532,7 +10720,7 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.get(
      *       {
-     *         // Required. Name of the Destination to get.
+     *         // Required. The name of the `Destination` resource to get.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig/destinations/my-destination',
      *       },
      *     );
@@ -10648,7 +10836,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists Destinations in a given project and location.
+     * Lists the `Destination` resources in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -10680,18 +10868,18 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.list(
      *       {
-     *         // Optional. A filter expression that filters the results listed in the response.
+     *         // Optional. An expression that filters the results listed in the response.
      *         filter: 'placeholder-value',
-     *         // Optional. Sort the results by a certain order.
+     *         // Optional. The sort order of the results.
      *         orderBy: 'placeholder-value',
-     *         // Optional. The maximum number of results per page that should be returned.
+     *         // Optional. The maximum number of results listed per page.
      *         pageSize: 'placeholder-value',
      *         // Optional. The page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent resource's name
+     *         // Required. The name of the parent resource.
      *         parent:
      *           'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig',
-     *         // Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     *         // Optional. If `true`, allow partial responses for multi-regional aggregated list requests.
      *         returnPartialSuccess: 'placeholder-value',
      *       },
      *     );
@@ -10805,7 +10993,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Updates a Destination in a given project and location.
+     * Updates a `Destination` resource in a specified project and location.
      * @example
      * ```js
      * // Before running the sample:
@@ -10837,11 +11025,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferConfigs.destinations.patch(
      *       {
-     *         // Identifier. The name of the Destination resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
+     *         // Identifier. The name of the `Destination` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
      *         name: 'projects/my-project/locations/my-location/multicloudDataTransferConfigs/my-multicloudDataTransferConfig/destinations/my-destination',
-     *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *         // Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      *         requestId: 'placeholder-value',
-     *         // Optional. Field mask is used to specify the fields to be overwritten in the Destination resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     *         // Optional. `FieldMask is used to specify the fields to be overwritten in the `Destination` resource by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.
      *         updateMask: 'placeholder-value',
      *
      *         // Request body metadata
@@ -10976,15 +11164,15 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Create
     extends StandardParameters {
     /**
-     * Required. The ID to use for the Destination, which will become the final component of the Destination's resource name.
+     * Required. The ID to use for the `Destination` resource, which becomes the final component of the `Destination` resource name.
      */
     destinationId?: string;
     /**
-     * Required. The parent resource's name
+     * Required. The name of the parent resource.
      */
     parent?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate Destinations. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. This prevents clients from accidentally creating duplicate `Destination` resources. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
 
@@ -10996,37 +11184,37 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Delete
     extends StandardParameters {
     /**
-     * Optional. The etag is computed by the server, and may be sent on update and delete requests to ensure the client has an up-to-date value before proceeding.
+     * Optional. The etag is computed by the server, and might be sent with update and delete requests so that the client has an up-to-date value before proceeding.
      */
     etag?: string;
     /**
-     * Required. The name of the Destination resource to delete.
+     * Required. The name of the `Destination` resource to delete.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Get
     extends StandardParameters {
     /**
-     * Required. Name of the Destination to get.
+     * Required. The name of the `Destination` resource to get.
      */
     name?: string;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$List
     extends StandardParameters {
     /**
-     * Optional. A filter expression that filters the results listed in the response.
+     * Optional. An expression that filters the results listed in the response.
      */
     filter?: string;
     /**
-     * Optional. Sort the results by a certain order.
+     * Optional. The sort order of the results.
      */
     orderBy?: string;
     /**
-     * Optional. The maximum number of results per page that should be returned.
+     * Optional. The maximum number of results listed per page.
      */
     pageSize?: number;
     /**
@@ -11034,26 +11222,26 @@ export namespace networkconnectivity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource's name
+     * Required. The name of the parent resource.
      */
     parent?: string;
     /**
-     * Optional. If true, allow partial responses for multi-regional Aggregated List requests.
+     * Optional. If `true`, allow partial responses for multi-regional aggregated list requests.
      */
     returnPartialSuccess?: boolean;
   }
   export interface Params$Resource$Projects$Locations$Multiclouddatatransferconfigs$Destinations$Patch
     extends StandardParameters {
     /**
-     * Identifier. The name of the Destination resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
+     * Identifier. The name of the `Destination` resource. Format: `projects/{project\}/locations/{location\}/multicloudDataTransferConfigs/{multicloud_data_transfer_config\}/destinations/{destination\}`.
      */
     name?: string;
     /**
-     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     * Optional. A request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server can ignore the request if it has already been completed. The server waits for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, can ignore the second request. The request ID must be a valid UUID with the exception that zero UUID (00000000-0000-0000-0000-000000000000) isn't supported.
      */
     requestId?: string;
     /**
-     * Optional. Field mask is used to specify the fields to be overwritten in the Destination resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields will be overwritten.
+     * Optional. `FieldMask is used to specify the fields to be overwritten in the `Destination` resource by the update. The fields specified in `update_mask` are relative to the resource, not the full request. A field is overwritten if it is in the mask. If you don't specify a mask, all fields are overwritten.
      */
     updateMask?: string;
 
@@ -11070,7 +11258,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Gets details of a single MulticloudDataTransferSupportedServices.
+     * Gets the details of a service that is supported for Data Transfer Essentials.
      * @example
      * ```js
      * // Before running the sample:
@@ -11220,7 +11408,7 @@ export namespace networkconnectivity_v1 {
     }
 
     /**
-     * Lists the supported services for Multicloud Data Transfer. This is a passthrough method.
+     * Lists the services in the project for a region that are supported for Data Transfer Essentials.
      * @example
      * ```js
      * // Before running the sample:
@@ -11252,11 +11440,11 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.multicloudDataTransferSupportedServices.list(
      *       {
-     *         // Optional. The maximum number of results per page that should be returned.
+     *         // Optional. The maximum number of results listed per page.
      *         pageSize: 'placeholder-value',
      *         // Optional. The page token.
      *         pageToken: 'placeholder-value',
-     *         // Required. The parent resource's name
+     *         // Required. The name of the parent resource.
      *         parent: 'projects/my-project/locations/my-location',
      *       },
      *     );
@@ -11386,7 +11574,7 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Multiclouddatatransfersupportedservices$List
     extends StandardParameters {
     /**
-     * Optional. The maximum number of results per page that should be returned.
+     * Optional. The maximum number of results listed per page.
      */
     pageSize?: number;
     /**
@@ -11394,7 +11582,7 @@ export namespace networkconnectivity_v1 {
      */
     pageToken?: string;
     /**
-     * Required. The parent resource's name
+     * Required. The name of the parent resource.
      */
     parent?: string;
   }
@@ -12708,6 +12896,354 @@ export namespace networkconnectivity_v1 {
     pageToken?: string;
     /**
      * Required. The parent resource's name of the RegionalEndpoint.
+     */
+    parent?: string;
+  }
+
+  export class Resource$Projects$Locations$Remotetransportprofiles {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Gets details of a single RemoteTransportProfile.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.remoteTransportProfiles.get({
+     *       // Required. Name of the resource.
+     *       name: 'projects/my-project/locations/my-location/remoteTransportProfiles/my-remoteTransportProfile',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "flow": "my_flow",
+     *   //   "labels": {},
+     *   //   "name": "my_name",
+     *   //   "orderState": "my_orderState",
+     *   //   "provider": "my_provider",
+     *   //   "providerSite": "my_providerSite",
+     *   //   "region": "my_region",
+     *   //   "sla": "my_sla",
+     *   //   "supportedBandwidths": [],
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$RemoteTransportProfile>>;
+    get(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$RemoteTransportProfile>,
+      callback: BodyResponseCallback<Schema$RemoteTransportProfile>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$Get,
+      callback: BodyResponseCallback<Schema$RemoteTransportProfile>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$RemoteTransportProfile>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Remotetransportprofiles$Get
+        | BodyResponseCallback<Schema$RemoteTransportProfile>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$RemoteTransportProfile>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$RemoteTransportProfile>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$RemoteTransportProfile>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Remotetransportprofiles$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Remotetransportprofiles$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$RemoteTransportProfile>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$RemoteTransportProfile>(parameters);
+      }
+    }
+
+    /**
+     * Lists RemoteTransportProfiles in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await networkconnectivity.projects.locations.remoteTransportProfiles.list({
+     *       // Optional. Filtering results.
+     *       filter: 'placeholder-value',
+     *       // Optional. Hint for how to order the results.
+     *       orderBy: 'placeholder-value',
+     *       // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *       pageSize: 'placeholder-value',
+     *       // Optional. A token identifying a page of results the server should return.
+     *       pageToken: 'placeholder-value',
+     *       // Required. Parent value for ListRemoteTransportProfilesRequest.
+     *       parent: 'projects/my-project/locations/my-location',
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "remoteTransportProfiles": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Remotetransportprofiles$List,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$ListRemoteTransportProfilesResponse>
+    >;
+    list(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>,
+      callback: BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Remotetransportprofiles$List,
+      callback: BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+    ): void;
+    list(
+      callback: BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+    ): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Remotetransportprofiles$List
+        | BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListRemoteTransportProfilesResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$ListRemoteTransportProfilesResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Remotetransportprofiles$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Remotetransportprofiles$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/remoteTransportProfiles').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListRemoteTransportProfilesResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListRemoteTransportProfilesResponse>(
+          parameters
+        );
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Remotetransportprofiles$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Remotetransportprofiles$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListRemoteTransportProfilesRequest.
      */
     parent?: string;
   }
@@ -15304,17 +15840,26 @@ export namespace networkconnectivity_v1 {
      *   const res =
      *     await networkconnectivity.projects.locations.serviceConnectionPolicies.create(
      *       {
+     *         // Optional. The space where we search for a free range to create a subnetwork. It can be narrow down or pick a different space. This is in standard CIDR format. If not specified, “10.0.0.0/8” is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.
+     *         'autoSubnetworkConfig.allocRangeSpace': 'placeholder-value',
+     *         // Optional. The requested IP stack for the subnetwork. If not specified, IPv4 is used.
+     *         'autoSubnetworkConfig.ipStack': 'placeholder-value',
+     *         // Optional. The desired prefix length for the subnet's IP address range. E.g., 24 for a /24. The actual range is allocated from available space. If not specified, 24 is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.
+     *         'autoSubnetworkConfig.prefixLength': 'placeholder-value',
      *         // Required. The parent resource's name of the ServiceConnectionPolicy. ex. projects/123/locations/us-east1
      *         parent: 'projects/my-project/locations/my-location',
      *         // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
      *         requestId: 'placeholder-value',
      *         // Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/serviceConnectionPolicies/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.
      *         serviceConnectionPolicyId: 'placeholder-value',
+     *         // Optional. If this field is not set, USER_PROVIDED is the inferred value to use.
+     *         subnetworkMode: 'placeholder-value',
      *
      *         // Request body metadata
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "autoCreatedSubnetInfo": {},
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
      *           //   "etag": "my_etag",
@@ -15633,6 +16178,7 @@ export namespace networkconnectivity_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "autoCreatedSubnetInfo": {},
      *   //   "createTime": "my_createTime",
      *   //   "description": "my_description",
      *   //   "etag": "my_etag",
@@ -16097,6 +16643,7 @@ export namespace networkconnectivity_v1 {
      *         requestBody: {
      *           // request body parameters
      *           // {
+     *           //   "autoCreatedSubnetInfo": {},
      *           //   "createTime": "my_createTime",
      *           //   "description": "my_description",
      *           //   "etag": "my_etag",
@@ -16536,6 +17083,18 @@ export namespace networkconnectivity_v1 {
   export interface Params$Resource$Projects$Locations$Serviceconnectionpolicies$Create
     extends StandardParameters {
     /**
+     * Optional. The space where we search for a free range to create a subnetwork. It can be narrow down or pick a different space. This is in standard CIDR format. If not specified, “10.0.0.0/8” is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.
+     */
+    'autoSubnetworkConfig.allocRangeSpace'?: string;
+    /**
+     * Optional. The requested IP stack for the subnetwork. If not specified, IPv4 is used.
+     */
+    'autoSubnetworkConfig.ipStack'?: string;
+    /**
+     * Optional. The desired prefix length for the subnet's IP address range. E.g., 24 for a /24. The actual range is allocated from available space. If not specified, 24 is used. Only eligible for IPV4_ONLY and IPV4_IPV6 subnetwork.
+     */
+    'autoSubnetworkConfig.prefixLength'?: number;
+    /**
      * Required. The parent resource's name of the ServiceConnectionPolicy. ex. projects/123/locations/us-east1
      */
     parent?: string;
@@ -16547,6 +17106,10 @@ export namespace networkconnectivity_v1 {
      * Optional. Resource ID (i.e. 'foo' in '[...]/projects/p/locations/l/serviceConnectionPolicies/foo') See https://google.aip.dev/122#resource-id-segments Unique per location.
      */
     serviceConnectionPolicyId?: string;
+    /**
+     * Optional. If this field is not set, USER_PROVIDED is the inferred value to use.
+     */
+    subnetworkMode?: string;
 
     /**
      * Request body metadata
@@ -18714,5 +19277,882 @@ export namespace networkconnectivity_v1 {
      * Request body metadata
      */
     requestBody?: Schema$TestIamPermissionsRequest;
+  }
+
+  export class Resource$Projects$Locations$Transports {
+    context: APIRequestContext;
+    constructor(context: APIRequestContext) {
+      this.context = context;
+    }
+
+    /**
+     * Creates a new Transport in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.transports.create({
+     *     // Required. Value for parent.
+     *     parent: 'projects/my-project/locations/my-location',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Required. Id of the requesting object
+     *     transportId: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminEnabled": false,
+     *       //   "advertisedRoutes": "my_advertisedRoutes",
+     *       //   "bandwidth": "my_bandwidth",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "generatedActivationKey": "my_generatedActivationKey",
+     *       //   "labels": {},
+     *       //   "mtuLimit": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "providedActivationKey": "my_providedActivationKey",
+     *       //   "region": "my_region",
+     *       //   "remoteProfile": "my_remoteProfile",
+     *       //   "stackType": "my_stackType",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    create(
+      params: Params$Resource$Projects$Locations$Transports$Create,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    create(
+      params?: Params$Resource$Projects$Locations$Transports$Create,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    create(
+      params: Params$Resource$Projects$Locations$Transports$Create,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Transports$Create,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      params: Params$Resource$Projects$Locations$Transports$Create,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    create(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transports$Create
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transports$Create;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Transports$Create;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/transports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Deletes a single Transport.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.transports.delete({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/transports/my-transport',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    delete(
+      params: Params$Resource$Projects$Locations$Transports$Delete,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    delete(
+      params?: Params$Resource$Projects$Locations$Transports$Delete,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    delete(
+      params: Params$Resource$Projects$Locations$Transports$Delete,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Transports$Delete,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      params: Params$Resource$Projects$Locations$Transports$Delete,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    delete(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transports$Delete
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transports$Delete;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Transports$Delete;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'DELETE',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+
+    /**
+     * Gets details of a single Transport.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.transports.get({
+     *     // Required. Name of the resource.
+     *     name: 'projects/my-project/locations/my-location/transports/my-transport',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "adminEnabled": false,
+     *   //   "advertisedRoutes": "my_advertisedRoutes",
+     *   //   "bandwidth": "my_bandwidth",
+     *   //   "createTime": "my_createTime",
+     *   //   "description": "my_description",
+     *   //   "generatedActivationKey": "my_generatedActivationKey",
+     *   //   "labels": {},
+     *   //   "mtuLimit": 0,
+     *   //   "name": "my_name",
+     *   //   "network": "my_network",
+     *   //   "providedActivationKey": "my_providedActivationKey",
+     *   //   "region": "my_region",
+     *   //   "remoteProfile": "my_remoteProfile",
+     *   //   "stackType": "my_stackType",
+     *   //   "state": "my_state",
+     *   //   "updateTime": "my_updateTime"
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    get(
+      params: Params$Resource$Projects$Locations$Transports$Get,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    get(
+      params?: Params$Resource$Projects$Locations$Transports$Get,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$Transport>>;
+    get(
+      params: Params$Resource$Projects$Locations$Transports$Get,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transports$Get,
+      options: MethodOptions | BodyResponseCallback<Schema$Transport>,
+      callback: BodyResponseCallback<Schema$Transport>
+    ): void;
+    get(
+      params: Params$Resource$Projects$Locations$Transports$Get,
+      callback: BodyResponseCallback<Schema$Transport>
+    ): void;
+    get(callback: BodyResponseCallback<Schema$Transport>): void;
+    get(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transports$Get
+        | BodyResponseCallback<Schema$Transport>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$Transport>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$Transport>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$Transport>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transports$Get;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Transports$Get;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$Transport>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$Transport>(parameters);
+      }
+    }
+
+    /**
+     * Lists Transports in a given project and location.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.transports.list({
+     *     // Optional. Filtering results.
+     *     filter: 'placeholder-value',
+     *     // Optional. Hint for how to order the results.
+     *     orderBy: 'placeholder-value',
+     *     // Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     *     pageSize: 'placeholder-value',
+     *     // Optional. A token identifying a page of results the server should return.
+     *     pageToken: 'placeholder-value',
+     *     // Required. Parent value for ListTransportsRequest.
+     *     parent: 'projects/my-project/locations/my-location',
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "nextPageToken": "my_nextPageToken",
+     *   //   "transports": [],
+     *   //   "unreachable": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    list(
+      params: Params$Resource$Projects$Locations$Transports$List,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    list(
+      params?: Params$Resource$Projects$Locations$Transports$List,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$ListTransportsResponse>>;
+    list(
+      params: Params$Resource$Projects$Locations$Transports$List,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Transports$List,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$ListTransportsResponse>,
+      callback: BodyResponseCallback<Schema$ListTransportsResponse>
+    ): void;
+    list(
+      params: Params$Resource$Projects$Locations$Transports$List,
+      callback: BodyResponseCallback<Schema$ListTransportsResponse>
+    ): void;
+    list(callback: BodyResponseCallback<Schema$ListTransportsResponse>): void;
+    list(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transports$List
+        | BodyResponseCallback<Schema$ListTransportsResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$ListTransportsResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$ListTransportsResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$ListTransportsResponse>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transports$List;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Transports$List;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+parent}/transports').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'GET',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['parent'],
+        pathParams: ['parent'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$ListTransportsResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$ListTransportsResponse>(parameters);
+      }
+    }
+
+    /**
+     * Updates the parameters of a single Transport.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/networkconnectivity.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const networkconnectivity = google.networkconnectivity('v1');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res = await networkconnectivity.projects.locations.transports.patch({
+     *     // Identifier. Name of the resource, see google.aip.dev/122 for resource naming.
+     *     name: 'projects/my-project/locations/my-location/transports/my-transport',
+     *     // Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     *     requestId: 'placeholder-value',
+     *     // Optional. Field mask is used to specify the fields to be overwritten in the Transport resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     *     updateMask: 'placeholder-value',
+     *
+     *     // Request body metadata
+     *     requestBody: {
+     *       // request body parameters
+     *       // {
+     *       //   "adminEnabled": false,
+     *       //   "advertisedRoutes": "my_advertisedRoutes",
+     *       //   "bandwidth": "my_bandwidth",
+     *       //   "createTime": "my_createTime",
+     *       //   "description": "my_description",
+     *       //   "generatedActivationKey": "my_generatedActivationKey",
+     *       //   "labels": {},
+     *       //   "mtuLimit": 0,
+     *       //   "name": "my_name",
+     *       //   "network": "my_network",
+     *       //   "providedActivationKey": "my_providedActivationKey",
+     *       //   "region": "my_region",
+     *       //   "remoteProfile": "my_remoteProfile",
+     *       //   "stackType": "my_stackType",
+     *       //   "state": "my_state",
+     *       //   "updateTime": "my_updateTime"
+     *       // }
+     *     },
+     *   });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "done": false,
+     *   //   "error": {},
+     *   //   "metadata": {},
+     *   //   "name": "my_name",
+     *   //   "response": {}
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    patch(
+      params: Params$Resource$Projects$Locations$Transports$Patch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    patch(
+      params?: Params$Resource$Projects$Locations$Transports$Patch,
+      options?: MethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>;
+    patch(
+      params: Params$Resource$Projects$Locations$Transports$Patch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Transports$Patch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      params: Params$Resource$Projects$Locations$Transports$Patch,
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      callback: BodyResponseCallback<Schema$GoogleLongrunningOperation>
+    ): void;
+    patch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Transports$Patch
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleLongrunningOperation>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<GaxiosResponseWithHTTP2<Schema$GoogleLongrunningOperation>>
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Transports$Patch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params = {} as Params$Resource$Projects$Locations$Transports$Patch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl =
+        options.rootUrl || 'https://networkconnectivity.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            method: 'PATCH',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['name'],
+        pathParams: ['name'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleLongrunningOperation>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleLongrunningOperation>(parameters);
+      }
+    }
+  }
+
+  export interface Params$Resource$Projects$Locations$Transports$Create
+    extends StandardParameters {
+    /**
+     * Required. Value for parent.
+     */
+    parent?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Required. Id of the requesting object
+     */
+    transportId?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Transport;
+  }
+  export interface Params$Resource$Projects$Locations$Transports$Delete
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes after the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Transports$Get
+    extends StandardParameters {
+    /**
+     * Required. Name of the resource.
+     */
+    name?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Transports$List
+    extends StandardParameters {
+    /**
+     * Optional. Filtering results.
+     */
+    filter?: string;
+    /**
+     * Optional. Hint for how to order the results.
+     */
+    orderBy?: string;
+    /**
+     * Optional. Requested page size. Server may return fewer items than requested. If unspecified, server will pick an appropriate default.
+     */
+    pageSize?: number;
+    /**
+     * Optional. A token identifying a page of results the server should return.
+     */
+    pageToken?: string;
+    /**
+     * Required. Parent value for ListTransportsRequest.
+     */
+    parent?: string;
+  }
+  export interface Params$Resource$Projects$Locations$Transports$Patch
+    extends StandardParameters {
+    /**
+     * Identifier. Name of the resource, see google.aip.dev/122 for resource naming.
+     */
+    name?: string;
+    /**
+     * Optional. An optional request ID to identify requests. Specify a unique request ID so that if you must retry your request, the server will know to ignore the request if it has already been completed. The server will guarantee that for at least 60 minutes since the first request. For example, consider a situation where you make an initial request and the request times out. If you make the request again with the same request ID, the server can check if original operation with the same request ID was received, and if so, will ignore the second request. This prevents clients from accidentally creating duplicate commitments. The request ID must be a valid UUID with the exception that zero UUID is not supported (00000000-0000-0000-0000-000000000000).
+     */
+    requestId?: string;
+    /**
+     * Optional. Field mask is used to specify the fields to be overwritten in the Transport resource by the update. The fields specified in the update_mask are relative to the resource, not the full request. A field will be overwritten if it is in the mask. If the user does not provide a mask then all fields present in the request will be overwritten.
+     */
+    updateMask?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$Transport;
   }
 }
