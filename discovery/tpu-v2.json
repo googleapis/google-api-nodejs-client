@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -893,7 +893,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250903",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1000,10 +1000,32 @@
       },
       "type": "object"
     },
+    "BootDiskConfig": {
+      "description": "Sets the boot disk configuration for the TPU node.",
+      "id": "BootDiskConfig",
+      "properties": {
+        "customerEncryptionKey": {
+          "$ref": "CustomerEncryptionKey",
+          "description": "Optional. Customer encryption key for boot disk."
+        }
+      },
+      "type": "object"
+    },
     "CreatingData": {
       "description": "Further data for the creating state.",
       "id": "CreatingData",
       "properties": {},
+      "type": "object"
+    },
+    "CustomerEncryptionKey": {
+      "description": "Defines the customer encryption key for disk encryption.",
+      "id": "CustomerEncryptionKey",
+      "properties": {
+        "kmsKeyName": {
+          "description": "The name of the encryption key that is stored in Google Cloud KMS. For example: \"kmsKeyName\": \"projects/KMS_PROJECT_ID/locations/REGION/keyRings/KEY_REGION/cryptoKeys/KEY The fully-qualifed key name may be returned for resource GET requests. For example: \"kmsKeyName\": \"projects/KMS_PROJECT_ID/locations/REGION/keyRings/KEY_REGION/cryptoKeys/KEY/cryptoKeyVersions/1 ",
+          "type": "string"
+        }
+      },
       "type": "object"
     },
     "DeletingData": {
@@ -1420,6 +1442,10 @@
           ],
           "readOnly": true,
           "type": "string"
+        },
+        "bootDiskConfig": {
+          "$ref": "BootDiskConfig",
+          "description": "Optional. Boot disk configuration."
         },
         "cidrBlock": {
           "description": "The CIDR block that the TPU node will use when selecting an IP address. This CIDR block must be a /29 block; the Compute Engine networks API forbids a smaller block, and using a larger block would be wasteful (a node can only consume one IP address). Errors will occur if the CIDR block has already been used for a currently existing TPU node, the CIDR block conflicts with any subnetworks in the user's provided network, or the provided network is peered with another network that is using that CIDR block.",

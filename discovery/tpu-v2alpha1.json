@@ -172,7 +172,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1027,7 +1027,7 @@
       }
     }
   },
-  "revision": "20250815",
+  "revision": "20250903",
   "rootUrl": "https://tpu.googleapis.com/",
   "schemas": {
     "AcceleratorConfig": {
@@ -1176,6 +1176,10 @@
         },
         "sourceImage": {
           "description": "Optional. Image from which boot disk is to be created. If not specified, the default image for the runtime version will be used. Example: `projects/$PROJECT_ID/global/images/$IMAGE_NAME`.",
+          "type": "string"
+        },
+        "storagePool": {
+          "description": "Optional. The storage pool in which the boot disk is created. You can provide this as a partial or full URL to the resource.",
           "type": "string"
         }
       },
