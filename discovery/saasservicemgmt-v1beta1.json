@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1804,7 +1804,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20250910",
   "rootUrl": "https://saasservicemgmt.googleapis.com/",
   "schemas": {
     "Aggregate": {
@@ -2349,7 +2349,7 @@
           "type": "string"
         },
         "rolloutOrchestrationStrategy": {
-          "description": "Optional. The strategy used for executing this Rollout. This strategy will override whatever strategy is specified in the RolloutType. If not specified on creation, the strategy from RolloutType will be used. There are two supported values strategies which are used to control - \"Google.Cloud.Simple.AllAtOnce\" - \"Google.Cloud.Simple.OneLocationAtATime\" A rollout with one of these simple strategies will rollout across all locations defined in the targeted UnitKind's Saas Locations.",
+          "description": "Optional. The strategy used for executing this Rollout. This strategy will override whatever strategy is specified in the RolloutKind. If not specified on creation, the strategy from RolloutKind will be used. There are two supported values strategies which are used to control - \"Google.Cloud.Simple.AllAtOnce\" - \"Google.Cloud.Simple.OneLocationAtATime\" A rollout with one of these simple strategies will rollout across all locations defined in the targeted UnitKind's Saas Locations.",
           "type": "string"
         },
         "rootRollout": {
@@ -2414,7 +2414,7 @@
           "type": "string"
         },
         "unitFilter": {
-          "description": "Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout. If not provided, the unit_filter from the RolloutType will be used.",
+          "description": "Optional. CEL(https://github.com/google/cel-spec) formatted filter string against Unit. The filter will be applied to determine the eligible unit population. This filter can only reduce, but not expand the scope of the rollout. If not provided, the unit_filter from the RolloutKind will be used.",
           "type": "string"
         },
         "updateTime": {
