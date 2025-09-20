@@ -482,6 +482,10 @@ export namespace container_v1beta1 {
     upgradeSettings?: Schema$UpgradeSettings;
   }
   /**
+   * Autoscaled rollout policy utilizes the cluster autoscaler during blue-green upgrade to scale both the blue and green pools.
+   */
+  export interface Schema$AutoscaledRolloutPolicy {}
+  /**
    * AutoUpgradeOptions defines the set of options for the user to control how the Auto Upgrades will proceed.
    */
   export interface Schema$AutoUpgradeOptions {
@@ -575,6 +579,10 @@ export namespace container_v1beta1 {
    * Settings for blue-green upgrade.
    */
   export interface Schema$BlueGreenSettings {
+    /**
+     * Autoscaled policy for cluster autoscaler enabled blue-green upgrade.
+     */
+    autoscaledRolloutPolicy?: Schema$AutoscaledRolloutPolicy;
     /**
      * Time needed after draining entire blue pool. After this period, blue pool will be cleaned up.
      */
