@@ -3268,6 +3268,10 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1Processor {
     /**
+     * Optional. SchemaVersion used by the Processor. It is the same as Processor's DatasetSchema.schema_version Format is `projects/{project\}/locations/{location\}/schemas/{schema\}/schemaVersions/{schema_version\}
+     */
+    activeSchemaVersion?: string | null;
+    /**
      * Output only. The time the processor was created.
      */
     createTime?: string | null;
@@ -3692,7 +3696,7 @@ export namespace documentai_v1 {
    */
   export interface Schema$GoogleCloudDocumentaiV1TrainProcessorVersionRequestCustomDocumentExtractionOptions {
     /**
-     * Training method to use for CDE training.
+     * Optional. Training method to use for CDE training.
      */
     trainingMethod?: string | null;
   }
@@ -4513,7 +4517,7 @@ export namespace documentai_v1 {
      *
      *   // Do the magic
      *   const res = await documentai.projects.locations.list({
-     *     // Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -4656,7 +4660,7 @@ export namespace documentai_v1 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
@@ -5355,6 +5359,7 @@ export namespace documentai_v1 {
      *     requestBody: {
      *       // request body parameters
      *       // {
+     *       //   "activeSchemaVersion": "my_activeSchemaVersion",
      *       //   "createTime": "my_createTime",
      *       //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *       //   "displayName": "my_displayName",
@@ -5373,6 +5378,7 @@ export namespace documentai_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeSchemaVersion": "my_activeSchemaVersion",
      *   //   "createTime": "my_createTime",
      *   //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *   //   "displayName": "my_displayName",
@@ -5971,6 +5977,7 @@ export namespace documentai_v1 {
      *
      *   // Example response
      *   // {
+     *   //   "activeSchemaVersion": "my_activeSchemaVersion",
      *   //   "createTime": "my_createTime",
      *   //   "defaultProcessorVersion": "my_defaultProcessorVersion",
      *   //   "displayName": "my_displayName",
