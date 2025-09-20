@@ -697,7 +697,7 @@
                   ],
                   "parameters": {
                     "authorizedViewSetId": {
-                      "description": "Optional. A unique ID for the new AuthorizedViewSet. This ID will become the final component of the AuthorizedViewSet's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See aip.dev/122#resource-id-segments",
+                      "description": "Optional. A unique ID for the new AuthorizedViewSet. This ID will become the final component of the AuthorizedViewSet's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See https://google.aip.dev/122#resource-id-segments",
                       "location": "query",
                       "type": "string"
                     },
@@ -869,7 +869,7 @@
                       ],
                       "parameters": {
                         "authorizedViewId": {
-                          "description": "Optional. A unique ID for the new AuthorizedView. This ID will become the final component of the AuthorizedView's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See aip.dev/122#resource-id-segments",
+                          "description": "Optional. A unique ID for the new AuthorizedView. This ID will become the final component of the AuthorizedView's resource name. If no ID is specified, a server-generated ID will be used. This value should be 4-64 characters and must match the regular expression `^[a-z]([a-z0-9-]{0,61}[a-z0-9])?$`. See https://google.aip.dev/122#resource-id-segments",
                           "location": "query",
                           "type": "string"
                         },
@@ -2452,6 +2452,34 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "sample": {
+                  "description": "Samples conversations based on user configuration and handles the sampled conversations for different use cases.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations:sample",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.conversations.sample",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "parent": {
+                      "description": "Required. The parent resource of the dataset.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/conversations:sample",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsRequest"
+                  },
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "upload": {
                   "description": "Create a long-running conversation upload operation. This method differs from `CreateConversation` by allowing audio transcription and optional DLP redaction.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/conversations:upload",
@@ -3196,6 +3224,130 @@
                     "https://www.googleapis.com/auth/cloud-platform"
                   ]
                 },
+                "create": {
+                  "description": "Creates a dataset.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets",
+                  "httpMethod": "POST",
+                  "id": "contactcenterinsights.projects.locations.datasets.create",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "datasetId": {
+                      "description": "Optional. The ID to use for the dataset.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the dataset.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/datasets",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "delete": {
+                  "description": "Delete a dataset.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}",
+                  "httpMethod": "DELETE",
+                  "id": "contactcenterinsights.projects.locations.datasets.delete",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the dataset to delete.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleLongrunningOperation"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "get": {
+                  "description": "Gets a dataset.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.datasets.get",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Required. The name of the dataset to get.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "list": {
+                  "description": "List datasets matching the input.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets",
+                  "httpMethod": "GET",
+                  "id": "contactcenterinsights.projects.locations.datasets.list",
+                  "parameterOrder": [
+                    "parent"
+                  ],
+                  "parameters": {
+                    "filter": {
+                      "description": "Optional. A filter to reduce results to a specific subset. Useful for querying datasets with specific properties. Supported fields include, for Q2 though we only support list by project: - `type` - `description` - `project_number`",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "pageSize": {
+                      "description": "Optional. The maximum number of datasets to return in the response. If this value is zero, the service will select a default size. A call might return fewer objects than requested. A non-empty `next_page_token` in the response indicates that more data is available.",
+                      "format": "int32",
+                      "location": "query",
+                      "type": "integer"
+                    },
+                    "pageToken": {
+                      "description": "Optional. The value returned by the last `ListDatasetsResponse`; indicates that this is a continuation of a prior `ListDatasets` call and the system should return the next page of data.",
+                      "location": "query",
+                      "type": "string"
+                    },
+                    "parent": {
+                      "description": "Required. The parent resource of the dataset.",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+parent}/datasets",
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1ListDatasetsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
                 "listAllFeedbackLabels": {
                   "description": "List all feedback labels by project number.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}:listAllFeedbackLabels",
@@ -3232,6 +3384,40 @@
                   "path": "v1/{+parent}:listAllFeedbackLabels",
                   "response": {
                     "$ref": "GoogleCloudContactcenterinsightsV1ListAllFeedbackLabelsResponse"
+                  },
+                  "scopes": [
+                    "https://www.googleapis.com/auth/cloud-platform"
+                  ]
+                },
+                "patch": {
+                  "description": "Updates a dataset.",
+                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}",
+                  "httpMethod": "PATCH",
+                  "id": "contactcenterinsights.projects.locations.datasets.patch",
+                  "parameterOrder": [
+                    "name"
+                  ],
+                  "parameters": {
+                    "name": {
+                      "description": "Immutable. Identifier. Resource name of the dataset. Format: projects/{project}/locations/{location}/datasets/{dataset}",
+                      "location": "path",
+                      "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                      "required": true,
+                      "type": "string"
+                    },
+                    "updateMask": {
+                      "description": "Optional. The list of fields to update.",
+                      "format": "google-fieldmask",
+                      "location": "query",
+                      "type": "string"
+                    }
+                  },
+                  "path": "v1/{+name}",
+                  "request": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
+                  },
+                  "response": {
+                    "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
                   },
                   "scopes": [
                     "https://www.googleapis.com/auth/cloud-platform"
@@ -3479,6 +3665,34 @@
                       "path": "v1/{+parent}/conversations",
                       "response": {
                         "$ref": "GoogleCloudContactcenterinsightsV1ListConversationsResponse"
+                      },
+                      "scopes": [
+                        "https://www.googleapis.com/auth/cloud-platform"
+                      ]
+                    },
+                    "sample": {
+                      "description": "Samples conversations based on user configuration and handles the sampled conversations for different use cases.",
+                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/datasets/{datasetsId}/conversations:sample",
+                      "httpMethod": "POST",
+                      "id": "contactcenterinsights.projects.locations.datasets.conversations.sample",
+                      "parameterOrder": [
+                        "parent"
+                      ],
+                      "parameters": {
+                        "parent": {
+                          "description": "Required. The parent resource of the dataset.",
+                          "location": "path",
+                          "pattern": "^projects/[^/]+/locations/[^/]+/datasets/[^/]+$",
+                          "required": true,
+                          "type": "string"
+                        }
+                      },
+                      "path": "v1/{+parent}/conversations:sample",
+                      "request": {
+                        "$ref": "GoogleCloudContactcenterinsightsV1SampleConversationsRequest"
+                      },
+                      "response": {
+                        "$ref": "GoogleLongrunningOperation"
                       },
                       "scopes": [
                         "https://www.googleapis.com/auth/cloud-platform"
@@ -5424,7 +5638,7 @@
       }
     }
   },
-  "revision": "20250821",
+  "revision": "20250915",
   "rootUrl": "https://contactcenterinsights.googleapis.com/",
   "schemas": {
     "GoogleCloudContactcenterinsightsV1Analysis": {
@@ -7615,6 +7829,7 @@
             "EXPORT_V8",
             "EXPORT_V9",
             "EXPORT_V10",
+            "EXPORT_V11",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -7629,6 +7844,7 @@
             "Export schema version 8.",
             "Export schema version 9.",
             "Export schema version 10.",
+            "Export schema version 11.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -7932,6 +8148,14 @@
           "$ref": "GoogleCloudContactcenterinsightsV1IngestConversationsRequest",
           "description": "Output only. The original request for ingest.",
           "readOnly": true
+        },
+        "sampledConversations": {
+          "description": "Output only. Stores the conversation resources produced by ingest sampling operations.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
@@ -8559,6 +8783,24 @@
         },
         "nextPageToken": {
           "description": "A token which can be sent as `page_token` to retrieve the next page. If this field is set, it means there is another page available. If it is not set, it means no other pages are available.",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudContactcenterinsightsV1ListDatasetsResponse": {
+      "description": "The response to list datasets.",
+      "id": "GoogleCloudContactcenterinsightsV1ListDatasetsResponse",
+      "properties": {
+        "datasets": {
+          "description": "The datasets that match the request.",
+          "items": {
+            "$ref": "GoogleCloudContactcenterinsightsV1Dataset"
+          },
+          "type": "array"
+        },
+        "nextPageToken": {
+          "description": "A token, which can be sent as `page_token` to retrieve the next page. If this field is omitted, there are no subsequent pages.",
           "type": "string"
         }
       },
@@ -9221,12 +9463,16 @@
           "enum": [
             "PREDEFINED_QUESTION_TYPE_UNSPECIFIED",
             "CONVERSATION_OUTCOME",
-            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE"
+            "CONVERSATION_OUTCOME_ESCALATION_INITIATOR_ROLE",
+            "CONVERSATION_OUTCOME_CUSTOMER_SATISFACTION",
+            "CONVERSATION_OUTCOME_AGENT_HELPFULNESS"
           ],
           "enumDescriptions": [
             "The type of the predefined question is unspecified.",
             "A prebuilt classifier classfying the outcome of the conversation. For example, if the customer issue mentioned in a conversation has been resolved or not.",
-            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent."
+            "A prebuilt classifier classfying the initiator of the conversation escalation. For example, if it was initiated by the customer or the agent.",
+            "A prebuilt classifier classfying whether the customer is satisfied with the agent's response.",
+            "A prebuilt classifier classfying whether the agent is helpful to the customer."
           ],
           "type": "string"
         }
@@ -10114,7 +10360,7 @@
           "additionalProperties": {
             "type": "string"
           },
-          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"ingest-conversations\": Notify each time an IngestConversations LRO is complete. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. * \"upload-conversation\": Notify when an UploadConversation LRO is complete. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
+          "description": "A map that maps a notification trigger to a Pub/Sub topic. Each time a specified trigger occurs, Insights will notify the corresponding Pub/Sub topic. Keys are notification triggers. Supported keys are: * \"all-triggers\": Notify each time any of the supported triggers occurs. * \"create-analysis\": Notify each time an analysis is created. * \"create-conversation\": Notify each time a conversation is created. * \"export-insights-data\": Notify each time an export is complete. * \"ingest-conversations\": Notify each time an IngestConversations LRO is complete. * \"update-conversation\": Notify each time a conversation is updated via UpdateConversation. * \"upload-conversation\": Notify when an UploadConversation LRO is complete. * \"update-or-analyze-conversation\": Notify when an analysis for a conversation is completed or when the conversation is updated. The message will contain the conversation with transcript, analysis and other metadata. Values are Pub/Sub topics. The format of each Pub/Sub topic is: projects/{project}/topics/{topic}",
           "type": "object"
         },
         "redactionConfig": {
@@ -12057,6 +12303,7 @@
             "EXPORT_V8",
             "EXPORT_V9",
             "EXPORT_V10",
+            "EXPORT_V11",
             "EXPORT_VERSION_LATEST_AVAILABLE"
           ],
           "enumDescriptions": [
@@ -12071,6 +12318,7 @@
             "Export schema version 8.",
             "Export schema version 9.",
             "Export schema version 10.",
+            "Export schema version 11.",
             "Export schema version latest available."
           ],
           "type": "string"
@@ -12368,6 +12616,14 @@
           "$ref": "GoogleCloudContactcenterinsightsV1alpha1IngestConversationsRequest",
           "description": "Output only. The original request for ingest.",
           "readOnly": true
+        },
+        "sampledConversations": {
+          "description": "Output only. Stores the conversation resources produced by ingest sampling operations.",
+          "items": {
+            "type": "string"
+          },
+          "readOnly": true,
+          "type": "array"
         }
       },
       "type": "object"
