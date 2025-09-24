@@ -266,7 +266,7 @@ You may need to send an API key with the request you are going to make. The foll
 
 ```js
 const {google} = require('googleapis');
-const blogger = google.blogger_v3({
+const blogger = google.blogger({
   version: 'v3',
   auth: 'YOUR_API_KEY' // specify your API key here
 });
