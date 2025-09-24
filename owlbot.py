@@ -14,13 +14,15 @@
 
 import synthtool.languages.node as node
 
-node.owlbot_main(templates_excludes=[
-  ".github/CONTRIBUTING.md",
-  "README.md",
-  ".eslintignore",
-  ".prettierignore",
-  ".github/release-please.yml",
-  '.kokoro/publish.sh',
-  '.kokoro/release/publish.cfg',
-  '.github/workflows/ci.yaml'
-])
+node.owlbot_main(
+    templates_excludes=[
+        ".github/CONTRIBUTING.md",
+        "README.md",
+        ".eslintignore",
+        ".prettierignore",
+        ".github/release-please.yml",
+        ".kokoro/publish.sh",
+        ".kokoro/release/publish.cfg",
+        ".github/workflows/ci.yaml",
+    ]
+)
