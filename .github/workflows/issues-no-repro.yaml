@@ -16,7 +16,7 @@ jobs:
           node-version: 18
       - run: npm install
         working-directory: ./.github/scripts
-      - uses: actions/github-script@v7
+      - uses: actions/github-script@v8
         with:
           script: |
             const script = require('./.github/scripts/close-invalid-link.cjs')
