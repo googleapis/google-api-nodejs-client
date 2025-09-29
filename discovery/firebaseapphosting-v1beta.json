@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -1098,7 +1098,7 @@
       }
     }
   },
-  "revision": "20250814",
+  "revision": "20250918",
   "rootUrl": "https://firebaseapphosting.googleapis.com/",
   "schemas": {
     "ArchiveSource": {
@@ -1195,6 +1195,13 @@
         "name": {
           "description": "Identifier. The resource name of the backend. Format: `projects/{project}/locations/{locationId}/backends/{backendId}`.",
           "type": "string"
+        },
+        "overrideEnv": {
+          "description": "Optional. Override environment variables for this Backend.",
+          "items": {
+            "$ref": "EnvironmentVariable"
+          },
+          "type": "array"
         },
         "reconciling": {
           "description": "Output only. A field that, if true, indicates that the system is working to make adjustments to the backend during a LRO.",
@@ -2385,7 +2392,7 @@
           "type": "object"
         },
         "build": {
-          "description": "Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.",
+          "description": "Required. Immutable. The name of a build that already exists. It doesn't have to be built; a rollout will wait for a build to be ready before updating traffic.",
           "type": "string"
         },
         "createTime": {
