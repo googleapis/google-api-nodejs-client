@@ -1537,8 +1537,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "delete": {
@@ -1590,8 +1589,7 @@
           "path": "projects/{+projectId}/datasets/{+datasetId}/tables/{+tableId}/rowAccessPolicies/{+policyId}",
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "get": {
@@ -1717,8 +1715,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         },
         "list": {
@@ -1855,8 +1852,7 @@
           },
           "scopes": [
             "https://www.googleapis.com/auth/bigquery",
-            "https://www.googleapis.com/auth/cloud-platform",
-            "https://www.googleapis.com/auth/cloud-platform.read-only"
+            "https://www.googleapis.com/auth/cloud-platform"
           ]
         }
       }
@@ -2379,7 +2375,7 @@
       }
     }
   },
-  "revision": "20250713",
+  "revision": "20250919",
   "rootUrl": "https://bigquery.googleapis.com/",
   "schemas": {
     "AggregateClassificationMetrics": {
@@ -2588,7 +2584,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2597,7 +2594,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2656,7 +2654,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2665,7 +2664,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2728,7 +2728,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2737,7 +2738,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -2784,7 +2786,8 @@
               "WEEKLY",
               "MONTHLY",
               "QUARTERLY",
-              "YEARLY"
+              "YEARLY",
+              "HOURLY"
             ],
             "enumDescriptions": [
               "Unspecified seasonal period.",
@@ -2793,7 +2796,8 @@
               "Weekly period, 7 days.",
               "Monthly period, 30 days or irregular.",
               "Quarterly period, 90 days or irregular.",
-              "Yearly period, 365 days or irregular."
+              "Yearly period, 365 days or irregular.",
+              "Hourly period, 1 hour."
             ],
             "type": "string"
           },
@@ -3566,7 +3570,7 @@
       "type": "object"
     },
     "DataPolicyOption": {
-      "description": "Data policy option proto, it currently supports name only, will support precedence later.",
+      "description": "Data policy option. For more information, see [Mask data by applying data policies to a column](https://cloud.google.com/bigquery/docs/column-data-masking#data-policies-on-column/).",
       "id": "DataPolicyOption",
       "properties": {
         "name": {
@@ -4688,7 +4692,7 @@
       "id": "ExternalServiceCost",
       "properties": {
         "billingMethod": {
-          "description": "The billing method used for the external job. This field is only used when billed on the services sku, set to \"SERVICES_SKU\". Otherwise, it is unspecified for backward compatibility.",
+          "description": "The billing method used for the external job. This field, set to `SERVICES_SKU`, is only used when billing under the services SKU. Otherwise, it is unspecified for backward compatibility.",
           "type": "string"
         },
         "bytesBilled": {
@@ -5136,6 +5140,56 @@
       },
       "type": "object"
     },
+    "IncrementalResultStats": {
+      "description": "Statistics related to Incremental Query Results. Populated as part of JobStatistics2. This feature is not yet available.",
+      "id": "IncrementalResultStats",
+      "properties": {
+        "disabledReason": {
+          "description": "Reason why incremental query results are/were not written by the query.",
+          "enum": [
+            "DISABLED_REASON_UNSPECIFIED",
+            "OTHER"
+          ],
+          "enumDescriptions": [
+            "Disabled reason not specified.",
+            "Some other reason."
+          ],
+          "type": "string"
+        },
+        "resultSetLastModifyTime": {
+          "description": "The time at which the result table's contents were modified. May be absent if no results have been written or the query has completed.",
+          "format": "google-datetime",
+          "type": "string"
+        },
+        "resultSetLastReplaceTime": {
+          "description": "The time at which the result table's contents were completely replaced. May be absent if no results have been written or the query has completed.",
+          "format": "google-datetime",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "IndexPruningStats": {
+      "description": "Statistics for index pruning.",
+      "id": "IndexPruningStats",
+      "properties": {
+        "baseTable": {
+          "$ref": "TableReference",
+          "description": "The base table reference."
+        },
+        "postIndexPruningParallelInputCount": {
+          "description": "The number of parallel inputs after index pruning.",
+          "format": "int64",
+          "type": "string"
+        },
+        "preIndexPruningParallelInputCount": {
+          "description": "The number of parallel inputs before index pruning.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "IndexUnusedReason": {
       "description": "Reason about why no search index was used in the search query (or sub-query).",
       "id": "IndexUnusedReason",
@@ -5438,7 +5492,7 @@
           "description": "[Pick one] Configures an extract job."
         },
         "jobTimeoutMs": {
-          "description": "Optional. Job timeout in milliseconds. If this time limit is exceeded, BigQuery will attempt to stop a longer job, but may not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.",
+          "description": "Optional. Job timeout in milliseconds relative to the job creation time. If this time limit is exceeded, BigQuery attempts to stop the job, but might not always succeed in canceling it before the job completes. For example, a job that takes more than 60 seconds to complete has a better chance of being stopped than a job that takes 10 seconds to complete.",
           "format": "int64",
           "type": "string"
         },
@@ -5456,6 +5510,11 @@
         "load": {
           "$ref": "JobConfigurationLoad",
           "description": "[Pick one] Configures a load job."
+        },
+        "maxSlots": {
+          "description": "Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate.",
+          "format": "int32",
+          "type": "integer"
         },
         "query": {
           "$ref": "JobConfigurationQuery",
@@ -5711,7 +5770,7 @@
           "type": "string"
         },
         "schemaUpdateOptions": {
-          "description": "Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.",
+          "description": "Allows the schema of the destination table to be updated as a side effect of the load job if a schema is autodetected or supplied in the job configuration. Schema update options are supported in three cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE_DATA; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.",
           "items": {
             "type": "string"
           },
@@ -5862,7 +5921,7 @@
           "description": "Range partitioning specification for the destination table. Only one of timePartitioning and rangePartitioning should be specified."
         },
         "schemaUpdateOptions": {
-          "description": "Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in two cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.",
+          "description": "Allows the schema of the destination table to be updated as a side effect of the query job. Schema update options are supported in three cases: when writeDisposition is WRITE_APPEND; when writeDisposition is WRITE_TRUNCATE_DATA; when writeDisposition is WRITE_TRUNCATE and the destination table is a partition of a table, specified by partition decorators. For normal tables, WRITE_TRUNCATE will always overwrite the schema. One or more of the following values are specified: * ALLOW_FIELD_ADDITION: allow adding a nullable field to the schema. * ALLOW_FIELD_RELAXATION: allow relaxing a required field in the original schema to nullable.",
           "items": {
             "type": "string"
           },
@@ -6347,6 +6406,11 @@
           "readOnly": true,
           "type": "array"
         },
+        "incrementalResultStats": {
+          "$ref": "IncrementalResultStats",
+          "description": "Output only. Statistics related to incremental query results, if enabled for the query. This feature is not yet available.",
+          "readOnly": true
+        },
         "loadQueryStatistics": {
           "$ref": "LoadQueryStatistics",
           "description": "Output only. Statistics for a LOAD query.",
@@ -6494,7 +6558,7 @@
           "type": "string"
         },
         "totalServicesSkuSlotMs": {
-          "description": "Output only. Total slot-milliseconds for the job that run on external services and billed on the service SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is \"SERVICES_SKU\".",
+          "description": "Output only. Total slot milliseconds for the job that ran on external services and billed on the services SKU. This field is only populated for jobs that have external service costs, and is the total of the usage for costs whose billing method is `\"SERVICES_SKU\"`.",
           "format": "int64",
           "readOnly": true,
           "type": "string"
@@ -7586,6 +7650,28 @@
       },
       "type": "object"
     },
+    "PruningStats": {
+      "description": "The column metadata index pruning statistics.",
+      "id": "PruningStats",
+      "properties": {
+        "postCmetaPruningParallelInputCount": {
+          "description": "The number of parallel inputs matched.",
+          "format": "int64",
+          "type": "string"
+        },
+        "postCmetaPruningPartitionCount": {
+          "description": "The number of partitions matched.",
+          "format": "int64",
+          "type": "string"
+        },
+        "preCmetaPruningParallelInputCount": {
+          "description": "The number of parallel inputs scanned.",
+          "format": "int64",
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
     "PythonOptions": {
       "description": "Options for a user-defined Python function.",
       "id": "PythonOptions",
@@ -7788,6 +7874,11 @@
         "maxResults": {
           "description": "Optional. The maximum number of rows of data to return per page of results. Setting this flag to a small value such as 1000 and then paging through results might improve reliability when the query result set is large. In addition to this limit, responses are also limited to 10 MB. By default, there is no maximum row count, and only the byte limit applies.",
           "format": "uint32",
+          "type": "integer"
+        },
+        "maxSlots": {
+          "description": "Optional. INTERNAL: DO NOT USE. The maximum rate of slot consumption to allow for this job. If set, the number of slots used to execute the job will be throttled to try and keep its slot consumption below the requested rate. This limit is best effort.",
+          "format": "int32",
           "type": "integer"
         },
         "maximumBytesBilled": {
@@ -8235,7 +8326,7 @@
           "type": "string"
         },
         "definitionBody": {
-          "description": "Required. The body of the routine. For functions, this is the expression in the AS clause. If language=SQL, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))` The definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with linebreak). If language=JAVASCRIPT, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'` The definition_body is `return \"\\n\";\\n` Note that both \\n are replaced with linebreaks.",
+          "description": "Required. The body of the routine. For functions, this is the expression in the AS clause. If `language = \"SQL\"`, it is the substring inside (but excluding) the parentheses. For example, for the function created with the following statement: `CREATE FUNCTION JoinLines(x string, y string) as (concat(x, \"\\n\", y))` The definition_body is `concat(x, \"\\n\", y)` (\\n is not replaced with linebreak). If `language=\"JAVASCRIPT\"`, it is the evaluated string in the AS clause. For example, for the function created with the following statement: `CREATE FUNCTION f() RETURNS STRING LANGUAGE js AS 'return \"\\n\";\\n'` The definition_body is `return \"\\n\";\\n` Note that both \\n are replaced with linebreaks. If `definition_body` references another routine, then that routine must be fully qualified with its project ID.",
           "type": "string"
         },
         "description": {
@@ -8575,6 +8666,13 @@
       "description": "Statistics for a search query. Populated as part of JobStatistics2.",
       "id": "SearchStatistics",
       "properties": {
+        "indexPruningStats": {
+          "description": "Search index pruning statistics, one for each base table that has a search index. If a base table does not have a search index or the index does not help with pruning on the base table, then there is no pruning statistics for that table.",
+          "items": {
+            "$ref": "IndexPruningStats"
+          },
+          "type": "array"
+        },
         "indexUnusedReasons": {
           "description": "When `indexUsageMode` is `UNUSED` or `PARTIALLY_USED`, this field explains why indexes were not used in all or part of the search query. If `indexUsageMode` is `FULLY_USED`, this field is not populated.",
           "items": {
@@ -9608,7 +9706,7 @@
           "type": "string"
         },
         "dataPolicies": {
-          "description": "Optional. Data policy options, will replace the data_policies.",
+          "description": "Optional. Data policies attached to this field, used for field-level access control.",
           "items": {
             "$ref": "DataPolicyOption"
           },
@@ -9690,6 +9788,12 @@
         },
         "scale": {
           "description": "Optional. See documentation for precision.",
+          "format": "int64",
+          "type": "string"
+        },
+        "timestampPrecision": {
+          "default": "6",
+          "description": "Optional. Precision (maximum number of total digits in base 10) for seconds of TIMESTAMP type. Possible values include: * 6 (Default, for TIMESTAMP type with microsecond precision) * 12 (For TIMESTAMP type with picosecond precision)",
           "format": "int64",
           "type": "string"
         },
@@ -9810,6 +9914,10 @@
         "explanation": {
           "description": "Free form human-readable reason metadata caching was unused for the job.",
           "type": "string"
+        },
+        "pruningStats": {
+          "$ref": "PruningStats",
+          "description": "The column metadata index pruning statistics."
         },
         "staleness": {
           "description": "Duration since last refresh as of this job for managed tables (indicates metadata cache staleness as seen by this job).",
@@ -10219,6 +10327,11 @@
           "description": "If true, enable global explanation during training.",
           "type": "boolean"
         },
+        "endpointIdleTtl": {
+          "description": "The idle TTL of the endpoint before the resources get destroyed. The default value is 6.5 hours.",
+          "format": "google-duration",
+          "type": "string"
+        },
         "feedbackType": {
           "description": "Feedback type that specifies which algorithm to run for matrix factorization.",
           "enum": [
@@ -10600,6 +10713,10 @@
           },
           "type": "array"
         },
+        "huggingFaceModelId": {
+          "description": "The id of a Hugging Face model. For example, `google/gemma-2-2b-it`.",
+          "type": "string"
+        },
         "includeDrift": {
           "description": "Include drift when fitting an ARIMA model.",
           "type": "boolean"
@@ -10709,6 +10826,10 @@
           ],
           "type": "string"
         },
+        "machineType": {
+          "description": "The type of the machine used to deploy and serve the model.",
+          "type": "string"
+        },
         "maxIterations": {
           "description": "The maximum number of iterations in training. Used only for iterative training algorithms.",
           "format": "int64",
@@ -10716,6 +10837,11 @@
         },
         "maxParallelTrials": {
           "description": "Maximum number of trials to run in parallel.",
+          "format": "int64",
+          "type": "string"
+        },
+        "maxReplicaCount": {
+          "description": "The maximum number of machine replicas that will be deployed on an endpoint. The default value is equal to min_replica_count.",
           "format": "int64",
           "type": "string"
         },
@@ -10739,6 +10865,11 @@
           "format": "double",
           "type": "number"
         },
+        "minReplicaCount": {
+          "description": "The minimum number of machine replicas that will be always deployed on an endpoint. This value must be greater than or equal to 1. The default value is 1.",
+          "format": "int64",
+          "type": "string"
+        },
         "minSplitLoss": {
           "description": "Minimum split loss for boosted tree models.",
           "format": "double",
@@ -10752,6 +10883,10 @@
         "minTreeChildWeight": {
           "description": "Minimum sum of instance weight needed in a child for boosted tree models.",
           "format": "int64",
+          "type": "string"
+        },
+        "modelGardenModelName": {
+          "description": "The name of a Vertex model garden publisher model. Format is `publishers/{publisher}/models/{model}@{optional_version_id}`.",
           "type": "string"
         },
         "modelRegistry": {
@@ -10837,6 +10972,33 @@
             "Auto."
           ],
           "type": "string"
+        },
+        "reservationAffinityKey": {
+          "description": "Corresponds to the label key of a reservation resource used by Vertex AI. To target a SPECIFIC_RESERVATION by name, use `compute.googleapis.com/reservation-name` as the key and specify the name of your reservation as its value.",
+          "type": "string"
+        },
+        "reservationAffinityType": {
+          "description": "Specifies the reservation affinity type used to configure a Vertex AI resource. The default value is `NO_RESERVATION`.",
+          "enum": [
+            "RESERVATION_AFFINITY_TYPE_UNSPECIFIED",
+            "NO_RESERVATION",
+            "ANY_RESERVATION",
+            "SPECIFIC_RESERVATION"
+          ],
+          "enumDescriptions": [
+            "Default value.",
+            "No reservation.",
+            "Any reservation.",
+            "Specific reservation."
+          ],
+          "type": "string"
+        },
+        "reservationAffinityValues": {
+          "description": "Corresponds to the label values of a reservation resource used by Vertex AI. This must be the full resource name of the reservation or reservation block.",
+          "items": {
+            "type": "string"
+          },
+          "type": "array"
         },
         "sampledShapleyNumPaths": {
           "description": "Number of paths for the sampled Shapley explain method.",
