@@ -771,7 +771,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. Do not use this field. It is unsupported and is ignored unless explicitly documented otherwise. This is primarily for internal usage.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -809,7 +809,7 @@
               ]
             },
             "lookupEntry": {
-              "description": "Looks up an entry by name using the permission on the source system.",
+              "description": "Looks up an entry by name using the permission on the source system. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
               "flatPath": "v1/projects/{projectsId}/locations/{locationsId}:lookupEntry",
               "httpMethod": "GET",
               "id": "dataplex.projects.locations.lookupEntry",
@@ -1472,37 +1472,6 @@
             },
             "dataProducts": {
               "methods": {
-                "getIamPolicy": {
-                  "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                  "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}:getIamPolicy",
-                  "httpMethod": "GET",
-                  "id": "dataplex.projects.locations.dataProducts.getIamPolicy",
-                  "parameterOrder": [
-                    "resource"
-                  ],
-                  "parameters": {
-                    "options.requestedPolicyVersion": {
-                      "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
-                      "format": "int32",
-                      "location": "query",
-                      "type": "integer"
-                    },
-                    "resource": {
-                      "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                      "location": "path",
-                      "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+$",
-                      "required": true,
-                      "type": "string"
-                    }
-                  },
-                  "path": "v1/{+resource}:getIamPolicy",
-                  "response": {
-                    "$ref": "GoogleIamV1Policy"
-                  },
-                  "scopes": [
-                    "https://www.googleapis.com/auth/cloud-platform"
-                  ]
-                },
                 "setIamPolicy": {
                   "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                   "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}:setIamPolicy",
@@ -1563,37 +1532,6 @@
               "resources": {
                 "dataAssets": {
                   "methods": {
-                    "getIamPolicy": {
-                      "description": "Gets the access control policy for a resource. Returns an empty policy if the resource exists and does not have a policy set.",
-                      "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}:getIamPolicy",
-                      "httpMethod": "GET",
-                      "id": "dataplex.projects.locations.dataProducts.dataAssets.getIamPolicy",
-                      "parameterOrder": [
-                        "resource"
-                      ],
-                      "parameters": {
-                        "options.requestedPolicyVersion": {
-                          "description": "Optional. The maximum policy version that will be used to format the policy.Valid values are 0, 1, and 3. Requests specifying an invalid value will be rejected.Requests for policies with any conditional role bindings must specify version 3. Policies with no conditional role bindings may specify any valid value or leave the field unset.The policy in the response might use the policy version that you specified, or it might use a lower policy version. For example, if you specify version 3, but the policy has no conditional role bindings, the response uses version 1.To learn which resources support conditions in their IAM policies, see the IAM documentation (https://cloud.google.com/iam/help/conditions/resource-policies).",
-                          "format": "int32",
-                          "location": "query",
-                          "type": "integer"
-                        },
-                        "resource": {
-                          "description": "REQUIRED: The resource for which the policy is being requested. See Resource names (https://cloud.google.com/apis/design/resource_names) for the appropriate value for this field.",
-                          "location": "path",
-                          "pattern": "^projects/[^/]+/locations/[^/]+/dataProducts/[^/]+/dataAssets/[^/]+$",
-                          "required": true,
-                          "type": "string"
-                        }
-                      },
-                      "path": "v1/{+resource}:getIamPolicy",
-                      "response": {
-                        "$ref": "GoogleIamV1Policy"
-                      },
-                      "scopes": [
-                        "https://www.googleapis.com/auth/cloud-platform"
-                      ]
-                    },
                     "setIamPolicy": {
                       "description": "Sets the access control policy on the specified resource. Replaces any existing policy.Can return NOT_FOUND, INVALID_ARGUMENT, and PERMISSION_DENIED errors.",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/dataProducts/{dataProductsId}/dataAssets/{dataAssetsId}:setIamPolicy",
@@ -2987,7 +2925,7 @@
                       ]
                     },
                     "get": {
-                      "description": "Gets an Entry.",
+                      "description": "Gets an Entry. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries/{entriesId}",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.get",
@@ -3043,7 +2981,7 @@
                       ]
                     },
                     "list": {
-                      "description": "Lists Entries within an EntryGroup.",
+                      "description": "Lists Entries within an EntryGroup. Caution: The Vertex AI, Bigtable, Spanner, Pub/Sub, Dataform, and Dataproc Metastore metadata that is stored in Dataplex Universal Catalog is changing. For more information, see Changes to metadata stored in Dataplex Universal Catalog (https://cloud.google.com/dataplex/docs/metadata-changes).",
                       "flatPath": "v1/projects/{projectsId}/locations/{locationsId}/entryGroups/{entryGroupsId}/entries",
                       "httpMethod": "GET",
                       "id": "dataplex.projects.locations.entryGroups.entries.list",
@@ -7211,7 +7149,7 @@
       }
     }
   },
-  "revision": "20250820",
+  "revision": "20250919",
   "rootUrl": "https://dataplex.googleapis.com/",
   "schemas": {
     "Empty": {
@@ -8583,6 +8521,111 @@
       },
       "type": "object"
     },
+    "GoogleCloudDataplexV1DataDocumentationResult": {
+      "description": "The output of a DataDocumentation scan.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResult",
+      "properties": {
+        "tableResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultTableResult",
+          "description": "Output only. Table result for insights.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultField": {
+      "description": "Column of a table with generated metadata and nested fields.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultField",
+      "properties": {
+        "description": {
+          "description": "Output only. Generated description for columns and fields.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "fields": {
+          "description": "Output only. Nested fields.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultField"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "name": {
+          "description": "Output only. The name of the column.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultQuery": {
+      "description": "A sample SQL query in data documentation.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultQuery",
+      "properties": {
+        "description": {
+          "description": "Output only. The description for the query.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "sql": {
+          "description": "Output only. The SQL query string which can be executed.",
+          "readOnly": true,
+          "type": "string"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultSchema": {
+      "description": "Schema of the table with generated metadata of columns.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultSchema",
+      "properties": {
+        "fields": {
+          "description": "Output only. The list of columns.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultField"
+          },
+          "readOnly": true,
+          "type": "array"
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationResultTableResult": {
+      "description": "Generated metadata about the table.",
+      "id": "GoogleCloudDataplexV1DataDocumentationResultTableResult",
+      "properties": {
+        "name": {
+          "description": "Output only. The service-qualified full resource name of the cloud resource. Ex: bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "readOnly": true,
+          "type": "string"
+        },
+        "overview": {
+          "description": "Output only. Generated description of the table.",
+          "readOnly": true,
+          "type": "string"
+        },
+        "queries": {
+          "description": "Output only. Sample SQL queries for the table.",
+          "items": {
+            "$ref": "GoogleCloudDataplexV1DataDocumentationResultQuery"
+          },
+          "readOnly": true,
+          "type": "array"
+        },
+        "schema": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResultSchema",
+          "description": "Output only. Schema of the table with generated metadata of the columns in the schema.",
+          "readOnly": true
+        }
+      },
+      "type": "object"
+    },
+    "GoogleCloudDataplexV1DataDocumentationSpec": {
+      "description": "DataDocumentation scan related spec.",
+      "id": "GoogleCloudDataplexV1DataDocumentationSpec",
+      "properties": {},
+      "type": "object"
+    },
     "GoogleCloudDataplexV1DataProfileResult": {
       "description": "DataProfileResult defines the output of DataProfileScan. Each field of the table will have field type specific profile result.",
       "id": "GoogleCloudDataplexV1DataProfileResult",
@@ -9579,7 +9622,7 @@
       "type": "object"
     },
     "GoogleCloudDataplexV1DataScan": {
-      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery).",
+      "description": "Represents a user-visible job which provides the insights for the related data source.For example: Data quality: generates queries based on the rules and runs against the data to get data quality check results. For more information, see Auto data quality overview (https://cloud.google.com/dataplex/docs/auto-data-quality-overview). Data profile: analyzes the data in tables and generates insights about the structure, content and relationships (such as null percent, cardinality, min/max/mean, etc). For more information, see About data profiling (https://cloud.google.com/dataplex/docs/data-profiling-overview). Data discovery: scans data in Cloud Storage buckets to extract and then catalog metadata. For more information, see Discover and catalog Cloud Storage data (https://cloud.google.com/bigquery/docs/automatic-discovery). Data documentation: analyzes the table details and generates insights including descriptions and sample SQL queries for the table. For more information, see Generate data insights in BigQuery (https://cloud.google.com/bigquery/docs/data-insights).",
       "id": "GoogleCloudDataplexV1DataScan",
       "properties": {
         "createTime": {
@@ -9600,6 +9643,15 @@
         "dataDiscoverySpec": {
           "$ref": "GoogleCloudDataplexV1DataDiscoverySpec",
           "description": "Settings for a data discovery scan."
+        },
+        "dataDocumentationResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResult",
+          "description": "Output only. The result of a data documentation scan.",
+          "readOnly": true
+        },
+        "dataDocumentationSpec": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationSpec",
+          "description": "Settings for a data documentation scan."
         },
         "dataProfileResult": {
           "$ref": "GoogleCloudDataplexV1DataProfileResult",
@@ -9673,13 +9725,15 @@
             "DATA_SCAN_TYPE_UNSPECIFIED",
             "DATA_QUALITY",
             "DATA_PROFILE",
-            "DATA_DISCOVERY"
+            "DATA_DISCOVERY",
+            "DATA_DOCUMENTATION"
           ],
           "enumDescriptions": [
             "The data scan type is unspecified.",
             "Data quality scan.",
             "Data profile scan.",
-            "Data discovery scan."
+            "Data discovery scan.",
+            "Data documentation scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -9818,12 +9872,14 @@
           "enum": [
             "TRIGGER_UNSPECIFIED",
             "ON_DEMAND",
-            "SCHEDULE"
+            "SCHEDULE",
+            "ONE_TIME"
           ],
           "enumDescriptions": [
             "An unspecified trigger type.",
             "Data scan triggers on demand.",
-            "Data scan triggers as per schedule."
+            "Data scan triggers as per schedule.",
+            "Data scan is run one time on creation."
           ],
           "type": "string"
         },
@@ -10033,6 +10089,16 @@
           "description": "Output only. Settings for a data discovery scan.",
           "readOnly": true
         },
+        "dataDocumentationResult": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationResult",
+          "description": "Output only. The result of a data documentation scan.",
+          "readOnly": true
+        },
+        "dataDocumentationSpec": {
+          "$ref": "GoogleCloudDataplexV1DataDocumentationSpec",
+          "description": "Output only. Settings for a data documentation scan.",
+          "readOnly": true
+        },
         "dataProfileResult": {
           "$ref": "GoogleCloudDataplexV1DataProfileResult",
           "description": "Output only. The result of a data profile scan.",
@@ -10104,13 +10170,15 @@
             "DATA_SCAN_TYPE_UNSPECIFIED",
             "DATA_QUALITY",
             "DATA_PROFILE",
-            "DATA_DISCOVERY"
+            "DATA_DISCOVERY",
+            "DATA_DOCUMENTATION"
           ],
           "enumDescriptions": [
             "The data scan type is unspecified.",
             "Data quality scan.",
             "Data profile scan.",
-            "Data discovery scan."
+            "Data discovery scan.",
+            "Data documentation scan."
           ],
           "readOnly": true,
           "type": "string"
@@ -10132,7 +10200,7 @@
           "type": "string"
         },
         "resource": {
-          "description": "Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could either be: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type \"TABLE\" for DataProfileScan/DataQualityScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
+          "description": "Immutable. The service-qualified full resource name of the cloud resource for a DataScan job to scan against. The field could either be: Cloud Storage bucket for DataDiscoveryScan Format: //storage.googleapis.com/projects/PROJECT_ID/buckets/BUCKET_ID or BigQuery table of type \"TABLE\" for DataProfileScan/DataQualityScan/DataDocumentationScan Format: //bigquery.googleapis.com/projects/PROJECT_ID/datasets/DATASET_ID/tables/TABLE_ID",
           "type": "string"
         }
       },
@@ -12633,7 +12701,7 @@
           "type": "array"
         },
         "entryGroups": {
-          "description": "Required. The entry group that is in scope for the import job, specified as a relative resource name in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries and aspects that belong to the specified entry group are affected by the job.Must contain exactly one element. The entry group and the job must be in the same location.",
+          "description": "Required. The entry groups that are in scope for the import job, specified as relative resource names in the format projects/{project_number_or_id}/locations/{location_id}/entryGroups/{entry_group_id}. Only entries and aspects that belong to the specified entry groups are affected by the job.The entry groups and the job must be in the same location.",
           "items": {
             "type": "string"
           },
