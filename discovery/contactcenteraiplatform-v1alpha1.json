@@ -144,7 +144,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -518,7 +518,7 @@
       }
     }
   },
-  "revision": "20250703",
+  "revision": "20250918",
   "rootUrl": "https://contactcenteraiplatform.googleapis.com/",
   "schemas": {
     "AdminUser": {
@@ -597,6 +597,10 @@
         "early": {
           "$ref": "Early",
           "description": "Optional. Early release channel."
+        },
+        "featureConfig": {
+          "$ref": "FeatureConfig",
+          "description": "Optional. Feature configuration to populate the feature flags."
         },
         "instanceConfig": {
           "$ref": "InstanceConfig",
@@ -741,6 +745,16 @@
       "description": "A generic empty message that you can re-use to avoid defining duplicated empty messages in your APIs. A typical example is to use it as the request or the response type of an API method. For instance: service Foo { rpc Bar(google.protobuf.Empty) returns (google.protobuf.Empty); }",
       "id": "Empty",
       "properties": {},
+      "type": "object"
+    },
+    "FeatureConfig": {
+      "id": "FeatureConfig",
+      "properties": {
+        "agentDesktopEnabled": {
+          "description": "Optional. If true - enables the agent desktop feature. Default is false.",
+          "type": "boolean"
+        }
+      },
       "type": "object"
     },
     "GoogleCloudCommonOperationMetadata": {
