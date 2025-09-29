@@ -1078,7 +1078,7 @@
               ],
               "parameters": {
                 "extraLocationTypes": {
-                  "description": "Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.",
+                  "description": "Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.",
                   "location": "query",
                   "repeated": true,
                   "type": "string"
@@ -5070,7 +5070,7 @@
       }
     }
   },
-  "revision": "20250806",
+  "revision": "20250911",
   "rootUrl": "https://networksecurity.googleapis.com/",
   "schemas": {
     "AddAddressGroupItemsRequest": {
@@ -5394,7 +5394,7 @@
           "type": "array"
         },
         "principals": {
-          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for Regional Internal Application Load Balancer, Regional External Application Load Balancer, Cross-region Internal Application Load Balancer, and Cloud Service Mesh. Limited to 25 principals per Authorization Policy for Global External Application Load Balancer.",
+          "description": "Optional. A list of identities derived from the client's certificate. This field will not match on a request unless frontend mutual TLS is enabled for the forwarding rule or Gateway and the client certificate has been successfully validated by mTLS. Each identity is a string whose value is matched against a list of URI SANs, DNS Name SANs, or the common name in the client's certificate. A match happens when any principal matches with the rule. Limited to 50 principals per Authorization Policy for regional internal Application Load Balancers, regional external Application Load Balancers, cross-region internal Application Load Balancers, and Cloud Service Mesh. This field is not supported for global external Application Load Balancers.",
           "items": {
             "$ref": "AuthzPolicyAuthzRulePrincipal"
           },
@@ -5461,7 +5461,7 @@
             "Unspecified principal selector. It will be treated as CLIENT_CERT_URI_SAN by default.",
             "The principal rule is matched against a list of URI SANs in the validated client's certificate. A match happens when there is any exact URI SAN value match. This is the default principal selector.",
             "The principal rule is matched against a list of DNS Name SANs in the validated client's certificate. A match happens when there is any exact DNS Name SAN value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_DNS_NAME_SAN is not supported for INTERNAL_SELF_MANAGED load balancing scheme.",
-            "The principal rule is matched against the common name in the client's certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for classic Global External Application load balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
+            "The principal rule is matched against the common name in the client's certificate. Authorization against multiple common names in the client certificate is not supported. Requests with multiple common names in the client certificate will be rejected if CLIENT_CERT_COMMON_NAME is set as the principal selector. A match happens when there is an exact common name value match. This is only applicable for Application Load Balancers except for global external Application Load Balancer and classic Application Load Balancer. CLIENT_CERT_COMMON_NAME is not supported for INTERNAL_SELF_MANAGED load balancing scheme."
           ],
           "type": "string"
         }
@@ -5632,7 +5632,7 @@
       "id": "AuthzPolicyTarget",
       "properties": {
         "loadBalancingScheme": {
-          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED` and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
+          "description": "Required. All gateways and forwarding rules referenced by this policy and extensions must share the same load balancing scheme. Supported values: `INTERNAL_MANAGED`, `INTERNAL_SELF_MANAGED`, and `EXTERNAL_MANAGED`. For more information, refer to [Backend services overview](https://cloud.google.com/load-balancing/docs/backend-service).",
           "enum": [
             "LOAD_BALANCING_SCHEME_UNSPECIFIED",
             "INTERNAL_MANAGED",
@@ -5648,7 +5648,7 @@
           "type": "string"
         },
         "resources": {
-          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied.",
+          "description": "Required. A list of references to the Forwarding Rules on which this policy will be applied. For policies created for Cloudrun, this field will reference the Cloud Run services.",
           "items": {
             "type": "string"
           },
@@ -5918,6 +5918,10 @@
           "description": "Optional. Description of the firewall endpoint. Max length 2048 characters.",
           "type": "string"
         },
+        "endpointSettings": {
+          "$ref": "FirewallEndpointEndpointSettings",
+          "description": "Optional. Settings for the endpoint."
+        },
         "labels": {
           "additionalProperties": {
             "type": "string"
@@ -6059,6 +6063,12 @@
           "type": "string"
         }
       },
+      "type": "object"
+    },
+    "FirewallEndpointEndpointSettings": {
+      "description": "Settings for the endpoint.",
+      "id": "FirewallEndpointEndpointSettings",
+      "properties": {},
       "type": "object"
     },
     "GatewaySecurityPolicy": {
