@@ -1783,6 +1783,197 @@ export namespace retail_v2 {
     retailerDisplayName?: string | null;
   }
   /**
+   * Request message for ConversationalSearchService.ConversationalSearch method.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchRequest {
+    /**
+     * Required. The branch resource name, such as `projects/x/locations/global/catalogs/default_catalog/branches/0`. Use "default_branch" as the branch ID or leave this field empty, to search products under the default branch.
+     */
+    branch?: string | null;
+    /**
+     * Optional. This field specifies all conversational filtering related parameters.
+     */
+    conversationalFilteringSpec?: Schema$GoogleCloudRetailV2ConversationalSearchRequestConversationalFilteringSpec;
+    /**
+     * Optional. This field specifies the conversation id, which maintains the state of the conversation between client side and server side. Use the value from the previous ConversationalSearchResponse.conversation_id. For the initial request, this should be empty.
+     */
+    conversationId?: string | null;
+    /**
+     * Optional. The categories associated with a category page. Must be set for category navigation queries to achieve good search quality. The format should be the same as UserEvent.page_categories; To represent full path of category, use '\>' sign to separate different hierarchies. If '\>' is part of the category name, replace it with other character(s). Category pages include special pages such as sales or promotions. For instance, a special sale page may have the category hierarchy: "pageCategories" : ["Sales \> 2017 Black Friday Deals"].
+     */
+    pageCategories?: string[] | null;
+    /**
+     * Optional. Raw search query to be searched for. If this field is empty, the request is considered a category browsing request.
+     */
+    query?: string | null;
+    /**
+     * Optional. The safety settings to be applied to the generated content.
+     */
+    safetySettings?: Schema$GoogleCloudRetailV2SafetySetting[];
+    /**
+     * Optional. Search parameters.
+     */
+    searchParams?: Schema$GoogleCloudRetailV2ConversationalSearchRequestSearchParams;
+    /**
+     * Optional. User information.
+     */
+    userInfo?: Schema$GoogleCloudRetailV2UserInfo;
+    /**
+     * Optional. The user labels applied to a resource must meet the following requirements: * Each resource can have multiple labels, up to a maximum of 64. * Each label must be a key-value pair. * Keys have a minimum length of 1 character and a maximum length of 63 characters and cannot be empty. Values can be empty and have a maximum length of 63 characters. * Keys and values can contain only lowercase letters, numeric characters, underscores, and dashes. All characters must use UTF-8 encoding, and international characters are allowed. * The key portion of a label must be unique. However, you can use the same key with multiple resources. * Keys must start with a lowercase letter or international character. See [Google Cloud Document](https://cloud.google.com/resource-manager/docs/creating-managing-labels#requirements) for more details.
+     */
+    userLabels?: {[key: string]: string} | null;
+    /**
+     * Required. A unique identifier for tracking visitors. For example, this could be implemented with an HTTP cookie, which should be able to uniquely identify a visitor on a single device. This unique identifier should not change if the visitor logs in or out of the website. This should be the same identifier as UserEvent.visitor_id. The field must be a UTF-8 encoded string with a length limit of 128 characters. Otherwise, an INVALID_ARGUMENT error is returned.
+     */
+    visitorId?: string | null;
+  }
+  /**
+   * This field specifies all conversational filtering related parameters addition to conversational retail search.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchRequestConversationalFilteringSpec {
+    /**
+     * Optional. Mode to control Conversational Filtering. Defaults to Mode.DISABLED if it's unset.
+     */
+    conversationalFilteringMode?: string | null;
+    /**
+     * Optional. This field is deprecated. Please use ConversationalFilteringSpec.conversational_filtering_mode instead.
+     */
+    enableConversationalFiltering?: boolean | null;
+    /**
+     * Optional. This field specifies the current user answer during the conversational filtering search. It can be either user selected from suggested answers or user input plain text.
+     */
+    userAnswer?: Schema$GoogleCloudRetailV2ConversationalSearchRequestUserAnswer;
+  }
+  /**
+   * Search parameters.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchRequestSearchParams {
+    /**
+     * Optional. The boost spec to specify the boosting of search results. The syntax of the boost spec is the same as SearchRequest.boost_spec.
+     */
+    boostSpec?: Schema$GoogleCloudRetailV2SearchRequestBoostSpec;
+    /**
+     * Optional. The canonical filter string to restrict search results. The syntax of the canonical filter string is the same as SearchRequest.canonical_filter.
+     */
+    canonicalFilter?: string | null;
+    /**
+     * Optional. The filter string to restrict search results. The syntax of the filter string is the same as SearchRequest.filter.
+     */
+    filter?: string | null;
+    /**
+     * Optional. The sort string to specify the sorting of search results. The syntax of the sort string is the same as SearchRequest.sort.
+     */
+    sortBy?: string | null;
+  }
+  /**
+   * This field specifies the current user answer during the conversational filtering search. This can be either user selected from suggested answers or user input plain text.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchRequestUserAnswer {
+    /**
+     * Optional. This field specifies the selected answer during the conversational search. This should be a subset of ConversationalSearchResponse.followup_question.suggested_answers.
+     */
+    selectedAnswer?: Schema$GoogleCloudRetailV2ConversationalSearchRequestUserAnswerSelectedAnswer;
+    /**
+     * This field specifies the incremental input text from the user during the conversational search.
+     */
+    textAnswer?: string | null;
+  }
+  /**
+   * This field specifies the selected answers during the conversational search.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchRequestUserAnswerSelectedAnswer {
+    /**
+     * Optional. This field specifies the selected answer which is a attribute key-value.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2ProductAttributeValue;
+  }
+  /**
+   * Response message for ConversationalSearchService.ConversationalSearch method.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponse {
+    /**
+     * This field specifies all related information that is needed on client side for UI rendering of conversational filtering search.
+     */
+    conversationalFilteringResult?: Schema$GoogleCloudRetailV2ConversationalSearchResponseConversationalFilteringResult;
+    /**
+     * The conversational answer-based text response generated by the Server.
+     */
+    conversationalTextResponse?: string | null;
+    /**
+     * Conversation UUID. This field will be stored in client side storage to maintain the conversation session with server and will be used for next search request's ConversationalSearchRequest.conversation_id to restore conversation state in server.
+     */
+    conversationId?: string | null;
+    /**
+     * The conversational followup question generated for Intent refinement.
+     */
+    followupQuestion?: Schema$GoogleCloudRetailV2ConversationalSearchResponseFollowupQuestion;
+    /**
+     * The proposed refined search queries. They can be used to fetch the relevant search results. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.
+     */
+    refinedSearch?: Schema$GoogleCloudRetailV2ConversationalSearchResponseRefinedSearch[];
+    /**
+     * Output only. The state of the response generation.
+     */
+    state?: string | null;
+    /**
+     * The types Retail classifies the search query as. Supported values are: - "ORDER_SUPPORT" - "SIMPLE_PRODUCT_SEARCH" - "INTENT_REFINEMENT" - "PRODUCT_DETAILS" - "PRODUCT_COMPARISON" - "DEALS_AND_COUPONS" - "STORE_RELEVANT" - "BLOCKLISTED" - "BEST_PRODUCT" - "RETAIL_SUPPORT" - "DISABLED"
+     */
+    userQueryTypes?: string[] | null;
+  }
+  /**
+   * This field specifies all related information that is needed on client side for UI rendering of conversational filtering search.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponseConversationalFilteringResult {
+    /**
+     * This is the incremental additional filters implied from the current user answer. User should add the suggested addition filters to the previous ConversationalSearchRequest.search_params.filter and SearchRequest.filter, and use the merged filter in the follow up requests.
+     */
+    additionalFilter?: Schema$GoogleCloudRetailV2ConversationalSearchResponseConversationalFilteringResultAdditionalFilter;
+    /**
+     * The conversational filtering question.
+     */
+    followupQuestion?: Schema$GoogleCloudRetailV2ConversationalSearchResponseFollowupQuestion;
+  }
+  /**
+   * Additional filter that client side need to apply.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponseConversationalFilteringResultAdditionalFilter {
+    /**
+     * Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2ProductAttributeValue;
+  }
+  /**
+   * The conversational followup question generated for Intent refinement.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponseFollowupQuestion {
+    /**
+     * The conversational followup question generated for Intent refinement.
+     */
+    followupQuestion?: string | null;
+    /**
+     * The answer options provided to client for the follow-up question.
+     */
+    suggestedAnswers?: Schema$GoogleCloudRetailV2ConversationalSearchResponseFollowupQuestionSuggestedAnswer[];
+  }
+  /**
+   * Suggested answers to the follow-up question. If it's numerical attribute, only ProductAttributeInterval will be set. If it's textual attribute, only productAttributeValue will be set.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponseFollowupQuestionSuggestedAnswer {
+    /**
+     * Product attribute value, including an attribute key and an attribute value. Other types can be added here in the future.
+     */
+    productAttributeValue?: Schema$GoogleCloudRetailV2ProductAttributeValue;
+  }
+  /**
+   * The proposed refined search for intent-refinement/bundled shopping conversation. When using CONVERSATIONAL_FILTER_ONLY mode, the refined_query from search response will be populated here.
+   */
+  export interface Schema$GoogleCloudRetailV2ConversationalSearchResponseRefinedSearch {
+    /**
+     * The query to be used for search.
+     */
+    query?: string | null;
+  }
+  /**
    * Metadata associated with a create operation.
    */
   export interface Schema$GoogleCloudRetailV2CreateModelMetadata {
@@ -3304,6 +3495,23 @@ export namespace retail_v2 {
      * Defines a set of synonyms. Can specify up to 100 synonyms. Must specify at least 2 synonyms.
      */
     synonyms?: string[] | null;
+  }
+  /**
+   * Safety settings.
+   */
+  export interface Schema$GoogleCloudRetailV2SafetySetting {
+    /**
+     * Harm category.
+     */
+    category?: string | null;
+    /**
+     * Optional. Specify if the threshold is used for probability or severity score. If not specified, the threshold is used for probability score.
+     */
+    method?: string | null;
+    /**
+     * The harm block threshold.
+     */
+    threshold?: string | null;
   }
   /**
    * Request message for SearchService.Search method.
@@ -12796,6 +13004,179 @@ export namespace retail_v2 {
     }
 
     /**
+     * Performs a conversational search. This feature is only available for users who have Conversational Search enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.placements.conversationalSearch({
+     *       // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *       placement:
+     *         'projects/my-project/locations/my-location/catalogs/my-catalog/placements/my-placement',
+     *
+     *       // Request body metadata
+     *       requestBody: {
+     *         // request body parameters
+     *         // {
+     *         //   "branch": "my_branch",
+     *         //   "conversationId": "my_conversationId",
+     *         //   "conversationalFilteringSpec": {},
+     *         //   "pageCategories": [],
+     *         //   "query": "my_query",
+     *         //   "safetySettings": [],
+     *         //   "searchParams": {},
+     *         //   "userInfo": {},
+     *         //   "userLabels": {},
+     *         //   "visitorId": "my_visitorId"
+     *         // }
+     *       },
+     *     });
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationId": "my_conversationId",
+     *   //   "conversationalFilteringResult": {},
+     *   //   "conversationalTextResponse": "my_conversationalTextResponse",
+     *   //   "followupQuestion": {},
+     *   //   "refinedSearch": [],
+     *   //   "state": "my_state",
+     *   //   "userQueryTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    conversationalSearch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    >;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+placement}:conversationalSearch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2ConversationalSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2ConversationalSearchResponse>(
+          parameters
+        );
+      }
+    }
+
+    /**
      * Makes a recommendation prediction.
      * @example
      * ```js
@@ -13158,6 +13539,18 @@ export namespace retail_v2 {
     }
   }
 
+  export interface Params$Resource$Projects$Locations$Catalogs$Placements$Conversationalsearch
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2ConversationalSearchRequest;
+  }
   export interface Params$Resource$Projects$Locations$Catalogs$Placements$Predict
     extends StandardParameters {
     /**
@@ -13361,6 +13754,181 @@ export namespace retail_v2 {
         );
       } else {
         return createAPIRequest<Schema$GoogleCloudRetailV2ServingConfig>(
+          parameters
+        );
+      }
+    }
+
+    /**
+     * Performs a conversational search. This feature is only available for users who have Conversational Search enabled.
+     * @example
+     * ```js
+     * // Before running the sample:
+     * // - Enable the API at:
+     * //   https://console.developers.google.com/apis/api/retail.googleapis.com
+     * // - Login into gcloud by running:
+     * //   ```sh
+     * //   $ gcloud auth application-default login
+     * //   ```
+     * // - Install the npm module by running:
+     * //   ```sh
+     * //   $ npm install googleapis
+     * //   ```
+     *
+     * const {google} = require('googleapis');
+     * const retail = google.retail('v2');
+     *
+     * async function main() {
+     *   const auth = new google.auth.GoogleAuth({
+     *     // Scopes can be specified either as an array or as a single, space-delimited string.
+     *     scopes: ['https://www.googleapis.com/auth/cloud-platform'],
+     *   });
+     *
+     *   // Acquire an auth client, and bind it to all future calls
+     *   const authClient = await auth.getClient();
+     *   google.options({auth: authClient});
+     *
+     *   // Do the magic
+     *   const res =
+     *     await retail.projects.locations.catalogs.servingConfigs.conversationalSearch(
+     *       {
+     *         // Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     *         placement:
+     *           'projects/my-project/locations/my-location/catalogs/my-catalog/servingConfigs/my-servingConfig',
+     *
+     *         // Request body metadata
+     *         requestBody: {
+     *           // request body parameters
+     *           // {
+     *           //   "branch": "my_branch",
+     *           //   "conversationId": "my_conversationId",
+     *           //   "conversationalFilteringSpec": {},
+     *           //   "pageCategories": [],
+     *           //   "query": "my_query",
+     *           //   "safetySettings": [],
+     *           //   "searchParams": {},
+     *           //   "userInfo": {},
+     *           //   "userLabels": {},
+     *           //   "visitorId": "my_visitorId"
+     *           // }
+     *         },
+     *       },
+     *     );
+     *   console.log(res.data);
+     *
+     *   // Example response
+     *   // {
+     *   //   "conversationId": "my_conversationId",
+     *   //   "conversationalFilteringResult": {},
+     *   //   "conversationalTextResponse": "my_conversationalTextResponse",
+     *   //   "followupQuestion": {},
+     *   //   "refinedSearch": [],
+     *   //   "state": "my_state",
+     *   //   "userQueryTypes": []
+     *   // }
+     * }
+     *
+     * main().catch(e => {
+     *   console.error(e);
+     *   throw e;
+     * });
+     *
+     * ```
+     *
+     * @param params - Parameters for request
+     * @param options - Optionally override request options, such as `url`, `method`, and `encoding`.
+     * @param callback - Optional callback that handles the response.
+     * @returns A promise if used with async/await, or void if used with a callback.
+     */
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch,
+      options: StreamMethodOptions
+    ): Promise<GaxiosResponseWithHTTP2<Readable>>;
+    conversationalSearch(
+      params?: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch,
+      options?: MethodOptions
+    ): Promise<
+      GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    >;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch,
+      options: StreamMethodOptions | BodyResponseCallback<Readable>,
+      callback: BodyResponseCallback<Readable>
+    ): void;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch,
+      options:
+        | MethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      params: Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch,
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      callback: BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+    ): void;
+    conversationalSearch(
+      paramsOrCallback?:
+        | Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>,
+      optionsOrCallback?:
+        | MethodOptions
+        | StreamMethodOptions
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>,
+      callback?:
+        | BodyResponseCallback<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        | BodyResponseCallback<Readable>
+    ):
+      | void
+      | Promise<
+          GaxiosResponseWithHTTP2<Schema$GoogleCloudRetailV2ConversationalSearchResponse>
+        >
+      | Promise<GaxiosResponseWithHTTP2<Readable>> {
+      let params = (paramsOrCallback ||
+        {}) as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch;
+      let options = (optionsOrCallback || {}) as MethodOptions;
+
+      if (typeof paramsOrCallback === 'function') {
+        callback = paramsOrCallback;
+        params =
+          {} as Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch;
+        options = {};
+      }
+
+      if (typeof optionsOrCallback === 'function') {
+        callback = optionsOrCallback;
+        options = {};
+      }
+
+      const rootUrl = options.rootUrl || 'https://retail.googleapis.com/';
+      const parameters = {
+        options: Object.assign(
+          {
+            url: (rootUrl + '/v2/{+placement}:conversationalSearch').replace(
+              /([^:]\/)\/+/g,
+              '$1'
+            ),
+            method: 'POST',
+            apiVersion: '',
+          },
+          options
+        ),
+        params,
+        requiredParams: ['placement'],
+        pathParams: ['placement'],
+        context: this.context,
+      };
+      if (callback) {
+        createAPIRequest<Schema$GoogleCloudRetailV2ConversationalSearchResponse>(
+          parameters,
+          callback as BodyResponseCallback<unknown>
+        );
+      } else {
+        return createAPIRequest<Schema$GoogleCloudRetailV2ConversationalSearchResponse>(
           parameters
         );
       }
@@ -14756,6 +15324,18 @@ export namespace retail_v2 {
      * Request body metadata
      */
     requestBody?: Schema$GoogleCloudRetailV2AddControlRequest;
+  }
+  export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Conversationalsearch
+    extends StandardParameters {
+    /**
+     * Required. The resource name of the search engine placement, such as `projects/x/locations/global/catalogs/default_catalog/placements/default_search` or `projects/x/locations/global/catalogs/default_catalog/servingConfigs/default_serving_config` This field is used to identify the serving config name and the set of models that will be used to make the search.
+     */
+    placement?: string;
+
+    /**
+     * Request body metadata
+     */
+    requestBody?: Schema$GoogleCloudRetailV2ConversationalSearchRequest;
   }
   export interface Params$Resource$Projects$Locations$Catalogs$Servingconfigs$Create
     extends StandardParameters {
