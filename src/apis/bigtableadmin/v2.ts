@@ -554,19 +554,27 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateBackupMetadata {
     /**
-     * If set, the time at which this operation finished or was cancelled.
+     * If set, the time at which this operation finished or was cancelled. DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The name of the backup being created.
      */
     name?: string | null;
     /**
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
      * The name of the table the backup is created from.
      */
     sourceTable?: string | null;
     /**
-     * The time at which this operation started.
+     * The time at which this operation started. DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -651,15 +659,23 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateLogicalViewMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateLogicalView operation.
      */
     originalRequest?: Schema$CreateLogicalViewRequest;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -685,15 +701,23 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateMaterializedViewMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * If set, the time at which this operation finished or was canceled. DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this CreateMaterializedView operation.
      */
     originalRequest?: Schema$CreateMaterializedViewRequest;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * The time at which this operation started. DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -719,17 +743,17 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$CreateSchemaBundleMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * The time at which the operation failed or was completed successfully.
      */
-    endTime?: string | null;
+    finishTime?: string | null;
     /**
      * The unique name identifying this schema bundle. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/schemaBundles/{schema_bundle\}`
      */
     name?: string | null;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
      */
-    startTime?: string | null;
+    requestTime?: string | null;
   }
   /**
    * Request message for google.bigtable.admin.v2.BigtableTableAdmin.CreateTable
@@ -986,7 +1010,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeBytesEncodingRaw {
     /**
-     * If set, allows NULL values to be encoded as the empty string "". The actual empty string, or any value which only contains the null byte 0x00, has one more null byte appended.
+     * If set, allows NULL values to be encoded as the empty string "". The actual empty string, or any value which only contains the null byte `0x00`, has one more null byte appended.
      */
     escapeNulls?: boolean | null;
   }
@@ -1103,7 +1127,7 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$GoogleBigtableAdminV2TypeStringEncodingUtf8Bytes {
     /**
-     * Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string "". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character 0x00, then the encoding will not support sorted mode. .
+     * Single-character escape sequence used to support NULL values. If set, allows NULL values to be encoded as the empty string "". The actual empty string, or any value where every character equals `null_escape_char`, has one more `null_escape_char` appended. If `null_escape_char` is set and does not equal the ASCII null character `0x00`, then the encoding will not support sorted mode. .
      */
     nullEscapeChar?: string | null;
   }
@@ -1142,7 +1166,7 @@ export namespace bigtableadmin_v2 {
     singleton?: Schema$GoogleBigtableAdminV2TypeStructEncodingSingleton;
   }
   /**
-   * Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.
+   * Fields are encoded independently and concatenated with a configurable `delimiter` in between. A struct with no fields defined is encoded as a single `delimiter`. Sorted mode: - Fields are encoded in sorted mode. - Encoded field values must not contain any bytes <= `delimiter[0]` - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. - This encoding does not support `DESC` field ordering. Distinct mode: - Fields are encoded in distinct mode. - Encoded field values must not contain `delimiter[0]`.
    */
   export interface Schema$GoogleBigtableAdminV2TypeStructEncodingDelimitedBytes {
     /**
@@ -1151,11 +1175,11 @@ export namespace bigtableadmin_v2 {
     delimiter?: string | null;
   }
   /**
-   * Fields are encoded independently and concatenated with the fixed byte pair {0x00, 0x01\} in between. Any null (0x00) byte in an encoded field is replaced by the fixed byte pair {0x00, 0xFF\}. Fields that encode to the empty string "" have special handling: - If *every* field encodes to "", or if the STRUCT has no fields defined, then the STRUCT is encoded as the fixed byte pair {0x00, 0x00\}. - Otherwise, the STRUCT only encodes until the last non-empty field, omitting any trailing empty fields. Any empty fields that aren't omitted are replaced with the fixed byte pair {0x00, 0x00\}. Examples: - STRUCT() -\> "\00\00" - STRUCT("") -\> "\00\00" - STRUCT("", "") -\> "\00\00" - STRUCT("", "B") -\> "\00\00" + "\00\01" + "B" - STRUCT("A", "") -\> "A" - STRUCT("", "B", "") -\> "\00\00" + "\00\01" + "B" - STRUCT("A", "", "C") -\> "A" + "\00\01" + "\00\00" + "\00\01" + "C" Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.
+   * Fields are encoded independently, then escaped and delimited by appling the following rules in order: - While the last remaining field is `ASC` or `UNSPECIFIED`, and encodes to the empty string "", remove it. - In each remaining field, replace all null bytes `0x00` with the fixed byte pair `{0x00, 0xFF\}`. - If any remaining field encodes to the empty string "", replace it with the fixed byte pair `{0x00, 0x00\}`. - Append the fixed byte pair `{0x00, 0x01\}` to each remaining field, except for the last remaining field if it is `ASC`. - Bitwise negate all `DESC` fields. - Concatenate the results, or emit the fixed byte pair `{0x00, 0x00\}` if there are no remaining fields to concatenate. Examples: ``` - STRUCT() -\> "\00\00" - STRUCT("") -\> "\00\00" - STRUCT("", "") -\> "\00\00" - STRUCT("", "B") -\> "\00\00" + "\00\01" + "B" - STRUCT("A", "") -\> "A" - STRUCT("", "B", "") -\> "\00\00" + "\00\01" + "B" - STRUCT("A", "", "C") -\> "A" + "\00\01" + "\00\00" + "\00\01" + "C" ``` Examples for struct with `DESC` fields: ``` - STRUCT("" DESC) -\> "\xFF\xFF" + "\xFF\xFE" - STRUCT("" DESC, "") -\> "\xFF\xFF" + "\xFF\xFE" - STRUCT("" DESC, "", "") -\> "\xFF\xFF" + "\xFF\xFE" - STRUCT("" DESC, "A") -\> "\xFF\xFF" + "\xFF\xFE" + "A" - STRUCT("A", "" DESC, "") -\> "A" + "\00\01" + "\xFF\xFF" + "\xFF\xFE" - STRUCT("", "A" DESC) -\> "\x00\x00" + "\x00\x01" + "\xBE" + "\xFF\xFE" ``` Since null bytes are always escaped, this encoding can cause size blowup for encodings like `Int64.BigEndianBytes` that are likely to produce many such bytes. Sorted mode: - Fields are encoded in sorted mode. - All values supported by the field encodings are allowed. - Fields with unset or `UNSPECIFIED` order are treated as `ASC`. - Element-wise order is preserved: `A < B` if `A[0] < B[0]`, or if `A[0] == B[0] && A[1] < B[1]`, etc. Strict prefixes sort first. Distinct mode: - Fields are encoded in distinct mode. - All values supported by the field encodings are allowed.
    */
   export interface Schema$GoogleBigtableAdminV2TypeStructEncodingOrderedCodeBytes {}
   /**
-   * Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`.
+   * Uses the encoding of `fields[0].type` as-is. Only valid if `fields.size == 1`. This encoding does not support `DESC` field ordering.
    */
   export interface Schema$GoogleBigtableAdminV2TypeStructEncodingSingleton {}
   /**
@@ -1491,19 +1515,19 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$MaterializedView {
     /**
-     * Set to true to make the MaterializedView protected against deletion.
+     * Set to true to make the MaterializedView protected against deletion. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     deletionProtection?: boolean | null;
     /**
-     * Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag.
+     * Optional. The etag for this materialized view. This may be sent on update requests to ensure that the client has an up-to-date value before proceeding. The server returns an ABORTED error on a mismatched etag. Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     etag?: string | null;
     /**
-     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     name?: string | null;
     /**
-     * Required. Immutable. The materialized view's select query.
+     * Required. Immutable. The materialized view's select query. Views: `SCHEMA_VIEW`, `FULL`.
      */
     query?: string | null;
   }
@@ -1941,7 +1965,7 @@ export namespace bigtableadmin_v2 {
     includeIfOlderThan?: string | null;
   }
   /**
-   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both "{'foo': '1', 'bar': '2'\}" and "{'bar': '2', 'foo': '1'\}" are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) \> INT64(-1)`, but `STRING("-00001") \> STRING("00001")`.
+   * `Type` represents the type of data that is written to, read from, or stored in Bigtable. It is heavily based on the GoogleSQL standard to help maintain familiarity and consistency across products and features. For compatibility with Bigtable's existing untyped APIs, each `Type` includes an `Encoding` which describes how to convert to or from the underlying data. Each encoding can operate in one of two modes: - Sorted: In this mode, Bigtable guarantees that `Encode(X) <= Encode(Y)` if and only if `X <= Y`. This is useful anywhere sort order is important, for example when encoding keys. - Distinct: In this mode, Bigtable guarantees that if `X != Y` then `Encode(X) != Encode(Y)`. However, the converse is not guaranteed. For example, both `{'foo': '1', 'bar': '2'\}` and `{'bar': '2', 'foo': '1'\}` are valid encodings of the same JSON value. The API clearly documents which mode is used wherever an encoding can be configured. Each encoding also documents which values are supported in which modes. For example, when encoding INT64 as a numeric STRING, negative numbers cannot be encoded in sorted mode. This is because `INT64(1) \> INT64(-1)`, but `STRING("-00001") \> STRING("00001")`.
    */
   export interface Schema$Type {
     /**
@@ -2006,15 +2030,23 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$UndeleteTableMetadata {
     /**
-     * If set, the time at which this operation finished or was cancelled.
+     * If set, the time at which this operation finished or was cancelled. DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The name of the table being restored.
      */
     name?: string | null;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * The time at which this operation started. DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -2108,15 +2140,23 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$UpdateLogicalViewMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The request that prompted the initiation of this UpdateLogicalView operation.
      */
     originalRequest?: Schema$UpdateLogicalViewRequest;
     /**
-     * The time at which this operation was started.
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -2138,32 +2178,40 @@ export namespace bigtableadmin_v2 {
    */
   export interface Schema$UpdateSchemaBundleMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * The time at which the operation failed or was completed successfully.
      */
-    endTime?: string | null;
+    finishTime?: string | null;
     /**
      * The unique name identifying this schema bundle. Values are of the form `projects/{project\}/instances/{instance\}/tables/{table\}/schemaBundles/{schema_bundle\}`
      */
     name?: string | null;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
      */
-    startTime?: string | null;
+    requestTime?: string | null;
   }
   /**
    * Metadata type for the operation returned by UpdateTable.
    */
   export interface Schema$UpdateTableMetadata {
     /**
-     * If set, the time at which this operation finished or was canceled.
+     * If set, the time at which this operation finished or was canceled. DEPRECATED: Use finish_time instead.
      */
     endTime?: string | null;
+    /**
+     * The time at which the operation failed or was completed successfully.
+     */
+    finishTime?: string | null;
     /**
      * The name of the table being updated.
      */
     name?: string | null;
     /**
-     * The time at which this operation started.
+     * The time at which the original request was received.
+     */
+    requestTime?: string | null;
+    /**
+     * The time at which this operation started. DEPRECATED: Use request_time instead.
      */
     startTime?: string | null;
   }
@@ -9835,7 +9883,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.instances.materializedViews.patch({
-     *     // Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     *     // Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      *     name: 'projects/my-project/instances/my-instance/materializedViews/my-materializedView',
      *     // Optional. The list of fields to update.
      *     updateMask: 'placeholder-value',
@@ -10344,7 +10392,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Instances$Materializedviews$Patch
     extends StandardParameters {
     /**
-     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}`
+     * Identifier. The unique name of the materialized view. Format: `projects/{project\}/instances/{instance\}/materializedViews/{materialized_view\}` Views: `SCHEMA_VIEW`, `REPLICATION_VIEW`, `FULL`.
      */
     name?: string;
     /**
@@ -15546,7 +15594,7 @@ export namespace bigtableadmin_v2 {
      *
      *   // Do the magic
      *   const res = await bigtableadmin.projects.locations.list({
-     *     // Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     *     // Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      *     extraLocationTypes: 'placeholder-value',
      *     // A filter to narrow down results to a preferred subset. The filtering language accepts strings like `"displayName=tokyo"`, and is documented in more detail in [AIP-160](https://google.aip.dev/160).
      *     filter: 'placeholder-value',
@@ -15668,7 +15716,7 @@ export namespace bigtableadmin_v2 {
   export interface Params$Resource$Projects$Locations$List
     extends StandardParameters {
     /**
-     * Optional. A list of extra location types that should be used as conditions for controlling the visibility of the locations.
+     * Optional. Unless explicitly documented otherwise, don't use this unsupported field which is primarily intended for internal usage.
      */
     extraLocationTypes?: string[];
     /**
