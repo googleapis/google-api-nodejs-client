@@ -257,6 +257,10 @@ export namespace analyticshub_v1beta1 {
      * Required. The geographic location where the dataset should reside. See https://cloud.google.com/bigquery/docs/locations for supported locations.
      */
     location?: string | null;
+    /**
+     * Optional. The geographic locations where the dataset should be replicated. See [BigQuery locations](https://cloud.google.com/bigquery/docs/locations) for supported locations.
+     */
+    replicaLocations?: string[] | null;
   }
   export interface Schema$DestinationDatasetReference {
     /**
