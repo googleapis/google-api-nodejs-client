@@ -35,9 +35,9 @@ import {
 } from 'googleapis-common';
 import {Readable} from 'stream';
 
-export namespace cloudlocationfinder_v1alpha {
+export namespace cloudlocationfinder_v1 {
   export interface Options extends GlobalOptions {
-    version: 'v1alpha';
+    version: 'v1';
   }
 
   interface StandardParameters {
@@ -107,7 +107,7 @@ export namespace cloudlocationfinder_v1alpha {
    * @example
    * ```js
    * const {google} = require('googleapis');
-   * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+   * const cloudlocationfinder = google.cloudlocationfinder('v1');
    * ```
    */
   export class Cloudlocationfinder {
@@ -258,7 +258,7 @@ export namespace cloudlocationfinder_v1alpha {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+     * const cloudlocationfinder = google.cloudlocationfinder('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -359,7 +359,7 @@ export namespace cloudlocationfinder_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -397,7 +397,7 @@ export namespace cloudlocationfinder_v1alpha {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+     * const cloudlocationfinder = google.cloudlocationfinder('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -505,7 +505,7 @@ export namespace cloudlocationfinder_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}/locations').replace(
+            url: (rootUrl + '/v1/{+name}/locations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -584,7 +584,7 @@ export namespace cloudlocationfinder_v1alpha {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+     * const cloudlocationfinder = google.cloudlocationfinder('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -687,7 +687,7 @@ export namespace cloudlocationfinder_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+name}').replace(/([^:]\/)\/+/g, '$1'),
+            url: (rootUrl + '/v1/{+name}').replace(/([^:]\/)\/+/g, '$1'),
             method: 'GET',
             apiVersion: '',
           },
@@ -725,7 +725,7 @@ export namespace cloudlocationfinder_v1alpha {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+     * const cloudlocationfinder = google.cloudlocationfinder('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -833,7 +833,7 @@ export namespace cloudlocationfinder_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/cloudLocations').replace(
+            url: (rootUrl + '/v1/{+parent}/cloudLocations').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),
@@ -874,7 +874,7 @@ export namespace cloudlocationfinder_v1alpha {
      * //   ```
      *
      * const {google} = require('googleapis');
-     * const cloudlocationfinder = google.cloudlocationfinder('v1alpha');
+     * const cloudlocationfinder = google.cloudlocationfinder('v1');
      *
      * async function main() {
      *   const auth = new google.auth.GoogleAuth({
@@ -985,7 +985,7 @@ export namespace cloudlocationfinder_v1alpha {
       const parameters = {
         options: Object.assign(
           {
-            url: (rootUrl + '/v1alpha/{+parent}/cloudLocations:search').replace(
+            url: (rootUrl + '/v1/{+parent}/cloudLocations:search').replace(
               /([^:]\/)\/+/g,
               '$1'
             ),

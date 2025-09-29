@@ -14,12 +14,20 @@
 /*! THIS FILE IS AUTO-GENERATED */
 
 import {AuthPlus, getAPI, GoogleConfigurable} from 'googleapis-common';
+import {cloudlocationfinder_v1} from './v1';
 import {cloudlocationfinder_v1alpha} from './v1alpha';
 
 export const VERSIONS = {
+  v1: cloudlocationfinder_v1.Cloudlocationfinder,
   v1alpha: cloudlocationfinder_v1alpha.Cloudlocationfinder,
 };
 
+export function cloudlocationfinder(
+  version: 'v1'
+): cloudlocationfinder_v1.Cloudlocationfinder;
+export function cloudlocationfinder(
+  options: cloudlocationfinder_v1.Options
+): cloudlocationfinder_v1.Cloudlocationfinder;
 export function cloudlocationfinder(
   version: 'v1alpha'
 ): cloudlocationfinder_v1alpha.Cloudlocationfinder;
@@ -27,16 +35,23 @@ export function cloudlocationfinder(
   options: cloudlocationfinder_v1alpha.Options
 ): cloudlocationfinder_v1alpha.Cloudlocationfinder;
 export function cloudlocationfinder<
-  T = cloudlocationfinder_v1alpha.Cloudlocationfinder,
+  T =
+    | cloudlocationfinder_v1.Cloudlocationfinder
+    | cloudlocationfinder_v1alpha.Cloudlocationfinder,
 >(
   this: GoogleConfigurable,
-  versionOrOptions: 'v1alpha' | cloudlocationfinder_v1alpha.Options
+  versionOrOptions:
+    | 'v1'
+    | cloudlocationfinder_v1.Options
+    | 'v1alpha'
+    | cloudlocationfinder_v1alpha.Options
 ) {
   return getAPI<T>('cloudlocationfinder', versionOrOptions, VERSIONS, this);
 }
 
 const auth = new AuthPlus();
 export {auth};
+export {cloudlocationfinder_v1};
 export {cloudlocationfinder_v1alpha};
 export {
   AuthPlus,
