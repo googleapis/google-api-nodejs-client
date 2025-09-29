@@ -3345,7 +3345,7 @@ export namespace securitycenter_v1beta1 {
      */
     backupDisasterRecovery?: Schema$GoogleCloudSecuritycenterV2BackupDisasterRecovery;
     /**
-     * Output only. The canonical name of the finding. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}/findings/{finding_id\}` + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` The prefix is the closest CRM ancestor of the resource associated with the finding.
+     * Output only. The canonical name of the finding. The following list shows some examples: + `organizations/{organization_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `folders/{folder_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` + `projects/{project_id\}/sources/{source_id\}/locations/{location_id\}/findings/{finding_id\}` The prefix is the closest CRM ancestor of the resource associated with the finding.
      */
     canonicalName?: string | null;
     /**
@@ -3860,6 +3860,10 @@ export namespace securitycenter_v1beta1 {
    */
   export interface Schema$GoogleCloudSecuritycenterV2IssueResource {
     /**
+     * The AppHub application associated with the resource, if any. Only populated for the primary resource.
+     */
+    application?: Schema$GoogleCloudSecuritycenterV2IssueResourceApplication;
+    /**
      * The AWS metadata of the resource associated with the issue. Only populated for AWS resources.
      */
     awsMetadata?: Schema$GoogleCloudSecuritycenterV2IssueResourceAwsMetadata;
@@ -3887,6 +3891,15 @@ export namespace securitycenter_v1beta1 {
      * The type of the resource associated with the issue.
      */
     type?: string | null;
+  }
+  /**
+   * The AppHub application associated with the resource, if any.
+   */
+  export interface Schema$GoogleCloudSecuritycenterV2IssueResourceApplication {
+    /**
+     * The resource name of an Application. Format: `projects/{host-project-id\}/locations/{location\}/applications/{application-id\}`
+     */
+    name?: string | null;
   }
   /**
    * The AWS metadata of a resource associated with an issue.
